@@ -1,5 +1,7 @@
 {
- "active": {},
+ "active": {
+  "ratio:dbfw:FB11": "2026-10-16"
+ },
  "seen_groups": {
   "80": {
    "23401": {

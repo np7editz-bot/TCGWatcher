@@ -1,0 +1,17 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-16T21:53:23Z",
+   "key": "quality:2026-10-16",
+   "kind": "quality",
+   "text": "⚠️ Data quality warn: 5 finding(s) on 2026-10-16. Page updated with warnings."
+  },
+  {
+   "at": "2026-10-16T21:53:23Z",
+   "key": "ratio:dbfw:FB11",
+   "kind": "ratio",
+   "text": "🎯 <b>FB11 Brightness of Hope</b>: EV-ratio 1.44 ≥ 0.6 (hits $286 / box $198). Top hit: Shallet (Super Alternate Art) $3,498."
+  }
+ ],
+ "day": "2026-10-16"
+}
