@@ -1,0 +1,524 @@
+{
+ "active": {},
+ "seen_groups": {
+  "80": {
+   "23401": {
+    "abbr": "FB01",
+    "name": "Awakened Pulse",
+    "published": "2024-02-23",
+    "seen": "2026-10-15"
+   },
+   "23407": {
+    "abbr": "FB01_PR",
+    "name": "Awakened Pulse Pre-Release Cards",
+    "published": "2024-02-16",
+    "seen": "2026-10-15"
+   },
+   "23408": {
+    "abbr": "FS01",
+    "name": "Starter Deck 1: Son Goku",
+    "published": "2024-02-16",
+    "seen": "2026-10-15"
+   },
+   "23409": {
+    "abbr": "FS02",
+    "name": "Starter Deck 2: Vegeta",
+    "published": "2024-02-16",
+    "seen": "2026-10-15"
+   },
+   "23410": {
+    "abbr": "FS03",
+    "name": "Starter Deck 3: Broly",
+    "published": "2024-02-16",
+    "seen": "2026-10-15"
+   },
+   "23411": {
+    "abbr": "FS04",
+    "name": "Starter Deck 4: Frieza",
+    "published": "2024-02-16",
+    "seen": "2026-10-15"
+   },
+   "23428": {
+    "abbr": "DBSFW_PR",
+    "name": "Fusion World Promotion Cards and Packs",
+    "published": "2024-02-14",
+    "seen": "2026-10-15"
+   },
+   "23429": {
+    "abbr": "DBSFW_TPR",
+    "name": "Tournament and Championship Promos",
+    "published": "2024-02-14",
+    "seen": "2026-10-15"
+   },
+   "23430": {
+    "abbr": "DBSFW_EM",
+    "name": "Fusion World Energy Markers",
+    "published": "2024-02-14",
+    "seen": "2026-10-15"
+   },
+   "23470": {
+    "abbr": "FB02",
+    "name": "Blazing Aura",
+    "published": "2024-05-10",
+    "seen": "2026-10-15"
+   },
+   "23471": {
+    "abbr": "FB02_PR",
+    "name": "Blazing Aura Release Event Cards",
+    "published": "2024-05-03",
+    "seen": "2026-10-15"
+   },
+   "23505": {
+    "abbr": "FB01_AR",
+    "name": "Awakened Pulse Alternate Art Reprints",
+    "published": "2024-05-10",
+    "seen": "2026-10-15"
+   },
+   "23517": {
+    "abbr": "FB03",
+    "name": "Raging Roar",
+    "published": "2024-08-16",
+    "seen": "2026-10-15"
+   },
+   "23518": {
+    "abbr": "FB03_PR",
+    "name": "Raging Roar Release Event Cards",
+    "published": "2024-08-09",
+    "seen": "2026-10-15"
+   },
+   "23519": {
+    "abbr": "FS05",
+    "name": "Starter Deck 5: Bardock",
+    "published": "2024-08-09",
+    "seen": "2026-10-15"
+   },
+   "23581": {
+    "abbr": "FS04_AR",
+    "name": "Starter Deck 4: Frieza Alternate Art Reprints",
+    "published": "2024-08-16",
+    "seen": "2026-10-15"
+   },
+   "23582": {
+    "abbr": "FS01_AR",
+    "name": "Starter Deck 1: Son Goku Alternate Art Reprints",
+    "published": "2024-05-10",
+    "seen": "2026-10-15"
+   },
+   "23583": {
+    "abbr": "FS03_AR",
+    "name": "Starter Deck 3: Broly Alternate Art Reprints",
+    "published": "2024-05-10",
+    "seen": "2026-10-15"
+   },
+   "23654": {
+    "abbr": "FS06",
+    "name": "Starter Deck 6: Son Goku (Mini)",
+    "published": "2024-11-08",
+    "seen": "2026-10-15"
+   },
+   "23655": {
+    "abbr": "FS07",
+    "name": "Starter Deck 7: Vegeta (Mini)",
+    "published": "2024-11-08",
+    "seen": "2026-10-15"
+   },
+   "23658": {
+    "abbr": "FB04",
+    "name": "Ultra Limit",
+    "published": "2024-11-15",
+    "seen": "2026-10-15"
+   },
+   "23769": {
+    "abbr": "FB04_PR",
+    "name": "Ultra Limit Release Event Cards",
+    "published": "2024-11-08",
+    "seen": "2026-10-15"
+   },
+   "23823": {
+    "abbr": "FB03_AR",
+    "name": "Raging Roar Alternate Art Reprints",
+    "published": "2024-11-15",
+    "seen": "2026-10-15"
+   },
+   "23928": {
+    "abbr": "FB05",
+    "name": "New Adventure",
+    "published": "2025-02-14",
+    "seen": "2026-10-15"
+   },
+   "24183": {
+    "abbr": "FB02_AR",
+    "name": "Blazing Aura Alternate Art Reprints",
+    "published": "2025-02-14",
+    "seen": "2026-10-15"
+   },
+   "24184": {
+    "abbr": "FB04_AR",
+    "name": "Ultra Limit Alternate Art Reprints",
+    "published": "2025-02-14",
+    "seen": "2026-10-15"
+   },
+   "24185": {
+    "abbr": "FS05_AR",
+    "name": "Starter Deck 5: Bardock Alternate Art Reprints",
+    "published": "2025-02-14",
+    "seen": "2026-10-15"
+   },
+   "24186": {
+    "abbr": "FB05_PR",
+    "name": "New Adventure Release Event Cards",
+    "published": "2025-02-07",
+    "seen": "2026-10-15"
+   },
+   "24239": {
+    "abbr": "FS08",
+    "name": "Starter Deck 8: Vegeta (Mini) Super Saiyan 3",
+    "published": "2025-04-25",
+    "seen": "2026-10-15"
+   },
+   "24247": {
+    "abbr": "FB06",
+    "name": "Rivals Clash",
+    "published": "2025-05-02",
+    "seen": "2026-10-15"
+   },
+   "24248": {
+    "abbr": "FB06_PR",
+    "name": "Rivals Clash Release Event Cards",
+    "published": "2025-04-25",
+    "seen": "2026-10-15"
+   },
+   "24251": {
+    "abbr": "FS09",
+    "name": "Starter Deck 9: Shallot",
+    "published": "2025-06-13",
+    "seen": "2026-10-15"
+   },
+   "24288": {
+    "abbr": "SB02",
+    "name": "Manga Booster 02",
+    "published": "2025-11-14",
+    "seen": "2026-10-15"
+   },
+   "24311": {
+    "abbr": "FB03_AR",
+    "name": "New Adventure Alternate Art Reprints",
+    "published": "2025-05-02",
+    "seen": "2026-10-15"
+   },
+   "24335": {
+    "abbr": "SB01",
+    "name": "Manga Booster 01",
+    "published": "2025-06-27",
+    "seen": "2026-10-15"
+   },
+   "24336": {
+    "abbr": "FS10",
+    "name": "Starter Deck 10: Giblet",
+    "published": "2025-06-13",
+    "seen": "2026-10-15"
+   },
+   "24368": {
+    "abbr": "SB01_PR",
+    "name": "Manga Booster 01 Release Event Cards",
+    "published": "2025-06-27",
+    "seen": "2026-10-15"
+   },
+   "24397": {
+    "abbr": "FB07",
+    "name": "Wish For Shenron",
+    "published": "2025-09-19",
+    "seen": "2026-10-15"
+   },
+   "24419": {
+    "abbr": "FB07_PR",
+    "name": "Wish For Shenron Release Event Cards",
+    "published": "2025-09-12",
+    "seen": "2026-10-15"
+   },
+   "24450": {
+    "abbr": "FB08",
+    "name": "Saiyan's Pride",
+    "published": "2025-12-12",
+    "seen": "2026-10-15"
+   },
+   "24492": {
+    "abbr": "SB02_RE",
+    "name": "Manga Booster 02 Release Event Cards",
+    "published": "2025-11-14",
+    "seen": "2026-10-15"
+   },
+   "24518": {
+    "abbr": "FB08_PR",
+    "name": "Saiyan's Pride Release Event Cards",
+    "published": "2025-12-19",
+    "seen": "2026-10-15"
+   },
+   "24569": {
+    "abbr": "FB09",
+    "name": "Dual Evolution",
+    "published": "2026-03-13",
+    "seen": "2026-10-15"
+   },
+   "24570": {
+    "abbr": "FS11",
+    "name": "Starter Deck EX: The Phase of Evolution",
+    "published": "2026-03-13",
+    "seen": "2026-10-15"
+   },
+   "24571": {
+    "abbr": "FS12",
+    "name": "Starter Deck EX: The Beat of Ki",
+    "published": "2026-03-13",
+    "seen": "2026-10-15"
+   },
+   "24604": {
+    "abbr": "FB10",
+    "name": "Cross Force",
+    "published": "2026-06-19",
+    "seen": "2026-10-15"
+   },
+   "24663": {
+    "abbr": "FB09_PR",
+    "name": "Dual Evolution Release Event Cards",
+    "published": "2026-03-13",
+    "seen": "2026-10-15"
+   },
+   "24680": {
+    "abbr": "ST01",
+    "name": "Story Booster 01",
+    "published": "2026-08-21",
+    "seen": "2026-10-15"
+   },
+   "24716": {
+    "abbr": "FB11",
+    "name": "Brightness of Hope",
+    "published": "2026-10-16",
+    "seen": "2026-10-15"
+   },
+   "24733": {
+    "abbr": "FB10_PR",
+    "name": "Cross Force Release Event Cards",
+    "published": "2026-06-12",
+    "seen": "2026-10-15"
+   },
+   "24783": {
+    "abbr": "FB12",
+    "name": "Reach the God",
+    "published": "2026-12-11",
+    "seen": "2026-10-15"
+   },
+   "24874": {
+    "abbr": "FB11_PR",
+    "name": "Brightness of Hope Release Event Cards",
+    "published": "2026-10-16",
+    "seen": "2026-10-15"
+   },
+   "24895": {
+    "abbr": "FS13",
+    "name": "Starter Deck 13: The Saiyan Raised on Earth",
+    "published": "2027-01-22",
+    "seen": "2026-10-15"
+   },
+   "24896": {
+    "abbr": "FS14",
+    "name": "Starter Deck 14: The Prince of Saiyan",
+    "published": "2027-01-22",
+    "seen": "2026-10-15"
+   }
+  },
+  "93": {
+   "24885": {
+    "abbr": "",
+    "name": "Promotion Cards",
+    "published": "2026-09-16",
+    "seen": "2026-10-15"
+   }
+  }
+ },
+ "seen_sealed": {
+  "dbfw": {
+   "535546": {
+    "name": "Awakened Pulse Booster Box",
+    "seen": "2026-10-15"
+   },
+   "535547": {
+    "name": "Awakened Pulse Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "535549": {
+    "name": "Awakened Pulse Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "543426": {
+    "name": "Blazing Aura Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "543427": {
+    "name": "Blazing Aura Booster Box",
+    "seen": "2026-10-15"
+   },
+   "543428": {
+    "name": "Blazing Aura Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "551680": {
+    "name": "Raging Roar Booster Box",
+    "seen": "2026-10-15"
+   },
+   "551681": {
+    "name": "Raging Roar Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "551682": {
+    "name": "Raging Roar Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "565626": {
+    "name": "Ultra Limit Booster Box",
+    "seen": "2026-10-15"
+   },
+   "565627": {
+    "name": "Ultra Limit Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "565628": {
+    "name": "Ultra Limit Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "604241": {
+    "name": "New Adventure Booster Box",
+    "seen": "2026-10-15"
+   },
+   "604242": {
+    "name": "New Adventure Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "604243": {
+    "name": "New Adventure Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "624222": {
+    "name": "Rivals Clash Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "624223": {
+    "name": "Rivals Clash Booster Box",
+    "seen": "2026-10-15"
+   },
+   "624224": {
+    "name": "Rivals Clash Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "637461": {
+    "name": "Manga Booster 01 Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "637462": {
+    "name": "Manga Booster 01 Booster Box",
+    "seen": "2026-10-15"
+   },
+   "637463": {
+    "name": "Manga Booster 01 Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "647770": {
+    "name": "Wish For Shenron Booster Box",
+    "seen": "2026-10-15"
+   },
+   "647771": {
+    "name": "Wish For Shenron Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "647773": {
+    "name": "Wish For Shenron Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "647779": {
+    "name": "Manga Booster 02 Booster Box",
+    "seen": "2026-10-15"
+   },
+   "647781": {
+    "name": "Manga Booster 02 Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "647783": {
+    "name": "Manga Booster 02 Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "654568": {
+    "name": "Saiyan's Pride Booster Box",
+    "seen": "2026-10-15"
+   },
+   "654569": {
+    "name": "Saiyan's Pride Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "654570": {
+    "name": "Saiyan's Pride Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "670183": {
+    "name": "Dual Evolution Booster Box",
+    "seen": "2026-10-15"
+   },
+   "670184": {
+    "name": "Dual Evolution Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "670186": {
+    "name": "Dual Evolution Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "675645": {
+    "name": "Cross Force Booster Box",
+    "seen": "2026-10-15"
+   },
+   "675646": {
+    "name": "Cross Force Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "675647": {
+    "name": "Cross Force Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "692391": {
+    "name": "Story Booster 01 Booster Box",
+    "seen": "2026-10-15"
+   },
+   "692395": {
+    "name": "Story Booster 01 Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "692398": {
+    "name": "Story Booster 01 Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "695727": {
+    "name": "Brightness of Hope Booster Box",
+    "seen": "2026-10-15"
+   },
+   "695728": {
+    "name": "Brightness of Hope Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "695729": {
+    "name": "Brightness of Hope Booster Pack",
+    "seen": "2026-10-15"
+   },
+   "707521": {
+    "name": "Reach the God Booster Box",
+    "seen": "2026-10-15"
+   },
+   "707522": {
+    "name": "Reach the God Booster Box Case",
+    "seen": "2026-10-15"
+   },
+   "707523": {
+    "name": "Reach the God Booster Pack",
+    "seen": "2026-10-15"
+   }
+  },
+  "naruto": {}
+ }
+}

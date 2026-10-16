@@ -1,0 +1,15 @@
+# Alert rules. Evaluated daily after build. Each alert has a stable key; an alert is sent once per
+# "episode" (e.g. a ratio alert is sent when a set crosses the threshold and again only after it dropped below).
+ratio:
+  threshold: 0.60          # EV of hits (excl. ★★) / box market price
+  include_saa: false
+box_price:
+  drop_pct_7d: -10         # box market price vs 7-day average
+  rise_pct_7d: 10
+card_price:
+  move_pct_7d: 25          # single chase card
+  min_price_usd: 20
+new_group: true            # new set/product line appears in TCGCSV (presale = earliest pre-order signal)
+new_sealed_product: true   # new booster box / case / pack product appears in an existing group
+quality_issues: true       # send a message when validation fails or warns
+exclude_flags: [manga, story]   # sets with these flags never trigger ratio alerts
