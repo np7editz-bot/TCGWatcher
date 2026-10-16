@@ -1,0 +1,71 @@
+name: daily
+
+on:
+  schedule:
+    - cron: "30 21 * * *"      # 21:30 UTC daily; tcgcsv.com publishes around 20:00 UTC
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Fetch even if the source did not change"
+        type: boolean
+        default: false
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Tests
+        run: python -m pytest -q
+
+      - name: Fetch → validate → build → alerts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -m tcgwatcher all ${{ inputs.force && '--force' || '' }}
+
+      - name: Commit data
+        run: |
+          git config user.name "tcgwatcher-bot"
+          git config user.email "tcgwatcher-bot@users.noreply.github.com"
+          git add data site/data
+          if git diff --cached --quiet; then
+            echo "no data changes"
+          else
+            day=$(python -c "import json;print(json.load(open('data/state/sync.json'))['day'])")
+            git commit -m "data: ${day} snapshot"
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

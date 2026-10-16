@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TCGWatcher Chase Radar</title>
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,400;87.5,600;87.5,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column, summary (ranking) first, detail expands in place. Data table styling, no cards except the assumptions panel. */
+:root{
+  --bg:#f6f4ef; --surface:#fffdf9; --fg:#1d1a16; --fg2:#5a554c; --fg3:#8a847a;
+  --line:#dcd7cc; --accent:#c8471f; --accent-soft:#f3d9ce; --bar:#2f6f8f; --bar-soft:#d6e6ee;
+  --good:#2f7d4f; --warn:#b7791f; --warn-soft:#f5e7c8; --crit:#b3261e; --crit-soft:#f6d6d3; --info-soft:#dde7ee;
+  --display:'Archivo',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17160f; --surface:#1f1e16; --fg:#efeae0; --fg2:#b3ac9e; --fg3:#7d776b;
+  --line:#3a3829; --accent:#f07a4f; --accent-soft:#4a2a1c; --bar:#7fb7d6; --bar-soft:#243a46;
+  --good:#6fc48d; --warn:#e2b45a; --warn-soft:#3e3418; --crit:#f08a82; --crit-soft:#4a1f1b; --info-soft:#2a3a44; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17160f; --surface:#1f1e16; --fg:#efeae0; --fg2:#b3ac9e; --fg3:#7d776b;
+  --line:#3a3829; --accent:#f07a4f; --accent-soft:#4a2a1c; --bar:#7fb7d6; --bar-soft:#243a46;
+  --good:#6fc48d; --warn:#e2b45a; --warn-soft:#3e3418; --crit:#f08a82; --crit-soft:#4a1f1b; --info-soft:#2a3a44; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--display);font-size:15px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 60px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+h1{font-size:30px;line-height:1.1;margin:0;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:17px;margin:0 0 10px;font-weight:600}
+.eyebrow{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg3);font-weight:600}
+.sub{color:var(--fg2);max-width:70ch;margin:8px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--fg3);font-size:13px;font-family:var(--mono);margin-top:10px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 16px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--fg2);min-width:0}
+label.f b{font-weight:600;color:var(--fg)}
+label.f small{color:var(--fg3);font-size:11.5px}
+input[type=number]{font:500 15px var(--mono);padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--bg);color:var(--fg);width:100%}
+input[type=number]:focus,button:focus-visible,tr.row:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.toggles{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-top:14px;font-size:13.5px}
+.toggles label{display:flex;gap:7px;align-items:center}
+button{font:600 13px var(--display);padding:7px 12px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--fg3)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:1180px;font-variant-numeric:tabular-nums}
+th{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg3);text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);white-space:nowrap;font-weight:600}
+th.r,td.r{text-align:right}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.row{cursor:pointer}
+tr.row:hover td{background:color-mix(in srgb,var(--bar-soft) 40%,transparent)}
+tr.row.open td{background:color-mix(in srgb,var(--bar-soft) 55%,transparent)}
+.rank{font-family:var(--mono);color:var(--fg3);width:34px}
+.code{font-family:var(--mono);font-weight:500}
+.name{color:var(--fg2);font-size:13px}
+.num{font-family:var(--mono);font-size:14px}
+.num small{color:var(--fg3);font-size:11.5px;display:block}
+.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;padding:2px 7px;border-radius:4px;margin:2px 4px 2px 0;white-space:nowrap}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.crit{background:var(--crit-soft);color:var(--crit)}
+.chip.info{background:var(--info-soft);color:var(--bar)}
+.chip.good{background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good)}
+.barcell{min-width:170px}
+.bar{display:flex;align-items:center;gap:8px}
+.bar .track{flex:1;height:10px;background:var(--bar-soft);border-radius:0 4px 4px 0;position:relative;overflow:hidden}
+.bar .fill{height:100%;background:var(--bar);border-radius:0 4px 4px 0}
+.bar .fill.hit{background:var(--accent)}
+.bar .v{font-family:var(--mono);font-size:14px;width:46px;text-align:right}
+.bar .v.hit{color:var(--accent);font-weight:500}
+.top{font-size:13px;min-width:210px;max-width:260px}
+.top .p{font-family:var(--mono);font-size:13px;color:var(--fg2)}
+td.retail input{width:92px}
+tr.detail td{padding:0;background:var(--bg)}
+.dwrap{padding:14px 12px 18px 46px;display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:18px}
+@media (max-width:760px){.dwrap{grid-template-columns:1fr;padding-left:12px}}
+.classes{display:flex;flex-direction:column;gap:6px;font-size:13px}
+.classes div{display:grid;grid-template-columns:1.2fr .45fr .8fr 1.1fr;gap:8px;font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+.classes div.h{color:var(--fg3);font-family:var(--display);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.classes div b{font-family:var(--display);font-weight:600;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 14px;font-size:12.5px;max-height:420px;overflow:auto;min-width:0}
+.card{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:baseline;padding:3px 0;border-bottom:1px dashed var(--line);min-width:0}
+.card .n{color:var(--fg3);font-family:var(--mono);font-size:11.5px}
+.card .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .p{font-family:var(--mono)}
+.card .p.est{color:var(--fg3)}
+.tag{font-size:10px;font-weight:700;letter-spacing:.04em;padding:1px 5px;border-radius:3px;background:var(--bar-soft);color:var(--bar);margin-left:6px;vertical-align:middle}
+.tag.saa{background:var(--accent-soft);color:var(--accent)}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px 28px;font-size:13.5px;color:var(--fg2)}
+.notes h3{font-size:13px;color:var(--fg);margin:0 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.notes p,.notes li{margin:0 0 6px}
+.notes ul{padding-left:18px;margin:0}
+code{font-family:var(--mono);font-size:12.5px;background:var(--surface);border:1px solid var(--line);padding:0 4px;border-radius:3px}
+@media (prefers-reduced-motion:no-preference){.bar .fill{transition:width .25s ease}}
+</style>
+</head>
+<body>
+<style>
+.banner{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px;border-radius:8px;font-size:13.5px;border:1px solid var(--line);background:var(--surface)}
+.banner.warn{border-color:var(--warn);background:var(--warn-soft)}
+.banner.fail{border-color:var(--crit);background:var(--crit-soft)}
+.banner.ok{border-color:var(--good)}
+.banner a{color:inherit}
+.comp{font-family:var(--mono);font-size:12px;color:var(--fg2);white-space:nowrap}
+.comp b{color:var(--fg);font-weight:500}
+.chg{font-family:var(--mono);font-size:12px}
+.chg.up{color:var(--good)}.chg.down{color:var(--crit)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button[aria-selected=true]{border-color:var(--accent);color:var(--accent)}
+.starters{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 18px;font-size:13px}
+.starters div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:4px 0}
+.starters .p{font-family:var(--mono)}
+footer{color:var(--fg3);font-size:12.5px}
+</style>
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="eyebrow">TCGWatcher · Engelse markt</div>
+    <h1 id="title">Chase Radar</h1>
+    <p class="sub">Welke booster box heeft de waardevolste hits? Per set: samenstelling (hoeveel alt-arts, Secret Rares en super alt-arts erin zitten), verwachte waarde van die hits per box, afgezet tegen de boxprijs en de prijstrend.</p>
+    <div class="meta" id="meta">laden…</div>
+  </header>
+
+  <div class="banner" id="quality" hidden></div>
+  <div class="tabs" id="tabs" role="tablist"></div>
+
+  <section class="panel" aria-labelledby="h-aannames">
+    <h2 id="h-aannames">Aannames · verwachte hits per box</h2>
+    <div class="grid" id="est"></div>
+    <div class="toggles">
+      <label><input type="checkbox" id="inclSaa"> Super alt-art (★★) meetellen in EV</label>
+      <label>Drempel ratio <input type="number" id="thr" value="0.60" step="0.05" min="0" style="width:84px"></label>
+      <label>USD → EUR <input type="number" id="fx" step="0.001" min="0" style="width:96px"></label>
+      <button type="button" id="reset">Standaardwaarden</button>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-rank">
+    <h2 id="h-rank">Ranking op EV-ratio (hits per box ÷ boxprijs)</h2>
+    <div class="tablewrap">
+      <table id="tbl">
+        <thead><tr>
+          <th class="rank">#</th><th>Set</th><th>Status</th><th>Samenstelling</th>
+          <th class="r">Box</th><th class="r">Box 7d / 30d</th><th class="r">EV hits / box</th>
+          <th class="barcell">Ratio</th><th>Top hit</th><th>EU retail (€)</th><th class="r">vs retail</th>
+        </tr></thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="startersSec" hidden aria-labelledby="h-st">
+    <h2 id="h-st">Starter decks en overige sealed producten</h2>
+    <div class="starters" id="starters"></div>
+  </section>
+
+  <section class="notes">
+    <div>
+      <h3>Hoe de score werkt</h3>
+      <p>Per set en per hit-klasse: <code>verwacht aantal per box × gemiddelde marktprijs</code> van de kaarten in die klasse. Basis-rarities tellen niet mee. Ratio = EV ÷ boxprijs; boven de drempel kleurt de balk oranje. Super alt-arts (★★) staan standaard uit: één kaart van €1.000+ die je in 11 van de 12 boxen niet trekt.</p>
+    </div>
+    <div>
+      <h3>Pull rates: schatting, geen meting</h3>
+      <p>Standaardwaarden uit community-openingen (FB10, ±120 packs). Leader/Rare alt-arts hebben geen gemeten rate. Manga en Story Boosters hebben een andere pack-structuur en zijn niet gekalibreerd. Pas de aannames hierboven aan; de alerts gebruiken de standaardwaarden uit <code>config/games.yaml</code>.</p>
+    </div>
+    <div>
+      <h3>Data en kwaliteit</h3>
+      <p id="dataNote">TCGplayer-marktprijzen (USD) via TCGCSV, één snapshot per dag, ruw opgeslagen in de repo en gevalideerd vóór publicatie. Presale-sets tonen vraagprijzen van listings, geen verkopen. EU retail vul je zelf in (onthouden in deze browser); Cardmarket en retailers volgen in fase 3.</p>
+    </div>
+  </section>
+  <footer id="foot"></footer>
+</div>
+<script>
+const CLS_ORDER = ['SR','SR_AA','SCR','SCR_AA','SAA','OTHER_AA'];
+const FLAG = {presale:['warn','presale: vraagprijzen'],manga:['info','Manga Booster: andere structuur'],story:['info','Story Booster: 20 packs, all-foil'],
+  box_spread:['crit','boxprijs onbetrouwbaar'],no_cards:['crit','nog geen kaartprijzen'],box_listing_price:['warn','box: listingprijs'],low_coverage:['warn','weinig marktprijzen']};
+let DATA=null, G=null, gameId=null, openSet=null, retail={};
+const retailKey = () => 'tcgw.retail.'+gameId;
+const fx = () => parseFloat(document.getElementById('fx').value)||DATA.fx.usd_eur;
+const eur = v => v==null ? '—' : '€'+Math.round(v*fx()).toLocaleString('nl-NL');
+const usd = v => v==null ? '—' : '$'+Math.round(v).toLocaleString('en-US');
+const pct = v => v==null ? '<span class="chg">—</span>' : `<span class="chg ${v>0?'up':v<0?'down':''}">${v>0?'+':''}${v.toFixed(1)}%</span>`;
+const short = n => n.replace(/ - [A-Z]+\d+-\d+/,'');
+
+function est(){ const o={}; for (const k of Object.keys(G.estimates)) o[k]=parseFloat(document.getElementById('e_'+k).value)||0; return o; }
+function score(set){
+  const e = est(), incl = document.getElementById('inclSaa').checked, scale = set.packs / G.box.packs;
+  const cls = {}; let top=null;
+  for (const c of G.cards) { if (c.set!==set.code || c.price==null) continue; (cls[c.class] ||= []).push(c.price); if (!top||c.price>top.price) top=c; }
+  let ev=0; const rows={};
+  for (const k of CLS_ORDER) { const v=cls[k]; if (!v) continue; const avg=v.reduce((a,b)=>a+b,0)/v.length; const part=e[k]*scale*avg; rows[k]={n:set.composition[k]?.n||v.length, avg, ev:part, est:e[k]*scale}; if (k!=='SAA'||incl) ev+=part; }
+  const box = set.box?.price ?? null;
+  return {ev, box, ratio: box? ev/box : null, top, rows};
+}
+function compText(set){
+  const c=set.composition; const part=(k,l)=>c[k]?`<b>${c[k].n}</b> ${l}`:null;
+  return [part('SR_AA','SR-AA'),part('SCR','SCR'),part('SCR_AA','★'),part('SAA','★★'),part('OTHER_AA','AA')].filter(Boolean).join(' · ') || '—';
+}
+function render(){
+  const thr = parseFloat(document.getElementById('thr').value)||0;
+  const scored = G.sets.map(s => ({s, ...score(s)}));
+  scored.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1));
+  const max = Math.max(...scored.map(x=>x.ratio||0), thr, 0.01);
+  const tb=document.getElementById('tb'); tb.innerHTML='';
+  scored.forEach((x,i)=>{
+    const s=x.s, tr=document.createElement('tr'); tr.className='row'+(openSet===s.code?' open':''); tr.tabIndex=0;
+    const r=retail[s.code]; const rr = r && x.ev ? x.ev*fx()/r : null; const hit = x.ratio!=null && x.ratio>=thr;
+    tr.innerHTML=`<td class="rank">${i+1}</td>
+      <td><span class="code">${s.code}</span><div class="name">${s.name} · EN ${s.published}</div></td>
+      <td>${s.flags.map(f=>FLAG[f]?`<span class="chip ${FLAG[f][0]}">${FLAG[f][1]}</span>`:'').join('')||'<span class="chip good">uitgebracht</span>'}</td>
+      <td class="comp">${compText(s)}</td>
+      <td class="r num">${eur(x.box)}<small>${usd(x.box)} · ${s.box?.price_src||'—'}</small></td>
+      <td class="r">${pct(s.box?.chg7)}<br>${pct(s.box?.chg30)}</td>
+      <td class="r num">${x.ev?eur(x.ev):'—'}<small>${x.ev?usd(x.ev):''}</small></td>
+      <td class="barcell"><div class="bar"><div class="track"><div class="fill${hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
+      <td class="top">${x.top?`${short(x.top.name)}<div class="p">${eur(x.top.price)} · ${x.top.number} ${pct(x.top.chg7)}</div>`:'—'}</td>
+      <td class="retail"><input type="number" id="r_${s.code}" min="0" step="1" placeholder="—" value="${r??''}" aria-label="EU retailprijs ${s.code}"></td>
+      <td class="r num">${rr!=null?rr.toFixed(2):'—'}</td>`;
+    tr.addEventListener('click', ev=>{ if (ev.target.tagName==='INPUT') return; openSet = openSet===s.code?null:s.code; render(); });
+    tr.addEventListener('keydown', ev=>{ if (ev.key==='Enter'||ev.key===' ') { ev.preventDefault(); tr.click(); } });
+    tr.querySelector('input').addEventListener('change', ev=>{ const v=parseFloat(ev.target.value); if (v>0) retail[s.code]=v; else delete retail[s.code]; try{localStorage.setItem(retailKey(),JSON.stringify(retail));}catch(e){} render(); });
+    tb.appendChild(tr);
+    if (openSet===s.code) tb.appendChild(detail(s,x));
+  });
+  const st=document.getElementById('starters'); const sec=document.getElementById('startersSec');
+  const items=(G.starters||[]).flatMap(s=>s.products.map(p=>({...p, set:s.code, pub:s.published})));
+  sec.hidden = !items.length;
+  st.innerHTML = items.map(p=>`<div><span>${p.name}${p.presale?' <span class="chip warn">presale</span>':''}</span><span class="p">${eur(p.price)}</span></div>`).join('');
+}
+function detail(s,x){
+  const tr=document.createElement('tr'); tr.className='detail';
+  const cards=G.cards.filter(c=>c.set===s.code).sort((a,b)=>(b.price??-1)-(a.price??-1));
+  const rows=CLS_ORDER.filter(k=>x.rows[k]).map(k=>{const r=x.rows[k]; return `<div><b>${G.estimates[k].label}</b><span>${r.n}×</span><span>${eur(r.avg)} gem.</span><span>${r.est.toFixed(2)} → ${eur(r.ev)}</span></div>`;}).join('');
+  tr.innerHTML=`<td colspan="11"><div class="dwrap">
+    <div class="classes"><div class="h"><span>Klasse</span><span>kaarten</span><span>gem. prijs</span><span>hits/box → EV</span></div>${rows}
+      <div style="margin-top:8px;color:var(--fg3);font-family:var(--display)">${s.note?s.note+'<br>':''}${cards.length} chase cards · ${cards.filter(c=>c.price_src!=='market').length} zonder marktprijs (mid/low gebruikt)${s.box?` · <a href="https://www.tcgplayer.com/product/${s.box.product_id}" target="_blank" rel="noopener">box op TCGplayer</a>`:''}</div></div>
+    <div class="cards">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${c.name}">${short(c.name)}<span class="tag${c.class==='SAA'?' saa':''}">${c.class.replace('_AA',' AA')}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
+  </div></td>`;
+  return tr;
+}
+function selectGame(id){
+  gameId=id; G=DATA.games[id]; openSet=null;
+  try { retail = JSON.parse(localStorage.getItem(retailKey())||'{}'); } catch(e) { retail={}; }
+  document.getElementById('title').textContent = G.short+' Chase Radar';
+  document.getElementById('eyebrow').textContent = `TCGWatcher · ${G.name} · Engelse markt`;
+  document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-selected', b.dataset.id===id));
+  const g=document.getElementById('est');
+  g.innerHTML = CLS_ORDER.filter(k=>G.estimates[k]).map(k=>[k,G.estimates[k]]).map(([k,v])=>`<label class="f"><b>${v.label}</b><input type="number" id="e_${k}" step="0.05" min="0" value="${v.est}"><small>per ${G.box.packs} packs</small></label>`).join('');
+  document.querySelectorAll('#est input').forEach(el=>el.addEventListener('input',render));
+  document.getElementById('meta').innerHTML = `<span>${G.source.name}</span><span>bron-stand ${(G.source.last_updated||'').replace('T',' ').slice(0,16)} UTC</span><span>${G.sets.length} sets · ${G.cards.length} chase cards · ${G.source.days_of_history} dag(en) historie</span><span>koers ${DATA.fx.usd_eur}${DATA.fx.stale?' (verouderd)':''}</span>`;
+  const q=document.getElementById('quality'); const f=DATA.quality.findings.filter(x=>x.game===id);
+  q.hidden = !f.length; q.className='banner '+(f.some(x=>x.level==='fail')?'fail':'warn');
+  q.innerHTML = `<b>Datakwaliteit: ${f.length} bevinding(en)</b> ${f.map(x=>`<span class="chip ${x.level==='fail'?'crit':'warn'}">${x.code}</span>`).join('')} <a href="https://github.com/np7editz-bot/TCGWatcher/blob/main/data/quality/${DATA.day}.json" target="_blank" rel="noopener">rapport</a>`;
+  if (!G.sets.length) { document.getElementById('tb').innerHTML = `<tr><td colspan="11" style="color:var(--fg2)">Nog geen boostersets in de catalogus — zodra TCGplayer een set of starter deck list, verschijnt die hier en gaat er een alert uit.</td></tr>`; return; }
+  render();
+}
+async function init(){
+  const r = await fetch('./data/latest.json', {cache:'no-store'}); DATA = await r.json();
+  document.getElementById('fx').value = DATA.fx.usd_eur;
+  const tabs=document.getElementById('tabs');
+  tabs.innerHTML = Object.entries(DATA.games).map(([id,g])=>`<button type="button" role="tab" data-id="${id}">${g.short}${g.score?'':' (watch)'}</button>`).join('');
+  tabs.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>selectGame(b.dataset.id)));
+  ['thr','fx','inclSaa'].forEach(id=>document.getElementById(id).addEventListener('input',()=>G&&G.sets.length&&render()));
+  document.getElementById('reset').addEventListener('click',()=>{ for (const [k,v] of Object.entries(G.estimates)) document.getElementById('e_'+k).value=v.est; document.getElementById('thr').value='0.60'; document.getElementById('fx').value=DATA.fx.usd_eur; document.getElementById('inclSaa').checked=false; render(); });
+  document.getElementById('foot').textContent = `Gegenereerd ${DATA.generated_at.replace('T',' ').slice(0,16)} UTC · data-dag ${DATA.day} · alle prijzen TCGplayer USD, omgerekend met ECB-koers · pull rates zijn schattingen`;
+  const first = Object.keys(DATA.games).find(id=>DATA.games[id].score) || Object.keys(DATA.games)[0];
+  selectGame(first);
+}
+init().catch(e=>{ document.getElementById('meta').textContent='Kon data/latest.json niet laden: '+e; });
+</script>
+
+</body>
+</html>

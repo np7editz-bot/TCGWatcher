@@ -1,0 +1,43 @@
+{
+ "day": "2026-10-15",
+ "games": {
+  "dbfw": {
+   "findings": [
+    {
+     "code": "duplicate_keys",
+     "ids": [
+      "dbfw:FB10:FB10-068:"
+     ],
+     "level": "warn",
+     "message": "1 canonical keys occur more than once"
+    },
+    {
+     "code": "number_name_mismatch",
+     "ids": [
+      "693131:Piccolo - FB10-067!=FB10-068"
+     ],
+     "level": "warn",
+     "message": "1 products where the number in the name differs from the Number field"
+    }
+   ],
+   "market_priced": 2026,
+   "priced": 2111,
+   "products": 2209,
+   "status": "warn"
+  },
+  "naruto": {
+   "findings": [
+    {
+     "code": "empty_catalog",
+     "level": "warn",
+     "message": "catalog has no products"
+    }
+   ],
+   "market_priced": 0,
+   "priced": 0,
+   "products": 0,
+   "status": "warn"
+  }
+ },
+ "status": "warn"
+}

@@ -1,0 +1,92 @@
+# TCGWatcher game configuration.
+# Adding a game = adding a block here. The pipeline (fetch → validate → build → alerts) is game-agnostic.
+#
+# Prices come from TCGplayer via tcgcsv.com (one snapshot per day). All prices are USD; the build converts to EUR.
+# Scope: English-market products only (TCGplayer lists EN product).
+
+games:
+  dbfw:
+    name: "Dragon Ball Super Card Game: Fusion World"
+    short: "Fusion World"
+    tcgcsv_category: 80
+    enabled: true
+    score: true                      # compute Chase Score for booster sets
+    # Which groups (TCGplayer "groups" = sets/products lines) are booster sets, starter decks, or promo lines.
+    # Matched against the group abbreviation.
+    group_kinds:
+      booster: '^(FB|SB|ST)\d{2}$'
+      starter: '^FS\d{2}$'
+      promo:   '_(PR|AR|RE|EM|TPR)$|^DBSFW_'
+    box:
+      packs: 24
+      cards_per_pack: 12
+      case_boxes: 12
+    # Per-set overrides (keyed by abbreviation). Flags are shown on the page and exclude a set from alerts when noted.
+    set_overrides:
+      ST01: { packs: 20, flags: [story], note: "Story Booster: 20 packs, all-foil; estimates not calibrated" }
+      SB01: { flags: [manga], note: "Manga Booster: different pack structure; estimates not calibrated" }
+      SB02: { flags: [manga], note: "Manga Booster: different pack structure; estimates not calibrated" }
+    # Sealed product detection inside a group (products without a card Number).
+    sealed:
+      box:  { endswith: "Booster Box", not_contains: ["Case"] }
+      case: { endswith: "Booster Box Case" }
+      pack: { endswith: "Booster Pack", not_contains: ["Sleeved"] }
+    # Hit classes. Rules are evaluated top-down; first match wins. A card with no match is "base" (not a hit).
+    # est = expected number per box (24 packs). Source: community openings (FB10, ~120 packs); low confidence.
+    classes:
+      - id: SAA
+        label: "Super alt-art (★★)"
+        rule: { name_contains: "(Super Alternate Art)" }
+        est: 0.08
+        note: "~1 per 12-box case; community estimate"
+      - id: SCR_AA
+        label: "SCR alt-art (★)"
+        rule: { rarity: "Secret Rare", name_contains: "(Alternate Art)" }
+        est: 0.15
+      - id: SCR_AA
+        label: "SCR alt-art (★)"
+        rule: { name_contains: "(Gold)" }          # Manga Booster gold leaders, SCR★-tier chase
+        est: 0.15
+      - id: SCR
+        label: "Secret Rare"
+        rule: { rarity: "Secret Rare" }
+        est: 0.60
+      - id: SR_AA
+        label: "SR alt-art"
+        rule: { rarity: "Super Rare", name_contains: "(Alternate Art)" }
+        est: 1.5
+        note: "~6% per pack"
+      - id: SR
+        label: "Super Rare"
+        rule: { rarity: "Super Rare" }
+        est: 5.5
+        note: "~23% per pack"
+      - id: OTHER_AA
+        label: "Other alt-arts (L/R/UC)"
+        rule: { rarity_in: ["Leader", "Rare", "Uncommon", "Common"], name_contains: "(Alternate Art)" }
+        est: 1.0
+        note: "no sampled rate; assumption"
+    # Canonical card key: GAME:SET:NUMBER:VARIANT. Variant is derived from the name suffix.
+    variants:
+      - { suffix: "(Super Alternate Art)", code: "SAA" }
+      - { suffix: "(Alternate Art)",       code: "AA" }
+      - { suffix: "(Gold)",                code: "GOLD" }
+      - { suffix: "(Dragon Ball Pattern)", code: "DBP" }
+
+  naruto:
+    name: "NARUTO CARD GAME"
+    short: "Naruto"
+    tcgcsv_category: 93
+    enabled: true
+    score: false                     # watch-only until the first set exists (worldwide launch June 2027)
+    group_kinds:
+      booster: '^[A-Z]{2}\d{2}$'
+      starter: '^ST\d{2}$'
+      promo:   'PR|Promo'
+    box: { packs: 24, cards_per_pack: 12, case_boxes: 12 }
+    sealed:
+      box:  { endswith: "Booster Box", not_contains: ["Case"] }
+      case: { endswith: "Booster Box Case" }
+      pack: { endswith: "Booster Pack", not_contains: ["Sleeved"] }
+    classes: []
+    variants: []
