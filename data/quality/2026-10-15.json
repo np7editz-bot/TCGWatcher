@@ -6,10 +6,11 @@
     {
      "code": "duplicate_keys",
      "ids": [
-      "dbfw:FB10:FB10-068:"
+      "dbfw:FB10:FB10-068:",
+      "dbfw:FS03:FS03-16:"
      ],
      "level": "warn",
-     "message": "1 canonical keys occur more than once"
+     "message": "2 canonical keys occur more than once"
     },
     {
      "code": "number_name_mismatch",
@@ -18,25 +19,24 @@
      ],
      "level": "warn",
      "message": "1 products where the number in the name differs from the Number field"
+    },
+    {
+     "code": "low_market_coverage",
+     "level": "warn",
+     "message": "FB11: only 2% of 57 hit cards have a market price"
     }
    ],
    "market_priced": 2026,
    "priced": 2111,
-   "products": 2209,
+   "products": 4556,
    "status": "warn"
   },
   "naruto": {
-   "findings": [
-    {
-     "code": "empty_catalog",
-     "level": "warn",
-     "message": "catalog has no products"
-    }
-   ],
+   "findings": [],
    "market_priced": 0,
    "priced": 0,
-   "products": 0,
-   "status": "warn"
+   "products": 3,
+   "status": "ok"
   }
  },
  "status": "warn"

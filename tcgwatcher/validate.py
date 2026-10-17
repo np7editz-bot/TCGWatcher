@@ -31,7 +31,8 @@ def validate(day):
         if bad:
             findings.append(_f("fail", "missing_fields", f"{len(bad)} products without name/id", ids=bad[:20]))
         # 2. duplicate canonical keys (source catalog errors such as two products carrying the same Number+variant)
-        keys = Counter(p.key for p in prods if p.number)
+        card_kinds = {c for c, meta in m["sets"].items() if meta["kind"] in ("booster", "starter")}
+        keys = Counter(p.key for p in prods if p.number and p.set_code in card_kinds)
         dups = {k: n for k, n in keys.items() if n > 1}
         if dups:
             findings.append(_f("warn", "duplicate_keys", f"{len(dups)} canonical keys occur more than once",
@@ -39,7 +40,7 @@ def validate(day):
         # 3. number/name mismatch: '... - FB10-067' in name but Number says FB10-068
         mism = []
         for p in prods:
-            if p.number and " - " in p.name:
+            if p.number and " - " in p.name and p.set_code in card_kinds:
                 tail = p.name.split(" - ")[-1].split(" (")[0].strip()
                 if tail.startswith(p.number.split("-")[0] + "-") and tail != p.number:
                     mism.append(f"{p.product_id}:{p.name}!={p.number}")

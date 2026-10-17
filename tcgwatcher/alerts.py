@@ -62,6 +62,7 @@ def run(day, quality=None, send=True):
             # 3. ratio and box price moves (booster sets with a score)
             for s in gdata["sets"]:
                 if set(s["flags"]) & set(cfg.get("exclude_flags", [])) or "presale" in s["flags"]:
+                    state["active"].pop(f"ratio:{gid}:{s['code']}", None)   # episode ends while excluded
                     continue
                 ratio = s["ratio"] if cfg["ratio"].get("include_saa") else s["ratio_excl_saa"]
                 key = f"ratio:{gid}:{s['code']}"

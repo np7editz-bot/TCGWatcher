@@ -133,7 +133,7 @@ def load_game(game, day):
             products.append(Product(
                 game=game["id"], set_code=abbr, group_id=gid, product_id=p["productId"], name=name, rarity=rarity,
                 number=number, variant=variant_of(game, name) if number else "",
-                hit_class=classify(game, name, rarity) if number else None, sealed_kind=sealed,
+                hit_class=classify(game, name, rarity) if (number and kind == "booster") else None, sealed_kind=sealed,
                 presale=bool((p.get("presaleInfo") or {}).get("isPresale")), price=price, price_src=src, prices=pr))
     return {"game": game, "day": day, "sets": sets, "products": products,
             "source_last_updated": price_doc.get("source_last_updated"), "fetched_at": price_doc.get("fetched_at")}

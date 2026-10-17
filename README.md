@@ -10,7 +10,7 @@ Dagelijkse prijs-intelligence voor sealed TCG-product op de Engelse markt. Nu: D
 3. **build** — Chase Score per set, prijstrends (7d/30d), `site/data/latest.json` met herkomst op elk blok.
 4. **alerts** — regels → Telegram (nieuwe productlijn/pre-order, box-ratio boven drempel, prijsbewegingen, datakwaliteit).
 
-De pagina (GitHub Pages, `site/`) toont per set de **samenstelling** (hoeveel alt-arts, Secret Rares, ★, ★★), de
+De pagina (`site/`, statisch te hosten; GitHub Pages vereist een publieke repo) toont per set de **samenstelling** (hoeveel alt-arts, Secret Rares, ★, ★★), de
 verwachte waarde van die hits per box, de ratio tegen de boxprijs en de trend. Aannames zijn op de pagina aanpasbaar.
 
 ## Chase Score
@@ -32,8 +32,8 @@ bestaat wordt mid/low gebruikt en dat staat erbij (`price_src`).
 | `data/catalog/<cat>/<groupId>.json` | productcatalogus van een set | alleen als de inhoud verandert |
 | `data/prices/<cat>/<dag>.json` | **alle** prijsrijen van die brondag | nooit |
 | `data/fx/<dag>.json` | USD→EUR-koers | nooit |
-| `data/quality/<dag>.json` | validatierapport | nooit |
-| `data/alerts/<dag>.json` | verstuurde/gegenereerde alerts | nooit |
+| `data/quality/<dag>.json` | validatierapport (afgeleid) | alleen bij herbouw met nieuwe code |
+| `data/alerts/<dag>.json` | gegenereerde alerts (afgeleid) | alleen bij herbouw met nieuwe code |
 | `data/state/*.json` | sync-stand, bekende groepen, actieve alert-episodes | dagelijks |
 | `site/data/latest.json` | wat de pagina leest; alles herberekenbaar uit `data/` | dagelijks |
 

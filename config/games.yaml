@@ -45,7 +45,7 @@ games:
         est: 0.15
       - id: SCR_AA
         label: "SCR alt-art (★)"
-        rule: { name_contains: "(Gold)" }          # Manga Booster gold leaders, SCR★-tier chase
+        rule: { rarity: "Leader", name_contains: "(Gold)" }   # Manga Booster gold leaders, SCR★-tier chase
         est: 0.15
       - id: SCR
         label: "Secret Rare"
@@ -68,8 +68,10 @@ games:
         note: "no sampled rate; assumption"
     # Canonical card key: GAME:SET:NUMBER:VARIANT. Variant is derived from the name suffix.
     variants:
-      - { suffix: "(Super Alternate Art)", code: "SAA" }
-      - { suffix: "(Alternate Art)",       code: "AA" }
+      - { suffix: "(Super Alternate Art)",      code: "SAA" }
+      - { suffix: "(Bonus Pack Alternate Art)", code: "BPAA" }   # starter-deck bonus pack parallels
+      - { suffix: "(Limited Pack",              code: "LP" }     # 'Limited Pack 26-27 WAVE2' promos listed inside sets
+      - { suffix: "(Alternate Art)",            code: "AA" }
       - { suffix: "(Gold)",                code: "GOLD" }
       - { suffix: "(Dragon Ball Pattern)", code: "DBP" }
 
