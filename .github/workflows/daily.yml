@@ -22,9 +22,6 @@ permissions:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -61,11 +58,16 @@ jobs:
             git push
           fi
 
+      # Hosting of site/ is optional. GitHub Pages needs a public repo (or a paid plan); set the repository
+      # variable DEPLOY_PAGES=true once Pages is enabled with source "GitHub Actions". Any other static host
+      # (Cloudflare Pages, Netlify) can deploy the site/ folder straight from the repo instead.
       - name: Upload site
+        if: vars.DEPLOY_PAGES == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
       - name: Deploy to GitHub Pages
+        if: vars.DEPLOY_PAGES == 'true'
         id: deploy
         uses: actions/deploy-pages@v4
