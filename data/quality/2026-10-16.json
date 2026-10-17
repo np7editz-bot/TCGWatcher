@@ -6,57 +6,19 @@
     {
      "code": "duplicate_keys",
      "ids": [
-      "dbfw:DBSFW_EM:E-40:GOLD",
-      "dbfw:DBSFW_EM:E-69:",
-      "dbfw:DBSFW_EM:E01-01:",
-      "dbfw:DBSFW_PR:FP-001:",
-      "dbfw:DBSFW_PR:FP-024:",
-      "dbfw:DBSFW_PR:FP-034:",
-      "dbfw:DBSFW_PR:FP-050:",
-      "dbfw:DBSFW_PR:FP-062:",
-      "dbfw:DBSFW_PR:FP-068:",
-      "dbfw:DBSFW_PR:FP-077:",
-      "dbfw:DBSFW_PR:FP-091:",
-      "dbfw:DBSFW_PR:FP-095:",
-      "dbfw:DBSFW_TPR:FB01-004:",
-      "dbfw:DBSFW_TPR:FB01-005:",
-      "dbfw:DBSFW_TPR:FB01-007:",
-      "dbfw:DBSFW_TPR:FB01-008:",
-      "dbfw:DBSFW_TPR:FB01-016:",
-      "dbfw:DBSFW_TPR:FB01-037:",
-      "dbfw:DBSFW_TPR:FB01-049:",
-      "dbfw:DBSFW_TPR:FB01-081:",
-      "dbfw:DBSFW_TPR:FB01-087:",
-      "dbfw:DBSFW_TPR:FB01-098:",
-      "dbfw:DBSFW_TPR:FB01-108:",
-      "dbfw:DBSFW_TPR:FB01-128:",
-      "dbfw:DBSFW_TPR:FB01-129:",
-      "dbfw:DBSFW_TPR:FB01-136:",
-      "dbfw:DBSFW_TPR:FB02-012:",
-      "dbfw:DBSFW_TPR:FB02-029:",
-      "dbfw:DBSFW_TPR:FB02-034:",
-      "dbfw:DBSFW_TPR:FB02-040:"
+      "dbfw:FB10:FB10-068:",
+      "dbfw:FS03:FS03-16:"
      ],
      "level": "warn",
-     "message": "218 canonical keys occur more than once"
+     "message": "2 canonical keys occur more than once"
     },
     {
      "code": "number_name_mismatch",
      "ids": [
-      "707458:Piccolo - FB10-067 (Limited Pack 26-27 WAVE2)!=FB10-068",
       "693131:Piccolo - FB10-067!=FB10-068"
      ],
      "level": "warn",
-     "message": "2 products where the number in the name differs from the Number field"
-    },
-    {
-     "code": "price_outlier_listing",
-     "ids": [
-      "639630:Energy Marker (E-42) (Gold):69780.4:mid",
-      "639648:Energy Marker (E-60) (Gold):5174.99:mid"
-     ],
-     "level": "warn",
-     "message": "2 non-market prices >25× the class median"
+     "message": "1 products where the number in the name differs from the Number field"
     },
     {
      "code": "low_market_coverage",
@@ -70,20 +32,11 @@
    "status": "warn"
   },
   "naruto": {
-   "findings": [
-    {
-     "code": "duplicate_keys",
-     "ids": [
-      "naruto:G24885:CP-001:"
-     ],
-     "level": "warn",
-     "message": "1 canonical keys occur more than once"
-    }
-   ],
+   "findings": [],
    "market_priced": 2,
    "priced": 3,
    "products": 3,
-   "status": "warn"
+   "status": "ok"
   }
  },
  "status": "warn"

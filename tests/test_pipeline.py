@@ -77,7 +77,7 @@ def test_canonical_keys_and_composition(dbfw):
     # ST01 has 20 packs: estimates are scaled
     assert scored["ST01"]["composition"]["SR"]["est"] == pytest.approx(5.5 * 20 / 24, abs=0.001)
     assert "story" in scored["ST01"]["flags"]
-    assert "presale" in scored["FB11"]["flags"]
+    assert "presale" in scored["FB12"]["flags"]      # catalog is current state: FB11 lost presale on release day
     assert "no_cards" in scored["FB12"]["flags"]
 
 
@@ -103,3 +103,18 @@ def test_latest_json_shape():
     assert g["source"]["currency"] == "USD" and g["source"]["last_updated"]
     assert all({"code", "composition", "ev_excl_saa", "ratio_excl_saa", "flags"} <= set(s) for s in g["sets"])
     assert all({"key", "class", "price", "price_src", "product_id"} <= set(c) for c in g["cards"])
+
+
+def test_real_day_2_fixes(dbfw):
+    """Regression on the first real nightly snapshot (2026-10-16): promo groups never score, gold rule is leader-only,
+    a fresh release with mostly listing prices is flagged low_coverage (and therefore excluded from ratio alerts)."""
+    m = load_game(dbfw, "2026-10-16")
+    promo_hits = [p for p in m["products"] if p.hit_class and m["sets"][p.set_code]["kind"] != "booster"]
+    assert promo_hits == []
+    assert classify(dbfw, "Energy Marker (E-42) (Gold)", "") is None
+    scored = {s["code"]: s for s in score_sets(m)}
+    assert "low_coverage" in scored["FB11"]["flags"]
+    assert "low_coverage" not in scored["FB10"]["flags"]
+    rep = validate("2026-10-16")
+    dup = [f for f in rep["games"]["dbfw"]["findings"] if f["code"] == "duplicate_keys"]
+    assert dup and all(not k.split(":")[1].startswith("DBSFW") for k in dup[0]["ids"])

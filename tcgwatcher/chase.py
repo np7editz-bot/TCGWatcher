@@ -67,7 +67,8 @@ def score_sets(model):
             for sub, pr in box.prices.items():
                 if pr.get("marketPrice") and pr.get("lowPrice") and pr["lowPrice"] < 0.3 * pr["marketPrice"]:
                     flags.append("box_spread")
-        if n_hits and priced_hits / n_hits < 0.5:
+        market_hits = sum(c["market_priced"] for c in classes.values())
+        if n_hits and market_hits / n_hits < 0.5:
             flags.append("low_coverage")
         if not n_hits:
             flags.append("no_cards")
@@ -75,7 +76,7 @@ def score_sets(model):
             "code": code, "name": meta["name"], "published": meta["published"], "group_id": meta["group_id"],
             "packs": packs, "flags": sorted(set(flags)), "note": ov.get("note"),
             "box": _sealed(box), "pack": _sealed(pack), "case": _sealed(case),
-            "composition": comp, "hits_total": n_hits, "hits_priced": priced_hits,
+            "composition": comp, "hits_total": n_hits, "hits_priced": priced_hits, "hits_market_priced": market_hits,
             "ev": round(ev_total, 2), "ev_excl_saa": round(ev_excl, 2), "ev_saa": round(ev_saa, 2),
             "ratio": round(ev_total / box_price, 3) if box_price else None,
             "ratio_excl_saa": round(ev_excl / box_price, 3) if box_price else None,

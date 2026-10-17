@@ -12,4 +12,4 @@ card_price:
 new_group: true            # new set/product line appears in TCGCSV (presale = earliest pre-order signal)
 new_sealed_product: true   # new booster box / case / pack product appears in an existing group
 quality_issues: true       # send a message when validation fails or warns
-exclude_flags: [manga, story]   # sets with these flags never trigger ratio alerts
+exclude_flags: [manga, story, low_coverage, no_cards]   # sets with these flags never trigger ratio alerts

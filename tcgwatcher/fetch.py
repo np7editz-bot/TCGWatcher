@@ -64,6 +64,7 @@ def fetch_all(client: TcgCsv | None = None, force: bool = False) -> dict:
                                 "changed_catalogs": changed_catalogs}
         log.info("%s: %d groups, %d price rows, %d catalogs changed", gid, len(groups), len(price_rows), changed_catalogs)
 
+    sync.pop("note", None)
     sync.update({"last_updated": last_updated, "day": day, "fetched_at": _now(), "requests": client.requests_made})
     store.write_json(store.state_path("sync"), sync, compact=False)
     return result
