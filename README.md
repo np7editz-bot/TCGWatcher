@@ -9,6 +9,7 @@ Dagelijkse prijs-intelligence voor sealed TCG-product op de Engelse markt. Nu: D
 2. **validate** — kwaliteitspoort: schema, duplicaten, uitschieters, dekking, dag-op-dag-verschillen. Bij `fail` wordt er niets gepubliceerd.
 3. **build** — Chase Score per set, prijstrends (7d/30d), `site/data/latest.json` met herkomst op elk blok.
 4. **alerts** — regels → Telegram (nieuwe productlijn/pre-order, box-ratio boven drempel, prijsbewegingen, datakwaliteit).
+5. **retail** (ook elke 2 uur via `retail.yml`) — EU-webshops uit `config/retailers.yaml`: prijs, voorraad en pre-orderstatus per sealed product; alerts bij *pre-order open*, *terug op voorraad*, *uitverkocht*, prijs ±10%. Laagste EU-prijs per set op de pagina.
 
 De pagina (`site/`, statisch te hosten; GitHub Pages vereist een publieke repo) toont per set de **samenstelling** (hoeveel alt-arts, Secret Rares, ★, ★★), de
 verwachte waarde van die hits per box, de ratio tegen de boxprijs en de trend. Aannames zijn op de pagina aanpasbaar.
@@ -34,7 +35,8 @@ bestaat wordt mid/low gebruikt en dat staat erbij (`price_src`).
 | `data/fx/<dag>.json` | USD→EUR-koers | nooit |
 | `data/quality/<dag>.json` | validatierapport (afgeleid) | alleen bij herbouw met nieuwe code |
 | `data/alerts/<dag>.json` | gegenereerde alerts (afgeleid) | alleen bij herbouw met nieuwe code |
-| `data/state/*.json` | sync-stand, bekende groepen, actieve alert-episodes | dagelijks |
+| `data/retail/<dag>.json` | alle retailer-observaties van die dag (append-only) | nooit |
+| `data/state/*.json` | sync-stand, bekende groepen, actieve alert-episodes, laatste retailer-status | dagelijks |
 | `site/data/latest.json` | wat de pagina leest; alles herberekenbaar uit `data/` | dagelijks |
 
 Canonieke sleutel per kaart: `GAME:SET:NUMMER:VARIANT` (bijv. `dbfw:FB10:FB10-121:SAA`), naast het
@@ -64,6 +66,7 @@ alerts blijven in `data/alerts/<dag>.json`. Zonder chat-id print de workflow-log
 ## Roadmap
 
 - **Fase 2** — alerts live, drempels tunen op echte verkopen (FB11 is net uit).
-- **Fase 3** — EU-prijzen: Cardmarket (EN-filter) en NL/EU-retailers (voorraad, prijs, pre-order) op de canonieke sleutel.
+- **Fase 3a** — retailer-monitor (gedaan; shops bijvoegen = regel in `config/retailers.yaml`).
+- **Fase 3b** — Cardmarket EU-prijzen (EN-filter) per chase card en sealed box, EU/US-spread.
 - **Fase 4** — PWA op de telefoon met push.
 - **Fase 5** — slabs: graded prijzen (PSA 9/10) naast raw → grading-gap-alerts.

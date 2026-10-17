@@ -1,25 +1,26 @@
 # Retailer monitor shortlist (fase 3). Source: EU retailer survey 2026-10-17 (docs/retailers-eu-2026-10.md).
 # tier 1 = NL/BE + proven early pre-orders + ships to NL; tier 2 = EU specialists worth watching for allocation/pricing.
+# `platform`: shopify (collection/products.json) | woo (Store API) | generic (HTML) — auto-probed when omitted.
 # `category` is the page to poll for new products; `alerts` = shop has its own restock notification (we still poll).
 retailers:
-  - { id: tbhstore,      name: "TBH Store",        country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://www.tbhstore.nl/c-7780596/dragon-ball-tcg/" }
-  - { id: cardforge,     name: "Card Forge",       country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: true,  category: "https://cardforge.nl/pokemon-kaarten/dragon-ball/" }
-  - { id: dracoon,       name: "Dracoon",          country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://dracoon.nl/trading-cards/dragon-ball-super-tcg/boosterboxen-dragon-ball-super/" }
-  - { id: catchyourcards,name: "CatchYourCards",   country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://catchyourcards.nl/dragon-ball-scg/booster-box-dragonballscg/" }
-  - { id: oppacards,     name: "Oppa Cards",       country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://oppacards.com/product-category/dragon-ball-super/" }
-  - { id: tfrobots,      name: "TF-Robots",        country: NL, tier: 2, ships_nl: true,  preorders: false, alerts: false, category: "https://www.tf-robots.nl/c-7113467/dragon-ball-tcg/" }
-  - { id: cardgameshop,  name: "Cardgameshop.be",  country: BE, tier: 1, ships_nl: null,  preorders: true,  alerts: false, category: "https://www.cardgameshop.be/nl/categorieen/dragon-ball-z-boosterboxen" }
-  - { id: fantasiacards, name: "Fantasia Cards",   country: DE, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://fantasiacards.de/en/collections/dragon-ball/Booster-Display" }
-  - { id: cardcollector, name: "Card-Collector.net",country: DE, tier: 1, ships_nl: null, preorders: true,  alerts: false, category: "https://card-collector.net/collections/dragon-ball-super-fusion-world" }
-  - { id: comicplanet,   name: "Comic Planet",     country: DE, tier: 2, ships_nl: null,  preorders: true,  alerts: true,  category: "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/" }
-  - { id: breakthecase,  name: "Break the Case",   country: DE, tier: 2, ships_nl: null,  preorders: true,  alerts: false, category: "https://www.breakthecase.de/collections/dragon-ball-super-card-game-fusion-world" }
-  - { id: totalcards,    name: "Total Cards",      country: UK, tier: 2, ships_nl: null,  preorders: true,  alerts: false, category: "https://totalcards.net/collections/dragon-ball-super-restocks", set_pattern: "https://totalcards.net/collections/dragon-ball-super-fb{nn}-{slug}" }
-  - { id: chaoscards,    name: "Chaos Cards",      country: UK, tier: 2, ships_nl: true,  preorders: true,  alerts: true,  category: "https://www.chaoscards.co.uk/shop/card-games/dragonball-super-card-game/sealed-products-dragonball" }
-  - { id: masterset,     name: "Masterset",        country: FR, tier: 2, ships_nl: null,  preorders: true,  alerts: true,  category: "https://masterset.store/collections/dragon-ball" }
-  - { id: onytcg,        name: "ONYTCG",           country: IT, tier: 2, ships_nl: null,  preorders: true,  alerts: false, category: "https://onytcg.com/en/product/dragon-ball-super-card-game-fusion-world-box-fb-11" }
-  - { id: senpaimanga,   name: "Senpai Manga Shop",country: IT, tier: 2, ships_nl: true,  preorders: true,  alerts: true,  category: "https://senpaimangashop.com/collections/dragon-ball-super-card-game-eng" }
-  - { id: cartemagic,    name: "Carte Magic",      country: IT, tier: 2, ships_nl: false, preorders: true,  alerts: true,  category: "https://www.cartemagic.com/categoria/dragon-ball/" }
-  - { id: supercollectors,name: "SuperCollectors", country: ES, tier: 2, ships_nl: null,  preorders: true,  alerts: false, category: "https://www.supercollectors.es/categoria-producto/boxes-packs/dragon-ball/" }
+  - { id: tbhstore, platform: generic,      name: "TBH Store",        country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://www.tbhstore.nl/c-7780596/dragon-ball-tcg/" }
+  - { id: cardforge, platform: generic,     name: "Card Forge",       country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: true,  category: "https://cardforge.nl/pokemon-kaarten/dragon-ball/" }
+  - { id: dracoon, platform: woo,       name: "Dracoon",          country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://dracoon.nl/trading-cards/dragon-ball-super-tcg/boosterboxen-dragon-ball-super/" }
+  - { id: catchyourcards, platform: generic,name: "CatchYourCards",   country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://catchyourcards.nl/dragon-ball-scg/booster-box-dragonballscg/" }
+  - { id: oppacards, platform: woo,     name: "Oppa Cards",       country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://oppacards.com/product-category/dragon-ball-super/" }
+  - { id: tfrobots, platform: generic,      name: "TF-Robots",        country: NL, tier: 2, ships_nl: true,  preorders: false, alerts: false, category: "https://www.tf-robots.nl/c-7113467/dragon-ball-tcg/" }
+  - { id: cardgameshop, platform: generic,  name: "Cardgameshop.be",  country: BE, tier: 1, ships_nl: null,  preorders: true,  alerts: false, category: "https://www.cardgameshop.be/nl/categorieen/dragon-ball-z-boosterboxen" }
+  - { id: fantasiacards, platform: shopify, name: "Fantasia Cards",   country: DE, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://fantasiacards.de/en/collections/dragon-ball/Booster-Display" }
+  - { id: cardcollector, platform: shopify, name: "Card-Collector.net",country: DE, tier: 1, ships_nl: null, preorders: true,  alerts: false, category: "https://card-collector.net/collections/dragon-ball-super-fusion-world" }
+  - { id: comicplanet, platform: generic,   name: "Comic Planet",     country: DE, tier: 2, ships_nl: null,  preorders: true,  alerts: true,  category: "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/" }
+  - { id: breakthecase, platform: shopify,  name: "Break the Case",   country: DE, tier: 2, ships_nl: null,  preorders: true,  alerts: false, category: "https://www.breakthecase.de/collections/dragon-ball-super-card-game-fusion-world" }
+  - { id: totalcards, platform: shopify,    name: "Total Cards",      country: UK, tier: 2, ships_nl: null,  preorders: true,  alerts: false, category: "https://totalcards.net/collections/dragon-ball-super-restocks", set_pattern: "https://totalcards.net/collections/dragon-ball-super-fb{nn}-{slug}" }
+  - { id: chaoscards, platform: generic,    name: "Chaos Cards",      country: UK, tier: 2, ships_nl: true,  preorders: true,  alerts: true,  category: "https://www.chaoscards.co.uk/shop/card-games/dragonball-super-card-game/sealed-products-dragonball" }
+  - { id: masterset, platform: shopify,     name: "Masterset",        country: FR, tier: 2, ships_nl: null,  preorders: true,  alerts: true,  category: "https://masterset.store/collections/dragon-ball" }
+  - { id: onytcg, platform: woo,        name: "ONYTCG",           country: IT, tier: 2, ships_nl: null,  preorders: true,  alerts: false, category: "https://onytcg.com/en/product/dragon-ball-super-card-game-fusion-world-box-fb-11" }
+  - { id: senpaimanga, platform: shopify,   name: "Senpai Manga Shop",country: IT, tier: 2, ships_nl: true,  preorders: true,  alerts: true,  category: "https://senpaimangashop.com/collections/dragon-ball-super-card-game-eng" }
+  - { id: cartemagic, platform: generic,    name: "Carte Magic",      country: IT, tier: 2, ships_nl: false, preorders: true,  alerts: true,  category: "https://www.cartemagic.com/categoria/dragon-ball/" }
+  - { id: supercollectors, platform: woo,name: "SuperCollectors", country: ES, tier: 2, ships_nl: null,  preorders: true,  alerts: false, category: "https://www.supercollectors.es/categoria-producto/boxes-packs/dragon-ball/" }
 aggregators:
   - { id: bordspelprijzen, name: "Bordspelprijzen.nl", item_pattern: "https://bordspelprijzen.nl/item/show/{id}/{slug}", note: "cross-shop price/stock for ~100 EU shops; FB11 box item 186122, FB10 display item 121298" }
   - { id: cardmarket, name: "Cardmarket sealed", pattern: "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/{Set-Name}-Booster-Box-Fusion-World", note: "bot-wall; browser-based scraping" }

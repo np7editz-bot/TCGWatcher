@@ -4,6 +4,7 @@ Refuses to publish when the quality gate failed (keeps the previous latest.json)
 """
 import datetime as dt
 import logging
+import re
 from .config import load_games
 from .model import load_game, class_estimates
 from .chase import score_sets
@@ -55,6 +56,11 @@ def build(day, quality=None):
                                      "presale": p.presale, "product_id": p.product_id}
                                     for p in m["products"] if p.set_code == c and p.sealed_kind]}
                       for c, meta in m["sets"].items() if meta["kind"] in ("starter",) ]
+        retail = retail_by_set(gid)
+        for s in sets_scored:
+            s["retail"] = retail.get(s["code"], [])
+        for s in other_sets:
+            s["retail"] = retail.get(s["code"], [])
         out["games"][gid] = {
             "name": g["name"], "short": g["short"], "category": cat, "score": g.get("score", True),
             "source": {"name": "TCGplayer market data via tcgcsv.com", "last_updated": m["source_last_updated"],
@@ -68,6 +74,27 @@ def build(day, quality=None):
     store.write_json(LATEST, out)
     log.info("published %s (%d games, quality %s)", LATEST, len(out["games"]), out["quality"]["status"])
     return out
+
+
+SETCODE = re.compile(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", re.I)
+
+
+def retail_by_set(game_id):
+    """Group retailer observations (data/state/retail.json) by set code found in the product title/url."""
+    if game_id != "dbfw":
+        return {}
+    st = store.read_json(store.state_path("retail"), {"products": {}})
+    by = {}
+    for url, p in st["products"].items():
+        m = SETCODE.search(p.get("title") or "") or SETCODE.search(url)
+        if not m:
+            continue
+        code = f"{m.group(1).upper()}{m.group(2)}"
+        by.setdefault(code, []).append({"retailer": p["retailer"], "title": p["title"], "price": p.get("price"),
+                                        "status": p["status"], "url": url, "seen": p["seen"]})
+    for code in by:
+        by[code].sort(key=lambda x: (x["status"] not in ("in_stock", "preorder"), x["price"] or 9e9))
+    return by
 
 
 def _now():

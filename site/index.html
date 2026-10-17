@@ -140,7 +140,7 @@ footer{color:var(--fg3);font-size:12.5px}
         <thead><tr>
           <th class="rank">#</th><th>Set</th><th>Status</th><th>Samenstelling</th>
           <th class="r">Box</th><th class="r">Box 7d / 30d</th><th class="r">EV hits / box</th>
-          <th class="barcell">Ratio</th><th>Top hit</th><th>EU retail (€)</th><th class="r">vs retail</th>
+          <th class="barcell">Ratio</th><th>Top hit</th><th>EU retail (laagste)</th><th class="r">vs retail</th>
         </tr></thead>
         <tbody id="tb"></tbody>
       </table>
@@ -202,7 +202,8 @@ function render(){
   const tb=document.getElementById('tb'); tb.innerHTML='';
   scored.forEach((x,i)=>{
     const s=x.s, tr=document.createElement('tr'); tr.className='row'+(openSet===s.code?' open':''); tr.tabIndex=0;
-    const r=retail[s.code]; const rr = r && x.ev ? x.ev*fx()/r : null; const hit = x.ratio!=null && x.ratio>=thr;
+    const best=(s.retail||[]).find(o=>o.price&&(o.status==='in_stock'||o.status==='preorder'));
+    const r=retail[s.code] || (best?best.price:undefined); const rr = r && x.ev ? x.ev*fx()/r : null; const hit = x.ratio!=null && x.ratio>=thr;
     tr.innerHTML=`<td class="rank">${i+1}</td>
       <td><span class="code">${s.code}</span><div class="name">${s.name} · EN ${s.published}</div></td>
       <td>${s.flags.map(f=>FLAG[f]?`<span class="chip ${FLAG[f][0]}">${FLAG[f][1]}</span>`:'').join('')||'<span class="chip good">uitgebracht</span>'}</td>
@@ -212,7 +213,7 @@ function render(){
       <td class="r num">${x.ev?eur(x.ev):'—'}<small>${x.ev?usd(x.ev):''}</small></td>
       <td class="barcell"><div class="bar"><div class="track"><div class="fill${hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
       <td class="top">${x.top?`${short(x.top.name)}<div class="p">${eur(x.top.price)} · ${x.top.number} ${pct(x.top.chg7)}</div>`:'—'}</td>
-      <td class="retail"><input type="number" id="r_${s.code}" min="0" step="1" placeholder="—" value="${r??''}" aria-label="EU retailprijs ${s.code}"></td>
+      <td class="retail">${best?`<a href="${best.url}" target="_blank" rel="noopener">€${best.price.toFixed(2)}</a><div class="name">${best.retailer} · ${best.status==='preorder'?'pre-order':'op voorraad'}${(s.retail||[]).length>1?` · +${(s.retail||[]).length-1}`:''}</div>`:''}<input type="number" id="r_${s.code}" min="0" step="1" placeholder="${best?'overschrijf':'—'}" value="${retail[s.code]??''}" aria-label="EU retailprijs ${s.code}"></td>
       <td class="r num">${rr!=null?rr.toFixed(2):'—'}</td>`;
     tr.addEventListener('click', ev=>{ if (ev.target.tagName==='INPUT') return; openSet = openSet===s.code?null:s.code; render(); });
     tr.addEventListener('keydown', ev=>{ if (ev.key==='Enter'||ev.key===' ') { ev.preventDefault(); tr.click(); } });
@@ -232,6 +233,7 @@ function detail(s,x){
   tr.innerHTML=`<td colspan="11"><div class="dwrap">
     <div class="classes"><div class="h"><span>Klasse</span><span>kaarten</span><span>gem. prijs</span><span>hits/box → EV</span></div>${rows}
       <div style="margin-top:8px;color:var(--fg3);font-family:var(--display)">${s.note?s.note+'<br>':''}${cards.length} chase cards · ${cards.filter(c=>c.price_src!=='market').length} zonder marktprijs (mid/low gebruikt)${s.box?` · <a href="https://www.tcgplayer.com/product/${s.box.product_id}" target="_blank" rel="noopener">box op TCGplayer</a>`:''}</div></div>
+    ${(s.retail||[]).length?`<div class="starters" style="grid-column:1/-1">${s.retail.map(o=>`<div><span><a href="${o.url}" target="_blank" rel="noopener">${o.retailer}</a> · ${o.title.slice(0,70)}</span><span class="p">${o.price?'€'+o.price.toFixed(2):'—'} <span class="chip ${o.status==='sold_out'?'crit':o.status==='preorder'?'warn':'good'}">${o.status}</span></span></div>`).join('')}</div>`:''}
     <div class="cards">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${c.name}">${short(c.name)}<span class="tag${c.class==='SAA'?' saa':''}">${c.class.replace('_AA',' AA')}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
   </div></td>`;
   return tr;
