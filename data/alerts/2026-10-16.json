@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "at": "2026-10-17T15:34:55Z",
+   "at": "2026-10-17T15:36:38Z",
    "key": "quality:2026-10-16",
    "kind": "quality",
    "text": "⚠️ Data quality warn: 3 finding(s) on 2026-10-16. Page updated with warnings."
