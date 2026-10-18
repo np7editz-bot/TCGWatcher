@@ -1,0 +1,29 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-18T23:25:33Z",
+   "key": "quality:2026-10-18",
+   "kind": "quality",
+   "text": "⚠️ Data quality warn: 2 finding(s) on 2026-10-18. Page updated with warnings."
+  },
+  {
+   "at": "2026-10-18T23:25:33Z",
+   "key": "card:dbfw:FB11:FB11-122:AA:down",
+   "kind": "card_move",
+   "text": "🔻 FB11 Shallet (Alternate Art) (SCR_AA): $45, -28% in 7d."
+  },
+  {
+   "at": "2026-10-18T23:25:33Z",
+   "key": "card:dbfw:FB11:FB11-121::down",
+   "kind": "card_move",
+   "text": "🔻 FB11 Son Goku - FB11-121 (SCR): $35, -36% in 7d."
+  },
+  {
+   "at": "2026-10-18T23:25:33Z",
+   "key": "card:dbfw:FB11:FB11-105:AA:up",
+   "kind": "card_move",
+   "text": "🔺 FB11 Son Goku - FB11-105 (Alternate Art) (OTHER_AA): $67, +66% in 7d."
+  }
+ ],
+ "day": "2026-10-18"
+}

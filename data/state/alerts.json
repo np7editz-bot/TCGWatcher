@@ -1,5 +1,8 @@
 {
  "active": {
+  "card:dbfw:FB11:FB11-105:AA:up": "2026-10-18",
+  "card:dbfw:FB11:FB11-121::down": "2026-10-18",
+  "card:dbfw:FB11:FB11-122:AA:down": "2026-10-18",
   "ratio:dbfw:FB11": "2026-10-17"
  },
  "seen_groups": {
