@@ -56,3 +56,11 @@ def test_card_url_matches_browser():
     u = card_url("Saiyan's Pride [Fusion World]", "Broly // Broly (FB08-073) [Fusion World]", 2, "AA")
     assert u.endswith("/Saiyans-Pride-Fusion-World/Broly-Broly-FB08-073-Fusion-World-V2-Alternate-Art")
     assert card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World]", 1, "").endswith("/Son-Goten-FB08-121-Fusion-World")
+
+
+def test_expansion_names():
+    from tcgwatcher.cardmarket import expansion_name, card_url
+    assert expansion_name("dbs", "BT21", "Wild Resurgence") == "Zenkai Series Set 04"
+    assert expansion_name("dbfw", "FB08", "Saiyan's Pride", "Saiyan's Pride Booster Box [Fusion World]") == "Saiyan's Pride [Fusion World]"
+    assert card_url("Zenkai Series Set 04", "Son Goku, Overwhelming Power", 2, "SPR").endswith("/Zenkai-Series-Set-04/Son-Goku-Overwhelming-Power-V2-Special-Rare")
+    assert card_url("Manga Booster 01 [Fusion World]", "Vegeta // Vegeta (FB04-051) [Fusion World]", 2, "GOLD").endswith("/Manga-Booster-01-Fusion-World/Vegeta-Vegeta-FB04-051-Fusion-World-V2-Alternate-Art")

@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 3            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 4            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -48,7 +48,20 @@ def box_url(name):
 
 # Verified in the browser (2026-10-19): AA → "V2 - Alternate Art", SAA → "V3 - God Rare". Other variants: unknown label →
 # link to the base printing (exists) rather than guess (a wrong suffix gives "invalid product").
-VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "BPAA": "Alternate Art"}
+VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "BPAA": "Alternate Art", "GOLD": "Alternate Art",
+                 "SPR": "Special Rare"}      # Masters SPR verified: Zenkai-Series-Set-04/Son-Goku-Overwhelming-Power-V2-Special-Rare
+
+
+def expansion_name(gid, code, set_name, box_name=None):
+    """Cardmarket expansion name. Fusion World: '<Set> [Fusion World]' (from the box name when we have it).
+    Masters: Cardmarket uses Bandai's series numbering, not the subtitle — BT18–BT25 are 'Zenkai Series Set 01'…'08'
+    (verified: BT21 → Zenkai-Series-Set-04); later sets keep their name until verified."""
+    if box_name:
+        return box_name.replace(" Booster Box", "")
+    m = re.fullmatch(r"BT(\d{2})", code or "")
+    if gid == "dbs" and m and 18 <= int(m.group(1)) <= 25:
+        return f"Zenkai Series Set {int(m.group(1)) - 17:02d}"
+    return (set_name or "") + (" [Fusion World]" if gid == "dbfw" else "")
 
 
 def card_url(expansion_name, product_name, version=1, variant=""):
@@ -106,9 +119,8 @@ def join(files, latest, ct_doc):
                                     "url": box_url(p["name"])}
         # expansion name per set = box name without "Booster Box" ("Saiyan's Pride Booster Box [Fusion World]" → "Saiyan's Pride [Fusion World]"),
         # else the set name (+ " [Fusion World]" for Fusion World)
-        exp_name = {code: b["name"].replace(" Booster Box", "") for code, b in boxes.items()}
-        for s in g.get("sets", []):
-            exp_name.setdefault(s["code"], (s.get("name") or "") + (" [Fusion World]" if gid == "dbfw" else ""))
+        exp_name = {s["code"]: expansion_name(gid, s["code"], s.get("name"), (boxes.get(s["code"]) or {}).get("name") if gid == "dbfw" else None)
+                    for s in g.get("sets", [])}
         for c in g.get("cards", []):
             ids = cm_ids_by_tcg.get(c.get("product_id"))
             if not ids:
