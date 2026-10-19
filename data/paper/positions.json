@@ -263,7 +263,8 @@
    "price": 117.95,
    "ratio_then": 1.143,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   },
   {
    "code": "BT29",
@@ -276,7 +277,8 @@
    "price": 125.99,
    "ratio_then": 1.388,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   },
   {
    "code": "BT30",
@@ -289,7 +291,8 @@
    "price": 147.95,
    "ratio_then": 1.497,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   },
   {
    "code": "BT27",
@@ -302,7 +305,8 @@
    "price": 617,
    "ratio_then": 0.528,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   },
   {
    "code": "BT22",
@@ -315,7 +319,8 @@
    "price": 135.5,
    "ratio_then": 0.377,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   },
   {
    "code": "BT23",
@@ -328,7 +333,8 @@
    "price": 128,
    "ratio_then": 0.45,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   },
   {
    "code": "BT21",
@@ -341,7 +347,8 @@
    "price": 137.8,
    "ratio_then": 0.308,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   },
   {
    "code": "BT26",
@@ -354,7 +361,8 @@
    "price": 187,
    "ratio_then": 1.467,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   },
   {
    "code": "BT27",
@@ -367,7 +375,8 @@
    "price": 617,
    "ratio_then": 8.665,
    "source": "Cardmarket",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
   }
  ]
 }

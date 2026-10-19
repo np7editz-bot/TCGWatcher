@@ -56,12 +56,21 @@ def open_positions(day, latest, msgs, active_buy=()):
         s = sets.get(code)
         if s and s.get("best_buy"):
             add({"kind": "box", "game": gid, "key": f"buy:{gid}:{code}", "code": code, "name": s["name"], "price": s["best_buy"]["price"],
-                 "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"]})
+                 "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"],
+                 "valuation": s.get("valuation", "tcgplayer")})
       cards = {c["key"]: c for c in g.get("cards", [])}
       for sg in g.get("grade_signals", [])[:5]:
         c = cards.get(sg["key"]) or {}
         eu = c.get("eu") or {}
-        price, src = (round(eu["low"] + 5, 2), "CardTrader EU laagste ask + €5 verzending") if eu.get("low") else (sg["raw_eur"], "TCGplayer market (raw)")
+        cmr = c.get("cm") or {}
+        if eu.get("low"):
+            price, src = round(eu["low"] + 5, 2), "CardTrader EU laagste ask + €5 verzending"
+        elif cmr.get("avg30"):
+            price, src = round(cmr["avg30"], 2), "Cardmarket 30d-verkopen"
+        elif c.get("price"):
+            price, src = round(c["price"] * latest["fx"]["usd_eur"], 2), "TCGplayer market (raw)"
+        else:
+            continue
         add({"kind": "raw", "game": gid, "key": sg["key"], "code": sg["set"], "name": f"{sg['name']} {sg['number']} {sg['class']}",
              "price": price, "source": src, "tcg_then": sg["raw_eur"], "psa10_then": sg["top_median"], "net_then": sg["net"]})
       for x in g.get("slab_signals", [])[:5]:
@@ -69,31 +78,57 @@ def open_positions(day, latest, msgs, active_buy=()):
              "price": x["price"], "source": "eBay EU", "grade": x["grade"], "raw_then": x["raw_eur"], "card_key": x["key"]})
       # control cohort: once per month per game, every scored set without a buy signal
       month = day[:7]
-      if not any(p["kind"] == "control" and p["opened"][:7] == month and p.get("game", "dbfw") == gid for p in doc["positions"]):
+      if not any(p["kind"] == "control" and p["status"] == "open" and p["opened"][:7] == month and p.get("game", "dbfw") == gid for p in doc["positions"]):
         buy_codes |= {p["code"] for p in doc["positions"] if p["kind"] == "box" and p["status"] == "open" and p.get("game", "dbfw") == gid}
         for code, s in sets.items():
-            if code in buy_codes or not s.get("best_buy") or "no_cards" in s["flags"] or "presale" in s["flags"]:
+            # the control group must be the same universe the KOOP rule picks from: sets it could have chosen but did not
+            if code in buy_codes or not s.get("best_buy") or (set(s["flags"]) & excl) or "presale" in s["flags"] or s["best_buy"].get("thin"):
                 continue
             add({"kind": "control", "game": gid, "key": f"control:{gid}:{code}:{month}", "code": code, "name": s["name"], "price": s["best_buy"]["price"],
-                 "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"]})
+                 "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"],
+                 "valuation": s.get("valuation", "tcgplayer")})
     if added:
         _save(doc)
         log.info("paper: %d new position(s): %s", len(added), ", ".join(f"{p['kind']}:{p['code']}" for p in added))
     return added
 
 
+def box_price_by_source(s, source):
+    """Today's all-in price of a box from the SAME source as the purchase (a source switch is not a market move)."""
+    src = (source or "").lower()
+    if src.startswith("cardtrader"):
+        return ((s.get("box") or {}).get("eu") or {}).get("landed")
+    if src.startswith("cardmarket"):
+        return (s.get("cm_box") or {}).get("landed")
+    if src.startswith("ebay"):
+        return (s.get("ebay_box") or {}).get("low")
+    for r in s.get("retail", []):                   # a retailer: its own current price, in stock or pre-order
+        if r.get("retailer") == source and r.get("price") and r.get("status") in ("in_stock", "preorder") and r.get("kind", "box") == "box":
+            return r["price"]
+    return None
+
+
 def value_now(pos, latest, ebay_doc):
-    """Current value of a position in €, with the same yardstick as the purchase."""
+    """Current value of a position in €, with the same yardstick as the purchase (same source, same valuation)."""
     g = latest["games"].get(pos.get("game", "dbfw"), {})
     if pos["kind"] in ("box", "control"):
         s = next((s for s in g.get("sets", []) if s["code"] == pos["code"]), None)
-        bb = (s or {}).get("best_buy")
-        return (bb["price"] if bb else None), ((s or {}).get("ev_eu_excl_saa"))
+        if not s:
+            return None, None
+        val = pos.get("valuation") or "tcgplayer"
+        ev_now = s.get("ev_eu_excl_saa") if (val == "cardmarket" and s.get("valuation") == "cardmarket") else (
+            s.get("ev_us_excl_saa") if val == "tcgplayer" else None)
+        return box_price_by_source(s, pos.get("source")), ev_now
     if pos["kind"] == "raw":
         c = next((c for c in g.get("cards", []) if c["key"] == pos["key"]), None)
-        if c and pos["source"].startswith("CardTrader") and (c.get("eu") or {}).get("low"):
-            return round(c["eu"]["low"] + 5, 2), None          # same yardstick as the purchase
-        return (round(c["price"] * latest["fx"]["usd_eur"], 2) if c and c.get("price") else None), None
+        if not c:
+            return None, None
+        src = pos.get("source", "")
+        if src.startswith("CardTrader"):
+            return (round(c["eu"]["low"] + 5, 2) if (c.get("eu") or {}).get("low") else None), None
+        if src.startswith("Cardmarket"):
+            return (round(c["cm"]["avg30"], 2) if (c.get("cm") or {}).get("avg30") else None), None
+        return (round(c["price"] * latest["fx"]["usd_eur"], 2) if c.get("price") else None), None
     if pos["kind"] == "slab":
         c = (ebay_doc or {}).get("cards", {}).get(pos["card_key"])
         b = (c or {}).get("best", {}).get(str(float(pos["grade"])))
@@ -115,15 +150,17 @@ def report(day, latest=None, send=True):
         v, ev_now = value_now(p, latest, eb)
         pnl = (v - p["price"]) if v is not None else None
         t = tot.setdefault(p["kind"], {"cost": 0.0, "value": 0.0, "n": 0, "wins": 0, "unknown": 0})
-        t["cost"] += p["price"]; t["n"] += 1
+        t["n"] += 1
         if v is None:
-            t["unknown"] += 1
+            t["unknown"] += 1                       # no price from the purchase source today: out of cost AND value
         else:
-            t["value"] += v; t["wins"] += pnl > 0
+            t["cost"] += p["price"]; t["value"] += v; t["wins"] += pnl > 0
         rows.append((p, v, pnl, ev_now))
     lines = [f"# Paper-portfolio · stand {day}", "",
              "Elke melding is een fictieve aankoop; dit rapport vergelijkt de waarde nu met de aankoopprijs (zelfde maatstaf).",
-             "Boxen: doorverkoopwaarde all-in (CardTrader Zero/webshop) + EV toen vs nu. Raw: TCGplayer market in €. Slabs: goedkoopste EU-listing zelfde grade.", "",
+             "Boxen: prijs nu bij DEZELFDE bron als de aankoop (een bronwissel is geen marktbeweging) + EV toen vs nu op dezelfde waardering. "
+             "Raw: zelfde maatstaf als de aankoop (CardTrader ask+5 / Cardmarket 30d / TCGplayer). Slabs: goedkoopste EU-listing zelfde grade. "
+             "Posities zonder prijs bij hun bron vandaag tellen niet mee in kosten én waarde.", "",
              "| soort | posities | kostprijs | waarde nu | P&L | winnaars |", "|---|---|---|---|---|---|"]
     tg = [f"📒 <b>Paper-portfolio · {day}</b>"]
     label = {"box": "🎯 boxen (koop)", "control": "⚪ controlegroep", "raw": "📈 raw kaarten", "slab": "🏆 slabs"}
@@ -132,10 +169,11 @@ def report(day, latest=None, send=True):
         if not t:
             continue
         known = t["n"] - t["unknown"]
-        pnl = t["value"] - (t["cost"] if not t["unknown"] else sum(p["price"] for p, v, _, _ in rows if p["kind"] == k and v is not None))
-        pct = pnl / max(1e-9, sum(p["price"] for p, v, _, _ in rows if p["kind"] == k and v is not None)) * 100 if known else 0
-        lines.append(f"| {label[k]} | {t['n']} | €{t['cost']:.0f} | €{t['value']:.0f} | {pnl:+.0f} ({pct:+.1f}%) | {t['wins']}/{known} |")
-        tg.append(f"{label[k]}: {t['n']} pos · €{t['cost']:.0f} → €{t['value']:.0f} · <b>{pct:+.1f}%</b> · {t['wins']}/{known} winnaars")
+        pnl = t["value"] - t["cost"]
+        pct = pnl / t["cost"] * 100 if t["cost"] else 0
+        unk = f" · {t['unknown']} zonder prijs" if t["unknown"] else ""
+        lines.append(f"| {label[k]} | {known}/{t['n']} | €{t['cost']:.0f} | €{t['value']:.0f} | {pnl:+.0f} ({pct:+.1f}%) | {t['wins']}/{known} |")
+        tg.append(f"{label[k]}: {known} pos · €{t['cost']:.0f} → €{t['value']:.0f} · <b>{pct:+.1f}%</b> · {t['wins']}/{known} winnaars{unk}")
     box_pct = next((float(l.split("(")[-1].split("%")[0]) for l in lines if "boxen" in l), None)
     ctl_pct = next((float(l.split("(")[-1].split("%")[0]) for l in lines if "controlegroep" in l), None)
     verdict = ""

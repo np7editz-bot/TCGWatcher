@@ -47,7 +47,7 @@ def score_sets(model):
             comp[cid] = {"label": labels.get(cid, cid), "n": c["n"], "priced": c["priced"], "market_priced": c["market_priced"],
                          "avg": round(avg, 2) if avg is not None else None,
                          "median": round(median(c["prices"]), 2) if c["prices"] else None,
-                         "est": round(e, 3), "ev": round(ev, 2)}
+                         "est": round(e, 3), "ev": round(ev, 2), "lottery": cid in lottery}
             ev_total += ev
             if cid in lottery:
                 ev_saa += ev

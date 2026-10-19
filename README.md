@@ -105,3 +105,7 @@ tegen de all-in prijs. Op de 1e van de maand (`python -m tcgwatcher paper --repo
 
 ### Slab-rotatie
 Telegram krijgt per run maximaal 5 slab-kaarten die **nog niet eerder gestuurd** zijn (`data/state/alerts.json → sent_slabs`, wordt nooit geleegd). Een al gemelde kaart komt alleen terug als hij duidelijk beter werd (netto ≥ +25% of raw ≥ 10% goedkoper). De radar toont alle kandidaten, met een 📨-badge bij de al gemelde.
+
+
+### Logica-review
+Zie `docs/review-2026-10-19.md` voor de onafhankelijke doorloop van alle regels en wat daaruit is gefixt (paper-portfolio op dezelfde bron/waardering als de aankoop, status alleen bij afgeleverde berichten, JP-locaties uit slabs, EU = EU27+CH+NO).

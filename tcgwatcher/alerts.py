@@ -105,8 +105,9 @@ def run(day, quality=None, send=True):
                 ep = state["active"].get(key)
                 if ep and not (isinstance(ep, dict) and bb["price"] <= ep["price"] * (1 - buy.get("rearm_improvement", 0.1))):
                     continue        # already alerted this episode and the price did not improve enough
-                state["active"][key] = {"since": (ep or {}).get("since", day) if isinstance(ep, dict) else day, "price": bb["price"], "ratio": ratio}
-                msgs.append(buy_card(gid, gdata, s, pos, len(ranked), buy, again=bool(ep)))
+                m = buy_card(gid, gdata, s, pos, len(ranked), buy, again=bool(ep))
+                m["on_sent"] = {"active": (key, {"since": (ep or {}).get("since", day) if isinstance(ep, dict) else day, "price": bb["price"], "ratio": ratio})}
+                msgs.append(m)
 
         # 4b. slabs: the 5 best cards to buy now for graded value — one card per message (photo, where-to-buy comparison,
         #     one button per shop). Each run: up to 5 cards not sent before; a sent card again only when net ≥ +25% or raw ≤ −10%.
@@ -124,8 +125,10 @@ def run(day, quality=None, send=True):
                 opts = []                                   # raw: where is it cheapest, all-in?
                 eu = c.get("eu") or {}
                 if eu.get("low"):
-                    opts.append({"src": "CardTrader" + (" Zero" if eu.get("zero_low") and eu["zero_low"] <= eu["low"] else ""),
-                                 "price": round((eu.get("zero_low") or eu["low"]) + (6 if eu.get("zero_low") else 5), 2), "url": eu["url"]})
+                    zero = eu.get("zero_low")
+                    use_zero = bool(zero) and zero + 6 <= eu["low"] + 5
+                    opts.append({"src": "CardTrader" + (" Zero" if use_zero else ""),
+                                 "price": round((zero + 6) if use_zero else (eu["low"] + 5), 2), "url": eu["url"]})
                 re_ = c.get("raw_ebay") or {}
                 if re_.get("low"):
                     opts.append({"src": f"eBay ({re_['n']} EU)", "price": re_["low"], "url": re_["url"]})
@@ -151,7 +154,6 @@ def run(day, quality=None, send=True):
             picked = pick_slabs(items, sent, gid)
             for rank, i in enumerate(picked, 1):
                 key = f"slab:{gid}:{i['key']}"
-                sent[f"{gid}:{i['key']}"] = {"day": day, "net": i["net"], "raw": i["raw"], "rank": rank}
                 g, c, sl = i["g"], i["c"], i["slab"]
                 where = "\n".join(f"• €{o['price']:.0f} {o['src']}" for o in i["opts"][:3])
                 cls = "Gold (Manga)" if i["key"].endswith(":GOLD") else g["class"].replace("_AA", " AA")
@@ -168,7 +170,9 @@ def run(day, quality=None, send=True):
                 txt += (f"\n<i>Andere services: {alt}</i>" if alt else "") + "\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €" + f"{g['raw_eur']:.0f}</i>"
                 o = i["opts"][0]                                     # one button: the cheapest; the comparison is in the text
                 btn = [[(f"🛒 Koop raw €{o['price']:.0f} · {o['src'].split(' (')[0]}", o["url"]), ("📊 Radar", SITE_URL)]]
-                msgs.append(_m(key, "slab", txt, photo=_big(c.get("image")), buttons=btn))
+                m = _m(key, "slab", txt, photo=_big(c.get("image")), buttons=btn)
+                m["on_sent"] = {"sent_slabs": (f"{gid}:{i['key']}", {"day": day, "net": i["net"], "raw": i["raw"], "rank": rank})}
+                msgs.append(m)
             for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
                 state["active"].pop(key, None)             # legacy episodes: rotation is tracked in sent_slabs now
 
@@ -179,14 +183,22 @@ def run(day, quality=None, send=True):
         else:
             _remember_ranking(latest, state)
 
-    store.write_json(store.alerts_path(day), {"day": day, "alerts": [{k: v for k, v in m.items() if k != "buttons"} | {"buttons": m.get("buttons")} for m in msgs]}, compact=False)
-    store.write_json(store.state_path("alerts"), state, compact=False)
+    # Episodes and sent_slabs are recorded only for messages that were actually delivered: a capped or failed send must
+    # not suppress the card next run. --no-send records nothing.
     log.info("%d message(s) for %s (muted: %s)", len(msgs), day, ",".join(sorted(muted)) or "-")
     if len(msgs) > MAX_PER_RUN:
         log.warning("%d messages, capping at %d (rest only in data/alerts)", len(msgs), MAX_PER_RUN)
+    for m in msgs:
+        m["delivered"] = False
     if send:
         for m in msgs[:MAX_PER_RUN]:
-            telegram.send(m["text"], photo=m.get("photo"), buttons=m.get("buttons"))
+            ok = telegram.send(m["text"], photo=m.get("photo"), buttons=m.get("buttons"))
+            m["delivered"] = bool(ok)
+            if ok and m.get("on_sent"):
+                for bucket, (k, v) in m["on_sent"].items():
+                    state.setdefault(bucket, {})[k] = v
+    store.write_json(store.alerts_path(day), {"day": day, "alerts": [{k: v for k, v in m.items() if k not in ("buttons", "on_sent")} | {"buttons": m.get("buttons")} for m in msgs]}, compact=False)
+    store.write_json(store.state_path("alerts"), state, compact=False)
     return msgs
 
 

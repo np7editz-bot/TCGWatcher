@@ -153,16 +153,18 @@ def test_buy_signal_uses_eu_ratio(tmp_path, monkeypatch):
     doc = {"fx": {"usd_eur": 0.91}, "games": {"dbfw": {"short": "FW", "sets": [s], "cards": [], "starters": [], "all_sets": []}}}
     store.write_json(latest_path, doc)
     monkeypatch.setattr(alerts, "load_games", lambda: {})
-    msgs = alerts.run("2026-10-19", quality={"status": "ok", "games": {}}, send=False)
+    from tcgwatcher import telegram
+    monkeypatch.setattr(telegram, "send", lambda *a, **k: True)        # delivered → episode recorded
+    msgs = alerts.run("2026-10-19", quality={"status": "ok", "games": {}}, send=True)
     buys = [m for m in msgs if m["kind"] == "buy"]
     assert len(buys) == 1 and "KOOP · FB09" in buys[0]["text"] and "CardTrader Zero" in buys[0]["text"] and "0.93" in buys[0]["text"]
     assert buys[0]["buttons"][0][0][1] == "https://www.cardtrader.com/cards/375875"
     assert not [m for m in msgs if m["kind"] == "briefing"]      # Monday, weekly briefing
     # same price next day → silent; 12% cheaper → "goedkoper geworden"
-    assert not [m for m in alerts.run("2026-10-20", quality={"status": "ok", "games": {}}, send=False) if m["kind"] == "buy"]
+    assert not [m for m in alerts.run("2026-10-20", quality={"status": "ok", "games": {}}, send=True) if m["kind"] == "buy"]
     s["best_buy"] = b.best_buy(dict(s, box={"price": 410.0, "product_id": 1, "name": "b", "eu": eu(150.0, 158.0)}))
     store.write_json(latest_path, doc)
-    again = [m for m in alerts.run("2026-10-21", quality={"status": "ok", "games": {}}, send=False) if m["kind"] == "buy"]
+    again = [m for m in alerts.run("2026-10-21", quality={"status": "ok", "games": {}}, send=True) if m["kind"] == "buy"]
     assert len(again) == 1 and "goedkoper geworden" in again[0]["text"]
 
 
@@ -242,3 +244,29 @@ def test_collector_booster_variants_are_not_box_hits():
     cb = [p for p in m["products"] if p.set_code == "BT24" and p.variant in ("CB", "CBG", "CBS", "SN")]
     assert cb and all(p.hit_class is None for p in cb)
     assert any(p.hit_class == "SCR" for p in m["products"] if p.set_code == "BT24" and p.variant == "")
+
+
+def test_alert_state_only_for_delivered_messages(tmp_path, monkeypatch):
+    """A capped or failed send must not mark a slab as sent / open a KOOP episode."""
+    from tcgwatcher import alerts, telegram, store
+    sent = []
+    monkeypatch.setattr(telegram, "send", lambda text, photo=None, buttons=None, chat_id=None: (sent.append(text) or True) if "ok" in text else False)
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    msgs = [alerts._m("slab:dbfw:k1", "slab", "ok 1"), alerts._m("slab:dbfw:k2", "slab", "fail 2")]
+    msgs[0]["on_sent"] = {"sent_slabs": ("dbfw:k1", {"day": "d"})}
+    msgs[1]["on_sent"] = {"sent_slabs": ("dbfw:k2", {"day": "d"})}
+    state = {"active": {}, "sent_slabs": {}}
+    for m in msgs:
+        ok = telegram.send(m["text"])
+        if ok and m.get("on_sent"):
+            for bucket, (k, v) in m["on_sent"].items():
+                state.setdefault(bucket, {})[k] = v
+    assert list(state["sent_slabs"]) == ["dbfw:k1"] and sent == ["ok 1"]
+
+
+def test_cardmarket_guide_row_is_not_a_listing():
+    from tcgwatcher.build import best_buy
+    s = {"flags": [], "ev_eu_excl_saa": 160.0, "retail": [], "ebay_box": None, "box": {},
+         "cm_box": {"low": 100.0, "landed": 118.0, "url": "c"}}
+    b = best_buy(s, min_offers=3)
+    assert b["source"] == "Cardmarket" and b["offers"] == 0 and b["thin"]

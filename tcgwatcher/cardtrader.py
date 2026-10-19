@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 
 log = logging.getLogger("tcgwatcher.cardtrader")
 BASE = "https://api.cardtrader.com/api/v2"
-EU = {"AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","CH","NO","GB","LI"}
+EU = {"AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","CH","NO"}   # = ebay.EU; GB out (import VAT)
 SETCODE = re.compile(r"\b(FB|SB|ST|FS|BT|BE|SD|EB)\s?-?(\d{2})\b", re.I)
 
 
