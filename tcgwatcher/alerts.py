@@ -166,10 +166,8 @@ def run(day, quality=None, send=True):
                     txt += f"\n\n🏷 <b>Graded al te koop in EU:</b> {sl['grader']} {sl['grade']:g} €{sl['price']:.0f} ({sl['ratio']:.2f}× raw) — goedkoper dan zelf graden"
                 alt = " · ".join(f"{o['service']} €{o['net']:.0f}" for o in g.get("options", [])[1:3])
                 txt += (f"\n<i>Andere services: {alt}</i>" if alt else "") + "\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €" + f"{g['raw_eur']:.0f}</i>"
-                btn = [[(f"🛒 raw €{o['price']:.0f} · {o['src'].split(' (')[0]}", o["url"])] for o in i["opts"][:2]]
-                if sl:
-                    btn.append([(f"🏷 graded €{sl['price']:.0f} · {'CardTrader' if 'cardtrader' in sl['url'] else 'eBay'}", sl["url"])])
-                btn.append([("📊 Radar", SITE_URL)])
+                o = i["opts"][0]                                     # one button: the cheapest; the comparison is in the text
+                btn = [[(f"🛒 Koop raw €{o['price']:.0f} · {o['src'].split(' (')[0]}", o["url"]), ("📊 Radar", SITE_URL)]]
                 msgs.append(_m(key, "slab", txt, photo=_big(c.get("image")), buttons=btn))
             for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
                 state["active"].pop(key, None)             # legacy episodes: rotation is tracked in sent_slabs now
@@ -209,10 +207,12 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
            f"🛒 <b>Waar kopen</b> ({bb.get('offers', '?')} EU-listings)\n{where}\n\n"
            f"Samenstelling: {compo}\n"
            f"Top hit: {_card(s['top_hit']['name'], s['top_hit']['number'])} {s['top_hit']['class'].replace('_AA',' AA')} {_usd(s['top_hit']['price'])}\n"
-           f"<i>Waardering TCGplayer-verkopen in € · {s['hits_market_priced']}/{s['hits_total']} hits met marktprijs</i>")
+           + (f"<i>Waardering Cardmarket-verkopen 30d · {s.get('cm_coverage')} hits · US-referentie €{s.get('ev_us_excl_saa') or 0:.0f}</i>"
+              if s.get("valuation") == "cardmarket" else
+              f"<i>Waardering TCGplayer-verkopen in € · {s['hits_market_priced']}/{s['hits_total']} hits met marktprijs</i>"))
     st_short = {"in_stock": "voorraad", "preorder": "pre-order"}
-    btn = [[(f"🛒 {o['source']} €{o['price']:.0f} · {st_short.get(o['status'], o['status'])}", o["url"])] for o in bb.get("options", [])[:3]]
-    btn.append([("📊 Radar", SITE_URL)])
+    o = (bb.get("options") or [{"source": bb["source"], "price": bb["price"], "status": "in_stock", "url": bb.get("url") or SITE_URL}])[0]
+    btn = [[(f"🛒 Koop €{o['price']:.0f} · {o['source']} · {st_short.get(o['status'], o['status'])}", o["url"]), ("📊 Radar", SITE_URL)]]
     return _m(f"buy:{gid}:{s['code']}", "buy", txt, photo=_big((s.get("box") or {}).get("image") or s["top_hit"].get("image")), buttons=btn)
 
 
