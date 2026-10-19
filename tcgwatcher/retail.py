@@ -27,6 +27,24 @@ SOLD = re.compile(r"(uitverkocht|sold\s*out|ausverkauft|esaurito|agotado|épuis�
 PRE = re.compile(r"(pre-?\s?order|voorverkoop|vorbestell|pr[ée]-?commande|preordine|pre-?venta|coming\s*soon|binnenkort)", re.I)
 INSTOCK = re.compile(r"(op\s*voorraad|in\s*stock|auf\s*lager|disponibile|en\s*stock|add\s*to\s*cart|in\s*winkelwagen|in\s*den\s*warenkorb)", re.I)
 PRICE_META = re.compile(r'property="(?:product:price:amount|og:price:amount)"\s+content="([\d.,]+)"|content="([\d.,]+)"\s+property="(?:product:price:amount|og:price:amount)"', re.I)
+KIND_BOX = re.compile(r"(booster\s*box|display|boîte de 2\d|box of 2\d|\bbox\b|case)", re.I)
+KIND_DECK = re.compile(r"(starter|deck)", re.I)
+KIND_PACK = re.compile(r"(booster\s*pack|\bpack\b|\bbooster\b(?!\s*box)|sleeved|promotion pack)", re.I)
+
+
+def kind_of(title, url=""):
+    t = f"{title} {url}"
+    if re.search(r"\bcase\b", t, re.I):
+        return "case"
+    if KIND_DECK.search(t):
+        return "deck"
+    if KIND_BOX.search(t):
+        return "box"
+    if KIND_PACK.search(t):
+        return "pack"
+    return "other"
+
+
 PRICE_TXT = re.compile(r"(?:€|EUR|£)\s?(\d{1,4}(?:[.,]\d{3})*(?:[.,]\d{2})?)|(\d{1,4}(?:[.,]\d{2}))\s?(?:€|EUR)")
 
 
@@ -84,6 +102,9 @@ def status_from_text(text):
 # --- platform extractors -------------------------------------------------------------------------
 def shopify_collection(http, retailer):
     base = retailer["category"].split("?")[0].rstrip("/")
+    m = re.match(r"^(https?://[^/]+(?:/[a-z]{2}(?:-[a-z]{2})?)?/collections/[^/]+)", base, re.I)
+    if m:
+        base = m.group(1)
     rows = []
     for page in (1, 2):
         data, err = http.get(f"{base}/products.json?limit=250&page={page}", json_=True)
@@ -155,7 +176,7 @@ def generic_category(http, retailer):
     return rows, None
 
 
-def generic_product(http, row):
+def generic_product(http, row, retailer=None):
     text, err = http.get(row["url"])
     if text is None:
         row["error"] = err
@@ -168,15 +189,33 @@ def generic_product(http, row):
     t = re.search(r"<title>(.*?)</title>", text, re.I | re.S)
     if t and (not row.get("title") or row["title"] == row["url"]):
         row["title"] = html.unescape(" ".join(t.group(1).split()))[:160]
-    row["price"] = price
-    row["status"] = status_from_text(re.sub(r"<script.*?</script>|<style.*?</style>", " ", text, flags=re.S | re.I))
+    mult = (retailer or {}).get("price_multiplier")
+    row["price"] = round(price * mult, 2) if (price is not None and mult) else price
+    av = re.search(r'(?:product:availability|og:availability)"\s+content="([^"]+)"|"availability"\s*:\s*"(?:https?://schema\.org/)?(\w+)"', text, re.I)
+    val = ((av.group(1) or av.group(2)) if av else "").lower()
+    if "instock" in val or val == "in stock":
+        row["status"] = "in_stock"
+    elif "preorder" in val or "pre-order" in val:
+        row["status"] = "preorder"
+    elif "outofstock" in val or "out of stock" in val or "soldout" in val:
+        row["status"] = "sold_out"
+    else:
+        row["status"] = status_from_text(re.sub(r"<script.*?</script>|<style.*?</style>|<nav.*?</nav>|<header.*?</header>|<footer.*?</footer>", " ", text, flags=re.S | re.I))
+    ot = re.search(r'property="og:title"\s+content="([^"]+)"', text, re.I)
+    if ot:
+        row["title"] = html.unescape(ot.group(1))[:160]
     row["source"] = "generic-product"
+    row["kind"] = kind_of(row.get("title") or "", row["url"])
     return row
 
 
 def _row(retailer, url, title, price, status, source):
+    mult = retailer.get("price_multiplier")          # e.g. 1.21 when a shop exposes ex-VAT prices in meta tags
+    if price is not None and mult and source.startswith("generic"):
+        price = round(price * mult, 2)
     return {"retailer": retailer["id"], "country": retailer.get("country"), "url": url, "title": title,
-            "price": price, "currency": retailer.get("currency", "EUR"), "status": status, "source": source}
+            "price": price, "currency": retailer.get("currency", "EUR"), "status": status, "source": source,
+            "kind": kind_of(title or "", url)}
 
 
 # --- orchestration -------------------------------------------------------------------------------
@@ -200,7 +239,7 @@ def run(day=None, http=None, retailer_ids=None):
         if not got:
             got, err = generic_category(http, r)
             if got:
-                got = [generic_product(http, x) for x in got[:15]]   # bounded per shop
+                got = [generic_product(http, x, r) for x in got[:15]]   # bounded per shop
         if got is None:
             errors[r["id"]] = err or "no data"
             log.warning("%s: %s", r["id"], err)
@@ -226,7 +265,7 @@ def update_state(rows, now):
     for r in rows:
         key = r["url"]
         old = prods.get(key)
-        new = {"retailer": r["retailer"], "title": r["title"], "price": r["price"], "status": r["status"], "seen": now,
+        new = {"retailer": r["retailer"], "title": r["title"], "price": r["price"], "status": r["status"], "seen": now, "kind": r.get("kind"),
                "first_seen": old["first_seen"] if old else now}
         if old is None:
             transitions.append({"kind": "new_listing", **new, "url": key})
