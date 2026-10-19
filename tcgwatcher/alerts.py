@@ -127,7 +127,7 @@ def run(day, quality=None, send=True):
                     opts.append({"src": f"eBay ({re_['n']} EU)", "price": re_["low"], "url": re_["url"]})
                 opts.sort(key=lambda o: o["price"])
                 if not opts:
-                    opts = [{"src": "TCGplayer (US, geen EU-aanbod gevonden)", "price": g["raw_eur"], "url": c.get("url") or SITE_URL}]
+                    continue                            # nothing to buy in the EU today → page only (with a Cardmarket search), no message
                 raw_price = opts[0]["price"]
                 net = round(g["net"] - (raw_price - g["raw_eur"]), 2)
                 if net < buy_min:
@@ -154,7 +154,7 @@ def run(day, quality=None, send=True):
                 if sl:
                     txt += f"\n\n🏷 <b>Graded al te koop in EU:</b> {sl['grader']} {sl['grade']:g} €{sl['price']:.0f} ({sl['ratio']:.2f}× raw) — goedkoper dan zelf graden"
                 alt = " · ".join(f"{o['service']} €{o['net']:.0f}" for o in g.get("options", [])[1:3])
-                txt += (f"\n<i>Andere services: {alt}</i>" if alt else "") + "\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €" + f"{g['raw_eur']:.0f}</i>"
+                txt += (f"\n<i>Andere services: {alt}</i>" if alt else "") + "\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €" + f"{g['raw_eur']:.0f}</i>"
                 btn = [[(f"🛒 raw €{o['price']:.0f} · {o['src'].split(' (')[0]}", o["url"])] for o in i["opts"][:2]]
                 if sl:
                     btn.append([(f"🏷 graded €{sl['price']:.0f} · {'CardTrader' if 'cardtrader' in sl['url'] else 'eBay'}", sl["url"])])
