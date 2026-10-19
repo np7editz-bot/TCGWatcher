@@ -11,8 +11,7 @@ Dagelijkse prijs-intelligence voor sealed TCG-product op de Engelse markt. Nu: D
 4. **alerts** — alleen wat je nu kunt doen: 🎯 **KOOP** (hits € ÷ goedkoopste EU-aanbod ≥ 0,80), 🆕 nieuwe productlijn (= pre-ordermoment), ⚠️ alleen bij FAIL. Weekbriefing op zondag.
 5. **retail** (ook elke 2 uur via `retail.yml`) — EU-webshops uit `config/retailers.yaml`: prijs, voorraad en pre-orderstatus per sealed product (Engelstalig; JP-listings worden genegeerd). **Alleen shops met een eigen API (Shopify / WooCommerce Store API) tellen** voor meldingen, de pagina en de beste koop; HTML-shops leveren alleen data (tekstheuristiek is onbetrouwbaar op dode pre-orderpagina's). Melding alleen als een box/case **koopbaar wordt** (op voorraad / pre-order open) én koopwaardig is (ratio ≥ 0,70) of de set nog niet uit is. Uitverkocht, prijsstijgingen en nieuwe listings blijven in `data/retail/`.
 
-De pagina (`site/`, statisch te hosten; GitHub Pages vereist een publieke repo) toont per set de **samenstelling** (hoeveel alt-arts, Secret Rares, ★, ★★), de
-verwachte waarde van die hits per box, de ratio tegen de boxprijs en de trend. Aannames zijn op de pagina aanpasbaar.
+De pagina (`site/`, GitHub Pages) heeft zes tabbladen: **Vandaag** (KPI's: koopsignalen, top 5 slabs, portfolio ingekocht/waarde nu, controlegroep, laatste aankondiging; daaronder de koopwaardige boxen en de top 5 slabs als kaarten met foto en shopknoppen — hetzelfde als de Telegram-berichten), **Boxen** (ranking op EU-ratio met detail: samenstelling, prijsvergelijking per bron, retail, alle chase cards), **Slabs** (alle rendabele kandidaten + graded aanbod in de EU), **Portfolio** (paper-posities met waarde nu en P&L per soort), **Nieuws & retail** (Bandai-aankondigingen, koopbaar bij betrouwbare shops) en **Instellingen** (aannames, drempel, koers, uitleg).
 
 ## Chase Score
 

@@ -16,7 +16,7 @@ def test_positions_open_once_and_control_cohort(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA", tmp_path)
     monkeypatch.setattr(paper, "PATH", tmp_path / "paper" / "positions.json")
     L = latest()
-    added = paper.open_positions("2026-10-19", L, [{"kind": "buy", "key": "buy:dbfw:FB09"}])
+    added = paper.open_positions("2026-10-19", L, [], active_buy={"FB09"})      # KOOP episode already active → held, not control
     kinds = sorted((p["kind"], p["code"]) for p in added)
     assert kinds == [("box", "FB09"), ("control", "FB10"), ("raw", "FB10")]      # FB12 presale excluded, FB09 not in control
     assert paper.open_positions("2026-10-20", L, [{"kind": "buy", "key": "buy:dbfw:FB09"}]) == []   # idempotent

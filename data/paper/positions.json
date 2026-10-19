@@ -1,119 +1,27 @@
 {
  "positions": [
   {
-   "code": "FB05",
-   "key": "dbfw:FB05:FB05-120:SAA",
-   "kind": "raw",
-   "name": "Frieza FB05-120 SAA",
-   "net_then": 1133.33,
-   "opened": "2026-10-18",
-   "price": 705.64,
-   "psa10_then": 2525.0,
-   "source": "CardTrader EU laagste ask + €5 verzending",
-   "status": "open",
-   "tcg_then": 511.2
-  },
-  {
-   "code": "FB07",
-   "key": "dbfw:FB07:FB07-122:",
-   "kind": "raw",
-   "name": "Son Goku : GT FB07-122 SCR",
-   "net_then": 656.07,
-   "opened": "2026-10-18",
-   "price": 35.4,
-   "psa10_then": 1061.3,
-   "source": "CardTrader EU laagste ask + €5 verzending",
-   "status": "open",
-   "tcg_then": 20.66
-  },
-  {
-   "code": "FB10",
-   "key": "dbfw:FB10:FB10-123:SAA",
-   "kind": "raw",
-   "name": "Cell FB10-123 SAA",
-   "net_then": 498.8,
-   "opened": "2026-10-18",
-   "price": 888.14,
-   "psa10_then": 2135.42,
-   "source": "TCGplayer market (raw)",
-   "status": "open",
-   "tcg_then": 888.14
-  },
-  {
-   "code": "FB03",
-   "key": "dbfw:FB03:FB03-140:SAA",
-   "kind": "raw",
-   "name": "Son Goku : GT FB03-140 SAA",
-   "net_then": 264.75,
-   "opened": "2026-10-18",
-   "price": 605.64,
-   "psa10_then": 1211.54,
-   "source": "CardTrader EU laagste ask + €5 verzending",
-   "status": "open",
-   "tcg_then": 511.32
-  },
-  {
-   "code": "SB01",
-   "key": "dbfw:SB01:SB01-026:AA",
-   "kind": "raw",
-   "name": "Raditz - SB01-026 SB01-026 SR_AA",
-   "net_then": 190.65,
-   "opened": "2026-10-18",
-   "price": 37.52,
-   "psa10_then": 377.31,
-   "source": "CardTrader EU laagste ask + €5 verzending",
-   "status": "open",
-   "tcg_then": 33.83
-  },
-  {
-   "card_key": "dbfw:SB01:SB01-001:GOLD",
-   "code": "SB01",
-   "grade": 10,
-   "key": "dbfw:SB01:SB01-001:GOLD:10",
-   "kind": "slab",
-   "name": "Cell - SB01-001 SB01-001 PSA 10",
-   "opened": "2026-10-18",
-   "price": 145.0,
-   "raw_then": 272.5,
-   "source": "eBay EU",
-   "status": "open"
-  },
-  {
-   "card_key": "dbfw:SB01:FB04-051:GOLD",
-   "code": "SB01",
-   "grade": 10,
-   "key": "dbfw:SB01:FB04-051:GOLD:10",
-   "kind": "slab",
-   "name": "Vegeta FB04-051 PSA 10",
-   "opened": "2026-10-18",
-   "price": 155.0,
-   "raw_then": 244.73,
-   "source": "eBay EU",
-   "status": "open"
-  },
-  {
-   "card_key": "dbfw:SB01:SB01-045:GOLD",
-   "code": "SB01",
-   "grade": 10,
-   "key": "dbfw:SB01:SB01-045:GOLD:10",
-   "kind": "slab",
-   "name": "Bulma - SB01-045 SB01-045 PSA 10",
-   "opened": "2026-10-18",
-   "price": 165.0,
-   "raw_then": 227.72,
-   "source": "eBay EU",
-   "status": "open"
-  },
-  {
+   "kind": "box",
+   "key": "buy:dbfw:FB11",
    "code": "FB11",
-   "ev_then": 159.89,
-   "key": "control:FB11:2026-10",
-   "kind": "control",
    "name": "Brightness of Hope",
-   "opened": "2026-10-18",
    "price": 154.64,
-   "ratio_then": 1.034,
    "source": "CardTrader Zero",
+   "ev_then": 159.89,
+   "ratio_then": 1.034,
+   "opened": "2026-10-19",
+   "status": "open"
+  },
+  {
+   "kind": "box",
+   "key": "buy:dbfw:FB09",
+   "code": "FB09",
+   "name": "Dual Evolution",
+   "price": 186.64,
+   "source": "CardTrader Zero",
+   "ev_then": 173.16,
+   "ratio_then": 0.928,
+   "opened": "2026-10-19",
    "status": "open"
   },
   {
@@ -150,18 +58,6 @@
    "price": 185.0,
    "ratio_then": 0.586,
    "source": "breakthecase",
-   "status": "open"
-  },
-  {
-   "code": "FB09",
-   "ev_then": 173.16,
-   "key": "control:FB09:2026-10",
-   "kind": "control",
-   "name": "Dual Evolution",
-   "opened": "2026-10-18",
-   "price": 186.64,
-   "ratio_then": 0.928,
-   "source": "CardTrader Zero",
    "status": "open"
   },
   {
@@ -271,32 +167,6 @@
    "ratio_then": 0.209,
    "source": "CardTrader Zero",
    "status": "open"
-  },
-  {
-   "code": "SB01",
-   "key": "dbfw:SB01:FB04-051:GOLD",
-   "kind": "raw",
-   "name": "Vegeta FB04-051 SCR_AA",
-   "net_then": 748.52,
-   "opened": "2026-10-18",
-   "price": 244.73,
-   "psa10_then": 1540.0,
-   "source": "TCGplayer market (raw)",
-   "status": "open",
-   "tcg_then": 244.73
-  },
-  {
-   "code": "SB01",
-   "key": "dbfw:SB01:SB01-001:GOLD",
-   "kind": "raw",
-   "name": "Cell - SB01-001 SB01-001 SCR_AA",
-   "net_then": 449.17,
-   "opened": "2026-10-18",
-   "price": 290.63,
-   "psa10_then": 1129.26,
-   "source": "CardTrader EU laagste ask + €5 verzending",
-   "status": "open",
-   "tcg_then": 272.5
   }
  ]
 }

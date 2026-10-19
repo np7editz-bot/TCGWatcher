@@ -3,252 +3,343 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TCGWatcher Chase Radar</title>
+<title>TCGWatcher Radar</title>
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,400;87.5,600;87.5,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one column, summary (ranking) first, detail expands in place. Data table styling, no cards except the assumptions panel. */
+/* One page, six views. "Vandaag" is what the Telegram bot would say, with pictures; the rest is depth. */
 :root{
   --bg:#f6f4ef; --surface:#fffdf9; --fg:#1d1a16; --fg2:#5a554c; --fg3:#8a847a;
   --line:#dcd7cc; --accent:#c8471f; --accent-soft:#f3d9ce; --bar:#2f6f8f; --bar-soft:#d6e6ee;
-  --good:#2f7d4f; --warn:#b7791f; --warn-soft:#f5e7c8; --crit:#b3261e; --crit-soft:#f6d6d3; --info-soft:#dde7ee;
+  --good:#2f7d4f; --good-soft:#d8ebdf; --warn:#b7791f; --warn-soft:#f5e7c8; --crit:#b3261e; --crit-soft:#f6d6d3; --info-soft:#dde7ee;
   --display:'Archivo',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#17160f; --surface:#1f1e16; --fg:#efeae0; --fg2:#b3ac9e; --fg3:#7d776b;
   --line:#3a3829; --accent:#f07a4f; --accent-soft:#4a2a1c; --bar:#7fb7d6; --bar-soft:#243a46;
-  --good:#6fc48d; --warn:#e2b45a; --warn-soft:#3e3418; --crit:#f08a82; --crit-soft:#4a1f1b; --info-soft:#2a3a44; color-scheme:dark}}
+  --good:#6fc48d; --good-soft:#1f3a2a; --warn:#e2b45a; --warn-soft:#3e3418; --crit:#f08a82; --crit-soft:#4a1f1b; --info-soft:#2a3a44; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#17160f; --surface:#1f1e16; --fg:#efeae0; --fg2:#b3ac9e; --fg3:#7d776b;
   --line:#3a3829; --accent:#f07a4f; --accent-soft:#4a2a1c; --bar:#7fb7d6; --bar-soft:#243a46;
-  --good:#6fc48d; --warn:#e2b45a; --warn-soft:#3e3418; --crit:#f08a82; --crit-soft:#4a1f1b; --info-soft:#2a3a44; color-scheme:dark}
+  --good:#6fc48d; --good-soft:#1f3a2a; --warn:#e2b45a; --warn-soft:#3e3418; --crit:#f08a82; --crit-soft:#4a1f1b; --info-soft:#2a3a44; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--display);font-size:15px;line-height:1.45;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 60px}
-.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
-h1{font-size:30px;line-height:1.1;margin:0;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+body{background:var(--bg);color:var(--fg);font-family:var(--display);font-size:15px;line-height:1.45;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 60px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1{font-size:28px;line-height:1.1;margin:0;font-weight:700;letter-spacing:-.01em}
 h2{font-size:17px;margin:0 0 10px;font-weight:600}
+h3{font-size:13px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em;color:var(--fg2)}
+a{color:var(--bar)}
 .eyebrow{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg3);font-weight:600}
-.sub{color:var(--fg2);max-width:70ch;margin:8px 0 0}
-.meta{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--fg3);font-size:13px;font-family:var(--mono);margin-top:10px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--fg3);font-size:12.5px;font-family:var(--mono);margin-top:8px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 16px}
-label.f{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--fg2);min-width:0}
-label.f b{font-weight:600;color:var(--fg)}
-label.f small{color:var(--fg3);font-size:11.5px}
-input[type=number]{font:500 15px var(--mono);padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--bg);color:var(--fg);width:100%}
-input[type=number]:focus,button:focus-visible,tr.row:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.toggles{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-top:14px;font-size:13.5px}
-.toggles label{display:flex;gap:7px;align-items:center}
-button{font:600 13px var(--display);padding:7px 12px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--fg);cursor:pointer}
-button:hover{border-color:var(--fg3)}
+.muted{color:var(--fg3);font-size:13px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;padding:2px 7px;border-radius:4px;margin:2px 4px 2px 0;white-space:nowrap}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}.chip.crit{background:var(--crit-soft);color:var(--crit)}
+.chip.info{background:var(--info-soft);color:var(--bar)}.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.hit{background:var(--good);color:#fff;font-weight:700}
+.up{color:var(--good)}.down{color:var(--crit)}
+/* nav */
+.nav{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:0}
+.nav button{font:600 14px var(--display);padding:9px 14px;border:0;border-bottom:2px solid transparent;background:none;color:var(--fg2);cursor:pointer;border-radius:6px 6px 0 0}
+.nav button[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent)}
+.nav button:hover{background:var(--surface)}
+.games{display:flex;gap:6px}
+.games button{font:600 13px var(--display);padding:6px 11px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--fg);cursor:pointer}
+.games button[aria-selected=true]{border-color:var(--accent);color:var(--accent)}
+button.btn{font:600 13px var(--display);padding:7px 12px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--fg);cursor:pointer}
+button:focus-visible,input:focus,tr.row:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.kpi .l{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg3);font-weight:600}
+.kpi .v{font:500 24px var(--mono);margin-top:4px;letter-spacing:-.01em}
+.kpi .s{font-size:12.5px;color:var(--fg2);margin-top:2px}
+/* signal cards (boxes & slabs) */
+.sig{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.sc{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:118px 1fr;min-height:168px}
+.sc.wide{grid-template-columns:150px 1fr}
+.sc .img{background:var(--bg);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.sc .img img{width:100%;height:100%;object-fit:cover;display:block}
+.sc .body{padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.sc .t{font-weight:700;font-size:15px;line-height:1.2}
+.sc .t small{font-weight:500;color:var(--fg3);font-size:12px;margin-left:6px}
+.sc .big{font:500 20px var(--mono)}
+.sc .big small{font:400 12.5px var(--display);color:var(--fg2);margin-left:6px}
+.sc .row{font-size:13px;color:var(--fg2)}
+.sc .row b{color:var(--fg);font-weight:600}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.btns a{font:600 12.5px var(--display);padding:6px 10px;border-radius:5px;background:var(--accent);color:#fff;text-decoration:none;white-space:nowrap}
+.btns a.alt{background:var(--bar-soft);color:var(--bar)}
+.btns a.ghost{background:none;border:1px solid var(--line);color:var(--fg2)}
+.warnline{font-size:12.5px;color:var(--warn);font-weight:600}
+/* tables */
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:1320px;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
 th{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg3);text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);white-space:nowrap;font-weight:600}
 th.r,td.r{text-align:right}
 td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
 tr.row{cursor:pointer}
 tr.row:hover td{background:color-mix(in srgb,var(--bar-soft) 40%,transparent)}
 tr.row.open td{background:color-mix(in srgb,var(--bar-soft) 55%,transparent)}
-.rank{font-family:var(--mono);color:var(--fg3);width:34px}
 .code{font-family:var(--mono);font-weight:500}
 .name{color:var(--fg2);font-size:13px}
-.num{font-family:var(--mono);font-size:14px}
-.num small{color:var(--fg3);font-size:11.5px;display:block}
-.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;padding:2px 7px;border-radius:4px;margin:2px 4px 2px 0;white-space:nowrap}
-.chip.warn{background:var(--warn-soft);color:var(--warn)}
-.chip.crit{background:var(--crit-soft);color:var(--crit)}
-.chip.info{background:var(--info-soft);color:var(--bar)}
-.chip.good{background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good)}
-.chip.hit{background:var(--good);color:#fff;font-weight:700}
-.barcell{min-width:170px}
-.bar{display:flex;align-items:center;gap:8px}
-.bar .track{flex:1;height:10px;background:var(--bar-soft);border-radius:0 4px 4px 0;position:relative;overflow:hidden}
-.bar .fill{height:100%;background:var(--bar);border-radius:0 4px 4px 0}
-.bar .fill.hit{background:var(--accent)}
-.bar .v{font-family:var(--mono);font-size:14px;width:46px;text-align:right}
-.bar .v.hit{color:var(--accent);font-weight:500}
-.top{font-size:13px;min-width:210px;max-width:260px}
-.top .p{font-family:var(--mono);font-size:13px;color:var(--fg2)}
-td.retail input{width:92px}
+td.num small{color:var(--fg3);font-size:11.5px;display:block;font-family:var(--display)}
+.bar{display:flex;align-items:center;gap:8px;min-width:150px}
+.bar .track{flex:1;height:10px;background:var(--bar-soft);border-radius:0 4px 4px 0;overflow:hidden}
+.bar .fill{height:100%;background:var(--bar)}.bar .fill.hit{background:var(--accent)}
+.bar .v{font-family:var(--mono);font-size:14px;width:44px;text-align:right}.bar .v.hit{color:var(--accent);font-weight:500}
+.comp{font-family:var(--mono);font-size:12px;color:var(--fg2);white-space:nowrap}.comp b{color:var(--fg);font-weight:500}
 tr.detail td{padding:0;background:var(--bg)}
-.dwrap{padding:14px 12px 18px 46px;display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:18px}
+.dwrap{padding:14px 12px 18px 40px;display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:18px}
 @media (max-width:760px){.dwrap{grid-template-columns:1fr;padding-left:12px}}
 .classes{display:flex;flex-direction:column;gap:6px;font-size:13px}
 .classes div{display:grid;grid-template-columns:1.2fr .45fr .8fr 1.1fr;gap:8px;font-family:var(--mono);font-size:12.5px;white-space:nowrap}
 .classes div.h{color:var(--fg3);font-family:var(--display);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
 .classes div b{font-family:var(--display);font-weight:600;font-size:13px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 14px;font-size:12.5px;max-height:420px;overflow:auto;min-width:0}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 18px;font-size:13px}
+.list div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:4px 0;min-width:0}
+.list .p{font-family:var(--mono);white-space:nowrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 14px;font-size:12.5px;max-height:420px;overflow:auto}
 .card{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:baseline;padding:3px 0;border-bottom:1px dashed var(--line);min-width:0}
-.card .n{color:var(--fg3);font-family:var(--mono);font-size:11.5px}
-.card .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.card .p{font-family:var(--mono)}
-.card .p.est{color:var(--fg3)}
-.tag{font-size:10px;font-weight:700;letter-spacing:.04em;padding:1px 5px;border-radius:3px;background:var(--bar-soft);color:var(--bar);margin-left:6px;vertical-align:middle}
-.tag.saa{background:var(--accent-soft);color:var(--accent)}
-.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px 28px;font-size:13.5px;color:var(--fg2)}
-.notes h3{font-size:13px;color:var(--fg);margin:0 0 6px;text-transform:uppercase;letter-spacing:.06em}
-.notes p,.notes li{margin:0 0 6px}
-.notes ul{padding-left:18px;margin:0}
-code{font-family:var(--mono);font-size:12.5px;background:var(--surface);border:1px solid var(--line);padding:0 4px;border-radius:3px}
-@media (prefers-reduced-motion:no-preference){.bar .fill{transition:width .25s ease}}
+.card .n{color:var(--fg3);font-family:var(--mono);font-size:11.5px}.card .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .p{font-family:var(--mono)}.card .p.est{color:var(--fg3)}
+.tag{font-size:10px;font-weight:700;letter-spacing:.04em;padding:1px 5px;border-radius:3px;background:var(--bar-soft);color:var(--bar);margin-left:6px;vertical-align:middle}.tag.saa{background:var(--accent-soft);color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 16px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--fg2)}label.f b{font-weight:600;color:var(--fg)}
+input[type=number]{font:500 15px var(--mono);padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--bg);color:var(--fg);width:100%}
+.toggles{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-top:14px;font-size:13.5px}.toggles label{display:flex;gap:7px;align-items:center}
+.banner{padding:10px 14px;border-radius:8px;font-size:13.5px;border:1px solid var(--line);background:var(--surface)}
+.banner.warn{border-color:var(--warn);background:var(--warn-soft)}.banner.fail{border-color:var(--crit);background:var(--crit-soft)}
+.news div{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.news .d{font-family:var(--mono);color:var(--fg3);font-size:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media (max-width:860px){.two{grid-template-columns:1fr}}
+footer{color:var(--fg3);font-size:12.5px}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
-<style>
-.banner{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px;border-radius:8px;font-size:13.5px;border:1px solid var(--line);background:var(--surface)}
-.banner.warn{border-color:var(--warn);background:var(--warn-soft)}
-.banner.fail{border-color:var(--crit);background:var(--crit-soft)}
-.banner.ok{border-color:var(--good)}
-.banner a{color:inherit}
-.comp{font-family:var(--mono);font-size:12px;color:var(--fg2);white-space:nowrap}
-.comp b{color:var(--fg);font-weight:500}
-.chg{font-family:var(--mono);font-size:12px}
-.chg.up{color:var(--good)}.chg.down{color:var(--crit)}
-.tabs{display:flex;gap:6px;flex-wrap:wrap}
-.tabs button[aria-selected=true]{border-color:var(--accent);color:var(--accent)}
-.starters{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 18px;font-size:13px}
-.starters div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:4px 0}
-.starters .p{font-family:var(--mono)}
-footer{color:var(--fg3);font-size:12.5px}
-</style>
 <div class="wrap">
   <header>
     <div class="eyebrow" id="eyebrow">TCGWatcher · Engelse markt</div>
-    <h1 id="title">Chase Radar</h1>
-    <p class="sub">Welke booster box heeft de waardevolste hits? Per set: samenstelling (hoeveel alt-arts, Secret Rares en super alt-arts erin zitten), verwachte waarde van die hits per box, afgezet tegen de boxprijs en de prijstrend.</p>
+    <div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center">
+      <h1 id="title">Radar</h1>
+      <div class="games" id="games" role="tablist"></div>
+    </div>
     <div class="meta" id="meta">laden…</div>
   </header>
 
   <div class="banner" id="quality" hidden></div>
-  <div class="tabs" id="tabs" role="tablist"></div>
 
-  <section class="panel" aria-labelledby="h-aannames">
-    <h2 id="h-aannames">Aannames · verwachte hits per box</h2>
-    <div class="grid" id="est"></div>
-    <div class="toggles">
-      <label><input type="checkbox" id="inclSaa"> Super alt-art (★★) meetellen in EV</label>
-      <label>Drempel ratio EU <input type="number" id="thr" value="0.80" step="0.05" min="0" style="width:84px"></label>
-      <label>USD → EUR <input type="number" id="fx" step="0.001" min="0" style="width:96px"></label>
-      <button type="button" id="reset">Standaardwaarden</button>
-    </div>
+  <nav class="nav" id="nav" role="tablist">
+    <button data-v="today" aria-selected="true">Vandaag</button>
+    <button data-v="boxes">Boxen</button>
+    <button data-v="slabs">Slabs</button>
+    <button data-v="portfolio">Portfolio</button>
+    <button data-v="news">Nieuws &amp; retail</button>
+    <button data-v="settings">Instellingen</button>
+  </nav>
+
+  <!-- VANDAAG -->
+  <section data-view="today">
+    <div class="kpis" id="kpis"></div>
+    <div style="height:18px"></div>
+    <h2>🎯 Boxen die nu koopwaardig zijn</h2>
+    <p class="muted">Hits per box in € (TCGplayer-verkopen × koers) ÷ goedkoopste Engelse box in Europa, all-in naar NL. Drempel 0,80 — dezelfde regel als de Telegram-alert.</p>
+    <div class="sig" id="todayBoxes"></div>
+    <div style="height:18px"></div>
+    <h2>🏆 Top 5 slabs · raw goedkoop, graded veel waard</h2>
+    <p class="muted">Raw-prijs = goedkoopste van CardTrader (Zero) en eBay EU-verkopers, all-in. Netto = verwachte graded-opbrengst (40% PSA 10) × 0,87 − grading − raw. Vraagprijzen als proxy voor verkopen.</p>
+    <div class="sig" id="todaySlabs"></div>
   </section>
 
-  <section aria-labelledby="h-rank">
-    <h2 id="h-rank">Ranking op EU-ratio (hits per box in € ÷ goedkoopste EU-aanbod all-in)</h2>
-    <div class="tablewrap">
-      <table id="tbl">
-        <thead><tr>
-          <th class="rank">#</th><th>Set</th><th>Status</th><th>Samenstelling</th>
-          <th class="r" title="Goedkoopste Engelse box in Europa, inclusief verzending/fees: CardTrader Zero + €6, anders EU-verkoper + ±€15, of een betrouwbare webshop">Box EU (all-in)</th><th class="r">EV hits / box</th>
-          <th class="barcell">Ratio EU</th><th class="r" title="TCGplayer market (US) ter referentie: prijs, 7d/30d, US-ratio">US referentie</th><th>Top hit</th><th>Waar kopen</th><th class="r" title="EV hits (€) ÷ goedkoopste EU-aanbod (CardTrader EU-verkoper of webshop met voorraad/pre-order). Alert bij ≥ 0.80.">Eigen prijs</th>
-        </tr></thead>
-        <tbody id="tb"></tbody>
-      </table>
-    </div>
+  <!-- BOXEN -->
+  <section data-view="boxes" hidden>
+    <h2>Ranking op EU-ratio</h2>
+    <p class="muted">Klik een rij voor samenstelling, prijsvergelijking per bron, retail en alle chase cards. Vul eventueel je eigen all-in prijs in (onthouden in deze browser).</p>
+    <div class="tablewrap"><table id="tbl"><thead><tr>
+      <th>#</th><th>Set</th><th>Status</th><th>Samenstelling</th>
+      <th class="r" title="Goedkoopste Engelse box in Europa incl. verzending/fees">Box EU all-in</th><th class="r">EV hits / box</th>
+      <th>Ratio EU</th><th class="r" title="TCGplayer market (US): prijs · 7d/30d · US-ratio">US ref.</th><th>Top hit</th><th>Waar kopen</th><th class="r">Eigen prijs</th>
+    </tr></thead><tbody id="tb"></tbody></table></div>
+    <div style="height:18px"></div>
+    <div id="startersSec" hidden><h3>Starter decks en overige sealed producten</h3><div class="list" id="starters"></div></div>
   </section>
 
-  <section id="slabsSec" hidden aria-labelledby="h-sl">
-    <h2 id="h-sl">Slabs · graded exemplaren op eBay DE/NL</h2>
+  <!-- SLABS -->
+  <section data-view="slabs" hidden>
+    <h2>Slabs · raw kopen voor graded waarde</h2>
     <p class="muted" id="slabsNote"></p>
-    <div class="starters" id="slabs"></div>
+    <div class="sig" id="slabsAll"></div>
+    <div style="height:18px"></div>
+    <h3>🏷 Graded exemplaren te koop in de EU (eBay DE/NL + CardTrader graded)</h3>
+    <div class="cards" id="slabsListings"></div>
   </section>
 
-  <section id="startersSec" hidden aria-labelledby="h-st">
-    <h2 id="h-st">Starter decks en overige sealed producten</h2>
-    <div class="starters" id="starters"></div>
+  <!-- PORTFOLIO -->
+  <section data-view="portfolio" hidden>
+    <h2>📒 Paper-portfolio · zijn de signalen iets waard?</h2>
+    <p class="muted">Elke melding is een fictieve aankoop tegen de prijs van dat moment. Hier staat wat dezelfde positie vandaag waard is, met dezelfde maatstaf. Op de 1e van de maand komt het rapport met het oordeel koopsignalen vs controlegroep.</p>
+    <div class="kpis" id="pfKpis"></div>
+    <div style="height:14px"></div>
+    <div class="tablewrap"><table id="pfTbl"><thead><tr>
+      <th>Soort</th><th>Positie</th><th>Geopend</th><th class="r">Inkoop</th><th>Bron</th><th class="r">Waarde nu</th><th class="r">P&amp;L</th><th class="r">EV toen → nu</th>
+    </tr></thead><tbody id="pfTb"></tbody></table></div>
+    <p class="muted" id="pfReport" style="margin-top:10px"></p>
   </section>
 
-  <section class="notes">
-    <div>
-      <h3>Hoe de score werkt</h3>
-      <p>Per set en per hit-klasse: <code>verwacht aantal per box × gemiddelde marktprijs</code> van de kaarten in die klasse. Basis-rarities tellen niet mee. Ratio = EV ÷ boxprijs; boven de drempel kleurt de balk oranje. Super alt-arts (★★) staan standaard uit: één kaart van €1.000+ die je in 11 van de 12 boxen niet trekt.</p>
-    </div>
-    <div>
-      <h3>Pull rates: schatting, geen meting</h3>
-      <p>Standaardwaarden uit community-openingen (FB10, ±120 packs). Leader/Rare alt-arts hebben geen gemeten rate. Manga en Story Boosters hebben een andere pack-structuur en zijn niet gekalibreerd. Pas de aannames hierboven aan; de alerts gebruiken de standaardwaarden uit <code>config/games.yaml</code>.</p>
-    </div>
-    <div>
-      <h3>Data en kwaliteit</h3>
-      <p id="dataNote">TCGplayer-marktprijzen (USD, verkoopgebaseerd) via TCGCSV voor de waardering; CardTrader (EN, EUR, laagste echte aanbiedingen) voor wat je in Europa betaalt — "ratio EU" = EV (TCGplayer, in €) ÷ wat je werkelijk betaalt: goedkoopste CardTrader Zero-aanbod + vaste Zero-kosten, anders goedkoopste EU-verkoper + geschatte verzending (instelbaar in config/alerts.yaml). CardTrader-kaartprijzen zijn vraagprijzen (gemiddeld 15–35% boven de markt, vaak dun) en tellen niet mee in de waardering. Beide dagelijks, ruw opgeslagen en gevalideerd vóór publicatie. Presale-sets tonen vraagprijzen van listings, geen verkopen. EU retail vul je zelf in (onthouden in deze browser); Cardmarket en retailers volgen in fase 3.</p>
+  <!-- NIEUWS & RETAIL -->
+  <section data-view="news" hidden>
+    <div class="two">
+      <div>
+        <h2>📰 Officiële aankondigingen</h2>
+        <p class="muted">Bandai Fusion World (news + productlijst) en NARUTO CARD GAME, elke 2 uur. Productnieuws gaat als bericht; events en app-berichten staan hier alleen.</p>
+        <div class="news" id="newsList"></div>
+      </div>
+      <div>
+        <h2>🏪 Retail · nu koopbaar bij betrouwbare shops</h2>
+        <p class="muted">Alleen shops met eigen API (Shopify/WooCommerce). Boxen en cases, op voorraad of pre-order, met ratio tegen díe prijs.</p>
+        <div class="list" id="retailList"></div>
+      </div>
     </div>
   </section>
+
+  <!-- INSTELLINGEN -->
+  <section data-view="settings" hidden>
+    <div class="panel">
+      <h2>Aannames · verwachte hits per box</h2>
+      <p class="muted">Schattingen uit community-openingen, geen metingen. Wijzigingen hier herberekenen de pagina; de alerts gebruiken <code>config/games.yaml</code>.</p>
+      <div class="grid" id="est"></div>
+      <div class="toggles">
+        <label><input type="checkbox" id="inclSaa"> Super alt-art (★★) meetellen in EV</label>
+        <label>Drempel ratio EU <input type="number" id="thr" value="0.80" step="0.05" min="0" style="width:84px"></label>
+        <label>USD → EUR <input type="number" id="fx" step="0.001" min="0" style="width:96px"></label>
+        <button type="button" class="btn" id="reset">Standaardwaarden</button>
+      </div>
+    </div>
+    <div style="height:18px"></div>
+    <div class="panel" style="font-size:13.5px;color:var(--fg2)">
+      <h3>Hoe het werkt</h3>
+      <p><b>Waardering</b> van de hits: TCGplayer market (verkoopgebaseerd, dagelijks) × ECB-koers. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
+      <p><b>Slabs</b>: eBay Browse API (DE/NL, EU-locatie) + CardTrader graded; zelfde nummer ≠ zelfde kaart (basis / alt-art / super alt-art / gold worden uit de titel gelezen; listings > 4× de laagste van dezelfde grade gelden als verkeerd gelabeld). Grading-uitkomstmix per service: PSA 40% 10 / 60% 9 (€25), BGS 10% 10 / 45% 9.5 / 45% 9 (€30), CGC (€22); eBay-fees 13%.</p>
+      <p><b>Berichten</b>: 🎯 KOOP (box), 🏆 SLAB #1–#5, 🟡/✅ retail (ratio ≥ 0,70 of set nog niet uit), 🍥 Naruto (elk product), 📰 aankondiging, 📒 maandrapport. Alles met knoppen naar de shop. <code>/mute FB10</code>, <code>/unmute FB10</code>, <code>/status</code> naar de bot.</p>
+    </div>
+  </section>
+
   <footer id="foot"></footer>
 </div>
 <script>
 const CLS_ORDER = ['SR','SR_AA','SCR','SCR_AA','SAA','OTHER_AA'];
-const FLAG = {presale:['warn','presale: vraagprijzen'],manga:['info','Manga Booster: andere structuur'],story:['info','Story Booster: 20 packs, all-foil'],
-  box_spread:['crit','boxprijs onbetrouwbaar'],no_cards:['crit','nog geen kaartprijzen'],box_listing_price:['warn','box: listingprijs'],low_coverage:['warn','weinig marktprijzen']};
-let DATA=null, G=null, gameId=null, openSet=null, retail={};
+const FLAG = {presale:['warn','presale'],manga:['info','Manga Booster'],story:['info','Story Booster'],box_spread:['crit','boxprijs onbetrouwbaar'],no_cards:['crit','nog geen kaartprijzen'],box_listing_price:['warn','box: listingprijs'],low_coverage:['warn','weinig marktprijzen']};
+const EXCL = ['manga','story','low_coverage','no_cards','presale'];
+let DATA=null, G=null, gameId=null, openSet=null, retail={}, view='today';
 const retailKey = () => 'tcgw.retail.'+gameId;
 const fx = () => parseFloat(document.getElementById('fx').value)||DATA.fx.usd_eur;
 const eur = v => v==null ? '—' : '€'+Math.round(v*fx()).toLocaleString('nl-NL');
+const e0 = v => v==null ? '—' : '€'+Math.round(v).toLocaleString('nl-NL');
 const usd = v => v==null ? '—' : '$'+Math.round(v).toLocaleString('en-US');
-const pct = v => v==null ? '<span class="chg">—</span>' : `<span class="chg ${v>0?'up':v<0?'down':''}">${v>0?'+':''}${v.toFixed(1)}%</span>`;
-const short = n => n.replace(/ - [A-Z]+\d+-\d+/,'');
+const pct = v => v==null ? '<span class="num">—</span>' : `<span class="num ${v>0?'up':v<0?'down':''}">${v>0?'+':''}${v.toFixed(1)}%</span>`;
+const short = n => n.replace(/ - [A-Z]+\d+-\d+/,'').replace(/\s*\((Super |Bonus Pack )?Alternate Art\)|\s*\(Gold\)/,'');
+const big = u => u ? u.replace('_200w.jpg','_in_1000x1000.jpg') : '';
+const cls = c => c==='GOLD' ? 'Gold' : c.replace('_AA',' AA');
+const esc = s => String(s??'').replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
 function est(){ const o={}; for (const k of Object.keys(G.estimates)) o[k]=parseFloat(document.getElementById('e_'+k).value)||0; return o; }
 function score(set){
   const e = est(), incl = document.getElementById('inclSaa').checked, scale = set.packs / G.box.packs;
-  const cls = {}; let top=null;
-  for (const c of G.cards) { if (c.set!==set.code || c.price==null) continue; (cls[c.class] ||= []).push(c.price); if (!top||c.price>top.price) top=c; }
+  const bucket = {}; let top=null;
+  for (const c of G.cards) { if (c.set!==set.code || c.price==null) continue; (bucket[c.class] ||= []).push(c.price); if (!top||c.price>top.price) top=c; }
   let ev=0; const rows={};
-  for (const k of CLS_ORDER) { const v=cls[k]; if (!v) continue; const avg=v.reduce((a,b)=>a+b,0)/v.length; const part=e[k]*scale*avg; rows[k]={n:set.composition[k]?.n||v.length, avg, ev:part, est:e[k]*scale}; if (k!=='SAA'||incl) ev+=part; }
-  const boxUs = set.box?.price ?? null;
-  const bb = set.best_buy || null;
-  const override = retail[set.code];
-  const boxEu = override || (bb ? bb.price : null);                 // what you actually pay in Europe (all-in)
-  const evEur = ev*fx();
-  return {ev, evEur, boxUs, ratioUs: boxUs? ev/boxUs : null, boxEu, ratio: boxEu? evEur/boxEu : null,
-          src: override ? 'eigen prijs' : (bb ? bb.source : null), bb, top, rows};
+  for (const k of CLS_ORDER) { const v=bucket[k]; if (!v) continue; const avg=v.reduce((a,b)=>a+b,0)/v.length; const part=e[k]*scale*avg; rows[k]={n:set.composition[k]?.n||v.length, avg, ev:part, est:e[k]*scale}; if (k!=='SAA'||incl) ev+=part; }
+  const boxUs = set.box?.price ?? null, bb = set.best_buy || null, override = retail[set.code];
+  const boxEu = override || (bb ? bb.price : null), evEur = ev*fx();
+  return {ev, evEur, boxUs, ratioUs: boxUs? ev/boxUs : null, boxEu, ratio: boxEu? evEur/boxEu : null, src: override ? 'eigen prijs' : (bb ? bb.source : null), bb, top, rows};
 }
-function compText(set){
-  const c=set.composition; const part=(k,l)=>c[k]?`<b>${c[k].n}</b> ${l}`:null;
-  return [part('SR_AA','SR-AA'),part('SCR','SCR'),part('SCR_AA','★'),part('SAA','★★'),part('OTHER_AA','AA')].filter(Boolean).join(' · ') || '—';
+function compText(set){ const c=set.composition; const part=(k,l)=>c[k]?`<b>${c[k].n}</b> ${l}`:null;
+  return [part('SR_AA','SR-AA'),part('SCR','SCR'),part('SCR_AA','★'),part('SAA','★★'),part('OTHER_AA','AA')].filter(Boolean).join(' · ') || '—'; }
+function scored(){ const thr=parseFloat(document.getElementById('thr').value)||0; const xs=G.sets.map(s=>({s,...score(s)})); xs.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1)); xs.forEach(x=>{ x.hit = x.ratio!=null && x.ratio>=thr && !x.s.flags.some(f=>EXCL.includes(f)); }); return xs; }
+
+/* ---------- slab items: merge grade signals with raw options and graded deals ---------- */
+function slabItems(){
+  const cards = Object.fromEntries((G.cards||[]).map(c=>[c.key,c]));
+  const deals = Object.fromEntries((G.slab_signals||[]).map(x=>[x.key,x]));
+  const items = (G.grade_signals||[]).map(g=>{
+    const c = cards[g.key]||{}; const opts=[]; const eu=c.eu||{};
+    if (eu.low) opts.push({src:'CardTrader'+(eu.zero_low&&eu.zero_low<=eu.low?' Zero':''), price:(eu.zero_low||eu.low)+(eu.zero_low?6:5), url:eu.url});
+    if (c.raw_ebay?.low) opts.push({src:`eBay (${c.raw_ebay.n} EU)`, price:c.raw_ebay.low, url:c.raw_ebay.url});
+    opts.sort((a,b)=>a.price-b.price);
+    const ref = opts.length? null : {src:'TCGplayer (US, geen EU-aanbod)', price:g.raw_eur, url:c.url};
+    const raw = (opts[0]||ref).price, net = g.net - (raw - g.raw_eur);
+    return {g, c, opts: opts.length?opts:[ref], raw, net, deal: deals[g.key], under: raw < 0.5*g.raw_eur};
+  }).filter(i=>i.net>=50).sort((a,b)=>b.net-a.net);
+  return items;
 }
-function renderSlabs(){
-  const sec=document.getElementById('slabsSec'); const sig=G.slab_signals||[]; const withSlabs=(G.cards||[]).filter(c=>c.slabs&&Object.keys(c.slabs).length);
-  if(!G.slabs_day){ sec.hidden=true; return; }
-  sec.hidden=false;
-  document.getElementById('slabsNote').textContent=`eBay Browse API, dag ${G.slabs_day} · ${withSlabs.length} chase cards met graded aanbod · 🏆 = PSA/BGS/CGC 10 (anders 9.5/9) voor ≤ 1,15× raw TCGplayer, incl. verzending naar NL.`;
-  const el=document.getElementById('slabs'); el.innerHTML='';
-  const rows=sig.map(x=>`<div class="card"><span class="n">🏆 ${x.set}</span><span class="t">${short(x.name)} ${x.number} <span class="tag${x.class==='SAA'?' saa':''}">${x.class.replace('_AA',' AA')}</span></span><span class="p"><a href="${x.url}" target="_blank" rel="noopener">${x.grader} ${x.grade} €${x.price.toFixed(0)}</a> <small>raw €${x.raw_eur.toFixed(0)} · ${x.ratio}× · ${x.n} st.</small></span></div>`);
-  const gsig=(G.grade_signals||[]).map(x=>`<div class="card"><span class="n">📈 ${x.set}</span><span class="t">${short(x.name)} ${x.number} <span class="tag${x.class==='SAA'?' saa':''}">${x.class.replace('_AA',' AA')}</span></span><span class="p">raw €${x.raw_eur.toFixed(0)} → <a href="${x.url}" target="_blank" rel="noopener">${x.service} ${x.top_grade} €${x.top_median.toFixed(0)}</a> <small>netto €${x.net.toFixed(0)} · ${Math.round(x.roi*100)}% · ${x.top_n} st.${(x.options||[]).slice(1,3).map(o=>` · ${o.service} €${o.net.toFixed(0)}`).join('')}</small></span></div>`);
-  const rest=withSlabs.filter(c=>!sig.some(x=>x.key===c.key)).sort((a,b)=>(b.price||0)-(a.price||0)).slice(0,30).map(c=>{const g=Object.entries(c.slabs).sort((a,b)=>b[0]-a[0]).map(([k,v])=>`<a href="${v.url}" target="_blank" rel="noopener">${v.grader} ${parseFloat(k)} €${v.low.toFixed(0)}</a>`).join(' · '); return `<div class="card"><span class="n">${c.set}</span><span class="t">${short(c.name)} ${c.number}</span><span class="p">${g} <small>raw ${eur(c.price)}</small></span></div>`;});
-  el.innerHTML=`<h3>🏆 Slab-koop (graded ≤ 1,15× raw)</h3><div class="cards">${rows.join('')||'<div class="card"><span class="t">Geen slab-koopsignaal vandaag.</span></div>'}</div><h3 style="margin-top:12px">📈 Grade-kans (raw kopen, graden, graded verkopen)</h3><div class="cards">${gsig.join('')||'<div class="card"><span class="t">Geen grade-kans vandaag.</span></div>'}</div><h3 style="margin-top:12px">Graded aanbod (laagste per grade)</h3><div class="cards">${rest.join('')}</div>`;
+function slabCard(i, rank){
+  const g=i.g, c=i.c;
+  const btn = i.opts.slice(0,2).map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 raw €${o.price.toFixed(0)} · ${esc(o.src.split(' (')[0])}</a>`).join('')
+    + (i.deal?`<a href="${esc(i.deal.url)}" target="_blank" rel="noopener" class="alt">🏷 graded €${i.deal.price.toFixed(0)}</a>`:'');
+  return `<div class="sc wide"><div class="img">${c.image?`<img src="${big(c.image)}" alt="" loading="lazy">`:''}</div><div class="body">
+    <div class="t">${rank?`#${rank} · `:''}${esc(short(g.name))} <small>${g.number} · ${cls(g.class)} · ${g.set}</small></div>
+    <div class="big">€${i.raw.toFixed(0)}<small>raw, all-in naar NL</small></div>
+    <div class="row">${esc(g.service)} ${g.top_grade} waarde <b>€${g.top_median.toFixed(0)}</b> (${g.top_n} listings) · netto <b>€${i.net.toFixed(0)}</b> (${Math.round(i.net/i.raw*100)}% op inleg)${(g.options||[]).slice(1,3).map(o=>` · ${o.service} €${o.net.toFixed(0)}`).join('')}</div>
+    ${i.under?`<div class="warnline">⚠️ ${Math.round((1-i.raw/g.raw_eur)*100)}% onder marktwaarde — check verkoper, foto's en retourbeleid</div>`:''}
+    ${i.deal?`<div class="row">🏷 graded al te koop in EU: ${i.deal.grader} ${i.deal.grade} <b>€${i.deal.price.toFixed(0)}</b> (${i.deal.ratio}× raw)</div>`:''}
+    <div class="btns">${btn}</div></div></div>`;
+}
+function boxCard(x){
+  const s=x.s, bb=x.bb||{}; const opts=(bb.options||[]).slice(0,3);
+  const st={in_stock:'voorraad',preorder:'pre-order'};
+  return `<div class="sc"><div class="img">${s.box?.image?`<img src="${big(s.box.image)}" alt="" loading="lazy">`:''}</div><div class="body">
+    <div class="t">${s.code} <small>${esc(s.name)}</small></div>
+    <div class="big">${x.ratio!=null?x.ratio.toFixed(2):'—'}<small>ratio EU · hits ${e0(x.evEur)} / box €${x.boxEu?.toFixed(0)??'—'}</small></div>
+    <div class="row">${compText(s)}</div>
+    <div class="row">Top hit: <b>${x.top?esc(short(x.top.name)):'—'}</b> ${x.top?eur(x.top.price):''} · US-ratio ${x.ratioUs!=null?x.ratioUs.toFixed(2):'—'}</div>
+    <div class="btns">${opts.map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 €${o.price.toFixed(0)} · ${esc(o.source)} · ${st[o.status]||o.status}</a>`).join('')||'<span class="muted">geen EU-aanbod</span>'}</div></div></div>`;
 }
 
-function render(){
-  const thr = parseFloat(document.getElementById('thr').value)||0;
-  const scored = G.sets.map(s => ({s, ...score(s)}));
-  scored.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1));
-  const max = Math.max(...scored.map(x=>x.ratio||0), thr, 0.01);
+/* ---------- views ---------- */
+function renderToday(){
+  const xs=scored(), hits=xs.filter(x=>x.hit), items=slabItems();
+  const pf=DATA.paper||{totals:{}}; const t=pf.totals||{}; const sum=(k)=>Object.values(t).reduce((a,v)=>a+(v[k]||0),0);
+  const cost=sum('cost'), val=sum('value'), nonc = Object.entries(t).filter(([k])=>k!=='control');
+  const ncost=nonc.reduce((a,[,v])=>a+v.cost,0), nval=nonc.reduce((a,[,v])=>a+v.value,0);
+  const news=(DATA.news||[]).filter(n=>/(booster|starter|deck|pre-?order|release|launch|product|collection|box|pack|lineup)/i.test(n.title)&&!/DIGITAL ver/.test(n.title));
+  document.getElementById('kpis').innerHTML = [
+    ['Koopsignalen', hits.length, hits.length?hits.map(x=>x.s.code).join(' · '):'geen box boven de drempel'],
+    ['Slabs top 5', Math.min(5,items.length), items.length?`beste netto €${items[0].net.toFixed(0)} · ${esc(short(items[0].g.name))}`:'geen kandidaat'],
+    ['Portfolio ingekocht', e0(ncost), `${nonc.reduce((a,[,v])=>a+v.n,0)} posities · waarde nu ${e0(nval)} (${ncost?((nval-ncost)/ncost*100).toFixed(1):'0.0'}%)`],
+    ['Controlegroep', e0(t.control?.cost||0), t.control?`${t.control.n} boxen · nu ${e0(t.control.value)} (${t.control.cost?((t.control.value-t.control.cost)/t.control.cost*100).toFixed(1):'0.0'}%)`:'nog niet geopend'],
+    ['Laatste aankondiging', news[0]?news[0].date:'—', news[0]?esc(news[0].title.slice(0,70)):'nog geen productnieuws'],
+  ].map(([l,v,s])=>`<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="s">${s}</div></div>`).join('');
+  document.getElementById('todayBoxes').innerHTML = hits.map(boxCard).join('') || `<div class="panel muted">Geen box haalt vandaag de drempel. Dichtstbij: ${xs.slice(0,3).map(x=>`${x.s.code} ${x.ratio?.toFixed(2)??'—'}`).join(' · ')}.</div>`;
+  document.getElementById('todaySlabs').innerHTML = items.slice(0,5).map((i,k)=>slabCard(i,k+1)).join('') || '<div class="panel muted">Geen slab-kandidaat vandaag (eBay-data ontbreekt of niets rendabel).</div>';
+}
+function renderBoxes(){
+  const xs=scored(); const max=Math.max(...xs.map(x=>x.ratio||0), 0.01);
   const tb=document.getElementById('tb'); tb.innerHTML='';
-  renderSlabs();
-  scored.forEach((x,i)=>{
+  xs.forEach((x,i)=>{
     const s=x.s, tr=document.createElement('tr'); tr.className='row'+(openSet===s.code?' open':''); tr.tabIndex=0;
-    const hit = x.ratio!=null && x.ratio>=thr;
-    tr.innerHTML=`<td class="rank">${i+1}</td>
-      <td><span class="code">${s.code}</span><div class="name">${s.name} · EN ${s.published}</div></td>
-      <td>${(s.best_buy&&s.best_buy.ratio>=0.8&&!s.flags.some(f=>['manga','story','low_coverage','no_cards','presale'].includes(f)))?'<span class="chip hit" title="EV hits ÷ goedkoopste EU-aanbod ≥ 0.80 — dit is de alert-regel">🎯 koop</span>':''}${s.flags.map(f=>FLAG[f]?`<span class="chip ${FLAG[f][0]}">${FLAG[f][1]}</span>`:'').join('')||'<span class="chip good">uitgebracht</span>'}</td>
+    tr.innerHTML=`<td class="num" style="color:var(--fg3)">${i+1}</td>
+      <td><span class="code">${s.code}</span><div class="name">${esc(s.name)} · EN ${s.published}</div></td>
+      <td>${x.hit?'<span class="chip hit">🎯 koop</span>':''}${s.flags.map(f=>FLAG[f]?`<span class="chip ${FLAG[f][0]}">${FLAG[f][1]}</span>`:'').join('')||'<span class="chip good">uitgebracht</span>'}</td>
       <td class="comp">${compText(s)}</td>
-      <td class="r num">${x.boxEu!=null?`€${x.boxEu.toFixed(0)}`:'—'}<small>${x.src||'geen EU-aanbod'}${s.box?.eu?.landed_note&&x.src&&x.src.startsWith('CardTrader')?` · ${s.box.eu.landed_note}`:''}${s.spread_eu_us_pct!=null?` · ${s.spread_eu_us_pct>0?'+':''}${s.spread_eu_us_pct}% vs US`:''}</small></td>
-      <td class="r num">${x.ev?`€${Math.round(x.evEur).toLocaleString('nl-NL')}`:'—'}<small>${x.ev?usd(x.ev):''} · dekking ${s.hits_market_priced}/${s.hits_total}</small></td>
-      <td class="barcell"><div class="bar"><div class="track"><div class="fill${hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
-      <td class="r num">${eur(x.boxUs)}<small>${usd(x.boxUs)} · ${pct(s.box?.chg7)} / ${pct(s.box?.chg30)}${x.ratioUs!=null?` · ratio US ${x.ratioUs.toFixed(2)}`:''}</small></td>
-      <td class="top">${x.top?`${short(x.top.name)}<div class="p">${eur(x.top.price)}${x.top.eu?` · EU €${x.top.eu.low}`:''} · ${x.top.number} ${pct(x.top.chg7)}</div>`:'—'}</td>
-      <td class="retail">${(x.bb?.options||[]).slice(0,3).map(o=>`<div><a href="${o.url}" target="_blank" rel="noopener">€${o.price.toFixed(0)}</a> <span class="name">${o.source} · ${o.status==='preorder'?'pre-order':'op voorraad'}</span></div>`).join('')||'<span class="name">—</span>'}</td>
-      <td class="retail"><input type="number" id="r_${s.code}" min="0" step="1" placeholder="all-in €" value="${retail[s.code]??''}" aria-label="Eigen EU-prijs ${s.code}"></td>`;
-    tr.addEventListener('click', ev=>{ if (ev.target.tagName==='INPUT') return; openSet = openSet===s.code?null:s.code; render(); });
+      <td class="r num">${x.boxEu!=null?`€${x.boxEu.toFixed(0)}`:'—'}<small>${esc(x.src||'geen EU-aanbod')}${s.spread_eu_us_pct!=null?` · ${s.spread_eu_us_pct>0?'+':''}${s.spread_eu_us_pct}% vs US`:''}</small></td>
+      <td class="r num">${x.ev?e0(x.evEur):'—'}<small>dekking ${s.hits_market_priced}/${s.hits_total}</small></td>
+      <td><div class="bar"><div class="track"><div class="fill${x.hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${x.hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
+      <td class="r num">${eur(x.boxUs)}<small>${pct(s.box?.chg7)} / ${pct(s.box?.chg30)}${x.ratioUs!=null?` · ${x.ratioUs.toFixed(2)}`:''}</small></td>
+      <td style="font-size:13px;max-width:220px">${x.top?`${esc(short(x.top.name))}<div class="name num">${eur(x.top.price)} · ${x.top.number}</div>`:'—'}</td>
+      <td style="font-size:13px">${(x.bb?.options||[]).slice(0,3).map(o=>`<div><a href="${esc(o.url)}" target="_blank" rel="noopener">€${o.price.toFixed(0)}</a> <span class="name">${esc(o.source)} · ${o.status==='preorder'?'pre-order':'voorraad'}</span></div>`).join('')||'<span class="name">—</span>'}</td>
+      <td class="r"><input type="number" id="r_${s.code}" min="0" step="1" placeholder="€" value="${retail[s.code]??''}" style="width:84px" aria-label="Eigen EU-prijs ${s.code}"></td>`;
+    tr.addEventListener('click', ev=>{ if (ev.target.tagName==='INPUT'||ev.target.tagName==='A') return; openSet = openSet===s.code?null:s.code; renderBoxes(); });
     tr.addEventListener('keydown', ev=>{ if (ev.key==='Enter'||ev.key===' ') { ev.preventDefault(); tr.click(); } });
-    tr.querySelector('input').addEventListener('change', ev=>{ const v=parseFloat(ev.target.value); if (v>0) retail[s.code]=v; else delete retail[s.code]; try{localStorage.setItem(retailKey(),JSON.stringify(retail));}catch(e){} render(); });
+    tr.querySelector('input').addEventListener('change', ev=>{ const v=parseFloat(ev.target.value); if (v>0) retail[s.code]=v; else delete retail[s.code]; try{localStorage.setItem(retailKey(),JSON.stringify(retail));}catch(e){} renderAll(); });
     tb.appendChild(tr);
     if (openSet===s.code) tb.appendChild(detail(s,x));
   });
-  const st=document.getElementById('starters'); const sec=document.getElementById('startersSec');
-  const items=(G.starters||[]).flatMap(s=>s.products.map(p=>({...p, set:s.code, pub:s.published})));
-  sec.hidden = !items.length;
-  st.innerHTML = items.map(p=>`<div><span>${p.name}${p.presale?' <span class="chip warn">presale</span>':''}</span><span class="p">${eur(p.price)}</span></div>`).join('');
+  const items=(G.starters||[]).flatMap(s=>s.products.map(p=>({...p, set:s.code})));
+  document.getElementById('startersSec').hidden = !items.length;
+  document.getElementById('starters').innerHTML = items.map(p=>`<div><span>${esc(p.name)}${p.presale?' <span class="chip warn">presale</span>':''}</span><span class="p">${eur(p.price)}</span></div>`).join('');
 }
 const CM_DAY='2026-10-19';
 const CM={FB01:{from:179,avg30:191},FB02:{from:90,avg30:93},FB03:{from:82.99,avg30:83},FB04:{from:77.99,avg30:78},FB05:{from:128,avg30:131},FB06:{from:370,avg30:296},FB07:{from:300,avg30:251},FB08:{from:165,avg30:138},FB09:{from:159,avg30:260},FB10:{from:189.95,avg30:174},SB01:{from:1325,avg30:1396},SB02:{from:590,avg30:617},ST01:{from:389,avg30:414}};
@@ -256,50 +347,79 @@ function detail(s,x){
   const tr=document.createElement('tr'); tr.className='detail';
   const cards=G.cards.filter(c=>c.set===s.code).sort((a,b)=>(b.price??-1)-(a.price??-1));
   const rows=CLS_ORDER.filter(k=>x.rows[k]).map(k=>{const r=x.rows[k]; return `<div><b>${G.estimates[k].label}</b><span>${r.n}×</span><span>${eur(r.avg)} gem.</span><span>${r.est.toFixed(2)} → ${eur(r.ev)}</span></div>`;}).join('');
-  tr.innerHTML=`<td colspan="12"><div class="dwrap">
+  const eu=s.box?.eu;
+  tr.innerHTML=`<td colspan="11"><div class="dwrap">
     <div class="classes"><div class="h"><span>Klasse</span><span>kaarten</span><span>gem. prijs</span><span>hits/box → EV</span></div>${rows}
-      <div style="margin-top:8px;color:var(--fg3);font-family:var(--display)">${s.note?s.note+'<br>':''}${cards.length} chase cards · ${cards.filter(c=>c.price_src!=='market').length} zonder marktprijs (mid/low gebruikt)${s.box?` · <a href="https://www.tcgplayer.com/product/${s.box.product_id}" target="_blank" rel="noopener">box op TCGplayer</a>`:''}</div></div>
-    <div class="starters" style="grid-column:1/-1"><div><b>Prijsvergelijking Engelse box, all-in naar NL</b></div>
-      ${s.box?.eu?`<div><span><a href="${s.box.eu.url}" target="_blank" rel="noopener">CardTrader${s.box.eu.zero_low?' Zero':''}</a> · ${s.box.eu.landed_note}${s.box.eu.zero_n?` · ${s.box.eu.zero_n} Zero / ${s.box.eu.n} EU-aanb.`:''}</span><span class="p">€${s.box.eu.landed.toFixed(2)}</span></div>`:''}
-      ${s.box?.eu?.zero_low&&s.box.eu.low<s.box.eu.zero_low?`<div><span>CardTrader goedkoopste EU-verkoper (zelf verzenden, ±€15)</span><span class="p">€${(s.box.eu.low+15).toFixed(2)}</span></div>`:''}
-      ${(CM[s.code]?`<div><span>Cardmarket laagste aanbod (steekproef ${CM_DAY}) + ±€18 verzending · 30d-verkopen €${CM[s.code].avg30}</span><span class="p">€${(CM[s.code].from+18).toFixed(2)}</span></div>`:'')}
+      <div class="muted" style="margin-top:8px">${s.note?esc(s.note)+'<br>':''}${cards.length} chase cards · ${cards.filter(c=>c.price_src!=='market').length} zonder marktprijs${s.box?` · <a href="https://www.tcgplayer.com/product/${s.box.product_id}" target="_blank" rel="noopener">box op TCGplayer</a>`:''}</div></div>
+    <div>
+      <h3>Prijsvergelijking Engelse box, all-in naar NL</h3>
+      <div class="list" style="grid-template-columns:1fr">
+      ${eu?`<div><span><a href="${eu.url}" target="_blank" rel="noopener">CardTrader${eu.zero_low?' Zero':''}</a> · ${esc(eu.landed_note)}${eu.zero_n?` · ${eu.zero_n} Zero / ${eu.n} EU-aanb.`:''}</span><span class="p">€${eu.landed.toFixed(2)}</span></div>`:''}
+      ${eu?.zero_low&&eu.low<eu.zero_low?`<div><span>CardTrader goedkoopste EU-verkoper (zelf verzenden, ±€15)</span><span class="p">€${(eu.low+15).toFixed(2)}</span></div>`:''}
+      ${CM[s.code]?`<div><span>Cardmarket laagste aanbod (steekproef ${CM_DAY}) + ±€18 verzending · 30d-verkopen €${CM[s.code].avg30}</span><span class="p">€${(CM[s.code].from+18).toFixed(2)}</span></div>`:''}
+      ${(s.retail||[]).map(o=>`<div><span><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.retailer)}</a> · ${esc(o.title.slice(0,60))} <span class="chip ${o.status==='sold_out'?'crit':o.status==='preorder'?'warn':'good'}">${o.status}</span></span><span class="p">${o.price?'€'+o.price.toFixed(2):'—'}</span></div>`).join('')}
       ${s.box?.price?`<div><span>TCGplayer market (US, excl. verzending/invoer)</span><span class="p">${eur(s.box.price)}</span></div>`:''}
+      </div>
     </div>
-    ${(s.retail||[]).length?`<div class="starters" style="grid-column:1/-1">${s.retail.map(o=>`<div><span><a href="${o.url}" target="_blank" rel="noopener">${o.retailer}</a> · ${o.title.slice(0,70)}</span><span class="p">${o.price?'€'+o.price.toFixed(2):'—'} <span class="chip ${o.status==='sold_out'?'crit':o.status==='preorder'?'warn':'good'}">${o.status}</span></span></div>`).join('')}</div>`:''}
-    <div class="cards">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${c.name}">${short(c.name)}<span class="tag${c.class==='SAA'?' saa':''}">${c.class.replace('_AA',' AA')}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'}${c.eu?` <span class="chg${c.eu.thin?' est':''}">EU €${c.eu.low}</span>`:''} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
+    <div class="cards" style="grid-column:1/-1">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${esc(c.name)}">${esc(short(c.name))}<span class="tag${c.class==='SAA'?' saa':''}">${cls(c.class)}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'}${c.eu?` <span class="num" style="font-size:12px;color:var(--fg3)">EU €${c.eu.low}</span>`:''} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
   </div></td>`;
   return tr;
 }
+function renderSlabs(){
+  const items=slabItems();
+  document.getElementById('slabsNote').textContent = G.slabs_day ? `eBay DE/NL + CardTrader graded, dag ${G.slabs_day} · ${items.length} rendabele kandidaten (netto ≥ €50, ≥ 3 listings van de topgrade)` : 'Nog geen eBay-data.';
+  document.getElementById('slabsAll').innerHTML = items.map((i,k)=>slabCard(i,k+1)).join('') || '<div class="panel muted">Geen kandidaten.</div>';
+  const withSlabs=(G.cards||[]).filter(c=>c.slabs&&Object.keys(c.slabs).length).sort((a,b)=>(b.price||0)-(a.price||0)).slice(0,60);
+  document.getElementById('slabsListings').innerHTML = withSlabs.map(c=>{const g=Object.entries(c.slabs).sort((a,b)=>b[0]-a[0]).map(([k,v])=>`<a href="${esc(v.url)}" target="_blank" rel="noopener">${v.grader} ${parseFloat(k)} €${v.low.toFixed(0)}</a>`).join(' · '); return `<div class="card"><span class="n">${c.set}</span><span class="t">${esc(short(c.name))} ${c.number}</span><span class="p">${g} <small style="color:var(--fg3)">raw ${eur(c.price)}</small></span></div>`;}).join('') || '<div class="muted">—</div>';
+}
+function renderPortfolio(){
+  const pf=DATA.paper||{positions:[],totals:{}}; const t=pf.totals||{};
+  const label={box:'🎯 boxen (koop)',control:'⚪ controlegroep',raw:'📈 raw kaarten',slab:'🏷 slabs'};
+  document.getElementById('pfKpis').innerHTML = ['box','raw','slab','control'].filter(k=>t[k]).map(k=>{const v=t[k]; const p=v.cost?((v.value-v.cost)/v.cost*100):0; return `<div class="kpi"><div class="l">${label[k]}</div><div class="v">${e0(v.value)} <span class="${p>0?'up':p<0?'down':''}" style="font-size:15px">${p>0?'+':''}${p.toFixed(1)}%</span></div><div class="s">${v.n} posities · ingekocht ${e0(v.cost)} · ${v.wins}/${v.valued} winnaars</div></div>`;}).join('') || '<div class="kpi"><div class="l">Portfolio</div><div class="v">—</div><div class="s">nog geen posities; de eerste melding opent er een</div></div>';
+  const rows=[...(pf.positions||[])].sort((a,b)=>(a.kind>b.kind?1:a.kind<b.kind?-1:0)||(a.opened>b.opened?1:-1));
+  document.getElementById('pfTb').innerHTML = rows.map(p=>`<tr><td>${label[p.kind]||p.kind}</td><td><span class="code">${p.code}</span> <span class="name">${esc(p.name)}</span></td><td class="num">${p.opened}</td><td class="r num">€${p.price.toFixed(0)}</td><td class="name">${esc(p.source)}</td><td class="r num">${p.value!=null?'€'+p.value.toFixed(0):'—'}</td><td class="r num ${p.pnl>0?'up':p.pnl<0?'down':''}">${p.pnl!=null?(p.pnl>0?'+':'')+p.pnl.toFixed(0):'—'}</td><td class="r num">${p.ev_then!=null&&p.ev_now!=null?`€${p.ev_then.toFixed(0)} → €${p.ev_now.toFixed(0)}`:'—'}</td></tr>`).join('') || '<tr><td colspan="8" class="muted">Nog geen posities.</td></tr>';
+  document.getElementById('pfReport').innerHTML = pf.last_report ? `Laatste maandrapport: <a href="https://github.com/np7editz-bot/TCGWatcher/blob/main/docs/${pf.last_report}" target="_blank" rel="noopener">${pf.last_report}</a>` : 'Eerste maandrapport volgt op de 1e van de maand.';
+}
+function renderNews(){
+  const news=DATA.news||[];
+  document.getElementById('newsList').innerHTML = news.map(n=>`<div><span class="d">${n.date||n.seen}</span><span>${n.source.startsWith('naruto')?'🍥':'🐉'} <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a></span></div>`).join('') || '<div class="muted">—</div>';
+  const rl=[]; for (const s of G.sets) for (const o of (s.retail||[])) if (o.price && (o.status==='in_stock'||o.status==='preorder')) { const per = o.kind==='case'? o.price/12 : o.price; rl.push({...o, set:s.code, ratio: s.ev_eu_excl_saa? s.ev_eu_excl_saa/per : null}); }
+  rl.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1));
+  document.getElementById('retailList').innerHTML = rl.map(o=>`<div><span><span class="code">${o.set}</span> <a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.retailer)}</a> <span class="name">${o.status==='preorder'?'pre-order':'voorraad'}${o.kind==='case'?' · case':''}</span></span><span class="p">€${o.price.toFixed(0)}${o.ratio!=null?` <span style="color:var(--fg3)">· ${o.ratio.toFixed(2)}</span>`:''}</span></div>`).join('') || '<div class="muted">Niets koopbaar bij de betrouwbare shops.</div>';
+}
+function renderAll(){ renderToday(); renderBoxes(); renderSlabs(); renderPortfolio(); renderNews(); }
+function showView(v){ view=v; document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-selected', b.dataset.v===v)); document.querySelectorAll('[data-view]').forEach(s=>s.hidden = s.dataset.view!==v); try{localStorage.setItem('tcgw.view',v);}catch(e){} }
 function selectGame(id){
   gameId=id; G=DATA.games[id]; openSet=null;
   try { retail = JSON.parse(localStorage.getItem(retailKey())||'{}'); } catch(e) { retail={}; }
-  document.getElementById('title').textContent = G.short+' Chase Radar';
+  document.getElementById('title').textContent = G.short+' Radar';
   document.getElementById('eyebrow').textContent = `TCGWatcher · ${G.name} · Engelse markt`;
-  document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-selected', b.dataset.id===id));
+  document.querySelectorAll('#games button').forEach(b=>b.setAttribute('aria-selected', b.dataset.id===id));
   const g=document.getElementById('est');
-  g.innerHTML = CLS_ORDER.filter(k=>G.estimates[k]).map(k=>[k,G.estimates[k]]).map(([k,v])=>`<label class="f"><b>${v.label}</b><input type="number" id="e_${k}" step="0.05" min="0" value="${v.est}"><small>per ${G.box.packs} packs</small></label>`).join('');
-  document.querySelectorAll('#est input').forEach(el=>el.addEventListener('input',render));
-  document.getElementById('meta').innerHTML = `<span>${G.source.name}</span><span>bron-stand ${(G.source.last_updated||'').replace('T',' ').slice(0,16)} UTC</span><span>${G.sets.length} sets · ${G.cards.length} chase cards · ${G.source.days_of_history} dag(en) historie</span><span>koers ${DATA.fx.usd_eur}${DATA.fx.stale?' (verouderd)':''}</span>`;
+  g.innerHTML = CLS_ORDER.filter(k=>G.estimates[k]).map(k=>[k,G.estimates[k]]).map(([k,v])=>`<label class="f"><b>${v.label}</b><input type="number" id="e_${k}" step="0.05" min="0" value="${v.est}"><small class="muted">per ${G.box.packs} packs</small></label>`).join('');
+  document.querySelectorAll('#est input').forEach(el=>el.addEventListener('input',renderAll));
+  document.getElementById('meta').innerHTML = `<span>${esc(G.source.name)}</span><span>stand ${(G.source.last_updated||'').replace('T',' ').slice(0,16)} UTC</span><span>${G.sets.length} sets · ${G.cards.length} chase cards</span><span>koers ${DATA.fx.usd_eur}</span>${G.slabs_day?`<span>eBay ${G.slabs_day}</span>`:''}`;
   const q=document.getElementById('quality'); const f=DATA.quality.findings.filter(x=>x.game===id);
   q.hidden = !f.length; q.className='banner '+(f.some(x=>x.level==='fail')?'fail':'warn');
   q.innerHTML = `<b>Datakwaliteit: ${f.length} bevinding(en)</b> ${f.map(x=>`<span class="chip ${x.level==='fail'?'crit':'warn'}">${x.code}</span>`).join('')} <a href="https://github.com/np7editz-bot/TCGWatcher/blob/main/data/quality/${DATA.day}.json" target="_blank" rel="noopener">rapport</a>`;
-  if (!G.sets.length) { document.getElementById('tb').innerHTML = `<tr><td colspan="11" style="color:var(--fg2)">Nog geen boostersets in de catalogus — zodra TCGplayer een set of starter deck list, verschijnt die hier en gaat er een alert uit.</td></tr>`; return; }
-  render();
+  if (!G.sets.length) { document.getElementById('kpis').innerHTML=`<div class="kpi"><div class="l">${esc(G.name)}</div><div class="v">watch</div><div class="s">Nog geen sets in de catalogus — aankondigingen en pre-orders komen als bericht; zie Nieuws &amp; retail.</div></div>`; document.getElementById('todayBoxes').innerHTML=''; document.getElementById('todaySlabs').innerHTML=''; document.getElementById('tb').innerHTML=''; renderNews(); renderPortfolio(); return; }
+  renderAll();
 }
 async function init(){
   const r = await fetch('./data/latest.json', {cache:'no-store'}); DATA = await r.json();
   document.getElementById('fx').value = DATA.fx.usd_eur;
-  const tabs=document.getElementById('tabs');
+  const tabs=document.getElementById('games');
   tabs.innerHTML = Object.entries(DATA.games).map(([id,g])=>`<button type="button" role="tab" data-id="${id}">${g.short}${g.score?'':' (watch)'}</button>`).join('');
   tabs.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>selectGame(b.dataset.id)));
-  ['thr','fx','inclSaa'].forEach(id=>document.getElementById(id).addEventListener('input',()=>G&&G.sets.length&&render()));
-  document.getElementById('reset').addEventListener('click',()=>{ for (const [k,v] of Object.entries(G.estimates)) document.getElementById('e_'+k).value=v.est; document.getElementById('thr').value='0.60'; document.getElementById('fx').value=DATA.fx.usd_eur; document.getElementById('inclSaa').checked=false; render(); });
-  document.getElementById('foot').textContent = `Gegenereerd ${DATA.generated_at.replace('T',' ').slice(0,16)} UTC · data-dag ${DATA.day} · alle prijzen TCGplayer USD, omgerekend met ECB-koers · pull rates zijn schattingen`;
+  document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.v)));
+  ['thr','fx','inclSaa'].forEach(id=>document.getElementById(id).addEventListener('input',()=>G&&G.sets.length&&renderAll()));
+  document.getElementById('reset').addEventListener('click',()=>{ for (const [k,v] of Object.entries(G.estimates)) document.getElementById('e_'+k).value=v.est; document.getElementById('thr').value='0.80'; document.getElementById('fx').value=DATA.fx.usd_eur; document.getElementById('inclSaa').checked=false; renderAll(); });
+  document.getElementById('foot').textContent = `Gegenereerd ${DATA.generated_at.replace('T',' ').slice(0,16)} UTC · data-dag ${DATA.day} · waardering TCGplayer USD × ECB-koers · pull rates zijn schattingen · vraagprijzen zijn geen verkopen`;
+  let v='today'; try{ v=localStorage.getItem('tcgw.view')||'today'; }catch(e){} showView(v);
   const first = Object.keys(DATA.games).find(id=>DATA.games[id].score) || Object.keys(DATA.games)[0];
   selectGame(first);
 }
 init().catch(e=>{ document.getElementById('meta').textContent='Kon data/latest.json niet laden: '+e; });
 </script>
-
 </body>
 </html>
