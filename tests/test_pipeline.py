@@ -163,3 +163,12 @@ def test_buy_signal_uses_eu_ratio(tmp_path, monkeypatch):
     store.write_json(latest_path, doc)
     again = [m for m in alerts.run("2026-10-21", quality={"status": "ok", "games": {}}, send=False) if m["kind"] == "buy"]
     assert len(again) == 1 and "goedkoper geworden" in again[0]["text"]
+
+
+def test_number_fixes_and_anniversary_variant():
+    from tcgwatcher.config import load_games
+    from tcgwatcher.model import variant_of
+    g = load_games()["dbfw"]
+    assert g["number_fixes"][693131] == "FB10-067"
+    assert variant_of(g, "Destructive Strength (1st Anniversary Set)") == "ANN"
+    assert variant_of(g, "Piccolo - FB10-067 (Limited Pack 26-27 WAVE2)") == "LP"

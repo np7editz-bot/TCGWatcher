@@ -207,7 +207,6 @@ def briefing(day, latest, state, quality):
     rtxt = (f"{len(pre)} pre-order(s) open · {len(ins)} op voorraad" if retail else "nog geen retail-data") if any(s.get("retail") for s in g["sets"]) else "retail-monitor nog niet actief"
     nar = latest["games"].get("naruto", {})
     ntxt = f"{len(nar.get('all_sets', []))} productlijn(en) in catalogus, geen nieuwe" if nar else "—"
-    top = ranked[0] if ranked else None
     q = quality.get("status", "?")
     nq = sum(len(v.get("findings", [])) for v in quality.get("games", {}).values())
     text = (f"📋 <b>TCGWatcher · {_nl_date(day)}</b>\n"
@@ -217,8 +216,7 @@ def briefing(day, latest, state, quality):
             + f"<b>Boxen EU all-in</b> " + " · ".join(boxes) + "\n\n"
             + f"<b>Retail</b> {rtxt}\n<b>Naruto</b> {ntxt}"
             + (f"\n<b>Gemute</b> {', '.join(state['muted'])}" if state.get("muted") else ""))
-    photo = (top["top_hit"].get("image") if top and top.get("top_hit") else None)
-    return _m(f"briefing:{day}", "briefing", text, photo=photo, buttons=[[("📊 Open radar", SITE_URL)]])
+    return _m(f"briefing:{day}", "briefing", text, buttons=[[("📊 Open radar", SITE_URL)]])
 
 
 def _m(key, kind, text, photo=None, buttons=None):
