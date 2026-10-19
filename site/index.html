@@ -53,6 +53,7 @@ button:focus-visible,input:focus,tr.row:focus-visible{outline:2px solid var(--ac
 /* KPI strip */
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.kpi[role=button]{cursor:pointer}.kpi[role=button]:hover{border-color:var(--accent)}
 .kpi .l{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg3);font-weight:600}
 .kpi .v{font:500 24px var(--mono);margin-top:4px;letter-spacing:-.01em}
 .kpi .s{font-size:12.5px;color:var(--fg2);margin-top:2px}
@@ -184,7 +185,7 @@ footer{color:var(--fg3);font-size:12.5px}
     <div class="kpis" id="pfKpis"></div>
     <div style="height:14px"></div>
     <div class="tablewrap"><table id="pfTbl"><thead><tr>
-      <th>Soort</th><th>Positie</th><th>Geopend</th><th class="r">Inkoop</th><th>Bron</th><th class="r">Waarde nu</th><th class="r">P&amp;L</th><th class="r">EV toen → nu</th>
+      <th></th><th>Positie</th><th>Geopend</th><th class="r">Inkoop</th><th>Bron</th><th class="r">Waarde nu</th><th class="r">P&amp;L</th><th class="r">EV toen → nu</th>
     </tr></thead><tbody id="pfTb"></tbody></table></div>
     <p class="muted" id="pfReport" style="margin-top:10px"></p>
   </section>
@@ -311,7 +312,8 @@ function renderToday(){
     ['Portfolio ingekocht', e0(ncost), `${nonc.reduce((a,[,v])=>a+v.n,0)} posities · waarde nu ${e0(nval)} (${ncost?((nval-ncost)/ncost*100).toFixed(1):'0.0'}%)`],
     ['Controlegroep', e0(t.control?.cost||0), t.control?`${t.control.n} boxen · nu ${e0(t.control.value)} (${t.control.cost?((t.control.value-t.control.cost)/t.control.cost*100).toFixed(1):'0.0'}%)`:'nog niet geopend'],
     ['Laatste aankondiging', news[0]?news[0].date:'—', news[0]?esc(news[0].title.slice(0,70)):'nog geen productnieuws'],
-  ].map(([l,v,s])=>`<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="s">${s}</div></div>`).join('');
+  ].map(([l,v,s],i)=>{ const go={0:'boxes',1:'slabs',2:'portfolio',3:'portfolio',4:'news'}[i]; return `<div class="kpi" role="button" tabindex="0" data-go="${go}" title="Open ${go}"><div class="l">${l} →</div><div class="v">${v}</div><div class="s">${s}</div></div>`; }).join('');
+  document.querySelectorAll('#kpis .kpi').forEach(el=>{ el.addEventListener('click',()=>showView(el.dataset.go)); el.addEventListener('keydown',ev=>{ if(ev.key==='Enter'||ev.key===' '){ev.preventDefault(); showView(el.dataset.go);} }); });
   document.getElementById('todayBoxes').innerHTML = hits.map(boxCard).join('') || `<div class="panel muted">Geen box haalt vandaag de drempel. Dichtstbij: ${xs.slice(0,3).map(x=>`${x.s.code} ${x.ratio?.toFixed(2)??'—'}`).join(' · ')}.</div>`;
   document.getElementById('todaySlabs').innerHTML = items.slice(0,5).map((i,k)=>slabCard(i,k+1)).join('') || '<div class="panel muted">Geen slab-kandidaat vandaag (eBay-data ontbreekt of niets rendabel).</div>';
 }
@@ -376,8 +378,16 @@ function renderPortfolio(){
   const pf=DATA.paper||{positions:[],totals:{}}; const t=pf.totals||{};
   const label={box:'🎯 boxen (koop)',control:'⚪ controlegroep',raw:'📈 raw kaarten',slab:'🏷 slabs'};
   document.getElementById('pfKpis').innerHTML = ['box','raw','slab','control'].filter(k=>t[k]).map(k=>{const v=t[k]; const p=v.cost?((v.value-v.cost)/v.cost*100):0; return `<div class="kpi"><div class="l">${label[k]}</div><div class="v">${e0(v.value)} <span class="${p>0?'up':p<0?'down':''}" style="font-size:15px">${p>0?'+':''}${p.toFixed(1)}%</span></div><div class="s">${v.n} posities · ingekocht ${e0(v.cost)} · ${v.wins}/${v.valued} winnaars</div></div>`;}).join('') || '<div class="kpi"><div class="l">Portfolio</div><div class="v">—</div><div class="s">nog geen posities; de eerste melding opent er een</div></div>';
-  const rows=[...(pf.positions||[])].sort((a,b)=>(a.kind>b.kind?1:a.kind<b.kind?-1:0)||(a.opened>b.opened?1:-1));
-  document.getElementById('pfTb').innerHTML = rows.map(p=>`<tr><td>${label[p.kind]||p.kind}</td><td><span class="code">${p.code}</span> <span class="name">${esc(p.name)}</span></td><td class="num">${p.opened}</td><td class="r num">€${p.price.toFixed(0)}</td><td class="name">${esc(p.source)}</td><td class="r num">${p.value!=null?'€'+p.value.toFixed(0):'—'}</td><td class="r num ${p.pnl>0?'up':p.pnl<0?'down':''}">${p.pnl!=null?(p.pnl>0?'+':'')+p.pnl.toFixed(0):'—'}</td><td class="r num">${p.ev_then!=null&&p.ev_now!=null?`€${p.ev_then.toFixed(0)} → €${p.ev_now.toFixed(0)}`:'—'}</td></tr>`).join('') || '<tr><td colspan="8" class="muted">Nog geen posities.</td></tr>';
+  const order={box:0,raw:1,slab:2,control:3};
+  const rows=[...(pf.positions||[])].sort((a,b)=>(order[a.kind]-order[b.kind])||(a.opened>b.opened?1:-1));
+  const cards=Object.fromEntries((G.cards||[]).map(c=>[c.key,c])), sets=Object.fromEntries((G.sets||[]).map(s=>[s.code,s]));
+  let html='', last=null;
+  for (const p of rows) {
+    if (p.kind!==last) { const v=t[p.kind]||{}; html+=`<tr><td colspan="8" style="background:var(--bg);font-weight:600">${label[p.kind]} · ${v.n||0} posities · ingekocht ${e0(v.cost||0)} · nu ${e0(v.value||0)}</td></tr>`; last=p.kind; }
+    const img = p.kind==='raw'||p.kind==='slab' ? cards[p.card_key||p.key]?.image : sets[p.code]?.box?.image;
+    html+=`<tr><td>${img?`<img src="${img}" alt="" style="height:44px;border-radius:3px;vertical-align:middle">`:''}</td><td><span class="code">${p.code}</span> <span class="name">${esc(short(p.name).replace(/_AA/,' AA'))}</span><div class="name">${p.kind==='raw'?'raw kaart':p.kind==='slab'?'graded exemplaar':'booster box'}</div></td><td class="num">${p.opened}</td><td class="r num">€${p.price.toFixed(0)}</td><td class="name">${esc(p.source)}</td><td class="r num">${p.value!=null?'€'+p.value.toFixed(0):'—'}</td><td class="r num ${p.pnl>0?'up':p.pnl<0?'down':''}">${p.pnl!=null?(p.pnl>0?'+':'')+p.pnl.toFixed(0):'—'}</td><td class="r num">${p.ev_then!=null&&p.ev_now!=null?`€${p.ev_then.toFixed(0)} → €${p.ev_now.toFixed(0)}`:'—'}</td></tr>`;
+  }
+  document.getElementById('pfTb').innerHTML = html || '<tr><td colspan="8" class="muted">Nog geen posities.</td></tr>';
   document.getElementById('pfReport').innerHTML = pf.last_report ? `Laatste maandrapport: <a href="https://github.com/np7editz-bot/TCGWatcher/blob/main/docs/${pf.last_report}" target="_blank" rel="noopener">${pf.last_report}</a>` : 'Eerste maandrapport volgt op de 1e van de maand.';
 }
 function renderNews(){
