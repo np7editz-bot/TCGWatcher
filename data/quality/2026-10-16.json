@@ -4,23 +4,6 @@
   "dbfw": {
    "findings": [
     {
-     "code": "duplicate_keys",
-     "ids": [
-      "dbfw:FB10:FB10-068:",
-      "dbfw:FS03:FS03-16:"
-     ],
-     "level": "warn",
-     "message": "2 canonical keys occur more than once"
-    },
-    {
-     "code": "number_name_mismatch",
-     "ids": [
-      "693131:Piccolo - FB10-067!=FB10-068"
-     ],
-     "level": "warn",
-     "message": "1 products where the number in the name differs from the Number field"
-    },
-    {
      "code": "low_market_coverage",
      "level": "warn",
      "message": "FB11: only 33% of 57 hit cards have a market price"

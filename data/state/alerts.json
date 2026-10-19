@@ -9,6 +9,24 @@
    "price": 160.64,
    "ratio": 0.995,
    "since": "2026-10-18"
+  },
+  "grade_digest:dbfw": {
+   "day": "2026-10-18",
+   "ids": [
+    "dbfw:FB05:FB05-120:SAA",
+    "dbfw:FB07:FB07-122:",
+    "dbfw:FB10:FB10-123:SAA",
+    "dbfw:FB03:FB03-140:SAA",
+    "dbfw:SB01:SB01-026:AA"
+   ]
+  },
+  "slab_digest:dbfw": {
+   "day": "2026-10-18",
+   "ids": [
+    "dbfw:SB01:SB01-001:GOLD",
+    "dbfw:SB01:FB04-051:GOLD",
+    "dbfw:SB01:SB01-045:GOLD"
+   ]
   }
  },
  "muted": [],
@@ -29,7 +47,7 @@
   "SB02": 0.365,
   "ST01": 0.209
  },
- "quality_fp": "dbfw:duplicate_keys:dbfw:FB10:FB10-068:,dbfw:FS03:FS03-16:|dbfw:number_name_mismatch:693131:Piccolo - FB10-067!=FB10-068",
+ "quality_fp": "",
  "seen_groups": {
   "80": {
    "23401": {
