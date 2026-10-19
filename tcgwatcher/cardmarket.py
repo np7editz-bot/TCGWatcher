@@ -17,6 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
+SCHEMA = 2            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -130,15 +131,18 @@ def fetch_day(latest=None, ct_doc=None, day=None, session=None):
     day = day or dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
     path = store.DATA / "cardmarket" / f"{day}.json"
     if path.exists():
-        log.info("cardmarket day file exists for %s; not refetching", day)
-        return store.read_json(path)
+        old = store.read_json(path)
+        if old.get("schema", 1) >= SCHEMA:
+            log.info("cardmarket day file exists for %s; not refetching", day)
+            return old
+        log.info("cardmarket day file for %s has schema %s < %s; re-joining", day, old.get("schema", 1), SCHEMA)
     from .build import LATEST
     from .cardtrader import latest_day as ct_latest
     latest = latest or store.read_json(LATEST)
     ct_doc = ct_doc if ct_doc is not None else ct_latest()
     files = fetch_files(13, session)
     cards, boxes = join(files, latest, ct_doc)
-    doc = {"day": day, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "game_id": 13,
+    doc = {"day": day, "schema": SCHEMA, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "game_id": 13,
            "guide_created_at": files["prices"].get("createdAt"), "cards": cards, "boxes": boxes,
            "note": "low = cheapest offer; avg30 = average sale price last 30 days (EUR). Source: Cardmarket public price guide."}
     store.write_json(path, doc)
