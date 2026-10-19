@@ -183,10 +183,9 @@ def ev_cm(s, cards, rate):
     """EV of the hits on Cardmarket sales (avg30, EUR); per card falls back to avg7 → trend → TCGplayer × rate (sales-based)
     → CardTrader lowest ask × ASK_TO_SALE (asks overstate: calibration 2026-10-18 median 1.12–1.39× sales).
     Returns (ev, coverage 'n/total') where n = hits priced on Cardmarket sales."""
-    lottery = {"SAA", "GDR"}
     ev, covered, total = 0.0, 0, 0
     for cid, comp in s["composition"].items():
-        if cid in lottery:
+        if comp.get("lottery"):
             continue
         prices = []
         for c in cards:
@@ -225,7 +224,7 @@ def best_buy(s, min_offers=3, cardmarket_buy=True):
     cmb = s.get("cm_box")
     cm_opt = None
     if cmb and cmb.get("landed"):
-        cm_opt = {"price": cmb["landed"], "source": "Cardmarket", "url": cmb["url"], "status": "in_stock", "n": 3,
+        cm_opt = {"price": cmb["landed"], "source": "Cardmarket", "url": cmb["url"], "status": "in_stock", "n": 0,     # guide row ≠ listing count
                   "note": f"laagste aanbod €{cmb['low']:.2f} + ±€18 verzending" + (f" · 30d-verkopen €{cmb['avg30']:.0f}" if cmb.get("avg30") else "")}
         if cardmarket_buy:
             opts.append(cm_opt)
@@ -241,7 +240,7 @@ def best_buy(s, min_offers=3, cardmarket_buy=True):
     ev = s.get("ev_eu_excl_saa") or 0
     best["ratio"] = round(ev / best["price"], 3) if best["price"] else None
     best["options"] = sorted(opts[:5] + ([cm_opt] if cm_opt and cm_opt.get("indicative") else []), key=lambda o: o["price"])
-    best["offers"] = sum(o.get("n") or 1 for o in opts)
+    best["offers"] = sum(o.get("n", 1) for o in opts)          # n=0 (price-guide row) adds nothing
     best["thin"] = best["offers"] < min_offers
     if best["thin"] and "thin" not in s["flags"]:
         s["flags"] = sorted(set(s["flags"]) | {"thin"})
@@ -279,9 +278,9 @@ def paper_summary(latest):
         v, ev_now = value_now(p, latest, eb)
         rows.append({**p, "value": v, "pnl": (round(v - p["price"], 2) if v is not None else None), "ev_now": ev_now})
         t = totals.setdefault(p["kind"], {"n": 0, "cost": 0.0, "value": 0.0, "valued": 0, "wins": 0})
-        t["n"] += 1; t["cost"] += p["price"]
-        if v is not None:
-            t["value"] += v; t["valued"] += 1; t["wins"] += v > p["price"]
+        t["n"] += 1
+        if v is not None:                          # cost only over valued positions, so % is like-for-like
+            t["cost"] += p["price"]; t["value"] += v; t["valued"] += 1; t["wins"] += v > p["price"]
     for t in totals.values():
         t["cost"] = round(t["cost"], 2); t["value"] = round(t["value"], 2)
     reports = sorted(p.name for p in (ROOT / "docs").glob("paper-????-??.md")) if (ROOT / "docs").exists() else []

@@ -27,7 +27,7 @@ AA_T = re.compile(r"(alt(ernate)?[\s-]*art|\bparallel\b|\bAA\b|\bV\.?2\b|★)", 
 CLIP = 4.0
 CHASE = ("SAA", "SCR_AA", "SCR", "SR_AA", "GDR", "SLR", "SPR")      # classes worth a slab/raw search
 EU = {"AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
-      "PL", "PT", "RO", "SK", "SI", "ES", "SE"}
+      "PL", "PT", "RO", "SK", "SI", "ES", "SE", "CH", "NO"}      # same set as cardtrader.EU: EU27 + CH/NO, GB excluded (import VAT)
 
 
 class EbayClient:
@@ -97,6 +97,12 @@ def variant_matches(title, variant, number=""):
             return gdr
         if gdr:
             return False
+        par = {"SPR": r"(\bSPR\b|special\s*rare)", "SLR": r"(\bSLR\b|special\s*leader)", "SCR": r"(\bSCR\b|secret\s*rare)"}
+        hit = {k: bool(re.search(rx, title, re.I)) for k, rx in par.items()}
+        if variant in par:
+            return hit[variant]
+        if any(hit.values()):
+            return False                            # title names a parallel we are not looking for
     if variant == "GOLD":
         return bool(re.search(r"\bgold\b", title, re.I))
     if re.search(r"\bgold\b", title, re.I) and variant != "GOLD":
@@ -116,6 +122,8 @@ def parse_listing(item, number, fx_usd_eur, variant=""):
     m = GRADE.search(title)
     if not m or JP.search(title) or PROMO.search(title) or not variant_matches(title, variant, number):
         return None
+    if ((item.get("itemLocation") or {}).get("country") or "").upper() == "JP":
+        return None                                 # shipped from Japan: almost always the Japanese printing, whatever the title says
     price = _price_eur(item, fx_usd_eur)
     if not price:
         return None
@@ -283,6 +291,7 @@ def targets(latest, per_set=10, min_raw_eur=20):
             name = re.sub(r"\s*\(.*?\)|\s*-\s*(FB|SB|ST|BT)\d.*$|,.*$", "", c["name"]).split(" // ")[0].strip()
             sibl = [x for x in g.get("cards", []) if x["set"] == code and x["number"] == c["number"] and x["key"] != c["key"]]
             out.append({"key": c["key"], "number": c["number"], "name": name, "set": code, "class": c["class"], "variant": c.get("variant", ""),
+                        "product_id": c.get("product_id"),
                         "sibling_images": [x["image"] for x in sibl if x.get("image")],
                         "raw_eur": round(((c.get("cm") or {}).get("avg30") or c["price"] * fx), 2), "image": c.get("image")})
     return out

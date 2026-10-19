@@ -257,11 +257,12 @@ const cls = c => c==='GOLD' ? 'Gold' : c.replace('_AA',' AA');
 const esc = s => String(s??'').replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
 function est(){ const o={}; for (const k of Object.keys(G.estimates)) o[k]=parseFloat(document.getElementById('e_'+k).value)||0; return o; }
-const cardEur = c => { const cm=c.cm||{}; const v=cm.avg30||cm.avg7||cm.trend; if (v) return v; if (c.price!=null) return c.price*fx(); return c.eu?.low ? c.eu.low*0.83 : null; };
+const cardEur = (c, useCm=true) => { const cm=useCm ? (c.cm||{}) : {}; const v=cm.avg30||cm.avg7||cm.trend; if (v) return v; if (c.price!=null) return c.price*fx(); return c.eu?.low ? c.eu.low*0.83 : null; };
 function score(set){
   const e = est(), incl = document.getElementById('inclSaa').checked, scale = set.packs / G.box.packs;
   const bucket = {}; let top=null;
-  for (const c of G.cards) { if (c.set!==set.code) continue; const v=cardEur(c); if (v==null) continue; (bucket[c.class] ||= []).push(v); if (!top||v>top.v) top={...c, v}; }
+  const useCm = set.valuation === 'cardmarket';                       // same set-level switch as the build (coverage ≥ 50%)
+  for (const c of G.cards) { if (c.set!==set.code) continue; const v=cardEur(c, useCm); if (v==null) continue; (bucket[c.class] ||= []).push(v); if (!top||v>top.v) top={...c, v}; }
   let ev=0; const rows={};
   for (const k of CLS_ORDER) { const v=bucket[k]; if (!v) continue; const avg=v.reduce((a,b)=>a+b,0)/v.length; const part=e[k]*scale*avg; rows[k]={n:set.composition[k]?.n||v.length, avg, ev:part, est:e[k]*scale}; if (!LOTTERY.has(k)||incl) ev+=part; }
   const boxUs = set.box?.price ?? null, bb = set.best_buy || null, override = retail[set.code];
@@ -280,7 +281,7 @@ function slabItems(){
   const deals = Object.fromEntries((G.slab_signals||[]).map(x=>[x.key,x]));
   const items = (G.grade_signals||[]).map(g=>{
     const c = cards[g.key]||{}; const opts=[]; const eu=c.eu||{};
-    if (eu.low) opts.push({src:'CardTrader'+(eu.zero_low&&eu.zero_low<=eu.low?' Zero':''), price:(eu.zero_low||eu.low)+(eu.zero_low?6:5), url:eu.url});
+    if (eu.low) { const z = eu.zero_low && eu.zero_low+6 <= eu.low+5; opts.push({src:'CardTrader'+(z?' Zero':''), price: z? eu.zero_low+6 : eu.low+5, url:eu.url}); }
     if (c.raw_ebay?.low) opts.push({src:`eBay (${c.raw_ebay.n} EU)`, price:c.raw_ebay.low, url:c.raw_ebay.url});
     if (c.cm?.low) opts.push({src:'Cardmarket', price:c.cm.low+5, url:c.cm.url||`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`});
     opts.sort((a,b)=>a.price-b.price);

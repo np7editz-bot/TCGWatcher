@@ -162,3 +162,20 @@ def test_box_listing_parser():
     assert ebay.parse_box_listing(item("FB09 Dual Evolution Booster Pack x1", 5), "Dual Evolution", "FB09", fx) is None
     assert ebay.parse_box_listing(item("Dual Evolution FB09 Booster Box Japanese", 90), "Dual Evolution", "FB09", fx) is None
     assert ebay.parse_box_listing(item("FB09 Booster Box", 170, loc="US"), "Dual Evolution", "FB09", fx) is None
+
+
+def test_jp_located_listing_is_dropped():
+    from tcgwatcher.ebay import parse_listing
+    item = {"title": "Son Goku FB03-140 SAA PSA 10", "price": {"value": "700", "currency": "EUR"}, "itemLocation": {"country": "JP"},
+            "itemWebUrl": "u", "itemId": "1", "image": {"imageUrl": "i"}}
+    assert parse_listing(item, "FB03-140", 1.0, "SAA") is None
+    item["itemLocation"] = {"country": "DE"}
+    assert parse_listing(item, "FB03-140", 1.0, "SAA") is not None
+
+
+def test_masters_parallels_need_their_name_in_the_title():
+    from tcgwatcher.ebay import variant_matches
+    assert variant_matches("Spirit BT30-015 SPR PSA 10", "SPR", "BT30-015")
+    assert not variant_matches("Spirit BT30-015 PSA 10", "SPR", "BT30-015")           # base listing is not the SPR
+    assert not variant_matches("Spirit BT30-015 Special Rare PSA 10", "", "BT30-015")  # SPR listing is not the base
+    assert variant_matches("Spirit BT30-015 PSA 10", "", "BT30-015")

@@ -25,6 +25,21 @@ def main(argv=None):
         log.info("fetch: %s", r)
         if r["skipped"] and a.step == "all":
             log.info("source unchanged; validate/build/alerts still run for %s", day)
+    day = day or store.read_json(store.state_path("sync"), {}).get("day")
+    if not day:
+        log.error("no day known; run fetch first or pass --day")
+        return 2
+    quality = None
+    if a.step in ("validate", "all"):
+        from .validate import validate
+        quality = validate(day)
+        log.info("validate: %s", quality["status"])
+    if a.step in ("build", "all"):
+        from .build import build
+        out = build(day, quality)
+        log.info("build: %s", "published" if out else "NOT published (quality fail)")
+    # EU sources join against today's catalogue (keys, product ids, sets), so they run AFTER the first build; a second build
+    # then folds them in. Outside `all` each step is still callable on its own.
     if a.step in ("cardtrader", "all"):
         from .cardtrader import fetch_day
         try:
@@ -46,19 +61,10 @@ def main(argv=None):
             log.info("ebay: %s", f"{len(d['cards'])} cards, {d['api_calls']} calls" if d else "skipped")
         except Exception as e:  # noqa: BLE001
             log.error("ebay failed: %s", e)
-    day = day or store.read_json(store.state_path("sync"), {}).get("day")
-    if not day:
-        log.error("no day known; run fetch first or pass --day")
-        return 2
-    quality = None
-    if a.step in ("validate", "all"):
-        from .validate import validate
-        quality = validate(day)
-        log.info("validate: %s", quality["status"])
-    if a.step in ("build", "all"):
+    if a.step == "all":
         from .build import build
         out = build(day, quality)
-        log.info("build: %s", "published" if out else "NOT published (quality fail)")
+        log.info("build (with EU sources): %s", "published" if out else "NOT published (quality fail)")
     if a.step in ("calibrate",):
         from .calibrate import run as cal
         out = cal(day)
