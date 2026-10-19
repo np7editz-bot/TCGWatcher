@@ -200,3 +200,17 @@ def test_best_buy_supply_threshold():
           "box": {"eu": {"landed": 150.0, "landed_via": "zero", "url": "u", "n": 2, "landed_note": "x"}}}
     b2 = best_buy(s2, min_offers=3)
     assert not b2["thin"] and b2["offers"] == 7 and b2["source"].startswith("eBay") and b2["price"] == 140.0
+
+
+def test_cardtrader_takes_both_dragon_ball_games():
+    from tcgwatcher.cardtrader import fusion_world_expansions
+    class CT:
+        def get(self, path, params=None, **kw):
+            if path == "/games":
+                return [{"id": 1, "display_name": "Pokémon"}, {"id": 17, "display_name": "Dragon Ball Super"},
+                        {"id": 22, "display_name": "Dragon Ball Super Card Game Fusion World"}]
+            return [{"id": 100, "game_id": 17, "name": "Perfect Combination [BT23]", "code": "bt23"},
+                    {"id": 200, "game_id": 22, "name": "Awakened Pulse [FB01]", "code": "fb01"},
+                    {"id": 300, "game_id": 1, "name": "Base Set", "code": "bs"}]
+    gid, exps = fusion_world_expansions(CT())
+    assert set(exps) == {"BT23", "FB01"} and gid == 17
