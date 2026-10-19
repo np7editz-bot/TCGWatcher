@@ -355,6 +355,19 @@
    "ratio_then": 1.467,
    "source": "Cardmarket",
    "status": "open"
+  },
+  {
+   "code": "BT27",
+   "ev_then": 5346.51,
+   "game": "dbs",
+   "key": "buy:dbs:BT27",
+   "kind": "box",
+   "name": "History of Z",
+   "opened": "2026-10-18",
+   "price": 617,
+   "ratio_then": 8.665,
+   "source": "Cardmarket",
+   "status": "open"
   }
  ]
 }

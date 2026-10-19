@@ -10,31 +10,6 @@
    "ratio": 0.995,
    "since": "2026-10-18"
   },
-  "slab:dbfw:dbfw:FB03:FB03-139:AA": {
-   "net": 210.51,
-   "raw": 123,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:SB01:FB04-051:GOLD": {
-   "net": 748.25,
-   "raw": 245,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:SB01:SB01-001:GOLD": {
-   "net": 616.67,
-   "raw": 105,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:SB01:SB01-026:AA": {
-   "net": 194.53,
-   "raw": 29.95,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:SB01:SB01-057:AA": {
-   "net": 185.78,
-   "raw": 165,
-   "since": "2026-10-18"
-  },
   "slab_digest:dbfw": {
    "day": "2026-10-18",
    "ids": [
@@ -1387,5 +1362,67 @@
    }
   },
   "naruto": {}
+ },
+ "sent_slabs": {
+  "dbfw:dbfw:FB03:FB03-139:AA": {
+   "day": "2026-10-18",
+   "net": 210.51,
+   "rank": 0,
+   "raw": 123
+  },
+  "dbfw:dbfw:FB03:FB03-140:SAA": {
+   "day": "2026-10-18",
+   "net": 171.08,
+   "rank": 1,
+   "raw": 604.99
+  },
+  "dbfw:dbfw:FB06:FB06-103:AA": {
+   "day": "2026-10-18",
+   "net": 147.12,
+   "rank": 3,
+   "raw": 19.5
+  },
+  "dbfw:dbfw:FB06:FB06-120:AA": {
+   "day": "2026-10-18",
+   "net": 128.23,
+   "rank": 4,
+   "raw": 100
+  },
+  "dbfw:dbfw:FB07:FB07-121:AA": {
+   "day": "2026-10-18",
+   "net": 151.18,
+   "rank": 2,
+   "raw": 80
+  },
+  "dbfw:dbfw:SB01:FB04-051:GOLD": {
+   "day": "2026-10-18",
+   "net": 748.25,
+   "rank": 0,
+   "raw": 245
+  },
+  "dbfw:dbfw:SB01:SB01-001:GOLD": {
+   "day": "2026-10-18",
+   "net": 616.67,
+   "rank": 0,
+   "raw": 105
+  },
+  "dbfw:dbfw:SB01:SB01-026:AA": {
+   "day": "2026-10-18",
+   "net": 194.53,
+   "rank": 0,
+   "raw": 29.95
+  },
+  "dbfw:dbfw:SB01:SB01-045:GOLD": {
+   "day": "2026-10-18",
+   "net": 120.45,
+   "rank": 5,
+   "raw": 324
+  },
+  "dbfw:dbfw:SB01:SB01-057:AA": {
+   "day": "2026-10-18",
+   "net": 185.78,
+   "rank": 0,
+   "raw": 165
+  }
  }
 }
