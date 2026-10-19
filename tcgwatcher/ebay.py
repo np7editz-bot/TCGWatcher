@@ -201,7 +201,7 @@ def grade_signals(doc, cfg=None):
         options = []
         for svc, sc in services.items():
             grades = (c.get("by_grader") or {}).get(svc) or {}
-            mix = sc["mix"]
+            mix = {str(float(k)): v for k, v in sc["mix"].items()}       # config "10" / "9.5" ↔ stored "10.0" / "9.5"
             top = max(mix, key=float)
             if not grades.get(top) or grades[top]["n"] < cfg.get("min_top_n", 3):
                 continue
@@ -210,9 +210,9 @@ def grade_signals(doc, cfg=None):
                 g = grades.get(grade)
                 price = g["median"] if g else (0.6 * grades[top]["median"])     # missing lower grade: conservative proxy
                 expected += share * price
-                detail[grade] = round(price, 2)
+                detail[f"{float(grade):g}"] = round(price, 2)
             net = expected * (1 - fee) - sc["cost_eur"] - c["raw_eur"]
-            options.append({"service": svc, "expected": round(expected, 2), "net": round(net, 2), "top_grade": top,
+            options.append({"service": svc, "expected": round(expected, 2), "net": round(net, 2), "top_grade": f"{float(top):g}",
                             "top_n": grades[top]["n"], "top_median": grades[top]["median"], "url": grades[top]["url"], "prices": detail})
         if not options:
             continue
