@@ -99,3 +99,15 @@ def test_status_text_prefers_product_over_related_items():
     assert retail.status_from_text(page) == "sold_out"
     assert retail.status_from_text("129,99 € In den Warenkorb ... andere Artikel: ausverkauft") == "in_stock"
     assert retail.status_from_text("Vorbestellung möglich, Lieferung ab 12.03.2027. In den Warenkorb") == "preorder"
+
+
+def test_only_api_trusted_shops_alert(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    r = retail.run(day="2026-10-17", http=fake_http(), retailer_ids=["fantasiacards", "dracoon", "tbhstore"])
+    by = {t["retailer"]: t for t in r["transitions"]}
+    assert by["fantasiacards"]["trusted"] and by["dracoon"]["trusted"]
+    assert by["tbhstore"]["trusted"] is False   # generic HTML shop: data only
+    t = [dict(x, kind="sold_out->preorder", status="preorder", trusted=False, product_kind="box", price=99.0) for x in r["transitions"]][:1]
+    assert retail.format_alerts(t, first_run=False) == []
+    t[0]["trusted"] = True
+    assert len(retail.format_alerts(t, first_run=False)) == 1
