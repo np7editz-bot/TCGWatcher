@@ -80,6 +80,14 @@ Repo-secrets `TELEGRAM_BOT_TOKEN` (van @BotFather) en `TELEGRAM_CHAT_ID`. Zonder
 alerts blijven in `data/alerts/<dag>.json`. Zonder chat-id print de workflow-log de kandidaat-chat-id's nadat je
 `/start` naar de bot hebt gestuurd.
 
+## Paper-portfolio (controle van de signalen)
+
+Elke melding wordt automatisch een fictieve aankoop in `data/paper/positions.json`: 🎯 KOOP = één box tegen de all-in EU-prijs
+(+ EV op dat moment), 📈 grade-kans top 5 = de **raw** kaart tegen TCGplayer-market in € (geen grading verondersteld), 🏆 slab-koop top 5 =
+de graded kaart tegen de EU-listingprijs. Daarnaast per maand een **controlegroep**: elke gescoorde set zónder koopsignaal, één box
+tegen de all-in prijs. Op de 1e van de maand (`python -m tcgwatcher paper --report` voor tussendoor): `docs/paper-<jaar-maand>.md` +
+één Telegram-bericht met P&L per soort (zelfde maatstaf als de aankoop), winnaars, EV toen → nu, en koopsignalen vs controlegroep.
+
 ## Roadmap
 
 - **Fase 2** — alerts live, drempels tunen op echte verkopen (FB11 is net uit).
