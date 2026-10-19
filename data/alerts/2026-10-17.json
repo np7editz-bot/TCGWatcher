@@ -1,0 +1,17 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-17T21:48:23Z",
+   "key": "quality:2026-10-17",
+   "kind": "quality",
+   "text": "⚠️ Data quality warn: 2 finding(s) on 2026-10-17. Page updated with warnings."
+  },
+  {
+   "at": "2026-10-17T21:48:23Z",
+   "key": "ratio:dbfw:FB11",
+   "kind": "ratio",
+   "text": "🎯 <b>FB11 Brightness of Hope</b>: EV-ratio 0.98 ≥ 0.6 (hits $194 / box $199). Top hit: Son Goku - FB11-121 (Super Alternate Art) $6,500."
+  }
+ ],
+ "day": "2026-10-17"
+}
