@@ -1,12 +1,12 @@
 {
  "alerts": [
   {
-   "at": "2026-10-19T13:48:24Z",
+   "at": "2026-10-19T14:06:02Z",
    "buttons": [
     [
      [
-      "🛒 Koop raw €64 · Cardmarket",
-      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Saiyans-Pride-Fusion-World/Son-Gohan-Childhood-FB08-106-Fusion-World-V2-Alternate-Art"
+      "🛒 Koop raw €30 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Wish-for-Shenron-Fusion-World/Son-Goku-GT-FB07-122-Fusion-World"
      ],
      [
       "📊 Radar",
@@ -14,18 +14,18 @@
      ]
     ]
    ],
-   "key": "slab:dbfw:dbfw:FB08:FB08-106:AA",
+   "key": "slab:dbfw:dbfw:FB07:FB07-122:",
    "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/666758_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #1 · Son Gohan : Childhood FB08-106 SR AA</b> · FB08\nRaw kopen vanaf <b>€64</b> → PSA 10 waarde <b>€282</b> (3 listings)\nNetto na grading en fees: <b>€98</b> per kaart (153% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €64 Cardmarket\n• €78 eBay (1 EU)\n• €167 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €88</i>"
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/651062_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Son Goku : GT FB07-122 SCR</b> · FB07\nRaw kopen vanaf <b>€30</b> → PSA 10 waarde <b>€204</b> (10 listings)\nNetto na grading en fees: <b>€80</b> per kaart (267% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €30 Cardmarket\n• €42 CardTrader\n• €52 eBay (3 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €21</i>"
   },
   {
-   "at": "2026-10-19T13:48:24Z",
+   "at": "2026-10-19T14:06:02Z",
    "buttons": [
     [
      [
-      "🛒 Koop raw €20 · Cardmarket",
-      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Wish-for-Shenron-Fusion-World/Son-Goku-FB07-104-Fusion-World-V2-Alternate-Art"
+      "🛒 Koop raw €55 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Saiyans-Pride-Fusion-World/Broly-FB08-122-Fusion-World-V2-Alternate-Art"
      ],
      [
       "📊 Radar",
@@ -33,18 +33,37 @@
      ]
     ]
    ],
-   "key": "slab:dbfw:dbfw:FB07:FB07-104:AA",
+   "key": "slab:dbfw:dbfw:FB08:FB08-122:AA",
    "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/651192_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #2 · Son Goku FB07-104 SR AA</b> · FB07\nRaw kopen vanaf <b>€20</b> → PSA 10 waarde <b>€202</b> (4 listings)\nNetto na grading en fees: <b>€89</b> per kaart (444% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €20 Cardmarket\n• €25 CardTrader\n• €27 eBay (1 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €21</i>"
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/666775_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #2 · Broly FB08-122 SCR AA</b> · FB08\nRaw kopen vanaf <b>€55</b> → PSA 10 waarde <b>€240</b> (11 listings)\nNetto na grading en fees: <b>€79</b> per kaart (144% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €55 Cardmarket\n• €135 eBay (2 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €79</i>"
   },
   {
-   "at": "2026-10-19T13:48:24Z",
+   "at": "2026-10-19T14:06:02Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €157 · CardTrader Zero",
+      "https://www.cardtrader.com/cards/357466"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "key": "slab:dbfw:dbfw:SB02:SB02-043:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/660098_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #3 · Piccolo SB02-043 SR AA</b> · SB02\nRaw kopen vanaf <b>€157</b> → PSA 10 waarde <b>€315</b> (12 listings)\nNetto na grading en fees: <b>€78</b> per kaart (50% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €157 CardTrader Zero\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €153</i>"
+  },
+  {
+   "at": "2026-10-19T14:06:02Z",
    "buttons": [
     [
      [
       "🛒 Koop raw €23 · Cardmarket",
-      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/New-Adventure-Fusion-World/Son-Goku-FB05-030-Fusion-World-V2-Alternate-Art"
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Wish-for-Shenron-Fusion-World/Son-Gohan-SH-FB07-058-Fusion-World-V2-Alternate-Art"
      ],
      [
       "📊 Radar",
@@ -52,18 +71,18 @@
      ]
     ]
    ],
-   "key": "slab:dbfw:dbfw:FB05:FB05-030:AA",
+   "key": "slab:dbfw:dbfw:FB07:FB07-058:AA",
    "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/611096_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #3 · Son Goku FB05-030 SR AA</b> · FB05\nRaw kopen vanaf <b>€23</b> → PSA 10 waarde <b>€205</b> (4 listings)\nNetto na grading en fees: <b>€87</b> per kaart (380% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €23 Cardmarket\n• €36 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €22</i>"
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/651177_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #4 · Son Gohan : SH FB07-058 SR AA</b> · FB07\nRaw kopen vanaf <b>€23</b> → PSA 10 waarde <b>€187</b> (7 listings)\nNetto na grading en fees: <b>€76</b> per kaart (329% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €23 Cardmarket\n• €34 CardTrader Zero\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €38</i>"
   },
   {
-   "at": "2026-10-19T13:48:24Z",
+   "at": "2026-10-19T14:06:02Z",
    "buttons": [
     [
      [
-      "🛒 Koop raw €15 · Cardmarket",
-      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Blazing-Aura-Fusion-World/Golden-Frieza-FB02-140-Fusion-World-V2-Alternate-Art"
+      "🛒 Koop raw €27 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/New-Adventure-Fusion-World/Frieza-FB05-120-Fusion-World-V2-Alternate-Art"
      ],
      [
       "📊 Radar",
@@ -71,29 +90,10 @@
      ]
     ]
    ],
-   "key": "slab:dbfw:dbfw:FB02:FB02-140:AA",
+   "key": "slab:dbfw:dbfw:FB05:FB05-120:AA",
    "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/547791_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #4 · Golden Frieza FB02-140 SCR AA</b> · FB02\nRaw kopen vanaf <b>€15</b> → PSA 10 waarde <b>€191</b> (5 listings)\nNetto na grading en fees: <b>€87</b> per kaart (585% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €15 Cardmarket\n• €31 CardTrader\n• €38 eBay (3 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €23</i>"
-  },
-  {
-   "at": "2026-10-19T13:48:24Z",
-   "buttons": [
-    [
-     [
-      "🛒 Koop raw €206 · CardTrader",
-      "https://www.cardtrader.com/cards/357432"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "key": "slab:dbfw:dbfw:SB02:SB02-017:GOLD",
-   "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/660090_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #5 · Gotenks SB02-017 Gold (Manga)</b> · SB02\nRaw kopen vanaf <b>€206</b> → PSA 10 waarde <b>€475</b> (3 listings)\nNetto na grading en fees: <b>€83</b> per kaart (41% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €206 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €128</i>"
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/611094_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #5 · Frieza FB05-120 SCR AA</b> · FB05\nRaw kopen vanaf <b>€27</b> → PSA 10 waarde <b>€192</b> (10 listings)\nNetto na grading en fees: <b>€75</b> per kaart (278% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €27 Cardmarket\n• €56 CardTrader Zero\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €20</i>"
   }
  ],
  "day": "2026-10-18"
