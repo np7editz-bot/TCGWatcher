@@ -64,14 +64,13 @@ button:focus-visible,input:focus-visible,tr.row:focus-visible,.kpi:focus-visible
 /* signal cards: the first one is the hero */
 .sig{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
 .sc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:112px 1fr;min-height:160px}
-.sig .sc:first-child{grid-column:1/-1;grid-template-columns:minmax(150px,220px) 1fr;border-color:color-mix(in srgb,var(--gold) 55%,var(--line))}
+.sc.top{border-color:color-mix(in srgb,var(--gold) 55%,var(--line))}
 .sc .img{background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .sc .img img{width:100%;height:100%;object-fit:cover;display:block}
 .sc .body{padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .sc .t{font-weight:800;font-size:16px;line-height:1.2;letter-spacing:-.01em}
 .sc .t small{font-weight:600;color:var(--fg3);font-size:12.5px;margin-left:6px}
 .sc .big{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-.sig .sc:first-child .big{font-size:34px}
 .sc .big small{font-size:12.5px;font-weight:600;color:var(--fg2);margin-left:8px;letter-spacing:0}
 .sc .row{font-size:13px;color:var(--fg2)}
 .sc .row b{color:var(--fg);font-weight:700}
@@ -89,6 +88,7 @@ td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
 tr:last-child td{border-bottom:0}
 tr.row{cursor:pointer}
 tr.row:hover td{background:var(--surface2)}
+#tbl{min-width:1380px}#tbl td .name,#tbl td.comp,#tbl td.num small{white-space:nowrap}
 tr.row.open td{background:var(--surface2)}
 .code{font-weight:800}
 .name{color:var(--fg2);font-size:13px}
@@ -101,7 +101,7 @@ td.num small{color:var(--fg3);font-size:11.5px;display:block}
 tr.detail td{padding:0;background:var(--bg)}
 .dwrap{padding:14px 12px 18px 40px;display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:18px}
 @media (max-width:760px){.dwrap{grid-template-columns:1fr;padding-left:12px}}
-@media (max-width:560px){.sc{grid-template-columns:96px 1fr}.sig .sc:first-child{grid-template-columns:120px 1fr}.sig .sc:first-child .big{font-size:28px}.sc .body{padding:12px}}
+@media (max-width:560px){.sc{grid-template-columns:96px 1fr}.sc .body{padding:12px}}
 .classes{display:flex;flex-direction:column;gap:6px;font-size:13px}
 .classes div{display:grid;grid-template-columns:1.2fr .45fr .8fr 1.1fr;gap:8px;font-size:12.5px;white-space:nowrap}
 .classes div.h{color:var(--fg3);font-size:12px}
@@ -293,7 +293,7 @@ function slabCard(i, rank){
   const g=i.g, c=i.c;
   const btn = (i.noEu ? `<a href="${esc(i.cm.url)}" target="_blank" rel="noopener" class="alt">🔎 zoek raw op Cardmarket</a>` : i.opts.slice(0,2).map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 raw €${o.price.toFixed(0)} · ${esc(o.src.split(' (')[0])}</a>`).join(''))
     + (i.deal?`<a href="${esc(i.deal.url)}" target="_blank" rel="noopener" class="alt">🏷 graded €${i.deal.price.toFixed(0)}</a>`:'');
-  return `<div class="sc wide"><div class="img">${c.image?`<img src="${big(c.image)}" alt="" loading="lazy">`:''}</div><div class="body">
+  return `<div class="sc wide${rank===1?' top':''}"><div class="img">${c.image?`<img src="${big(c.image)}" alt="" loading="lazy">`:''}</div><div class="body">
     <div class="t">${rank?`#${rank} · `:''}${esc(short(g.name))} <small>${g.number} · ${cls(g.class)} · ${g.set}</small>${i.sent?` <span class="tag">📨 gemeld ${i.sent.day.slice(5).split('-').reverse().join('-')}</span>`:''}</div>
     <div class="big">€${i.raw.toFixed(0)}<small>${i.noEu?'marktwaarde raw · geen EU-aanbod gevonden':'raw, all-in naar NL'}</small></div>
     <div class="row">${esc(g.service)} ${g.top_grade} waarde <b>€${g.top_median.toFixed(0)}</b> (${g.top_n} listings) · netto <b>€${i.net.toFixed(0)}</b> (${Math.round(i.net/i.raw*100)}% op inleg)${(g.options||[]).slice(1,3).map(o=>` · ${o.service} €${o.net.toFixed(0)}`).join('')}</div>
@@ -301,10 +301,10 @@ function slabCard(i, rank){
     ${i.deal?`<div class="row">🏷 graded al te koop in EU: ${i.deal.grader} ${i.deal.grade} <b>€${i.deal.price.toFixed(0)}</b> (${i.deal.ratio}× raw)</div>`:''}
     <div class="btns">${btn}</div></div></div>`;
 }
-function boxCard(x){
+function boxCard(x, rank){
   const s=x.s, bb=x.bb||{}; const opts=(bb.options||[]).slice(0,3);
   const st={in_stock:'voorraad',preorder:'pre-order'};
-  return `<div class="sc"><div class="img">${s.box?.image?`<img src="${big(s.box.image)}" alt="" loading="lazy">`:''}</div><div class="body">
+  return `<div class="sc${rank===1?' top':''}"><div class="img">${s.box?.image?`<img src="${big(s.box.image)}" alt="" loading="lazy">`:''}</div><div class="body">
     <div class="t">${s.code} <small>${esc(s.name)}</small></div>
     <div class="big">${x.ratio!=null?x.ratio.toFixed(2):'—'}<small>ratio EU · hits ${e0(x.evEur)} / box €${x.boxEu?.toFixed(0)??'—'}</small></div>
     <div class="row">${compText(s)}</div>
@@ -334,7 +334,7 @@ function renderToday(){
     ['Laatste aankondiging', news[0]?news[0].date:'—', news[0]?esc(news[0].title.slice(0,70)):'nog geen productnieuws'],
   ].map(([l,v,s],i)=>{ const go={0:'boxes',1:'slabs',2:'portfolio',3:'portfolio',4:'news'}[i]; return `<div class="kpi" role="button" tabindex="0" data-go="${go}" title="Open ${go}"><div class="l">${l}</div><div class="v">${v}</div><div class="s">${s}</div></div>`; }).join('');
   document.querySelectorAll('#kpis .kpi').forEach(el=>{ el.addEventListener('click',()=>showView(el.dataset.go)); el.addEventListener('keydown',ev=>{ if(ev.key==='Enter'||ev.key===' '){ev.preventDefault(); showView(el.dataset.go);} }); });
-  document.getElementById('todayBoxes').innerHTML = hits.map(boxCard).join('') || `<div class="panel muted">Geen box haalt vandaag de drempel. Dichtstbij: ${xs.slice(0,3).map(x=>`${x.s.code} ${x.ratio?.toFixed(2)??'—'}`).join(' · ')}.</div>`;
+  document.getElementById('todayBoxes').innerHTML = hits.map((x,k)=>boxCard(x,k+1)).join('') || `<div class="panel muted">Geen box haalt vandaag de drempel. Dichtstbij: ${xs.slice(0,3).map(x=>`${x.s.code} ${x.ratio?.toFixed(2)??'—'}`).join(' · ')}.</div>`;
   document.getElementById('todaySlabs').innerHTML = items.slice(0,5).map((i,k)=>slabCard(i,k+1)).join('') || '<div class="panel muted">Geen slab-kandidaat vandaag (eBay-data ontbreekt of niets rendabel).</div>';
 }
 function renderBoxes(){
