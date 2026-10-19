@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 5            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 6            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -35,9 +35,9 @@ def fetch_files(game_id=13, session=None):
 
 
 def slug(name):
-    """Cardmarket URL slug: apostrophes and dots dropped, every other non-alphanumeric run becomes '-'
-    ("Saiyan's Pride" → Saiyans-Pride, "(V.3 - God Rare)" → V3-God-Rare)."""
-    return re.sub(r"[^A-Za-z0-9]+", "-", name.replace("'", "").replace(".", "")).strip("-")
+    """Cardmarket URL slug: apostrophes, dots and slashes dropped, every other non-alphanumeric run becomes '-'
+    ("Saiyan's Pride" → Saiyans-Pride, "(V.3 - God Rare)" → V3-God-Rare, "Son Goten/Trunks : Youth" → Son-GotenTrunks-Youth)."""
+    return re.sub(r"[^A-Za-z0-9]+", "-", re.sub(r"['./]", "", name)).strip("-")
 
 
 def box_url(name):
@@ -46,16 +46,21 @@ def box_url(name):
     return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name)
 
 
-# Verified in the browser (2026-10-19): AA → "V2 - Alternate Art", SAA → "V3 - God Rare". Other variants: unknown label →
-# link to the base printing (exists) rather than guess (a wrong suffix gives "invalid product").
-VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "BPAA": "Alternate Art", "GOLD": "Alternate Art",
-                 "SPR": "Special Rare"}      # Masters SPR verified: Zenkai-Series-Set-04/Son-Goku-Overwhelming-Power-V2-Special-Rare
+# A catalogue name with several printings gets "(V.n - <label>)" on EVERY printing, V1 included; the label is Cardmarket's
+# rarity of that printing: the card's own rarity for the base printing, "Alternate Art" / "God Rare" for parallels.
+# Verified in the browser (2026-10-19): ...-V1-Secret-Rare, ...-V2-Alternate-Art, ...-V3-God-Rare, ...-V2-Special-Rare.
+VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "BPAA": "Alternate Art", "GOLD": "Alternate Art", "GDR": "God Rare",
+                 "SPR": "Special Rare", "SLR": "Special Leader Rare", "SCR": "Secret Rare"}
+# Cardmarket expansion names that do not follow '<Set> [Fusion World]' (seen in the browser)
+EXPANSION_OVERRIDE = {"FB06": "Rivals Clash"}
 
 
 def expansion_name(gid, code, set_name, box_name=None):
     """Cardmarket expansion name. Fusion World: '<Set> [Fusion World]' (from the box name when we have it).
     Masters: Cardmarket uses Bandai's series numbering, not the subtitle — BT18–BT25 are 'Zenkai Series Set 01'…'08'
     (verified: BT21 → Zenkai-Series-Set-04); later sets keep their name until verified."""
+    if code in EXPANSION_OVERRIDE:
+        return EXPANSION_OVERRIDE[code]
     if box_name:
         return box_name.replace(" Booster Box", "")
     m = re.fullmatch(r"BT(\d{2})", code or "")
@@ -64,13 +69,14 @@ def expansion_name(gid, code, set_name, box_name=None):
     return (set_name or "") + (" [Fusion World]" if gid == "dbfw" else "")
 
 
-def card_url(expansion_name, product_name, version=1, variant=""):
+def card_url(expansion_name, product_name, version=1, variant="", rarity="", printings=1):
     """Single page: /Products/Singles/<Expansion-Slug>/<Product-Slug>[-V<n>-<Label>].
     Cardmarket keeps one product per printing under the same catalogue name; the 2nd, 3rd … printing gets a
     "(V.n - Label)" suffix in its URL, e.g. Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare
     (verified in the browser 2026-10-19). n = rank of idProduct among the same name in the same expansion; label from our
     variant code (VERSION_LABEL)."""
-    tail = f" (V.{version} - {VERSION_LABEL[variant]})" if version > 1 and variant in VERSION_LABEL else ""
+    label = VERSION_LABEL.get(variant) or rarity
+    tail = f" (V.{version} - {label})" if printings > 1 and label else ""
     return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}"
 
 
@@ -93,10 +99,10 @@ def join(files, latest, ct_doc):
     siblings = {}                                   # (idExpansion, name) → sorted idProducts: position = Cardmarket "V.n"
     for p in singles:
         siblings.setdefault((p.get("idExpansion"), p.get("name")), []).append(p["idProduct"])
-    version = {}
+    version, printings = {}, {}
     for ids in siblings.values():
         for n, i in enumerate(sorted(ids), 1):
-            version[i] = n
+            version[i] = n; printings[i] = len(ids)
     exp_of = {p["idProduct"]: p.get("idExpansion") for p in singles}
     cards, boxes = {}, {}
     for gid, g in latest["games"].items():
@@ -150,7 +156,8 @@ def join(files, latest, ct_doc):
                                "low": _f(r, "low"), "trend": _f(r, "trend"),
                                "avg1": _f(r, "avg1"), "avg7": _f(r, "avg7"), "avg30": _f(r, "avg30"),
                                "foil": not r.get("avg30") and bool(r.get("avg30-foil")),
-                               "url": card_url(exp_name.get(code, ""), names[pid], version.get(pid, 1), variant) if names.get(pid) else None}
+                               "url": card_url(exp_name.get(code, ""), names[pid], version.get(pid, 1), variant, c.get("rarity") or "",
+                                               printings.get(pid, 1)) if names.get(pid) else None}
     return cards, boxes
 
 
