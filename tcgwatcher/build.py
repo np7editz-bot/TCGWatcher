@@ -11,6 +11,7 @@ from .chase import score_sets
 from .history import load_series, change_pct, sparkline
 from .fx import usd_eur
 from .cardtrader import latest_day as ct_latest, eu_prices_by_tcgplayer
+from .ebay import latest_day as ebay_latest, slab_signals, grade_signals
 from . import store, SITE
 
 log = logging.getLogger("tcgwatcher.build")
@@ -80,6 +81,11 @@ def build(day, quality=None):
             s["ratio_eu"] = round(s["ev_eu_excl_saa"] / box_eu["landed"], 3) if box_eu else None
             if s.get("box") and s["box"].get("price") and box_eu:
                 s["spread_eu_us_pct"] = round((box_eu["low"] - s["box"]["price"] * rate) / (s["box"]["price"] * rate) * 100, 1)
+        eb = ebay_latest() if gid == "dbfw" else None
+        if eb:
+            for c in cards:
+                e = eb["cards"].get(c["key"])
+                c["slabs"] = {k: {"low": v["low"], "n": v["n"], "url": v["url"], "grader": v["grader"]} for k, v in e["best"].items()} if e else None
         retail = retail_by_set(gid)
         for s in sets_scored:
             s["retail"] = retail.get(s["code"], [])
@@ -95,6 +101,9 @@ def build(day, quality=None):
             "estimates": {k: {"label": labels[k], "est": v} for k, v in est.items()},
             "box": g["box"],
             "sets": sets_scored, "cards": cards, "starters": other_sets,
+            "slab_signals": slab_signals(eb) if eb else [],
+            "grade_signals": grade_signals(eb) if eb else [],
+            "slabs_day": eb["day"] if eb else None,
             "all_sets": [{"code": c, "name": v["name"], "kind": v["kind"], "published": v["published"]} for c, v in m["sets"].items()],
             "quality": quality.get("games", {}).get(gid, {}).get("status", "unknown"),
         }

@@ -7,7 +7,7 @@ from . import store
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="tcgwatcher")
-    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "news", "cardtrader", "calibrate", "all"])
+    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "news", "cardtrader", "ebay", "calibrate", "all"])
     ap.add_argument("--day", help="source day to process (default: last synced day)")
     ap.add_argument("--force", action="store_true", help="fetch even if the source did not change")
     ap.add_argument("--no-send", action="store_true", help="do not send Telegram messages")
@@ -30,6 +30,13 @@ def main(argv=None):
             log.info("cardtrader: %s", f"{len(d['offers'])} offers, {d['api_calls']} calls" if d else "skipped")
         except Exception as e:  # noqa: BLE001
             log.error("cardtrader failed: %s", e)
+    if a.step in ("ebay", "all"):
+        from .ebay import fetch_day as ebay_fetch
+        try:
+            d = ebay_fetch()
+            log.info("ebay: %s", f"{len(d['cards'])} cards, {d['api_calls']} calls" if d else "skipped")
+        except Exception as e:  # noqa: BLE001
+            log.error("ebay failed: %s", e)
     day = day or store.read_json(store.state_path("sync"), {}).get("day")
     if not day:
         log.error("no day known; run fetch first or pass --day")

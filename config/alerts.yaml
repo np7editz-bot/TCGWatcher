@@ -7,6 +7,19 @@ buy:
 eu_landed:                 # what a CardTrader box really costs you (listing price excludes shipping/fees)
   zero_fee_eur: 6          # CardTrader Zero: one fixed fee per order (hub shipping + service)
   seller_shipping_eur: 15  # non-Zero seller ships himself: typical sealed-box shipping within the EU (seen €10–36)
+slabs:                     # eBay graded copies (EBAY_DE/EBAY_NL, incl. shipping to NL) vs raw TCGplayer market in €
+  max_vs_raw: 1.15         # 🏆 SLAB-KOOP when the cheapest PSA/BGS/CGC 10 (else 9.5, 9) costs ≤ 1.15 × raw
+  min_raw_eur: 50
+  grades: [10, 9.5, 9]
+grading:                   # 📈 GRADE-KANS: buy raw, grade, sell graded (asks as proxy for sales); best service wins
+  fee_pct: 13              # eBay final value fee + payment
+  min_top_n: 3             # liquidity: at least 3 listings of the service's top grade
+  min_profit_eur: 50       # expected net per card
+  min_roi: 0.5             # net ÷ raw price
+  services:                # outcome mix = share of raw copies that come back at each grade (conservative for modern foils)
+    PSA: { cost_eur: 25, mix: { "10": 0.40, "9": 0.60 } }
+    BGS: { cost_eur: 30, mix: { "10": 0.10, "9.5": 0.45, "9": 0.45 } }   # BGS 10 (Pristine) is rare; 9.5 is the usual 'gem'
+    CGC: { cost_eur: 22, mix: { "10": 0.35, "9.5": 0.35, "9": 0.30 } }
 briefing: weekly           # daily | weekly (Sunday) | off
 ratio:
   threshold: 0.60          # legacy US ratio (page only; no longer alerts)

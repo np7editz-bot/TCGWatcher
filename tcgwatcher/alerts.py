@@ -105,6 +105,43 @@ def run(day, quality=None, send=True):
                 state["active"][key] = {"since": (ep or {}).get("since", day) if isinstance(ep, dict) else day, "price": bb["price"], "ratio": ratio}
                 msgs.append(buy_card(gid, gdata, s, pos, len(ranked), buy, again=bool(ep)))
 
+        # 4b. slab buy signals (eBay graded ≤ max_vs_raw × raw), one per card+grade episode, again when ≥10% cheaper
+        for gid, gdata in latest["games"].items():
+            for sg in gdata.get("slab_signals", []):
+                key = f"slab:{gid}:{sg['key']}:{sg['grade']}"
+                if sg["set"] in muted:
+                    continue
+                ep = state["active"].get(key)
+                if ep and not sg["price"] <= ep["price"] * 0.9:
+                    continue
+                state["active"][key] = {"since": (ep or {}).get("since", day), "price": sg["price"]}
+                txt = (f"🏆 <b>SLAB-KOOP · {_card(sg['name'], sg['number'])} {sg['class'].replace('_AA', ' AA')}</b>\n"
+                       f"{sg['grader']} {sg['grade']:g} voor <b>€{sg['price']:.0f}</b> (incl. verzending) · raw TCGplayer €{sg['raw_eur']:.0f} → <b>{sg['ratio']:.2f}×</b> raw\n"
+                       f"{sg['n']} graded aanbieding(en) op eBay DE/NL · {sg['set']}\n"
+                       f"<i>Gegradeerd exemplaar voor (bijna) de prijs van raw; grading kost zelf €20–30 en maanden.</i>")
+                msgs.append(_m(key, "slab", txt, photo=sg.get("image"), buttons=[[("🛒 eBay", sg["url"]), ("📊 Radar", SITE_URL)]]))
+            # 4c. grading candidates: raw cheap, PSA 10 expensive and liquid → buy raw, grade, sell
+            for gs in gdata.get("grade_signals", []):
+                key = f"grade:{gid}:{gs['key']}"
+                if gs["set"] in muted:
+                    continue
+                ep = state["active"].get(key)
+                if ep and not gs["net"] >= ep["net"] * 1.25:
+                    continue
+                state["active"][key] = {"since": (ep or {}).get("since", day), "net": gs["net"]}
+                alt = " · ".join(f"{o['service']} €{o['net']:.0f}" for o in gs.get("options", [])[1:3])
+                txt = (f"📈 <b>GRADE-KANS · {_card(gs['name'], gs['number'])} {gs['class'].replace('_AA', ' AA')}</b>\n"
+                       f"Raw <b>€{gs['raw_eur']:.0f}</b> (TCGplayer) → <b>{gs['service']} {gs['top_grade']}</b> op eBay mediaan <b>€{gs['top_median']:.0f}</b> ({gs['top_n']} st.)\n"
+                       f"Verwachte opbrengst €{gs['expected']:.0f} → netto <b>€{gs['net']:.0f}</b> per kaart ({gs['roi']:.0%} op raw) na grading en fees"
+                       + (f"\nAndere services: {alt}" if alt else "") + f"\n<i>Vraagprijzen als proxy voor verkopen · {gs['set']}</i>")
+                msgs.append(_m(key, "grade", txt, photo=gs.get("image"), buttons=[[(f"🛒 {gs['service']} {gs['top_grade']} op eBay", gs["url"]), ("📊 Radar", SITE_URL)]]))
+            for key in [k for k in state["active"] if k.startswith(f"grade:{gid}:")]:
+                if not any(f"grade:{gid}:{gs['key']}" == key for gs in gdata.get("grade_signals", [])):
+                    state["active"].pop(key, None)
+            for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
+                if not any(f"slab:{gid}:{sg['key']}:{sg['grade']}" == key for sg in gdata.get("slab_signals", [])):
+                    state["active"].pop(key, None)
+
         # 5. briefing: daily | weekly (Sunday) | off
         mode = cfg.get("briefing", "weekly")
         if mode == "daily" or (mode == "weekly" and dt.date.fromisoformat(day).weekday() == 6):
@@ -164,7 +201,7 @@ def briefing(day, latest, state, quality):
     movers = sorted((c for c in g["cards"] if c.get("chg7") is not None and c["price"] and c["price"] >= 20 and c["price_src"] == "market" and abs(c["chg7"]) >= 20),
                     key=lambda c: -abs(c["chg7"]))[:5]
     mv = [f"{'▲' if c['chg7']>0 else '▼'} {c['chg7']:+.0f}% {_card(c['name'], c['number'])[:30]} {c['class'].replace('_AA',' AA')} → {_usd(c['price'])}" for c in movers]
-    boxes = [f"{s['code']} {_usd(s['box']['price'])}" + (f" ({s['box']['chg7']:+.0f}%)" if s['box'].get('chg7') is not None else "") for s in ranked[:5] if s.get("box")]
+    boxes = [f"{s['code']} €{s['best_buy']['price']:.0f} {s['best_buy']['source']}" for s in ranked[:5]]
     retail = [r for s in g["sets"] for r in s.get("retail", []) if r["status"] in ("in_stock", "preorder") and r.get("price")]
     pre = [r for r in retail if r["status"] == "preorder"]; ins = [r for r in retail if r["status"] == "in_stock"]
     rtxt = (f"{len(pre)} pre-order(s) open · {len(ins)} op voorraad" if retail else "nog geen retail-data") if any(s.get("retail") for s in g["sets"]) else "retail-monitor nog niet actief"
@@ -177,7 +214,7 @@ def briefing(day, latest, state, quality):
             f"<i>{len(g['sets'])} sets · {len(g['cards'])} chase cards · data {'✔' if q == 'ok' else '⚠'} ({nq} bekende bronfout(en))</i>\n\n"
             f"<b>Ranking (hits € ÷ goedkoopste EU-box, excl. ★★)</b>\n" + "\n".join(lines) + "\n\n"
             + (f"<b>Bewegingen (7d, ≥20%)</b>\n" + "\n".join(mv) + "\n\n" if mv else "<b>Bewegingen</b> geen kaart ≥20% in 7d\n\n")
-            + f"<b>Boxen US (TCGplayer, 7d)</b> " + " · ".join(boxes) + "\n\n"
+            + f"<b>Boxen EU all-in</b> " + " · ".join(boxes) + "\n\n"
             + f"<b>Retail</b> {rtxt}\n<b>Naruto</b> {ntxt}"
             + (f"\n<b>Gemute</b> {', '.join(state['muted'])}" if state.get("muted") else ""))
     photo = (top["top_hit"].get("image") if top and top.get("top_hit") else None)

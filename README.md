@@ -68,6 +68,8 @@ Berichten (v3, `config/alerts.yaml`):
 | 🟡 PRE-ORDER OPEN / ✅ OP VOORRAAD / 📉 GOEDKOPER | box/case wordt koopbaar bij een webshop | alleen als ratio tegen díe prijs ≥ `buy.near` (0,70), of de set nog niet gewaardeerd is (nieuwe set, Naruto) |
 | 🆕 productlijn | nieuwe set in de TCGplayer-catalogus | eerste pre-ordersignaal |
 | 📰 officiële aankondiging | nieuw product/set op de Bandai-pagina's (Fusion World news + productlijst, NARUTO CARD GAME news; `config/news.yaml`, elke 2 uur) | alleen product-/release-nieuws; app-berichten en events worden wel opgeslagen (`data/news/`) maar niet gestuurd |
+| 🏆 **SLAB-KOOP** | goedkoopste PSA/BGS/CGC 10 (anders 9.5/9) op eBay DE/NL ≤ 1,15 × raw TCGplayer (incl. verzending naar NL) | `slabs` in `config/alerts.yaml`; eBay Browse API (app-token), dagelijks, `data/ebay/<dag>.json` |
+| 📈 **GRADE-KANS** | raw goedkoop, graded duur én liquide: per service (PSA, BGS, CGC) `Σ aandeel×mediaan graded-prijs` × 0,87 − servicekosten − raw; beste service wint; signaal bij netto ≥ €50 en ≥ 50% van raw | `grading.services` in `config/alerts.yaml` (uitkomstmix per service); vraagprijzen als proxy voor verkopen |
 | 📋 briefing | zondag (`briefing: weekly`) | ranking op EU-ratio, bewegingen, boxen, retail, Naruto |
 | ⚠️ datakwaliteit | alleen bij FAIL (pagina niet bijgewerkt) | `quality_issues: fail_only` |
 
@@ -84,4 +86,4 @@ alerts blijven in `data/alerts/<dag>.json`. Zonder chat-id print de workflow-log
 - **Fase 3a** — retailer-monitor (gedaan; shops bijvoegen = regel in `config/retailers.yaml`).
 - **Fase 3b** — CardTrader EU-prijzen (officiële API, EN/EUR, laagste echte aanbiedingen) per chase card en box; `ratio EU`, EU/US-spread; kalibratierapport `docs/calibration-<dag>.md` (workflow `calibrate`). **Uitkomst kalibratie 19-10-2026**: CardTrader-vraagprijzen liggen mediaan 15–35% boven TCGplayer-markt en zijn dun voor de meeste hits → waardering blijft TCGplayer (verkoopgebaseerd) in €; CardTrader levert de EU-boxprijs (EU-verkopers) en per-kaart 'wat je nu betaalt'. Cardmarket-steekproef 19-10-2026 (`docs/calibration-cardmarket-2026-10-19.md`): EU-verkopen van alt-arts ≈1,2× TCGplayer, Cardmarket-boxen ≈0,88× CardTrader Zero (vóór verzending) → waardering en EU-prijsbron ongewijzigd.
 - **Fase 4** — PWA op de telefoon met push.
-- **Fase 5** — slabs: graded prijzen (PSA 9/10) naast raw → grading-gap-alerts.
+- **Fase 5** — slabs (gedaan): eBay Browse API (EBAY_DE/EBAY_NL) voor de top-6 hits per set → laagste PSA/BGS/CGC 10/9.5/9 naast raw; 🏆-alert bij graded ≤ 1,15× raw. Pagina-sectie "Slabs".
