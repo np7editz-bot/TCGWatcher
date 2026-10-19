@@ -34,3 +34,10 @@ def test_fetch_day_writes_once(tmp_path, monkeypatch):
     d = cardmarket.fetch_day(latest=latest, ct_doc={"blueprints": {}}, day="2026-10-19")
     assert d["boxes"]["FB09"]["low"] == 159.0 and (tmp_path / "cardmarket" / "2026-10-19.json").exists()
     assert cardmarket.latest_day()["day"] == "2026-10-19"
+
+
+def test_foil_fallback():
+    from tcgwatcher.cardmarket import _f
+    r = {"low": 10, "trend": 0, "avg30": None, "low-foil": 12.5, "trend-foil": 14.0, "avg30-foil": 13.2}
+    assert _f(r, "low") == 10 and _f(r, "trend") == 14.0 and _f(r, "avg30") == 13.2
+    assert _f({"avg7": 3.0, "avg7-foil": 9.0}, "avg7") == 3.0

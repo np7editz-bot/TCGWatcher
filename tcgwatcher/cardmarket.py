@@ -33,6 +33,13 @@ def fetch_files(game_id=13, session=None):
     return out
 
 
+def _f(row, field):
+    """Price-guide value with the foil fallback: Cardmarket keeps `low/trend/avg*` for the non-foil version and
+    `*-foil` for the foil one; Fusion World hits are foil-only, so their sales live in the foil fields (0/None elsewhere)."""
+    v = row.get(field)
+    return v if v else row.get(f"{field}-foil")
+
+
 def join(files, latest, ct_doc):
     """Keep only what we use: price-guide rows for our chase cards (via CardTrader card_market_ids) and sealed boxes."""
     prices = {p["idProduct"]: p for p in files["prices"].get("priceGuides", [])}
@@ -49,9 +56,10 @@ def join(files, latest, ct_doc):
             rows = [prices[i] for i in ids if i in prices]
             if not rows:
                 continue
-            r = min(rows, key=lambda x: x.get("low") or 9e9)         # several Cardmarket products can map to one card (versions)
-            cards[c["key"]] = {"idProduct": r["idProduct"], "low": r.get("low"), "trend": r.get("trend"),
-                               "avg1": r.get("avg1"), "avg7": r.get("avg7"), "avg30": r.get("avg30")}
+            r = min(rows, key=lambda x: _f(x, "low") or 9e9)         # several Cardmarket products can map to one card (versions)
+            cards[c["key"]] = {"idProduct": r["idProduct"], "low": _f(r, "low"), "trend": _f(r, "trend"),
+                               "avg1": _f(r, "avg1"), "avg7": _f(r, "avg7"), "avg30": _f(r, "avg30"),
+                               "foil": not r.get("avg30") and bool(r.get("avg30-foil"))}
         sealed = [p for p in files["nonsingles"].get("products", []) if "Booster Box" in p.get("name", "")]
         for s in g.get("sets", []):
             name = (s.get("name") or "").lower()
