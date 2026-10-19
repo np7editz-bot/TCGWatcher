@@ -65,7 +65,8 @@ def main(argv=None):
         from .build import LATEST
         latest = store.read_json(LATEST)
         if latest:
-            open_positions(day, latest, alerts)
+            active = store.read_json(store.state_path("alerts"), {}).get("active", {})
+            open_positions(day, latest, alerts, active_buy={k.split(":")[-1] for k in active if k.startswith("buy:")})
             if a.step == "all" and dt.date.today().day == 1:
                 paper_report(day, latest, send=not a.no_send)
     if a.step == "paper":

@@ -28,8 +28,9 @@ def _save(doc):
     store.write_json(PATH, doc, compact=False)
 
 
-def open_positions(day, latest, msgs):
-    """Called after alerts: turn today's signals into positions (idempotent per key+day) and open the monthly control cohort."""
+def open_positions(day, latest, msgs, active_buy=()):
+    """Called after alerts: turn today's signals into positions (idempotent per key+day) and open the monthly control cohort.
+    `active_buy` = set codes whose KOOP episode is still active (alerted earlier) — they count as held, never as control."""
     doc = _load()
     have = {(p["kind"], p["key"], p["opened"]) for p in doc["positions"]}
     have_keys = {(p["kind"], p["key"]) for p in doc["positions"] if p["status"] == "open"}
@@ -43,13 +44,12 @@ def open_positions(day, latest, msgs):
         pos.update({"opened": day, "status": "open"})
         doc["positions"].append(pos); added.append(pos)
 
-    for m in msgs:
-        if m["kind"] == "buy":
-            code = m["key"].split(":")[-1]
-            s = sets.get(code)
-            if s and s.get("best_buy"):
-                add({"kind": "box", "key": m["key"], "code": code, "name": s["name"], "price": s["best_buy"]["price"],
-                     "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"]})
+    buy_codes = {m["key"].split(":")[-1] for m in msgs if m["kind"] == "buy"} | set(active_buy)
+    for code in sorted(buy_codes):
+        s = sets.get(code)
+        if s and s.get("best_buy"):
+            add({"kind": "box", "key": f"buy:dbfw:{code}", "code": code, "name": s["name"], "price": s["best_buy"]["price"],
+                 "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"]})
     cards = {c["key"]: c for c in g.get("cards", [])}
     for sg in g.get("grade_signals", [])[:5]:
         c = cards.get(sg["key"]) or {}
@@ -63,7 +63,7 @@ def open_positions(day, latest, msgs):
     # control cohort: once per month, every scored set without a buy signal
     month = day[:7]
     if not any(p["kind"] == "control" and p["opened"][:7] == month for p in doc["positions"]):
-        buy_codes = {m["key"].split(":")[-1] for m in msgs if m["kind"] == "buy"} | {p["code"] for p in doc["positions"] if p["kind"] == "box" and p["status"] == "open"}
+        buy_codes |= {p["code"] for p in doc["positions"] if p["kind"] == "box" and p["status"] == "open"}
         for code, s in sets.items():
             if code in buy_codes or not s.get("best_buy") or "no_cards" in s["flags"] or "presale" in s["flags"]:
                 continue

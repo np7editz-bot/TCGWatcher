@@ -10,31 +10,6 @@
    "ratio": 0.995,
    "since": "2026-10-18"
   },
-  "slab:dbfw:dbfw:FB06:FB06-103:AA": {
-   "net": 146.63,
-   "raw": 19.99,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:FB10:FB10-123:SAA": {
-   "net": 1081.94,
-   "raw": 305.0,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:SB01:FB04-051:GOLD": {
-   "net": 748.52,
-   "raw": 244.73,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:SB01:SB01-001:GOLD": {
-   "net": 430.04,
-   "raw": 291.63,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:SB01:SB01-026:AA": {
-   "net": 177.96,
-   "raw": 46.52,
-   "since": "2026-10-18"
-  },
   "slab_digest:dbfw": {
    "day": "2026-10-18",
    "ids": [

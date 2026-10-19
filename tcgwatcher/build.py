@@ -12,7 +12,7 @@ from .history import load_series, change_pct, sparkline
 from .fx import usd_eur
 from .cardtrader import latest_day as ct_latest, eu_prices_by_tcgplayer
 from .ebay import latest_day as ebay_latest, slab_signals, grade_signals
-from . import store, SITE
+from . import store, SITE, ROOT
 
 log = logging.getLogger("tcgwatcher.build")
 LATEST = SITE / "data" / "latest.json"
@@ -109,6 +109,8 @@ def build(day, quality=None):
             "all_sets": [{"code": c, "name": v["name"], "kind": v["kind"], "published": v["published"]} for c, v in m["sets"].items()],
             "quality": quality.get("games", {}).get(gid, {}).get("status", "unknown"),
         }
+    out["paper"] = paper_summary(out)
+    out["news"] = recent_news()
     store.write_json(LATEST, out)
     log.info("published %s (%d games, quality %s)", LATEST, len(out["games"]), out["quality"]["status"])
     return out
@@ -185,6 +187,33 @@ def retail_by_set(game_id):
     for code in by:
         by[code].sort(key=lambda x: (x["status"] not in ("in_stock", "preorder"), x["price"] or 9e9))
     return by
+
+
+def paper_summary(latest):
+    """Open paper positions valued with today's data (same yardstick as the purchase) + totals per kind."""
+    from .paper import _load, value_now
+    from .ebay import latest_day as ebay_latest
+    eb = ebay_latest()
+    pos = [p for p in _load()["positions"] if p["status"] == "open"]
+    rows, totals = [], {}
+    for p in pos:
+        v, ev_now = value_now(p, latest, eb)
+        rows.append({**p, "value": v, "pnl": (round(v - p["price"], 2) if v is not None else None), "ev_now": ev_now})
+        t = totals.setdefault(p["kind"], {"n": 0, "cost": 0.0, "value": 0.0, "valued": 0, "wins": 0})
+        t["n"] += 1; t["cost"] += p["price"]
+        if v is not None:
+            t["value"] += v; t["valued"] += 1; t["wins"] += v > p["price"]
+    for t in totals.values():
+        t["cost"] = round(t["cost"], 2); t["value"] = round(t["value"], 2)
+    reports = sorted(p.name for p in (ROOT / "docs").glob("paper-????-??.md")) if (ROOT / "docs").exists() else []
+    return {"positions": rows, "totals": totals, "last_report": reports[-1] if reports else None}
+
+
+def recent_news(n=12):
+    st = store.read_json(store.state_path("news"), {"seen": {}})
+    items = [{"source": k.split("|")[0], "url": k.split("|", 1)[1], **v} for k, v in st["seen"].items()]
+    items.sort(key=lambda i: (i.get("date") or "", i.get("seen") or ""), reverse=True)
+    return items[:n]
 
 
 def _now():
