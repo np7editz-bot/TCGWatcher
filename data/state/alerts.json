@@ -19,15 +19,15 @@
   "FB04": 0.383,
   "FB05": 0.434,
   "FB06": 0.229,
-  "FB07": 0.382,
+  "FB07": 0.426,
   "FB08": 0.586,
   "FB09": 0.928,
   "FB10": 0.618,
   "FB11": 1.034,
   "FB12": 0.0,
   "SB01": 0.395,
-  "SB02": 2.245,
-  "ST01": 0.374
+  "SB02": 0.365,
+  "ST01": 0.209
  },
  "quality_fp": "dbfw:duplicate_keys:dbfw:FB10:FB10-068:,dbfw:FS03:FS03-16:|dbfw:number_name_mismatch:693131:Piccolo - FB10-067!=FB10-068",
  "seen_groups": {
