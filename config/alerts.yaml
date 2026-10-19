@@ -11,6 +11,13 @@ slabs:                     # eBay graded copies (EBAY_DE/EBAY_NL, incl. shipping
   max_vs_raw: 1.15         # 🏆 SLAB-KOOP when the cheapest PSA/BGS/CGC 10 (else 9.5, 9) costs ≤ 1.15 × raw
   min_raw_eur: 50
   grades: [10, 9.5, 9]
+grading:                   # 📈 GRADE-KANS: buy raw, grade, sell graded (asks as proxy for sales)
+  gem_rate: 0.40           # share of raw copies that come back PSA 10 (conservative for modern foil alt-arts)
+  grading_cost_eur: 25     # PSA bulk via EU submitter incl. shipping
+  fee_pct: 13              # eBay final value fee + payment
+  min_psa10_n: 3           # liquidity: at least 3 PSA 10 listings
+  min_profit_eur: 50       # expected net per card
+  min_roi: 0.5             # net ÷ raw price
 briefing: weekly           # daily | weekly (Sunday) | off
 ratio:
   threshold: 0.60          # legacy US ratio (page only; no longer alerts)

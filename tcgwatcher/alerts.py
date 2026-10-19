@@ -120,6 +120,23 @@ def run(day, quality=None, send=True):
                        f"{sg['n']} graded aanbieding(en) op eBay DE/NL · {sg['set']}\n"
                        f"<i>Gegradeerd exemplaar voor (bijna) de prijs van raw; grading kost zelf €20–30 en maanden.</i>")
                 msgs.append(_m(key, "slab", txt, photo=sg.get("image"), buttons=[[("🛒 eBay", sg["url"]), ("📊 Radar", SITE_URL)]]))
+            # 4c. grading candidates: raw cheap, PSA 10 expensive and liquid → buy raw, grade, sell
+            for gs in gdata.get("grade_signals", []):
+                key = f"grade:{gid}:{gs['key']}"
+                if gs["set"] in muted:
+                    continue
+                ep = state["active"].get(key)
+                if ep and not gs["net"] >= ep["net"] * 1.25:
+                    continue
+                state["active"][key] = {"since": (ep or {}).get("since", day), "net": gs["net"]}
+                txt = (f"📈 <b>GRADE-KANS · {_card(gs['name'], gs['number'])} {gs['class'].replace('_AA', ' AA')}</b>\n"
+                       f"Raw <b>€{gs['raw_eur']:.0f}</b> (TCGplayer) · PSA 10 op eBay mediaan <b>€{gs['psa10']:.0f}</b> ({gs['psa10_n']} st.) · PSA 9 €{gs['psa9']:.0f}\n"
+                       f"Verwachte opbrengst €{gs['expected']:.0f} → netto <b>€{gs['net']:.0f}</b> per kaart ({gs['roi']:.0%} op raw) na grading (€25) en fees (13%)\n"
+                       f"<i>Aanname 40% PSA 10; vraagprijzen als proxy voor verkopen. {gs['set']}</i>")
+                msgs.append(_m(key, "grade", txt, photo=gs.get("image"), buttons=[[("🛒 PSA 10 op eBay", gs["url"]), ("📊 Radar", SITE_URL)]]))
+            for key in [k for k in state["active"] if k.startswith(f"grade:{gid}:")]:
+                if not any(f"grade:{gid}:{gs['key']}" == key for gs in gdata.get("grade_signals", [])):
+                    state["active"].pop(key, None)
             for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
                 if not any(f"slab:{gid}:{sg['key']}:{sg['grade']}" == key for sg in gdata.get("slab_signals", [])):
                     state["active"].pop(key, None)

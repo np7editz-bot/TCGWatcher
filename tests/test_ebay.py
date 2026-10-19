@@ -47,3 +47,16 @@ def test_fetch_day_and_slab_signal(tmp_path, monkeypatch):
     # Gogeta PSA10 €1504 vs raw €1800 → 0.84 ✔ ; Goku PSA10 €1104.5 vs raw €1170 → 0.94 ✔ (sorted by ratio)
     assert [(s["number"], s["grade"], s["ratio"]) for s in sig] == [("FB09-123", 10, 0.84), ("FB09-025", 10, 0.94)]
     assert ebay.latest_day()["day"] == "2026-10-19"
+
+
+def test_grade_signal_cheap_raw_expensive_psa10(tmp_path, monkeypatch):
+    """Raw €80, PSA10 median €400 (4 listings), PSA9 €150 → expected 0.4×400+0.6×150=250 → net 250×0.87−25−80=112.5 ✔."""
+    doc = {"cards": {"k": {"number": "FB10-097", "name": "Cell", "set": "FB10", "class": "SR_AA", "raw_eur": 80.0, "image": None,
+                           "best": {"10.0": {"low": 350.0, "median": 400.0, "n": 4, "url": "u", "grader": "PSA"},
+                                    "9.0": {"low": 120.0, "median": 150.0, "n": 2, "url": "u9", "grader": "PSA"}}},
+                     "thin": {"number": "FB10-001", "name": "Goku", "set": "FB10", "class": "SR_AA", "raw_eur": 80.0,
+                              "best": {"10.0": {"low": 350.0, "median": 400.0, "n": 2, "url": "u", "grader": "PSA"}}}}}
+    cfg = {"gem_rate": 0.4, "grading_cost_eur": 25, "fee_pct": 13, "min_psa10_n": 3, "min_profit_eur": 50, "min_roi": 0.5}
+    sig = ebay.grade_signals(doc, cfg)
+    assert [s["number"] for s in sig] == ["FB10-097"] and sig[0]["net"] == 112.5 and sig[0]["roi"] == 1.41
+    assert ebay.grade_signals(doc, dict(cfg, min_profit_eur=200)) == []

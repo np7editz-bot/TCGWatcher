@@ -96,14 +96,15 @@ def parse_listing(item, number, fx_usd_eur):
             "location": (item.get("itemLocation") or {}).get("country")}
 
 
-def targets(latest, per_set=6):
-    """Cards worth grading-gap watching: the most valuable market-priced hits per set (★★, ★, SCR), raw ≥ €40."""
+def targets(latest, per_set=10, min_raw_eur=20):
+    """Cards worth watching: the most valuable market-priced hits per set (★★, ★, SCR, SR-AA), raw ≥ €20 —
+    broad enough to catch cheap raws with expensive PSA 10s (grading candidates)."""
     out = []
     g = latest["games"].get("dbfw", {})
     fx = latest["fx"]["usd_eur"]
     by = {}
     for c in g.get("cards", []):
-        if c["price"] and c["price_src"] == "market" and c["class"] in ("SAA", "SCR_AA", "SCR", "SR_AA") and c["price"] * fx >= 40:
+        if c["price"] and c["price_src"] == "market" and c["class"] in ("SAA", "SCR_AA", "SCR", "SR_AA") and c["price"] * fx >= min_raw_eur:
             by.setdefault(c["set"], []).append(c)
     for code, cs in by.items():
         cs.sort(key=lambda c: -c["price"])
@@ -178,4 +179,33 @@ def slab_signals(doc, cfg=None):
                             "n": b["n"], "url": b["url"], "image": c.get("image")})
                 break
     out.sort(key=lambda s: s["ratio"])
+    return out
+
+
+def grade_signals(doc, cfg=None):
+    """Grading candidates: buy raw, grade, sell graded.
+
+    expected_sale = gem_rate × median PSA10 ask + (1 − gem_rate) × median PSA9 ask (PSA9 missing → 0.6 × PSA10)
+    net = expected_sale × (1 − fee_pct) − grading_cost − raw.  Signal when net ≥ min_profit and net/raw ≥ min_roi,
+    with at least `min_psa10_n` PSA10 listings (liquidity). Asks are a proxy for sales — sold data needs the Marketplace
+    Insights API, which eBay does not grant to new apps.
+    """
+    cfg = cfg or load_alerts().get("grading", {})
+    gem, cost, fee = cfg.get("gem_rate", 0.4), cfg.get("grading_cost_eur", 25), cfg.get("fee_pct", 13) / 100
+    out = []
+    for key, c in (doc or {}).get("cards", {}).items():
+        b10 = c["best"].get("10.0")
+        if not b10 or b10["n"] < cfg.get("min_psa10_n", 3):
+            continue
+        p10 = b10["median"]
+        b9 = c["best"].get("9.0") or c["best"].get("9.5")
+        p9 = b9["median"] if b9 else 0.6 * p10
+        expected = gem * p10 + (1 - gem) * p9
+        net = expected * (1 - fee) - cost - c["raw_eur"]
+        roi = net / c["raw_eur"] if c["raw_eur"] else 0
+        if net >= cfg.get("min_profit_eur", 50) and roi >= cfg.get("min_roi", 0.5):
+            out.append({"key": key, "number": c["number"], "name": c["name"], "set": c["set"], "class": c["class"], "raw_eur": c["raw_eur"],
+                        "psa10": round(p10, 2), "psa10_n": b10["n"], "psa9": round(p9, 2), "expected": round(expected, 2),
+                        "net": round(net, 2), "roi": round(roi, 2), "url": b10["url"], "image": c.get("image")})
+    out.sort(key=lambda s: -s["net"])
     return out

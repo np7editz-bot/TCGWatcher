@@ -11,7 +11,7 @@ from .chase import score_sets
 from .history import load_series, change_pct, sparkline
 from .fx import usd_eur
 from .cardtrader import latest_day as ct_latest, eu_prices_by_tcgplayer
-from .ebay import latest_day as ebay_latest, slab_signals
+from .ebay import latest_day as ebay_latest, slab_signals, grade_signals
 from . import store, SITE
 
 log = logging.getLogger("tcgwatcher.build")
@@ -102,6 +102,7 @@ def build(day, quality=None):
             "box": g["box"],
             "sets": sets_scored, "cards": cards, "starters": other_sets,
             "slab_signals": slab_signals(eb) if eb else [],
+            "grade_signals": grade_signals(eb) if eb else [],
             "slabs_day": eb["day"] if eb else None,
             "all_sets": [{"code": c, "name": v["name"], "kind": v["kind"], "published": v["published"]} for c, v in m["sets"].items()],
             "quality": quality.get("games", {}).get(gid, {}).get("status", "unknown"),
