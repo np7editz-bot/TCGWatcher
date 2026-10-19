@@ -64,9 +64,652 @@
   "SB02": 0.365,
   "ST01": 0.209
  },
- "quality_fp": "dbs:no_data_yet:",
+ "quality_fp": "dbs:duplicate_keys:dbs:BE25:BT17-148:,dbs:BE25:M-11:,dbs:BT21:BT21-008:,dbs:BT21:BT21-011:,dbs:BT21:BT21-023:",
  "seen_groups": {
-  "27": {},
+  "27": {
+   "17672": {
+    "abbr": "DBS-B19",
+    "name": "Fighter's Ambition",
+    "published": "2022-11-18",
+    "seen": "2026-10-18"
+   },
+   "17673": {
+    "abbr": "DBS-B19PRE",
+    "name": "Fighter's Ambition Pre-Release Cards",
+    "published": "2022-11-11",
+    "seen": "2026-10-18"
+   },
+   "17696": {
+    "abbr": "DBS-B20",
+    "name": "Power Absorbed",
+    "published": "2023-03-17",
+    "seen": "2026-10-18"
+   },
+   "17697": {
+    "abbr": "DBS-B20PRE",
+    "name": "Power Absorbed Pre-Release Cards",
+    "published": "2023-03-10",
+    "seen": "2026-10-18"
+   },
+   "1962": {
+    "abbr": "DBS-B01",
+    "name": "Galactic Battle",
+    "published": "2017-07-28",
+    "seen": "2026-10-18"
+   },
+   "1963": {
+    "abbr": "PR",
+    "name": "Promotion Cards",
+    "published": "2017-07-28",
+    "seen": "2026-10-18"
+   },
+   "2070": {
+    "abbr": "DBS-B02",
+    "name": "Union Force",
+    "published": "2017-11-03",
+    "seen": "2026-10-18"
+   },
+   "2147": {
+    "abbr": "DB0",
+    "name": "Draft Boxes",
+    "published": "2017-12-08",
+    "seen": "2026-10-18"
+   },
+   "2170": {
+    "abbr": "DBS-BE01",
+    "name": "Expansion Deck Box Set 01: Mighty Heroes",
+    "published": "2018-01-26",
+    "seen": "2026-10-18"
+   },
+   "2171": {
+    "abbr": "DBS-BE02",
+    "name": "Expansion Deck Box Set 02: Dark Demon's Villains",
+    "published": "2018-01-26",
+    "seen": "2026-10-18"
+   },
+   "2173": {
+    "abbr": "DBS-B03",
+    "name": "Cross Worlds",
+    "published": "2018-03-30",
+    "seen": "2026-10-18"
+   },
+   "2217": {
+    "abbr": "DBS-TB01",
+    "name": "Tournament of Power",
+    "published": "2018-05-31",
+    "seen": "2026-10-18"
+   },
+   "2218": {
+    "abbr": "DBS-B04",
+    "name": "Colossal Warfare",
+    "published": "2018-07-20",
+    "seen": "2026-10-18"
+   },
+   "2219": {
+    "abbr": "DBS-BE03",
+    "name": "Expansion Deck Box Set 03: Ultimate Box",
+    "published": "2018-08-02",
+    "seen": "2026-10-18"
+   },
+   "2264": {
+    "abbr": "OVRS",
+    "name": "Oversized Cards",
+    "published": "2018-07-13",
+    "seen": "2026-10-18"
+   },
+   "2285": {
+    "abbr": "DBS-B05",
+    "name": "Miraculous Revival",
+    "published": "2018-11-09",
+    "seen": "2026-10-18"
+   },
+   "22874": {
+    "abbr": "CSV3",
+    "name": "Collector's Selection Vol. 3",
+    "published": "2023-04-28",
+    "seen": "2026-10-18"
+   },
+   "2297": {
+    "abbr": "DBS-TB02",
+    "name": "World Martial Arts Tournament",
+    "published": "2018-09-21",
+    "seen": "2026-10-18"
+   },
+   "23018": {
+    "abbr": "DBS-BE22",
+    "name": "Expansion Deck Box Set 22: Ultimate Deck 2023",
+    "published": "2023-05-19",
+    "seen": "2026-10-18"
+   },
+   "23115": {
+    "abbr": "BT21",
+    "name": "Wild Resurgence",
+    "published": "2023-06-16",
+    "seen": "2026-10-18"
+   },
+   "23116": {
+    "abbr": "DBS-B21PRE",
+    "name": "Wild Resurgence Pre-Release Cards",
+    "published": "2023-06-09",
+    "seen": "2026-10-18"
+   },
+   "23175": {
+    "abbr": "BT22",
+    "name": "Critical Blow",
+    "published": "2023-09-08",
+    "seen": "2026-10-18"
+   },
+   "23176": {
+    "abbr": "DBS-B22PRE",
+    "name": "Critical Blow Pre-Release Cards",
+    "published": "2023-09-01",
+    "seen": "2026-10-18"
+   },
+   "23187": {
+    "abbr": "DBS-BE23",
+    "name": "Expansion Deck Box Set 23: Premium Anniversary Box 2023",
+    "published": "2023-10-13",
+    "seen": "2026-10-18"
+   },
+   "23241": {
+    "abbr": "DBS_BSB",
+    "name": "Dragon Ball Super Battle Set Bundles",
+    "published": "2023-06-30",
+    "seen": "2026-10-18"
+   },
+   "2325": {
+    "abbr": "MSP",
+    "name": "Dragon Ball Super: Miscellaneous Sealed Product",
+    "published": "2018-11-23",
+    "seen": "2026-10-18"
+   },
+   "23258": {
+    "abbr": "BT23",
+    "name": "Perfect Combination",
+    "published": "2023-12-01",
+    "seen": "2026-10-18"
+   },
+   "23325": {
+    "abbr": "BT24",
+    "name": "Beyond Generations",
+    "published": "2024-03-22",
+    "seen": "2026-10-18"
+   },
+   "23326": {
+    "abbr": "FB01",
+    "name": "Fusion World: Awakened Pulse",
+    "published": "2024-02-23",
+    "seen": "2026-10-18"
+   },
+   "23347": {
+    "abbr": "DBS-B23PRE",
+    "name": "Perfect Combination Pre-Release Cards",
+    "published": "2023-11-24",
+    "seen": "2026-10-18"
+   },
+   "23415": {
+    "abbr": "BT25",
+    "name": "Legend of the Dragon Balls",
+    "published": "2024-07-19",
+    "seen": "2026-10-18"
+   },
+   "23463": {
+    "abbr": "BT24_PR",
+    "name": "Beyond Generations Pre-Release Cards",
+    "published": "2024-03-15",
+    "seen": "2026-10-18"
+   },
+   "23530": {
+    "abbr": "BT25_PR",
+    "name": "Legend of the Dragon Balls Pre-Release Cards",
+    "published": "2024-07-12",
+    "seen": "2026-10-18"
+   },
+   "23593": {
+    "abbr": "DBS-BE24",
+    "name": "Expansion Deck Box Set 24: Premium 7th Anniversary Box 2024",
+    "published": "2024-09-20",
+    "seen": "2026-10-18"
+   },
+   "23646": {
+    "abbr": "BT26",
+    "name": "Ultimate Advent",
+    "published": "2024-10-11",
+    "seen": "2026-10-18"
+   },
+   "23647": {
+    "abbr": "BT26",
+    "name": "Ultimate Advent Pre-Release Cards",
+    "published": "2024-10-11",
+    "seen": "2026-10-18"
+   },
+   "2367": {
+    "abbr": "DBS-TB03",
+    "name": "Clash of Fates",
+    "published": "2019-01-18",
+    "seen": "2026-10-18"
+   },
+   "2392": {
+    "abbr": "DBS-B06",
+    "name": "Destroyer Kings",
+    "published": "2019-03-15",
+    "seen": "2026-10-18"
+   },
+   "24166": {
+    "abbr": "BT27",
+    "name": "History of Z",
+    "published": "2025-03-07",
+    "seen": "2026-10-18"
+   },
+   "24188": {
+    "abbr": "BT27_PR",
+    "name": "History of Z Pre-Release Cards",
+    "published": "2025-02-27",
+    "seen": "2026-10-18"
+   },
+   "2430": {
+    "abbr": "DBS-B06PRE",
+    "name": "Destroyer Kings Pre-Release Cards",
+    "published": "2019-03-09",
+    "seen": "2026-10-18"
+   },
+   "2431": {
+    "abbr": "DBS-BE05",
+    "name": "Expansion Deck Box Set 05: Unity of Destruction",
+    "published": "2019-05-17",
+    "seen": "2026-10-18"
+   },
+   "2432": {
+    "abbr": "DBS-BE04",
+    "name": "Expansion Deck Box Set 04: Unity of Saiyans",
+    "published": "2019-05-17",
+    "seen": "2026-10-18"
+   },
+   "2433": {
+    "abbr": "DBS-EB06",
+    "name": "Special Anniversary Set",
+    "published": "2019-06-21",
+    "seen": "2026-10-18"
+   },
+   "24359": {
+    "abbr": "BE25",
+    "name": "Expansion Deck Box Set 25: Premium Anniversary Box 2025",
+    "published": "2025-07-18",
+    "seen": "2026-10-18"
+   },
+   "24402": {
+    "abbr": "BT28",
+    "name": "Prismatic Clash",
+    "published": "2025-09-05",
+    "seen": "2026-10-18"
+   },
+   "24429": {
+    "abbr": "BT28_PR",
+    "name": "Prismatic Clash Release Event",
+    "published": "2025-09-05",
+    "seen": "2026-10-18"
+   },
+   "24565": {
+    "abbr": "BT29",
+    "name": "Fearsome Rivals",
+    "published": "2026-01-02",
+    "seen": "2026-10-18"
+   },
+   "24566": {
+    "abbr": "BT29_PR",
+    "name": "Fearsome Rivals Release Event",
+    "published": "2026-01-02",
+    "seen": "2026-10-18"
+   },
+   "24632": {
+    "abbr": "BT30",
+    "name": "Three Glorious Fighters",
+    "published": "2026-03-27",
+    "seen": "2026-10-18"
+   },
+   "24654": {
+    "abbr": "BT30_PR",
+    "name": "Three Glorious Fighters Release Event",
+    "published": "2026-03-27",
+    "seen": "2026-10-18"
+   },
+   "24670": {
+    "abbr": "BT31",
+    "name": "Impact Beyond Dimensions",
+    "published": "2026-07-03",
+    "seen": "2026-10-18"
+   },
+   "2473": {
+    "abbr": "DBS-B07",
+    "name": "Assault of the Saiyans",
+    "published": "2019-08-02",
+    "seen": "2026-10-18"
+   },
+   "24741": {
+    "abbr": "BT31_PR",
+    "name": "Impact Beyond Dimensions Release Event",
+    "published": "2026-07-03",
+    "seen": "2026-10-18"
+   },
+   "24807": {
+    "abbr": "BT32",
+    "name": "Chromatic Ascension",
+    "published": "2026-11-27",
+    "seen": "2026-10-18"
+   },
+   "2515": {
+    "abbr": "DB1",
+    "name": "Draft Box 04 - Dragon Brawl",
+    "published": "2019-09-20",
+    "seen": "2026-10-18"
+   },
+   "2532": {
+    "abbr": "DBS-BE07",
+    "name": "Expansion Deck Box Set 07: Magnificent Collection - Fusion Hero",
+    "published": "2019-10-25",
+    "seen": "2026-10-18"
+   },
+   "2533": {
+    "abbr": "DBS-BE08",
+    "name": "Expansion Deck Box Set 08: Magnificent Collection - Forsaken Warrior",
+    "published": "2019-10-25",
+    "seen": "2026-10-18"
+   },
+   "2536": {
+    "abbr": "DBS-B08",
+    "name": "Malicious Machinations",
+    "published": "2019-11-29",
+    "seen": "2026-10-18"
+   },
+   "2565": {
+    "abbr": "TPR",
+    "name": "Tournament Promotion Cards",
+    "published": "2026-10-18",
+    "seen": "2026-10-18"
+   },
+   "2566": {
+    "abbr": "JPR",
+    "name": "Judge Promotion Cards",
+    "published": "2026-10-18",
+    "seen": "2026-10-18"
+   },
+   "2586": {
+    "abbr": "DBS-EB09",
+    "name": "Expansion Deck Box Set 09: Saiyan Surge",
+    "published": "2020-01-17",
+    "seen": "2026-10-18"
+   },
+   "2587": {
+    "abbr": "DBS-EB10",
+    "name": "Expansion Deck Box Set 10: Namekian Surge",
+    "published": "2020-01-17",
+    "seen": "2026-10-18"
+   },
+   "2590": {
+    "abbr": "DBS-B09",
+    "name": "Universal Onslaught",
+    "published": "2020-02-14",
+    "seen": "2026-10-18"
+   },
+   "2618": {
+    "abbr": "DB2",
+    "name": "Draft Box 05 - Divine Multiverse",
+    "published": "2020-03-27",
+    "seen": "2026-10-18"
+   },
+   "2627": {
+    "abbr": "DBS-BE11",
+    "name": "Expansion Deck Box Set 11: Universe 7 Unison",
+    "published": "2020-05-01",
+    "seen": "2026-10-18"
+   },
+   "2628": {
+    "abbr": "DBS-BE12",
+    "name": "Expansion Deck Box Set 12: Universe 11 Unison",
+    "published": "2020-05-01",
+    "seen": "2026-10-18"
+   },
+   "2647": {
+    "abbr": "DBS-B10",
+    "name": "Rise of the Unison Warrior",
+    "published": "2020-07-17",
+    "seen": "2026-10-18"
+   },
+   "2656": {
+    "abbr": "DBS-BE13",
+    "name": "Special Anniversary Set 2020",
+    "published": "2020-08-07",
+    "seen": "2026-10-18"
+   },
+   "2691": {
+    "abbr": "DBS-B11",
+    "name": "Vermilion Bloodline",
+    "published": "2020-09-25",
+    "seen": "2026-10-18"
+   },
+   "2706": {
+    "abbr": "DBS-BE14",
+    "name": "Expansion Deck Box Set 14: Battle Advanced",
+    "published": "2020-11-20",
+    "seen": "2026-10-18"
+   },
+   "2707": {
+    "abbr": "DBS-BE15",
+    "name": "Expansion Deck Box Set 15: Battle Enhanced",
+    "published": "2020-11-20",
+    "seen": "2026-10-18"
+   },
+   "2720": {
+    "abbr": "DB3",
+    "name": "Draft Box 06 - Giant Force",
+    "published": "2020-11-13",
+    "seen": "2026-10-18"
+   },
+   "2753": {
+    "abbr": "RP20",
+    "name": "Revision Pack 2020",
+    "published": "2020-11-01",
+    "seen": "2026-10-18"
+   },
+   "2755": {
+    "abbr": "DBS-B12",
+    "name": "Vicious Rejuvenation",
+    "published": "2021-01-22",
+    "seen": "2026-10-18"
+   },
+   "2756": {
+    "abbr": "DBS-BE16",
+    "name": "Expansion Deck Box Set 16: Ultimate Deck",
+    "published": "2021-01-22",
+    "seen": "2026-10-18"
+   },
+   "2759": {
+    "abbr": "EB-01",
+    "name": "Battle Evolution Booster",
+    "published": "2021-03-05",
+    "seen": "2026-10-18"
+   },
+   "2796": {
+    "abbr": "DBS-B13",
+    "name": "Supreme Rivalry",
+    "published": "2021-05-07",
+    "seen": "2026-10-18"
+   },
+   "2825": {
+    "abbr": "DBS-BE17",
+    "name": "Expansion Deck Box Set 17: Saiyan Boost",
+    "published": "2021-06-25",
+    "seen": "2026-10-18"
+   },
+   "2826": {
+    "abbr": "DBS-BE18",
+    "name": "Expansion Deck Box Set 18: Namekian Boost",
+    "published": "2021-06-25",
+    "seen": "2026-10-18"
+   },
+   "2858": {
+    "abbr": "DBS-B14",
+    "name": "Cross Spirits",
+    "published": "2021-08-13",
+    "seen": "2026-10-18"
+   },
+   "2871": {
+    "abbr": "CSV1",
+    "name": "Collector's Selection Vol. 1",
+    "published": "2021-07-07",
+    "seen": "2026-10-18"
+   },
+   "2873": {
+    "abbr": "DBS-BE19",
+    "name": "Special Anniversary Set 2021",
+    "published": "2021-09-03",
+    "seen": "2026-10-18"
+   },
+   "2910": {
+    "abbr": "DBS-B10-RE",
+    "name": "Rise of the Unison Warrior (2nd Edition)",
+    "published": "2022-01-08",
+    "seen": "2026-10-18"
+   },
+   "2911": {
+    "abbr": "DBS-B11-RE",
+    "name": "Vermilion Bloodline (2nd Edition)",
+    "published": "2022-01-08",
+    "seen": "2026-10-18"
+   },
+   "2912": {
+    "abbr": "MB-01",
+    "name": "Mythic Booster",
+    "published": "2022-01-28",
+    "seen": "2026-10-18"
+   },
+   "2913": {
+    "abbr": "DBS-B15",
+    "name": "Saiyan Showdown",
+    "published": "2021-11-19",
+    "seen": "2026-10-18"
+   },
+   "2946": {
+    "abbr": "DBS-B15PRE",
+    "name": "Saiyan Showdown Pre-Release Cards",
+    "published": "2021-11-12",
+    "seen": "2026-10-18"
+   },
+   "2949": {
+    "abbr": "DBS-B14PRE",
+    "name": "Cross Spirits Pre-Release Cards",
+    "published": "2021-11-18",
+    "seen": "2026-10-18"
+   },
+   "2950": {
+    "abbr": "DBS-B13PRE",
+    "name": "Supreme Rivalry Pre-Release Cards",
+    "published": "2021-11-18",
+    "seen": "2026-10-18"
+   },
+   "2951": {
+    "abbr": "DBS-B12PRE",
+    "name": "Vicious Rejuvenation Pre-Release Cards",
+    "published": "2021-11-18",
+    "seen": "2026-10-18"
+   },
+   "2952": {
+    "abbr": "DBS-B11PRE",
+    "name": "Vermilion Bloodline Pre-Release Cards",
+    "published": "2021-11-18",
+    "seen": "2026-10-18"
+   },
+   "2953": {
+    "abbr": "DBS-B10PRE",
+    "name": "Rise of the Unison Warrior Pre-Release Cards",
+    "published": "2021-11-18",
+    "seen": "2026-10-18"
+   },
+   "2954": {
+    "abbr": "DBS-B09PRE",
+    "name": "Universal Onslaught Pre-Release Cards",
+    "published": "2021-11-18",
+    "seen": "2026-10-18"
+   },
+   "2956": {
+    "abbr": "DBS-B08PRE",
+    "name": "Malicious Machinations Pre-Release Cards",
+    "published": "2021-11-19",
+    "seen": "2026-10-18"
+   },
+   "2957": {
+    "abbr": "DBS-B07PRE",
+    "name": "Assault of the Saiyans Pre-Release Cards",
+    "published": "2021-11-19",
+    "seen": "2026-10-18"
+   },
+   "2986": {
+    "abbr": "DBS-B16",
+    "name": "Realm of the Gods",
+    "published": "2022-03-11",
+    "seen": "2026-10-18"
+   },
+   "3003": {
+    "abbr": "DBS-B16PRE",
+    "name": "Realm of the Gods Pre-Release Cards",
+    "published": "2022-03-04",
+    "seen": "2026-10-18"
+   },
+   "3027": {
+    "abbr": "DBS-BE20",
+    "name": "Expansion Deck Box Set 20: Ultimate Deck 2022",
+    "published": "2022-05-27",
+    "seen": "2026-10-18"
+   },
+   "3028": {
+    "abbr": "CSV2",
+    "name": "Collector's Selection Vol. 2",
+    "published": "2022-06-24",
+    "seen": "2026-10-18"
+   },
+   "3030": {
+    "abbr": "DBS-B17",
+    "name": "Ultimate Squad",
+    "published": "2022-06-03",
+    "seen": "2026-10-18"
+   },
+   "3083": {
+    "abbr": "DBS-B17PRE",
+    "name": "Ultimate Squad Pre-Release Cards",
+    "published": "2022-05-27",
+    "seen": "2026-10-18"
+   },
+   "3089": {
+    "abbr": "TS01",
+    "name": "Theme Selection: History of Son Goku",
+    "published": "2022-07-08",
+    "seen": "2026-10-18"
+   },
+   "3090": {
+    "abbr": "TS02",
+    "name": "Theme Selection: History of Vegeta",
+    "published": "2022-07-08",
+    "seen": "2026-10-18"
+   },
+   "3109": {
+    "abbr": "DBS-BE21",
+    "name": "5th Anniversary Set",
+    "published": "2022-10-28",
+    "seen": "2026-10-18"
+   },
+   "3132": {
+    "abbr": "DBS-B18",
+    "name": "Dawn of the Z-Legends",
+    "published": "2022-09-02",
+    "seen": "2026-10-18"
+   },
+   "3168": {
+    "abbr": "DBS-B18PRE",
+    "name": "Dawn of the Z-Legends Pre-Release Cards",
+    "published": "2022-09-16",
+    "seen": "2026-10-18"
+   }
+  },
   "80": {
    "23401": {
     "abbr": "FB01",
@@ -585,7 +1228,164 @@
     "seen": "2026-10-15"
    }
   },
-  "dbs": {},
+  "dbs": {
+   "228919": {
+    "name": "Battle Evolution Booster Box",
+    "seen": "2026-10-18"
+   },
+   "228920": {
+    "name": "Battle Evolution Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "287593": {
+    "name": "5th Anniversary Zenkai Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "493490": {
+    "name": "Wild Resurgence Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "493491": {
+    "name": "Wild Resurgence Booster Box",
+    "seen": "2026-10-18"
+   },
+   "493492": {
+    "name": "Wild Resurgence Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "496526": {
+    "name": "Critical Blow Booster Box",
+    "seen": "2026-10-18"
+   },
+   "496528": {
+    "name": "Critical Blow Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "496529": {
+    "name": "Critical Blow Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "505879": {
+    "name": "Perfect Combination Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "505881": {
+    "name": "Perfect Combination Booster Box",
+    "seen": "2026-10-18"
+   },
+   "505883": {
+    "name": "Perfect Combination Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "519030": {
+    "name": "Beyond Generations Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "519032": {
+    "name": "Beyond Generations Booster Box",
+    "seen": "2026-10-18"
+   },
+   "519033": {
+    "name": "Beyond Generations Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "534039": {
+    "name": "Legend of the Dragon Balls Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "534041": {
+    "name": "Legend of the Dragon Balls Booster Box",
+    "seen": "2026-10-18"
+   },
+   "534042": {
+    "name": "Legend of the Dragon Balls Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "565520": {
+    "name": "Ultimate Advent Booster Box",
+    "seen": "2026-10-18"
+   },
+   "565521": {
+    "name": "Ultimate Advent Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "565522": {
+    "name": "Ultimate Advent Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "617571": {
+    "name": "History of Z Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "617572": {
+    "name": "History of Z Booster Box",
+    "seen": "2026-10-18"
+   },
+   "617573": {
+    "name": "History of Z Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "647502": {
+    "name": "Prismatic Clash Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "647503": {
+    "name": "Prismatic Clash Booster Box",
+    "seen": "2026-10-18"
+   },
+   "647504": {
+    "name": "Prismatic Clash Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "669274": {
+    "name": "Fearsome Rivals Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "669275": {
+    "name": "Fearsome Rivals Booster Box",
+    "seen": "2026-10-18"
+   },
+   "669276": {
+    "name": "Fearsome Rivals Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "682046": {
+    "name": "Three Glorious Fighters Booster Box",
+    "seen": "2026-10-18"
+   },
+   "682047": {
+    "name": "Three Glorious Fighters Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "682049": {
+    "name": "Three Glorious Fighters Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "693635": {
+    "name": "Impact Beyond Dimensions Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "693636": {
+    "name": "Impact Beyond Dimensions Booster Box",
+    "seen": "2026-10-18"
+   },
+   "693637": {
+    "name": "Impact Beyond Dimensions Booster Box Case",
+    "seen": "2026-10-18"
+   },
+   "710674": {
+    "name": "Chromatic Ascension Booster Pack",
+    "seen": "2026-10-18"
+   },
+   "710675": {
+    "name": "Chromatic Ascension Booster Box",
+    "seen": "2026-10-18"
+   },
+   "710676": {
+    "name": "Chromatic Ascension Booster Box Case",
+    "seen": "2026-10-18"
+   }
+  },
   "naruto": {}
  }
 }

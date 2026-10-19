@@ -1,32 +1,4 @@
 {
- "alerts": [
-  {
-   "at": "2026-10-19T12:32:02Z",
-   "buttons": [
-    [
-     [
-      "🛒 raw €657 · CardTrader",
-      "https://www.cardtrader.com/cards/296068"
-     ]
-    ],
-    [
-     [
-      "🛒 raw €6040 · eBay",
-      "https://www.ebay.de/itm/397514091980?_skw=Son+Goku+%3A+GT+FB03-140&hash=item5c8dafadcc:g:xlsAAeSw3IlpbuDR"
-     ]
-    ],
-    [
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "key": "slab:dbfw:dbfw:FB03:FB03-140:SAA",
-   "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/562359_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #5 · Son Goku : GT FB03-140 SAA</b> · FB03\nRaw kopen vanaf <b>€657</b> → PSA 10 waarde <b>€1212</b> (3 listings)\nNetto na grading en fees: <b>€119</b> per kaart (18% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €657 CardTrader\n• €6040 eBay (1 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €511</i>"
-  }
- ],
+ "alerts": [],
  "day": "2026-10-18"
 }
