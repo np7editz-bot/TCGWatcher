@@ -342,6 +342,19 @@
    "ratio_then": 0.308,
    "source": "Cardmarket",
    "status": "open"
+  },
+  {
+   "code": "BT26",
+   "ev_then": 274.4,
+   "game": "dbs",
+   "key": "buy:dbs:BT26",
+   "kind": "box",
+   "name": "Ultimate Advent",
+   "opened": "2026-10-18",
+   "price": 187,
+   "ratio_then": 1.467,
+   "source": "Cardmarket",
+   "status": "open"
   }
  ]
 }
