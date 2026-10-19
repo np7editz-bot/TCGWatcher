@@ -11,6 +11,7 @@ from .model import class_estimates
 def score_sets(model):
     game = model["game"]
     est, labels = class_estimates(game)
+    lottery = {c["id"] for c in game.get("classes", []) if c.get("lottery")} | {"SAA"}
     overrides = game.get("set_overrides", {})
     by_set = {}
     for p in model["products"]:
@@ -48,7 +49,7 @@ def score_sets(model):
                          "median": round(median(c["prices"]), 2) if c["prices"] else None,
                          "est": round(e, 3), "ev": round(ev, 2)}
             ev_total += ev
-            if cid == "SAA":
+            if cid in lottery:
                 ev_saa += ev
         box = next((p for p in prods if p.sealed_kind == "box"), None)
         pack = next((p for p in prods if p.sealed_kind == "pack"), None)

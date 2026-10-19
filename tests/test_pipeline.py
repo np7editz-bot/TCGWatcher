@@ -173,3 +173,17 @@ def test_number_fixes_and_anniversary_variant():
     assert g["number_fixes"][693131] == "FB10-067"
     assert variant_of(g, "Destructive Strength (1st Anniversary Set)") == "ANN"
     assert variant_of(g, "Piccolo - FB10-067 (Limited Pack 26-27 WAVE2)") == "LP"
+
+
+def test_masters_promo_groups_and_variants():
+    """TCGplayer reuses 'BT26' for the pre-release group; Masters parallels (SPR/SLR/SCR/GDR/Collector Booster) share numbers."""
+    from tcgwatcher.config import load_games
+    from tcgwatcher.model import variant_of, load_game
+    from tcgwatcher.validate import validate
+    g = load_games()["dbs"]
+    assert variant_of(g, "Bulma, Opening Chapter (GDR)") == "GDR" and variant_of(g, "Spirit (SPR)") == "SPR"
+    assert variant_of(g, "Son Goten, Joining the Party (Collector Booster Silver)") == "CBS"
+    m = load_game(g, "2026-10-18")
+    assert m["sets"]["BT26"]["kind"] == "booster" and m["sets"]["BT26_PR"]["kind"] == "promo"
+    rep = validate("2026-10-18")
+    assert rep["games"]["dbs"]["status"] == "ok", rep["games"]["dbs"]["findings"]
