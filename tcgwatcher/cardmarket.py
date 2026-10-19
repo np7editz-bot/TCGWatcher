@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 2            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 3            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -46,9 +46,9 @@ def box_url(name):
     return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name)
 
 
-VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "GDR": "God Rare", "GOLD": "Gold", "BPAA": "Alternate Art",
-                 "LP": "Limited Pack", "ANN": "1st Anniversary Set", "DBP": "Dragon Ball Pattern",
-                 "SPR": "Special Rare", "SLR": "Special Leader Rare", "SCR": "Secret Rare"}
+# Verified in the browser (2026-10-19): AA → "V2 - Alternate Art", SAA → "V3 - God Rare". Other variants: unknown label →
+# link to the base printing (exists) rather than guess (a wrong suffix gives "invalid product").
+VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "BPAA": "Alternate Art"}
 
 
 def card_url(expansion_name, product_name, version=1, variant=""):
@@ -57,7 +57,7 @@ def card_url(expansion_name, product_name, version=1, variant=""):
     "(V.n - Label)" suffix in its URL, e.g. Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare
     (verified in the browser 2026-10-19). n = rank of idProduct among the same name in the same expansion; label from our
     variant code (VERSION_LABEL)."""
-    tail = f" (V.{version} - {VERSION_LABEL.get(variant, variant)})" if version > 1 else ""
+    tail = f" (V.{version} - {VERSION_LABEL[variant]})" if version > 1 and variant in VERSION_LABEL else ""
     return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}"
 
 
