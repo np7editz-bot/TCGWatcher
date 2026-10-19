@@ -132,7 +132,7 @@ def run(day, quality=None, send=True):
                 cmc = c.get("cm") or {}
                 if cmc.get("low"):
                     opts.append({"src": "Cardmarket", "price": round(cmc["low"] + 5, 2),
-                                 "url": "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=" + g["number"]})
+                                 "url": cmc.get("url") or "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=" + g["number"]})
                 opts.sort(key=lambda o: o["price"])
                 if not opts:
                     continue                            # nothing to buy in the EU today → page only (with a Cardmarket search), no message

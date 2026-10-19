@@ -280,7 +280,7 @@ function slabItems(){
     const c = cards[g.key]||{}; const opts=[]; const eu=c.eu||{};
     if (eu.low) opts.push({src:'CardTrader'+(eu.zero_low&&eu.zero_low<=eu.low?' Zero':''), price:(eu.zero_low||eu.low)+(eu.zero_low?6:5), url:eu.url});
     if (c.raw_ebay?.low) opts.push({src:`eBay (${c.raw_ebay.n} EU)`, price:c.raw_ebay.low, url:c.raw_ebay.url});
-    if (c.cm?.low) opts.push({src:'Cardmarket', price:c.cm.low+5, url:`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`});
+    if (c.cm?.low) opts.push({src:'Cardmarket', price:c.cm.low+5, url:c.cm.url||`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`});
     opts.sort((a,b)=>a.price-b.price);
     const cm = {src:'Cardmarket (zoeken)', price:null, url:`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`};
     const raw = opts.length? opts[0].price : g.raw_eur, net = g.net - (raw - g.raw_eur);

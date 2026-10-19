@@ -34,14 +34,21 @@ def fetch_files(game_id=13, session=None):
 
 
 def slug(name):
-    """Cardmarket URL slug: apostrophes dropped, every other non-alphanumeric run becomes '-' ("Saiyan's Pride" → Saiyans-Pride)."""
-    return re.sub(r"[^A-Za-z0-9]+", "-", name.replace("'", "")).strip("-")
+    """Cardmarket URL slug: apostrophes and dots dropped, every other non-alphanumeric run becomes '-'
+    ("Saiyan's Pride" → Saiyans-Pride, "(V.3 - God Rare)" → V3-God-Rare)."""
+    return re.sub(r"[^A-Za-z0-9]+", "-", name.replace("'", "").replace(".", "")).strip("-")
 
 
 def box_url(name):
     """Sealed product page: /Products/Booster-Boxes/<Name-Slug> (name 'Awakened Pulse Booster Box [Fusion World]' →
     Awakened-Pulse-Booster-Box-Fusion-World)."""
     return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name)
+
+
+def card_url(expansion_name, product_name):
+    """Single page: /Products/Singles/<Expansion-Slug>/<Product-Slug>, e.g.
+    Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare (verified in the browser 2026-10-19)."""
+    return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name)}"
 
 
 def _f(row, field):
@@ -58,19 +65,9 @@ def join(files, latest, ct_doc):
     for b in ((ct_doc or {}).get("blueprints") or {}).values():
         if b.get("tcg_player_id") and b.get("card_market_ids"):
             cm_ids_by_tcg[int(b["tcg_player_id"])] = [int(x) for x in b["card_market_ids"] if x]
+    names = {p["idProduct"]: p.get("name") or "" for p in files["singles"].get("products", [])}
     cards, boxes = {}, {}
     for gid, g in latest["games"].items():
-        for c in g.get("cards", []):
-            ids = cm_ids_by_tcg.get(c.get("product_id"))
-            if not ids:
-                continue
-            rows = [prices[i] for i in ids if i in prices]
-            if not rows:
-                continue
-            r = min(rows, key=lambda x: _f(x, "low") or 9e9)         # several Cardmarket products can map to one card (versions)
-            cards[c["key"]] = {"idProduct": r["idProduct"], "low": _f(r, "low"), "trend": _f(r, "trend"),
-                               "avg1": _f(r, "avg1"), "avg7": _f(r, "avg7"), "avg30": _f(r, "avg30"),
-                               "foil": not r.get("avg30") and bool(r.get("avg30-foil"))}
         sealed = [p for p in files["nonsingles"].get("products", []) if "Booster Box" in p.get("name", "")]
         for s in g.get("sets", []):
             name = (s.get("name") or "").lower()
@@ -88,6 +85,24 @@ def join(files, latest, ct_doc):
                 boxes[s["code"]] = {"idProduct": p["idProduct"], "name": p["name"], "low": r["low"], "trend": r.get("trend"),
                                     "avg7": r.get("avg7"), "avg30": r.get("avg30"),
                                     "url": box_url(p["name"])}
+        # expansion name per set = box name without "Booster Box" ("Saiyan's Pride Booster Box [Fusion World]" → "Saiyan's Pride [Fusion World]"),
+        # else the set name (+ " [Fusion World]" for Fusion World)
+        exp_name = {code: b["name"].replace(" Booster Box", "") for code, b in boxes.items()}
+        for s in g.get("sets", []):
+            exp_name.setdefault(s["code"], (s.get("name") or "") + (" [Fusion World]" if gid == "dbfw" else ""))
+        for c in g.get("cards", []):
+            ids = cm_ids_by_tcg.get(c.get("product_id"))
+            if not ids:
+                continue
+            rows = [prices[i] for i in ids if i in prices]
+            if not rows:
+                continue
+            r = min(rows, key=lambda x: _f(x, "low") or 9e9)         # several Cardmarket products can map to one card (versions)
+            code = c["key"].split(":")[1]
+            cards[c["key"]] = {"idProduct": r["idProduct"], "name": names.get(r["idProduct"]), "low": _f(r, "low"), "trend": _f(r, "trend"),
+                               "avg1": _f(r, "avg1"), "avg7": _f(r, "avg7"), "avg30": _f(r, "avg30"),
+                               "foil": not r.get("avg30") and bool(r.get("avg30-foil")),
+                               "url": card_url(exp_name.get(code, ""), names.get(r["idProduct"]) or "") if names.get(r["idProduct"]) else None}
     return cards, boxes
 
 

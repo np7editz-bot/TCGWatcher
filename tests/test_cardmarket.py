@@ -47,3 +47,9 @@ def test_box_url_slug():
     from tcgwatcher.cardmarket import box_url
     assert box_url("Awakened Pulse Booster Box [Fusion World]").endswith("/Booster-Boxes/Awakened-Pulse-Booster-Box-Fusion-World")
     assert box_url("Saiyan's Pride Booster Box [Fusion World]").endswith("/Saiyans-Pride-Booster-Box-Fusion-World")
+
+
+def test_card_url_matches_browser():
+    from tcgwatcher.cardmarket import card_url
+    u = card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World] (V.3 - God Rare)")
+    assert u == "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare"
