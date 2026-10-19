@@ -110,9 +110,17 @@ def _num(s):
         return None
 
 
+NOTIFY = re.compile(r"(benachrichtige mich|notify me|e-?mail me when|houd mij op de hoogte|laat het me weten|avvisami|avísame|prévenez-moi|back in stock notification)", re.I)
+
+
 def status_from_text(text):
     t = text[:200000]
+    if NOTIFY.search(t):                      # 'notify me when available' form = the shop itself says: not buyable now
+        return "sold_out"
     if SOLD.search(t) and not INSTOCK.search(t):
+        return "sold_out"
+    so, ins = SOLD.search(t), INSTOCK.search(t)
+    if so and ins and so.start() < ins.start():   # product's own 'sold out' comes before the related products' 'add to cart'
         return "sold_out"
     if PRE.search(t):
         return "preorder"

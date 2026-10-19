@@ -90,3 +90,12 @@ def test_buy_button_overrides_structured_availability():
         def get(self, url, json_=False):
             return ok, None
     assert retail.generic_product(H2(), {"url": "https://onytcg.com/en/product/box-fb-11", "title": "Box FB-11"})["status"] == "preorder"
+
+
+def test_status_text_prefers_product_over_related_items():
+    """Comic Planet SB02: 'Nicht mehr verfügbar' + notify form, while related products below say 'In den Warenkorb'."""
+    page = ("Regulärer Preis: 129,99 € Nicht mehr verfügbar Benachrichtige mich, sobald der Artikel lieferbar ist. "
+            "Kunden haben sich ebenfalls angesehen ... Vorbestellung ... In den Warenkorb")
+    assert retail.status_from_text(page) == "sold_out"
+    assert retail.status_from_text("129,99 € In den Warenkorb ... andere Artikel: ausverkauft") == "in_stock"
+    assert retail.status_from_text("Vorbestellung möglich, Lieferung ab 12.03.2027. In den Warenkorb") == "preorder"
