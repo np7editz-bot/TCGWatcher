@@ -152,3 +152,13 @@ def test_masters_god_rare_is_a_real_variant():
     assert not ebay.variant_matches("Bulma BT30-149 SCR PSA 10", "GDR", "BT30-149")
     assert not ebay.variant_matches("Bulma BT30-149 God Rare PSA 10", "", "BT30-149")       # SCR target, GDR listing
     assert ebay.variant_matches("Son Goku FB01-139 God Rare PSA 10", "SAA", "FB01-139")     # Fusion World synonym for ★★
+
+
+def test_box_listing_parser():
+    fx = 0.9
+    ok = ebay.parse_box_listing(item("Dragon Ball Fusion World FB09 Dual Evolution Booster Box ENG sealed", 170, ship=8), "Dual Evolution", "FB09", fx)
+    assert ok and ok["price"] == 178.0
+    assert ebay.parse_box_listing(item("Dual Evolution FB09 Booster Box Case 12 boxes", 1900), "Dual Evolution", "FB09", fx) is None
+    assert ebay.parse_box_listing(item("FB09 Dual Evolution Booster Pack x1", 5), "Dual Evolution", "FB09", fx) is None
+    assert ebay.parse_box_listing(item("Dual Evolution FB09 Booster Box Japanese", 90), "Dual Evolution", "FB09", fx) is None
+    assert ebay.parse_box_listing(item("FB09 Booster Box", 170, loc="US"), "Dual Evolution", "FB09", fx) is None

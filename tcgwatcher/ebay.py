@@ -227,6 +227,39 @@ def parse_raw_listing(item, number, fx_usd_eur, variant=""):
             "location": (item.get("itemLocation") or {}).get("country")} if price else None
 
 
+BOX_T = re.compile(r"(booster\s*box|\bdisplay\b|\bbox\b)", re.I)
+NOT_BOX = re.compile(r"(\bcase\b|\bpacks?\b(?!\s*box)|single|\bx\s?[2-9]\b|\blot\b|empty|opened|japanese|\bjp\b|\bjpn\b|korean|chinese|sleeve|playmat|deck\b)", re.I)
+
+
+def parse_box_listing(item, set_name, code, fx_usd_eur):
+    """A sealed English booster box of this set from an EU seller, price incl. shipping in €."""
+    title = item.get("title") or ""
+    if not BOX_T.search(title) or NOT_BOX.search(title):
+        return None
+    hay = title.lower()
+    if code.lower() not in hay.replace("-", "").replace(" ", "") and not all(w in hay for w in set_name.lower().split()[:2]):
+        return None
+    if ((item.get("itemLocation") or {}).get("country") or "").upper() not in EU:
+        return None
+    price = _price_eur(item, fx_usd_eur)
+    return {"price": price, "title": title[:120], "url": item.get("itemWebUrl"), "item_id": item.get("itemId"),
+            "location": (item.get("itemLocation") or {}).get("country")} if price else None
+
+
+def box_targets(latest):
+    from .config import load_games
+    cfg = load_games()
+    out = []
+    for gid, g in latest["games"].items():
+        if not cfg.get(gid, {}).get("eu_sources"):
+            continue
+        for st in g.get("sets", []):
+            if st.get("box") and "no_cards" not in st["flags"]:
+                out.append({"game": gid, "code": st["code"], "name": st["name"], "query": f"{g['short']} {st['name']} booster box",
+                            "ref_eur": round((st["box"].get("price") or 0) * latest["fx"]["usd_eur"], 2)})
+    return out
+
+
 def targets(latest, per_set=10, min_raw_eur=20):
     """Cards worth watching: the most valuable market-priced hits per set (★★, ★, SCR, SR-AA), raw ≥ €20 —
     broad enough to catch cheap raws with expensive PSA 10s (grading candidates)."""
@@ -329,8 +362,20 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
                                                                  "median": sorted(x["price"] for x in gg)[len(gg) // 2]}
         cards[t["key"]] = {**t, "best": best, "by_grader": by_grader, "listings": uniq[:25],
                            "raw_ebay": {"low": raws[0]["price"], "url": raws[0]["url"], "n": len(raws)} if raws else None}
+    boxes = {}
+    for bt in box_targets(latest):
+        try:
+            found = [parse_box_listing(it, bt["name"], bt["code"], fx) for it in client.search(bt["query"], marketplaces[0])]
+            found = sorted((b for b in found if b), key=lambda b: b["price"])
+            if bt["ref_eur"]:
+                found = [b for b in found if b["price"] >= 0.3 * bt["ref_eur"]]         # €30 'box' for a €200 set is not a box
+            if found:
+                boxes[bt["code"]] = {"low": found[0]["price"], "url": found[0]["url"], "n": len(found),
+                                     "median": found[len(found) // 2]["price"], "listings": found[:10]}
+        except Exception as e:  # noqa: BLE001
+            log.warning("box %s: %s", bt["code"], e)
     doc = {"day": day, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-           "marketplaces": list(marketplaces), "api_calls": client.calls, "cards": cards,
+           "marketplaces": list(marketplaces), "api_calls": client.calls, "cards": cards, "boxes": boxes,
            "image_check": image_check.stats if image_check else None}
     if not client.calls:
         raise RuntimeError("no successful eBay API calls; day file not written")

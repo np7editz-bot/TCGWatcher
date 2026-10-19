@@ -241,8 +241,8 @@ footer{color:var(--fg3);font-size:12.5px}
 </div>
 <script>
 const CLS_ORDER = ['SR','SR_AA','SCR','SCR_AA','SAA','OTHER_AA'];
-const FLAG = {presale:['warn','presale'],manga:['info','Manga Booster'],story:['info','Story Booster'],box_spread:['crit','boxprijs onbetrouwbaar'],no_cards:['crit','nog geen kaartprijzen'],box_listing_price:['warn','box: listingprijs'],low_coverage:['warn','weinig marktprijzen']};
-const EXCL = ['manga','story','low_coverage','no_cards','presale'];
+const FLAG = {presale:['warn','presale'],manga:['info','Manga Booster'],story:['info','Story Booster'],box_spread:['crit','boxprijs onbetrouwbaar'],no_cards:['crit','nog geen kaartprijzen'],box_listing_price:['warn','box: listingprijs'],low_coverage:['warn','weinig marktprijzen'],thin:['warn','dun aanbod (< 3 EU-listings)']};
+const EXCL = ['manga','story','low_coverage','no_cards','presale','thin'];
 let DATA=null, G=null, gameId=null, openSet=null, retail={}, view='today';
 const retailKey = () => 'tcgw.retail.'+gameId;
 const fx = () => parseFloat(document.getElementById('fx').value)||DATA.fx.usd_eur;
@@ -374,6 +374,7 @@ function detail(s,x){
       <div class="list" style="grid-template-columns:1fr">
       ${eu?`<div><span><a href="${eu.url}" target="_blank" rel="noopener">CardTrader${eu.zero_low?' Zero':''}</a> · ${esc(eu.landed_note)}${eu.zero_n?` · ${eu.zero_n} Zero / ${eu.n} EU-aanb.`:''}</span><span class="p">€${eu.landed.toFixed(2)}</span></div>`:''}
       ${eu?.zero_low&&eu.low<eu.zero_low?`<div><span>CardTrader goedkoopste EU-verkoper (zelf verzenden, ±€15)</span><span class="p">€${(eu.low+15).toFixed(2)}</span></div>`:''}
+      ${s.ebay_box?`<div><span><a href="${esc(s.ebay_box.url)}" target="_blank" rel="noopener">eBay EU-verkopers</a> · ${s.ebay_box.n} listings · mediaan €${s.ebay_box.median.toFixed(0)}</span><span class="p">€${s.ebay_box.low.toFixed(2)}</span></div>`:''}
       ${CM[s.code]?`<div><span>Cardmarket laagste aanbod (steekproef ${CM_DAY}) + ±€18 verzending · 30d-verkopen €${CM[s.code].avg30}</span><span class="p">€${(CM[s.code].from+18).toFixed(2)}</span></div>`:''}
       ${(s.retail||[]).map(o=>`<div><span><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.retailer)}</a> · ${esc(o.title.slice(0,60))} <span class="chip ${o.status==='sold_out'?'crit':o.status==='preorder'?'warn':'good'}">${o.status}</span></span><span class="p">${o.price?'€'+o.price.toFixed(2):'—'}</span></div>`).join('')}
       ${s.box?.price?`<div><span>TCGplayer market (US, excl. verzending/invoer)</span><span class="p">${eur(s.box.price)}</span></div>`:''}

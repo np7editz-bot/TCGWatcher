@@ -89,9 +89,11 @@ def build(day, quality=None):
                 c["slabs"] = {k: {"low": v["low"], "n": v["n"], "url": v["url"], "grader": v["grader"]} for k, v in e["best"].items()} if e else None
                 c["raw_ebay"] = (e or {}).get("raw_ebay")
         retail = retail_by_set(gid, g)
+        ebay_boxes = (eb or {}).get("boxes") or {}
         for s in sets_scored:
             s["retail"] = retail.get(s["code"], [])
-            s["best_buy"] = best_buy(s)
+            s["ebay_box"] = ebay_boxes.get(s["code"])
+            s["best_buy"] = best_buy(s, landed_cfg.get("min_offers", 3))
         for s in other_sets:
             s["retail"] = retail.get(s["code"], [])
         out["games"][gid] = {
@@ -150,16 +152,24 @@ def landed(o, cfg):
             "landed_note": f"€{o['low']:.2f} + ±€{cfg['seller_shipping_eur']} verzending (geen Zero-aanbod)"}
 
 
-def best_buy(s):
-    """Cheapest way to buy this box in Europe right now (what you actually pay), and the EV ratio against it."""
+def best_buy(s, min_offers=3):
+    """Cheapest way to buy this box in Europe right now (what you actually pay), and the EV ratio against it.
+
+    Supply matters: one seller with one box is not a price. `offers` counts listings across CardTrader (EU sellers), eBay EU
+    and trusted retailers; below `min_offers` the set is flagged `thin` and never carries a buy signal — the price is shown
+    as an indication only.
+    """
     opts = []
     box_eu = (s.get("box") or {}).get("eu")
     if box_eu and box_eu.get("landed"):
         opts.append({"price": box_eu["landed"], "source": "CardTrader" + (" Zero" if box_eu.get("landed_via") == "zero" else ""),
-                     "url": box_eu["url"], "status": "in_stock", "n": box_eu.get("n"), "note": box_eu.get("landed_note")})
+                     "url": box_eu["url"], "status": "in_stock", "n": box_eu.get("n") or 1, "note": box_eu.get("landed_note")})
+    eb = s.get("ebay_box")
+    if eb and eb.get("low"):
+        opts.append({"price": eb["low"], "source": f"eBay ({eb['n']} EU)", "url": eb["url"], "status": "in_stock", "n": eb["n"]})
     for r in s.get("retail", []):
         if r.get("price") and r["status"] in ("in_stock", "preorder") and r.get("kind", "box") == "box" and r["price"] >= 40:
-            opts.append({"price": r["price"], "source": r["retailer"], "url": r["url"], "status": r["status"]})
+            opts.append({"price": r["price"], "source": r["retailer"], "url": r["url"], "status": r["status"], "n": 1})
     if not opts:
         return None
     opts.sort(key=lambda o: o["price"])
@@ -167,6 +177,10 @@ def best_buy(s):
     ev = s.get("ev_eu_excl_saa") or 0
     best["ratio"] = round(ev / best["price"], 3) if best["price"] else None
     best["options"] = opts[:5]
+    best["offers"] = sum(o.get("n") or 1 for o in opts)
+    best["thin"] = best["offers"] < min_offers
+    if best["thin"] and "thin" not in s["flags"]:
+        s["flags"] = sorted(set(s["flags"]) | {"thin"})
     return best
 
 
