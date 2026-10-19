@@ -51,5 +51,8 @@ def test_box_url_slug():
 
 def test_card_url_matches_browser():
     from tcgwatcher.cardmarket import card_url
-    u = card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World] (V.3 - God Rare)")
+    u = card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World]", 3, "SAA")
     assert u == "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare"
+    u = card_url("Saiyan's Pride [Fusion World]", "Broly // Broly (FB08-073) [Fusion World]", 2, "AA")
+    assert u.endswith("/Saiyans-Pride-Fusion-World/Broly-Broly-FB08-073-Fusion-World-V2-Alternate-Art")
+    assert card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World]", 1, "").endswith("/Son-Goten-FB08-121-Fusion-World")

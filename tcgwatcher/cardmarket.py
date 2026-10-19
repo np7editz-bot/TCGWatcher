@@ -45,10 +45,19 @@ def box_url(name):
     return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name)
 
 
-def card_url(expansion_name, product_name):
-    """Single page: /Products/Singles/<Expansion-Slug>/<Product-Slug>, e.g.
-    Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare (verified in the browser 2026-10-19)."""
-    return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name)}"
+VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "GDR": "God Rare", "GOLD": "Gold", "BPAA": "Alternate Art",
+                 "LP": "Limited Pack", "ANN": "1st Anniversary Set", "DBP": "Dragon Ball Pattern",
+                 "SPR": "Special Rare", "SLR": "Special Leader Rare", "SCR": "Secret Rare"}
+
+
+def card_url(expansion_name, product_name, version=1, variant=""):
+    """Single page: /Products/Singles/<Expansion-Slug>/<Product-Slug>[-V<n>-<Label>].
+    Cardmarket keeps one product per printing under the same catalogue name; the 2nd, 3rd … printing gets a
+    "(V.n - Label)" suffix in its URL, e.g. Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare
+    (verified in the browser 2026-10-19). n = rank of idProduct among the same name in the same expansion; label from our
+    variant code (VERSION_LABEL)."""
+    tail = f" (V.{version} - {VERSION_LABEL.get(variant, variant)})" if version > 1 else ""
+    return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}"
 
 
 def _f(row, field):
@@ -65,7 +74,16 @@ def join(files, latest, ct_doc):
     for b in ((ct_doc or {}).get("blueprints") or {}).values():
         if b.get("tcg_player_id") and b.get("card_market_ids"):
             cm_ids_by_tcg[int(b["tcg_player_id"])] = [int(x) for x in b["card_market_ids"] if x]
-    names = {p["idProduct"]: p.get("name") or "" for p in files["singles"].get("products", [])}
+    singles = files["singles"].get("products", [])
+    names = {p["idProduct"]: p.get("name") or "" for p in singles}
+    siblings = {}                                   # (idExpansion, name) → sorted idProducts: position = Cardmarket "V.n"
+    for p in singles:
+        siblings.setdefault((p.get("idExpansion"), p.get("name")), []).append(p["idProduct"])
+    version = {}
+    for ids in siblings.values():
+        for n, i in enumerate(sorted(ids), 1):
+            version[i] = n
+    exp_of = {p["idProduct"]: p.get("idExpansion") for p in singles}
     cards, boxes = {}, {}
     for gid, g in latest["games"].items():
         sealed = [p for p in files["nonsingles"].get("products", []) if "Booster Box" in p.get("name", "")]
@@ -98,11 +116,13 @@ def join(files, latest, ct_doc):
             if not rows:
                 continue
             r = min(rows, key=lambda x: _f(x, "low") or 9e9)         # several Cardmarket products can map to one card (versions)
-            code = c["key"].split(":")[1]
-            cards[c["key"]] = {"idProduct": r["idProduct"], "name": names.get(r["idProduct"]), "low": _f(r, "low"), "trend": _f(r, "trend"),
+            code, variant = c["key"].split(":")[1], c["key"].split(":")[3]
+            pid = r["idProduct"]
+            cards[c["key"]] = {"idProduct": pid, "name": names.get(pid), "version": version.get(pid, 1),
+                               "low": _f(r, "low"), "trend": _f(r, "trend"),
                                "avg1": _f(r, "avg1"), "avg7": _f(r, "avg7"), "avg30": _f(r, "avg30"),
                                "foil": not r.get("avg30") and bool(r.get("avg30-foil")),
-                               "url": card_url(exp_name.get(code, ""), names.get(r["idProduct"]) or "") if names.get(r["idProduct"]) else None}
+                               "url": card_url(exp_name.get(code, ""), names[pid], version.get(pid, 1), variant) if names.get(pid) else None}
     return cards, boxes
 
 
