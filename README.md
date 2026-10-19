@@ -8,8 +8,8 @@ Dagelijkse prijs-intelligence voor sealed TCG-product op de Engelse markt. Nu: D
 1. **fetch** — haalt de dagstand van [tcgcsv.com](https://tcgcsv.com) (TCGplayer-catalogus en -prijzen) op en slaat die **ruw** op.
 2. **validate** — kwaliteitspoort: schema, duplicaten, uitschieters, dekking, dag-op-dag-verschillen. Bij `fail` wordt er niets gepubliceerd.
 3. **build** — Chase Score per set, prijstrends (7d/30d), `site/data/latest.json` met herkomst op elk blok.
-4. **alerts** — regels → Telegram (nieuwe productlijn/pre-order, box-ratio boven drempel, prijsbewegingen, datakwaliteit).
-5. **retail** (ook elke 2 uur via `retail.yml`) — EU-webshops uit `config/retailers.yaml`: prijs, voorraad en pre-orderstatus per sealed product; alerts bij *pre-order open*, *terug op voorraad*, *uitverkocht*, prijs ±10%. Laagste EU-prijs per set op de pagina.
+4. **alerts** — alleen wat je nu kunt doen: 🎯 **KOOP** (hits € ÷ goedkoopste EU-aanbod ≥ 0,80), 🆕 nieuwe productlijn (= pre-ordermoment), ⚠️ alleen bij FAIL. Weekbriefing op zondag.
+5. **retail** (ook elke 2 uur via `retail.yml`) — EU-webshops uit `config/retailers.yaml`: prijs, voorraad en pre-orderstatus per sealed product (Engelstalig; JP-listings worden genegeerd). Melding alleen als een box/case **koopbaar wordt** (op voorraad / pre-order open) én koopwaardig is (ratio ≥ 0,70) of de set nog niet uit is. Uitverkocht, prijsstijgingen en nieuwe listings blijven in `data/retail/`.
 
 De pagina (`site/`, statisch te hosten; GitHub Pages vereist een publieke repo) toont per set de **samenstelling** (hoeveel alt-arts, Secret Rares, ★, ★★), de
 verwachte waarde van die hits per box, de ratio tegen de boxprijs en de trend. Aannames zijn op de pagina aanpasbaar.
@@ -60,7 +60,17 @@ cd site && python -m http.server 8000       # http://localhost:8000
 
 ## Telegram
 
-Berichten: één **dagelijkse briefing** (ranking met verschuiving, bewegingen ≥20%, boxen, retail, Naruto) plus **signaalkaarten** met foto en knoppen voor koopsignalen, nieuwe productlijnen, nieuwe sealed producten, datakwaliteit (alleen bij wijziging) en retail-overgangen. Stuur `/mute FB10`, `/unmute FB10`, `/mute all` of `/status` naar de bot; wordt bij de volgende run verwerkt.
+Berichten (v3, `config/alerts.yaml`):
+
+| Bericht | Wanneer | Regel |
+|---|---|---|
+| 🎯 **KOOP** | set wordt koopwaardig | `EV€ hits (excl. ★★) ÷ goedkoopste EU-aanbod ≥ buy.threshold` (0,80). Eén kaart per episode; opnieuw alleen als de beste prijs ≥10% daalt. Goedkoopste aanbod = CardTrader (EU-verkopers) of webshop met voorraad/pre-order. |
+| 🟡 PRE-ORDER OPEN / ✅ OP VOORRAAD / 📉 GOEDKOPER | box/case wordt koopbaar bij een webshop | alleen als ratio tegen díe prijs ≥ `buy.near` (0,70), of de set nog niet gewaardeerd is (nieuwe set, Naruto) |
+| 🆕 productlijn | nieuwe set in de TCGplayer-catalogus | eerste pre-ordersignaal |
+| 📋 briefing | zondag (`briefing: weekly`) | ranking op EU-ratio, bewegingen, boxen, retail, Naruto |
+| ⚠️ datakwaliteit | alleen bij FAIL (pagina niet bijgewerkt) | `quality_issues: fail_only` |
+
+Stuur `/mute FB10`, `/unmute FB10`, `/mute all` of `/status` naar de bot; wordt bij de volgende run verwerkt.
 
 
 Repo-secrets `TELEGRAM_BOT_TOKEN` (van @BotFather) en `TELEGRAM_CHAT_ID`. Zonder token draait alles, maar

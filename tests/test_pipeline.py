@@ -132,3 +132,30 @@ def test_cardtrader_join_and_eu_ev():
              {"set": "FB10", "class": "SAA", "price": 2000.0, "eu": None}]
     ev, covered, total = eu_ev(s, cards, 0.5)
     assert ev == pytest.approx(5.5 * (3.0 + 2.0) / 2, abs=0.01) and (covered, total) == (1, 2)
+
+
+def test_buy_signal_uses_eu_ratio(tmp_path, monkeypatch):
+    """FB09: US ratio 0.44 but EU box €181 vs hits €173 → ratio_eu 0.96 ≥ 0.80 → KOOP card; repeats only when ≥10% cheaper."""
+    from tcgwatcher import alerts, build as b
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    latest_path = tmp_path / "latest.json"
+    monkeypatch.setattr(alerts, "LATEST", latest_path)
+    hit = {"name": "Vegeta (Super Alternate Art)", "number": "FB09-001", "class": "SCR_AA", "price": 400.0, "image": None}
+    s = {"code": "FB09", "name": "Dual Evolution", "flags": [], "ratio_excl_saa": 0.44, "ev_excl_saa": 190.0, "ev_eu_excl_saa": 173.0,
+         "ratio_eu": 0.959, "box": {"price": 410.0, "product_id": 1, "name": "FB09 Booster Box", "image": None, "url": None}, "composition": {"SCR": {"n": 6}, "SCR_AA": {"n": 3}},
+         "top_hit": hit, "hits_market_priced": 40, "hits_total": 42, "retail": []}
+    s["best_buy"] = b.best_buy(dict(s, box={"price": 410.0, "product_id": 1, "name": "b", "eu": {"low": 180.64, "n": 7}}))
+    assert s["best_buy"]["ratio"] == pytest.approx(0.958, abs=0.001)
+    doc = {"fx": {"usd_eur": 0.91}, "games": {"dbfw": {"short": "FW", "sets": [s], "cards": [], "starters": [], "all_sets": []}}}
+    store.write_json(latest_path, doc)
+    monkeypatch.setattr(alerts, "load_games", lambda: {})
+    msgs = alerts.run("2026-10-19", quality={"status": "ok", "games": {}}, send=False)
+    buys = [m for m in msgs if m["kind"] == "buy"]
+    assert len(buys) == 1 and "KOOP · FB09" in buys[0]["text"] and "CardTrader" in buys[0]["text"] and "0.96" in buys[0]["text"]
+    assert not [m for m in msgs if m["kind"] == "briefing"]      # Monday, weekly briefing
+    # same price next day → silent; 12% cheaper → "goedkoper geworden"
+    assert not [m for m in alerts.run("2026-10-20", quality={"status": "ok", "games": {}}, send=False) if m["kind"] == "buy"]
+    s["best_buy"] = b.best_buy(dict(s, box={"price": 410.0, "product_id": 1, "name": "b", "eu": {"low": 158.0, "n": 7}}))
+    store.write_json(latest_path, doc)
+    again = [m for m in alerts.run("2026-10-21", quality={"status": "ok", "games": {}}, send=False) if m["kind"] == "buy"]
+    assert len(again) == 1 and "goedkoper geworden" in again[0]["text"]

@@ -32,6 +32,8 @@ KIND_CASE = re.compile(r"\bcase\b", re.I)
 KIND_DECK = re.compile(r"(starter|\bdeck\b)", re.I)
 KIND_PACK = re.compile(r"(booster\s*pack|\bpacks?\b|sleeved|blister|\bbooster\b)", re.I)
 KIND_OTHER = re.compile(r"(sleeves?\b|playmat|promo|binder|bundle|lot\b|collector'?s? display)", re.I)
+# English market only: Japanese-language product is a different market (and much cheaper) → never a box/case for us
+LANG_JP = re.compile(r"(\[\s*j[ap]\s*\]|\bjp\b|japan(ese|isch|s)?\b|\bjap\b|日本|-jp(-|$)|\(jp\))", re.I)
 
 
 def kind_with_price(title, url, price):
@@ -50,7 +52,7 @@ def kind_of(title, url=""):
     t = title or ""
     if not t.strip():
         t = url.rsplit("/", 1)[-1].replace("-", " ")
-    if KIND_OTHER.search(t):
+    if KIND_OTHER.search(t) or LANG_JP.search(t) or LANG_JP.search(url.rstrip("/").rsplit("/", 1)[-1]):
         return "other"
     if KIND_CASE.search(t):
         return "case"
@@ -60,6 +62,9 @@ def kind_of(title, url=""):
         return "box"
     if KIND_PACK.search(t):
         return "pack"
+    slug = url.rstrip("/").rsplit("/", 1)[-1].replace("-", " ")
+    if slug and slug != t:          # title without a product word ('FB12 Reach the God (ENG)'): let the URL slug decide
+        return kind_of(slug)
     return "other"
 
 
@@ -317,23 +322,50 @@ KIND_TEXT = {
 }
 
 
-def format_alerts(transitions, first_run, muted=()):
-    """One message dict per transition (text, buttons). On the very first run only a summary."""
+def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
+    """Only actionable messages: a box/case that becomes buyable (in stock or pre-order) and is worth it.
+
+    worth it = EV€ of hits ÷ this price ≥ buy.near, or the set is not released/scored yet (new set, Naruto).
+    Sold-out, price rises and plain new listings stay in data/retail/<day>.json and on the page.
+    """
     if first_run:
         return [{"text": f"🏪 Retailer-monitor gestart: {len(transitions)} producten gevonden bij "
-                         f"{len({t['retailer'] for t in transitions})} shops. Vanaf nu meld ik wijzigingen.", "buttons": None}]
+                         f"{len({t['retailer'] for t in transitions})} shops. Vanaf nu meld ik alleen koopwaardige voorraad en pre-orders.", "buttons": None}]
     import re as _re
+    buy = buy or {"threshold": 0.8, "near": 0.7}
+    sets = {}
+    if latest:
+        for g in latest.get("games", {}).values():
+            for st in g.get("sets", []):
+                sets[st["code"]] = st
     out = []
     for t in transitions:
-        if t["kind"] == "new_listing" and t["status"] == "unknown":
+        if t.get("product_kind") not in (None, "box", "case") or not t.get("price"):
+            continue
+        becomes_buyable = t["status"] in ("in_stock", "preorder") and (t["kind"] == "new_listing" or t["kind"].endswith(f"->{t['status']}"))
+        cheaper = t["kind"] == "price_drop"
+        if not (becomes_buyable or cheaper):
             continue
         m = _re.search(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", (t.get("title") or "") + " " + t["url"], _re.I)
         code = f"{m.group(1).upper()}{m.group(2)}" if m else None
         if code and code in muted:
             continue
-        label = KIND_TEXT.get(t["kind"], t["kind"])
-        price = f"<b>€{t['price']:.2f}</b>" if t.get("price") else "prijs onbekend"
-        old = f" (was €{t['old_price']:.2f})" if t.get("old_price") and t["kind"].startswith("price") else ""
-        out.append({"text": f"{label} · <b>{code or 'sealed'}</b>\n{t['title'][:100]}\n{price} bij {t['retailer']}{old}",
+        st = sets.get(code)
+        ratio = None
+        if st and st.get("ev_eu_excl_saa") and "no_cards" not in st["flags"]:
+            per_box = t["price"] / 12 if t.get("product_kind") == "case" else t["price"]
+            ratio = st["ev_eu_excl_saa"] / per_box
+            if ratio < buy["near"] or any(f in st["flags"] for f in ("manga", "story", "low_coverage")):
+                continue          # buyable, but not worth a message
+            if cheaper and ratio < buy["threshold"]:
+                continue
+        elif cheaper:
+            continue              # price drop on an unscored set: not actionable
+        label = {"preorder": "🟡 PRE-ORDER OPEN", "in_stock": "✅ OP VOORRAAD"}[t["status"]] if becomes_buyable else "📉 GOEDKOPER"
+        price = f"€{t['price']:.2f}".replace(".", ",")
+        old = f" (was €{t['old_price']:.2f})".replace(".", ",") if cheaper and t.get("old_price") else ""
+        verdict = (f"Ratio <b>{ratio:.2f}</b> → {'koopwaardig' if ratio >= buy['threshold'] else 'bijna koopwaardig'} (hits €{st['ev_eu_excl_saa']:.0f} per box)"
+                   if ratio is not None else "Nog geen waardering (set niet uit) — pre-order = eerste kans")
+        out.append({"text": f"{label} · <b>{code or 'sealed'}</b>\n{t['title'][:90]}\n<b>{price}</b> bij {t['retailer']}{old}\n{verdict}",
                     "buttons": [[(f"🛒 {t['retailer']}", t["url"]), ("📊 Radar", "https://np7editz-bot.github.io/TCGWatcher/")]]})
     return out

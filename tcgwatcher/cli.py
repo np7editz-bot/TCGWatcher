@@ -59,7 +59,9 @@ def main(argv=None):
         muted = store.read_json(store.state_path("alerts"), {}).get("muted", [])
         r = retail_run()
         log.info("retail: %d rows, errors=%s, %d transitions", r["rows"], r["errors"], len(r["transitions"]))
-        msgs = format_alerts(r["transitions"], first, muted)
+        from .config import load_alerts
+        from .build import LATEST
+        msgs = format_alerts(r["transitions"], first, muted, latest=store.read_json(LATEST, {}), buy=load_alerts().get("buy"))
         store.write_json(store.DATA / "retail" / f"{r['day']}.alerts.json",
                          {"day": r["day"], "messages": msgs, "transitions": r["transitions"]}, compact=False)
         if not a.no_send:

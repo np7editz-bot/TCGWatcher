@@ -1,9 +1,12 @@
-"""Alerts v2.
+"""Alerts v3 — only things you can act on now.
 
-Two kinds of messages:
-  signal cards  — one message per event, with photo and buttons: buy signal (ratio crossing), new product line
-                  (pre-order signal), new sealed product, data-quality change. Retail transitions are sent by retail.py.
-  daily briefing — one message: ranking with shift vs yesterday, movers, boxes, retail, Naruto, data status.
+  🎯 KOOP        EV€ of hits (excl. ★★) ÷ cheapest EU buy option (CardTrader EU ask or a retailer with stock/pre-order)
+                 ≥ buy.threshold. One card per episode; repeats only when the best price drops ≥ buy.rearm_improvement.
+  🆕 productlijn new set in the TCGplayer catalogue (= the moment EU pre-orders open), new sealed product.
+  🏪 retail      handled in retail.py: only box/case → in stock / pre-order, and only when it is worth buying
+                 (ratio ≥ buy.near) or the set is not released yet.
+  📋 briefing    weekly (Sunday) by default — `briefing: daily|weekly|off` in config/alerts.yaml.
+  ⚠️ quality     only on FAIL (page not updated). Everything else stays in data/ and on the page.
 Muting: send `/mute FB10` (or `/mute all`, `/unmute FB10`, `/status`) to the bot; read at the start of each run.
 State (data/state/alerts.json): active episodes, seen groups/sealed, muted sets, previous ranking, quality fingerprint.
 """
@@ -41,7 +44,8 @@ def run(day, quality=None, send=True):
 
     # 1. data quality: only when the set of findings changes, or on fail
     fp = "|".join(sorted(f"{g}:{f['code']}:{','.join(f.get('ids', [])[:5])}" for g, v in quality.get("games", {}).items() for f in v.get("findings", [])))
-    if cfg.get("quality_issues") and quality.get("status") in ("fail", "warn") and (fp != state["quality_fp"] or quality["status"] == "fail"):
+    q_mode = cfg.get("quality_issues")
+    if q_mode and quality.get("status") == "fail" or (q_mode is True and quality.get("status") == "warn" and fp != state["quality_fp"]):
         findings = [f"{g}: {f['code']}" for g, v in quality.get("games", {}).items() for f in v.get("findings", [])]
         lvl = "FAIL — pagina niet bijgewerkt" if quality["status"] == "fail" else "gewijzigd"
         msgs.append(_m(f"quality:{day}", "quality", f"⚠️ <b>Datakwaliteit {lvl}</b>\n" + "\n".join("• " + x for x in findings[:8])
@@ -81,38 +85,32 @@ def run(day, quality=None, send=True):
                                            f"📦 <b>{gdata['short']} · nieuw sealed product</b>\n<b>{sp['name']}</b>"
                                            + (f"\n{_usd(sp['price'])} ({sp['price_src']})" if sp.get("price") else "") + ("\n🟡 presale" if sp.get("presale") else ""),
                                            photo=sp.get("image"), buttons=[[("TCGplayer", sp.get("url") or SITE_URL), ("Radar", SITE_URL)]]))
-            # 4. buy signal: ratio crossing (episode), with context
-            ranked = [s for s in gdata["sets"] if s["ratio_excl_saa"] is not None]
+            # 4. buy signal on the EU ratio: EV€ ÷ cheapest EU buy option (see build.best_buy)
+            ranked = [s for s in gdata["sets"] if s.get("ratio_eu") is not None or s.get("best_buy")]
+            ranked.sort(key=lambda s: -((s.get("best_buy") or {}).get("ratio") or 0))
+            buy = cfg.get("buy", {"threshold": 0.8, "rearm_improvement": 0.1})
             for pos, s in enumerate(ranked, 1):
-                key = f"ratio:{gid}:{s['code']}"
-                if set(s["flags"]) & set(cfg.get("exclude_flags", [])) or "presale" in s["flags"] or s["code"] in muted:
+                key = f"buy:{gid}:{s['code']}"
+                bb = s.get("best_buy")
+                if not bb or set(s["flags"]) & set(cfg.get("exclude_flags", [])) or "presale" in s["flags"] or s["code"] in muted:
                     state["active"].pop(key, None)
                     continue
-                ratio = s["ratio"] if cfg["ratio"].get("include_saa") else s["ratio_excl_saa"]
-                if ratio >= cfg["ratio"]["threshold"]:
-                    if key not in state["active"]:
-                        state["active"][key] = day
-                        comp = s["composition"]
-                        c = lambda k, l: f"{comp[k]['n']} {l}" if k in comp else None  # noqa: E731
-                        compo = " · ".join(x for x in (c("SR_AA", "SR-AA"), c("SCR", "SCR"), c("SCR_AA", "★"), c("SAA", "★★")) if x)
-                        best = next((r for r in s.get("retail", []) if r.get("price") and r["status"] in ("in_stock", "preorder")), None)
-                        txt = (f"🎯 <b>KOOPSIGNAAL · {s['code']} {s['name']}</b>\n"
-                               f"Ratio <b>{ratio:.2f}</b> (drempel {cfg['ratio']['threshold']}) · #{pos} van {len(ranked)}\n"
-                               f"Hits {_usd(s['ev_excl_saa'])} / box {_usd(s['box']['price'])} (TCGplayer, in €)\n"
-                               f"Top hit: {_card(s['top_hit']['name'], s['top_hit']['number'])} {s['top_hit']['class'].replace('_AA',' AA')} {_usd(s['top_hit']['price'])}\n"
-                               f"Samenstelling: {compo}\n"
-                               f"Marktprijzen: {s['hits_market_priced']}/{s['hits_total']} hits")
-                        if best:
-                            txt += f"\n🛒 EU: €{best['price']:.2f} bij {best['retailer']} ({'pre-order' if best['status']=='preorder' else 'op voorraad'})"
-                        btn = [[("📊 Radar", SITE_URL), ("TCGplayer", s["box"].get("url") or SITE_URL)]]
-                        if best:
-                            btn.append([(f"🛒 {best['retailer']}", best["url"])])
-                        msgs.append(_m(key, "ratio", txt, photo=(s["box"] or {}).get("image") or s["top_hit"].get("image"), buttons=btn))
-                else:
+                ratio = bb["ratio"] or 0
+                if ratio < buy["threshold"]:
                     state["active"].pop(key, None)
+                    continue
+                ep = state["active"].get(key)
+                if ep and not (isinstance(ep, dict) and bb["price"] <= ep["price"] * (1 - buy.get("rearm_improvement", 0.1))):
+                    continue        # already alerted this episode and the price did not improve enough
+                state["active"][key] = {"since": (ep or {}).get("since", day) if isinstance(ep, dict) else day, "price": bb["price"], "ratio": ratio}
+                msgs.append(buy_card(gid, gdata, s, pos, len(ranked), buy, again=bool(ep)))
 
-        # 5. daily briefing (always, once per day)
-        msgs.append(briefing(day, latest, state, quality))
+        # 5. briefing: daily | weekly (Sunday) | off
+        mode = cfg.get("briefing", "weekly")
+        if mode == "daily" or (mode == "weekly" and dt.date.fromisoformat(day).weekday() == 6):
+            msgs.append(briefing(day, latest, state, quality))
+        else:
+            _remember_ranking(latest, state)
 
     store.write_json(store.alerts_path(day), {"day": day, "alerts": [{k: v for k, v in m.items() if k != "buttons"} | {"buttons": m.get("buttons")} for m in msgs]}, compact=False)
     store.write_json(store.state_path("alerts"), state, compact=False)
@@ -123,22 +121,49 @@ def run(day, quality=None, send=True):
     return msgs
 
 
+def buy_card(gid, gdata, s, pos, n, buy, again=False):
+    bb = s["best_buy"]
+    comp = s["composition"]
+    c = lambda k, l: f"{comp[k]['n']} {l}" if k in comp else None  # noqa: E731
+    compo = " · ".join(x for x in (c("SR_AA", "SR-AA"), c("SCR", "SCR"), c("SCR_AA", "★"), c("SAA", "★★")) if x)
+    st = {"in_stock": "op voorraad", "preorder": "pre-order"}
+    where = "\n".join(f"• €{o['price']:,.2f} {o['source']} ({st.get(o['status'], o['status'])})".replace(",", "X").replace(".", ",").replace("X", ".")
+                      for o in bb.get("options", [])[:3])
+    us = f" · US-ratio {s['ratio_excl_saa']:.2f}" if s.get("ratio_excl_saa") is not None else ""
+    head = "🎯 <b>KOOP" + (" · goedkoper geworden" if again else "") + f" · {s['code']} {s['name']}</b>"
+    txt = (f"{head}\n"
+           f"Hits per box <b>€{s['ev_eu_excl_saa']:.0f}</b> / box vanaf <b>€{bb['price']:.0f}</b> → ratio <b>{bb['ratio']:.2f}</b> (drempel {buy['threshold']})\n"
+           f"#{pos} van {n}{us}\n\n"
+           f"🛒 <b>Waar kopen</b>\n{where}\n\n"
+           f"Samenstelling: {compo}\n"
+           f"Top hit: {_card(s['top_hit']['name'], s['top_hit']['number'])} {s['top_hit']['class'].replace('_AA',' AA')} {_usd(s['top_hit']['price'])}\n"
+           f"<i>Waardering TCGplayer-verkopen in € · {s['hits_market_priced']}/{s['hits_total']} hits met marktprijs</i>")
+    btn = [[(f"🛒 {bb['source']} €{bb['price']:.0f}", bb["url"]), ("📊 Radar", SITE_URL)]]
+    return _m(f"buy:{gid}:{s['code']}", "buy", txt, photo=(s.get("box") or {}).get("image") or s["top_hit"].get("image"), buttons=btn)
+
+
+def _remember_ranking(latest, state):
+    g = latest["games"].get("dbfw") or next(iter(latest["games"].values()))
+    state["prev_ranking"] = {s["code"]: (s.get("best_buy") or {}).get("ratio") for s in g["sets"] if s.get("best_buy")}
+
+
 def briefing(day, latest, state, quality):
     g = latest["games"].get("dbfw") or next(iter(latest["games"].values()))
-    ranked = [s for s in g["sets"] if s["ratio_excl_saa"] is not None and "no_cards" not in s["flags"]]
+    ranked = sorted((s for s in g["sets"] if s.get("best_buy") and "no_cards" not in s["flags"]),
+                    key=lambda s: -(s["best_buy"]["ratio"] or 0))
     prev = state.get("prev_ranking", {})
     lines = []
     for i, s in enumerate(ranked[:6], 1):
-        r = s["ratio_excl_saa"]
-        d = r - prev[s["code"]] if s["code"] in prev else None
+        r = s["best_buy"]["ratio"] or 0
+        d = r - prev[s["code"]] if prev.get(s["code"]) is not None else None
         arrow = "" if d is None or abs(d) < 0.005 else (f" ↑{d:+.2f}" if d > 0 else f" ↓{d:.2f}")
         flag = " ⚠" if "low_coverage" in s["flags"] else ""
-        lines.append(f"{i}. {s['code']} {s['name'][:22]} <code>{r:.2f}</code>{arrow}{flag}")
-    state["prev_ranking"] = {s["code"]: s["ratio_excl_saa"] for s in ranked}
+        lines.append(f"{i}. {s['code']} {s['name'][:20]} <code>{r:.2f}</code>{arrow}{flag} · €{s['best_buy']['price']:.0f} {s['best_buy']['source']}")
+    _remember_ranking(latest, state)
     movers = sorted((c for c in g["cards"] if c.get("chg7") is not None and c["price"] and c["price"] >= 20 and c["price_src"] == "market" and abs(c["chg7"]) >= 20),
                     key=lambda c: -abs(c["chg7"]))[:5]
     mv = [f"{'▲' if c['chg7']>0 else '▼'} {c['chg7']:+.0f}% {_card(c['name'], c['number'])[:30]} {c['class'].replace('_AA',' AA')} → {_usd(c['price'])}" for c in movers]
-    boxes = [f"{s['code']} {_usd(s['box']['price'])}" + (f" ({s['box']['chg7']:+.1f}%)" if s['box'].get('chg7') is not None else "") for s in ranked[:5] if s.get("box")]
+    boxes = [f"{s['code']} {_usd(s['box']['price'])}" + (f" ({s['box']['chg7']:+.0f}%)" if s['box'].get('chg7') is not None else "") for s in ranked[:5] if s.get("box")]
     retail = [r for s in g["sets"] for r in s.get("retail", []) if r["status"] in ("in_stock", "preorder") and r.get("price")]
     pre = [r for r in retail if r["status"] == "preorder"]; ins = [r for r in retail if r["status"] == "in_stock"]
     rtxt = (f"{len(pre)} pre-order(s) open · {len(ins)} op voorraad" if retail else "nog geen retail-data") if any(s.get("retail") for s in g["sets"]) else "retail-monitor nog niet actief"
@@ -149,9 +174,9 @@ def briefing(day, latest, state, quality):
     nq = sum(len(v.get("findings", [])) for v in quality.get("games", {}).values())
     text = (f"📋 <b>TCGWatcher · {_nl_date(day)}</b>\n"
             f"<i>{len(g['sets'])} sets · {len(g['cards'])} chase cards · data {'✔' if q == 'ok' else '⚠'} ({nq} bekende bronfout(en))</i>\n\n"
-            f"<b>Ranking (EV-ratio, excl. ★★)</b>\n" + "\n".join(lines) + "\n\n"
+            f"<b>Ranking (hits € ÷ goedkoopste EU-box, excl. ★★)</b>\n" + "\n".join(lines) + "\n\n"
             + (f"<b>Bewegingen (7d, ≥20%)</b>\n" + "\n".join(mv) + "\n\n" if mv else "<b>Bewegingen</b> geen kaart ≥20% in 7d\n\n")
-            + f"<b>Boxen</b> " + " · ".join(boxes) + "\n\n"
+            + f"<b>Boxen US (TCGplayer, 7d)</b> " + " · ".join(boxes) + "\n\n"
             + f"<b>Retail</b> {rtxt}\n<b>Naruto</b> {ntxt}"
             + (f"\n<b>Gemute</b> {', '.join(state['muted'])}" if state.get("muted") else ""))
     photo = (top["top_hit"].get("image") if top and top.get("top_hit") else None)

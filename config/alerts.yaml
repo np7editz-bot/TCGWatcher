@@ -1,7 +1,12 @@
 # Alert rules. Evaluated daily after build. Each alert has a stable key; an alert is sent once per
 # "episode" (e.g. a ratio alert is sent when a set crosses the threshold and again only after it dropped below).
+buy:
+  threshold: 0.80          # buy signal when EV€ of hits (excl. ★★) ÷ best EU buy price ≥ this
+  rearm_improvement: 0.10  # alert again within an episode when the best price drops ≥10%
+  near: 0.70               # retail restock/pre-order messages only for sets with ratio ≥ this (or unreleased sets)
+briefing: weekly           # daily | weekly (Sunday) | off
 ratio:
-  threshold: 0.60          # EV of hits (excl. ★★) / box market price
+  threshold: 0.60          # legacy US ratio (page only; no longer alerts)
   include_saa: false
 box_price:
   drop_pct_7d: -10         # box market price vs 7-day average
@@ -11,5 +16,5 @@ card_price:
   min_price_usd: 20
 new_group: true            # new set/product line appears in TCGCSV (presale = earliest pre-order signal)
 new_sealed_product: true   # new booster box / case / pack product appears in an existing group
-quality_issues: true       # send a message when validation fails or warns
+quality_issues: fail_only   # true = also warn-changes; fail_only = only when the page was not updated
 exclude_flags: [manga, story, low_coverage, no_cards]   # sets with these flags never trigger ratio alerts
