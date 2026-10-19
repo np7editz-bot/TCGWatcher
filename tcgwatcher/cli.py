@@ -72,7 +72,10 @@ def main(argv=None):
         from .build import LATEST
         latest = store.read_json(LATEST)
         if latest:
-            active = store.read_json(store.state_path("alerts"), {}).get("active", {})
+            st = store.read_json(store.state_path("alerts"), {})
+            active = st.get("active", {})
+            latest["sent_slabs"] = st.get("sent_slabs", {})      # page: mark slab candidates already sent to Telegram
+            store.write_json(LATEST, latest)
             if open_positions(day, latest, alerts, active_buy={k.split(":")[-1] for k in active if k.startswith("buy:")}):
                 from .build import paper_summary       # new positions → refresh the page's portfolio block right away
                 latest["paper"] = paper_summary(latest)

@@ -280,11 +280,12 @@ function slabItems(){
     const c = cards[g.key]||{}; const opts=[]; const eu=c.eu||{};
     if (eu.low) opts.push({src:'CardTrader'+(eu.zero_low&&eu.zero_low<=eu.low?' Zero':''), price:(eu.zero_low||eu.low)+(eu.zero_low?6:5), url:eu.url});
     if (c.raw_ebay?.low) opts.push({src:`eBay (${c.raw_ebay.n} EU)`, price:c.raw_ebay.low, url:c.raw_ebay.url});
-    if (c.cm?.low) opts.push({src:'Cardmarket', price:c.cm.low+5, url:`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`});
+    if (c.cm?.low) opts.push({src:'Cardmarket', price:c.cm.low+5, url:c.cm.url||`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`});
     opts.sort((a,b)=>a.price-b.price);
     const cm = {src:'Cardmarket (zoeken)', price:null, url:`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`};
     const raw = opts.length? opts[0].price : g.raw_eur, net = g.net - (raw - g.raw_eur);
-    return {g, c, opts, cm, raw, net, noEu: !opts.length, deal: deals[g.key], under: raw < 0.5*g.raw_eur};
+    const sent = (DATA.sent_slabs||{})[`${gameId}:${g.key}`];
+    return {g, c, opts, cm, raw, net, noEu: !opts.length, deal: deals[g.key], under: raw < 0.5*g.raw_eur, sent};
   }).filter(i=>i.net>=50).sort((a,b)=>b.net-a.net);
   return items;
 }
@@ -293,7 +294,7 @@ function slabCard(i, rank){
   const btn = (i.noEu ? `<a href="${esc(i.cm.url)}" target="_blank" rel="noopener" class="alt">🔎 zoek raw op Cardmarket</a>` : i.opts.slice(0,2).map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 raw €${o.price.toFixed(0)} · ${esc(o.src.split(' (')[0])}</a>`).join(''))
     + (i.deal?`<a href="${esc(i.deal.url)}" target="_blank" rel="noopener" class="alt">🏷 graded €${i.deal.price.toFixed(0)}</a>`:'');
   return `<div class="sc wide"><div class="img">${c.image?`<img src="${big(c.image)}" alt="" loading="lazy">`:''}</div><div class="body">
-    <div class="t">${rank?`#${rank} · `:''}${esc(short(g.name))} <small>${g.number} · ${cls(g.class)} · ${g.set}</small></div>
+    <div class="t">${rank?`#${rank} · `:''}${esc(short(g.name))} <small>${g.number} · ${cls(g.class)} · ${g.set}</small>${i.sent?` <span class="tag">📨 gemeld ${i.sent.day.slice(5).split('-').reverse().join('-')}</span>`:''}</div>
     <div class="big">€${i.raw.toFixed(0)}<small>${i.noEu?'marktwaarde raw · geen EU-aanbod gevonden':'raw, all-in naar NL'}</small></div>
     <div class="row">${esc(g.service)} ${g.top_grade} waarde <b>€${g.top_median.toFixed(0)}</b> (${g.top_n} listings) · netto <b>€${i.net.toFixed(0)}</b> (${Math.round(i.net/i.raw*100)}% op inleg)${(g.options||[]).slice(1,3).map(o=>` · ${o.service} €${o.net.toFixed(0)}`).join('')}</div>
     ${i.under?`<div class="warnline">⚠️ ${Math.round((1-i.raw/g.raw_eur)*100)}% onder marktwaarde — check verkoper, foto's en retourbeleid</div>`:''}

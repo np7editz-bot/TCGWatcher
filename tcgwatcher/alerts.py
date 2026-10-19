@@ -109,7 +109,7 @@ def run(day, quality=None, send=True):
                 msgs.append(buy_card(gid, gdata, s, pos, len(ranked), buy, again=bool(ep)))
 
         # 4b. slabs: the 5 best cards to buy now for graded value — one card per message (photo, where-to-buy comparison,
-        #     one button per shop). Episode per card; again when net improves ≥25% or the raw price drops ≥10%.
+        #     one button per shop). Each run: up to 5 cards not sent before; a sent card again only when net ≥ +25% or raw ≤ −10%.
         buy_min = cfg.get("grading", {}).get("min_profit_eur", 50)
         for gid, gdata in latest["games"].items():
             if not gdata.get("alerts", True):
@@ -132,7 +132,7 @@ def run(day, quality=None, send=True):
                 cmc = c.get("cm") or {}
                 if cmc.get("low"):
                     opts.append({"src": "Cardmarket", "price": round(cmc["low"] + 5, 2),
-                                 "url": "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=" + g["number"]})
+                                 "url": cmc.get("url") or "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=" + g["number"]})
                 opts.sort(key=lambda o: o["price"])
                 if not opts:
                     continue                            # nothing to buy in the EU today → page only (with a Cardmarket search), no message
@@ -142,13 +142,16 @@ def run(day, quality=None, send=True):
                     continue
                 items.append({"key": g["key"], "g": g, "c": c, "opts": opts, "raw": raw_price, "net": net, "slab": slabs.get(g["key"])})
             items.sort(key=lambda i: -i["net"])
-            top_keys = [i["key"] for i in items[:5]]
-            for rank, i in enumerate(items[:5], 1):
+            # Telegram gets up to 5 cards that were NOT sent before (state.sent_slabs, never cleared); a sent card returns
+            # only when it got clearly better (net ≥ +25% or raw ≥ 10% cheaper). The page keeps every candidate, marked.
+            sent = state.setdefault("sent_slabs", {})
+            for k, ep in list(state["active"].items()):               # migrate legacy slab episodes: those were sent already
+                if k.startswith(f"slab:{gid}:") and isinstance(ep, dict) and "net" in ep:
+                    sent.setdefault(k.split(":", 2)[2].join([f"{gid}:", ""]), {"day": ep.get("since", day), "net": ep["net"], "raw": ep["raw"], "rank": 0})
+            picked = pick_slabs(items, sent, gid)
+            for rank, i in enumerate(picked, 1):
                 key = f"slab:{gid}:{i['key']}"
-                ep = state["active"].get(key)
-                if ep and not (i["net"] >= ep["net"] * 1.25 or i["raw"] <= ep["raw"] * 0.9):
-                    continue
-                state["active"][key] = {"since": (ep or {}).get("since", day), "net": i["net"], "raw": i["raw"]}
+                sent[f"{gid}:{i['key']}"] = {"day": day, "net": i["net"], "raw": i["raw"], "rank": rank}
                 g, c, sl = i["g"], i["c"], i["slab"]
                 where = "\n".join(f"• €{o['price']:.0f} {o['src']}" for o in i["opts"][:3])
                 cls = "Gold (Manga)" if i["key"].endswith(":GOLD") else g["class"].replace("_AA", " AA")
@@ -169,8 +172,7 @@ def run(day, quality=None, send=True):
                 btn.append([("📊 Radar", SITE_URL)])
                 msgs.append(_m(key, "slab", txt, photo=_big(c.get("image")), buttons=btn))
             for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
-                if key.split(":", 2)[2] not in top_keys:
-                    state["active"].pop(key, None)
+                state["active"].pop(key, None)             # legacy episodes: rotation is tracked in sent_slabs now
 
         # 5. briefing: daily | weekly (Sunday) | off
         mode = cfg.get("briefing", "weekly")
@@ -212,6 +214,19 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
     btn = [[(f"🛒 {o['source']} €{o['price']:.0f} · {st_short.get(o['status'], o['status'])}", o["url"])] for o in bb.get("options", [])[:3]]
     btn.append([("📊 Radar", SITE_URL)])
     return _m(f"buy:{gid}:{s['code']}", "buy", txt, photo=_big((s.get("box") or {}).get("image") or s["top_hit"].get("image")), buttons=btn)
+
+
+def pick_slabs(items, sent, gid, n=5):
+    """Up to n slab candidates (sorted by net) not sent before; a sent one again only when net ≥ +25% or raw ≤ −10%."""
+    picked = []
+    for i in items:
+        prev = sent.get(f"{gid}:{i['key']}")
+        if prev and not (i["net"] >= prev["net"] * 1.25 or i["raw"] <= prev["raw"] * 0.9):
+            continue
+        picked.append(i)
+        if len(picked) == n:
+            break
+    return picked
 
 
 def _remember_ranking(latest, state):
