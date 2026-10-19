@@ -391,6 +391,34 @@
    "source": "CardTrader Zero",
    "status": "open",
    "valuation": "cardmarket"
+  },
+  {
+   "code": "BT29",
+   "ev_then": 118.55,
+   "game": "dbs",
+   "key": "buy:dbs:BT29",
+   "kind": "box",
+   "name": "Fearsome Rivals",
+   "opened": "2026-10-18",
+   "price": 126.64,
+   "ratio_then": 0.936,
+   "source": "CardTrader Zero",
+   "status": "open",
+   "valuation": "cardmarket"
+  },
+  {
+   "code": "BT30",
+   "ev_then": 162.26,
+   "game": "dbs",
+   "key": "buy:dbs:BT30",
+   "kind": "box",
+   "name": "Three Glorious Fighters",
+   "opened": "2026-10-18",
+   "price": 156.67,
+   "ratio_then": 1.036,
+   "source": "CardTrader Zero",
+   "status": "open",
+   "valuation": "cardmarket"
   }
  ]
 }
