@@ -232,3 +232,13 @@ def test_best_buy_cardmarket_indicative_for_masters():
     assert b["source"].startswith("eBay") and b["price"] == 150.0
     assert any(o["source"] == "Cardmarket" and o.get("indicative") for o in b["options"])
     assert best_buy(dict(s, flags=[]), min_offers=3, cardmarket_buy=True)["source"] == "Cardmarket"
+
+
+def test_collector_booster_variants_are_not_box_hits():
+    from tcgwatcher.config import load_games
+    from tcgwatcher.model import load_game
+    g = load_games()["dbs"]
+    m = load_game(g, "2026-10-18")
+    cb = [p for p in m["products"] if p.set_code == "BT24" and p.variant in ("CB", "CBG", "CBS", "SN")]
+    assert cb and all(p.hit_class is None for p in cb)
+    assert any(p.hit_class == "SCR" for p in m["products"] if p.set_code == "BT24" and p.variant == "")
