@@ -231,7 +231,7 @@ footer{color:var(--fg3);font-size:12.5px}
     <div style="height:18px"></div>
     <div class="panel" style="font-size:13.5px;color:var(--fg2)">
       <h3>Hoe het werkt</h3>
-      <p><b>Waardering</b> van de hits: gemiddelde EU-<b>verkoopprijs</b> over 30 dagen uit de officiële Cardmarket-prijsgids; per kaart terugval op avg7 → trend → TCGplayer × ECB-koers, en per set terugval op TCGplayer als minder dan de helft van de hits recente EU-verkopen heeft. TCGplayer blijft als US-referentie zichtbaar. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
+      <p><b>Waardering</b> van de hits: gemiddelde EU-<b>verkoopprijs</b> over 30 dagen uit de officiële Cardmarket-prijsgids; per kaart terugval op avg7 → trend → TCGplayer-verkopen × ECB-koers → CardTrader-vraagprijs × 0,83 (vraagprijzen liggen gemiddeld 20% boven verkopen), en per set terugval op TCGplayer als minder dan de helft van de hits recente EU-verkopen heeft. TCGplayer blijft als US-referentie zichtbaar. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
       <p><b>Slabs</b>: eBay Browse API (DE/NL, EU-locatie) + CardTrader graded; zelfde nummer ≠ zelfde kaart (basis / alt-art / super alt-art / gold worden uit de titel gelezen; listings > 4× de laagste van dezelfde grade gelden als verkeerd gelabeld). Grading-uitkomstmix per service: PSA 40% 10 / 60% 9 (€25), BGS 10% 10 / 45% 9.5 / 45% 9 (€30), CGC (€22); eBay-fees 13%.</p>
       <p><b>Berichten</b>: 🎯 KOOP (box), 🏆 SLAB #1–#5, 🟡/✅ retail (ratio ≥ 0,70 of set nog niet uit), 🍥 Naruto (elk product), 📰 aankondiging, 📒 maandrapport. Alles met knoppen naar de shop. <code>/mute FB10</code>, <code>/unmute FB10</code>, <code>/status</code> naar de bot.</p>
     </div>
@@ -257,7 +257,7 @@ const cls = c => c==='GOLD' ? 'Gold' : c.replace('_AA',' AA');
 const esc = s => String(s??'').replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
 function est(){ const o={}; for (const k of Object.keys(G.estimates)) o[k]=parseFloat(document.getElementById('e_'+k).value)||0; return o; }
-const cardEur = c => { const cm=c.cm||{}; const v=cm.avg30||cm.avg7||cm.trend; return v ? v : (c.price!=null ? c.price*fx() : null); };
+const cardEur = c => { const cm=c.cm||{}; const v=cm.avg30||cm.avg7||cm.trend; if (v) return v; if (c.price!=null) return c.price*fx(); return c.eu?.low ? c.eu.low*0.83 : null; };
 function score(set){
   const e = est(), incl = document.getElementById('inclSaa').checked, scale = set.packs / G.box.packs;
   const bucket = {}; let top=null;

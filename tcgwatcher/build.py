@@ -169,8 +169,12 @@ def landed(o, cfg):
             "landed_note": f"€{o['low']:.2f} + ±€{cfg['seller_shipping_eur']} verzending (geen Zero-aanbod)"}
 
 
+ASK_TO_SALE = 0.83     # CardTrader ask → expected sale price (1 / 1.2, docs/calibration-2026-10-18.md)
+
+
 def ev_cm(s, cards, rate):
-    """EV of the hits on Cardmarket sales (avg30, EUR); per card falls back to avg7, trend, then TCGplayer × rate.
+    """EV of the hits on Cardmarket sales (avg30, EUR); per card falls back to avg7 → trend → TCGplayer × rate (sales-based)
+    → CardTrader lowest ask × ASK_TO_SALE (asks overstate: calibration 2026-10-18 median 1.12–1.39× sales).
     Returns (ev, coverage 'n/total') where n = hits priced on Cardmarket sales."""
     lottery = {"SAA", "GDR"}
     ev, covered, total = 0.0, 0, 0
@@ -189,6 +193,8 @@ def ev_cm(s, cards, rate):
                 prices.append(cm["trend"]); total += 1
             elif c.get("price") is not None:
                 prices.append(c["price"] * rate); total += 1
+            elif (c.get("eu") or {}).get("low"):
+                prices.append(c["eu"]["low"] * ASK_TO_SALE); total += 1
         if prices:
             ev += comp["est"] * (sum(prices) / len(prices))
     return round(ev, 2), f"{covered}/{total}"
