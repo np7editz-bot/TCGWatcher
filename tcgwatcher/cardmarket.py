@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 7            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 8            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -83,6 +83,17 @@ def card_url(expansion_name, product_name, version=1, variant="", rarity="", pri
     return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}?language=1"
 
 
+def _tokens(text):
+    """Lower-case word stems: plural/singular differences ignored (TCGplayer 'Beyond Generations' vs Cardmarket 'Beyond Generation',
+    'Legend of the Dragon Balls' vs 'Legends of the Dragon Balls')."""
+    return [w[:-1] if w.endswith("s") and len(w) > 3 else w for w in re.findall(r"[a-z0-9]+", text.lower())]
+
+
+def _name_match(set_name, product_name):
+    toks = _tokens(set_name)
+    return bool(toks) and all(t in _tokens(product_name) for t in toks)
+
+
 def _f(row, field):
     """Price-guide value with the foil fallback: Cardmarket keeps `low/trend/avg*` for the non-foil version and
     `*-foil` for the foil one; Fusion World hits are foil-only, so their sales live in the foil fields (0/None elsewhere)."""
@@ -114,7 +125,7 @@ def join(files, latest, ct_doc):
             name = (s.get("name") or "").lower()
             if not name:
                 continue
-            hits = [p for p in sealed if name in p["name"].lower() and "case" not in p["name"].lower() and not NOT_EN.search(p["name"])]
+            hits = [p for p in sealed if _name_match(name, p["name"]) and "case" not in p["name"].lower() and not NOT_EN.search(p["name"])]
             if gid == "dbfw":
                 hits = [p for p in hits if "fusion world" in p["name"].lower()] or hits
             else:
