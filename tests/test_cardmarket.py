@@ -64,3 +64,21 @@ def test_expansion_names():
     assert expansion_name("dbfw", "FB08", "Saiyan's Pride", "Saiyan's Pride Booster Box [Fusion World]") == "Saiyan's Pride [Fusion World]"
     assert card_url("Zenkai Series Set 04", "Son Goku, Overwhelming Power", 2, "SPR").endswith("/Zenkai-Series-Set-04/Son-Goku-Overwhelming-Power-V2-Special-Rare")
     assert card_url("Manga Booster 01 [Fusion World]", "Vegeta // Vegeta (FB04-051) [Fusion World]", 2, "GOLD").endswith("/Manga-Booster-01-Fusion-World/Vegeta-Vegeta-FB04-051-Fusion-World-V2-Alternate-Art")
+
+
+def test_join_prefers_the_sets_own_expansion():
+    """FB03-139 exists twice on Cardmarket (two expansions); the cheaper one lives elsewhere and its URL would be wrong."""
+    f = files()
+    f["prices"]["priceGuides"] += [{"idProduct": 783017, "low": 80.0, "avg30": 90.0}, {"idProduct": 790367, "low": 60.0, "avg30": 70.0}]
+    f["singles"]["products"] = [{"idProduct": 783016, "name": "Son Gohan : Youth (FB03-139) [Fusion World]", "idExpansion": 10},
+                                {"idProduct": 783017, "name": "Son Gohan : Youth (FB03-139) [Fusion World]", "idExpansion": 10},
+                                {"idProduct": 790366, "name": "Son Gohan : Youth (FB03-139) [Fusion World]", "idExpansion": 11},
+                                {"idProduct": 790367, "name": "Son Gohan : Youth (FB03-139) [Fusion World]", "idExpansion": 11}]
+    f["nonsingles"]["products"].append({"idProduct": 7101, "name": "Raging Roar Booster Box [Fusion World]", "idExpansion": 10})
+    f["prices"]["priceGuides"].append({"idProduct": 7101, "low": 85.0})
+    latest = {"games": {"dbfw": {"cards": [{"key": "dbfw:FB03:FB03-139:AA", "product_id": 600}], "sets": [{"code": "FB03", "name": "Raging Roar"}]}}}
+    ct = {"blueprints": {"1": {"tcg_player_id": 600, "card_market_ids": [783017, 790367]}}}
+    cards, boxes = cardmarket.join(f, latest, ct)
+    c = cards["dbfw:FB03:FB03-139:AA"]
+    assert c["idProduct"] == 783017 and c["low"] == 80.0 and c["version"] == 2
+    assert c["url"].endswith("/Raging-Roar-Fusion-World/Son-Gohan-Youth-FB03-139-Fusion-World-V2-Alternate-Art")

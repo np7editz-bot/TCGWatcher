@@ -65,6 +65,10 @@ def build(day, quality=None):
             o = eu.get(c["product_id"])
             c["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5, "zero_low": o.get("zero_low"),
                        "url": f"https://www.cardtrader.com/cards/{o['blueprint_id']}"} if o else None
+            # TCGplayer's product photos of the Manga Booster Gold leaders show the non-gold printing (Vegeta, Cell, 2026-10-19);
+            # CardTrader scans the actual printing → use that image for Gold variants
+            if c["variant"] == "GOLD" and o and o.get("image"):
+                c["image"] = o["image"]
         for s in sets_scored:
             for kind in ("box", "pack", "case"):
                 sp = s.get(kind)

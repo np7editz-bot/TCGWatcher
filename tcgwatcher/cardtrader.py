@@ -139,5 +139,5 @@ def eu_prices_by_tcgplayer(doc):
     for bid, o in doc["offers"].items():
         b = doc["blueprints"].get(bid)
         if b and b.get("tcg_player_id"):
-            out[int(b["tcg_player_id"])] = {**o, "blueprint_id": int(bid), "name": b["name"]}
+            out[int(b["tcg_player_id"])] = {**o, "blueprint_id": int(bid), "name": b["name"], "image": b.get("image")}
     return out

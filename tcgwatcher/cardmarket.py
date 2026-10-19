@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 4            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 5            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -114,13 +114,27 @@ def join(files, latest, ct_doc):
             rows = [(p, r) for p, r in rows if r and r.get("low")]
             if rows:
                 p, r = min(rows, key=lambda x: x[1]["low"])
-                boxes[s["code"]] = {"idProduct": p["idProduct"], "name": p["name"], "low": r["low"], "trend": r.get("trend"),
+                boxes[s["code"]] = {"idProduct": p["idProduct"], "idExpansion": p.get("idExpansion"), "name": p["name"], "low": r["low"], "trend": r.get("trend"),
                                     "avg7": r.get("avg7"), "avg30": r.get("avg30"),
                                     "url": box_url(p["name"])}
         # expansion name per set = box name without "Booster Box" ("Saiyan's Pride Booster Box [Fusion World]" → "Saiyan's Pride [Fusion World]"),
         # else the set name (+ " [Fusion World]" for Fusion World)
         exp_name = {s["code"]: expansion_name(gid, s["code"], s.get("name"), (boxes.get(s["code"]) or {}).get("name") if gid == "dbfw" else None)
                     for s in g.get("sets", [])}
+        # Cardmarket lists some printings twice (same name, two expansions, e.g. FB03-139 as 783017 and 790367).
+        # Per set: the expansion the booster box sits in, else the expansion that covers most of the set's cards (tie → lowest id).
+        set_exp = {}
+        for code, b in boxes.items():
+            if b.get("idExpansion"):
+                set_exp[code] = b["idExpansion"]
+        counts = {}
+        for c in g.get("cards", []):
+            code = c["key"].split(":")[1]
+            for i in cm_ids_by_tcg.get(c.get("product_id")) or []:
+                if i in prices and exp_of.get(i):
+                    counts.setdefault(code, {}).setdefault(exp_of[i], set()).add(c["key"])
+        for code, by_exp in counts.items():
+            set_exp.setdefault(code, min(by_exp, key=lambda e: (-len(by_exp[e]), e)))
         for c in g.get("cards", []):
             ids = cm_ids_by_tcg.get(c.get("product_id"))
             if not ids:
@@ -128,8 +142,9 @@ def join(files, latest, ct_doc):
             rows = [prices[i] for i in ids if i in prices]
             if not rows:
                 continue
-            r = min(rows, key=lambda x: _f(x, "low") or 9e9)         # several Cardmarket products can map to one card (versions)
             code, variant = c["key"].split(":")[1], c["key"].split(":")[3]
+            in_exp = [r for r in rows if exp_of.get(r["idProduct"]) == set_exp.get(code)]
+            r = min(in_exp or rows, key=lambda x: _f(x, "low") or 9e9)
             pid = r["idProduct"]
             cards[c["key"]] = {"idProduct": pid, "name": names.get(pid), "version": version.get(pid, 1),
                                "low": _f(r, "low"), "trend": _f(r, "trend"),
