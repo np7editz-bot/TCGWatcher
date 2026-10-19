@@ -133,6 +133,20 @@ def cardtrader_slabs(ct_doc, blueprint_id, fx_unused=None, zero_fee=6.0, ship=5.
     return out
 
 
+def parse_raw_listing(item, number, fx_usd_eur, variant=""):
+    """Ungraded copy of this exact card, located in the EU, price incl. shipping in €."""
+    title = item.get("title") or ""
+    if number.lower() not in title.lower() or GRADE.search(title) or JP.search(title) or PROMO.search(title):
+        return None
+    if re.search(r"\b(graded|slab|lot\b|bundle|playset|x\s?[2-9]\b|proxy|custom|damaged)", title, re.I) or not variant_matches(title, variant):
+        return None
+    if ((item.get("itemLocation") or {}).get("country") or "").upper() not in EU:
+        return None
+    price = _price_eur(item, fx_usd_eur)
+    return {"price": price, "title": title[:120], "url": item.get("itemWebUrl"), "item_id": item.get("itemId"),
+            "location": (item.get("itemLocation") or {}).get("country")} if price else None
+
+
 def targets(latest, per_set=10, min_raw_eur=20):
     """Cards worth watching: the most valuable market-priced hits per set (★★, ★, SCR, SR-AA), raw ≥ €20 —
     broad enough to catch cheap raws with expensive PSA 10s (grading candidates)."""
@@ -173,7 +187,7 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
     ct_bp = {int(b.get("tcg_player_id")): int(bid) for bid, b in ((ct_doc or {}).get("blueprints") or {}).items() if b.get("tcg_player_id")}
     cards = {}
     for t in targets(latest):
-        listings = []
+        listings, raws = [], []
         for mp in marketplaces:
             try:
                 for it in client.search(f"{t['name']} {t['number']} PSA", mp):
@@ -182,6 +196,16 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
                         listings.append(p)
             except Exception as e:  # noqa: BLE001
                 log.warning("%s %s: %s", t["number"], mp, e)
+        try:                                                   # raw copies on eBay (EU sellers): where is the raw cheapest?
+            for it in client.search(f"{t['name']} {t['number']}", marketplaces[0]):
+                r = parse_raw_listing(it, t["number"], fx, t.get("variant", ""))
+                if r:
+                    raws.append(r)
+        except Exception as e:  # noqa: BLE001
+            log.warning("%s raw: %s", t["number"], e)
+        raws.sort(key=lambda x: x["price"])
+        if raws and t["raw_eur"] and raws[0]["price"] < 0.25 * t["raw_eur"]:
+            raws = [r for r in raws if r["price"] >= 0.25 * t["raw_eur"]]     # €3 'listings' for a €300 card are not that card
         if t.get("product_id") in ct_bp:
             listings += cardtrader_slabs(ct_doc, ct_bp[t["product_id"]])      # CardTrader graded section next to eBay
         seen, uniq = set(), []
@@ -210,7 +234,8 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
                 gg = [l for l in g if l["grader"] == grader]
                 by_grader.setdefault(grader, {})[str(grade)] = {"low": gg[0]["price"], "n": len(gg), "url": gg[0]["url"],
                                                                  "median": sorted(x["price"] for x in gg)[len(gg) // 2]}
-        cards[t["key"]] = {**t, "best": best, "by_grader": by_grader, "listings": uniq[:25]}
+        cards[t["key"]] = {**t, "best": best, "by_grader": by_grader, "listings": uniq[:25],
+                           "raw_ebay": {"low": raws[0]["price"], "url": raws[0]["url"], "n": len(raws)} if raws else None}
     doc = {"day": day, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            "marketplaces": list(marketplaces), "api_calls": client.calls, "cards": cards}
     if not client.calls:

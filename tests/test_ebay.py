@@ -89,3 +89,11 @@ def test_cardtrader_graded_listings_join_ebay():
     out = ebay.cardtrader_slabs(ct, 375875)
     assert [(l["grader"], l["grade"], l["price"], l["eu"]) for l in out] == [("PSA", 10.0, 1406.0, True), ("BGS", 9.5, 905.0, True)]
     assert out[0]["url"] == "https://www.cardtrader.com/cards/375875" and out[0]["marketplace"] == "CARDTRADER"
+
+
+def test_raw_ebay_listing_eu_only_and_not_graded():
+    fx = 0.9
+    assert ebay.parse_raw_listing(item("Frieza FB05-120 Super Alt Art NM", 600), "FB05-120", fx, "SAA")["price"] == 604.5
+    assert ebay.parse_raw_listing(item("Frieza FB05-120 Super Alt Art PSA 10", 1500), "FB05-120", fx, "SAA") is None
+    assert ebay.parse_raw_listing(item("Frieza FB05-120 Super Alt Art NM", 600, loc="US"), "FB05-120", fx, "SAA") is None
+    assert ebay.parse_raw_listing(item("Frieza FB05-120 Alt Art NM", 60), "FB05-120", fx, "SAA") is None
