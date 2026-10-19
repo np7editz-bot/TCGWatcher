@@ -92,6 +92,9 @@ games:
     score: true
     eu_sources: true
     alerts: false                    # silent first month: page + paper portfolio build evidence; flip after the first monthly review
+    # Variants that do not come out of a regular booster box (Collector Booster parallels, serial-numbered): tracked as cards,
+    # never a hit in the box EV. BT24 showed EV €545 because one serial-numbered 'SR' (Cardmarket sales ~€1,550) counted as a box pull.
+    box_excluded_variants: [CB, CBG, CBS, SN]
     cardmarket_box_buy: false        # Masters box pages mix EN/FR/JP listings and the public price guide has no language split:
                                      # Cardmarket is a comparison line here, never the buy price (CardTrader/eBay/retail are EN-filtered)
     ebay_sets: 8

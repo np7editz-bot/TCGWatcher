@@ -135,10 +135,12 @@ def load_game(game, day):
             sealed = sealed_kind_of(game, name, number)
             pr = prices.get(p["productId"], {})
             price, src = pick_price(pr)
+            variant = variant_of(game, name) if number else ""
+            in_box = number and kind == "booster" and variant not in set(game.get("box_excluded_variants") or [])
             products.append(Product(
                 game=game["id"], set_code=abbr, group_id=gid, product_id=p["productId"], name=name, rarity=rarity,
-                number=number, variant=variant_of(game, name) if number else "",
-                hit_class=classify(game, name, rarity) if (number and kind == "booster") else None, sealed_kind=sealed,
+                number=number, variant=variant,
+                hit_class=classify(game, name, rarity) if in_box else None, sealed_kind=sealed,
                 presale=bool((p.get("presaleInfo") or {}).get("isPresale")), price=price, price_src=src, prices=pr,
                 image=p.get("imageUrl"), url=p.get("url")))
     return {"game": game, "day": day, "sets": sets, "products": products,
