@@ -111,3 +111,12 @@ def test_only_api_trusted_shops_alert(tmp_path, monkeypatch):
     assert retail.format_alerts(t, first_run=False) == []
     t[0]["trusted"] = True
     assert len(retail.format_alerts(t, first_run=False)) == 1
+
+
+def test_naruto_products_always_alert_any_kind():
+    t = [{"kind": "new_listing", "status": "preorder", "retailer": "collgamers", "title": "NARUTO CARD GAME Starter Deck Naruto Uzumaki (ENG) [PRE-ORDER]",
+          "url": "https://collgamers.nl/products/naruto-card-game-starter-deck-naruto", "price": 24.95, "product_kind": "deck", "trusted": True}]
+    msgs = retail.format_alerts(t, first_run=False, latest={"games": {}})
+    assert len(msgs) == 1 and msgs[0]["text"].startswith("🍥 NARUTO · 🟡 PRE-ORDER OPEN")
+    t[0]["title"] = "Dragon Ball Fusion World FS13 Starter Deck"; t[0]["url"] = "https://collgamers.nl/products/fs13"
+    assert retail.format_alerts(t, first_run=False, latest={"games": {}}) == []       # Fusion World decks: data only

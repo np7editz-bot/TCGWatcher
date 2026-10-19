@@ -87,6 +87,7 @@ def build(day, quality=None):
             for c in cards:
                 e = eb["cards"].get(c["key"])
                 c["slabs"] = {k: {"low": v["low"], "n": v["n"], "url": v["url"], "grader": v["grader"]} for k, v in e["best"].items()} if e else None
+                c["raw_ebay"] = (e or {}).get("raw_ebay")
         retail = retail_by_set(gid)
         for s in sets_scored:
             s["retail"] = retail.get(s["code"], [])

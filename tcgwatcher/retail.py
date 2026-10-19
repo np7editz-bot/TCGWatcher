@@ -359,7 +359,10 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
     for t in transitions:
         if not t.get("trusted"):
             continue          # HTML-heuristic shops: data only, never a message (Comic Planet 'pre-order' on a dead page)
-        if t.get("product_kind") not in (None, "box", "case") or not t.get("price"):
+        naruto = bool(re.search(r"naruto", (t.get("title") or "") + " " + t["url"], re.I))
+        if not naruto and t.get("product_kind") not in (None, "box", "case"):
+            continue                                   # Naruto: every product counts (decks, packs, boxes) — launch lineup
+        if not t.get("price"):
             continue
         becomes_buyable = t["status"] in ("in_stock", "preorder") and (t["kind"] == "new_listing" or t["kind"].endswith(f"->{t['status']}"))
         cheaper = t["kind"] == "price_drop"
@@ -369,7 +372,7 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
         code = f"{m.group(1).upper()}{m.group(2)}" if m else None
         if code and code in muted:
             continue
-        st = sets.get(code)
+        st = None if naruto else sets.get(code)
         ratio = None
         if st and st.get("ev_eu_excl_saa") and "no_cards" not in st["flags"]:
             per_box = t["price"] / 12 if t.get("product_kind") == "case" else t["price"]
@@ -381,6 +384,8 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
         elif cheaper:
             continue              # price drop on an unscored set: not actionable
         label = {"preorder": "🟡 PRE-ORDER OPEN", "in_stock": "✅ OP VOORRAAD"}[t["status"]] if becomes_buyable else "📉 GOEDKOPER"
+        if naruto:
+            label = "🍥 NARUTO · " + label
         price = f"€{t['price']:.2f}".replace(".", ",")
         old = f" (was €{t['old_price']:.2f})".replace(".", ",") if cheaper and t.get("old_price") else ""
         verdict = (f"Ratio <b>{ratio:.2f}</b> → {'koopwaardig' if ratio >= buy['threshold'] else 'bijna koopwaardig'} (hits €{st['ev_eu_excl_saa']:.0f} per box)"
