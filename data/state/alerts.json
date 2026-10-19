@@ -9,24 +9,6 @@
    "price": 160.64,
    "ratio": 0.995,
    "since": "2026-10-18"
-  },
-  "grade_digest:dbfw": {
-   "day": "2026-10-18",
-   "ids": [
-    "dbfw:FB05:FB05-120:SAA",
-    "dbfw:FB07:FB07-122:",
-    "dbfw:FB10:FB10-123:SAA",
-    "dbfw:FB03:FB03-140:SAA",
-    "dbfw:SB01:SB01-026:AA"
-   ]
-  },
-  "slab_digest:dbfw": {
-   "day": "2026-10-18",
-   "ids": [
-    "dbfw:SB01:SB01-001:GOLD",
-    "dbfw:SB01:FB04-051:GOLD",
-    "dbfw:SB01:SB01-045:GOLD"
-   ]
   }
  },
  "muted": [],
