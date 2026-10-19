@@ -1,0 +1,30 @@
+# Official publisher pages watched for product/set announcements (the earliest signal, before shops list anything).
+# Each source: a list page, a regex that yields (url, date, title) per item, and which titles are worth a message.
+# Everything found is stored in data/news/<day>.json; only `product`-matching titles become 📰 messages.
+sources:
+  - id: dbfw_news
+    game: dbfw
+    name: "Fusion World official news"
+    url: https://www.dbs-cardgame.com/fw/en/news.html
+    base: https://www.dbs-cardgame.com
+    item: '<li class="newsItem">.*?<a href="([^"]+)"[^>]*class="newsLink".*?<time class="newsDate" datetime="([^"]+)">.*?<h3 class="newsText">(.*?)</h3>'
+  - id: dbfw_products
+    game: dbfw
+    name: "Fusion World official product list"
+    url: https://www.dbs-cardgame.com/fw/en/products/
+    base: https://www.dbs-cardgame.com
+    item: '<a href="(https://www\.dbs-cardgame\.com/fw/en/products/\d+_\d+\.html)"[^>]*>(?:(?!</a>).)*?(?P<title>(?:BOOSTER|STARTER|MANGA|STORY|PREMIUM|OFFICIAL|ULTIMATE|SPECIAL|COLLECTION|SET|BOX)[^<]{3,120})'
+    order: [url, title]
+    kind: product                       # every new entry on the product list is an announcement
+  - id: naruto_news
+    game: naruto
+    name: "NARUTO CARD GAME official news"
+    url: https://www.naruto-cardgame.com/en/news/article-list.php
+    base: https://www.naruto-cardgame.com
+    item: '<li class="newsListItem card">.*?<a class="cardBox" href="([^"]+)">.*?<dt class="cardTitle">(.*?)</dt>.*?<time class="date" datetime="([^"]+)">'
+    order: [url, title, date]
+
+# Titles that mean "a product you can (pre-)order": these become messages. Case-insensitive.
+product: '(booster|starter|deck|pre-?order|release|launch|product|collection|set\b|box|pack|edition|lineup|available|on sale|retailer)'
+# Noise never sent (stored only): the digital app's own notices.
+ignore: '(\[DIGITAL ver\.\]|serial code|app update|maintenance)'

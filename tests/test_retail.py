@@ -90,3 +90,24 @@ def test_buy_button_overrides_structured_availability():
         def get(self, url, json_=False):
             return ok, None
     assert retail.generic_product(H2(), {"url": "https://onytcg.com/en/product/box-fb-11", "title": "Box FB-11"})["status"] == "preorder"
+
+
+def test_status_text_prefers_product_over_related_items():
+    """Comic Planet SB02: 'Nicht mehr verfügbar' + notify form, while related products below say 'In den Warenkorb'."""
+    page = ("Regulärer Preis: 129,99 € Nicht mehr verfügbar Benachrichtige mich, sobald der Artikel lieferbar ist. "
+            "Kunden haben sich ebenfalls angesehen ... Vorbestellung ... In den Warenkorb")
+    assert retail.status_from_text(page) == "sold_out"
+    assert retail.status_from_text("129,99 € In den Warenkorb ... andere Artikel: ausverkauft") == "in_stock"
+    assert retail.status_from_text("Vorbestellung möglich, Lieferung ab 12.03.2027. In den Warenkorb") == "preorder"
+
+
+def test_only_api_trusted_shops_alert(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    r = retail.run(day="2026-10-17", http=fake_http(), retailer_ids=["fantasiacards", "dracoon", "tbhstore"])
+    by = {t["retailer"]: t for t in r["transitions"]}
+    assert by["fantasiacards"]["trusted"] and by["dracoon"]["trusted"]
+    assert by["tbhstore"]["trusted"] is False   # generic HTML shop: data only
+    t = [dict(x, kind="sold_out->preorder", status="preorder", trusted=False, product_kind="box", price=99.0) for x in r["transitions"]][:1]
+    assert retail.format_alerts(t, first_run=False) == []
+    t[0]["trusted"] = True
+    assert len(retail.format_alerts(t, first_run=False)) == 1

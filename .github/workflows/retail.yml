@@ -27,6 +27,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
+          python -m tcgwatcher news
           python -m tcgwatcher retail
           python -m tcgwatcher build
       - name: Commit data

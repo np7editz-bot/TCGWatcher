@@ -110,9 +110,17 @@ def _num(s):
         return None
 
 
+NOTIFY = re.compile(r"(benachrichtige mich|notify me|e-?mail me when|houd mij op de hoogte|laat het me weten|avvisami|avísame|prévenez-moi|back in stock notification)", re.I)
+
+
 def status_from_text(text):
     t = text[:200000]
+    if NOTIFY.search(t):                      # 'notify me when available' form = the shop itself says: not buyable now
+        return "sold_out"
     if SOLD.search(t) and not INSTOCK.search(t):
+        return "sold_out"
+    so, ins = SOLD.search(t), INSTOCK.search(t)
+    if so and ins and so.start() < ins.start():   # product's own 'sold out' comes before the related products' 'add to cart'
         return "sold_out"
     if PRE.search(t):
         return "preorder"
@@ -259,8 +267,8 @@ def run(day=None, http=None, retailer_ids=None):
     for r in cfg["retailers"]:
         if retailer_ids and r["id"] not in retailer_ids:
             continue
-        if not r.get("category"):
-            continue
+        if not r.get("category") or (r.get("enabled", True) is False and not retailer_ids):
+            continue          # an explicit selection (CLI/tests) may still poll a disabled shop
         platform = r.get("platform", "auto")
         got, err = None, None
         if platform in ("shopify", "auto"):
@@ -277,6 +285,7 @@ def run(day=None, http=None, retailer_ids=None):
             continue
         for x in got:
             x["fetched_at"] = now
+            x["trusted"] = bool(r.get("enabled", True)) and not x.get("source", "").startswith("generic")
         rows.extend(got)
         log.info("%s: %d products (%s)", r["id"], len(got), got[0]["source"] if got else "-")
     doc = {"day": day, "fetched_at": now, "errors": errors, "results": rows}
@@ -300,6 +309,7 @@ def update_state(rows, now, succeeded=()):
         key = r["url"]
         old = prods.get(key)
         new = {"retailer": r["retailer"], "title": r["title"], "price": r["price"], "status": r["status"], "seen": now, "product_kind": r.get("kind"),
+               "trusted": r.get("trusted", False),
                "first_seen": old["first_seen"] if old else now}
         if old is None:
             transitions.append({"kind": "new_listing", **new, "url": key})
@@ -347,6 +357,8 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
                 sets[st["code"]] = st
     out = []
     for t in transitions:
+        if not t.get("trusted"):
+            continue          # HTML-heuristic shops: data only, never a message (Comic Planet 'pre-order' on a dead page)
         if t.get("product_kind") not in (None, "box", "case") or not t.get("price"):
             continue
         becomes_buyable = t["status"] in ("in_stock", "preorder") and (t["kind"] == "new_listing" or t["kind"].endswith(f"->{t['status']}"))

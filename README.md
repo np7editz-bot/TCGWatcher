@@ -9,7 +9,7 @@ Dagelijkse prijs-intelligence voor sealed TCG-product op de Engelse markt. Nu: D
 2. **validate** — kwaliteitspoort: schema, duplicaten, uitschieters, dekking, dag-op-dag-verschillen. Bij `fail` wordt er niets gepubliceerd.
 3. **build** — Chase Score per set, prijstrends (7d/30d), `site/data/latest.json` met herkomst op elk blok.
 4. **alerts** — alleen wat je nu kunt doen: 🎯 **KOOP** (hits € ÷ goedkoopste EU-aanbod ≥ 0,80), 🆕 nieuwe productlijn (= pre-ordermoment), ⚠️ alleen bij FAIL. Weekbriefing op zondag.
-5. **retail** (ook elke 2 uur via `retail.yml`) — EU-webshops uit `config/retailers.yaml`: prijs, voorraad en pre-orderstatus per sealed product (Engelstalig; JP-listings worden genegeerd). Melding alleen als een box/case **koopbaar wordt** (op voorraad / pre-order open) én koopwaardig is (ratio ≥ 0,70) of de set nog niet uit is. Uitverkocht, prijsstijgingen en nieuwe listings blijven in `data/retail/`.
+5. **retail** (ook elke 2 uur via `retail.yml`) — EU-webshops uit `config/retailers.yaml`: prijs, voorraad en pre-orderstatus per sealed product (Engelstalig; JP-listings worden genegeerd). **Alleen shops met een eigen API (Shopify / WooCommerce Store API) tellen** voor meldingen, de pagina en de beste koop; HTML-shops leveren alleen data (tekstheuristiek is onbetrouwbaar op dode pre-orderpagina's). Melding alleen als een box/case **koopbaar wordt** (op voorraad / pre-order open) én koopwaardig is (ratio ≥ 0,70) of de set nog niet uit is. Uitverkocht, prijsstijgingen en nieuwe listings blijven in `data/retail/`.
 
 De pagina (`site/`, statisch te hosten; GitHub Pages vereist een publieke repo) toont per set de **samenstelling** (hoeveel alt-arts, Secret Rares, ★, ★★), de
 verwachte waarde van die hits per box, de ratio tegen de boxprijs en de trend. Aannames zijn op de pagina aanpasbaar.
@@ -67,6 +67,7 @@ Berichten (v3, `config/alerts.yaml`):
 | 🎯 **KOOP** | set wordt koopwaardig | `EV€ hits (excl. ★★) ÷ goedkoopste EU-aanbod ≥ buy.threshold` (0,80). Eén kaart per episode; opnieuw alleen als de beste prijs ≥10% daalt. Goedkoopste aanbod = **wat je werkelijk betaalt**: CardTrader Zero-prijs + vaste Zero-kosten (`eu_landed.zero_fee_eur`), anders goedkoopste EU-verkoper + geschatte verzending (`eu_landed.seller_shipping_eur`), of een webshop met voorraad/pre-order. Knop linkt direct naar het product. |
 | 🟡 PRE-ORDER OPEN / ✅ OP VOORRAAD / 📉 GOEDKOPER | box/case wordt koopbaar bij een webshop | alleen als ratio tegen díe prijs ≥ `buy.near` (0,70), of de set nog niet gewaardeerd is (nieuwe set, Naruto) |
 | 🆕 productlijn | nieuwe set in de TCGplayer-catalogus | eerste pre-ordersignaal |
+| 📰 officiële aankondiging | nieuw product/set op de Bandai-pagina's (Fusion World news + productlijst, NARUTO CARD GAME news; `config/news.yaml`, elke 2 uur) | alleen product-/release-nieuws; app-berichten en events worden wel opgeslagen (`data/news/`) maar niet gestuurd |
 | 📋 briefing | zondag (`briefing: weekly`) | ranking op EU-ratio, bewegingen, boxen, retail, Naruto |
 | ⚠️ datakwaliteit | alleen bij FAIL (pagina niet bijgewerkt) | `quality_issues: fail_only` |
 
