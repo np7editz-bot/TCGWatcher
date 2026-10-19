@@ -201,7 +201,7 @@ def briefing(day, latest, state, quality):
     movers = sorted((c for c in g["cards"] if c.get("chg7") is not None and c["price"] and c["price"] >= 20 and c["price_src"] == "market" and abs(c["chg7"]) >= 20),
                     key=lambda c: -abs(c["chg7"]))[:5]
     mv = [f"{'▲' if c['chg7']>0 else '▼'} {c['chg7']:+.0f}% {_card(c['name'], c['number'])[:30]} {c['class'].replace('_AA',' AA')} → {_usd(c['price'])}" for c in movers]
-    boxes = [f"{s['code']} {_usd(s['box']['price'])}" + (f" ({s['box']['chg7']:+.0f}%)" if s['box'].get('chg7') is not None else "") for s in ranked[:5] if s.get("box")]
+    boxes = [f"{s['code']} €{s['best_buy']['price']:.0f} {s['best_buy']['source']}" for s in ranked[:5]]
     retail = [r for s in g["sets"] for r in s.get("retail", []) if r["status"] in ("in_stock", "preorder") and r.get("price")]
     pre = [r for r in retail if r["status"] == "preorder"]; ins = [r for r in retail if r["status"] == "in_stock"]
     rtxt = (f"{len(pre)} pre-order(s) open · {len(ins)} op voorraad" if retail else "nog geen retail-data") if any(s.get("retail") for s in g["sets"]) else "retail-monitor nog niet actief"
@@ -214,7 +214,7 @@ def briefing(day, latest, state, quality):
             f"<i>{len(g['sets'])} sets · {len(g['cards'])} chase cards · data {'✔' if q == 'ok' else '⚠'} ({nq} bekende bronfout(en))</i>\n\n"
             f"<b>Ranking (hits € ÷ goedkoopste EU-box, excl. ★★)</b>\n" + "\n".join(lines) + "\n\n"
             + (f"<b>Bewegingen (7d, ≥20%)</b>\n" + "\n".join(mv) + "\n\n" if mv else "<b>Bewegingen</b> geen kaart ≥20% in 7d\n\n")
-            + f"<b>Boxen US (TCGplayer, 7d)</b> " + " · ".join(boxes) + "\n\n"
+            + f"<b>Boxen EU all-in</b> " + " · ".join(boxes) + "\n\n"
             + f"<b>Retail</b> {rtxt}\n<b>Naruto</b> {ntxt}"
             + (f"\n<b>Gemute</b> {', '.join(state['muted'])}" if state.get("muted") else ""))
     photo = (top["top_hit"].get("image") if top and top.get("top_hit") else None)

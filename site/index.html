@@ -128,20 +128,20 @@ footer{color:var(--fg3);font-size:12.5px}
     <div class="grid" id="est"></div>
     <div class="toggles">
       <label><input type="checkbox" id="inclSaa"> Super alt-art (★★) meetellen in EV</label>
-      <label>Drempel ratio <input type="number" id="thr" value="0.60" step="0.05" min="0" style="width:84px"></label>
+      <label>Drempel ratio EU <input type="number" id="thr" value="0.80" step="0.05" min="0" style="width:84px"></label>
       <label>USD → EUR <input type="number" id="fx" step="0.001" min="0" style="width:96px"></label>
       <button type="button" id="reset">Standaardwaarden</button>
     </div>
   </section>
 
   <section aria-labelledby="h-rank">
-    <h2 id="h-rank">Ranking op EV-ratio (hits per box ÷ boxprijs)</h2>
+    <h2 id="h-rank">Ranking op EU-ratio (hits per box in € ÷ goedkoopste EU-aanbod all-in)</h2>
     <div class="tablewrap">
       <table id="tbl">
         <thead><tr>
           <th class="rank">#</th><th>Set</th><th>Status</th><th>Samenstelling</th>
-          <th class="r">Box</th><th class="r">Box 7d / 30d</th><th class="r">EV hits / box</th>
-          <th class="barcell">Ratio</th><th class="r">EU (CardTrader)</th><th>Top hit</th><th>EU retail (laagste)</th><th class="r" title="EV hits (€) ÷ goedkoopste EU-aanbod (CardTrader EU-verkoper of webshop met voorraad/pre-order). Alert bij ≥ 0.80.">Ratio EU (beste koop)</th>
+          <th class="r" title="Goedkoopste Engelse box in Europa, inclusief verzending/fees: CardTrader Zero + €6, anders EU-verkoper + ±€15, of een betrouwbare webshop">Box EU (all-in)</th><th class="r">EV hits / box</th>
+          <th class="barcell">Ratio EU</th><th class="r" title="TCGplayer market (US) ter referentie: prijs, 7d/30d, US-ratio">US referentie</th><th>Top hit</th><th>Waar kopen</th><th class="r" title="EV hits (€) ÷ goedkoopste EU-aanbod (CardTrader EU-verkoper of webshop met voorraad/pre-order). Alert bij ≥ 0.80.">Eigen prijs</th>
         </tr></thead>
         <tbody id="tb"></tbody>
       </table>
@@ -194,8 +194,13 @@ function score(set){
   for (const c of G.cards) { if (c.set!==set.code || c.price==null) continue; (cls[c.class] ||= []).push(c.price); if (!top||c.price>top.price) top=c; }
   let ev=0; const rows={};
   for (const k of CLS_ORDER) { const v=cls[k]; if (!v) continue; const avg=v.reduce((a,b)=>a+b,0)/v.length; const part=e[k]*scale*avg; rows[k]={n:set.composition[k]?.n||v.length, avg, ev:part, est:e[k]*scale}; if (k!=='SAA'||incl) ev+=part; }
-  const box = set.box?.price ?? null;
-  return {ev, box, ratio: box? ev/box : null, top, rows};
+  const boxUs = set.box?.price ?? null;
+  const bb = set.best_buy || null;
+  const override = retail[set.code];
+  const boxEu = override || (bb ? bb.price : null);                 // what you actually pay in Europe (all-in)
+  const evEur = ev*fx();
+  return {ev, evEur, boxUs, ratioUs: boxUs? ev/boxUs : null, boxEu, ratio: boxEu? evEur/boxEu : null,
+          src: override ? 'eigen prijs' : (bb ? bb.source : null), bb, top, rows};
 }
 function compText(set){
   const c=set.composition; const part=(k,l)=>c[k]?`<b>${c[k].n}</b> ${l}`:null;
@@ -222,20 +227,18 @@ function render(){
   renderSlabs();
   scored.forEach((x,i)=>{
     const s=x.s, tr=document.createElement('tr'); tr.className='row'+(openSet===s.code?' open':''); tr.tabIndex=0;
-    const best=(s.retail||[]).find(o=>o.price&&(o.status==='in_stock'||o.status==='preorder'));
-    const r=retail[s.code] || (best?best.price:undefined); const rr = r && x.ev ? x.ev*fx()/r : null; const hit = x.ratio!=null && x.ratio>=thr;
+    const hit = x.ratio!=null && x.ratio>=thr;
     tr.innerHTML=`<td class="rank">${i+1}</td>
       <td><span class="code">${s.code}</span><div class="name">${s.name} · EN ${s.published}</div></td>
       <td>${(s.best_buy&&s.best_buy.ratio>=0.8&&!s.flags.some(f=>['manga','story','low_coverage','no_cards','presale'].includes(f)))?'<span class="chip hit" title="EV hits ÷ goedkoopste EU-aanbod ≥ 0.80 — dit is de alert-regel">🎯 koop</span>':''}${s.flags.map(f=>FLAG[f]?`<span class="chip ${FLAG[f][0]}">${FLAG[f][1]}</span>`:'').join('')||'<span class="chip good">uitgebracht</span>'}</td>
       <td class="comp">${compText(s)}</td>
-      <td class="r num">${eur(x.box)}<small>${usd(x.box)} · ${s.box?.price_src||'—'}</small></td>
-      <td class="r">${pct(s.box?.chg7)}<br>${pct(s.box?.chg30)}</td>
-      <td class="r num">${x.ev?eur(x.ev):'—'}<small>${x.ev?usd(x.ev):''}</small></td>
+      <td class="r num">${x.boxEu!=null?`€${x.boxEu.toFixed(0)}`:'—'}<small>${x.src||'geen EU-aanbod'}${s.box?.eu?.landed_note&&x.src&&x.src.startsWith('CardTrader')?` · ${s.box.eu.landed_note}`:''}${s.spread_eu_us_pct!=null?` · ${s.spread_eu_us_pct>0?'+':''}${s.spread_eu_us_pct}% vs US`:''}</small></td>
+      <td class="r num">${x.ev?`€${Math.round(x.evEur).toLocaleString('nl-NL')}`:'—'}<small>${x.ev?usd(x.ev):''} · dekking ${s.hits_market_priced}/${s.hits_total}</small></td>
       <td class="barcell"><div class="bar"><div class="track"><div class="fill${hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
-      <td class="r num">${s.box?.eu?`<a href="${s.box.eu.url}" target="_blank" rel="noopener">€${(s.box.eu.landed??s.box.eu.low).toFixed(0)}</a><small>${s.box.eu.landed_note||`box · ${s.box.eu.n} aanb.`}${s.spread_eu_us_pct!=null?` · ${s.spread_eu_us_pct>0?'+':''}${s.spread_eu_us_pct}% vs US`:''}</small>`:'—'}${s.ratio_eu!=null?`<div class="num">ratio EU <b>${s.ratio_eu.toFixed(2)}</b><small>dekking ${s.eu_coverage}</small></div>`:''}</td>
+      <td class="r num">${eur(x.boxUs)}<small>${usd(x.boxUs)} · ${pct(s.box?.chg7)} / ${pct(s.box?.chg30)}${x.ratioUs!=null?` · ratio US ${x.ratioUs.toFixed(2)}`:''}</small></td>
       <td class="top">${x.top?`${short(x.top.name)}<div class="p">${eur(x.top.price)}${x.top.eu?` · EU €${x.top.eu.low}`:''} · ${x.top.number} ${pct(x.top.chg7)}</div>`:'—'}</td>
-      <td class="retail">${best?`<a href="${best.url}" target="_blank" rel="noopener">€${best.price.toFixed(2)}</a><div class="name">${best.retailer} · ${best.status==='preorder'?'pre-order':'op voorraad'}${(s.retail||[]).length>1?` · +${(s.retail||[]).length-1}`:''}</div>`:''}<input type="number" id="r_${s.code}" min="0" step="1" placeholder="${best?'overschrijf':'—'}" value="${retail[s.code]??''}" aria-label="EU retailprijs ${s.code}"></td>
-      <td class="r num">${rr!=null?rr.toFixed(2):(s.best_buy?.ratio!=null?s.best_buy.ratio.toFixed(2):'—')}${s.best_buy&&rr==null?`<small>€${s.best_buy.price.toFixed(0)} ${s.best_buy.source}</small>`:''}</td>`;
+      <td class="retail">${(x.bb?.options||[]).slice(0,3).map(o=>`<div><a href="${o.url}" target="_blank" rel="noopener">€${o.price.toFixed(0)}</a> <span class="name">${o.source} · ${o.status==='preorder'?'pre-order':'op voorraad'}</span></div>`).join('')||'<span class="name">—</span>'}</td>
+      <td class="retail"><input type="number" id="r_${s.code}" min="0" step="1" placeholder="all-in €" value="${retail[s.code]??''}" aria-label="Eigen EU-prijs ${s.code}"></td>`;
     tr.addEventListener('click', ev=>{ if (ev.target.tagName==='INPUT') return; openSet = openSet===s.code?null:s.code; render(); });
     tr.addEventListener('keydown', ev=>{ if (ev.key==='Enter'||ev.key===' ') { ev.preventDefault(); tr.click(); } });
     tr.querySelector('input').addEventListener('change', ev=>{ const v=parseFloat(ev.target.value); if (v>0) retail[s.code]=v; else delete retail[s.code]; try{localStorage.setItem(retailKey(),JSON.stringify(retail));}catch(e){} render(); });
@@ -247,6 +250,8 @@ function render(){
   sec.hidden = !items.length;
   st.innerHTML = items.map(p=>`<div><span>${p.name}${p.presale?' <span class="chip warn">presale</span>':''}</span><span class="p">${eur(p.price)}</span></div>`).join('');
 }
+const CM_DAY='2026-10-19';
+const CM={FB01:{from:179,avg30:191},FB02:{from:90,avg30:93},FB03:{from:82.99,avg30:83},FB04:{from:77.99,avg30:78},FB05:{from:128,avg30:131},FB06:{from:370,avg30:296},FB07:{from:300,avg30:251},FB08:{from:165,avg30:138},FB09:{from:159,avg30:260},FB10:{from:189.95,avg30:174},SB01:{from:1325,avg30:1396},SB02:{from:590,avg30:617},ST01:{from:389,avg30:414}};
 function detail(s,x){
   const tr=document.createElement('tr'); tr.className='detail';
   const cards=G.cards.filter(c=>c.set===s.code).sort((a,b)=>(b.price??-1)-(a.price??-1));
@@ -254,6 +259,12 @@ function detail(s,x){
   tr.innerHTML=`<td colspan="12"><div class="dwrap">
     <div class="classes"><div class="h"><span>Klasse</span><span>kaarten</span><span>gem. prijs</span><span>hits/box → EV</span></div>${rows}
       <div style="margin-top:8px;color:var(--fg3);font-family:var(--display)">${s.note?s.note+'<br>':''}${cards.length} chase cards · ${cards.filter(c=>c.price_src!=='market').length} zonder marktprijs (mid/low gebruikt)${s.box?` · <a href="https://www.tcgplayer.com/product/${s.box.product_id}" target="_blank" rel="noopener">box op TCGplayer</a>`:''}</div></div>
+    <div class="starters" style="grid-column:1/-1"><div><b>Prijsvergelijking Engelse box, all-in naar NL</b></div>
+      ${s.box?.eu?`<div><span><a href="${s.box.eu.url}" target="_blank" rel="noopener">CardTrader${s.box.eu.zero_low?' Zero':''}</a> · ${s.box.eu.landed_note}${s.box.eu.zero_n?` · ${s.box.eu.zero_n} Zero / ${s.box.eu.n} EU-aanb.`:''}</span><span class="p">€${s.box.eu.landed.toFixed(2)}</span></div>`:''}
+      ${s.box?.eu?.zero_low&&s.box.eu.low<s.box.eu.zero_low?`<div><span>CardTrader goedkoopste EU-verkoper (zelf verzenden, ±€15)</span><span class="p">€${(s.box.eu.low+15).toFixed(2)}</span></div>`:''}
+      ${(CM[s.code]?`<div><span>Cardmarket laagste aanbod (steekproef ${CM_DAY}) + ±€18 verzending · 30d-verkopen €${CM[s.code].avg30}</span><span class="p">€${(CM[s.code].from+18).toFixed(2)}</span></div>`:'')}
+      ${s.box?.price?`<div><span>TCGplayer market (US, excl. verzending/invoer)</span><span class="p">${eur(s.box.price)}</span></div>`:''}
+    </div>
     ${(s.retail||[]).length?`<div class="starters" style="grid-column:1/-1">${s.retail.map(o=>`<div><span><a href="${o.url}" target="_blank" rel="noopener">${o.retailer}</a> · ${o.title.slice(0,70)}</span><span class="p">${o.price?'€'+o.price.toFixed(2):'—'} <span class="chip ${o.status==='sold_out'?'crit':o.status==='preorder'?'warn':'good'}">${o.status}</span></span></div>`).join('')}</div>`:''}
     <div class="cards">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${c.name}">${short(c.name)}<span class="tag${c.class==='SAA'?' saa':''}">${c.class.replace('_AA',' AA')}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'}${c.eu?` <span class="chg${c.eu.thin?' est':''}">EU €${c.eu.low}</span>`:''} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
   </div></td>`;
