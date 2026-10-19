@@ -81,7 +81,8 @@ def score_sets(model):
             "ratio": round(ev_total / box_price, 3) if box_price else None,
             "ratio_excl_saa": round(ev_excl / box_price, 3) if box_price else None,
             "top_hit": {"key": top.key, "product_id": top.product_id, "name": top.name, "number": top.number,
-                        "class": top.hit_class, "price": top.price, "price_src": top.price_src} if top else None,
+                        "class": top.hit_class, "price": top.price, "price_src": top.price_src,
+                        "image": top.image, "url": top.url} if top else None,
         })
     out.sort(key=lambda s: (s["ratio_excl_saa"] if s["ratio_excl_saa"] is not None else -1), reverse=True)
     return out
@@ -91,4 +92,4 @@ def _sealed(p):
     if not p:
         return None
     return {"key": p.key, "product_id": p.product_id, "name": p.name, "price": p.price, "price_src": p.price_src,
-            "prices": p.prices, "presale": p.presale}
+            "prices": p.prices, "presale": p.presale, "image": p.image, "url": p.url}

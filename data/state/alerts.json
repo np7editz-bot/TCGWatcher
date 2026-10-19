@@ -5,6 +5,24 @@
   "card:dbfw:FB11:FB11-122:AA:down": "2026-10-18",
   "ratio:dbfw:FB11": "2026-10-17"
  },
+ "muted": [],
+ "prev_ranking": {
+  "FB01": 0.258,
+  "FB02": 0.346,
+  "FB03": 0.396,
+  "FB04": 0.232,
+  "FB05": 0.378,
+  "FB06": 0.205,
+  "FB07": 0.517,
+  "FB08": 0.471,
+  "FB09": 0.44,
+  "FB10": 0.48,
+  "FB11": 0.903,
+  "SB01": 0.392,
+  "SB02": 0.415,
+  "ST01": 0.174
+ },
+ "quality_fp": "dbfw:duplicate_keys:dbfw:FB10:FB10-068:,dbfw:FS03:FS03-16:|dbfw:number_name_mismatch:693131:Piccolo - FB10-067!=FB10-068",
  "seen_groups": {
   "80": {
    "23401": {

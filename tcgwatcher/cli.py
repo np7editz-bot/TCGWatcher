@@ -7,7 +7,7 @@ from . import store
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="tcgwatcher")
-    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "all"])
+    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "all"])
     ap.add_argument("--day", help="source day to process (default: last synced day)")
     ap.add_argument("--force", action="store_true", help="fetch even if the source did not change")
     ap.add_argument("--no-send", action="store_true", help="do not send Telegram messages")
@@ -41,6 +41,19 @@ def main(argv=None):
         alerts = run(day, quality, send=not a.no_send)
         for al in alerts:
             log.info("alert %s", al["key"])
+    if a.step in ("retail", "all"):
+        from .retail import run as retail_run, format_alerts
+        from . import telegram
+        first = not store.read_json(store.state_path("retail"), {}).get("products")
+        muted = store.read_json(store.state_path("alerts"), {}).get("muted", [])
+        r = retail_run()
+        log.info("retail: %d rows, errors=%s, %d transitions", r["rows"], r["errors"], len(r["transitions"]))
+        msgs = format_alerts(r["transitions"], first, muted)
+        store.write_json(store.DATA / "retail" / f"{r['day']}.alerts.json",
+                         {"day": r["day"], "messages": msgs, "transitions": r["transitions"]}, compact=False)
+        if not a.no_send:
+            for m in msgs[:20]:
+                telegram.send(m["text"], buttons=m.get("buttons"))
     return 0
 
 
