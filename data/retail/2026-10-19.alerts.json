@@ -1,5 +1,319 @@
 {
  "day": "2026-10-19",
- "messages": [],
- "transitions": []
+ "messages": [
+  {
+   "buttons": [
+    [
+     [
+      "🛒 comicplanet",
+      "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ub06-b33-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🟡 PRE-ORDER OPEN · <b>sealed</b>\nDragonball Super Card Game -  Masters UB05 B33 Booster Display englisch\n<b>€119,99</b> bij comicplanet\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  },
+  {
+   "buttons": [
+    [
+     [
+      "🛒 comicplanet",
+      "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb12-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🟡 PRE-ORDER OPEN · <b>FB12</b>\nDragonball Super Card Game - Fusion World FB12 Booster Display englisch\n<b>€94,99</b> bij comicplanet\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  },
+  {
+   "buttons": [
+    [
+     [
+      "🛒 comicplanet",
+      "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ub05-b32-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🟡 PRE-ORDER OPEN · <b>sealed</b>\nDragonball Super Card Game -  Masters UB05 B32 Booster Display englisch\n<b>€94,99</b> bij comicplanet\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  },
+  {
+   "buttons": [
+    [
+     [
+      "🛒 comicplanet",
+      "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ultra-bout-series-b30-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🟡 PRE-ORDER OPEN · <b>sealed</b>\nDragonball Super Card Game - Masters \"Ultra- Bout Series\" B30 Booster Display englisch\n<b>€129,99</b> bij comicplanet\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  },
+  {
+   "buttons": [
+    [
+     [
+      "🛒 comicplanet",
+      "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ultra-bout-series-b29-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🟡 PRE-ORDER OPEN · <b>sealed</b>\nDragonball Super Card Game -  Masters \"Ultra- Bout Series\" B29 Booster Display englisch\n<b>€129,99</b> bij comicplanet\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  }
+ ],
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 119.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragonball Super Card Game -  Masters UB05 B33 Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ub06-b33-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 94.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragonball Super Card Game - Fusion World FB12 Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb12-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 3.99,
+   "product_kind": "pack",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragonball Super Card Game - Fusion World FB12 Booster englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb12-booster-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 4.99,
+   "product_kind": "pack",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragonball Super Card Game -  Masters UB05 B32 Booster englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ub05-b32-booster-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 94.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragonball Super Card Game -  Masters UB05 B32 Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ub05-b32-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 94.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragonball Super Card Game - Fusion World FB11 Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb11-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 3.99,
+   "product_kind": "pack",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragonball Super Card Game - Fusion World FB11 Booster englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb11-booster-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 399.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragonball Super Card Game - Fusion World ST01 Story Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-st01-story-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 89.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragonball Super Card Game - Fusion World FB10 Cross Force Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb10-cross-force-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 3.99,
+   "product_kind": "pack",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragonball Super Card Game - Fusion World FB10 Cross Force Booster englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb10-cross-force-booster-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 129.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragonball Super Card Game - Masters \"Ultra- Bout Series\" B30 Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ultra-bout-series-b30-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 94.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragonball Super Card Game - Fusion World FB09 Dual Evolution Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb09-dual-evolution-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 3.99,
+   "product_kind": "pack",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragonball Super Card Game - Fusion World FB09 Booster englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-fusion-world-fb09-booster-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 129.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragonball Super Card Game -  Masters \"Ultra- Bout Series\" B29 Booster Display englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragonball-super-card-game-masters-ultra-bout-series-b29-booster-display-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T08:35:20Z",
+   "kind": "new_listing",
+   "price": 129.99,
+   "product_kind": "box",
+   "retailer": "comicplanet",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "preorder",
+   "title": "Dragon Ball Super Card Game Fusion World - Manga Booster 02 Booster Display SB02 - englisch",
+   "url": "https://www.comicplanet.de/sammelkarten/dragon-ball/display-db/dragon-ball-super-card-game-fusion-world-manga-booster-02-booster-display-sb02-englisch"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "preorder->sold_out",
+   "old_price": 18.9,
+   "price": 18.9,
+   "product_kind": "deck",
+   "retailer": "onytcg",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game Fusion World Starter Deck EX FS-13 Eng",
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-card-game-fusion-world-starter-deck-ex-fs-13-eng"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "preorder->sold_out",
+   "old_price": 129.9,
+   "price": 129.9,
+   "product_kind": "box",
+   "retailer": "onytcg",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Fusion World FB-12 Box ENG",
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-fusion-world-fb-12-box-eng"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "preorder->sold_out",
+   "old_price": 1499.99,
+   "price": 1499.99,
+   "product_kind": "case",
+   "retailer": "onytcg",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Fusion World FB-13 Case 12 Box ENG",
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-fb-13-case-12-box-eng"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 29.9,
+   "price": 29.9,
+   "product_kind": "deck",
+   "retailer": "onytcg",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Fusion World Starter Deck EX FS15 ENG",
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-starter-deck-ex-fs15-eng"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "preorder->sold_out",
+   "old_price": 18.9,
+   "price": 18.9,
+   "product_kind": "deck",
+   "retailer": "onytcg",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game Fusion World Starter Deck EX FS-14 Eng",
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-card-game-fusion-world-starter-deck-ex-fs-14-eng"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "preorder->sold_out",
+   "old_price": 149.9,
+   "price": 149.9,
+   "product_kind": "box",
+   "retailer": "onytcg",
+   "seen": "2026-10-19T08:35:20Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game Fusion World Story Booster 02 [ST02] Box ENG",
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-card-game-fusion-world-story-booster-02-sb02-box-eng"
+  }
+ ]
 }

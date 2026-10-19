@@ -1,12 +1,12 @@
 {
  "alerts": [
   {
-   "at": "2026-10-19T08:22:07Z",
+   "at": "2026-10-19T08:35:19Z",
    "buttons": [
     [
      [
-      "🛒 onytcg €120",
-      "https://onytcg.com/it/product/dragon-ball-super-card-game-fusion-world-box-fb-11"
+      "🛒 CardTrader €161",
+      "https://www.cardtrader.com/cards/403299"
      ],
      [
       "📊 Radar",
@@ -17,48 +17,10 @@
    "key": "buy:dbfw:FB11",
    "kind": "buy",
    "photo": "https://tcgplayer-cdn.tcgplayer.com/product/695727_200w.jpg",
-   "text": "🎯 <b>KOOP · FB11 Brightness of Hope</b>\nHits per box <b>€160</b> / box vanaf <b>€120</b> → ratio <b>1.33</b> (drempel 0.8)\n#1 van 15 · US-ratio 0.90\n\n🛒 <b>Waar kopen</b>\n• €119,99 onytcg (pre-order)\n• €145,64 CardTrader (op voorraad)\n\nSamenstelling: 15 SR-AA · 3 SCR · 3 ★ · 3 ★★\nTop hit: Son Goku FB11-121 SAA €4.443\n<i>Waardering TCGplayer-verkopen in € · 46/57 hits met marktprijs</i>"
+   "text": "🎯 <b>KOOP · FB11 Brightness of Hope</b>\nHits per box <b>€160</b> / box vanaf <b>€161</b> → ratio <b>0.99</b> (drempel 0.8)\n#1 van 15 · US-ratio 0.90\n\n🛒 <b>Waar kopen</b>\n• €160,64 CardTrader (op voorraad) <i>€145.64 + ±€15 verzending (geen Zero-aanbod)</i>\n\nSamenstelling: 15 SR-AA · 3 SCR · 3 ★ · 3 ★★\nTop hit: Son Goku FB11-121 SAA €4.443\n<i>Waardering TCGplayer-verkopen in € · 46/57 hits met marktprijs</i>"
   },
   {
-   "at": "2026-10-19T08:22:07Z",
-   "buttons": [
-    [
-     [
-      "🛒 CardTrader €181",
-      "https://www.cardtrader.com/en/dragon-ball-super"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "key": "buy:dbfw:FB09",
-   "kind": "buy",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/670183_200w.jpg",
-   "text": "🎯 <b>KOOP · FB09 Dual Evolution</b>\nHits per box <b>€173</b> / box vanaf <b>€181</b> → ratio <b>0.96</b> (drempel 0.8)\n#2 van 15 · US-ratio 0.44\n\n🛒 <b>Waar kopen</b>\n• €180,64 CardTrader (op voorraad)\n\nSamenstelling: 15 SR-AA · 3 SCR · 3 ★ · 5 ★★\nTop hit: Gogeta : GT FB09-123 SAA €1.777\n<i>Waardering TCGplayer-verkopen in € · 57/59 hits met marktprijs</i>"
-  },
-  {
-   "at": "2026-10-19T08:22:07Z",
-   "buttons": [
-    [
-     [
-      "🛒 CardTrader €76",
-      "https://www.cardtrader.com/en/dragon-ball-super"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "key": "buy:dbfw:FB02",
-   "kind": "buy",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/543427_200w.jpg",
-   "text": "🎯 <b>KOOP · FB02 Blazing Aura</b>\nHits per box <b>€66</b> / box vanaf <b>€76</b> → ratio <b>0.87</b> (drempel 0.8)\n#3 van 15 · US-ratio 0.35\n\n🛒 <b>Waar kopen</b>\n• €75,53 CardTrader (op voorraad)\n\nSamenstelling: 12 SR-AA · 2 SCR · 2 ★ · 1 ★★\nTop hit: Vegito FB02-139 SAA €661\n<i>Waardering TCGplayer-verkopen in € · 33/33 hits met marktprijs</i>"
-  },
-  {
-   "at": "2026-10-19T08:22:07Z",
+   "at": "2026-10-19T08:35:19Z",
    "buttons": [
     [
      [
@@ -70,7 +32,7 @@
    "key": "briefing:2026-10-18",
    "kind": "briefing",
    "photo": "https://tcgplayer-cdn.tcgplayer.com/product/713348_200w.jpg",
-   "text": "📋 <b>TCGWatcher · zondag 18 oktober</b>\n<i>15 sets · 609 chase cards · data ⚠ (2 bekende bronfout(en))</i>\n\n<b>Ranking (hits € ÷ goedkoopste EU-box, excl. ★★)</b>\n1. FB11 Brightness of Hope <code>1.33</code> · €120 onytcg\n2. FB09 Dual Evolution <code>0.96</code> · €181 CardTrader\n3. FB02 Blazing Aura <code>0.87</code> · €76 CardTrader\n4. FB10 Cross Force <code>0.64</code> · €162 CardTrader\n5. FB03 Raging Roar <code>0.64</code> · €85 CardTrader\n6. FB08 Saiyan's Pride <code>0.60</code> · €181 CardTrader\n\n<b>Bewegingen (7d, ≥20%)</b>\n▲ +66% Son Goku FB11-105 OTHER AA → €59\n▼ -36% Son Goku FB11-121 SCR → €31\n▼ -28% Shallet FB11-122 SCR AA → €40\n\n<b>Boxen US (TCGplayer, 7d)</b> FB11 €177 (-2%) · FB09 €394 (-2%) · FB02 €189 (+1%) · FB10 €216 (+0%) · FB03 €136 (-0%)\n\n<b>Retail</b> 7 pre-order(s) open · 10 op voorraad\n<b>Naruto</b> 1 productlijn(en) in catalogus, geen nieuwe"
+   "text": "📋 <b>TCGWatcher · zondag 18 oktober</b>\n<i>15 sets · 609 chase cards · data ⚠ (2 bekende bronfout(en))</i>\n\n<b>Ranking (hits € ÷ goedkoopste EU-box, excl. ★★)</b>\n1. FB11 Brightness of Hope <code>0.99</code> ↓-0.34 · €161 CardTrader\n2. FB09 Dual Evolution <code>0.89</code> ↓-0.07 · €196 CardTrader\n3. FB02 Blazing Aura <code>0.72</code> ↓-0.14 · €91 CardTrader\n4. FB03 Raging Roar <code>0.63</code> · €85 cardcollector\n5. FB10 Cross Force <code>0.59</code> ↓-0.06 · €177 CardTrader\n6. FB08 Saiyan's Pride <code>0.59</code> ↓-0.01 · €185 breakthecase\n\n<b>Bewegingen (7d, ≥20%)</b>\n▲ +66% Son Goku FB11-105 OTHER AA → €59\n▼ -36% Son Goku FB11-121 SCR → €31\n▼ -28% Shallet FB11-122 SCR AA → €40\n\n<b>Boxen US (TCGplayer, 7d)</b> FB11 €177 (-2%) · FB09 €394 (-2%) · FB02 €189 (+1%) · FB03 €136 (-0%) · FB10 €216 (+0%)\n\n<b>Retail</b> 6 pre-order(s) open · 10 op voorraad\n<b>Naruto</b> 1 productlijn(en) in catalogus, geen nieuwe"
   }
  ],
  "day": "2026-10-18"
