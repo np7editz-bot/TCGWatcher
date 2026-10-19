@@ -32,8 +32,9 @@ def open_positions(day, latest, msgs, active_buy=()):
     """Called after alerts: turn today's signals into positions (idempotent per key+day) and open the monthly control cohort.
     `active_buy` = set codes whose KOOP episode is still active (alerted earlier) — they count as held, never as control."""
     doc = _load()
-    have = {(p["kind"], p["key"], p["opened"]) for p in doc["positions"]}
-    have_keys = {(p["kind"], p["key"]) for p in doc["positions"] if p["status"] == "open"}
+    live = [p for p in doc["positions"] if p["status"] != "void"]       # a voided position does not block a clean re-open
+    have = {(p["kind"], p["key"], p["opened"]) for p in live}
+    have_keys = {(p["kind"], p["key"]) for p in live if p["status"] == "open"}
     from .config import load_alerts
     cfg = load_alerts()
     thr, excl = cfg.get("buy", {}).get("threshold", 0.8), set(cfg.get("exclude_flags", []))

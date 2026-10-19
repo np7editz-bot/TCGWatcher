@@ -59,3 +59,17 @@ def test_control_excludes_uncalibrated_and_thin_sets(tmp_path, monkeypatch):
     assert [p["code"] for p in added if p["kind"] == "control"] == ["FB10"]
     v, _ = paper.value_now({"kind": "box", "game": "dbfw", "code": "FB09", "source": "Cardmarket", "price": 150.0}, L, None)
     assert v is None                        # purchase source has no price today → unknown, never another source's price
+
+
+def test_voided_position_does_not_block_reopen(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    monkeypatch.setattr(paper, "PATH", tmp_path / "paper" / "positions.json")
+    L = latest()
+    paper.open_positions("2026-10-19", L, [])
+    doc = paper._load()
+    for p in doc["positions"]:
+        if p["kind"] == "box":
+            p["status"] = "void"
+    paper._save(doc)
+    added = paper.open_positions("2026-10-19", L, [])
+    assert [p["code"] for p in added if p["kind"] == "box"] == ["FB09"]
