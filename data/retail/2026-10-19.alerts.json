@@ -1,31 +1,5 @@
 {
  "day": "2026-10-19",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-19T18:47:03Z",
-   "kind": "new_listing",
-   "price": 149.99,
-   "product_kind": "box",
-   "retailer": "fantasiacards",
-   "seen": "2026-10-19T18:47:03Z",
-   "status": "preorder",
-   "title": "Dragon Ball Super Card Game - Fusion World FB02 - Display - [ENG] (Pre-order - WAVE 2: Release: June 10, 2024)",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-fusion-world-fb02-display-englisch"
-  },
-  {
-   "first_seen": "2026-10-19T08:00:42Z",
-   "kind": "price_rise",
-   "old_price": 5.99,
-   "price": 6.99,
-   "product_kind": "pack",
-   "retailer": "fantasiacards",
-   "seen": "2026-10-19T18:47:03Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB02 - Blazing Aura - Booster [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb02-blazing-aura-booster-eng"
-  }
- ]
+ "transitions": []
 }
