@@ -222,3 +222,13 @@ def test_slab_rotation_sends_new_cards():
     sent = {"dbfw:k0": {"net": 200, "raw": 100}, "dbfw:k1": {"net": 150, "raw": 100}, "dbfw:k2": {"net": 180, "raw": 120}}
     got = [i["key"] for i in pick_slabs(items, sent, "dbfw")]
     assert got == ["k1", "k2", "k3", "k4", "k5"]      # k0 unchanged → skipped; k1 net +27% and k2 raw −17% → again; then new ones
+
+
+def test_best_buy_cardmarket_indicative_for_masters():
+    from tcgwatcher.build import best_buy
+    s = {"flags": [], "ev_eu_excl_saa": 200.0, "retail": [], "ebay_box": {"low": 150.0, "url": "e", "n": 4, "median": 160.0},
+         "cm_box": {"low": 90.0, "landed": 108.0, "url": "c"}, "box": {}}
+    b = best_buy(s, min_offers=3, cardmarket_buy=False)
+    assert b["source"].startswith("eBay") and b["price"] == 150.0
+    assert any(o["source"] == "Cardmarket" and o.get("indicative") for o in b["options"])
+    assert best_buy(dict(s, flags=[]), min_offers=3, cardmarket_buy=True)["source"] == "Cardmarket"

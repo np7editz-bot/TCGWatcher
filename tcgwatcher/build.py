@@ -117,7 +117,7 @@ def build(day, quality=None):
                 s["ev_eu_excl_saa"], s["valuation"] = s["ev_cm_excl_saa"], "cardmarket"
             else:
                 s["valuation"] = "tcgplayer"
-            s["best_buy"] = best_buy(s, landed_cfg.get("min_offers", 3))
+            s["best_buy"] = best_buy(s, landed_cfg.get("min_offers", 3), cardmarket_buy=g.get("cardmarket_box_buy", True))
         for s in other_sets:
             s["retail"] = retail.get(s["code"], [])
         out["games"][gid] = {
@@ -207,7 +207,7 @@ def ev_cm(s, cards, rate):
     return round(ev, 2), f"{covered}/{total}"
 
 
-def best_buy(s, min_offers=3):
+def best_buy(s, min_offers=3, cardmarket_buy=True):
     """Cheapest way to buy this box in Europe right now (what you actually pay), and the EV ratio against it.
 
     Supply matters: one seller with one box is not a price. `offers` counts listings across CardTrader (EU sellers), eBay EU
@@ -223,9 +223,14 @@ def best_buy(s, min_offers=3):
     if eb and eb.get("low"):
         opts.append({"price": eb["low"], "source": f"eBay ({eb['n']} EU)", "url": eb["url"], "status": "in_stock", "n": eb["n"]})
     cmb = s.get("cm_box")
+    cm_opt = None
     if cmb and cmb.get("landed"):
-        opts.append({"price": cmb["landed"], "source": "Cardmarket", "url": cmb["url"], "status": "in_stock", "n": 3,
-                     "note": f"laagste aanbod €{cmb['low']:.2f} + ±€18 verzending" + (f" · 30d-verkopen €{cmb['avg30']:.0f}" if cmb.get("avg30") else "")})
+        cm_opt = {"price": cmb["landed"], "source": "Cardmarket", "url": cmb["url"], "status": "in_stock", "n": 3,
+                  "note": f"laagste aanbod €{cmb['low']:.2f} + ±€18 verzending" + (f" · 30d-verkopen €{cmb['avg30']:.0f}" if cmb.get("avg30") else "")}
+        if cardmarket_buy:
+            opts.append(cm_opt)
+        else:                                   # price guide mixes languages (JP/FR boxes far cheaper): comparison only, never the buy price
+            cm_opt["note"] += " · alle talen, indicatie"; cm_opt["indicative"] = True
     for r in s.get("retail", []):
         if r.get("price") and r["status"] in ("in_stock", "preorder") and r.get("kind", "box") == "box" and r["price"] >= 40:
             opts.append({"price": r["price"], "source": r["retailer"], "url": r["url"], "status": r["status"], "n": 1})
@@ -235,7 +240,7 @@ def best_buy(s, min_offers=3):
     best = dict(opts[0])
     ev = s.get("ev_eu_excl_saa") or 0
     best["ratio"] = round(ev / best["price"], 3) if best["price"] else None
-    best["options"] = opts[:5]
+    best["options"] = sorted(opts[:5] + ([cm_opt] if cm_opt and cm_opt.get("indicative") else []), key=lambda o: o["price"])
     best["offers"] = sum(o.get("n") or 1 for o in opts)
     best["thin"] = best["offers"] < min_offers
     if best["thin"] and "thin" not in s["flags"]:

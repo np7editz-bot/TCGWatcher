@@ -309,7 +309,7 @@ function boxCard(x, rank){
     <div class="big">${x.ratio!=null?x.ratio.toFixed(2):'—'}<small>ratio EU · hits ${e0(x.evEur)} / box €${x.boxEu?.toFixed(0)??'—'}</small></div>
     <div class="row">${compText(s)}</div>
     <div class="row">Top hit: <b>${x.top?esc(short(x.top.name)):'—'}</b> ${x.top?e0(x.top.v):''} · US-ratio ${x.ratioUs!=null?x.ratioUs.toFixed(2):'—'}</div>
-    <div class="btns">${opts.map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 €${o.price.toFixed(0)} · ${esc(o.source)} · ${st[o.status]||o.status}</a>`).join('')||'<span class="muted">geen EU-aanbod</span>'}</div></div></div>`;
+    <div class="btns">${opts.map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 €${o.price.toFixed(0)} · ${esc(o.source)} · ${o.indicative?'indicatie (alle talen)':(st[o.status]||o.status)}</a>`).join('')||'<span class="muted">geen EU-aanbod</span>'}</div></div></div>`;
 }
 
 /* ---------- views ---------- */

@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 6            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 7            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -43,7 +43,7 @@ def slug(name):
 def box_url(name):
     """Sealed product page: /Products/Booster-Boxes/<Name-Slug> (name 'Awakened Pulse Booster Box [Fusion World]' →
     Awakened-Pulse-Booster-Box-Fusion-World)."""
-    return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name)
+    return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name) + "?language=1"   # English listings only
 
 
 # A catalogue name with several printings gets "(V.n - <label>)" on EVERY printing, V1 included; the label is Cardmarket's
@@ -51,8 +51,11 @@ def box_url(name):
 # Verified in the browser (2026-10-19): ...-V1-Secret-Rare, ...-V2-Alternate-Art, ...-V3-God-Rare, ...-V2-Special-Rare.
 VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "BPAA": "Alternate Art", "GOLD": "Alternate Art", "GDR": "God Rare",
                  "SPR": "Special Rare", "SLR": "Special Leader Rare", "SCR": "Secret Rare"}
-# Cardmarket expansion names that do not follow '<Set> [Fusion World]' (seen in the browser)
-EXPANSION_OVERRIDE = {"FB06": "Rivals Clash"}
+# Cardmarket's English Fusion World expansions: the early sets carry no "[Fusion World]" suffix (verified: FB03 'Raging Roar',
+# FB06 'Rivals Clash'), later ones do (verified: FB07, FB08, FB10, SB01). Each set also has a '… Non-English' expansion, which the
+# join avoids by taking the expansion the English booster box sits in.
+EXPANSION_OVERRIDE = {"FB01": "Awakened Pulse", "FB02": "Blazing Aura", "FB03": "Raging Roar", "FB04": "Ultra Limit",
+                      "FB05": "New Adventure", "FB06": "Rivals Clash"}
 
 
 def expansion_name(gid, code, set_name, box_name=None):
@@ -77,7 +80,7 @@ def card_url(expansion_name, product_name, version=1, variant="", rarity="", pri
     variant code (VERSION_LABEL)."""
     label = VERSION_LABEL.get(variant) or rarity
     tail = f" (V.{version} - {label})" if printings > 1 and label else ""
-    return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}"
+    return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}?language=1"
 
 
 def _f(row, field):
@@ -178,7 +181,8 @@ def fetch_day(latest=None, ct_doc=None, day=None, session=None):
     cards, boxes = join(files, latest, ct_doc)
     doc = {"day": day, "schema": SCHEMA, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "game_id": 13,
            "guide_created_at": files["prices"].get("createdAt"), "cards": cards, "boxes": boxes,
-           "note": "low = cheapest offer; avg30 = average sale price last 30 days (EUR). Source: Cardmarket public price guide."}
+           "note": "low = cheapest offer; avg30 = average sale price last 30 days (EUR), ALL languages (the public guide has no language "
+                   "split). Source: Cardmarket public price guide."}
     store.write_json(path, doc)
     log.info("cardmarket: %d cards, %d boxes joined (guide %s)", len(cards), len(boxes), doc["guide_created_at"])
     return doc
