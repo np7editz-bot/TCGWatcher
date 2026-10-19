@@ -22,7 +22,7 @@ SETCODE = re.compile(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", re.I)
 
 class CardTrader:
     def __init__(self, token=None):
-        self.token = token or os.environ.get("CARDTRADER_TOKEN")
+        self.token = (token or os.environ.get("CARDTRADER_TOKEN") or "").strip().strip('"').strip("'")
         self.s = requests.Session()
         self.s.headers.update({"Authorization": f"Bearer {self.token}", "User-Agent": USER_AGENT})
         self.calls = 0
@@ -34,12 +34,27 @@ class CardTrader:
         if r.status_code == 429:
             time.sleep(10)
             r = self.s.get(f"{BASE}{path}", params=params, timeout=60)
-        r.raise_for_status()
-        return r.json()
+        if r.status_code != 200:
+            raise RuntimeError(f"CardTrader {path} → HTTP {r.status_code}: {r.text[:200]}")
+        data = r.json()
+        # Some responses wrap the list (e.g. {"array": [...]}); errors come back as {"error": ...}
+        if isinstance(data, dict):
+            if "error" in data or "message" in data:
+                raise RuntimeError(f"CardTrader {path} → {data}")
+            for k in ("array", "data", "results"):
+                if isinstance(data.get(k), list):
+                    return data[k]
+        return data
+
+    def info(self):
+        return self.get("/info")
 
 
 def fusion_world_expansions(ct):
     games = ct.get("/games")
+    if not isinstance(games, list):
+        raise RuntimeError(f"unexpected /games response: {type(games).__name__} {str(games)[:200]}")
+    log.info("CardTrader games: %s", [g.get("display_name") or g.get("name") for g in games][:40])
     gid = next((g["id"] for g in games if "dragon ball" in (g.get("display_name") or g.get("name") or "").lower()), None)
     if gid is None:
         raise RuntimeError("Dragon Ball game not found in CardTrader /games")
@@ -62,6 +77,8 @@ def fetch_day(ct=None, codes=None):
     if path.exists():
         log.info("cardtrader day file exists for %s; not refetching", day)
         return store.read_json(path)
+    info = ct.info()
+    log.info("CardTrader auth OK: %s", {k: info.get(k) for k in ("id", "username", "name") if isinstance(info, dict) and k in info})
     gid, exps = fusion_world_expansions(ct)
     log.info("CardTrader game %s: %d Fusion World expansions matched", gid, len(exps))
     blueprints, offers = {}, {}

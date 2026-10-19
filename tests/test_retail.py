@@ -29,7 +29,7 @@ PROD_HTML = '<html><head><title>FB11 Booster Box - TBH</title><meta property="pr
 
 def fake_http():
     return FakeHttp({
-        "https://fantasiacards.de/en/collections/dragon-ball/Booster-Display/products.json": SHOPIFY,
+        "https://fantasiacards.de/en/collections/dragon-ball/products.json": SHOPIFY,
         "https://dracoon.nl/wp-json/wc/store/v1/products?search=fusion": WOO,
         "https://dracoon.nl/wp-json/wc/store/v1/products?search=": [],
         "https://www.tbhstore.nl/c-7780596/dragon-ball-tcg/": CAT_HTML,

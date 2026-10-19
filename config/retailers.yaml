@@ -4,7 +4,7 @@
 # `category` is the page to poll for new products; `alerts` = shop has its own restock notification (we still poll).
 retailers:
   - { id: tbhstore, platform: generic,      name: "TBH Store",        country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://www.tbhstore.nl/c-7780596/dragon-ball-tcg/" }
-  - { id: cardforge, platform: generic,     name: "Card Forge",       country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: true,  category: "https://cardforge.nl/pokemon-kaarten/dragon-ball/" }
+  - { id: cardforge, platform: generic, price_multiplier: 1.21,     name: "Card Forge",       country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: true,  category: "https://cardforge.nl/pokemon-kaarten/dragon-ball/" }
   - { id: dracoon, platform: woo,       name: "Dracoon",          country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://dracoon.nl/trading-cards/dragon-ball-super-tcg/boosterboxen-dragon-ball-super/" }
   - { id: catchyourcards, platform: generic,name: "CatchYourCards",   country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://catchyourcards.nl/dragon-ball-scg/booster-box-dragonballscg/" }
   - { id: oppacards, platform: woo,     name: "Oppa Cards",       country: NL, tier: 1, ships_nl: true,  preorders: true,  alerts: false, category: "https://oppacards.com/product-category/dragon-ball-super/" }
