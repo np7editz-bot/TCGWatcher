@@ -101,8 +101,15 @@ def build(day, quality=None):
             s["cm_box"] = (cm or {}).get("boxes", {}).get(s["code"])
             if s["cm_box"]:
                 s["cm_box"]["landed"] = round(s["cm_box"]["low"] + landed_cfg.get("cardmarket_shipping_eur", 18), 2)
-            # EV of the hits on Cardmarket SALES (avg30, EUR) where known, else TCGplayer × rate — the EU valuation next to the US one
-            s["ev_cm_excl_saa"] = ev_cm(s, cards, rate) if cm else None
+            # Valuation: Cardmarket SALES (avg30, EUR) are the primary yardstick for the EU market; TCGplayer × rate is the
+            # fallback per card and for sets where fewer than half of the hits have recent EU sales. The US figure stays as reference.
+            s["ev_us_excl_saa"] = s["ev_eu_excl_saa"]
+            s["ev_cm_excl_saa"], s["cm_coverage"] = ev_cm(s, cards, rate) if cm else (None, "0/0")
+            cov_n, cov_t = (int(x) for x in s["cm_coverage"].split("/"))
+            if s["ev_cm_excl_saa"] and cov_t and cov_n / cov_t >= 0.5:
+                s["ev_eu_excl_saa"], s["valuation"] = s["ev_cm_excl_saa"], "cardmarket"
+            else:
+                s["valuation"] = "tcgplayer"
             s["best_buy"] = best_buy(s, landed_cfg.get("min_offers", 3))
         for s in other_sets:
             s["retail"] = retail.get(s["code"], [])
@@ -163,8 +170,10 @@ def landed(o, cfg):
 
 
 def ev_cm(s, cards, rate):
+    """EV of the hits on Cardmarket sales (avg30, EUR); per card falls back to avg7, trend, then TCGplayer × rate.
+    Returns (ev, coverage 'n/total') where n = hits priced on Cardmarket sales."""
     lottery = {"SAA", "GDR"}
-    ev = 0.0
+    ev, covered, total = 0.0, 0, 0
     for cid, comp in s["composition"].items():
         if cid in lottery:
             continue
@@ -173,13 +182,16 @@ def ev_cm(s, cards, rate):
             if c["set"] != s["code"] or c["class"] != cid:
                 continue
             cm = c.get("cm") or {}
-            if cm.get("avg30"):
-                prices.append(cm["avg30"])
+            v = cm.get("avg30") or cm.get("avg7")
+            if v:
+                prices.append(v); covered += 1; total += 1
+            elif cm.get("trend"):
+                prices.append(cm["trend"]); total += 1
             elif c.get("price") is not None:
-                prices.append(c["price"] * rate)
+                prices.append(c["price"] * rate); total += 1
         if prices:
             ev += comp["est"] * (sum(prices) / len(prices))
-    return round(ev, 2)
+    return round(ev, 2), f"{covered}/{total}"
 
 
 def best_buy(s, min_offers=3):

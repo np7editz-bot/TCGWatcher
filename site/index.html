@@ -156,7 +156,7 @@ footer{color:var(--fg3);font-size:12.5px}
     <div class="kpis" id="kpis"></div>
     <div style="height:18px"></div>
     <h2>🎯 Boxen die nu koopwaardig zijn</h2>
-    <p class="muted">Hits per box in € (TCGplayer-verkopen × koers) ÷ goedkoopste Engelse box in Europa, all-in naar NL. Drempel 0,80 — dezelfde regel als de Telegram-alert.</p>
+    <p class="muted">Hits per box in € (Cardmarket-verkopen van de afgelopen 30 dagen; TCGplayer × koers als terugval) ÷ goedkoopste Engelse box in Europa, all-in naar NL. Drempel 0,80 — dezelfde regel als de Telegram-alert.</p>
     <div class="sig" id="todayBoxes"></div>
     <div style="height:18px"></div>
     <h2>🏆 Top 5 slabs · raw goedkoop, graded veel waard</h2>
@@ -231,7 +231,7 @@ footer{color:var(--fg3);font-size:12.5px}
     <div style="height:18px"></div>
     <div class="panel" style="font-size:13.5px;color:var(--fg2)">
       <h3>Hoe het werkt</h3>
-      <p><b>Waardering</b> van de hits: TCGplayer market (verkoopgebaseerd, dagelijks) × ECB-koers; daarnaast de EU-verkopen uit de officiële Cardmarket-prijsgids (avg30) als tweede waardering op de pagina. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
+      <p><b>Waardering</b> van de hits: gemiddelde EU-<b>verkoopprijs</b> over 30 dagen uit de officiële Cardmarket-prijsgids; per kaart terugval op avg7 → trend → TCGplayer × ECB-koers, en per set terugval op TCGplayer als minder dan de helft van de hits recente EU-verkopen heeft. TCGplayer blijft als US-referentie zichtbaar. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
       <p><b>Slabs</b>: eBay Browse API (DE/NL, EU-locatie) + CardTrader graded; zelfde nummer ≠ zelfde kaart (basis / alt-art / super alt-art / gold worden uit de titel gelezen; listings > 4× de laagste van dezelfde grade gelden als verkeerd gelabeld). Grading-uitkomstmix per service: PSA 40% 10 / 60% 9 (€25), BGS 10% 10 / 45% 9.5 / 45% 9 (€30), CGC (€22); eBay-fees 13%.</p>
       <p><b>Berichten</b>: 🎯 KOOP (box), 🏆 SLAB #1–#5, 🟡/✅ retail (ratio ≥ 0,70 of set nog niet uit), 🍥 Naruto (elk product), 📰 aankondiging, 📒 maandrapport. Alles met knoppen naar de shop. <code>/mute FB10</code>, <code>/unmute FB10</code>, <code>/status</code> naar de bot.</p>
     </div>
@@ -240,7 +240,8 @@ footer{color:var(--fg3);font-size:12.5px}
   <footer id="foot"></footer>
 </div>
 <script>
-const CLS_ORDER = ['SR','SR_AA','SCR','SCR_AA','SAA','OTHER_AA'];
+const CLS_ORDER = ['SR','SR_AA','SCR','SCR_AA','SAA','OTHER_AA','CR','SPR','SLR','GDR'];
+const LOTTERY = new Set(['SAA','GDR']);
 const FLAG = {presale:['warn','presale'],manga:['info','Manga Booster'],story:['info','Story Booster'],box_spread:['crit','boxprijs onbetrouwbaar'],no_cards:['crit','nog geen kaartprijzen'],box_listing_price:['warn','box: listingprijs'],low_coverage:['warn','weinig marktprijzen'],thin:['warn','dun aanbod (< 3 EU-listings)']};
 const EXCL = ['manga','story','low_coverage','no_cards','presale','thin'];
 let DATA=null, G=null, gameId=null, openSet=null, retail={}, view='today';
@@ -256,15 +257,16 @@ const cls = c => c==='GOLD' ? 'Gold' : c.replace('_AA',' AA');
 const esc = s => String(s??'').replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
 function est(){ const o={}; for (const k of Object.keys(G.estimates)) o[k]=parseFloat(document.getElementById('e_'+k).value)||0; return o; }
+const cardEur = c => { const cm=c.cm||{}; const v=cm.avg30||cm.avg7||cm.trend; return v ? v : (c.price!=null ? c.price*fx() : null); };
 function score(set){
   const e = est(), incl = document.getElementById('inclSaa').checked, scale = set.packs / G.box.packs;
   const bucket = {}; let top=null;
-  for (const c of G.cards) { if (c.set!==set.code || c.price==null) continue; (bucket[c.class] ||= []).push(c.price); if (!top||c.price>top.price) top=c; }
+  for (const c of G.cards) { if (c.set!==set.code) continue; const v=cardEur(c); if (v==null) continue; (bucket[c.class] ||= []).push(v); if (!top||v>top.v) top={...c, v}; }
   let ev=0; const rows={};
-  for (const k of CLS_ORDER) { const v=bucket[k]; if (!v) continue; const avg=v.reduce((a,b)=>a+b,0)/v.length; const part=e[k]*scale*avg; rows[k]={n:set.composition[k]?.n||v.length, avg, ev:part, est:e[k]*scale}; if (k!=='SAA'||incl) ev+=part; }
+  for (const k of CLS_ORDER) { const v=bucket[k]; if (!v) continue; const avg=v.reduce((a,b)=>a+b,0)/v.length; const part=e[k]*scale*avg; rows[k]={n:set.composition[k]?.n||v.length, avg, ev:part, est:e[k]*scale}; if (!LOTTERY.has(k)||incl) ev+=part; }
   const boxUs = set.box?.price ?? null, bb = set.best_buy || null, override = retail[set.code];
-  const boxEu = override || (bb ? bb.price : null), evEur = ev*fx();
-  return {ev, evEur, boxUs, ratioUs: boxUs? ev/boxUs : null, boxEu, ratio: boxEu? evEur/boxEu : null, src: override ? 'eigen prijs' : (bb ? bb.source : null), bb, top, rows};
+  const boxEu = override || (bb ? bb.price : null), evEur = ev;        // ev is already in EUR (Cardmarket sales, else TCGplayer × rate)
+  return {ev, evEur, boxUs, ratioUs: boxUs? ev/(boxUs*fx()) : null, boxEu, ratio: boxEu? evEur/boxEu : null, src: override ? 'eigen prijs' : (bb ? bb.source : null), bb, top, rows};
 }
 function compText(set){ const c=set.composition; const part=(k,l)=>c[k]?`<b>${c[k].n}</b> ${l}`:null;
   return [part('SR_AA','SR-AA'),part('SCR','SCR'),part('SCR_AA','★'),part('SAA','★★'),part('OTHER_AA','AA')].filter(Boolean).join(' · ') || '—'; }
@@ -305,7 +307,7 @@ function boxCard(x){
     <div class="t">${s.code} <small>${esc(s.name)}</small></div>
     <div class="big">${x.ratio!=null?x.ratio.toFixed(2):'—'}<small>ratio EU · hits ${e0(x.evEur)} / box €${x.boxEu?.toFixed(0)??'—'}</small></div>
     <div class="row">${compText(s)}</div>
-    <div class="row">Top hit: <b>${x.top?esc(short(x.top.name)):'—'}</b> ${x.top?eur(x.top.price):''} · US-ratio ${x.ratioUs!=null?x.ratioUs.toFixed(2):'—'}</div>
+    <div class="row">Top hit: <b>${x.top?esc(short(x.top.name)):'—'}</b> ${x.top?e0(x.top.v):''} · US-ratio ${x.ratioUs!=null?x.ratioUs.toFixed(2):'—'}</div>
     <div class="btns">${opts.map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 €${o.price.toFixed(0)} · ${esc(o.source)} · ${st[o.status]||o.status}</a>`).join('')||'<span class="muted">geen EU-aanbod</span>'}</div></div></div>`;
 }
 
@@ -344,10 +346,10 @@ function renderBoxes(){
       <td>${x.hit?'<span class="chip hit">🎯 koop</span>':''}${s.flags.map(f=>FLAG[f]?`<span class="chip ${FLAG[f][0]}">${FLAG[f][1]}</span>`:'').join('')||'<span class="chip good">uitgebracht</span>'}</td>
       <td class="comp">${compText(s)}</td>
       <td class="r num">${x.boxEu!=null?`€${x.boxEu.toFixed(0)}`:'—'}<small>${esc(x.src||'geen EU-aanbod')}${s.spread_eu_us_pct!=null?` · ${s.spread_eu_us_pct>0?'+':''}${s.spread_eu_us_pct}% vs US`:''}</small></td>
-      <td class="r num">${x.ev?e0(x.evEur):'—'}<small>${s.ev_cm_excl_saa?`EU-verkopen ${e0(s.ev_cm_excl_saa)} · `:''}dekking ${s.hits_market_priced}/${s.hits_total}</small></td>
+      <td class="r num">${x.ev?e0(x.evEur):'—'}<small>${s.valuation==='cardmarket'?`Cardmarket-verkopen ${s.cm_coverage} · US ${e0(s.ev_us_excl_saa)}`:`TCGplayer · dekking ${s.hits_market_priced}/${s.hits_total}`}</small></td>
       <td><div class="bar"><div class="track"><div class="fill${x.hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${x.hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
       <td class="r num">${eur(x.boxUs)}<small>${pct(s.box?.chg7)} / ${pct(s.box?.chg30)}${x.ratioUs!=null?` · ${x.ratioUs.toFixed(2)}`:''}</small></td>
-      <td style="font-size:13px;max-width:220px">${x.top?`${esc(short(x.top.name))}<div class="name num">${eur(x.top.price)} · ${x.top.number}</div>`:'—'}</td>
+      <td style="font-size:13px;max-width:220px">${x.top?`${esc(short(x.top.name))}<div class="name num">${e0(x.top.v)} · ${x.top.number}</div>`:'—'}</td>
       <td style="font-size:13px">${(x.bb?.options||[]).slice(0,3).map(o=>`<div><a href="${esc(o.url)}" target="_blank" rel="noopener">€${o.price.toFixed(0)}</a> <span class="name">${esc(o.source)} · ${o.status==='preorder'?'pre-order':'voorraad'}</span></div>`).join('')||'<span class="name">—</span>'}</td>
       <td class="r"><input type="number" id="r_${s.code}" min="0" step="1" placeholder="€" value="${retail[s.code]??''}" style="width:84px" aria-label="Eigen EU-prijs ${s.code}"></td>`;
     tr.addEventListener('click', ev=>{ if (ev.target.tagName==='INPUT'||ev.target.tagName==='A') return; openSet = openSet===s.code?null:s.code; renderBoxes(); });
@@ -365,7 +367,7 @@ const CM={FB01:{from:179,avg30:191},FB02:{from:90,avg30:93},FB03:{from:82.99,avg
 function detail(s,x){
   const tr=document.createElement('tr'); tr.className='detail';
   const cards=G.cards.filter(c=>c.set===s.code).sort((a,b)=>(b.price??-1)-(a.price??-1));
-  const rows=CLS_ORDER.filter(k=>x.rows[k]).map(k=>{const r=x.rows[k]; return `<div><b>${G.estimates[k].label}</b><span>${r.n}×</span><span>${eur(r.avg)} gem.</span><span>${r.est.toFixed(2)} → ${eur(r.ev)}</span></div>`;}).join('');
+  const rows=CLS_ORDER.filter(k=>x.rows[k]).map(k=>{const r=x.rows[k]; return `<div><b>${G.estimates[k].label}</b><span>${r.n}×</span><span>${e0(r.avg)} gem.</span><span>${r.est.toFixed(2)} → ${e0(r.ev)}</span></div>`;}).join('');
   const eu=s.box?.eu;
   tr.innerHTML=`<td colspan="11"><div class="dwrap">
     <div class="classes"><div class="h"><span>Klasse</span><span>kaarten</span><span>gem. prijs</span><span>hits/box → EV</span></div>${rows}

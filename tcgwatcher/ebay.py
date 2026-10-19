@@ -284,7 +284,7 @@ def targets(latest, per_set=10, min_raw_eur=20):
             sibl = [x for x in g.get("cards", []) if x["set"] == code and x["number"] == c["number"] and x["key"] != c["key"]]
             out.append({"key": c["key"], "number": c["number"], "name": name, "set": code, "class": c["class"], "variant": c.get("variant", ""),
                         "sibling_images": [x["image"] for x in sibl if x.get("image")],
-                        "raw_eur": round(c["price"] * fx, 2), "image": c.get("image")})
+                        "raw_eur": round(((c.get("cm") or {}).get("avg30") or c["price"] * fx), 2), "image": c.get("image")})
     return out
 
 
