@@ -144,13 +144,17 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
             if l["item_id"] in seen:
                 continue
             seen.add(l["item_id"]); uniq.append(l)
-        best = {}
+        best, by_grader = {}, {}
         for grade in (10.0, 9.5, 9.0):
             g = [l for l in uniq if l["grade"] == grade]
             if g:
                 best[str(grade)] = {"low": g[0]["price"], "n": len(g), "url": g[0]["url"], "grader": g[0]["grader"],
                                     "median": sorted(x["price"] for x in g)[len(g) // 2]}
-        cards[t["key"]] = {**t, "best": best, "listings": uniq[:25]}
+            for grader in {l["grader"] for l in g}:          # per grader: PSA 10 vs BGS 10 vs BGS 9.5 … are different markets
+                gg = [l for l in g if l["grader"] == grader]
+                by_grader.setdefault(grader, {})[str(grade)] = {"low": gg[0]["price"], "n": len(gg), "url": gg[0]["url"],
+                                                                 "median": sorted(x["price"] for x in gg)[len(gg) // 2]}
+        cards[t["key"]] = {**t, "best": best, "by_grader": by_grader, "listings": uniq[:25]}
     doc = {"day": day, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            "marketplaces": list(marketplaces), "api_calls": client.calls, "cards": cards}
     store.write_json(path, doc)
@@ -183,29 +187,42 @@ def slab_signals(doc, cfg=None):
 
 
 def grade_signals(doc, cfg=None):
-    """Grading candidates: buy raw, grade, sell graded.
+    """Grading candidates per grading service: buy raw, grade, sell graded. Picks the service with the best expected net.
 
-    expected_sale = gem_rate × median PSA10 ask + (1 − gem_rate) × median PSA9 ask (PSA9 missing → 0.6 × PSA10)
-    net = expected_sale × (1 − fee_pct) − grading_cost − raw.  Signal when net ≥ min_profit and net/raw ≥ min_roi,
-    with at least `min_psa10_n` PSA10 listings (liquidity). Asks are a proxy for sales — sold data needs the Marketplace
-    Insights API, which eBay does not grant to new apps.
+    Per service (config `grading.services`): outcome mix (share that comes back 10 / 9.5 / 9) × that service's median asks.
+    net = expected_sale × (1 − fee_pct) − service cost − raw.  Signal when net ≥ min_profit and net/raw ≥ min_roi and the
+    service's top grade has ≥ min_top_n listings (liquidity). Asks are a proxy for sales (Marketplace Insights is closed).
     """
     cfg = cfg or load_alerts().get("grading", {})
-    gem, cost, fee = cfg.get("gem_rate", 0.4), cfg.get("grading_cost_eur", 25), cfg.get("fee_pct", 13) / 100
+    fee = cfg.get("fee_pct", 13) / 100
+    services = cfg.get("services") or {"PSA": {"cost_eur": 25, "mix": {"10": 0.4, "9": 0.6}}}
     out = []
     for key, c in (doc or {}).get("cards", {}).items():
-        b10 = c["best"].get("10.0")
-        if not b10 or b10["n"] < cfg.get("min_psa10_n", 3):
+        options = []
+        for svc, sc in services.items():
+            grades = (c.get("by_grader") or {}).get(svc) or {}
+            mix = sc["mix"]
+            top = max(mix, key=float)
+            if not grades.get(top) or grades[top]["n"] < cfg.get("min_top_n", 3):
+                continue
+            expected, detail = 0.0, {}
+            for grade, share in mix.items():
+                g = grades.get(grade)
+                price = g["median"] if g else (0.6 * grades[top]["median"])     # missing lower grade: conservative proxy
+                expected += share * price
+                detail[grade] = round(price, 2)
+            net = expected * (1 - fee) - sc["cost_eur"] - c["raw_eur"]
+            options.append({"service": svc, "expected": round(expected, 2), "net": round(net, 2), "top_grade": top,
+                            "top_n": grades[top]["n"], "top_median": grades[top]["median"], "url": grades[top]["url"], "prices": detail})
+        if not options:
             continue
-        p10 = b10["median"]
-        b9 = c["best"].get("9.0") or c["best"].get("9.5")
-        p9 = b9["median"] if b9 else 0.6 * p10
-        expected = gem * p10 + (1 - gem) * p9
-        net = expected * (1 - fee) - cost - c["raw_eur"]
-        roi = net / c["raw_eur"] if c["raw_eur"] else 0
-        if net >= cfg.get("min_profit_eur", 50) and roi >= cfg.get("min_roi", 0.5):
+        options.sort(key=lambda o: -o["net"])
+        o = options[0]
+        roi = o["net"] / c["raw_eur"] if c["raw_eur"] else 0
+        if o["net"] >= cfg.get("min_profit_eur", 50) and roi >= cfg.get("min_roi", 0.5):
             out.append({"key": key, "number": c["number"], "name": c["name"], "set": c["set"], "class": c["class"], "raw_eur": c["raw_eur"],
-                        "psa10": round(p10, 2), "psa10_n": b10["n"], "psa9": round(p9, 2), "expected": round(expected, 2),
-                        "net": round(net, 2), "roi": round(roi, 2), "url": b10["url"], "image": c.get("image")})
+                        "service": o["service"], "top_grade": o["top_grade"], "top_median": o["top_median"], "top_n": o["top_n"],
+                        "expected": o["expected"], "net": o["net"], "roi": round(roi, 2), "url": o["url"], "image": c.get("image"),
+                        "options": options})
     out.sort(key=lambda s: -s["net"])
     return out

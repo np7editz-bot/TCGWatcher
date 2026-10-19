@@ -69,7 +69,7 @@ Berichten (v3, `config/alerts.yaml`):
 | 🆕 productlijn | nieuwe set in de TCGplayer-catalogus | eerste pre-ordersignaal |
 | 📰 officiële aankondiging | nieuw product/set op de Bandai-pagina's (Fusion World news + productlijst, NARUTO CARD GAME news; `config/news.yaml`, elke 2 uur) | alleen product-/release-nieuws; app-berichten en events worden wel opgeslagen (`data/news/`) maar niet gestuurd |
 | 🏆 **SLAB-KOOP** | goedkoopste PSA/BGS/CGC 10 (anders 9.5/9) op eBay DE/NL ≤ 1,15 × raw TCGplayer (incl. verzending naar NL) | `slabs` in `config/alerts.yaml`; eBay Browse API (app-token), dagelijks, `data/ebay/<dag>.json` |
-| 📈 **GRADE-KANS** | raw goedkoop, PSA 10 duur én liquide (≥3 listings): `0,4×PSA10 + 0,6×PSA9` × 0,87 − €25 − raw ≥ €50 en ≥ 50% van raw | `grading` in `config/alerts.yaml`; vraagprijzen als proxy voor verkopen |
+| 📈 **GRADE-KANS** | raw goedkoop, graded duur én liquide: per service (PSA, BGS, CGC) `Σ aandeel×mediaan graded-prijs` × 0,87 − servicekosten − raw; beste service wint; signaal bij netto ≥ €50 en ≥ 50% van raw | `grading.services` in `config/alerts.yaml` (uitkomstmix per service); vraagprijzen als proxy voor verkopen |
 | 📋 briefing | zondag (`briefing: weekly`) | ranking op EU-ratio, bewegingen, boxen, retail, Naruto |
 | ⚠️ datakwaliteit | alleen bij FAIL (pagina niet bijgewerkt) | `quality_issues: fail_only` |
 

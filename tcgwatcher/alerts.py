@@ -129,11 +129,12 @@ def run(day, quality=None, send=True):
                 if ep and not gs["net"] >= ep["net"] * 1.25:
                     continue
                 state["active"][key] = {"since": (ep or {}).get("since", day), "net": gs["net"]}
+                alt = " · ".join(f"{o['service']} €{o['net']:.0f}" for o in gs.get("options", [])[1:3])
                 txt = (f"📈 <b>GRADE-KANS · {_card(gs['name'], gs['number'])} {gs['class'].replace('_AA', ' AA')}</b>\n"
-                       f"Raw <b>€{gs['raw_eur']:.0f}</b> (TCGplayer) · PSA 10 op eBay mediaan <b>€{gs['psa10']:.0f}</b> ({gs['psa10_n']} st.) · PSA 9 €{gs['psa9']:.0f}\n"
-                       f"Verwachte opbrengst €{gs['expected']:.0f} → netto <b>€{gs['net']:.0f}</b> per kaart ({gs['roi']:.0%} op raw) na grading (€25) en fees (13%)\n"
-                       f"<i>Aanname 40% PSA 10; vraagprijzen als proxy voor verkopen. {gs['set']}</i>")
-                msgs.append(_m(key, "grade", txt, photo=gs.get("image"), buttons=[[("🛒 PSA 10 op eBay", gs["url"]), ("📊 Radar", SITE_URL)]]))
+                       f"Raw <b>€{gs['raw_eur']:.0f}</b> (TCGplayer) → <b>{gs['service']} {gs['top_grade']}</b> op eBay mediaan <b>€{gs['top_median']:.0f}</b> ({gs['top_n']} st.)\n"
+                       f"Verwachte opbrengst €{gs['expected']:.0f} → netto <b>€{gs['net']:.0f}</b> per kaart ({gs['roi']:.0%} op raw) na grading en fees"
+                       + (f"\nAndere services: {alt}" if alt else "") + f"\n<i>Vraagprijzen als proxy voor verkopen · {gs['set']}</i>")
+                msgs.append(_m(key, "grade", txt, photo=gs.get("image"), buttons=[[(f"🛒 {gs['service']} {gs['top_grade']} op eBay", gs["url"]), ("📊 Radar", SITE_URL)]]))
             for key in [k for k in state["active"] if k.startswith(f"grade:{gid}:")]:
                 if not any(f"grade:{gid}:{gs['key']}" == key for gs in gdata.get("grade_signals", [])):
                     state["active"].pop(key, None)
