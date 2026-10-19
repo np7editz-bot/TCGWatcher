@@ -214,3 +214,11 @@ def test_cardtrader_takes_both_dragon_ball_games():
                     {"id": 300, "game_id": 1, "name": "Base Set", "code": "bs"}]
     gid, exps = fusion_world_expansions(CT())
     assert set(exps) == {"BT23", "FB01"} and gid == 17
+
+
+def test_slab_rotation_sends_new_cards():
+    from tcgwatcher.alerts import pick_slabs
+    items = [{"key": f"k{i}", "net": 200 - i * 10, "raw": 100} for i in range(8)]
+    sent = {"dbfw:k0": {"net": 200, "raw": 100}, "dbfw:k1": {"net": 150, "raw": 100}, "dbfw:k2": {"net": 180, "raw": 120}}
+    got = [i["key"] for i in pick_slabs(items, sent, "dbfw")]
+    assert got == ["k1", "k2", "k3", "k4", "k5"]      # k0 unchanged → skipped; k1 net +27% and k2 raw −17% → again; then new ones

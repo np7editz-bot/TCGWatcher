@@ -33,6 +33,17 @@ def fetch_files(game_id=13, session=None):
     return out
 
 
+def slug(name):
+    """Cardmarket URL slug: apostrophes dropped, every other non-alphanumeric run becomes '-' ("Saiyan's Pride" → Saiyans-Pride)."""
+    return re.sub(r"[^A-Za-z0-9]+", "-", name.replace("'", "")).strip("-")
+
+
+def box_url(name):
+    """Sealed product page: /Products/Booster-Boxes/<Name-Slug> (name 'Awakened Pulse Booster Box [Fusion World]' →
+    Awakened-Pulse-Booster-Box-Fusion-World)."""
+    return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name)
+
+
 def _f(row, field):
     """Price-guide value with the foil fallback: Cardmarket keeps `low/trend/avg*` for the non-foil version and
     `*-foil` for the foil one; Fusion World hits are foil-only, so their sales live in the foil fields (0/None elsewhere)."""
@@ -76,7 +87,7 @@ def join(files, latest, ct_doc):
                 p, r = min(rows, key=lambda x: x[1]["low"])
                 boxes[s["code"]] = {"idProduct": p["idProduct"], "name": p["name"], "low": r["low"], "trend": r.get("trend"),
                                     "avg7": r.get("avg7"), "avg30": r.get("avg30"),
-                                    "url": "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=" + requests.utils.quote(p["name"])}
+                                    "url": box_url(p["name"])}
     return cards, boxes
 
 

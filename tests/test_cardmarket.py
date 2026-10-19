@@ -41,3 +41,9 @@ def test_foil_fallback():
     r = {"low": 10, "trend": 0, "avg30": None, "low-foil": 12.5, "trend-foil": 14.0, "avg30-foil": 13.2}
     assert _f(r, "low") == 10 and _f(r, "trend") == 14.0 and _f(r, "avg30") == 13.2
     assert _f({"avg7": 3.0, "avg7-foil": 9.0}, "avg7") == 3.0
+
+
+def test_box_url_slug():
+    from tcgwatcher.cardmarket import box_url
+    assert box_url("Awakened Pulse Booster Box [Fusion World]").endswith("/Booster-Boxes/Awakened-Pulse-Booster-Box-Fusion-World")
+    assert box_url("Saiyan's Pride Booster Box [Fusion World]").endswith("/Saiyans-Pride-Booster-Box-Fusion-World")
