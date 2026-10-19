@@ -9,6 +9,346 @@
    "price": 160.64,
    "ratio": 0.995,
    "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB01:FB01-096:AA": {
+   "net": 144.16,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB02:FB02-140:AA": {
+   "net": 54.93,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB03:FB03-064:AA": {
+   "net": 486.5,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB03:FB03-139:AA": {
+   "net": 137.49,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB03:FB03-140:AA": {
+   "net": 178.2,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB05:FB05-030:AA": {
+   "net": 544.95,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB05:FB05-119:AA": {
+   "net": 76.88,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB05:FB05-120:AA": {
+   "net": 118.14,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB06:FB06-097:AA": {
+   "net": 132.7,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB06:FB06-103:AA": {
+   "net": 162.2,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB06:FB06-119:SAA": {
+   "net": 139.25,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB06:FB06-120:": {
+   "net": 130.2,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB07:FB07-010:AA": {
+   "net": 76.19,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB07:FB07-058:AA": {
+   "net": 60.92,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB07:FB07-104:AA": {
+   "net": 407.13,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB07:FB07-105:AA": {
+   "net": 76.23,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB07:FB07-114:AA": {
+   "net": 117.61,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB07:FB07-121:": {
+   "net": 549.08,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB07:FB07-121:AA": {
+   "net": 460.4,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB07:FB07-122:": {
+   "net": 664.13,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB08:FB08-007:AA": {
+   "net": 63.61,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB08:FB08-087:AA": {
+   "net": 65.72,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB08:FB08-106:AA": {
+   "net": 80.38,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB08:FB08-121:": {
+   "net": 93.34,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB08:FB08-121:AA": {
+   "net": 78.69,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB08:FB08-122:": {
+   "net": 121.88,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB08:FB08-122:AA": {
+   "net": 80.67,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB09:FB09-037:AA": {
+   "net": 57.16,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB10:FB10-024:AA": {
+   "net": 151.97,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB10:FB10-032:AA": {
+   "net": 201.13,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB10:FB10-039:AA": {
+   "net": 159.07,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB10:FB10-064:AA": {
+   "net": 113.59,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB10:FB10-070:AA": {
+   "net": 68.06,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB10:FB10-121:AA": {
+   "net": 128.38,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB10:FB10-122:AA": {
+   "net": 158.81,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:FB10:FB10-123:AA": {
+   "net": 77.81,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB01:FB06-025:GOLD": {
+   "net": 134.7,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB01:SB01-018:AA": {
+   "net": 159.21,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB01:SB01-026:AA": {
+   "net": 148.71,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB01:SB01-045:GOLD": {
+   "net": 154.31,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB02:FB06-119:AA": {
+   "net": 148.5,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB02:FB07-097:GOLD": {
+   "net": 108.19,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB02:FS04-01:GOLD": {
+   "net": 107.62,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB02:SB02-017:GOLD": {
+   "net": 161.47,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:SB02:SB02-043:AA": {
+   "net": 88.41,
+   "since": "2026-10-18"
+  },
+  "grade:dbfw:dbfw:ST01:ST01-071:AA": {
+   "net": 1627.11,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB01:FB01-139:SAA:10": {
+   "price": 101.2,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB01:FB01-140:AA:10": {
+   "price": 132.07,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB02:FB02-139:AA:10": {
+   "price": 95.6,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB02:FB02-139:SAA:10": {
+   "price": 95.6,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB03:FB03-139:AA:10": {
+   "price": 112.58,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB03:FB03-140:SAA:10": {
+   "price": 67.15,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB04:FB04-129:AA:10": {
+   "price": 110.58,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB04:FB04-129:SAA:10": {
+   "price": 110.58,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB05:FB05-119:SAA:10": {
+   "price": 136.84,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB05:FB05-120:SAA:10": {
+   "price": 70.37,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB06:FB06-119:SAA:10": {
+   "price": 114.85,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB06:FB06-120:AA:10": {
+   "price": 95.91,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB07:FB07-121:AA:10": {
+   "price": 104.54,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB07:FB07-122:AA:10": {
+   "price": 180.3,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB08:FB08-121:SAA:10": {
+   "price": 130.98,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB09:FB09-001:SAA:10": {
+   "price": 200.27,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB09:FB09-025:SAA:10": {
+   "price": 233.52,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB09:FB09-121:AA:10": {
+   "price": 97.65,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB09:FB09-121:SAA:10": {
+   "price": 97.65,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB09:FB09-122:AA:10": {
+   "price": 119.87,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB09:FB09-123:AA:10": {
+   "price": 79.71,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB09:FB09-123:SAA:10": {
+   "price": 79.71,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:FB10:FB10-123:SAA:10": {
+   "price": 182.43,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB01:FB04-051:GOLD:10": {
+   "price": 155.0,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB01:FB05-119::10": {
+   "price": 136.84,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB01:FB06-025:GOLD:10": {
+   "price": 244.63,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB01:SB01-001:GOLD:10": {
+   "price": 145.0,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB01:SB01-025:AA:10": {
+   "price": 131.76,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB01:SB01-045:GOLD:10": {
+   "price": 165.0,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB01:SB01-057:AA:10": {
+   "price": 104.29,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:FB06-119:AA:10": {
+   "price": 114.85,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:FB07-097:GOLD:10": {
+   "price": 194.01,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:FS04-01:GOLD:10": {
+   "price": 135.25,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:SB02-001:GOLD:10": {
+   "price": 57.11,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:SB02-017:GOLD:10": {
+   "price": 106.46,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:SB02-022:AA:10": {
+   "price": 92.19,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:SB02-023:AA:10": {
+   "price": 133.2,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:SB02-033:GOLD:10": {
+   "price": 184.83,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB02:SB02-038:AA:10": {
+   "price": 124.44,
+   "since": "2026-10-18"
   }
  },
  "muted": [],
