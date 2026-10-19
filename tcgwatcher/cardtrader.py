@@ -99,7 +99,10 @@ def fetch_day(ct=None, codes=None):
             if not rows:
                 continue
             prices = sorted(p["price"]["cents"] / 100 for p in rows)
+            # CardTrader Zero: seller ships to the CardTrader hub, buyer pays one fixed fee — no per-seller shipping surprise.
+            zero = sorted(p["price"]["cents"] / 100 for p in rows if (p.get("user") or {}).get("can_sell_via_hub"))
             offers[str(bid)] = {"set": code, "low": prices[0], "median": round(median(prices), 2), "n": len(prices),
+                                "zero_low": zero[0] if zero else None, "zero_n": len(zero),
                                 "qty": sum(p.get("quantity") or 0 for p in rows),
                                 "countries": sorted({(p.get("user") or {}).get("country_code") or "?" for p in rows})[:8],
                                 "condition_low": ((rows[0].get("properties_hash") or {}).get("condition"))}

@@ -68,6 +68,7 @@ def kind_of(title, url=""):
     return "other"
 
 
+BUY_BTN = re.compile(r"<button\b([^>]*(?:add[-_ ]?to[-_ ]?cart|cart[-_]?btn|buy|acquista|kopen|warenkorb|panier|carrito)[^>]*)>(.*?)</button>", re.I | re.S)
 PRICE_TXT = re.compile(r"(?:€|EUR|£)\s?(\d{1,4}(?:[.,]\d{3})*(?:[.,]\d{2})?)|(\d{1,4}(?:[.,]\d{2}))\s?(?:€|EUR)")
 
 
@@ -225,6 +226,12 @@ def generic_product(http, row, retailer=None):
         row["status"] = "sold_out"
     else:
         row["status"] = status_from_text(re.sub(r"<script.*?</script>|<style.*?</style>|<nav.*?</nav>|<header.*?</header>|<footer.*?</footer>", " ", text, flags=re.S | re.I))
+    # The buy button is the truth: a shop can keep schema.org 'PreOrder' while the button says 'Out of stock' (Ony TCG FB11).
+    for attrs, inner in BUY_BTN.findall(text):
+        label = re.sub(r"<[^>]+>", " ", inner)
+        if re.search(r"\bdisabled\b", attrs, re.I) or SOLD.search(label):
+            row["status"] = "sold_out"
+            break
     ot = re.search(r'property="og:title"\s+content="([^"]+)"', text, re.I)
     if ot:
         row["title"] = html.unescape(ot.group(1))[:160]
