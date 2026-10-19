@@ -92,6 +92,8 @@ games:
     score: true
     eu_sources: true
     alerts: false                    # silent first month: page + paper portfolio build evidence; flip after the first monthly review
+    cardmarket_box_buy: false        # Masters box pages mix EN/FR/JP listings and the public price guide has no language split:
+                                     # Cardmarket is a comparison line here, never the buy price (CardTrader/eBay/retail are EN-filtered)
     ebay_sets: 8
     group_kinds:
       booster: '^BT\d{2}$'

@@ -43,7 +43,7 @@ def slug(name):
 def box_url(name):
     """Sealed product page: /Products/Booster-Boxes/<Name-Slug> (name 'Awakened Pulse Booster Box [Fusion World]' →
     Awakened-Pulse-Booster-Box-Fusion-World)."""
-    return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name)
+    return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name) + "?language=1"   # English listings only
 
 
 # A catalogue name with several printings gets "(V.n - <label>)" on EVERY printing, V1 included; the label is Cardmarket's
@@ -80,7 +80,7 @@ def card_url(expansion_name, product_name, version=1, variant="", rarity="", pri
     variant code (VERSION_LABEL)."""
     label = VERSION_LABEL.get(variant) or rarity
     tail = f" (V.{version} - {label})" if printings > 1 and label else ""
-    return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}"
+    return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}?language=1"
 
 
 def _f(row, field):
@@ -181,7 +181,8 @@ def fetch_day(latest=None, ct_doc=None, day=None, session=None):
     cards, boxes = join(files, latest, ct_doc)
     doc = {"day": day, "schema": SCHEMA, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "game_id": 13,
            "guide_created_at": files["prices"].get("createdAt"), "cards": cards, "boxes": boxes,
-           "note": "low = cheapest offer; avg30 = average sale price last 30 days (EUR). Source: Cardmarket public price guide."}
+           "note": "low = cheapest offer; avg30 = average sale price last 30 days (EUR), ALL languages (the public guide has no language "
+                   "split). Source: Cardmarket public price guide."}
     store.write_json(path, doc)
     log.info("cardmarket: %d cards, %d boxes joined (guide %s)", len(cards), len(boxes), doc["guide_created_at"])
     return doc
