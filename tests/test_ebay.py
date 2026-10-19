@@ -16,7 +16,8 @@ class FakeClient:
                     item("Gogeta GT FB09-123 Japanese SAA PSA 10", 500), item("Gogeta GT FB09-123 SAA raw NM", 1300),
                     item("Gogeta GT FB09-123 SCR PSA 10", 120, iid="base"),                       # base secret rare, same number
                     item("Gogeta GT FB09-123 God Rare PSA 10", 1400, iid="us", loc="US")]         # non-EU: counts for selling, not for buying
-        return [item("Son Goku FB09-025 God Rare PSA 10", 1100, iid="x"), item("Son Goku FB09-025 SAA BGS 9.5", 900, iid="y")]
+        return [item("Son Goku FB09-025 God Rare PSA 10", 1100, iid="x"), item("Son Goku FB09-025 SAA BGS 9.5", 900, iid="y"),
+                item("Son Goku FB09-025 God Rare PSA 10 signed auto", 9000, iid="auto")]      # > 4× lowest: clipped
 
 
 def latest():
@@ -55,6 +56,9 @@ def test_fetch_day_and_slab_signal(tmp_path, monkeypatch):
     sig = ebay.slab_signals(doc, {"max_vs_raw": 1.15, "min_raw_eur": 50, "grades": [10, 9.5, 9]})
     # Gogeta PSA10 €1504 vs raw €1800 → 0.84 ✔ ; Goku PSA10 €1104.5 vs raw €1170 → 0.94 ✔ (sorted by ratio)
     assert [(s["number"], s["grade"], s["ratio"]) for s in sig] == [("FB09-123", 10, 0.84), ("FB09-025", 10, 0.94)]
+    assert doc["cards"]["dbfw:FB09:FB09-025:SAA"]["best"]["10.0"]["n"] == 1                   # the €9000 auto was clipped
+    assert ebay.variant_matches("Cell SB01-001 Manga Booster Gold PSA 10", "GOLD") and not ebay.variant_matches("Cell SB01-001 Leader Art PSA 10", "GOLD")
+    assert not ebay.variant_matches("Cell SB01-001 Gold PSA 10", "")
     assert ebay.latest_day()["day"] == "2026-10-19"
 
 

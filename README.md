@@ -68,9 +68,8 @@ Berichten (v3, `config/alerts.yaml`):
 | 🟡 PRE-ORDER OPEN / ✅ OP VOORRAAD / 📉 GOEDKOPER | box/case wordt koopbaar bij een webshop | alleen als ratio tegen díe prijs ≥ `buy.near` (0,70), of de set nog niet gewaardeerd is (nieuwe set, Naruto) |
 | 🆕 productlijn | nieuwe set in de TCGplayer-catalogus | eerste pre-ordersignaal |
 | 📰 officiële aankondiging | nieuw product/set op de Bandai-pagina's (Fusion World news + productlijst, NARUTO CARD GAME news; `config/news.yaml`, elke 2 uur) | alleen product-/release-nieuws; app-berichten en events worden wel opgeslagen (`data/news/`) maar niet gestuurd |
-| 🏆 **SLAB-KOOP** | goedkoopste PSA/BGS/CGC 10 (anders 9.5/9), EU-gelokaliseerd op eBay DE/NL **of in de CardTrader graded-sectie** (Zero + €6 / + €5 verzending), ≤ 1,15 × raw TCGplayer | `slabs` in `config/alerts.yaml`; eBay Browse API (app-token), dagelijks, `data/ebay/<dag>.json` |
-| 📈 **GRADE-KANS** | raw goedkoop, graded duur én liquide: per service (PSA, BGS, CGC) `Σ aandeel×mediaan graded-prijs` × 0,87 − servicekosten − raw; beste service wint; signaal bij netto ≥ €50 en ≥ 50% van raw | `grading.services` in `config/alerts.yaml` (uitkomstmix per service); vraagprijzen als proxy voor verkopen |
-| 📋 briefing | zondag (`briefing: weekly`) | ranking op EU-ratio, bewegingen, boxen, retail, Naruto |
+| 🏆 **Top 5 slabs** | één bericht per dag (alleen bij wijziging): kaarten die raw goedkoop zijn en graded veel waard — per service (PSA/BGS/CGC) `Σ aandeel×mediaan graded-prijs` × 0,87 − servicekosten − raw tegen de **werkelijke** inkoopprijs (CardTrader EU-ask + €5); staat er in de EU een graded exemplaar ≤ 1,15× raw te koop (eBay DE/NL of CardTrader graded), dan staat dat op dezelfde regel. **Eén knop per product** → direct naar de shop. | `grading` en `slabs` in `config/alerts.yaml`; eBay Browse API + CardTrader graded, dagelijks; verkopers laten 'alt art' vaak weg → listings > 4× de laagste van dezelfde grade worden als verkeerd gelabeld genegeerd |
+| 📋 briefing | uit (`briefing: off`); `weekly`/`daily` om aan te zetten | ranking op EU-ratio, bewegingen, boxen, retail, Naruto |
 | ⚠️ datakwaliteit | alleen bij FAIL (pagina niet bijgewerkt) | `quality_issues: fail_only` |
 
 Stuur `/mute FB10`, `/unmute FB10`, `/mute all` of `/status` naar de bot; wordt bij de volgende run verwerkt.

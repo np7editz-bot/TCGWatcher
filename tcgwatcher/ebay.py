@@ -24,6 +24,7 @@ JP = re.compile(r"\b(japanese|japan|jp|jpn|日本)\b", re.I)
 PROMO = re.compile(r"\b(winner|finalist|champion(ship)?|tournament|promo|event pack|pre-?release|release event|store championship)\b", re.I)
 SAA_T = re.compile(r"(\bSAA\b|super\s*alt|god\s*rare|★★|\bV\.?3\b|super\s*parallel|special\s*alt)", re.I)
 AA_T = re.compile(r"(alt(ernate)?[\s-]*art|\bparallel\b|\bAA\b|\bV\.?2\b|★)", re.I)
+CLIP = 4.0
 EU = {"AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
       "PL", "PT", "RO", "SK", "SI", "ES", "SE"}
 
@@ -88,6 +89,10 @@ def _price_eur(item, fx_usd_eur):
 def variant_matches(title, variant):
     """Same number ≠ same card: base SCR, Alternate Art (★) and Super Alternate Art (★★) share a number."""
     saa, aa = bool(SAA_T.search(title)), bool(AA_T.search(title))
+    if variant == "GOLD":
+        return bool(re.search(r"\bgold\b", title, re.I))
+    if re.search(r"\bgold\b", title, re.I) and variant != "GOLD":
+        return False
     if variant == "SAA":
         return saa
     if variant in ("AA", "BPAA"):
@@ -184,6 +189,15 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
             if l["item_id"] in seen:
                 continue
             seen.add(l["item_id"]); uniq.append(l)
+        # Sellers often omit 'alt art'/'super alt art': a pricier variant then leaks into a cheaper one's group. Within one
+        # grade, real prices cluster, so anything above CLIP × the group's lowest ask is treated as a mislabelled listing.
+        clipped = []
+        for grade in (10.0, 9.5, 9.0):
+            g = [l for l in uniq if l["grade"] == grade]
+            if g:
+                low = g[0]["price"]
+                clipped += [l for l in g if l["price"] <= CLIP * low]
+        uniq = sorted(clipped, key=lambda x: x["price"])
         best, by_grader = {}, {}
         for grade in (10.0, 9.5, 9.0):
             g = [l for l in uniq if l["grade"] == grade]

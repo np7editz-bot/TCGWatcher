@@ -62,7 +62,8 @@ def build(day, quality=None):
         eu = eu_prices_by_tcgplayer(ct_latest()) if gid == "dbfw" else {}
         for c in cards:
             o = eu.get(c["product_id"])
-            c["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5} if o else None
+            c["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5, "zero_low": o.get("zero_low"),
+                       "url": f"https://www.cardtrader.com/cards/{o['blueprint_id']}"} if o else None
         for s in sets_scored:
             for kind in ("box", "pack", "case"):
                 sp = s.get(kind)
