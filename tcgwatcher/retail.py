@@ -265,7 +265,7 @@ def update_state(rows, now):
     for r in rows:
         key = r["url"]
         old = prods.get(key)
-        new = {"retailer": r["retailer"], "title": r["title"], "price": r["price"], "status": r["status"], "seen": now, "kind": r.get("kind"),
+        new = {"retailer": r["retailer"], "title": r["title"], "price": r["price"], "status": r["status"], "seen": now, "product_kind": r.get("kind"),
                "first_seen": old["first_seen"] if old else now}
         if old is None:
             transitions.append({"kind": "new_listing", **new, "url": key})

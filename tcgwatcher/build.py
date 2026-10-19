@@ -132,10 +132,10 @@ def retail_by_set(game_id):
         if not m:
             continue
         code = f"{m.group(1).upper()}{m.group(2)}"
-        if p.get("kind", "box") not in ("box", "case"):
+        if p.get("product_kind", "box") not in ("box", "case"):
             continue
         by.setdefault(code, []).append({"retailer": p["retailer"], "title": p["title"], "price": p.get("price"),
-                                        "status": p["status"], "url": url, "seen": p["seen"], "kind": p.get("kind", "box")})
+                                        "status": p["status"], "url": url, "seen": p["seen"], "kind": p.get("product_kind", "box")})
     for code in by:
         by[code].sort(key=lambda x: (x["status"] not in ("in_stock", "preorder"), x["price"] or 9e9))
     return by
