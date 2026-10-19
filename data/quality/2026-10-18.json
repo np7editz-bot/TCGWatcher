@@ -8,6 +8,16 @@
    "products": 4556,
    "status": "ok"
   },
+  "dbs": {
+   "findings": [
+    {
+     "code": "no_data_yet",
+     "level": "info",
+     "message": "category 27 not fetched yet"
+    }
+   ],
+   "status": "pending"
+  },
   "naruto": {
    "findings": [],
    "market_priced": 2,

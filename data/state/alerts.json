@@ -15,6 +15,11 @@
    "raw": 200.0,
    "since": "2026-10-18"
   },
+  "slab:dbfw:dbfw:FB03:FB03-140:SAA": {
+   "net": 119.43,
+   "raw": 656.64,
+   "since": "2026-10-18"
+  },
   "slab:dbfw:dbfw:FB06:FB06-103:AA": {
    "net": 146.63,
    "raw": 19.99,
@@ -59,8 +64,9 @@
   "SB02": 0.365,
   "ST01": 0.209
  },
- "quality_fp": "",
+ "quality_fp": "dbs:no_data_yet:",
  "seen_groups": {
+  "27": {},
   "80": {
    "23401": {
     "abbr": "FB01",
@@ -579,6 +585,7 @@
     "seen": "2026-10-15"
    }
   },
+  "dbs": {},
   "naruto": {}
  }
 }
