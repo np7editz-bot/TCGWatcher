@@ -51,19 +51,24 @@ def test_box_url_slug():
 
 def test_card_url_matches_browser():
     from tcgwatcher.cardmarket import card_url
-    u = card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World]", 3, "SAA")
+    u = card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World]", 3, "SAA", "Secret Rare", 3)
     assert u == "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare"
-    u = card_url("Saiyan's Pride [Fusion World]", "Broly // Broly (FB08-073) [Fusion World]", 2, "AA")
+    u = card_url("Saiyan's Pride [Fusion World]", "Broly // Broly (FB08-073) [Fusion World]", 2, "AA", "Super Rare", 2)
     assert u.endswith("/Saiyans-Pride-Fusion-World/Broly-Broly-FB08-073-Fusion-World-V2-Alternate-Art")
-    assert card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World]", 1, "").endswith("/Son-Goten-FB08-121-Fusion-World")
+    # base printing of a multi-printing card carries V1 + its rarity; a single-printing card has no suffix
+    assert card_url("Saiyan's Pride [Fusion World]", "Son Goten (FB08-121) [Fusion World]", 1, "", "Secret Rare", 3).endswith("/Son-Goten-FB08-121-Fusion-World-V1-Secret-Rare")
+    assert card_url("Rivals Clash", "Broly : BR (FB06-120) [Fusion World]", 1, "", "Secret Rare", 2).endswith("/Rivals-Clash/Broly-BR-FB06-120-Fusion-World-V1-Secret-Rare")
+    assert card_url("Wish for Shenron [Fusion World]", "Son Goten/Trunks : Youth (FB07-105) [Fusion World]", 2, "AA", "Super Rare", 2).endswith("/Wish-for-Shenron-Fusion-World/Son-GotenTrunks-Youth-FB07-105-Fusion-World-V2-Alternate-Art")
+    assert card_url("Awakened Pulse [Fusion World]", "Krillin (FB01-010) [Fusion World]", 1, "", "Common", 1).endswith("/Awakened-Pulse-Fusion-World/Krillin-FB01-010-Fusion-World")
 
 
 def test_expansion_names():
     from tcgwatcher.cardmarket import expansion_name, card_url
     assert expansion_name("dbs", "BT21", "Wild Resurgence") == "Zenkai Series Set 04"
     assert expansion_name("dbfw", "FB08", "Saiyan's Pride", "Saiyan's Pride Booster Box [Fusion World]") == "Saiyan's Pride [Fusion World]"
-    assert card_url("Zenkai Series Set 04", "Son Goku, Overwhelming Power", 2, "SPR").endswith("/Zenkai-Series-Set-04/Son-Goku-Overwhelming-Power-V2-Special-Rare")
-    assert card_url("Manga Booster 01 [Fusion World]", "Vegeta // Vegeta (FB04-051) [Fusion World]", 2, "GOLD").endswith("/Manga-Booster-01-Fusion-World/Vegeta-Vegeta-FB04-051-Fusion-World-V2-Alternate-Art")
+    assert expansion_name("dbfw", "FB06", "Rivals Clash", "Rivals Clash Booster Box [Fusion World]") == "Rivals Clash"
+    assert card_url("Zenkai Series Set 04", "Son Goku, Overwhelming Power", 2, "SPR", "Super Rare", 2).endswith("/Zenkai-Series-Set-04/Son-Goku-Overwhelming-Power-V2-Special-Rare")
+    assert card_url("Manga Booster 01 [Fusion World]", "Vegeta // Vegeta (FB04-051) [Fusion World]", 2, "GOLD", "Leader", 2).endswith("/Manga-Booster-01-Fusion-World/Vegeta-Vegeta-FB04-051-Fusion-World-V2-Alternate-Art")
 
 
 def test_join_prefers_the_sets_own_expansion():
