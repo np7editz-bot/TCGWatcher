@@ -156,7 +156,7 @@ def run(day, quality=None, send=True):
                 if sl:
                     btn.append([(f"🏷 graded €{sl['price']:.0f} · {'CardTrader' if 'cardtrader' in sl['url'] else 'eBay'}", sl["url"])])
                 btn.append([("📊 Radar", SITE_URL)])
-                msgs.append(_m(key, "slab", txt, photo=c.get("image"), buttons=btn))
+                msgs.append(_m(key, "slab", txt, photo=_big(c.get("image")), buttons=btn))
             for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
                 if key.split(":", 2)[2] not in top_keys:
                     state["active"].pop(key, None)
@@ -200,7 +200,7 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
     st_short = {"in_stock": "voorraad", "preorder": "pre-order"}
     btn = [[(f"🛒 {o['source']} €{o['price']:.0f} · {st_short.get(o['status'], o['status'])}", o["url"])] for o in bb.get("options", [])[:3]]
     btn.append([("📊 Radar", SITE_URL)])
-    return _m(f"buy:{gid}:{s['code']}", "buy", txt, photo=(s.get("box") or {}).get("image") or s["top_hit"].get("image"), buttons=btn)
+    return _m(f"buy:{gid}:{s['code']}", "buy", txt, photo=_big((s.get("box") or {}).get("image") or s["top_hit"].get("image")), buttons=btn)
 
 
 def _remember_ranking(latest, state):
@@ -253,6 +253,11 @@ FX = {"rate": 0.9}
 def _usd(v):
     """TCGplayer USD shown as EUR (ECB rate of the day); the page keeps both."""
     return "—" if v is None else f"€{v * FX['rate']:,.0f}".replace(",", ".")
+
+
+def _big(image_url):
+    """TCGplayer serves 200w thumbnails in the catalogue; the CDN also has 718×1000 — a slab message deserves the big one."""
+    return image_url.replace("_200w.jpg", "_in_1000x1000.jpg") if image_url else None
 
 
 def _card(name, number=""):
