@@ -21,6 +21,11 @@ log = logging.getLogger("tcgwatcher.ebay")
 API = "https://api.ebay.com"
 GRADE = re.compile(r"\b(PSA|BGS|CGC|SGC|TAG|ACE)\s*-?\s*(10|9\.5|9)\b", re.I)
 JP = re.compile(r"\b(japanese|japan|jp|jpn|日本)\b", re.I)
+PROMO = re.compile(r"\b(winner|finalist|champion(ship)?|tournament|promo|event pack|pre-?release|release event|store championship)\b", re.I)
+SAA_T = re.compile(r"(\bSAA\b|super\s*alt|god\s*rare|★★|\bV\.?3\b|super\s*parallel|special\s*alt)", re.I)
+AA_T = re.compile(r"(alt(ernate)?[\s-]*art|\bparallel\b|\bAA\b|\bV\.?2\b|★)", re.I)
+EU = {"AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
+      "PL", "PT", "RO", "SK", "SI", "ES", "SE"}
 
 
 class EbayClient:
@@ -80,20 +85,31 @@ def _price_eur(item, fx_usd_eur):
     return None
 
 
-def parse_listing(item, number, fx_usd_eur):
-    """One Browse item → {grade, grader, price_eur, url, title} when it is a graded copy of this card number."""
+def variant_matches(title, variant):
+    """Same number ≠ same card: base SCR, Alternate Art (★) and Super Alternate Art (★★) share a number."""
+    saa, aa = bool(SAA_T.search(title)), bool(AA_T.search(title))
+    if variant == "SAA":
+        return saa
+    if variant in ("AA", "BPAA"):
+        return aa and not saa
+    return not aa and not saa
+
+
+def parse_listing(item, number, fx_usd_eur, variant=""):
+    """One Browse item → {grade, grader, price_eur, url, title} when it is a graded copy of this exact card (number+variant)."""
     title = item.get("title") or ""
     if number.lower() not in title.lower():
         return None
     m = GRADE.search(title)
-    if not m or JP.search(title):
+    if not m or JP.search(title) or PROMO.search(title) or not variant_matches(title, variant):
         return None
     price = _price_eur(item, fx_usd_eur)
     if not price:
         return None
     return {"grader": m.group(1).upper(), "grade": float(m.group(2)), "price": price, "title": title[:120],
             "url": item.get("itemWebUrl"), "item_id": item.get("itemId"), "marketplace": item.get("listingMarketplaceId"),
-            "location": (item.get("itemLocation") or {}).get("country")}
+            "location": (item.get("itemLocation") or {}).get("country"),
+            "eu": ((item.get("itemLocation") or {}).get("country") or "").upper() in EU}
 
 
 def targets(latest, per_set=10, min_raw_eur=20):
@@ -110,7 +126,7 @@ def targets(latest, per_set=10, min_raw_eur=20):
         cs.sort(key=lambda c: -c["price"])
         for c in cs[:per_set]:
             name = re.sub(r"\s*\(.*?\)|\s*-\s*FB.*$", "", c["name"]).split(" // ")[0].strip()
-            out.append({"key": c["key"], "number": c["number"], "name": name, "set": code, "class": c["class"],
+            out.append({"key": c["key"], "number": c["number"], "name": name, "set": code, "class": c["class"], "variant": c.get("variant", ""),
                         "raw_eur": round(c["price"] * fx, 2), "image": c.get("image")})
     return out
 
@@ -136,7 +152,7 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
         for mp in marketplaces:
             try:
                 for it in client.search(f"{t['name']} {t['number']} PSA", mp):
-                    p = parse_listing(it, t["number"], fx)
+                    p = parse_listing(it, t["number"], fx, t.get("variant", ""))
                     if p:
                         listings.append(p)
             except Exception as e:  # noqa: BLE001
@@ -149,9 +165,11 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
         best, by_grader = {}, {}
         for grade in (10.0, 9.5, 9.0):
             g = [l for l in uniq if l["grade"] == grade]
+            g_eu = [l for l in g if l.get("eu")]
             if g:
                 best[str(grade)] = {"low": g[0]["price"], "n": len(g), "url": g[0]["url"], "grader": g[0]["grader"],
-                                    "median": sorted(x["price"] for x in g)[len(g) // 2]}
+                                    "median": sorted(x["price"] for x in g)[len(g) // 2],
+                                    "eu_low": g_eu[0]["price"] if g_eu else None, "eu_url": g_eu[0]["url"] if g_eu else None, "eu_n": len(g_eu)}
             for grader in {l["grader"] for l in g}:          # per grader: PSA 10 vs BGS 10 vs BGS 9.5 … are different markets
                 gg = [l for l in g if l["grader"] == grader]
                 by_grader.setdefault(grader, {})[str(grade)] = {"low": gg[0]["price"], "n": len(gg), "url": gg[0]["url"],
@@ -181,10 +199,10 @@ def slab_signals(doc, cfg=None):
             continue
         for grade in cfg.get("grades", [10, 9.5, 9]):
             b = c["best"].get(str(float(grade)))
-            if b and b["low"] <= cfg["max_vs_raw"] * c["raw_eur"]:
+            if b and b.get("eu_low") and b["eu_low"] <= cfg["max_vs_raw"] * c["raw_eur"]:     # EU-located: no import VAT/duties
                 out.append({"key": key, "number": c["number"], "name": c["name"], "set": c["set"], "class": c["class"], "grade": grade,
-                            "grader": b["grader"], "price": b["low"], "raw_eur": c["raw_eur"], "ratio": round(b["low"] / c["raw_eur"], 2),
-                            "n": b["n"], "url": b["url"], "image": c.get("image")})
+                            "grader": b["grader"], "price": b["eu_low"], "raw_eur": c["raw_eur"], "ratio": round(b["eu_low"] / c["raw_eur"], 2),
+                            "n": b["eu_n"], "url": b["eu_url"], "image": c.get("image")})
                 break
     out.sort(key=lambda s: s["ratio"])
     return out

@@ -18,6 +18,7 @@ from .build import LATEST
 
 log = logging.getLogger("tcgwatcher.alerts")
 SITE_URL = "https://np7editz-bot.github.io/TCGWatcher/"
+MAX_PER_RUN = 8        # safety net: a run never floods the chat; the rest stays in data/alerts/<day>.json
 
 
 def run(day, quality=None, send=True):
@@ -105,42 +106,27 @@ def run(day, quality=None, send=True):
                 state["active"][key] = {"since": (ep or {}).get("since", day) if isinstance(ep, dict) else day, "price": bb["price"], "ratio": ratio}
                 msgs.append(buy_card(gid, gdata, s, pos, len(ranked), buy, again=bool(ep)))
 
-        # 4b. slab buy signals (eBay graded ≤ max_vs_raw × raw), one per card+grade episode, again when ≥10% cheaper
+        # 4b/4c. slabs: ONE digest per kind per day (top 5), text only; sent when a new card enters the top 5 or the #1 changes.
         for gid, gdata in latest["games"].items():
-            for sg in gdata.get("slab_signals", []):
-                key = f"slab:{gid}:{sg['key']}:{sg['grade']}"
-                if sg["set"] in muted:
+            for kind, items, head, line in (
+                ("grade", gdata.get("grade_signals", []), "📈 <b>Top 5 grade-kansen</b> · raw goedkoop, graded duur en liquide",
+                 lambda g: f"{_card(g['name'], g['number'])} {g['class'].replace('_AA',' AA')} · raw <b>€{g['raw_eur']:.0f}</b> → {g['service']} {g['top_grade']} €{g['top_median']:.0f} ({g['top_n']} st.) · netto <b>€{g['net']:.0f}</b> ({g['roi']:.0%})"),
+                ("slab", gdata.get("slab_signals", []), "🏆 <b>Top 5 slab-koop</b> · graded exemplaar in de EU voor ≤ 1,15× raw",
+                 lambda x: f"{_card(x['name'], x['number'])} {x['class'].replace('_AA',' AA')} · {x['grader']} {x['grade']:g} <b>€{x['price']:.0f}</b> vs raw €{x['raw_eur']:.0f} ({x['ratio']:.2f}×)")):
+                top = [i for i in items if i["set"] not in muted][:5]
+                key = f"{kind}_digest:{gid}"
+                prev = state["active"].get(key) or {}
+                ids = [i["key"] for i in top]
+                if not top or (set(ids) <= set(prev.get("ids", [])) and ids[:1] == prev.get("ids", [])[:1]):
+                    if not top:
+                        state["active"].pop(key, None)
                     continue
-                ep = state["active"].get(key)
-                if ep and not sg["price"] <= ep["price"] * 0.9:
-                    continue
-                state["active"][key] = {"since": (ep or {}).get("since", day), "price": sg["price"]}
-                txt = (f"🏆 <b>SLAB-KOOP · {_card(sg['name'], sg['number'])} {sg['class'].replace('_AA', ' AA')}</b>\n"
-                       f"{sg['grader']} {sg['grade']:g} voor <b>€{sg['price']:.0f}</b> (incl. verzending) · raw TCGplayer €{sg['raw_eur']:.0f} → <b>{sg['ratio']:.2f}×</b> raw\n"
-                       f"{sg['n']} graded aanbieding(en) op eBay DE/NL · {sg['set']}\n"
-                       f"<i>Gegradeerd exemplaar voor (bijna) de prijs van raw; grading kost zelf €20–30 en maanden.</i>")
-                msgs.append(_m(key, "slab", txt, photo=sg.get("image"), buttons=[[("🛒 eBay", sg["url"]), ("📊 Radar", SITE_URL)]]))
-            # 4c. grading candidates: raw cheap, PSA 10 expensive and liquid → buy raw, grade, sell
-            for gs in gdata.get("grade_signals", []):
-                key = f"grade:{gid}:{gs['key']}"
-                if gs["set"] in muted:
-                    continue
-                ep = state["active"].get(key)
-                if ep and not gs["net"] >= ep["net"] * 1.25:
-                    continue
-                state["active"][key] = {"since": (ep or {}).get("since", day), "net": gs["net"]}
-                alt = " · ".join(f"{o['service']} €{o['net']:.0f}" for o in gs.get("options", [])[1:3])
-                txt = (f"📈 <b>GRADE-KANS · {_card(gs['name'], gs['number'])} {gs['class'].replace('_AA', ' AA')}</b>\n"
-                       f"Raw <b>€{gs['raw_eur']:.0f}</b> (TCGplayer) → <b>{gs['service']} {gs['top_grade']}</b> op eBay mediaan <b>€{gs['top_median']:.0f}</b> ({gs['top_n']} st.)\n"
-                       f"Verwachte opbrengst €{gs['expected']:.0f} → netto <b>€{gs['net']:.0f}</b> per kaart ({gs['roi']:.0%} op raw) na grading en fees"
-                       + (f"\nAndere services: {alt}" if alt else "") + f"\n<i>Vraagprijzen als proxy voor verkopen · {gs['set']}</i>")
-                msgs.append(_m(key, "grade", txt, photo=gs.get("image"), buttons=[[(f"🛒 {gs['service']} {gs['top_grade']} op eBay", gs["url"]), ("📊 Radar", SITE_URL)]]))
-            for key in [k for k in state["active"] if k.startswith(f"grade:{gid}:")]:
-                if not any(f"grade:{gid}:{gs['key']}" == key for gs in gdata.get("grade_signals", [])):
-                    state["active"].pop(key, None)
-            for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
-                if not any(f"slab:{gid}:{sg['key']}:{sg['grade']}" == key for sg in gdata.get("slab_signals", [])):
-                    state["active"].pop(key, None)
+                state["active"][key] = {"ids": ids, "day": day}
+                rows = "\n".join(f"{n}. {line(i)}" for n, i in enumerate(top, 1))
+                foot = ("\n<i>Verwachte opbrengst per service (uitkomstmix × eBay-mediaan) × 0,87 − kosten − raw; vraagprijzen als proxy.</i>"
+                        if kind == "grade" else "\n<i>Alleen EU-gelokaliseerde listings (geen invoer-btw), prijs incl. verzending.</i>")
+                btn = [[(f"🛒 #1 op eBay", top[0]["url"]), ("📊 Radar", SITE_URL)]]
+                msgs.append(_m(key, kind, f"{head}\n{rows}{foot}", buttons=btn))
 
         # 5. briefing: daily | weekly (Sunday) | off
         mode = cfg.get("briefing", "weekly")
@@ -152,8 +138,10 @@ def run(day, quality=None, send=True):
     store.write_json(store.alerts_path(day), {"day": day, "alerts": [{k: v for k, v in m.items() if k != "buttons"} | {"buttons": m.get("buttons")} for m in msgs]}, compact=False)
     store.write_json(store.state_path("alerts"), state, compact=False)
     log.info("%d message(s) for %s (muted: %s)", len(msgs), day, ",".join(sorted(muted)) or "-")
+    if len(msgs) > MAX_PER_RUN:
+        log.warning("%d messages, capping at %d (rest only in data/alerts)", len(msgs), MAX_PER_RUN)
     if send:
-        for m in msgs:
+        for m in msgs[:MAX_PER_RUN]:
             telegram.send(m["text"], photo=m.get("photo"), buttons=m.get("buttons"))
     return msgs
 
