@@ -145,3 +145,10 @@ def test_fetch_day_applies_photo_check(tmp_path, monkeypatch):
     doc = ebay.fetch_day(client=C(), latest=L, marketplaces=("EBAY_DE",), day="2026-10-19", image_check=FakeImages())
     c = doc["cards"]["dbfw:FB09:FB09-123:SAA"]
     assert [l["price"] for l in c["listings"]] == [1504.5] and doc["image_check"]["rejected"] == 1
+
+
+def test_masters_god_rare_is_a_real_variant():
+    assert ebay.variant_matches("Bulma BT30-149 God Rare GDR PSA 10", "GDR", "BT30-149")
+    assert not ebay.variant_matches("Bulma BT30-149 SCR PSA 10", "GDR", "BT30-149")
+    assert not ebay.variant_matches("Bulma BT30-149 God Rare PSA 10", "", "BT30-149")       # SCR target, GDR listing
+    assert ebay.variant_matches("Son Goku FB01-139 God Rare PSA 10", "SAA", "FB01-139")     # Fusion World synonym for ★★

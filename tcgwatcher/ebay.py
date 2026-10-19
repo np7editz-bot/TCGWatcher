@@ -25,6 +25,7 @@ PROMO = re.compile(r"\b(winner|finalist|champion(ship)?|tournament|promo|event p
 SAA_T = re.compile(r"(\bSAA\b|super\s*alt|god\s*rare|★★|\bV\.?3\b|super\s*parallel|special\s*alt)", re.I)
 AA_T = re.compile(r"(alt(ernate)?[\s-]*art|\bparallel\b|\bAA\b|\bV\.?2\b|★)", re.I)
 CLIP = 4.0
+CHASE = ("SAA", "SCR_AA", "SCR", "SR_AA", "GDR", "SLR", "SPR")      # classes worth a slab/raw search
 EU = {"AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
       "PL", "PT", "RO", "SK", "SI", "ES", "SE"}
 
@@ -86,9 +87,16 @@ def _price_eur(item, fx_usd_eur):
     return None
 
 
-def variant_matches(title, variant):
-    """Same number ≠ same card: base SCR, Alternate Art (★) and Super Alternate Art (★★) share a number."""
+def variant_matches(title, variant, number=""):
+    """Same number ≠ same card: base SCR, Alternate Art (★) and Super Alternate Art (★★) share a number.
+    Masters (BT…) has a real 'God Rare' variant; in Fusion World sellers use 'God Rare' as a synonym for ★★."""
     saa, aa = bool(SAA_T.search(title)), bool(AA_T.search(title))
+    if number.upper().startswith("BT"):
+        gdr = bool(re.search(r"(god\s*rare|\bGDR\b)", title, re.I))
+        if variant == "GDR":
+            return gdr
+        if gdr:
+            return False
     if variant == "GOLD":
         return bool(re.search(r"\bgold\b", title, re.I))
     if re.search(r"\bgold\b", title, re.I) and variant != "GOLD":
@@ -106,7 +114,7 @@ def parse_listing(item, number, fx_usd_eur, variant=""):
     if number.lower() not in title.lower():
         return None
     m = GRADE.search(title)
-    if not m or JP.search(title) or PROMO.search(title) or not variant_matches(title, variant):
+    if not m or JP.search(title) or PROMO.search(title) or not variant_matches(title, variant, number):
         return None
     price = _price_eur(item, fx_usd_eur)
     if not price:
@@ -209,7 +217,7 @@ def parse_raw_listing(item, number, fx_usd_eur, variant=""):
     title = item.get("title") or ""
     if number.lower() not in title.lower() or GRADE.search(title) or JP.search(title) or PROMO.search(title):
         return None
-    if re.search(r"\b(graded|slab|lot\b|bundle|playset|x\s?[2-9]\b|proxy|custom|damaged)", title, re.I) or not variant_matches(title, variant):
+    if re.search(r"\b(graded|slab|lot\b|bundle|playset|x\s?[2-9]\b|proxy|custom|damaged)", title, re.I) or not variant_matches(title, variant, number):
         return None
     if ((item.get("itemLocation") or {}).get("country") or "").upper() not in EU:
         return None
@@ -223,16 +231,23 @@ def targets(latest, per_set=10, min_raw_eur=20):
     """Cards worth watching: the most valuable market-priced hits per set (★★, ★, SCR, SR-AA), raw ≥ €20 —
     broad enough to catch cheap raws with expensive PSA 10s (grading candidates)."""
     out = []
-    g = latest["games"].get("dbfw", {})
     fx = latest["fx"]["usd_eur"]
-    by = {}
-    for c in g.get("cards", []):
-        if c["price"] and c["price_src"] == "market" and c["class"] in ("SAA", "SCR_AA", "SCR", "SR_AA") and c["price"] * fx >= min_raw_eur:
-            by.setdefault(c["set"], []).append(c)
-    for code, cs in by.items():
-        cs.sort(key=lambda c: -c["price"])
-        for c in cs[:per_set]:
-            name = re.sub(r"\s*\(.*?\)|\s*-\s*FB.*$", "", c["name"]).split(" // ")[0].strip()
+    from .config import load_games
+    cfg = load_games()
+    for gid, g in latest["games"].items():
+        gc = cfg.get(gid, {})
+        if not gc.get("eu_sources", gid == "dbfw"):
+            continue
+        recent = sorted((s for s in g.get("sets", [])), key=lambda s: s.get("published") or "", reverse=True)[: gc.get("ebay_sets") or 999]
+        allowed = {s["code"] for s in recent} if g.get("sets") else None
+        by = {}
+        for c in g.get("cards", []):
+            if (allowed is None or c["set"] in allowed) and c["price"] and c["price_src"] == "market" and c["class"] in CHASE and c["price"] * fx >= min_raw_eur:
+                by.setdefault(c["set"], []).append(c)
+        for code, cs in by.items():
+          cs.sort(key=lambda c: -c["price"])
+          for c in cs[:per_set]:
+            name = re.sub(r"\s*\(.*?\)|\s*-\s*(FB|SB|ST|BT)\d.*$|,.*$", "", c["name"]).split(" // ")[0].strip()
             sibl = [x for x in g.get("cards", []) if x["set"] == code and x["number"] == c["number"] and x["key"] != c["key"]]
             out.append({"key": c["key"], "number": c["number"], "name": name, "set": code, "class": c["class"], "variant": c.get("variant", ""),
                         "sibling_images": [x["image"] for x in sibl if x.get("image")],

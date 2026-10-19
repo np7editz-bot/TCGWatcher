@@ -368,7 +368,7 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
         cheaper = t["kind"] == "price_drop"
         if not (becomes_buyable or cheaper):
             continue
-        m = _re.search(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", (t.get("title") or "") + " " + t["url"], _re.I)
+        m = _re.search(r"\b(FB|SB|ST|FS|BT|BE|SD|EB)\s?-?(\d{2})\b", (t.get("title") or "") + " " + t["url"], _re.I)
         code = f"{m.group(1).upper()}{m.group(2)}" if m else None
         if code and code in muted:
             continue

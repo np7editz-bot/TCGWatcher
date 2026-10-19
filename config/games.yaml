@@ -11,6 +11,9 @@ games:
     tcgcsv_category: 80
     enabled: true
     score: true                      # compute Chase Score for booster sets
+    eu_sources: true                 # CardTrader (EU box/card asks, graded) + eBay (slabs, raw) are joined for this game
+    alerts: true                     # Telegram KOOP/SLAB messages; false = silent (page + paper portfolio only)
+    ebay_sets: 12                    # most recent booster sets that get eBay slab/raw searches
     # Which groups (TCGplayer "groups" = sets/products lines) are booster sets, starter decks, or promo lines.
     # Matched against the group abbreviation.
     group_kinds:
@@ -80,12 +83,72 @@ games:
       - { suffix: "(Gold)",                code: "GOLD" }
       - { suffix: "(Dragon Ball Pattern)", code: "DBP" }
 
+  dbs:
+    name: "Dragon Ball Super Card Game (Masters)"
+    short: "Masters"
+    tcgcsv_category: 27              # TCGplayer 'Dragon Ball Super CCG' — the original line, BT sets (Masters era from BT23)
+    enabled: true
+    score: true
+    eu_sources: true
+    alerts: false                    # silent first month: page + paper portfolio build evidence; flip after the first monthly review
+    ebay_sets: 8
+    group_kinds:
+      booster: '^BT\d{2}$'
+      starter: '^(SD|BE|EB|DBS-BE)\d{2}|^EB'
+      promo:   '_PR$|^(TPR|JPR|PR|P)$|Promo|Release|Pre-Release'
+    box:
+      packs: 24
+      cards_per_pack: 12
+      case_boxes: 12
+    set_overrides: {}
+    sealed:
+      box:  { endswith: "Booster Box", not_contains: ["Case"] }
+      case: { endswith: "Booster Box Case" }
+      pack: { endswith: "Booster Pack", not_contains: ["Sleeved"] }
+    # Masters hit classes (BT28–BT31 structure: 15 SPR, 10 SLR, 3 SCR, 2–3 GDR, ~6 Concept Rare per set).
+    # est = expected per 24-pack box. Community pull rates (approx.): SPR 1/6 packs, SLR 1/12, SCR 1/48, GDR ~1 per case.
+    # Concept Rare rate unknown → assumption. All low confidence until the paper portfolio says otherwise.
+    classes:
+      - id: GDR
+        label: "God Rare"
+        rule: { rarity: "God Rare" }
+        est: 0.08
+        note: "~1 per 12-box case"
+      - id: SCR
+        label: "Secret Rare"
+        rule: { rarity: "Secret Rare" }
+        est: 0.5
+        note: "~1 per 2 boxes"
+      - id: SLR
+        label: "Special Leader Rare"
+        rule: { rarity: "Special Leader Rare" }
+        est: 2.0
+        note: "~1 per 12 packs"
+      - id: SPR
+        label: "Special Rare"
+        rule: { rarity: "Special Rare" }
+        est: 4.0
+        note: "~1 per 6 packs"
+      - id: CR
+        label: "Concept Rare"
+        rule: { rarity: "Concept Rare" }
+        est: 1.0
+        note: "rate unknown; assumption"
+      - id: SR
+        label: "Super Rare"
+        rule: { rarity: "Super Rare" }
+        est: 6.0
+    variants:
+      - { suffix: "(GDR)", code: "GDR" }      # God Rare shares its number with the Secret Rare version
+
   naruto:
     name: "NARUTO CARD GAME"
     short: "Naruto"
     tcgcsv_category: 93
     enabled: true
     score: false                     # watch-only until the first set exists (worldwide launch June 2027)
+    eu_sources: false
+    alerts: true
     group_kinds:
       booster: '^[A-Z]{2}\d{2}$'
       starter: '^ST\d{2}$'

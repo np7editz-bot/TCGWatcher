@@ -68,7 +68,7 @@ def run(day, quality=None, send=True):
                     msgs.append(_m(f"new_group:{cat}:{k}", "new_group",
                                    f"🆕 <b>{g['short']} · nieuwe productlijn</b>\n<b>{grp.get('name')}</b> ({grp.get('abbreviation') or '—'})\n"
                                    f"Release {(grp.get('publishedOn') or '')[:10]} · nu in de TCGplayer-catalogus — pre-orders bij EU-shops openen meestal rond dit moment.",
-                                   buttons=[[("TCGplayer", f"https://www.tcgplayer.com/search/{'dragon-ball-super-fusion-world' if gid=='dbfw' else 'naruto-card-game'}/product?q={grp.get('name','').replace(' ', '%20')}"), ("Radar", SITE_URL)]]))
+                                   buttons=[[("TCGplayer", f"https://www.tcgplayer.com/search/{ {'dbfw': 'dragon-ball-super-fusion-world', 'dbs': 'dragon-ball-super-ccg'}.get(gid, 'naruto-card-game')}/product?q={grp.get('name','').replace(' ', '%20')}"), ("Radar", SITE_URL)]]))
 
     if latest:
         for gid, gdata in latest["games"].items():
@@ -87,6 +87,8 @@ def run(day, quality=None, send=True):
                                            + (f"\n{_usd(sp['price'])} ({sp['price_src']})" if sp.get("price") else "") + ("\n🟡 presale" if sp.get("presale") else ""),
                                            photo=sp.get("image"), buttons=[[("TCGplayer", sp.get("url") or SITE_URL), ("Radar", SITE_URL)]]))
             # 4. buy signal on the EU ratio: EV€ ÷ cheapest EU buy option (see build.best_buy)
+            if not gdata.get("alerts", True):
+                continue                                   # silent game: page + paper portfolio only
             ranked = [s for s in gdata["sets"] if s.get("ratio_eu") is not None or s.get("best_buy")]
             ranked.sort(key=lambda s: -((s.get("best_buy") or {}).get("ratio") or 0))
             buy = cfg.get("buy", {"threshold": 0.8, "rearm_improvement": 0.1})
@@ -110,6 +112,8 @@ def run(day, quality=None, send=True):
         #     one button per shop). Episode per card; again when net improves ≥25% or the raw price drops ≥10%.
         buy_min = cfg.get("grading", {}).get("min_profit_eur", 50)
         for gid, gdata in latest["games"].items():
+            if not gdata.get("alerts", True):
+                continue
             cards = {c["key"]: c for c in gdata.get("cards", [])}
             slabs = {x["key"]: x for x in gdata.get("slab_signals", [])}
             items = []

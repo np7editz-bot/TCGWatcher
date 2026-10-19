@@ -300,14 +300,21 @@ function boxCard(x){
 }
 
 /* ---------- views ---------- */
+function pfForGame(){
+  const pos=((DATA.paper||{}).positions||[]).filter(p=>(p.game||'dbfw')===gameId);
+  const totals={};
+  for (const p of pos){ const t=totals[p.kind]||={n:0,cost:0,value:0,valued:0,wins:0}; t.n++; t.cost+=p.price; if(p.value!=null){ t.value+=p.value; t.valued++; t.wins+=p.value>p.price?1:0; } }
+  return {positions:pos, totals, last_report:(DATA.paper||{}).last_report};
+}
 function renderToday(){
   const xs=scored(), hits=xs.filter(x=>x.hit), items=slabItems();
-  const pf=DATA.paper||{totals:{}}; const t=pf.totals||{}; const sum=(k)=>Object.values(t).reduce((a,v)=>a+(v[k]||0),0);
+  const pf=pfForGame(); const t=pf.totals||{}; const sum=(k)=>Object.values(t).reduce((a,v)=>a+(v[k]||0),0);
   const cost=sum('cost'), val=sum('value'), nonc = Object.entries(t).filter(([k])=>k!=='control');
   const ncost=nonc.reduce((a,[,v])=>a+v.cost,0), nval=nonc.reduce((a,[,v])=>a+v.value,0);
   const news=(DATA.news||[]).filter(n=>/(booster|starter|deck|pre-?order|release|launch|product|collection|box|pack|lineup)/i.test(n.title)&&!/DIGITAL ver/.test(n.title));
+  const silent = G.alerts===false ? ' (stille stand: geen Telegram, wel portfolio)' : '';
   document.getElementById('kpis').innerHTML = [
-    ['Koopsignalen', hits.length, hits.length?hits.map(x=>x.s.code).join(' · '):'geen box boven de drempel'],
+    ['Koopsignalen', hits.length, (hits.length?hits.map(x=>x.s.code).join(' · '):'geen box boven de drempel')+silent],
     ['Slabs top 5', Math.min(5,items.length), items.length?`beste netto €${items[0].net.toFixed(0)} · ${esc(short(items[0].g.name))}`:'geen kandidaat'],
     ['Portfolio ingekocht', e0(ncost), `${nonc.reduce((a,[,v])=>a+v.n,0)} posities · waarde nu ${e0(nval)} (${ncost?((nval-ncost)/ncost*100).toFixed(1):'0.0'}%)`],
     ['Controlegroep', e0(t.control?.cost||0), t.control?`${t.control.n} boxen · nu ${e0(t.control.value)} (${t.control.cost?((t.control.value-t.control.cost)/t.control.cost*100).toFixed(1):'0.0'}%)`:'nog niet geopend'],
@@ -375,7 +382,7 @@ function renderSlabs(){
   document.getElementById('slabsListings').innerHTML = withSlabs.map(c=>{const g=Object.entries(c.slabs).sort((a,b)=>b[0]-a[0]).map(([k,v])=>`<a href="${esc(v.url)}" target="_blank" rel="noopener">${v.grader} ${parseFloat(k)} €${v.low.toFixed(0)}</a>`).join(' · '); return `<div class="card"><span class="n">${c.set}</span><span class="t">${esc(short(c.name))} ${c.number}</span><span class="p">${g} <small style="color:var(--fg3)">raw ${eur(c.price)}</small></span></div>`;}).join('') || '<div class="muted">—</div>';
 }
 function renderPortfolio(){
-  const pf=DATA.paper||{positions:[],totals:{}}; const t=pf.totals||{};
+  const pf=pfForGame(); const t=pf.totals||{};
   const label={box:'🎯 boxen (koop)',control:'⚪ controlegroep',raw:'📈 raw kaarten',slab:'🏷 slabs'};
   document.getElementById('pfKpis').innerHTML = ['box','raw','slab','control'].filter(k=>t[k]).map(k=>{const v=t[k]; const p=v.cost?((v.value-v.cost)/v.cost*100):0; return `<div class="kpi"><div class="l">${label[k]}</div><div class="v">${e0(v.value)} <span class="${p>0?'up':p<0?'down':''}" style="font-size:15px">${p>0?'+':''}${p.toFixed(1)}%</span></div><div class="s">${v.n} posities · ingekocht ${e0(v.cost)} · ${v.wins}/${v.valued} winnaars</div></div>`;}).join('') || '<div class="kpi"><div class="l">Portfolio</div><div class="v">—</div><div class="s">nog geen posities; de eerste melding opent er een</div></div>';
   const order={box:0,raw:1,slab:2,control:3};
