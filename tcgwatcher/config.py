@@ -22,9 +22,15 @@ def load_alerts():
         return yaml.safe_load(f)
 
 
-def group_kind(game, abbreviation):
-    """booster | starter | promo | other, from the group abbreviation."""
+PROMO_NAMES = __import__("re").compile(r"(pre-?release|release event|promo|tournament|judge|championship)", __import__("re").I)
+
+
+def group_kind(game, abbreviation, name=""):
+    """booster | starter | promo | other, from the group abbreviation (and the name: TCGplayer reuses 'BT26' for the
+    pre-release group of BT26, so a promo-looking name wins)."""
     abbr = abbreviation or ""
+    if name and PROMO_NAMES.search(name):
+        return "promo"
     for kind in ("promo", "booster", "starter"):   # promo first: 'FB11_PR' must not match booster
         rx = game["_kinds"].get(kind)
         if rx and rx.search(abbr):

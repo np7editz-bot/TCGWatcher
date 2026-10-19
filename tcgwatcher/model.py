@@ -122,7 +122,9 @@ def load_game(game, day):
         doc = store.read_json(store.catalog_path(cat, gid))
         grp = groups.get(gid) or doc.get("group") or {}
         abbr = grp.get("abbreviation") or f"G{gid}"
-        kind = group_kind(game, abbr)
+        kind = group_kind(game, abbr, grp.get("name") or "")
+        if kind == "promo" and not abbr.endswith("_PR") and abbr in sets:
+            abbr = f"{abbr}_PR"                     # same abbreviation as the booster set → own set code
         sets[abbr] = {"code": abbr, "name": grp.get("name"), "group_id": gid, "kind": kind,
                       "published": (grp.get("publishedOn") or "")[:10], "modified": (grp.get("modifiedOn") or "")[:10]}
         for p in doc["results"]:

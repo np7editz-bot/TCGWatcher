@@ -41,6 +41,7 @@ games:
         label: "Super alt-art (★★)"
         rule: { name_contains: "(Super Alternate Art)" }
         est: 0.08
+        lottery: true
         note: "~1 per 12-box case; community estimate"
       - id: SCR_AA
         label: "SCR alt-art (★)"
@@ -105,41 +106,62 @@ games:
       box:  { endswith: "Booster Box", not_contains: ["Case"] }
       case: { endswith: "Booster Box Case" }
       pack: { endswith: "Booster Pack", not_contains: ["Sleeved"] }
-    # Masters hit classes (BT28–BT31 structure: 15 SPR, 10 SLR, 3 SCR, 2–3 GDR, ~6 Concept Rare per set).
-    # est = expected per 24-pack box. Community pull rates (approx.): SPR 1/6 packs, SLR 1/12, SCR 1/48, GDR ~1 per case.
-    # Concept Rare rate unknown → assumption. All low confidence until the paper portfolio says otherwise.
+    # Masters hit classes (BT28–BT31 structure: 15 SPR, 10 SLR, 2–3 SCR, 2–3 GDR, 5–7 Concept Rare per set).
+    # est = expected per 24-pack box. No published rates; conservative reading of community openings: SPR ~2/box,
+    # SLR ~1/box, SCR ~1 per 3 boxes, Concept Rare ~1 per 2 boxes, GDR ~1 per case. Deliberately on the low side — with the
+    # generous reading (SPR 4, SLR 2, SCR 0.5) every recent set scores a US-ratio of 1.4–2.9, which the market would not
+    # leave on the table. Low confidence until the paper portfolio says otherwise.
     classes:
       - id: GDR
-        label: "God Rare"
+        label: "God Rare (★★)"
         rule: { rarity: "God Rare" }
         est: 0.08
+        lottery: true                 # like Fusion World ★★: ~1 per case, reported separately, not in the buy ratio
         note: "~1 per 12-box case"
       - id: SCR
         label: "Secret Rare"
         rule: { rarity: "Secret Rare" }
-        est: 0.5
-        note: "~1 per 2 boxes"
+        est: 0.33
+        note: "~1 per 3 boxes"
       - id: SLR
         label: "Special Leader Rare"
         rule: { rarity: "Special Leader Rare" }
-        est: 2.0
-        note: "~1 per 12 packs"
+        est: 1.0
+        note: "~1 per box"
       - id: SPR
         label: "Special Rare"
         rule: { rarity: "Special Rare" }
-        est: 4.0
-        note: "~1 per 6 packs"
+        est: 2.0
+        note: "~1 per 12 packs"
       - id: CR
         label: "Concept Rare"
         rule: { rarity: "Concept Rare" }
-        est: 1.0
+        est: 0.5
         note: "rate unknown; assumption"
       - id: SR
         label: "Super Rare"
         rule: { rarity: "Super Rare" }
         est: 6.0
-    variants:
-      - { suffix: "(GDR)", code: "GDR" }      # God Rare shares its number with the Secret Rare version
+    variants:                               # Masters parallels share the base card's number; the name suffix is the variant
+      - { suffix: "(GDR)", code: "GDR" }      # God Rare
+      - { suffix: "(SCR)", code: "SCR" }      # Secret Rare version of a numbered card
+      - { suffix: "(SLR)", code: "SLR" }
+      - { suffix: "(SPR)", code: "SPR" }
+      - { suffix: "(Silver", code: "SILVER" }
+      - { suffix: "(Gold-Stamped", code: "GOLDSTAMP" }
+      - { suffix: "(Gold Stamped", code: "GOLDSTAMP" }
+      - { suffix: "(God Rare)", code: "GDR" }
+      - { suffix: "(Collector Booster Silver", code: "CBS" }
+      - { suffix: "(Collector Booster Gold", code: "CBG" }
+      - { suffix: "(Collector Booster", code: "CB" }
+      - { suffix: "(Serial Numbered)", code: "SN" }
+      - { suffix: "(Non-Foil", code: "NF" }
+      - { suffix: "(Foil", code: "F" }
+      - { suffix: "(Metallic Foil", code: "MF" }
+      - { suffix: "(Alternate Art", code: "AA" }
+      - { suffix: "(Parallel", code: "P" }
+    number_fixes:
+      580827: "BT26-127"     # 'Trunks, Escape' carries BT26-126 in the source (2026-10), clashing with Golden Cooler
 
   naruto:
     name: "NARUTO CARD GAME"
