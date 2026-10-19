@@ -80,6 +80,7 @@ def build(day, quality=None):
         retail = retail_by_set(gid)
         for s in sets_scored:
             s["retail"] = retail.get(s["code"], [])
+            s["best_buy"] = best_buy(s)
         for s in other_sets:
             s["retail"] = retail.get(s["code"], [])
         out["games"][gid] = {
@@ -122,6 +123,25 @@ def eu_ev(s, cards, rate):
         if prices:
             ev += comp["est"] * (sum(prices) / len(prices))
     return round(ev, 2), covered, total
+
+
+def best_buy(s):
+    """Cheapest way to buy this box in Europe right now, and the EV ratio against it."""
+    opts = []
+    box_eu = (s.get("box") or {}).get("eu")
+    if box_eu and box_eu.get("low"):
+        opts.append({"price": box_eu["low"], "source": "CardTrader", "url": f"https://www.cardtrader.com/en/dragon-ball-super", "status": "in_stock", "n": box_eu.get("n")})
+    for r in s.get("retail", []):
+        if r.get("price") and r["status"] in ("in_stock", "preorder") and r.get("kind", "box") == "box" and r["price"] >= 40:
+            opts.append({"price": r["price"], "source": r["retailer"], "url": r["url"], "status": r["status"]})
+    if not opts:
+        return None
+    opts.sort(key=lambda o: o["price"])
+    best = dict(opts[0])
+    ev = s.get("ev_eu_excl_saa") or 0
+    best["ratio"] = round(ev / best["price"], 3) if best["price"] else None
+    best["options"] = opts[:5]
+    return best
 
 
 def retail_by_set(game_id):

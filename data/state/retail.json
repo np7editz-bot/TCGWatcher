@@ -300,7 +300,7 @@
   "https://dracoon.nl/product/dragon-ball-fusion-world-booster-fb11/": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 134.99,
-   "product_kind": "pack",
+   "product_kind": "box",
    "retailer": "dracoon",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -390,6 +390,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-critical-blow-zenkai-series-5-display-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -398,6 +399,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-fb01-fusion-world-awakened-pulse-display-jp": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -406,6 +408,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-fusion-world-fb01-awakened-pulse-display-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -414,6 +417,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-fusion-world-fb04-ultra-limit-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -422,6 +426,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-fusion-world-fb05-new-adventure-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -430,6 +435,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-fusion-world-fb09-dual-evolution-display-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -438,6 +444,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-fusion-world-fb10-dual-evolution-display-eng-vorbestellung-release-19-06-26": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -446,6 +453,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-fusion-world-sb01-manga-booster-pack-01-sealed-case-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "case",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -454,6 +462,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-fusion-world-st01-story-booster-display-01-eng-1": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -462,6 +471,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-masters-b31-impact-beyond-dimensions-display-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -470,6 +480,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-masters-beyond-generations-collectors-display-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -478,6 +489,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-masters-history-of-z-case-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "case",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -486,6 +498,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-masters-new-series-set-01-dbs-b28-display-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -494,6 +507,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/products/dragon-ball-super-card-game-masters-power-absorbed-collectors-display-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -502,6 +516,7 @@
   "https://fantasiacards.de/en/collections/dragon-ball/starterdeck": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.0,
+   "product_kind": "deck",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T07:45:08Z",
    "status": "preorder",
@@ -528,7 +543,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-beerus-sama-booster-bundle-eng": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 21.99,
-   "product_kind": "pack",
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -555,7 +570,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-fb01-fusion-world-awakened-pulse-display-jp": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 79.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -564,7 +579,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-awakened-pulse-fb01-booster-jp": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 3.99,
-   "product_kind": "pack",
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -600,7 +615,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-doner-teller-scharf-bundle-fb01-fb02-fb03-fb04-fb05-eng-live-boxbreak": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 31.99,
-   "product_kind": "pack",
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -672,7 +687,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb05-new-adventure-booster-eng": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 7.99,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -753,7 +768,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb13-display-jp-vorbestellung-release-12-03-27": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 149.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -1050,7 +1065,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-beyond-generations-collectors-booster-eng": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 89.99,
-   "product_kind": "pack",
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -1059,7 +1074,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-beyond-generations-collectors-display-eng": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 899.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -1185,7 +1200,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-mega-booster-bundle-eng": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 34.99,
-   "product_kind": "pack",
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -1239,7 +1254,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-power-absorbed-collectors-booster-eng-1": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 69.99,
-   "product_kind": "pack",
+   "product_kind": "box",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -1248,7 +1263,7 @@
   "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-power-absorbed-collectors-display-eng": {
    "first_seen": "2026-10-19T08:00:42Z",
    "price": 699.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "fantasiacards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -1698,7 +1713,7 @@
   "https://masterset.store/products/precommande-display-24-boosters-dragon-ball-super-cg-fusion-world-sb02-manga-jap": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 569.0,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "masterset",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2346,7 +2361,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-card-game-fusion-world-awakened-pulse-box-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 8.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2355,7 +2370,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-card-game-fusion-world-blazing-aura-box-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 12.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2382,7 +2397,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-card-game-fusion-world-fb06-box-engpreorder": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 10.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2445,7 +2460,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-card-game-fusion-world-raging-roar-box-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 9.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2481,7 +2496,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-card-game-fusion-world-st02-story-booster-02-eng-preorder": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 291.0,
-   "product_kind": "pack",
+   "product_kind": "box",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2499,7 +2514,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-cg-booster-pack-zenkai-series-set-03-b20": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 113.0,
-   "product_kind": "pack",
+   "product_kind": "box",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2508,7 +2523,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-cg-booster-pack-zenkai-series-set-03-b20-1": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 154.0,
-   "product_kind": "pack",
+   "product_kind": "box",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2517,7 +2532,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-cg-booster-pack-zenkai-series-set-07-b24": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 157.0,
-   "product_kind": "pack",
+   "product_kind": "box",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2526,7 +2541,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-cg-fusion-world-official-card-case-card-sleeve-set-2-vegito-eng": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 47.0,
-   "product_kind": "case",
+   "product_kind": "other",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2544,7 +2559,7 @@
   "https://senpaimangashop.com/products/dragon-ball-super-fusion-world-official-card-case-and-card-sleeves-set-01-bardock-eng-preorder": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 33.0,
-   "product_kind": "case",
+   "product_kind": "other",
    "retailer": "senpaimanga",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2553,7 +2568,7 @@
   "https://totalcards.net/products/dragon-ball-super-draft-box-04-dragon-brawl-master-roshi-universe-7-united-db1-027-foil": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 5.13,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "totalcards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2562,7 +2577,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-awakened-puls-fb01-booster-display-japanisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 59.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2589,7 +2604,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-blazing-aura-fb02-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 5.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2607,7 +2622,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-fb04-ultra-limit-promotion-pack-vol-4-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 5.0,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2616,7 +2631,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-fb04-ultra-limit-release-event-pack-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 5.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2643,7 +2658,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-official-card-case-card-sleeves-set-02-gogeta-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 49.99,
-   "product_kind": "case",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2652,7 +2667,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-official-card-case-card-sleeves-set-03-gogeta-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 49.99,
-   "product_kind": "case",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2661,7 +2676,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-official-card-case-card-sleeves-vol-4-broly-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 100.0,
-   "product_kind": "case",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2679,7 +2694,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-official-card-case-son-goku-englisch-kopie": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 28.99,
-   "product_kind": "case",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2697,7 +2712,7 @@
   "https://www.breakthecase.de/products/dbscg-fusion-world-ultra-limit-fb04-release-event-kit-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 100.0,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2733,7 +2748,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fs09-shallot-starterdeck-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 31.99,
-   "product_kind": "deck",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2751,7 +2766,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb07-wish-for-shenron-sleeved-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 17.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -2760,7 +2775,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb08-saiyan-s-pride-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 5.5,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -2778,7 +2793,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb08-saiyans-pride-sleeved-blister-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 12.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -2796,7 +2811,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb10-cross-force-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 7.5,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -2823,7 +2838,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb11-brightness-of-hope-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 7.5,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -2841,7 +2856,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fusion-world-sb02-manga-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 35.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -2850,7 +2865,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fusion-world-starter-deck-bundle-fs01-fs08-8-decks-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 94.99,
-   "product_kind": "deck",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2877,7 +2892,7 @@
   "https://www.breakthecase.de/products/dragon-ball-fusion-world-story-booster-01-st01-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 32.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -2886,7 +2901,7 @@
   "https://www.breakthecase.de/products/dragon-ball-super-card-game-fb05-new-adventure-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 8.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "preorder",
@@ -2913,7 +2928,7 @@
   "https://www.breakthecase.de/products/dragon-ball-super-card-game-fusion-world-fb06-rivals-clash-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 20.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2940,7 +2955,7 @@
   "https://www.breakthecase.de/products/dragon-ball-super-card-game-fusion-world-raging-roar-fb03-booster-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 6.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2958,7 +2973,7 @@
   "https://www.breakthecase.de/products/dragon-ball-super-card-game-fusion-world-ultra-limit-fb04-booster-pack-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 5.0,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2967,7 +2982,7 @@
   "https://www.breakthecase.de/products/dragon-ball-super-card-game-official-playmat-40th-anniversary-ver": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 44.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -2976,7 +2991,7 @@
   "https://www.breakthecase.de/products/dragonball-card-game-fusion-world-official-card-sleeves-v1-64-stk": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 8.9,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2985,7 +3000,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-accessoire-set-01-son-goku-vs-frieza": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 99.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -2994,7 +3009,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-accessoire-set-02-vegito": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 99.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3003,7 +3018,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-manga-set-illustrations-01-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 250.0,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3012,7 +3027,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-manga-set-illustrations-02-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 250.0,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -3021,7 +3036,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-official-card-sleeves-illustrations-64-stk": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 11.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3030,7 +3045,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-official-card-sleeves-illustrations-special-64-stk": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 11.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -3039,7 +3054,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-official-card-sleeves-v2-64-stk": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 9.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3048,7 +3063,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-official-card-sleeves-v3-64-stk": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 9.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3057,7 +3072,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-official-card-sleeves-vol-4-64-stk": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 9.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3066,7 +3081,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-official-playmat-01-son-goku-vs-vegeta": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 29.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -3075,7 +3090,7 @@
   "https://www.breakthecase.de/products/dragonball-super-card-game-official-playmat-02-son-gohan": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 27.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -3084,7 +3099,7 @@
   "https://www.breakthecase.de/products/son-goku-fp-027-release-promo-holofoil-dragon-ball-super-card-game-fusion-world-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 0.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3093,7 +3108,7 @@
   "https://www.breakthecase.de/products/son-goku-fp-027-winner-release-promo-gold-holofoil-dragon-ball-super-card-game-fusion-world-englisch": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 8.99,
-   "product_kind": "box",
+   "product_kind": "other",
    "retailer": "breakthecase",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -3120,7 +3135,7 @@
   "https://www.chaoscards.co.uk/prod/sealed-products-dragonball/dragon-ball-super-cg-fusion-world-card-case-sleeve-set-01-bardock": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 15.95,
-   "product_kind": "case",
+   "product_kind": "other",
    "retailer": "chaoscards",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3138,7 +3153,7 @@
   "https://www.supercollectors.es/producto/dragon-ball-bt31-impact-beyond-dimensions-booster-box-ingles/": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 6.25,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "supercollectors",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",
@@ -3228,7 +3243,7 @@
   "https://www.supercollectors.es/producto/dragon-ball-fusion-world-fb11-brightness-of-hope-booster-box-ingles/": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 7.75,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "supercollectors",
    "seen": "2026-10-19T08:00:42Z",
    "status": "in_stock",
@@ -3336,7 +3351,7 @@
   "https://www.supercollectors.es/producto/naruto-kayou-smriti-heaven-scroll-series-1-box/": {
    "first_seen": "2026-10-19T07:45:08Z",
    "price": 3.7,
-   "product_kind": "box",
+   "product_kind": "pack",
    "retailer": "supercollectors",
    "seen": "2026-10-19T08:00:42Z",
    "status": "sold_out",

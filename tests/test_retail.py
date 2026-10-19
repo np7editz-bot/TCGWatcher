@@ -63,7 +63,13 @@ def test_run_and_transitions(tmp_path, monkeypatch):
     r2 = retail.run(day="2026-10-17", http=fake_http(), retailer_ids=["fantasiacards", "dracoon", "tbhstore"])
     kinds = sorted(t["kind"] for t in r2["transitions"])
     assert kinds == ["price_drop", "sold_out->in_stock"]
+    # v3: without a valuation (set unknown) only "becomes buyable" is actionable; a price drop on an unscored set is not
     msgs = retail.format_alerts(r2["transitions"], first_run=False)
-    assert any("terug op voorraad" in m["text"] for m in msgs) and any("prijs omlaag" in m["text"] for m in msgs)
+    assert [m["text"].split(" ·")[0] for m in msgs] == ["✅ OP VOORRAAD"]
+    # with a valuation: FB10 hits €104 vs €X → gated on buy.near; FB11 price drop to €119.99 with hits €160 → ratio 1.33 → message
+    latest = {"games": {"dbfw": {"sets": [{"code": "FB10", "ev_eu_excl_saa": 40.0, "flags": []},
+                                           {"code": "FB11", "ev_eu_excl_saa": 160.0, "flags": []}]}}}
+    msgs = retail.format_alerts(r2["transitions"], first_run=False, latest=latest, buy={"threshold": 0.8, "near": 0.7})
+    assert [m["text"].split(" ·")[0] for m in msgs] == ["📉 GOEDKOPER"] and "koopwaardig" in msgs[0]["text"]
     day = json.load(open(tmp_path / "retail" / "2026-10-17.json"))
     assert len(day["results"]) == 10   # append-only within the day
