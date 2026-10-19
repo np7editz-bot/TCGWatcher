@@ -38,7 +38,7 @@ class EbayClient:
 
     def auth(self):
         basic = base64.b64encode(f"{self.cid}:{self.sec}".encode()).decode()
-        r = self.s.post(f"{API}/identity/v1/oauth2/v2/token", timeout=30,
+        r = self.s.post(f"{API}/identity/v1/oauth2/token", timeout=30,
                         headers={"Authorization": f"Basic {basic}", "Content-Type": "application/x-www-form-urlencoded"},
                         data={"grant_type": "client_credentials", "scope": "https://api.ebay.com/oauth/api_scope"})
         r.raise_for_status()
@@ -128,6 +128,8 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
     from .build import LATEST
     latest = latest or store.read_json(LATEST)
     fx = latest["fx"]["usd_eur"]
+    if hasattr(client, "auth"):
+        client.auth()                      # fail fast: a broken token setup must not produce an empty day file
     cards = {}
     for t in targets(latest):
         listings = []
@@ -157,6 +159,8 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
         cards[t["key"]] = {**t, "best": best, "by_grader": by_grader, "listings": uniq[:25]}
     doc = {"day": day, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            "marketplaces": list(marketplaces), "api_calls": client.calls, "cards": cards}
+    if not client.calls:
+        raise RuntimeError("no successful eBay API calls; day file not written")
     store.write_json(path, doc)
     log.info("ebay: %d cards, %d graded listings, %d calls", len(cards), sum(len(c["listings"]) for c in cards.values()), client.calls)
     return doc
