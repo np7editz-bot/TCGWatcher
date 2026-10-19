@@ -3,6 +3,7 @@
   {
    "code": "FB11",
    "ev_then": 159.89,
+   "game": "dbfw",
    "key": "buy:dbfw:FB11",
    "kind": "box",
    "name": "Brightness of Hope",
@@ -10,12 +11,12 @@
    "price": 154.64,
    "ratio_then": 1.034,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB09",
    "ev_then": 173.16,
+   "game": "dbfw",
    "key": "buy:dbfw:FB09",
    "kind": "box",
    "name": "Dual Evolution",
@@ -23,12 +24,12 @@
    "price": 186.64,
    "ratio_then": 0.928,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB07",
    "ev_then": 170.44,
+   "game": "dbfw",
    "key": "control:FB07:2026-10",
    "kind": "control",
    "name": "Wish For Shenron",
@@ -36,12 +37,12 @@
    "price": 399.95,
    "ratio_then": 0.426,
    "source": "collgamers",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB10",
    "ev_then": 103.55,
+   "game": "dbfw",
    "key": "control:FB10:2026-10",
    "kind": "control",
    "name": "Cross Force",
@@ -49,12 +50,12 @@
    "price": 167.64,
    "ratio_then": 0.618,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB08",
    "ev_then": 108.39,
+   "game": "dbfw",
    "key": "control:FB08:2026-10",
    "kind": "control",
    "name": "Saiyan's Pride",
@@ -62,12 +63,12 @@
    "price": 185.0,
    "ratio_then": 0.586,
    "source": "breakthecase",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "SB02",
    "ev_then": 291.81,
+   "game": "dbfw",
    "key": "control:SB02:2026-10",
    "kind": "control",
    "name": "Manga Booster 02",
@@ -75,12 +76,12 @@
    "price": 799.95,
    "ratio_then": 0.365,
    "source": "collgamers",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB03",
    "ev_then": 53.79,
+   "game": "dbfw",
    "key": "control:FB03:2026-10",
    "kind": "control",
    "name": "Raging Roar",
@@ -88,12 +89,12 @@
    "price": 85.0,
    "ratio_then": 0.633,
    "source": "cardcollector",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "SB01",
    "ev_then": 594.45,
+   "game": "dbfw",
    "key": "control:SB01:2026-10",
    "kind": "control",
    "name": "Manga Booster 01",
@@ -101,12 +102,12 @@
    "price": 1506.54,
    "ratio_then": 0.395,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB05",
    "ev_then": 68.01,
+   "game": "dbfw",
    "key": "control:FB05:2026-10",
    "kind": "control",
    "name": "New Adventure",
@@ -114,12 +115,12 @@
    "price": 156.63,
    "ratio_then": 0.434,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB02",
    "ev_then": 65.58,
+   "game": "dbfw",
    "key": "control:FB02:2026-10",
    "kind": "control",
    "name": "Blazing Aura",
@@ -127,12 +128,12 @@
    "price": 106.63,
    "ratio_then": 0.615,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB01",
    "ev_then": 79.16,
+   "game": "dbfw",
    "key": "control:FB01:2026-10",
    "kind": "control",
    "name": "Awakened Pulse",
@@ -140,12 +141,12 @@
    "price": 226.54,
    "ratio_then": 0.349,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB04",
    "ev_then": 32.45,
+   "game": "dbfw",
    "key": "control:FB04:2026-10",
    "kind": "control",
    "name": "Ultra Limit",
@@ -153,12 +154,12 @@
    "price": 84.64,
    "ratio_then": 0.383,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "FB06",
    "ev_then": 103.01,
+   "game": "dbfw",
    "key": "control:FB06:2026-10",
    "kind": "control",
    "name": "Rivals Clash",
@@ -166,12 +167,12 @@
    "price": 450.0,
    "ratio_then": 0.229,
    "source": "breakthecase",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "ST01",
    "ev_then": 67.94,
+   "game": "dbfw",
    "key": "control:ST01:2026-10",
    "kind": "control",
    "name": "Story Booster 01",
@@ -179,11 +180,11 @@
    "price": 325.62,
    "ratio_then": 0.209,
    "source": "CardTrader Zero",
-   "status": "open",
-   "game": "dbfw"
+   "status": "open"
   },
   {
    "code": "SB01",
+   "game": "dbfw",
    "key": "dbfw:SB01:FB04-051:GOLD",
    "kind": "raw",
    "name": "Vegeta FB04-051 SCR_AA",
@@ -193,11 +194,11 @@
    "psa10_then": 1540.0,
    "source": "TCGplayer market (raw)",
    "status": "open",
-   "tcg_then": 244.73,
-   "game": "dbfw"
+   "tcg_then": 244.73
   },
   {
    "code": "SB01",
+   "game": "dbfw",
    "key": "dbfw:SB01:SB01-001:GOLD",
    "kind": "raw",
    "name": "Cell - SB01-001 SB01-001 SCR_AA",
@@ -207,11 +208,11 @@
    "psa10_then": 1129.26,
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
-   "tcg_then": 272.5,
-   "game": "dbfw"
+   "tcg_then": 272.5
   },
   {
    "code": "FB03",
+   "game": "dbfw",
    "key": "dbfw:FB03:FB03-140:SAA",
    "kind": "raw",
    "name": "Son Goku : GT FB03-140 SAA",
@@ -221,11 +222,11 @@
    "psa10_then": 1211.54,
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
-   "tcg_then": 511.32,
-   "game": "dbfw"
+   "tcg_then": 511.32
   },
   {
    "code": "SB01",
+   "game": "dbfw",
    "key": "dbfw:SB01:SB01-045:GOLD",
    "kind": "raw",
    "name": "Bulma - SB01-045 SB01-045 SCR_AA",
@@ -235,11 +236,11 @@
    "psa10_then": 710.0,
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
-   "tcg_then": 227.72,
-   "game": "dbfw"
+   "tcg_then": 227.72
   },
   {
    "code": "SB01",
+   "game": "dbfw",
    "key": "dbfw:SB01:SB01-026:AA",
    "kind": "raw",
    "name": "Raditz - SB01-026 SB01-026 SR_AA",
@@ -249,8 +250,98 @@
    "psa10_then": 377.31,
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
-   "tcg_then": 33.83,
-   "game": "dbfw"
+   "tcg_then": 33.83
+  },
+  {
+   "code": "BT28",
+   "ev_then": 134.79,
+   "game": "dbs",
+   "key": "buy:dbs:BT28",
+   "kind": "box",
+   "name": "Prismatic Clash",
+   "opened": "2026-10-18",
+   "price": 117.95,
+   "ratio_then": 1.143,
+   "source": "Cardmarket",
+   "status": "open"
+  },
+  {
+   "code": "BT29",
+   "ev_then": 174.87,
+   "game": "dbs",
+   "key": "buy:dbs:BT29",
+   "kind": "box",
+   "name": "Fearsome Rivals",
+   "opened": "2026-10-18",
+   "price": 125.99,
+   "ratio_then": 1.388,
+   "source": "Cardmarket",
+   "status": "open"
+  },
+  {
+   "code": "BT30",
+   "ev_then": 221.55,
+   "game": "dbs",
+   "key": "buy:dbs:BT30",
+   "kind": "box",
+   "name": "Three Glorious Fighters",
+   "opened": "2026-10-18",
+   "price": 147.95,
+   "ratio_then": 1.497,
+   "source": "Cardmarket",
+   "status": "open"
+  },
+  {
+   "code": "BT27",
+   "ev_then": 325.73,
+   "game": "dbs",
+   "key": "control:dbs:BT27:2026-10",
+   "kind": "control",
+   "name": "History of Z",
+   "opened": "2026-10-18",
+   "price": 617,
+   "ratio_then": 0.528,
+   "source": "Cardmarket",
+   "status": "open"
+  },
+  {
+   "code": "BT22",
+   "ev_then": 51.04,
+   "game": "dbs",
+   "key": "control:dbs:BT22:2026-10",
+   "kind": "control",
+   "name": "Critical Blow",
+   "opened": "2026-10-18",
+   "price": 135.5,
+   "ratio_then": 0.377,
+   "source": "Cardmarket",
+   "status": "open"
+  },
+  {
+   "code": "BT23",
+   "ev_then": 57.66,
+   "game": "dbs",
+   "key": "control:dbs:BT23:2026-10",
+   "kind": "control",
+   "name": "Perfect Combination",
+   "opened": "2026-10-18",
+   "price": 128,
+   "ratio_then": 0.45,
+   "source": "Cardmarket",
+   "status": "open"
+  },
+  {
+   "code": "BT21",
+   "ev_then": 42.43,
+   "game": "dbs",
+   "key": "control:dbs:BT21:2026-10",
+   "kind": "control",
+   "name": "Wild Resurgence",
+   "opened": "2026-10-18",
+   "price": 137.8,
+   "ratio_then": 0.308,
+   "source": "Cardmarket",
+   "status": "open"
   }
  ]
 }

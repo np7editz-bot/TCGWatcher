@@ -9,49 +9,11 @@
    "status": "ok"
   },
   "dbs": {
-   "findings": [
-    {
-     "code": "duplicate_keys",
-     "ids": [
-      "dbs:BE25:BT17-148:",
-      "dbs:BE25:M-11:",
-      "dbs:BT21:BT21-008:",
-      "dbs:BT21:BT21-011:",
-      "dbs:BT21:BT21-023:",
-      "dbs:BT21:BT21-024:",
-      "dbs:BT21:BT21-051:",
-      "dbs:BT21:BT21-052:",
-      "dbs:BT21:BT21-060:",
-      "dbs:BT21:BT21-062:",
-      "dbs:BT21:BT21-076:",
-      "dbs:BT21:BT21-079:",
-      "dbs:BT21:BT21-088:",
-      "dbs:BT21:BT21-110:",
-      "dbs:BT21:BT21-111:",
-      "dbs:BT21:BT21-120:",
-      "dbs:BT21:BT21-148:",
-      "dbs:BT22:BT22-009:",
-      "dbs:BT22:BT22-021:",
-      "dbs:BT22:BT22-027:",
-      "dbs:BT22:BT22-043:",
-      "dbs:BT22:BT22-066:",
-      "dbs:BT22:BT22-067:",
-      "dbs:BT22:BT22-088:",
-      "dbs:BT22:BT22-092:",
-      "dbs:BT22:BT22-112:",
-      "dbs:BT22:BT22-123:",
-      "dbs:BT22:BT22-127:",
-      "dbs:BT22:BT22-132:",
-      "dbs:BT22:BT22-135:"
-     ],
-     "level": "warn",
-     "message": "398 canonical keys occur more than once"
-    }
-   ],
+   "findings": [],
    "market_priced": 10078,
    "priced": 11484,
    "products": 12019,
-   "status": "warn"
+   "status": "ok"
   },
   "naruto": {
    "findings": [],
@@ -61,5 +23,5 @@
    "status": "ok"
   }
  },
- "status": "warn"
+ "status": "ok"
 }

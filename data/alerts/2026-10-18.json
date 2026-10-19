@@ -1,4 +1,134 @@
 {
- "alerts": [],
+ "alerts": [
+  {
+   "at": "2026-10-19T13:05:01Z",
+   "buttons": [
+    [
+     [
+      "🛒 raw €245 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=FB04-051"
+     ]
+    ],
+    [
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "key": "slab:dbfw:dbfw:SB01:FB04-051:GOLD",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638945_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Vegeta FB04-051 Gold (Manga)</b> · SB01\nRaw kopen vanaf <b>€245</b> → PSA 10 waarde <b>€1540</b> (3 listings)\nNetto na grading en fees: <b>€748</b> per kaart (305% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €245 Cardmarket\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €245</i>"
+  },
+  {
+   "at": "2026-10-19T13:05:01Z",
+   "buttons": [
+    [
+     [
+      "🛒 raw €105 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=SB01-001"
+     ]
+    ],
+    [
+     [
+      "🛒 raw €292 · CardTrader Zero",
+      "https://www.cardtrader.com/cards/338519"
+     ]
+    ],
+    [
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "key": "slab:dbfw:dbfw:SB01:SB01-001:GOLD",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638973_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #2 · Cell SB01-001 Gold (Manga)</b> · SB01\nRaw kopen vanaf <b>€105</b> → PSA 10 waarde <b>€1129</b> (4 listings)\nNetto na grading en fees: <b>€617</b> per kaart (587% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €105 Cardmarket\n• €292 CardTrader Zero\n⚠️ <b>61% onder marktwaarde</b> — te mooi? Check feedback, retourbeleid en foto's; betaal alleen met koperbescherming.\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €272</i>"
+  },
+  {
+   "at": "2026-10-19T13:05:01Z",
+   "buttons": [
+    [
+     [
+      "🛒 raw €123 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=FB03-139"
+     ]
+    ],
+    [
+     [
+      "🛒 raw €200 · eBay",
+      "https://www.ebay.de/itm/358195082361?_skw=Son+Gohan+%3A+Youth+FB03-139&hash=item5366173479:g:TtoAAeSwhd9phhzV"
+     ]
+    ],
+    [
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "key": "slab:dbfw:dbfw:FB03:FB03-139:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/562353_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #3 · Son Gohan : Youth FB03-139 SCR AA</b> · FB03\nRaw kopen vanaf <b>€123</b> → PSA 10 waarde <b>€666</b> (6 listings)\nNetto na grading en fees: <b>€211</b> per kaart (171% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €123 Cardmarket\n• €200 eBay (1 EU)\n• €307 CardTrader Zero\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €162</i>"
+  },
+  {
+   "at": "2026-10-19T13:05:01Z",
+   "buttons": [
+    [
+     [
+      "🛒 raw €30 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=SB01-026"
+     ]
+    ],
+    [
+     [
+      "🛒 raw €47 · CardTrader",
+      "https://www.cardtrader.com/cards/338565"
+     ]
+    ],
+    [
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "key": "slab:dbfw:dbfw:SB01:SB01-026:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638986_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #4 · Raditz SB01-026 SR AA</b> · SB01\nRaw kopen vanaf <b>€30</b> → PSA 10 waarde <b>€377</b> (4 listings)\nNetto na grading en fees: <b>€195</b> per kaart (650% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €30 Cardmarket\n• €47 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €34</i>"
+  },
+  {
+   "at": "2026-10-19T13:05:01Z",
+   "buttons": [
+    [
+     [
+      "🛒 raw €165 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=SB01-057"
+     ]
+    ],
+    [
+     [
+      "🛒 raw €250 · eBay",
+      "https://www.ebay.de/itm/407292845740?_skw=Bulma%2FSon+Goku+%3A+Childhood+SB01-057&hash=item5ed48b9eac:g:IgUAAeSwZPtqwAOe"
+     ]
+    ],
+    [
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "key": "slab:dbfw:dbfw:SB01:SB01-057:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638942_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #5 · Bulma/Son Goku : Childhood SB01-057 SR AA</b> · SB01\nRaw kopen vanaf <b>€165</b> → PSA 10 waarde <b>€568</b> (7 listings)\nNetto na grading en fees: <b>€186</b> per kaart (113% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €165 Cardmarket\n• €250 eBay (1 EU)\n• €357 CardTrader Zero\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €179</i>"
+  }
+ ],
  "day": "2026-10-18"
 }

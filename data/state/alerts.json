@@ -11,28 +11,28 @@
    "since": "2026-10-18"
   },
   "slab:dbfw:dbfw:FB03:FB03-139:AA": {
-   "net": 133.51,
-   "raw": 200.0,
+   "net": 210.51,
+   "raw": 123,
    "since": "2026-10-18"
   },
-  "slab:dbfw:dbfw:FB03:FB03-140:SAA": {
-   "net": 119.43,
-   "raw": 656.64,
-   "since": "2026-10-18"
-  },
-  "slab:dbfw:dbfw:FB06:FB06-103:AA": {
-   "net": 146.63,
-   "raw": 19.99,
+  "slab:dbfw:dbfw:SB01:FB04-051:GOLD": {
+   "net": 748.25,
+   "raw": 245,
    "since": "2026-10-18"
   },
   "slab:dbfw:dbfw:SB01:SB01-001:GOLD": {
-   "net": 430.04,
-   "raw": 291.63,
+   "net": 616.67,
+   "raw": 105,
    "since": "2026-10-18"
   },
   "slab:dbfw:dbfw:SB01:SB01-026:AA": {
-   "net": 177.96,
-   "raw": 46.52,
+   "net": 194.53,
+   "raw": 29.95,
+   "since": "2026-10-18"
+  },
+  "slab:dbfw:dbfw:SB01:SB01-057:AA": {
+   "net": 185.78,
+   "raw": 165,
    "since": "2026-10-18"
   },
   "slab_digest:dbfw": {
@@ -48,23 +48,23 @@
  },
  "muted": [],
  "prev_ranking": {
-  "FB01": 0.349,
-  "FB02": 0.615,
+  "FB01": 0.402,
+  "FB02": 0.637,
   "FB03": 0.633,
-  "FB04": 0.383,
-  "FB05": 0.434,
-  "FB06": 0.229,
-  "FB07": 0.426,
-  "FB08": 0.586,
-  "FB09": 0.928,
+  "FB04": 0.387,
+  "FB05": 0.466,
+  "FB06": 0.252,
+  "FB07": 0.536,
+  "FB08": 0.609,
+  "FB09": 0.978,
   "FB10": 0.618,
   "FB11": 1.034,
   "FB12": 0.0,
-  "SB01": 0.395,
-  "SB02": 0.365,
+  "SB01": 0.451,
+  "SB02": 0.48,
   "ST01": 0.209
  },
- "quality_fp": "dbs:duplicate_keys:dbs:BE25:BT17-148:,dbs:BE25:M-11:,dbs:BT21:BT21-008:,dbs:BT21:BT21-011:,dbs:BT21:BT21-023:",
+ "quality_fp": "",
  "seen_groups": {
   "27": {
    "17672": {
