@@ -268,8 +268,8 @@ function score(set){
   const boxEu = override || (bb ? bb.price : null), evEur = ev;        // ev is already in EUR (Cardmarket sales, else TCGplayer × rate)
   return {ev, evEur, boxUs, ratioUs: boxUs? ev/(boxUs*fx()) : null, boxEu, ratio: boxEu? evEur/boxEu : null, src: override ? 'eigen prijs' : (bb ? bb.source : null), bb, top, rows};
 }
-function compText(set){ const c=set.composition; const part=(k,l)=>c[k]?`<b>${c[k].n}</b> ${l}`:null;
-  return [part('SR_AA','SR-AA'),part('SCR','SCR'),part('SCR_AA','★'),part('SAA','★★'),part('OTHER_AA','AA')].filter(Boolean).join(' · ') || '—'; }
+function compText(set){ const c=set.composition||{}; const SHORT={SR:'SR',SR_AA:'SR-AA',SCR:'SCR',SCR_AA:'★',SAA:'★★',OTHER_AA:'AA',CR:'CR',SPR:'SPR',SLR:'SLR',GDR:'GDR'};
+  return CLS_ORDER.filter(k=>c[k]&&k!=='SR').map(k=>`<b>${c[k].n}</b> ${SHORT[k]||k}`).join(' · ') || '—'; }
 function scored(){ const thr=parseFloat(document.getElementById('thr').value)||0; const xs=G.sets.map(s=>({s,...score(s)})); xs.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1)); xs.forEach(x=>{ x.hit = x.ratio!=null && x.ratio>=thr && !x.s.flags.some(f=>EXCL.includes(f)); }); return xs; }
 
 /* ---------- slab items: merge grade signals with raw options and graded deals ---------- */
