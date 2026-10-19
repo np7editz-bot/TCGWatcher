@@ -7,7 +7,7 @@ from . import store
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="tcgwatcher")
-    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "cardtrader", "calibrate", "all"])
+    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "news", "cardtrader", "calibrate", "all"])
     ap.add_argument("--day", help="source day to process (default: last synced day)")
     ap.add_argument("--force", action="store_true", help="fetch even if the source did not change")
     ap.add_argument("--no-send", action="store_true", help="do not send Telegram messages")
@@ -52,6 +52,10 @@ def main(argv=None):
         alerts = run(day, quality, send=not a.no_send)
         for al in alerts:
             log.info("alert %s", al["key"])
+    if a.step in ("news", "all"):
+        from .news import run as news_run
+        n = news_run(send=not a.no_send)
+        log.info("news: %d items, %d message(s), errors=%s", n["items"], len(n["messages"]), n["errors"])
     if a.step in ("retail", "all"):
         from .retail import run as retail_run, format_alerts
         from . import telegram
