@@ -109,3 +109,7 @@ Telegram krijgt per run maximaal 5 slab-kaarten die **nog niet eerder gestuurd**
 
 ### Logica-review
 Zie `docs/review-2026-10-19.md` voor de onafhankelijke doorloop van alle regels en wat daaruit is gefixt (paper-portfolio op dezelfde bron/waardering als de aankoop, status alleen bij afgeleverde berichten, JP-locaties uit slabs, EU = EU27+CH+NO).
+
+
+### Als app op je telefoon (PWA)
+Open https://np7editz-bot.github.io/TCGWatcher/ in Safari (iPhone) of Chrome (Android) → Deel / menu → **Zet op beginscherm**. De radar opent dan als app (eigen icoon, volledig scherm); de laatst geladen data blijft offline zichtbaar, en bij elke opening wordt `latest.json` opnieuw gehaald. Bestanden: `site/manifest.webmanifest`, `site/sw.js`, `site/icons/`.

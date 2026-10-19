@@ -7,6 +7,12 @@
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap">
 <meta name="theme-color" content="#12161b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Radar">
 <style>
 /* Design: a dark, quiet stage for loud card art. Gold is spent on one thing only: what to buy now. Manrope throughout,
    weight does the hierarchy; numbers set big. Phone first: bottom tab bar under 760px. */
@@ -454,6 +460,9 @@ async function init(){
   selectGame(first);
 }
 init().catch(e=>{ document.getElementById('meta').textContent='Kon data/latest.json niet laden: '+e; });
+
+if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{})); }
+window.addEventListener('offline', () => { const el=document.getElementById('meta'); if (el && !el.dataset.off) { el.dataset.off='1'; el.insertAdjacentHTML('beforeend',' <span class="tag">offline · laatst geladen data</span>'); } });
 </script>
 </body>
 </html>
