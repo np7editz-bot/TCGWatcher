@@ -36,6 +36,7 @@ bestaat wordt mid/low gebruikt en dat staat erbij (`price_src`).
 | `data/alerts/<dag>.json` | gegenereerde alerts (afgeleid) | alleen bij herbouw met nieuwe code |
 | `data/retail/<dag>.json` | alle retailer-observaties van die dag (append-only) | nooit |
 | `data/cardtrader/<dag>.json` | CardTrader blueprints (incl. `tcg_player_id`, `card_market_ids`) en EN/EUR-aanbod per kaart | nooit |
+| `data/cardmarket/<dag>.json` | Cardmarket **officiële prijsgids** (CDN, publiek): per chase card `low`/`trend`/`avg7`/`avg30` (gekoppeld via CardTrader `card_market_ids`), per set de box | nooit |
 | `data/state/*.json` | sync-stand, bekende groepen, actieve alert-episodes, laatste retailer-status | dagelijks |
 | `site/data/latest.json` | wat de pagina leest; alles herberekenbaar uit `data/` | dagelijks |
 
@@ -97,6 +98,6 @@ tegen de all-in prijs. Op de 1e van de maand (`python -m tcgwatcher paper --repo
 
 - **Fase 2** — alerts live, drempels tunen op echte verkopen (FB11 is net uit).
 - **Fase 3a** — retailer-monitor (gedaan; shops bijvoegen = regel in `config/retailers.yaml`).
-- **Fase 3b** — CardTrader EU-prijzen (officiële API, EN/EUR, laagste echte aanbiedingen) per chase card en box; `ratio EU`, EU/US-spread; kalibratierapport `docs/calibration-<dag>.md` (workflow `calibrate`). **Uitkomst kalibratie 19-10-2026**: CardTrader-vraagprijzen liggen mediaan 15–35% boven TCGplayer-markt en zijn dun voor de meeste hits → waardering blijft TCGplayer (verkoopgebaseerd) in €; CardTrader levert de EU-boxprijs (EU-verkopers) en per-kaart 'wat je nu betaalt'. Cardmarket-steekproef 19-10-2026 (`docs/calibration-cardmarket-2026-10-19.md`): EU-verkopen van alt-arts ≈1,2× TCGplayer, Cardmarket-boxen ≈0,88× CardTrader Zero (vóór verzending) → waardering en EU-prijsbron ongewijzigd.
+- **Fase 3b** — CardTrader EU-prijzen (officiële API, EN/EUR, laagste echte aanbiedingen) per chase card en box; `ratio EU`, EU/US-spread; kalibratierapport `docs/calibration-<dag>.md` (workflow `calibrate`). **Uitkomst kalibratie 19-10-2026**: CardTrader-vraagprijzen liggen mediaan 15–35% boven TCGplayer-markt en zijn dun voor de meeste hits → waardering blijft TCGplayer (verkoopgebaseerd) in €; CardTrader levert de EU-boxprijs (EU-verkopers) en per-kaart 'wat je nu betaalt'. Cardmarket-steekproef 19-10-2026 (`docs/calibration-cardmarket-2026-10-19.md`): EU-verkopen van alt-arts ≈1,2× TCGplayer, Cardmarket-boxen ≈0,88× CardTrader Zero (vóór verzending). Sinds 19-10 dagelijks via de **officiële Cardmarket-prijsgids** (geen API-key, geen bot-wall): laagste aanbod + 30d-verkopen per kaart en box; Cardmarket-box = koopoptie (laagste aanbod + €18), `ev_cm_excl_saa` = EV op EU-verkopen als tweede waardering.
 - **Fase 4** — PWA op de telefoon met push.
 - **Fase 5** — slabs (gedaan): eBay Browse API (EBAY_DE/EBAY_NL) voor de top-6 hits per set → laagste PSA/BGS/CGC 10/9.5/9 naast raw; 🏆-alert bij graded ≤ 1,15× raw. Pagina-sectie "Slabs".

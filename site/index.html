@@ -231,7 +231,7 @@ footer{color:var(--fg3);font-size:12.5px}
     <div style="height:18px"></div>
     <div class="panel" style="font-size:13.5px;color:var(--fg2)">
       <h3>Hoe het werkt</h3>
-      <p><b>Waardering</b> van de hits: TCGplayer market (verkoopgebaseerd, dagelijks) × ECB-koers. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
+      <p><b>Waardering</b> van de hits: TCGplayer market (verkoopgebaseerd, dagelijks) × ECB-koers; daarnaast de EU-verkopen uit de officiële Cardmarket-prijsgids (avg30) als tweede waardering op de pagina. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
       <p><b>Slabs</b>: eBay Browse API (DE/NL, EU-locatie) + CardTrader graded; zelfde nummer ≠ zelfde kaart (basis / alt-art / super alt-art / gold worden uit de titel gelezen; listings > 4× de laagste van dezelfde grade gelden als verkeerd gelabeld). Grading-uitkomstmix per service: PSA 40% 10 / 60% 9 (€25), BGS 10% 10 / 45% 9.5 / 45% 9 (€30), CGC (€22); eBay-fees 13%.</p>
       <p><b>Berichten</b>: 🎯 KOOP (box), 🏆 SLAB #1–#5, 🟡/✅ retail (ratio ≥ 0,70 of set nog niet uit), 🍥 Naruto (elk product), 📰 aankondiging, 📒 maandrapport. Alles met knoppen naar de shop. <code>/mute FB10</code>, <code>/unmute FB10</code>, <code>/status</code> naar de bot.</p>
     </div>
@@ -278,6 +278,7 @@ function slabItems(){
     const c = cards[g.key]||{}; const opts=[]; const eu=c.eu||{};
     if (eu.low) opts.push({src:'CardTrader'+(eu.zero_low&&eu.zero_low<=eu.low?' Zero':''), price:(eu.zero_low||eu.low)+(eu.zero_low?6:5), url:eu.url});
     if (c.raw_ebay?.low) opts.push({src:`eBay (${c.raw_ebay.n} EU)`, price:c.raw_ebay.low, url:c.raw_ebay.url});
+    if (c.cm?.low) opts.push({src:'Cardmarket', price:c.cm.low+5, url:`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`});
     opts.sort((a,b)=>a.price-b.price);
     const cm = {src:'Cardmarket (zoeken)', price:null, url:`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`};
     const raw = opts.length? opts[0].price : g.raw_eur, net = g.net - (raw - g.raw_eur);
@@ -343,7 +344,7 @@ function renderBoxes(){
       <td>${x.hit?'<span class="chip hit">🎯 koop</span>':''}${s.flags.map(f=>FLAG[f]?`<span class="chip ${FLAG[f][0]}">${FLAG[f][1]}</span>`:'').join('')||'<span class="chip good">uitgebracht</span>'}</td>
       <td class="comp">${compText(s)}</td>
       <td class="r num">${x.boxEu!=null?`€${x.boxEu.toFixed(0)}`:'—'}<small>${esc(x.src||'geen EU-aanbod')}${s.spread_eu_us_pct!=null?` · ${s.spread_eu_us_pct>0?'+':''}${s.spread_eu_us_pct}% vs US`:''}</small></td>
-      <td class="r num">${x.ev?e0(x.evEur):'—'}<small>dekking ${s.hits_market_priced}/${s.hits_total}</small></td>
+      <td class="r num">${x.ev?e0(x.evEur):'—'}<small>${s.ev_cm_excl_saa?`EU-verkopen ${e0(s.ev_cm_excl_saa)} · `:''}dekking ${s.hits_market_priced}/${s.hits_total}</small></td>
       <td><div class="bar"><div class="track"><div class="fill${x.hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${x.hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
       <td class="r num">${eur(x.boxUs)}<small>${pct(s.box?.chg7)} / ${pct(s.box?.chg30)}${x.ratioUs!=null?` · ${x.ratioUs.toFixed(2)}`:''}</small></td>
       <td style="font-size:13px;max-width:220px">${x.top?`${esc(short(x.top.name))}<div class="name num">${eur(x.top.price)} · ${x.top.number}</div>`:'—'}</td>
@@ -375,12 +376,12 @@ function detail(s,x){
       ${eu?`<div><span><a href="${eu.url}" target="_blank" rel="noopener">CardTrader${eu.zero_low?' Zero':''}</a> · ${esc(eu.landed_note)}${eu.zero_n?` · ${eu.zero_n} Zero / ${eu.n} EU-aanb.`:''}</span><span class="p">€${eu.landed.toFixed(2)}</span></div>`:''}
       ${eu?.zero_low&&eu.low<eu.zero_low?`<div><span>CardTrader goedkoopste EU-verkoper (zelf verzenden, ±€15)</span><span class="p">€${(eu.low+15).toFixed(2)}</span></div>`:''}
       ${s.ebay_box?`<div><span><a href="${esc(s.ebay_box.url)}" target="_blank" rel="noopener">eBay EU-verkopers</a> · ${s.ebay_box.n} listings · mediaan €${s.ebay_box.median.toFixed(0)}</span><span class="p">€${s.ebay_box.low.toFixed(2)}</span></div>`:''}
-      ${CM[s.code]?`<div><span>Cardmarket laagste aanbod (steekproef ${CM_DAY}) + ±€18 verzending · 30d-verkopen €${CM[s.code].avg30}</span><span class="p">€${(CM[s.code].from+18).toFixed(2)}</span></div>`:''}
+      ${s.cm_box?`<div><span><a href="${esc(s.cm_box.url)}" target="_blank" rel="noopener">Cardmarket</a> · laagste aanbod €${s.cm_box.low.toFixed(2)} + ±€18 verzending${s.cm_box.avg30?` · 30d-verkopen €${s.cm_box.avg30.toFixed(0)}`:''}${s.cm_box.trend?` · trend €${s.cm_box.trend.toFixed(0)}`:''}</span><span class="p">€${s.cm_box.landed.toFixed(2)}</span></div>`:(CM[s.code]?`<div><span>Cardmarket laagste aanbod (steekproef ${CM_DAY}) + ±€18 verzending · 30d-verkopen €${CM[s.code].avg30}</span><span class="p">€${(CM[s.code].from+18).toFixed(2)}</span></div>`:'')}
       ${(s.retail||[]).map(o=>`<div><span><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.retailer)}</a> · ${esc(o.title.slice(0,60))} <span class="chip ${o.status==='sold_out'?'crit':o.status==='preorder'?'warn':'good'}">${o.status}</span></span><span class="p">${o.price?'€'+o.price.toFixed(2):'—'}</span></div>`).join('')}
       ${s.box?.price?`<div><span>TCGplayer market (US, excl. verzending/invoer)</span><span class="p">${eur(s.box.price)}</span></div>`:''}
       </div>
     </div>
-    <div class="cards" style="grid-column:1/-1">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${esc(c.name)}">${esc(short(c.name))}<span class="tag${c.class==='SAA'?' saa':''}">${cls(c.class)}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'}${c.eu?` <span class="num" style="font-size:12px;color:var(--fg3)">EU €${c.eu.low}</span>`:''} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
+    <div class="cards" style="grid-column:1/-1">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${esc(c.name)}">${esc(short(c.name))}<span class="tag${c.class==='SAA'?' saa':''}">${cls(c.class)}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'}${c.eu?` <span class="num" style="font-size:12px;color:var(--fg3)">CT €${c.eu.low}</span>`:''}${c.cm?.avg30?` <span class="num" style="font-size:12px;color:var(--fg3)">CM €${c.cm.avg30.toFixed(0)}</span>`:''} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
   </div></td>`;
   return tr;
 }
