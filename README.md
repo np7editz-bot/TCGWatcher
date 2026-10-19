@@ -68,7 +68,7 @@ Berichten (v3, `config/alerts.yaml`):
 | 🟡 PRE-ORDER OPEN / ✅ OP VOORRAAD / 📉 GOEDKOPER | box/case wordt koopbaar bij een webshop | alleen als ratio tegen díe prijs ≥ `buy.near` (0,70), of de set nog niet gewaardeerd is (nieuwe set, Naruto) |
 | 🆕 productlijn | nieuwe set in de TCGplayer-catalogus | eerste pre-ordersignaal |
 | 📰 officiële aankondiging | nieuw product/set op de Bandai-pagina's (Fusion World news + productlijst, NARUTO CARD GAME news; `config/news.yaml`, elke 2 uur) | alleen product-/release-nieuws; app-berichten en events worden wel opgeslagen (`data/news/`) maar niet gestuurd |
-| 🏆 **SLAB-KOOP** | goedkoopste PSA/BGS/CGC 10 (anders 9.5/9) op eBay DE/NL ≤ 1,15 × raw TCGplayer (incl. verzending naar NL) | `slabs` in `config/alerts.yaml`; eBay Browse API (app-token), dagelijks, `data/ebay/<dag>.json` |
+| 🏆 **SLAB-KOOP** | goedkoopste PSA/BGS/CGC 10 (anders 9.5/9), EU-gelokaliseerd op eBay DE/NL **of in de CardTrader graded-sectie** (Zero + €6 / + €5 verzending), ≤ 1,15 × raw TCGplayer | `slabs` in `config/alerts.yaml`; eBay Browse API (app-token), dagelijks, `data/ebay/<dag>.json` |
 | 📈 **GRADE-KANS** | raw goedkoop, graded duur én liquide: per service (PSA, BGS, CGC) `Σ aandeel×mediaan graded-prijs` × 0,87 − servicekosten − raw; beste service wint; signaal bij netto ≥ €50 en ≥ 50% van raw | `grading.services` in `config/alerts.yaml` (uitkomstmix per service); vraagprijzen als proxy voor verkopen |
 | 📋 briefing | zondag (`briefing: weekly`) | ranking op EU-ratio, bewegingen, boxen, retail, Naruto |
 | ⚠️ datakwaliteit | alleen bij FAIL (pagina niet bijgewerkt) | `quality_issues: fail_only` |
@@ -83,7 +83,7 @@ alerts blijven in `data/alerts/<dag>.json`. Zonder chat-id print de workflow-log
 ## Paper-portfolio (controle van de signalen)
 
 Elke melding wordt automatisch een fictieve aankoop in `data/paper/positions.json`: 🎯 KOOP = één box tegen de all-in EU-prijs
-(+ EV op dat moment), 📈 grade-kans top 5 = de **raw** kaart tegen TCGplayer-market in € (geen grading verondersteld), 🏆 slab-koop top 5 =
+(+ EV op dat moment), 📈 grade-kans top 5 = de **raw** kaart tegen de goedkoopste CardTrader EU-ask + €5 verzending (wat je betaalt; TCGplayer-market als terugval, geen grading verondersteld), 🏆 slab-koop top 5 =
 de graded kaart tegen de EU-listingprijs. Daarnaast per maand een **controlegroep**: elke gescoorde set zónder koopsignaal, één box
 tegen de all-in prijs. Op de 1e van de maand (`python -m tcgwatcher paper --report` voor tussendoor): `docs/paper-<jaar-maand>.md` +
 één Telegram-bericht met P&L per soort (zelfde maatstaf als de aankoop), winnaars, EV toen → nu, en koopsignalen vs controlegroep.

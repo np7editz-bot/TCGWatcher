@@ -82,7 +82,7 @@ def fetch_day(ct=None, codes=None):
     log.info("CardTrader auth OK: %s", {k: info.get(k) for k in ("id", "username", "name") if isinstance(info, dict) and k in info})
     gid, exps = fusion_world_expansions(ct)
     log.info("CardTrader game %s: %d Fusion World expansions matched", gid, len(exps))
-    blueprints, offers = {}, {}
+    blueprints, offers, graded = {}, {}, {}
     for code, e in sorted(exps.items()):
         if codes and code not in codes:
             continue
@@ -93,9 +93,17 @@ def fetch_day(ct=None, codes=None):
                                        "image": b.get("image_url")}
         prods = ct.get("/marketplace/products", {"expansion_id": e["id"], "language": "en"}, sleep=1.2)
         for bid, lst in prods.items():
-            rows = [p for p in lst if (p.get("price") or {}).get("currency") == "EUR" and not p.get("graded")
-                    and (p.get("bundle_size") or 1) == 1 and not p.get("on_vacation")
-                    and ((p.get("user") or {}).get("country_code") or "").upper() in EU]
+            eu_rows = [p for p in lst if (p.get("price") or {}).get("currency") == "EUR" and (p.get("bundle_size") or 1) == 1
+                       and not p.get("on_vacation") and ((p.get("user") or {}).get("country_code") or "").upper() in EU]
+            # graded copies (slabs) are a separate market: kept per listing with whatever grading info the seller filled in
+            slabs = [{"price": p["price"]["cents"] / 100, "zero": bool((p.get("user") or {}).get("can_sell_via_hub")),
+                      "country": (p.get("user") or {}).get("country_code"), "id": p.get("id"),
+                      "props": {k: v for k, v in (p.get("properties_hash") or {}).items() if v not in (None, "", False)},
+                      "description": (p.get("description") or "")[:120]}
+                     for p in eu_rows if p.get("graded")]
+            if slabs:
+                graded[str(bid)] = {"set": code, "listings": sorted(slabs, key=lambda x: x["price"])[:20]}
+            rows = [p for p in eu_rows if not p.get("graded")]
             if not rows:
                 continue
             prices = sorted(p["price"]["cents"] / 100 for p in rows)
@@ -109,7 +117,7 @@ def fetch_day(ct=None, codes=None):
         log.info("%s: %d blueprints, %d with EN/EUR offers", code, sum(1 for b in blueprints.values() if b["set"] == code), sum(1 for o in offers.values() if o["set"] == code))
     doc = {"day": day, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "game_id": gid,
            "expansions": {c: {"id": e["id"], "code": e.get("code"), "name": e.get("name")} for c, e in exps.items()},
-           "blueprints": blueprints, "offers": offers, "api_calls": ct.calls}
+           "blueprints": blueprints, "offers": offers, "graded": graded, "api_calls": ct.calls}
     store.write_json(path, doc)
     return doc
 

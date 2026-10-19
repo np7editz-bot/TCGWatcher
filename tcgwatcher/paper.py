@@ -50,9 +50,13 @@ def open_positions(day, latest, msgs):
             if s and s.get("best_buy"):
                 add({"kind": "box", "key": m["key"], "code": code, "name": s["name"], "price": s["best_buy"]["price"],
                      "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"]})
+    cards = {c["key"]: c for c in g.get("cards", [])}
     for sg in g.get("grade_signals", [])[:5]:
+        c = cards.get(sg["key"]) or {}
+        eu = c.get("eu") or {}
+        price, src = (round(eu["low"] + 5, 2), "CardTrader EU laagste ask + €5 verzending") if eu.get("low") else (sg["raw_eur"], "TCGplayer market (raw)")
         add({"kind": "raw", "key": sg["key"], "code": sg["set"], "name": f"{sg['name']} {sg['number']} {sg['class']}",
-             "price": sg["raw_eur"], "source": "TCGplayer market (raw)", "psa10_then": sg["top_median"], "net_then": sg["net"]})
+             "price": price, "source": src, "tcg_then": sg["raw_eur"], "psa10_then": sg["top_median"], "net_then": sg["net"]})
     for x in g.get("slab_signals", [])[:5]:
         add({"kind": "slab", "key": f"{x['key']}:{x['grade']}", "code": x["set"], "name": f"{x['name']} {x['number']} {x['grader']} {x['grade']:g}",
              "price": x["price"], "source": "eBay EU", "grade": x["grade"], "raw_then": x["raw_eur"], "card_key": x["key"]})
@@ -80,6 +84,8 @@ def value_now(pos, latest, ebay_doc):
         return (bb["price"] if bb else None), ((s or {}).get("ev_eu_excl_saa"))
     if pos["kind"] == "raw":
         c = next((c for c in g.get("cards", []) if c["key"] == pos["key"]), None)
+        if c and pos["source"].startswith("CardTrader") and (c.get("eu") or {}).get("low"):
+            return round(c["eu"]["low"] + 5, 2), None          # same yardstick as the purchase
         return (round(c["price"] * latest["fx"]["usd_eur"], 2) if c and c.get("price") else None), None
     if pos["kind"] == "slab":
         c = (ebay_doc or {}).get("cards", {}).get(pos["card_key"])
