@@ -7,7 +7,7 @@ from . import store
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="tcgwatcher")
-    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "all"])
+    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "cardtrader", "calibrate", "all"])
     ap.add_argument("--day", help="source day to process (default: last synced day)")
     ap.add_argument("--force", action="store_true", help="fetch even if the source did not change")
     ap.add_argument("--no-send", action="store_true", help="do not send Telegram messages")
@@ -23,6 +23,13 @@ def main(argv=None):
         log.info("fetch: %s", r)
         if r["skipped"] and a.step == "all":
             log.info("source unchanged; validate/build/alerts still run for %s", day)
+    if a.step in ("cardtrader", "all"):
+        from .cardtrader import fetch_day
+        try:
+            d = fetch_day()
+            log.info("cardtrader: %s", f"{len(d['offers'])} offers, {d['api_calls']} calls" if d else "skipped")
+        except Exception as e:  # noqa: BLE001
+            log.error("cardtrader failed: %s", e)
     day = day or store.read_json(store.state_path("sync"), {}).get("day")
     if not day:
         log.error("no day known; run fetch first or pass --day")
@@ -36,6 +43,10 @@ def main(argv=None):
         from .build import build
         out = build(day, quality)
         log.info("build: %s", "published" if out else "NOT published (quality fail)")
+    if a.step in ("calibrate",):
+        from .calibrate import run as cal
+        out = cal(day)
+        log.info("calibration: %s", out or "no CardTrader data")
     if a.step in ("alerts", "all"):
         from .alerts import run
         alerts = run(day, quality, send=not a.no_send)

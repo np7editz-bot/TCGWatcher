@@ -41,6 +41,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CARDTRADER_TOKEN: ${{ secrets.CARDTRADER_TOKEN }}
         run: |
           python -m tcgwatcher all ${{ inputs.force && '--force' || '' }}
 

@@ -1,0 +1,38 @@
+name: calibrate
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: CardTrader fetch + calibration report
+        env:
+          CARDTRADER_TOKEN: ${{ secrets.CARDTRADER_TOKEN }}
+        run: |
+          python -m tcgwatcher cardtrader
+          python -m tcgwatcher calibrate
+          python -m tcgwatcher build
+      - name: Commit
+        run: |
+          git config user.name "tcgwatcher-bot"
+          git config user.email "tcgwatcher-bot@users.noreply.github.com"
+          git add data docs site/data
+          if git diff --cached --quiet; then echo "no changes"; else
+            git commit -m "cardtrader: calibration $(date -u +%Y-%m-%d)"
+            git pull --rebase origin main && git push
+          fi

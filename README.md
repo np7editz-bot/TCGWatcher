@@ -36,6 +36,7 @@ bestaat wordt mid/low gebruikt en dat staat erbij (`price_src`).
 | `data/quality/<dag>.json` | validatierapport (afgeleid) | alleen bij herbouw met nieuwe code |
 | `data/alerts/<dag>.json` | gegenereerde alerts (afgeleid) | alleen bij herbouw met nieuwe code |
 | `data/retail/<dag>.json` | alle retailer-observaties van die dag (append-only) | nooit |
+| `data/cardtrader/<dag>.json` | CardTrader blueprints (incl. `tcg_player_id`, `card_market_ids`) en EN/EUR-aanbod per kaart | nooit |
 | `data/state/*.json` | sync-stand, bekende groepen, actieve alert-episodes, laatste retailer-status | dagelijks |
 | `site/data/latest.json` | wat de pagina leest; alles herberekenbaar uit `data/` | dagelijks |
 
@@ -70,6 +71,6 @@ alerts blijven in `data/alerts/<dag>.json`. Zonder chat-id print de workflow-log
 
 - **Fase 2** — alerts live, drempels tunen op echte verkopen (FB11 is net uit).
 - **Fase 3a** — retailer-monitor (gedaan; shops bijvoegen = regel in `config/retailers.yaml`).
-- **Fase 3b** — Cardmarket EU-prijzen (EN-filter) per chase card en sealed box, EU/US-spread.
+- **Fase 3b** — CardTrader EU-prijzen (officiële API, EN/EUR, laagste echte aanbiedingen) per chase card en box; `ratio EU`, EU/US-spread; kalibratierapport `docs/calibration-<dag>.md` (workflow `calibrate`). Cardmarket-scraping alleen als CardTrader structureel >15% afwijkt.
 - **Fase 4** — PWA op de telefoon met push.
 - **Fase 5** — slabs: graded prijzen (PSA 9/10) naast raw → grading-gap-alerts.

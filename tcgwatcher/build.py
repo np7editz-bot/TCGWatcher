@@ -10,6 +10,7 @@ from .model import load_game, class_estimates
 from .chase import score_sets
 from .history import load_series, change_pct, sparkline
 from .fx import usd_eur
+from .cardtrader import latest_day as ct_latest, eu_prices_by_tcgplayer
 from . import store, SITE
 
 log = logging.getLogger("tcgwatcher.build")
@@ -56,6 +57,23 @@ def build(day, quality=None):
                                      "presale": p.presale, "product_id": p.product_id}
                                     for p in m["products"] if p.set_code == c and p.sealed_kind]}
                       for c, meta in m["sets"].items() if meta["kind"] in ("starter",) ]
+        eu = eu_prices_by_tcgplayer(ct_latest()) if gid == "dbfw" else {}
+        for c in cards:
+            o = eu.get(c["product_id"])
+            c["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5} if o else None
+        for s in sets_scored:
+            for kind in ("box", "pack", "case"):
+                sp = s.get(kind)
+                if sp and eu.get(sp["product_id"]):
+                    o = eu[sp["product_id"]]
+                    sp["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5}
+            # EU EV: same formula with the EU median per card where CardTrader has EN offers, else TCGplayer USD→EUR
+            s["ev_eu_excl_saa"], covered, total = eu_ev(s, cards, rate)
+            s["eu_coverage"] = f"{covered}/{total}"
+            box_eu = (s.get("box") or {}).get("eu")
+            s["ratio_eu"] = round(s["ev_eu_excl_saa"] / box_eu["low"], 3) if box_eu else None
+            if s.get("box") and s["box"].get("price") and box_eu:
+                s["spread_eu_us_pct"] = round((box_eu["low"] - s["box"]["price"] * rate) / (s["box"]["price"] * rate) * 100, 1)
         retail = retail_by_set(gid)
         for s in sets_scored:
             s["retail"] = retail.get(s["code"], [])
@@ -64,7 +82,9 @@ def build(day, quality=None):
         out["games"][gid] = {
             "name": g["name"], "short": g["short"], "category": cat, "score": g.get("score", True),
             "source": {"name": "TCGplayer market data via tcgcsv.com", "last_updated": m["source_last_updated"],
-                       "fetched_at": m["fetched_at"], "currency": "USD", "days_of_history": len(store.list_price_days(cat))},
+                       "fetched_at": m["fetched_at"], "currency": "USD", "days_of_history": len(store.list_price_days(cat)),
+                       "eu": ({"name": "CardTrader marketplace (EN, EUR, cheapest 25 per card)", "day": ct_latest()["day"],
+                               "cards_matched": sum(1 for c in cards if c.get("eu"))} if gid == "dbfw" and ct_latest() else None)},
             "estimates": {k: {"label": labels[k], "est": v} for k, v in est.items()},
             "box": g["box"],
             "sets": sets_scored, "cards": cards, "starters": other_sets,
@@ -77,6 +97,28 @@ def build(day, quality=None):
 
 
 SETCODE = re.compile(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", re.I)
+
+
+def eu_ev(s, cards, rate):
+    """EV of hits in EUR (excl. SAA): est[class] × mean(EU median, or TCGplayer×rate when no EU offers)."""
+    ev, covered, total = 0.0, 0, 0
+    for cid, comp in s["composition"].items():
+        if cid == "SAA":
+            continue
+        prices = []
+        for c in cards:
+            if c["set"] != s["code"] or c["class"] != cid:
+                continue
+            if c.get("eu"):
+                prices.append(c["eu"]["median"]); covered += 1
+            elif c["price"] is not None:
+                prices.append(c["price"] * rate)
+            else:
+                continue
+            total += 1
+        if prices:
+            ev += comp["est"] * (sum(prices) / len(prices))
+    return round(ev, 2), covered, total
 
 
 def retail_by_set(game_id):

@@ -118,3 +118,17 @@ def test_real_day_2_fixes(dbfw):
     rep = validate("2026-10-16")
     dup = [f for f in rep["games"]["dbfw"]["findings"] if f["code"] == "duplicate_keys"]
     assert dup and all(not k.split(":")[1].startswith("DBSFW") for k in dup[0]["ids"])
+
+
+def test_cardtrader_join_and_eu_ev():
+    from tcgwatcher.cardtrader import eu_prices_by_tcgplayer
+    from tcgwatcher.build import eu_ev
+    doc = {"blueprints": {"1": {"name": "Vegito", "tcg_player_id": 683187, "set": "FB10"}, "2": {"name": "x", "tcg_player_id": None, "set": "FB10"}},
+           "offers": {"1": {"set": "FB10", "low": 10.0, "median": 12.0, "n": 7}, "2": {"set": "FB10", "low": 1, "median": 1, "n": 1}}}
+    eu = eu_prices_by_tcgplayer(doc)
+    assert list(eu) == [683187] and eu[683187]["median"] == 12.0
+    s = {"code": "FB10", "composition": {"SR": {"est": 5.5}, "SAA": {"est": 0.08}}}
+    cards = [{"set": "FB10", "class": "SR", "price": 2.0, "eu": {"median": 3.0}}, {"set": "FB10", "class": "SR", "price": 4.0, "eu": None},
+             {"set": "FB10", "class": "SAA", "price": 2000.0, "eu": None}]
+    ev, covered, total = eu_ev(s, cards, 0.5)
+    assert ev == pytest.approx(5.5 * (3.0 + 2.0) / 2, abs=0.01) and (covered, total) == (1, 2)

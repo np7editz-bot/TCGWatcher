@@ -43,7 +43,7 @@ input[type=number]:focus,button:focus-visible,tr.row:focus-visible{outline:2px s
 button{font:600 13px var(--display);padding:7px 12px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--fg);cursor:pointer}
 button:hover{border-color:var(--fg3)}
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
-table{border-collapse:collapse;width:100%;min-width:1180px;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;width:100%;min-width:1320px;font-variant-numeric:tabular-nums}
 th{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg3);text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);white-space:nowrap;font-weight:600}
 th.r,td.r{text-align:right}
 td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
@@ -140,7 +140,7 @@ footer{color:var(--fg3);font-size:12.5px}
         <thead><tr>
           <th class="rank">#</th><th>Set</th><th>Status</th><th>Samenstelling</th>
           <th class="r">Box</th><th class="r">Box 7d / 30d</th><th class="r">EV hits / box</th>
-          <th class="barcell">Ratio</th><th>Top hit</th><th>EU retail (laagste)</th><th class="r">vs retail</th>
+          <th class="barcell">Ratio</th><th class="r">EU (CardTrader)</th><th>Top hit</th><th>EU retail (laagste)</th><th class="r">vs retail</th>
         </tr></thead>
         <tbody id="tb"></tbody>
       </table>
@@ -163,7 +163,7 @@ footer{color:var(--fg3);font-size:12.5px}
     </div>
     <div>
       <h3>Data en kwaliteit</h3>
-      <p id="dataNote">TCGplayer-marktprijzen (USD) via TCGCSV, één snapshot per dag, ruw opgeslagen in de repo en gevalideerd vóór publicatie. Presale-sets tonen vraagprijzen van listings, geen verkopen. EU retail vul je zelf in (onthouden in deze browser); Cardmarket en retailers volgen in fase 3.</p>
+      <p id="dataNote">TCGplayer-marktprijzen (USD, verkoopgebaseerd) via TCGCSV voor de waardering; CardTrader (EN, EUR, laagste echte aanbiedingen) voor wat je in Europa betaalt — "ratio EU" = EV in € ÷ laagste EU-boxprijs. Beide dagelijks, ruw opgeslagen en gevalideerd vóór publicatie. Presale-sets tonen vraagprijzen van listings, geen verkopen. EU retail vul je zelf in (onthouden in deze browser); Cardmarket en retailers volgen in fase 3.</p>
     </div>
   </section>
   <footer id="foot"></footer>
@@ -212,7 +212,8 @@ function render(){
       <td class="r">${pct(s.box?.chg7)}<br>${pct(s.box?.chg30)}</td>
       <td class="r num">${x.ev?eur(x.ev):'—'}<small>${x.ev?usd(x.ev):''}</small></td>
       <td class="barcell"><div class="bar"><div class="track"><div class="fill${hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
-      <td class="top">${x.top?`${short(x.top.name)}<div class="p">${eur(x.top.price)} · ${x.top.number} ${pct(x.top.chg7)}</div>`:'—'}</td>
+      <td class="r num">${s.box?.eu?`€${s.box.eu.low.toFixed(0)}<small>box · ${s.box.eu.n} aanb.${s.spread_eu_us_pct!=null?` · ${s.spread_eu_us_pct>0?'+':''}${s.spread_eu_us_pct}% vs US`:''}</small>`:'—'}${s.ratio_eu!=null?`<div class="num">ratio EU <b>${s.ratio_eu.toFixed(2)}</b><small>dekking ${s.eu_coverage}</small></div>`:''}</td>
+      <td class="top">${x.top?`${short(x.top.name)}<div class="p">${eur(x.top.price)}${x.top.eu?` · EU €${x.top.eu.low}`:''} · ${x.top.number} ${pct(x.top.chg7)}</div>`:'—'}</td>
       <td class="retail">${best?`<a href="${best.url}" target="_blank" rel="noopener">€${best.price.toFixed(2)}</a><div class="name">${best.retailer} · ${best.status==='preorder'?'pre-order':'op voorraad'}${(s.retail||[]).length>1?` · +${(s.retail||[]).length-1}`:''}</div>`:''}<input type="number" id="r_${s.code}" min="0" step="1" placeholder="${best?'overschrijf':'—'}" value="${retail[s.code]??''}" aria-label="EU retailprijs ${s.code}"></td>
       <td class="r num">${rr!=null?rr.toFixed(2):'—'}</td>`;
     tr.addEventListener('click', ev=>{ if (ev.target.tagName==='INPUT') return; openSet = openSet===s.code?null:s.code; render(); });
@@ -230,11 +231,11 @@ function detail(s,x){
   const tr=document.createElement('tr'); tr.className='detail';
   const cards=G.cards.filter(c=>c.set===s.code).sort((a,b)=>(b.price??-1)-(a.price??-1));
   const rows=CLS_ORDER.filter(k=>x.rows[k]).map(k=>{const r=x.rows[k]; return `<div><b>${G.estimates[k].label}</b><span>${r.n}×</span><span>${eur(r.avg)} gem.</span><span>${r.est.toFixed(2)} → ${eur(r.ev)}</span></div>`;}).join('');
-  tr.innerHTML=`<td colspan="11"><div class="dwrap">
+  tr.innerHTML=`<td colspan="12"><div class="dwrap">
     <div class="classes"><div class="h"><span>Klasse</span><span>kaarten</span><span>gem. prijs</span><span>hits/box → EV</span></div>${rows}
       <div style="margin-top:8px;color:var(--fg3);font-family:var(--display)">${s.note?s.note+'<br>':''}${cards.length} chase cards · ${cards.filter(c=>c.price_src!=='market').length} zonder marktprijs (mid/low gebruikt)${s.box?` · <a href="https://www.tcgplayer.com/product/${s.box.product_id}" target="_blank" rel="noopener">box op TCGplayer</a>`:''}</div></div>
     ${(s.retail||[]).length?`<div class="starters" style="grid-column:1/-1">${s.retail.map(o=>`<div><span><a href="${o.url}" target="_blank" rel="noopener">${o.retailer}</a> · ${o.title.slice(0,70)}</span><span class="p">${o.price?'€'+o.price.toFixed(2):'—'} <span class="chip ${o.status==='sold_out'?'crit':o.status==='preorder'?'warn':'good'}">${o.status}</span></span></div>`).join('')}</div>`:''}
-    <div class="cards">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${c.name}">${short(c.name)}<span class="tag${c.class==='SAA'?' saa':''}">${c.class.replace('_AA',' AA')}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
+    <div class="cards">${cards.map(c=>`<div class="card"><span class="n">${c.number}</span><span class="t" title="${c.name}">${short(c.name)}<span class="tag${c.class==='SAA'?' saa':''}">${c.class.replace('_AA',' AA')}</span></span><span class="p${c.price_src!=='market'?' est':''}">${c.price!=null?eur(c.price):'—'}${c.eu?` <span class="chg${c.eu.thin?' est':''}">EU €${c.eu.low}</span>`:''} ${c.chg7!=null?pct(c.chg7):''}</span></div>`).join('')}</div>
   </div></td>`;
   return tr;
 }
