@@ -12,6 +12,7 @@ from .history import load_series, change_pct, sparkline
 from .fx import usd_eur
 from .cardtrader import latest_day as ct_latest, eu_prices_by_tcgplayer
 from .ebay import latest_day as ebay_latest, slab_signals, grade_signals
+from .cardmarket import latest_day as cm_latest
 from . import store, SITE, ROOT
 
 log = logging.getLogger("tcgwatcher.build")
@@ -88,11 +89,27 @@ def build(day, quality=None):
                 e = eb["cards"].get(c["key"])
                 c["slabs"] = {k: {"low": v["low"], "n": v["n"], "url": v["url"], "grader": v["grader"]} for k, v in e["best"].items()} if e else None
                 c["raw_ebay"] = (e or {}).get("raw_ebay")
+        cm = cm_latest() if g.get("eu_sources") else None
+        if cm:
+            for c in cards:
+                c["cm"] = cm["cards"].get(c["key"])
         retail = retail_by_set(gid, g)
         ebay_boxes = (eb or {}).get("boxes") or {}
         for s in sets_scored:
             s["retail"] = retail.get(s["code"], [])
             s["ebay_box"] = ebay_boxes.get(s["code"])
+            s["cm_box"] = (cm or {}).get("boxes", {}).get(s["code"])
+            if s["cm_box"]:
+                s["cm_box"]["landed"] = round(s["cm_box"]["low"] + landed_cfg.get("cardmarket_shipping_eur", 18), 2)
+            # Valuation: Cardmarket SALES (avg30, EUR) are the primary yardstick for the EU market; TCGplayer × rate is the
+            # fallback per card and for sets where fewer than half of the hits have recent EU sales. The US figure stays as reference.
+            s["ev_us_excl_saa"] = s["ev_eu_excl_saa"]
+            s["ev_cm_excl_saa"], s["cm_coverage"] = ev_cm(s, cards, rate) if cm else (None, "0/0")
+            cov_n, cov_t = (int(x) for x in s["cm_coverage"].split("/"))
+            if s["ev_cm_excl_saa"] and cov_t and cov_n / cov_t >= 0.5:
+                s["ev_eu_excl_saa"], s["valuation"] = s["ev_cm_excl_saa"], "cardmarket"
+            else:
+                s["valuation"] = "tcgplayer"
             s["best_buy"] = best_buy(s, landed_cfg.get("min_offers", 3))
         for s in other_sets:
             s["retail"] = retail.get(s["code"], [])
@@ -152,6 +169,37 @@ def landed(o, cfg):
             "landed_note": f"€{o['low']:.2f} + ±€{cfg['seller_shipping_eur']} verzending (geen Zero-aanbod)"}
 
 
+ASK_TO_SALE = 0.83     # CardTrader ask → expected sale price (1 / 1.2, docs/calibration-2026-10-18.md)
+
+
+def ev_cm(s, cards, rate):
+    """EV of the hits on Cardmarket sales (avg30, EUR); per card falls back to avg7 → trend → TCGplayer × rate (sales-based)
+    → CardTrader lowest ask × ASK_TO_SALE (asks overstate: calibration 2026-10-18 median 1.12–1.39× sales).
+    Returns (ev, coverage 'n/total') where n = hits priced on Cardmarket sales."""
+    lottery = {"SAA", "GDR"}
+    ev, covered, total = 0.0, 0, 0
+    for cid, comp in s["composition"].items():
+        if cid in lottery:
+            continue
+        prices = []
+        for c in cards:
+            if c["set"] != s["code"] or c["class"] != cid:
+                continue
+            cm = c.get("cm") or {}
+            v = cm.get("avg30") or cm.get("avg7")
+            if v:
+                prices.append(v); covered += 1; total += 1
+            elif cm.get("trend"):
+                prices.append(cm["trend"]); total += 1
+            elif c.get("price") is not None:
+                prices.append(c["price"] * rate); total += 1
+            elif (c.get("eu") or {}).get("low"):
+                prices.append(c["eu"]["low"] * ASK_TO_SALE); total += 1
+        if prices:
+            ev += comp["est"] * (sum(prices) / len(prices))
+    return round(ev, 2), f"{covered}/{total}"
+
+
 def best_buy(s, min_offers=3):
     """Cheapest way to buy this box in Europe right now (what you actually pay), and the EV ratio against it.
 
@@ -167,6 +215,10 @@ def best_buy(s, min_offers=3):
     eb = s.get("ebay_box")
     if eb and eb.get("low"):
         opts.append({"price": eb["low"], "source": f"eBay ({eb['n']} EU)", "url": eb["url"], "status": "in_stock", "n": eb["n"]})
+    cmb = s.get("cm_box")
+    if cmb and cmb.get("landed"):
+        opts.append({"price": cmb["landed"], "source": "Cardmarket", "url": cmb["url"], "status": "in_stock", "n": 3,
+                     "note": f"laagste aanbod €{cmb['low']:.2f} + ±€18 verzending" + (f" · 30d-verkopen €{cmb['avg30']:.0f}" if cmb.get("avg30") else "")})
     for r in s.get("retail", []):
         if r.get("price") and r["status"] in ("in_stock", "preorder") and r.get("kind", "box") == "box" and r["price"] >= 40:
             opts.append({"price": r["price"], "source": r["retailer"], "url": r["url"], "status": r["status"], "n": 1})

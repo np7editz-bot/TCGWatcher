@@ -129,6 +129,10 @@ def run(day, quality=None, send=True):
                 re_ = c.get("raw_ebay") or {}
                 if re_.get("low"):
                     opts.append({"src": f"eBay ({re_['n']} EU)", "price": re_["low"], "url": re_["url"]})
+                cmc = c.get("cm") or {}
+                if cmc.get("low"):
+                    opts.append({"src": "Cardmarket", "price": round(cmc["low"] + 5, 2),
+                                 "url": "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=" + g["number"]})
                 opts.sort(key=lambda o: o["price"])
                 if not opts:
                     continue                            # nothing to buy in the EU today → page only (with a Cardmarket search), no message
