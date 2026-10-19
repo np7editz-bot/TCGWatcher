@@ -148,6 +148,9 @@ def run(day, quality=None, send=True):
                        f"Raw kopen vanaf <b>€{i['raw']:.0f}</b> → {g['service']} {g['top_grade']} waarde <b>€{g['top_median']:.0f}</b> ({g['top_n']} listings)\n"
                        f"Netto na grading en fees: <b>€{i['net']:.0f}</b> per kaart ({i['net'] / i['raw']:.0%} op inleg)\n\n"
                        f"🛒 <b>Raw, all-in naar NL</b>\n{where}")
+                if i["raw"] < 0.5 * g["raw_eur"]:
+                    txt += (f"\n⚠️ <b>{1 - i['raw'] / g['raw_eur']:.0%} onder marktwaarde</b> — te mooi? Check feedback, retourbeleid en foto's; "
+                            f"betaal alleen met koperbescherming.")
                 if sl:
                     txt += f"\n\n🏷 <b>Graded al te koop in EU:</b> {sl['grader']} {sl['grade']:g} €{sl['price']:.0f} ({sl['ratio']:.2f}× raw) — goedkoper dan zelf graden"
                 alt = " · ".join(f"{o['service']} €{o['net']:.0f}" for o in g.get("options", [])[1:3])
