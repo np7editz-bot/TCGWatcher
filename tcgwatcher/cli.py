@@ -66,7 +66,10 @@ def main(argv=None):
         latest = store.read_json(LATEST)
         if latest:
             active = store.read_json(store.state_path("alerts"), {}).get("active", {})
-            open_positions(day, latest, alerts, active_buy={k.split(":")[-1] for k in active if k.startswith("buy:")})
+            if open_positions(day, latest, alerts, active_buy={k.split(":")[-1] for k in active if k.startswith("buy:")}):
+                from .build import paper_summary       # new positions → refresh the page's portfolio block right away
+                latest["paper"] = paper_summary(latest)
+                store.write_json(LATEST, latest)
             if a.step == "all" and dt.date.today().day == 1:
                 paper_report(day, latest, send=not a.no_send)
     if a.step == "paper":
