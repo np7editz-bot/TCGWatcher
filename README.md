@@ -71,6 +71,6 @@ alerts blijven in `data/alerts/<dag>.json`. Zonder chat-id print de workflow-log
 
 - **Fase 2** — alerts live, drempels tunen op echte verkopen (FB11 is net uit).
 - **Fase 3a** — retailer-monitor (gedaan; shops bijvoegen = regel in `config/retailers.yaml`).
-- **Fase 3b** — CardTrader EU-prijzen (officiële API, EN/EUR, laagste echte aanbiedingen) per chase card en box; `ratio EU`, EU/US-spread; kalibratierapport `docs/calibration-<dag>.md` (workflow `calibrate`). Cardmarket-scraping alleen als CardTrader structureel >15% afwijkt.
+- **Fase 3b** — CardTrader EU-prijzen (officiële API, EN/EUR, laagste echte aanbiedingen) per chase card en box; `ratio EU`, EU/US-spread; kalibratierapport `docs/calibration-<dag>.md` (workflow `calibrate`). **Uitkomst kalibratie 19-10-2026**: CardTrader-vraagprijzen liggen mediaan 15–35% boven TCGplayer-markt en zijn dun voor de meeste hits → waardering blijft TCGplayer (verkoopgebaseerd) in €; CardTrader levert de EU-boxprijs (EU-verkopers) en per-kaart 'wat je nu betaalt'. Cardmarket-trend als tweede waarderingsbron: steekproef gepland.
 - **Fase 4** — PWA op de telefoon met push.
 - **Fase 5** — slabs: graded prijzen (PSA 9/10) naast raw → grading-gap-alerts.
