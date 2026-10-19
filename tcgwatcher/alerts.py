@@ -127,7 +127,8 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
     c = lambda k, l: f"{comp[k]['n']} {l}" if k in comp else None  # noqa: E731
     compo = " · ".join(x for x in (c("SR_AA", "SR-AA"), c("SCR", "SCR"), c("SCR_AA", "★"), c("SAA", "★★")) if x)
     st = {"in_stock": "op voorraad", "preorder": "pre-order"}
-    where = "\n".join(f"• €{o['price']:,.2f} {o['source']} ({st.get(o['status'], o['status'])})".replace(",", "X").replace(".", ",").replace("X", ".")
+    where = "\n".join((f"• €{o['price']:,.2f} {o['source']} ({st.get(o['status'], o['status'])})".replace(",", "X").replace(".", ",").replace("X", ".")
+                       + (f" <i>{o['note']}</i>" if o.get("note") else ""))
                       for o in bb.get("options", [])[:3])
     us = f" · US-ratio {s['ratio_excl_saa']:.2f}" if s.get("ratio_excl_saa") is not None else ""
     head = "🎯 <b>KOOP" + (" · goedkoper geworden" if again else "") + f" · {s['code']} {s['name']}</b>"

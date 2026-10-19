@@ -5,7 +5,7 @@ Refuses to publish when the quality gate failed (keeps the previous latest.json)
 import datetime as dt
 import logging
 import re
-from .config import load_games
+from .config import load_games, load_alerts
 from .model import load_game, class_estimates
 from .chase import score_sets
 from .history import load_series, change_pct, sparkline
@@ -24,6 +24,7 @@ def build(day, quality=None):
         return None
     rate, fx_doc = usd_eur(day)
     games = load_games()
+    landed_cfg = load_alerts().get("eu_landed", {"zero_fee_eur": 6, "seller_shipping_eur": 15})
     out = {"generated_at": _now(), "day": day, "fx": {"usd_eur": rate, **{k: v for k, v in fx_doc.items() if k != "rate"}},
            "quality": {"status": quality.get("status"),
                        "findings": [dict(f, game=g) for g, v in quality.get("games", {}).items() for f in v.get("findings", [])]},
@@ -66,7 +67,9 @@ def build(day, quality=None):
                 sp = s.get(kind)
                 if sp and eu.get(sp["product_id"]):
                     o = eu[sp["product_id"]]
-                    sp["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5}
+                    sp["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5,
+                                "zero_low": o.get("zero_low"), "zero_n": o.get("zero_n", 0),
+                                "url": f"https://www.cardtrader.com/cards/{o['blueprint_id']}", **landed(o, landed_cfg)}
             # Decision 2026-10-19 (docs/calibration-2026-10-18.md): CardTrader asks sit 15–35% above TCGplayer market and are
             # thin for most hits, so valuation stays TCGplayer (sales-based) converted to EUR; CardTrader provides the EU box ask
             # (denominator) and per-card "what you pay now" info only.
@@ -74,7 +77,7 @@ def build(day, quality=None):
             covered, total = sum(1 for c in cards if c["set"] == s["code"] and c.get("eu")), sum(1 for c in cards if c["set"] == s["code"])
             s["eu_coverage"] = f"{covered}/{total}"
             box_eu = (s.get("box") or {}).get("eu")
-            s["ratio_eu"] = round(s["ev_eu_excl_saa"] / box_eu["low"], 3) if box_eu else None
+            s["ratio_eu"] = round(s["ev_eu_excl_saa"] / box_eu["landed"], 3) if box_eu else None
             if s.get("box") and s["box"].get("price") and box_eu:
                 s["spread_eu_us_pct"] = round((box_eu["low"] - s["box"]["price"] * rate) / (s["box"]["price"] * rate) * 100, 1)
         retail = retail_by_set(gid)
@@ -125,12 +128,21 @@ def eu_ev(s, cards, rate):
     return round(ev, 2), covered, total
 
 
+def landed(o, cfg):
+    """Listing price → what you pay. Zero listing + fixed fee; otherwise cheapest EU seller + typical shipping."""
+    if o.get("zero_low"):
+        return {"landed": round(o["zero_low"] + cfg["zero_fee_eur"], 2), "landed_via": "zero", "landed_note": f"Zero €{o['zero_low']:.2f} + €{cfg['zero_fee_eur']} kosten"}
+    return {"landed": round(o["low"] + cfg["seller_shipping_eur"], 2), "landed_via": "seller",
+            "landed_note": f"€{o['low']:.2f} + ±€{cfg['seller_shipping_eur']} verzending (geen Zero-aanbod)"}
+
+
 def best_buy(s):
-    """Cheapest way to buy this box in Europe right now, and the EV ratio against it."""
+    """Cheapest way to buy this box in Europe right now (what you actually pay), and the EV ratio against it."""
     opts = []
     box_eu = (s.get("box") or {}).get("eu")
-    if box_eu and box_eu.get("low"):
-        opts.append({"price": box_eu["low"], "source": "CardTrader", "url": f"https://www.cardtrader.com/en/dragon-ball-super", "status": "in_stock", "n": box_eu.get("n")})
+    if box_eu and box_eu.get("landed"):
+        opts.append({"price": box_eu["landed"], "source": "CardTrader" + (" Zero" if box_eu.get("landed_via") == "zero" else ""),
+                     "url": box_eu["url"], "status": "in_stock", "n": box_eu.get("n"), "note": box_eu.get("landed_note")})
     for r in s.get("retail", []):
         if r.get("price") and r["status"] in ("in_stock", "preorder") and r.get("kind", "box") == "box" and r["price"] >= 40:
             opts.append({"price": r["price"], "source": r["retailer"], "url": r["url"], "status": r["status"]})

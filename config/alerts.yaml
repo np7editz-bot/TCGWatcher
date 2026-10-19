@@ -4,6 +4,9 @@ buy:
   threshold: 0.80          # buy signal when EV€ of hits (excl. ★★) ÷ best EU buy price ≥ this
   rearm_improvement: 0.10  # alert again within an episode when the best price drops ≥10%
   near: 0.70               # retail restock/pre-order messages only for sets with ratio ≥ this (or unreleased sets)
+eu_landed:                 # what a CardTrader box really costs you (listing price excludes shipping/fees)
+  zero_fee_eur: 6          # CardTrader Zero: one fixed fee per order (hub shipping + service)
+  seller_shipping_eur: 15  # non-Zero seller ships himself: typical sealed-box shipping within the EU (seen €10–36)
 briefing: weekly           # daily | weekly (Sunday) | off
 ratio:
   threshold: 0.60          # legacy US ratio (page only; no longer alerts)

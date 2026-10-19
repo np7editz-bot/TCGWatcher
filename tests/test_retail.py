@@ -73,3 +73,20 @@ def test_run_and_transitions(tmp_path, monkeypatch):
     assert [m["text"].split(" ·")[0] for m in msgs] == ["📉 GOEDKOPER"] and "koopwaardig" in msgs[0]["text"]
     day = json.load(open(tmp_path / "retail" / "2026-10-17.json"))
     assert len(day["results"]) == 10   # append-only within the day
+
+
+def test_buy_button_overrides_structured_availability():
+    """Ony TCG keeps schema.org PreOrder on a page whose buy button is disabled 'Out of stock'."""
+    page = ('<html><head><title>Box FB-11</title><meta property="product:price:amount" content="119.99">'
+            '<script type="application/ld+json">{"availability":"https://schema.org/PreOrder"}</script></head>'
+            '<body><button class="btn product-detail__cart-btn" disabled>Out of stock</button></body></html>')
+    class H:
+        def get(self, url, json_=False):
+            return page, None
+    row = retail.generic_product(H(), {"url": "https://onytcg.com/en/product/box-fb-11", "title": "Box FB-11"})
+    assert row["status"] == "sold_out" and row["price"] == 119.99
+    ok = page.replace(' disabled>Out of stock', '>Add to cart')
+    class H2:
+        def get(self, url, json_=False):
+            return ok, None
+    assert retail.generic_product(H2(), {"url": "https://onytcg.com/en/product/box-fb-11", "title": "Box FB-11"})["status"] == "preorder"
