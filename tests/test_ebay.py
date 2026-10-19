@@ -97,3 +97,51 @@ def test_raw_ebay_listing_eu_only_and_not_graded():
     assert ebay.parse_raw_listing(item("Frieza FB05-120 Super Alt Art PSA 10", 1500), "FB05-120", fx, "SAA") is None
     assert ebay.parse_raw_listing(item("Frieza FB05-120 Super Alt Art NM", 600, loc="US"), "FB05-120", fx, "SAA") is None
     assert ebay.parse_raw_listing(item("Frieza FB05-120 Alt Art NM", 60), "FB05-120", fx, "SAA") is None
+
+
+def _png(color, size=(200, 280)):
+    from PIL import Image
+    import io
+    im = Image.new("RGB", size, color); b = io.BytesIO(); im.save(b, "PNG"); return b.getvalue()
+
+
+class FakeImages(ebay.ImageCheck):
+    """Serves synthetic card images: gold = super alt-art, green = alt-art, blue = base."""
+    def __init__(self):
+        super().__init__()
+        self.pics = {"gold.jpg": _png((215, 170, 40)), "green.jpg": _png((40, 160, 70)), "blue.jpg": _png((40, 90, 200)),
+                     "photo_green.jpg": _png((60, 150, 80), (300, 400)), "photo_gold.jpg": _png((200, 160, 60), (300, 400))}
+    def sig_for(self, url):
+        if url not in self.pics:
+            return None
+        return self.signature(self.pics[url])
+
+
+def test_photo_check_rejects_sibling_variant():
+    ic = FakeImages()
+    assert ic.matches("photo_gold.jpg", "gold.jpg", ["green.jpg", "blue.jpg"]) is True
+    assert ic.matches("photo_green.jpg", "gold.jpg", ["green.jpg", "blue.jpg"]) is False      # 'God Rare' title, green card
+    assert ic.matches("missing.jpg", "gold.jpg", ["green.jpg"]) is None                      # no photo: title decides
+    assert ic.stats == {"checked": 2, "rejected": 1, "unavailable": 1}
+
+
+def test_fetch_day_applies_photo_check(tmp_path, monkeypatch):
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    L = latest()
+    L["games"]["dbfw"]["cards"].append({"key": "dbfw:FB09:FB09-123:AA", "set": "FB09", "number": "FB09-123", "name": "Gogeta : GT (Alternate Art)",
+                                        "class": "SCR_AA", "variant": "AA", "price": 90.0, "price_src": "market", "image": "green.jpg"})
+    for c in L["games"]["dbfw"]["cards"]:
+        if not c.get("image"):
+            c["image"] = "gold.jpg" if c["key"].endswith("SAA") else "blue.jpg"
+    class C(FakeClient):
+        def search(self, q, marketplace="EBAY_DE", limit=50, sleep=0):
+            self.calls += 1
+            if "PSA" not in q:
+                return []
+            if "FB09-123" in q:
+                return [dict(item("Gogeta GT FB09-123 God Rare PSA 10", 300), image={"imageUrl": "photo_green.jpg"}),   # mislabeled
+                        dict(item("Gogeta GT FB09-123 SAA PSA 10", 1500, iid="real"), image={"imageUrl": "photo_gold.jpg"})]
+            return []
+    doc = ebay.fetch_day(client=C(), latest=L, marketplaces=("EBAY_DE",), day="2026-10-19", image_check=FakeImages())
+    c = doc["cards"]["dbfw:FB09:FB09-123:SAA"]
+    assert [l["price"] for l in c["listings"]] == [1504.5] and doc["image_check"]["rejected"] == 1

@@ -113,6 +113,7 @@ def parse_listing(item, number, fx_usd_eur, variant=""):
         return None
     return {"grader": m.group(1).upper(), "grade": float(m.group(2)), "price": price, "title": title[:120],
             "url": item.get("itemWebUrl"), "item_id": item.get("itemId"), "marketplace": item.get("listingMarketplaceId"),
+            "image": (item.get("image") or {}).get("imageUrl"),
             "location": (item.get("itemLocation") or {}).get("country"),
             "eu": ((item.get("itemLocation") or {}).get("country") or "").upper() in EU}
 
@@ -133,6 +134,76 @@ def cardtrader_slabs(ct_doc, blueprint_id, fx_unused=None, zero_fee=6.0, ship=5.
     return out
 
 
+# --- photo check: same number, different art -------------------------------------------------------------------
+# Sellers mislabel ("God Rare" on a regular alt-art). Titles can't settle it; the picture can. Each card variant has an
+# official TCGplayer image; a listing photo is assigned to the variant whose colour signature it resembles most.
+# Signature = hue histogram of the saturated pixels in the central region (ignores white/grey backgrounds, sleeves and slab
+# labels), compared by histogram intersection. Base vs alt-art vs super-alt-art vs gold differ in palette; verified on the
+# FB10-123 case (a 'God Rare' listing whose photo was the green regular art: nearest = base, margin 0.045).
+class ImageCheck:
+    def __init__(self, session=None, timeout=20):
+        self.s = session or requests.Session()
+        self.s.headers.update({"User-Agent": USER_AGENT})
+        self.timeout, self.cache, self.stats = timeout, {}, {"checked": 0, "rejected": 0, "unavailable": 0}
+
+    @staticmethod
+    def signature(data):
+        from PIL import Image
+        import io
+        im = Image.open(io.BytesIO(data)).convert("RGB")
+        w, h = im.size
+        im = im.crop((int(w * 0.12), int(h * 0.12), int(w * 0.88), int(h * 0.88))).resize((48, 64))
+        hist = [0.0] * 24
+        for r, g, b in im.getdata():
+            mx, mn = max(r, g, b), min(r, g, b)
+            if mx < 38 or mx == 0 or (mx - mn) / mx < 0.25:      # dark or unsaturated: background, sleeve, label, text
+                continue
+            if mx == r:
+                hue = ((g - b) / (mx - mn)) % 6
+            elif mx == g:
+                hue = (b - r) / (mx - mn) + 2
+            else:
+                hue = (r - g) / (mx - mn) + 4
+            k = int((hue * 60) // 15) % 24
+            hist[k] += 0.5; hist[(k - 1) % 24] += 0.25; hist[(k + 1) % 24] += 0.25     # soft bins: lighting shifts hue a little
+        n = float(sum(hist)) or 1.0
+        return [x / n for x in hist]
+
+    @staticmethod
+    def similarity(a, b):
+        return sum(min(x, y) for x, y in zip(a, b))
+
+    def sig_for(self, url):
+        if not url:
+            return None
+        if url in self.cache:
+            return self.cache[url]
+        try:
+            r = self.s.get(url, timeout=self.timeout)
+            r.raise_for_status()
+            sig = self.signature(r.content)
+        except Exception:  # noqa: BLE001
+            sig = None
+        self.cache[url] = sig
+        return sig
+
+    def matches(self, listing_image_url, target_image_url, other_image_urls):
+        """True when the photo resembles the target variant at least as much as any sibling variant (None = can't tell)."""
+        li = self.sig_for(listing_image_url)
+        tg = self.sig_for(target_image_url)
+        if li is None or tg is None:
+            self.stats["unavailable"] += 1
+            return None
+        self.stats["checked"] += 1
+        mine = self.similarity(li, tg)
+        for u in other_image_urls:
+            o = self.sig_for(u)
+            if o is not None and self.similarity(li, o) > mine + 0.03:
+                self.stats["rejected"] += 1
+                return False
+        return True
+
+
 def parse_raw_listing(item, number, fx_usd_eur, variant=""):
     """Ungraded copy of this exact card, located in the EU, price incl. shipping in €."""
     title = item.get("title") or ""
@@ -144,6 +215,7 @@ def parse_raw_listing(item, number, fx_usd_eur, variant=""):
         return None
     price = _price_eur(item, fx_usd_eur)
     return {"price": price, "title": title[:120], "url": item.get("itemWebUrl"), "item_id": item.get("itemId"),
+            "image": (item.get("image") or {}).get("imageUrl"),
             "location": (item.get("itemLocation") or {}).get("country")} if price else None
 
 
@@ -161,13 +233,16 @@ def targets(latest, per_set=10, min_raw_eur=20):
         cs.sort(key=lambda c: -c["price"])
         for c in cs[:per_set]:
             name = re.sub(r"\s*\(.*?\)|\s*-\s*FB.*$", "", c["name"]).split(" // ")[0].strip()
+            sibl = [x for x in g.get("cards", []) if x["set"] == code and x["number"] == c["number"] and x["key"] != c["key"]]
             out.append({"key": c["key"], "number": c["number"], "name": name, "set": code, "class": c["class"], "variant": c.get("variant", ""),
+                        "sibling_images": [x["image"] for x in sibl if x.get("image")],
                         "raw_eur": round(c["price"] * fx, 2), "image": c.get("image")})
     return out
 
 
-def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day=None):
+def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day=None, image_check=None):
     client = client or EbayClient()
+    image_check = image_check if image_check is not None else ImageCheck()
     if not client.configured:
         log.info("no EBAY_CLIENT_ID/SECRET; skipping")
         return None
@@ -203,6 +278,9 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
                     raws.append(r)
         except Exception as e:  # noqa: BLE001
             log.warning("%s raw: %s", t["number"], e)
+        if image_check and t.get("image") and t.get("sibling_images"):      # photo must look like THIS variant, not a sibling
+            listings = [l for l in listings if image_check.matches(l.get("image"), t["image"], t["sibling_images"]) is not False]
+            raws = [r for r in raws if image_check.matches(r.get("image"), t["image"], t["sibling_images"]) is not False]
         raws.sort(key=lambda x: x["price"])
         if raws and t["raw_eur"] and raws[0]["price"] < 0.25 * t["raw_eur"]:
             raws = [r for r in raws if r["price"] >= 0.25 * t["raw_eur"]]     # €3 'listings' for a €300 card are not that card
@@ -237,11 +315,13 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
         cards[t["key"]] = {**t, "best": best, "by_grader": by_grader, "listings": uniq[:25],
                            "raw_ebay": {"low": raws[0]["price"], "url": raws[0]["url"], "n": len(raws)} if raws else None}
     doc = {"day": day, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-           "marketplaces": list(marketplaces), "api_calls": client.calls, "cards": cards}
+           "marketplaces": list(marketplaces), "api_calls": client.calls, "cards": cards,
+           "image_check": image_check.stats if image_check else None}
     if not client.calls:
         raise RuntimeError("no successful eBay API calls; day file not written")
     store.write_json(path, doc)
-    log.info("ebay: %d cards, %d graded listings, %d calls", len(cards), sum(len(c["listings"]) for c in cards.values()), client.calls)
+    log.info("ebay: %d cards, %d graded listings, %d calls, photo check %s", len(cards), sum(len(c["listings"]) for c in cards.values()), client.calls,
+             image_check.stats if image_check else "off")
     return doc
 
 
