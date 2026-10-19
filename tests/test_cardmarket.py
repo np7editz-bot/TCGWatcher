@@ -67,6 +67,7 @@ def test_expansion_names():
     assert expansion_name("dbs", "BT21", "Wild Resurgence") == "Zenkai Series Set 04"
     assert expansion_name("dbfw", "FB08", "Saiyan's Pride", "Saiyan's Pride Booster Box [Fusion World]") == "Saiyan's Pride [Fusion World]"
     assert expansion_name("dbfw", "FB06", "Rivals Clash", "Rivals Clash Booster Box [Fusion World]") == "Rivals Clash"
+    assert expansion_name("dbfw", "FB03", "Raging Roar", "Raging Roar Booster Box [Fusion World]") == "Raging Roar"
     assert card_url("Zenkai Series Set 04", "Son Goku, Overwhelming Power", 2, "SPR", "Super Rare", 2).endswith("/Zenkai-Series-Set-04/Son-Goku-Overwhelming-Power-V2-Special-Rare")
     assert card_url("Manga Booster 01 [Fusion World]", "Vegeta // Vegeta (FB04-051) [Fusion World]", 2, "GOLD", "Leader", 2).endswith("/Manga-Booster-01-Fusion-World/Vegeta-Vegeta-FB04-051-Fusion-World-V2-Alternate-Art")
 
@@ -86,4 +87,4 @@ def test_join_prefers_the_sets_own_expansion():
     cards, boxes = cardmarket.join(f, latest, ct)
     c = cards["dbfw:FB03:FB03-139:AA"]
     assert c["idProduct"] == 783017 and c["low"] == 80.0 and c["version"] == 2
-    assert c["url"].endswith("/Raging-Roar-Fusion-World/Son-Gohan-Youth-FB03-139-Fusion-World-V2-Alternate-Art")
+    assert c["url"].endswith("/Raging-Roar/Son-Gohan-Youth-FB03-139-Fusion-World-V2-Alternate-Art")
