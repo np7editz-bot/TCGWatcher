@@ -7,6 +7,10 @@ buy:
 eu_landed:                 # what a CardTrader box really costs you (listing price excludes shipping/fees)
   zero_fee_eur: 6          # CardTrader Zero: one fixed fee per order (hub shipping + service)
   seller_shipping_eur: 15  # non-Zero seller ships himself: typical sealed-box shipping within the EU (seen €10–36)
+slabs:                     # eBay graded copies (EBAY_DE/EBAY_NL, incl. shipping to NL) vs raw TCGplayer market in €
+  max_vs_raw: 1.15         # 🏆 SLAB-KOOP when the cheapest PSA/BGS/CGC 10 (else 9.5, 9) costs ≤ 1.15 × raw
+  min_raw_eur: 50
+  grades: [10, 9.5, 9]
 briefing: weekly           # daily | weekly (Sunday) | off
 ratio:
   threshold: 0.60          # legacy US ratio (page only; no longer alerts)

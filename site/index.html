@@ -148,6 +148,12 @@ footer{color:var(--fg3);font-size:12.5px}
     </div>
   </section>
 
+  <section id="slabsSec" hidden aria-labelledby="h-sl">
+    <h2 id="h-sl">Slabs · graded exemplaren op eBay DE/NL</h2>
+    <p class="muted" id="slabsNote"></p>
+    <div class="starters" id="slabs"></div>
+  </section>
+
   <section id="startersSec" hidden aria-labelledby="h-st">
     <h2 id="h-st">Starter decks en overige sealed producten</h2>
     <div class="starters" id="starters"></div>
@@ -195,12 +201,24 @@ function compText(set){
   const c=set.composition; const part=(k,l)=>c[k]?`<b>${c[k].n}</b> ${l}`:null;
   return [part('SR_AA','SR-AA'),part('SCR','SCR'),part('SCR_AA','★'),part('SAA','★★'),part('OTHER_AA','AA')].filter(Boolean).join(' · ') || '—';
 }
+function renderSlabs(){
+  const sec=document.getElementById('slabsSec'); const sig=G.slab_signals||[]; const withSlabs=(G.cards||[]).filter(c=>c.slabs&&Object.keys(c.slabs).length);
+  if(!G.slabs_day){ sec.hidden=true; return; }
+  sec.hidden=false;
+  document.getElementById('slabsNote').textContent=`eBay Browse API, dag ${G.slabs_day} · ${withSlabs.length} chase cards met graded aanbod · 🏆 = PSA/BGS/CGC 10 (anders 9.5/9) voor ≤ 1,15× raw TCGplayer, incl. verzending naar NL.`;
+  const el=document.getElementById('slabs'); el.innerHTML='';
+  const rows=sig.map(x=>`<div class="card"><span class="n">🏆 ${x.set}</span><span class="t">${short(x.name)} ${x.number} <span class="tag${x.class==='SAA'?' saa':''}">${x.class.replace('_AA',' AA')}</span></span><span class="p"><a href="${x.url}" target="_blank" rel="noopener">${x.grader} ${x.grade} €${x.price.toFixed(0)}</a> <small>raw €${x.raw_eur.toFixed(0)} · ${x.ratio}× · ${x.n} st.</small></span></div>`);
+  const rest=withSlabs.filter(c=>!sig.some(x=>x.key===c.key)).sort((a,b)=>(b.price||0)-(a.price||0)).slice(0,30).map(c=>{const g=Object.entries(c.slabs).sort((a,b)=>b[0]-a[0]).map(([k,v])=>`<a href="${v.url}" target="_blank" rel="noopener">${v.grader} ${parseFloat(k)} €${v.low.toFixed(0)}</a>`).join(' · '); return `<div class="card"><span class="n">${c.set}</span><span class="t">${short(c.name)} ${c.number}</span><span class="p">${g} <small>raw ${eur(c.price)}</small></span></div>`;});
+  el.innerHTML=`<div class="cards">${rows.join('')||'<div class="card"><span class="t">Geen slab-koopsignaal vandaag.</span></div>'}</div><h3 style="margin-top:12px">Graded aanbod (laagste per grade)</h3><div class="cards">${rest.join('')}</div>`;
+}
+
 function render(){
   const thr = parseFloat(document.getElementById('thr').value)||0;
   const scored = G.sets.map(s => ({s, ...score(s)}));
   scored.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1));
   const max = Math.max(...scored.map(x=>x.ratio||0), thr, 0.01);
   const tb=document.getElementById('tb'); tb.innerHTML='';
+  renderSlabs();
   scored.forEach((x,i)=>{
     const s=x.s, tr=document.createElement('tr'); tr.className='row'+(openSet===s.code?' open':''); tr.tabIndex=0;
     const best=(s.retail||[]).find(o=>o.price&&(o.status==='in_stock'||o.status==='preorder'));

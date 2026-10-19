@@ -105,6 +105,25 @@ def run(day, quality=None, send=True):
                 state["active"][key] = {"since": (ep or {}).get("since", day) if isinstance(ep, dict) else day, "price": bb["price"], "ratio": ratio}
                 msgs.append(buy_card(gid, gdata, s, pos, len(ranked), buy, again=bool(ep)))
 
+        # 4b. slab buy signals (eBay graded ≤ max_vs_raw × raw), one per card+grade episode, again when ≥10% cheaper
+        for gid, gdata in latest["games"].items():
+            for sg in gdata.get("slab_signals", []):
+                key = f"slab:{gid}:{sg['key']}:{sg['grade']}"
+                if sg["set"] in muted:
+                    continue
+                ep = state["active"].get(key)
+                if ep and not sg["price"] <= ep["price"] * 0.9:
+                    continue
+                state["active"][key] = {"since": (ep or {}).get("since", day), "price": sg["price"]}
+                txt = (f"🏆 <b>SLAB-KOOP · {_card(sg['name'], sg['number'])} {sg['class'].replace('_AA', ' AA')}</b>\n"
+                       f"{sg['grader']} {sg['grade']:g} voor <b>€{sg['price']:.0f}</b> (incl. verzending) · raw TCGplayer €{sg['raw_eur']:.0f} → <b>{sg['ratio']:.2f}×</b> raw\n"
+                       f"{sg['n']} graded aanbieding(en) op eBay DE/NL · {sg['set']}\n"
+                       f"<i>Gegradeerd exemplaar voor (bijna) de prijs van raw; grading kost zelf €20–30 en maanden.</i>")
+                msgs.append(_m(key, "slab", txt, photo=sg.get("image"), buttons=[[("🛒 eBay", sg["url"]), ("📊 Radar", SITE_URL)]]))
+            for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
+                if not any(f"slab:{gid}:{sg['key']}:{sg['grade']}" == key for sg in gdata.get("slab_signals", [])):
+                    state["active"].pop(key, None)
+
         # 5. briefing: daily | weekly (Sunday) | off
         mode = cfg.get("briefing", "weekly")
         if mode == "daily" or (mode == "weekly" and dt.date.fromisoformat(day).weekday() == 6):
