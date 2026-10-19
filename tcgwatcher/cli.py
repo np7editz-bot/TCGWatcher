@@ -45,13 +45,15 @@ def main(argv=None):
         from .retail import run as retail_run, format_alerts
         from . import telegram
         first = not store.read_json(store.state_path("retail"), {}).get("products")
+        muted = store.read_json(store.state_path("alerts"), {}).get("muted", [])
         r = retail_run()
         log.info("retail: %d rows, errors=%s, %d transitions", r["rows"], r["errors"], len(r["transitions"]))
-        msgs = format_alerts(r["transitions"], first)
+        msgs = format_alerts(r["transitions"], first, muted)
         store.write_json(store.DATA / "retail" / f"{r['day']}.alerts.json",
                          {"day": r["day"], "messages": msgs, "transitions": r["transitions"]}, compact=False)
-        if msgs and not a.no_send:
-            telegram.send("<b>TCGWatcher · retail</b>\n" + "\n\n".join(msgs)[:3800])
+        if not a.no_send:
+            for m in msgs[:20]:
+                telegram.send(m["text"], buttons=m.get("buttons"))
     return 0
 
 

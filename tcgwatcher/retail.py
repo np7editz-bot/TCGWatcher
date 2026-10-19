@@ -256,17 +256,23 @@ KIND_TEXT = {
 }
 
 
-def format_alerts(transitions, first_run):
-    """Human text per transition. On the very first run every product is 'new' → only a summary line."""
+def format_alerts(transitions, first_run, muted=()):
+    """One message dict per transition (text, buttons). On the very first run only a summary."""
     if first_run:
-        return [f"🏪 Retailer-monitor gestart: {len(transitions)} producten gevonden bij "
-                f"{len({t['retailer'] for t in transitions})} shops. Vanaf nu meld ik wijzigingen."]
+        return [{"text": f"🏪 Retailer-monitor gestart: {len(transitions)} producten gevonden bij "
+                         f"{len({t['retailer'] for t in transitions})} shops. Vanaf nu meld ik wijzigingen.", "buttons": None}]
+    import re as _re
     out = []
     for t in transitions:
         if t["kind"] == "new_listing" and t["status"] == "unknown":
             continue
+        m = _re.search(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", (t.get("title") or "") + " " + t["url"], _re.I)
+        code = f"{m.group(1).upper()}{m.group(2)}" if m else None
+        if code and code in muted:
+            continue
         label = KIND_TEXT.get(t["kind"], t["kind"])
-        price = f" €{t['price']:.2f}" if t.get("price") else ""
+        price = f"<b>€{t['price']:.2f}</b>" if t.get("price") else "prijs onbekend"
         old = f" (was €{t['old_price']:.2f})" if t.get("old_price") and t["kind"].startswith("price") else ""
-        out.append(f"{label}: <b>{t['title'][:90]}</b> @ {t['retailer']}{price}{old}\n{t['url']}")
+        out.append({"text": f"{label} · <b>{code or 'sealed'}</b>\n{t['title'][:100]}\n{price} bij {t['retailer']}{old}",
+                    "buttons": [[(f"🛒 {t['retailer']}", t["url"]), ("📊 Radar", "https://np7editz-bot.github.io/TCGWatcher/")]]})
     return out

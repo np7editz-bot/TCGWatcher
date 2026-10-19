@@ -56,7 +56,7 @@ def test_run_and_transitions(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA", tmp_path)
     r = retail.run(day="2026-10-17", http=fake_http(), retailer_ids=["fantasiacards", "dracoon", "tbhstore"])
     assert r["rows"] == 5 and all(t["kind"] == "new_listing" for t in r["transitions"])
-    assert retail.format_alerts(r["transitions"], first_run=True)[0].startswith("🏪")
+    assert retail.format_alerts(r["transitions"], first_run=True)[0]["text"].startswith("🏪")
     # second observation: FB10 at fantasia back in stock, dracoon FB11 price drop
     SHOPIFY["products"][1]["variants"][0]["available"] = True
     WOO[0]["prices"]["price"] = "11999"
@@ -64,6 +64,6 @@ def test_run_and_transitions(tmp_path, monkeypatch):
     kinds = sorted(t["kind"] for t in r2["transitions"])
     assert kinds == ["price_drop", "sold_out->in_stock"]
     msgs = retail.format_alerts(r2["transitions"], first_run=False)
-    assert any("terug op voorraad" in m for m in msgs) and any("prijs omlaag" in m for m in msgs)
+    assert any("terug op voorraad" in m["text"] for m in msgs) and any("prijs omlaag" in m["text"] for m in msgs)
     day = json.load(open(tmp_path / "retail" / "2026-10-17.json"))
     assert len(day["results"]) == 10   # append-only within the day

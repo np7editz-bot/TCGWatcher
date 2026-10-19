@@ -59,6 +59,9 @@ cd site && python -m http.server 8000       # http://localhost:8000
 
 ## Telegram
 
+Berichten: één **dagelijkse briefing** (ranking met verschuiving, bewegingen ≥20%, boxen, retail, Naruto) plus **signaalkaarten** met foto en knoppen voor koopsignalen, nieuwe productlijnen, nieuwe sealed producten, datakwaliteit (alleen bij wijziging) en retail-overgangen. Stuur `/mute FB10`, `/unmute FB10`, `/mute all` of `/status` naar de bot; wordt bij de volgende run verwerkt.
+
+
 Repo-secrets `TELEGRAM_BOT_TOKEN` (van @BotFather) en `TELEGRAM_CHAT_ID`. Zonder token draait alles, maar
 alerts blijven in `data/alerts/<dag>.json`. Zonder chat-id print de workflow-log de kandidaat-chat-id's nadat je
 `/start` naar de bot hebt gestuurd.

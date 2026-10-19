@@ -49,7 +49,7 @@ def build(day, quality=None):
             pts = series.get(p.product_id, [])
             cards.append({"key": p.key, "set": p.set_code, "number": p.number, "name": p.name, "rarity": p.rarity,
                           "variant": p.variant, "class": p.hit_class, "price": p.price, "price_src": p.price_src,
-                          "presale": p.presale, "product_id": p.product_id,
+                          "presale": p.presale, "product_id": p.product_id, "image": p.image, "url": p.url,
                           "chg7": change_pct(pts, day, 7), "chg30": change_pct(pts, day, 30)})
         other_sets = [{"code": c, **{k: v for k, v in meta.items() if k != "code"},
                        "products": [{"key": p.key, "name": p.name, "kind": p.sealed_kind, "price": p.price, "price_src": p.price_src,
