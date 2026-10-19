@@ -271,6 +271,32 @@
    "ratio_then": 0.209,
    "source": "CardTrader Zero",
    "status": "open"
+  },
+  {
+   "code": "SB01",
+   "key": "dbfw:SB01:FB04-051:GOLD",
+   "kind": "raw",
+   "name": "Vegeta FB04-051 SCR_AA",
+   "net_then": 748.52,
+   "opened": "2026-10-18",
+   "price": 244.73,
+   "psa10_then": 1540.0,
+   "source": "TCGplayer market (raw)",
+   "status": "open",
+   "tcg_then": 244.73
+  },
+  {
+   "code": "SB01",
+   "key": "dbfw:SB01:SB01-001:GOLD",
+   "kind": "raw",
+   "name": "Cell - SB01-001 SB01-001 SCR_AA",
+   "net_then": 449.17,
+   "opened": "2026-10-18",
+   "price": 290.63,
+   "psa10_then": 1129.26,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 272.5
   }
  ]
 }

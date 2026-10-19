@@ -1,32 +1,39 @@
 {
  "alerts": [
   {
-   "at": "2026-10-19T10:21:13Z",
+   "at": "2026-10-19T10:32:22Z",
    "buttons": [
     [
      [
-      "🛒 #1 op eBay",
-      "https://www.ebay.nl/itm/137765290110?_skw=Frieza+FB05-120+PSA&hash=item201373807e:g:ql4AAeSwHlVqshJr"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
+      "1 · raw €245",
+      "https://www.tcgplayer.com/product/638945/dragon-ball-super-fusion-world-manga-booster-01-vegeta-fb04-051-gold"
      ]
-    ]
-   ],
-   "key": "grade_digest:dbfw",
-   "kind": "grade",
-   "photo": null,
-   "text": "📈 <b>Top 5 grade-kansen</b> · raw goedkoop, graded duur en liquide\n1. Frieza FB05-120 SAA · raw <b>€511</b> → PSA 10 €2525 (4 st.) · netto <b>€1133</b> (222%)\n2. Son Goku : GT FB07-122 SCR · raw <b>€21</b> → PSA 10 €1061 (22 st.) · netto <b>€656</b> (3176%)\n3. Cell FB10-123 SAA · raw <b>€888</b> → PSA 10 €2135 (3 st.) · netto <b>€499</b> (56%)\n4. Son Goku : GT FB03-140 SAA · raw <b>€511</b> → PSA 10 €1212 (4 st.) · netto <b>€265</b> (52%)\n5. Raditz SB01-026 SR AA · raw <b>€34</b> → PSA 10 €377 (4 st.) · netto <b>€191</b> (564%)\n<i>Verwachte opbrengst per service (uitkomstmix × eBay-mediaan) × 0,87 − kosten − raw; vraagprijzen als proxy.</i>"
-  },
-  {
-   "at": "2026-10-19T10:21:13Z",
-   "buttons": [
+    ],
     [
      [
-      "🛒 #1 op eBay",
-      "https://www.ebay.de/itm/389219190107?_skw=Cell+-+SB01-001+SB01-001+PSA&hash=item5a9f45855b:g:CsYAAeSw5Z5pE9yF"
-     ],
+      "2 · raw €888",
+      "https://www.tcgplayer.com/product/695871/dragon-ball-super-fusion-world-cross-force-cell-fb10-123-super-alternate-art"
+     ]
+    ],
+    [
+     [
+      "3 · raw €706",
+      "https://www.cardtrader.com/cards/319559"
+     ]
+    ],
+    [
+     [
+      "4 · raw €291",
+      "https://www.cardtrader.com/cards/338519"
+     ]
+    ],
+    [
+     [
+      "5 · raw €38",
+      "https://www.cardtrader.com/cards/338565"
+     ]
+    ],
+    [
      [
       "📊 Radar",
       "https://np7editz-bot.github.io/TCGWatcher/"
@@ -36,22 +43,7 @@
    "key": "slab_digest:dbfw",
    "kind": "slab",
    "photo": null,
-   "text": "🏆 <b>Top 5 slab-koop</b> · graded exemplaar in de EU voor ≤ 1,15× raw\n1. Cell SB01-001 SCR AA · PSA 10 <b>€145</b> vs raw €272 (0.53×)\n2. Vegeta FB04-051 SCR AA · PSA 10 <b>€155</b> vs raw €245 (0.63×)\n3. Bulma SB01-045 SCR AA · PSA 10 <b>€165</b> vs raw €228 (0.72×)\n<i>Alleen EU-gelokaliseerde listings (geen invoer-btw), prijs incl. verzending.</i>"
-  },
-  {
-   "at": "2026-10-19T10:21:13Z",
-   "buttons": [
-    [
-     [
-      "📊 Open radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "key": "briefing:2026-10-18",
-   "kind": "briefing",
-   "photo": null,
-   "text": "📋 <b>TCGWatcher · zondag 18 oktober</b>\n<i>15 sets · 609 chase cards · data ✔ (0 bekende bronfout(en))</i>\n\n<b>Ranking (hits € ÷ goedkoopste EU-box, excl. ★★)</b>\n1. FB11 Brightness of Hope <code>1.03</code> · €155 CardTrader Zero\n2. FB09 Dual Evolution <code>0.93</code> · €187 CardTrader Zero\n3. FB03 Raging Roar <code>0.63</code> · €85 cardcollector\n4. FB10 Cross Force <code>0.62</code> · €168 CardTrader Zero\n5. FB02 Blazing Aura <code>0.61</code> · €107 CardTrader Zero\n6. FB08 Saiyan's Pride <code>0.59</code> · €185 breakthecase\n\n<b>Bewegingen (7d, ≥20%)</b>\n▲ +66% Son Goku FB11-105 OTHER AA → €59\n▼ -36% Son Goku FB11-121 SCR → €31\n▼ -28% Shallet FB11-122 SCR AA → €40\n\n<b>Boxen EU all-in</b> FB11 €155 CardTrader Zero · FB09 €187 CardTrader Zero · FB03 €85 cardcollector · FB10 €168 CardTrader Zero · FB02 €107 CardTrader Zero\n\n<b>Retail</b> 4 pre-order(s) open · 15 op voorraad\n<b>Naruto</b> 1 productlijn(en) in catalogus, geen nieuwe"
+   "text": "🏆 <b>Top 5 slabs · raw goedkoop, graded veel waard</b>\n1. <b>Vegeta FB04-051</b> SCR AA · raw <b>€245</b> (TCGplayer) → PSA 10 €1540 (3 st.) · netto <b>€749</b>\n2. <b>Cell FB10-123</b> SAA · raw <b>€888</b> (TCGplayer) → PSA 10 €2135 (3 st.) · netto <b>€499</b>\n3. <b>Frieza FB05-120</b> SAA · raw <b>€706</b> (CardTrader) → PSA 10 €1853 (3 st.) · netto <b>€495</b>\n4. <b>Cell SB01-001</b> SCR AA · raw <b>€291</b> (CardTrader) → PSA 10 €1129 (4 st.) · netto <b>€431</b>\n5. <b>Raditz SB01-026</b> SR AA · raw <b>€38</b> (CardTrader) → PSA 10 €377 (4 st.) · netto <b>€187</b>\n<i>netto = verwachte graded-opbrengst (uitkomstmix × eBay/CardTrader-mediaan) × 0,87 − grading − raw · knoppen gaan direct naar de shop</i>"
   }
  ],
  "day": "2026-10-18"
