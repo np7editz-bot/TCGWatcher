@@ -1,28 +1,7 @@
 {
  "alerts": [
   {
-   "at": "2026-10-19T10:46:33Z",
-   "buttons": [
-    [
-     [
-      "🛒 raw €305 · eBay",
-      "https://www.ebay.de/itm/287460591557?_skw=Cell+FB10-123&hash=item42edfc87c5:g:h3UAAeSw0-xqVf42"
-     ]
-    ],
-    [
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "key": "slab:dbfw:dbfw:FB10:FB10-123:SAA",
-   "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/695871_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #1 · Cell FB10-123 SAA</b> · FB10\nRaw kopen vanaf <b>€305</b> → PSA 10 waarde <b>€2135</b> (3 listings)\nNetto na grading en fees: <b>€1082</b> per kaart (355% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €305 eBay (2 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €888</i>"
-  },
-  {
-   "at": "2026-10-19T10:46:33Z",
+   "at": "2026-10-19T12:07:53Z",
    "buttons": [
     [
      [
@@ -40,10 +19,10 @@
    "key": "slab:dbfw:dbfw:SB01:FB04-051:GOLD",
    "kind": "slab",
    "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638945_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #2 · Vegeta FB04-051 Gold (Manga)</b> · SB01\nRaw kopen vanaf <b>€245</b> → PSA 10 waarde <b>€1540</b> (3 listings)\nNetto na grading en fees: <b>€749</b> per kaart (306% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €245 TCGplayer (US, geen EU-aanbod gevonden)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €245</i>"
+   "text": "🏆 <b>SLAB #1 · Vegeta FB04-051 Gold (Manga)</b> · SB01\nRaw kopen vanaf <b>€245</b> → PSA 10 waarde <b>€1540</b> (3 listings)\nNetto na grading en fees: <b>€749</b> per kaart (306% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €245 TCGplayer (US, geen EU-aanbod gevonden)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €245</i>"
   },
   {
-   "at": "2026-10-19T10:46:33Z",
+   "at": "2026-10-19T12:07:53Z",
    "buttons": [
     [
      [
@@ -61,10 +40,10 @@
    "key": "slab:dbfw:dbfw:SB01:SB01-001:GOLD",
    "kind": "slab",
    "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638973_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #3 · Cell SB01-001 Gold (Manga)</b> · SB01\nRaw kopen vanaf <b>€292</b> → PSA 10 waarde <b>€1129</b> (4 listings)\nNetto na grading en fees: <b>€430</b> per kaart (147% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €292 CardTrader Zero\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €272</i>"
+   "text": "🏆 <b>SLAB #2 · Cell SB01-001 Gold (Manga)</b> · SB01\nRaw kopen vanaf <b>€292</b> → PSA 10 waarde <b>€1129</b> (4 listings)\nNetto na grading en fees: <b>€430</b> per kaart (147% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €292 CardTrader Zero\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €272</i>"
   },
   {
-   "at": "2026-10-19T10:46:33Z",
+   "at": "2026-10-19T12:07:53Z",
    "buttons": [
     [
      [
@@ -82,10 +61,10 @@
    "key": "slab:dbfw:dbfw:SB01:SB01-026:AA",
    "kind": "slab",
    "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638986_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #4 · Raditz SB01-026 SR AA</b> · SB01\nRaw kopen vanaf <b>€47</b> → PSA 10 waarde <b>€377</b> (4 listings)\nNetto na grading en fees: <b>€178</b> per kaart (383% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €47 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €34</i>"
+   "text": "🏆 <b>SLAB #3 · Raditz SB01-026 SR AA</b> · SB01\nRaw kopen vanaf <b>€47</b> → PSA 10 waarde <b>€377</b> (4 listings)\nNetto na grading en fees: <b>€178</b> per kaart (383% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €47 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €34</i>"
   },
   {
-   "at": "2026-10-19T10:46:33Z",
+   "at": "2026-10-19T12:07:53Z",
    "buttons": [
     [
      [
@@ -109,7 +88,34 @@
    "key": "slab:dbfw:dbfw:FB06:FB06-103:AA",
    "kind": "slab",
    "photo": "https://tcgplayer-cdn.tcgplayer.com/product/628361_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #5 · Chi-Chi : Childhood FB06-103 SR AA</b> · FB06\nRaw kopen vanaf <b>€20</b> → PSA 10 waarde <b>€290</b> (4 listings)\nNetto na grading en fees: <b>€147</b> per kaart (734% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €20 eBay (1 EU)\n• €37 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €36</i>"
+   "text": "🏆 <b>SLAB #4 · Chi-Chi : Childhood FB06-103 SR AA</b> · FB06\nRaw kopen vanaf <b>€20</b> → PSA 10 waarde <b>€290</b> (4 listings)\nNetto na grading en fees: <b>€147</b> per kaart (734% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €20 eBay (1 EU)\n• €37 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €36</i>"
+  },
+  {
+   "at": "2026-10-19T12:07:53Z",
+   "buttons": [
+    [
+     [
+      "🛒 raw €200 · eBay",
+      "https://www.ebay.de/itm/358195082361?_skw=Son+Gohan+%3A+Youth+FB03-139&hash=item5366173479:g:TtoAAeSwhd9phhzV"
+     ]
+    ],
+    [
+     [
+      "🛒 raw €307 · CardTrader Zero",
+      "https://www.cardtrader.com/cards/296072"
+     ]
+    ],
+    [
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "key": "slab:dbfw:dbfw:FB03:FB03-139:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/562353_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #5 · Son Gohan : Youth FB03-139 SCR AA</b> · FB03\nRaw kopen vanaf <b>€200</b> → PSA 10 waarde <b>€666</b> (6 listings)\nNetto na grading en fees: <b>€134</b> per kaart (67% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €200 eBay (1 EU)\n• €307 CardTrader Zero\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · TCGplayer-market ter referentie €162</i>"
   }
  ],
  "day": "2026-10-18"
