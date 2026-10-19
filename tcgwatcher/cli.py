@@ -1,5 +1,6 @@
 """python -m tcgwatcher <fetch|validate|build|alerts|all> [--day YYYY-MM-DD] [--force] [--no-send]"""
 import argparse
+import datetime as dt
 import logging
 import sys
 from . import store
@@ -7,10 +8,11 @@ from . import store
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="tcgwatcher")
-    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "news", "cardtrader", "ebay", "calibrate", "all"])
+    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "news", "cardtrader", "ebay", "calibrate", "paper", "all"])
     ap.add_argument("--day", help="source day to process (default: last synced day)")
     ap.add_argument("--force", action="store_true", help="fetch even if the source did not change")
     ap.add_argument("--no-send", action="store_true", help="do not send Telegram messages")
+    ap.add_argument("--report", action="store_true", help="paper: write the monthly review now")
     a = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
     log = logging.getLogger("tcgwatcher")
@@ -59,6 +61,17 @@ def main(argv=None):
         alerts = run(day, quality, send=not a.no_send)
         for al in alerts:
             log.info("alert %s", al["key"])
+        from .paper import open_positions, report as paper_report
+        from .build import LATEST
+        latest = store.read_json(LATEST)
+        if latest:
+            open_positions(day, latest, alerts)
+            if a.step == "all" and dt.date.today().day == 1:
+                paper_report(day, latest, send=not a.no_send)
+    if a.step == "paper":
+        from .paper import report as paper_report
+        from .build import LATEST
+        paper_report(day or dt.date.today().isoformat(), store.read_json(LATEST), send=not a.no_send)
     if a.step in ("news", "all"):
         from .news import run as news_run
         n = news_run(send=not a.no_send)

@@ -112,6 +112,22 @@ def parse_listing(item, number, fx_usd_eur, variant=""):
             "eu": ((item.get("itemLocation") or {}).get("country") or "").upper() in EU}
 
 
+def cardtrader_slabs(ct_doc, blueprint_id, fx_unused=None, zero_fee=6.0, ship=5.0):
+    """CardTrader graded listings of one blueprint → same shape as eBay listings (EU by construction)."""
+    out = []
+    g = ((ct_doc or {}).get("graded") or {}).get(str(blueprint_id))
+    for l in (g or {}).get("listings", []):
+        blob = " ".join(str(v) for v in l.get("props", {}).values()) + " " + (l.get("description") or "")
+        m = GRADE.search(blob)
+        if not m or JP.search(blob):
+            continue
+        price = round(l["price"] + (zero_fee if l.get("zero") else ship), 2)
+        out.append({"grader": m.group(1).upper(), "grade": float(m.group(2)), "price": price, "title": f"CardTrader {blob[:100]}",
+                    "url": f"https://www.cardtrader.com/cards/{blueprint_id}", "item_id": f"ct:{l.get('id')}", "marketplace": "CARDTRADER",
+                    "location": l.get("country"), "eu": True, "zero": l.get("zero", False)})
+    return out
+
+
 def targets(latest, per_set=10, min_raw_eur=20):
     """Cards worth watching: the most valuable market-priced hits per set (★★, ★, SCR, SR-AA), raw ≥ €20 —
     broad enough to catch cheap raws with expensive PSA 10s (grading candidates)."""
@@ -146,6 +162,10 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
     fx = latest["fx"]["usd_eur"]
     if hasattr(client, "auth"):
         client.auth()                      # fail fast: a broken token setup must not produce an empty day file
+    from .cardtrader import latest_day as ct_latest, eu_prices_by_tcgplayer
+    ct_doc = ct_latest()
+    ct_by_tcg = eu_prices_by_tcgplayer(ct_doc) if ct_doc else {}
+    ct_bp = {int(b.get("tcg_player_id")): int(bid) for bid, b in ((ct_doc or {}).get("blueprints") or {}).items() if b.get("tcg_player_id")}
     cards = {}
     for t in targets(latest):
         listings = []
@@ -157,6 +177,8 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
                         listings.append(p)
             except Exception as e:  # noqa: BLE001
                 log.warning("%s %s: %s", t["number"], mp, e)
+        if t.get("product_id") in ct_bp:
+            listings += cardtrader_slabs(ct_doc, ct_bp[t["product_id"]])      # CardTrader graded section next to eBay
         seen, uniq = set(), []
         for l in sorted(listings, key=lambda x: x["price"]):
             if l["item_id"] in seen:

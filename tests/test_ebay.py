@@ -75,3 +75,13 @@ def test_grade_signal_cheap_raw_expensive_psa10(tmp_path, monkeypatch):
     assert [s["number"] for s in sig] == ["FB10-097"] and sig[0]["service"] == "BGS" and sig[0]["net"] == 196.24
     assert [o["service"] for o in sig[0]["options"]] == ["BGS", "PSA"] and sig[0]["options"][1]["net"] == 112.5
     assert ebay.grade_signals(doc, dict(cfg, min_profit_eur=300)) == []
+
+
+def test_cardtrader_graded_listings_join_ebay():
+    ct = {"graded": {"375875": {"set": "FB09", "listings": [
+        {"price": 1400.0, "zero": True, "country": "IT", "id": 1, "props": {"condition": "Mint", "graded": True, "grading_company": "PSA", "grading_score": "10"}, "description": ""},
+        {"price": 900.0, "zero": False, "country": "DE", "id": 2, "props": {"condition": "Near Mint"}, "description": "BGS 9.5 Gem Mint slab"},
+        {"price": 500.0, "zero": True, "country": "ES", "id": 3, "props": {"condition": "Mint"}, "description": "graded, no grade stated"}]}}}
+    out = ebay.cardtrader_slabs(ct, 375875)
+    assert [(l["grader"], l["grade"], l["price"], l["eu"]) for l in out] == [("PSA", 10.0, 1406.0, True), ("BGS", 9.5, 905.0, True)]
+    assert out[0]["url"] == "https://www.cardtrader.com/cards/375875" and out[0]["marketplace"] == "CARDTRADER"
