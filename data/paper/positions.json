@@ -377,6 +377,20 @@
    "source": "Cardmarket",
    "status": "void",
    "void_reason": "2026-10-19: opened on Cardmarket all-language box lows and (BT26/BT27) on an EV that counted collector-booster/serial cards as box pulls; Masters re-enters on the next control cohort / KOOP hit"
+  },
+  {
+   "code": "BT28",
+   "ev_then": 100.53,
+   "game": "dbs",
+   "key": "control:dbs:BT28:2026-10",
+   "kind": "control",
+   "name": "Prismatic Clash",
+   "opened": "2026-10-18",
+   "price": 126.54,
+   "ratio_then": 0.794,
+   "source": "CardTrader Zero",
+   "status": "open",
+   "valuation": "cardmarket"
   }
  ]
 }
