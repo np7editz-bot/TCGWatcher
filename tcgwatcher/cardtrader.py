@@ -17,6 +17,7 @@ from . import store, USER_AGENT
 
 log = logging.getLogger("tcgwatcher.cardtrader")
 BASE = "https://api.cardtrader.com/api/v2"
+EU = {"AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","CH","NO","GB","LI"}
 SETCODE = re.compile(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", re.I)
 
 
@@ -93,7 +94,8 @@ def fetch_day(ct=None, codes=None):
         prods = ct.get("/marketplace/products", {"expansion_id": e["id"], "language": "en"}, sleep=1.2)
         for bid, lst in prods.items():
             rows = [p for p in lst if (p.get("price") or {}).get("currency") == "EUR" and not p.get("graded")
-                    and (p.get("bundle_size") or 1) == 1 and not p.get("on_vacation")]
+                    and (p.get("bundle_size") or 1) == 1 and not p.get("on_vacation")
+                    and ((p.get("user") or {}).get("country_code") or "").upper() in EU]
             if not rows:
                 continue
             prices = sorted(p["price"]["cents"] / 100 for p in rows)

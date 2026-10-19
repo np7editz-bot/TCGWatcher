@@ -67,8 +67,11 @@ def build(day, quality=None):
                 if sp and eu.get(sp["product_id"]):
                     o = eu[sp["product_id"]]
                     sp["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5}
-            # EU EV: same formula with the EU median per card where CardTrader has EN offers, else TCGplayer USD→EUR
-            s["ev_eu_excl_saa"], covered, total = eu_ev(s, cards, rate)
+            # Decision 2026-10-19 (docs/calibration-2026-10-18.md): CardTrader asks sit 15–35% above TCGplayer market and are
+            # thin for most hits, so valuation stays TCGplayer (sales-based) converted to EUR; CardTrader provides the EU box ask
+            # (denominator) and per-card "what you pay now" info only.
+            s["ev_eu_excl_saa"] = round(s["ev_excl_saa"] * rate, 2)
+            covered, total = sum(1 for c in cards if c["set"] == s["code"] and c.get("eu")), sum(1 for c in cards if c["set"] == s["code"])
             s["eu_coverage"] = f"{covered}/{total}"
             box_eu = (s.get("box") or {}).get("eu")
             s["ratio_eu"] = round(s["ev_eu_excl_saa"] / box_eu["low"], 3) if box_eu else None
