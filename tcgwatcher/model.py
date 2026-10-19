@@ -117,6 +117,7 @@ def load_game(game, day):
             k: r.get(k) for k in ("marketPrice", "lowPrice", "midPrice", "highPrice")}
     products = []
     sets = {}
+    fixes = {int(k): v for k, v in (game.get("number_fixes") or {}).items()}
     for gid in store.list_catalog_groups(cat):
         doc = store.read_json(store.catalog_path(cat, gid))
         grp = groups.get(gid) or doc.get("group") or {}
@@ -128,7 +129,7 @@ def load_game(game, day):
             ext = _ext(p)
             name = p["name"]
             rarity = ext.get("Rarity") or ""
-            number = ext.get("Number") or ""
+            number = fixes.get(p["productId"]) or ext.get("Number") or ""
             sealed = sealed_kind_of(game, name, number)
             pr = prices.get(p["productId"], {})
             price, src = pick_price(pr)

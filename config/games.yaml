@@ -67,10 +67,15 @@ games:
         est: 1.0
         note: "no sampled rate; assumption"
     # Canonical card key: GAME:SET:NUMBER:VARIANT. Variant is derived from the name suffix.
+    # Known TCGplayer catalogue errors, corrected on load (productId → right Number). Raw data stays as fetched.
+    number_fixes:
+      693131: "FB10-067"     # 'Piccolo - FB10-067' carries Number FB10-068 in the source (2026-10)
+      707458: "FB10-067"     # same card, Limited Pack 26-27 WAVE2 promo
     variants:
       - { suffix: "(Super Alternate Art)",      code: "SAA" }
       - { suffix: "(Bonus Pack Alternate Art)", code: "BPAA" }   # starter-deck bonus pack parallels
       - { suffix: "(Limited Pack",              code: "LP" }     # 'Limited Pack 26-27 WAVE2' promos listed inside sets
+      - { suffix: "(1st Anniversary Set)",      code: "ANN" }    # reprint parallels with the starter-deck number (FS03-16)
       - { suffix: "(Alternate Art)",            code: "AA" }
       - { suffix: "(Gold)",                code: "GOLD" }
       - { suffix: "(Dragon Ball Pattern)", code: "DBP" }

@@ -81,12 +81,13 @@ def test_canonical_keys_and_composition(dbfw):
     assert "no_cards" in scored["FB12"]["flags"]
 
 
-def test_validation_finds_known_source_errors():
+def test_validation_clean_after_number_fixes():
+    """TCGplayer's 'Piccolo - FB10-067' carries Number FB10-068 and FS03-16 has an anniversary reprint: both are corrected
+    by config (number_fixes, ANN variant), so the known-source-error warnings are gone and the seed validates clean."""
     rep = validate(DAY)
     codes = {f["code"] for f in rep["games"]["dbfw"]["findings"]}
-    assert "duplicate_keys" in codes            # FB10-068 appears twice in TCGplayer's catalog
-    assert "number_name_mismatch" in codes      # 'Piccolo - FB10-067' carries Number FB10-068
-    assert rep["status"] in ("ok", "warn")      # never fail on the seed
+    assert "duplicate_keys" not in codes and "number_name_mismatch" not in codes
+    assert rep["status"] in ("ok", "warn")      # seed day 10-15: FB11 presale coverage warning only
 
 
 def test_change_pct_needs_enough_history():
@@ -117,7 +118,7 @@ def test_real_day_2_fixes(dbfw):
     assert "low_coverage" not in scored["FB10"]["flags"]
     rep = validate("2026-10-16")
     dup = [f for f in rep["games"]["dbfw"]["findings"] if f["code"] == "duplicate_keys"]
-    assert dup and all(not k.split(":")[1].startswith("DBSFW") for k in dup[0]["ids"])
+    assert all(not k.split(":")[1].startswith("DBSFW") for f in dup for k in f["ids"])   # promos never counted as duplicates
 
 
 def test_cardtrader_join_and_eu_ev():
@@ -163,3 +164,12 @@ def test_buy_signal_uses_eu_ratio(tmp_path, monkeypatch):
     store.write_json(latest_path, doc)
     again = [m for m in alerts.run("2026-10-21", quality={"status": "ok", "games": {}}, send=False) if m["kind"] == "buy"]
     assert len(again) == 1 and "goedkoper geworden" in again[0]["text"]
+
+
+def test_number_fixes_and_anniversary_variant():
+    from tcgwatcher.config import load_games
+    from tcgwatcher.model import variant_of
+    g = load_games()["dbfw"]
+    assert g["number_fixes"][693131] == "FB10-067"
+    assert variant_of(g, "Destructive Strength (1st Anniversary Set)") == "ANN"
+    assert variant_of(g, "Piccolo - FB10-067 (Limited Pack 26-27 WAVE2)") == "LP"
