@@ -28,10 +28,13 @@ def fetch_all(client: TcgCsv | None = None, force: bool = False) -> dict:
     sync = store.read_json(store.state_path("sync"), {})
     result = {"day": day, "last_updated": last_updated, "games": {}, "skipped": False}
 
-    if sync.get("last_updated") == last_updated and not force:
+    missing = [gid for gid, g in games.items() if g.get("enabled", True) and not store.prices_path(g["tcgcsv_category"], day).exists()]
+    if sync.get("last_updated") == last_updated and not force and not missing:
         log.info("source unchanged since %s — nothing to fetch", last_updated)
         result["skipped"] = True
         return result
+    if missing and sync.get("last_updated") == last_updated:
+        log.info("source unchanged, but %s has no price file for %s yet — fetching", missing, day)
 
     for gid, g in games.items():
         cat = g["tcgcsv_category"]
