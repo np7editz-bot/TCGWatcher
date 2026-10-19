@@ -19,6 +19,9 @@ def validate(day):
         findings = []
         cat = g["tcgcsv_category"]
         if not store.prices_path(cat, day).exists():
+            if not store.list_price_days(cat):          # game just added, never fetched: pending, not a failure
+                report["games"][gid] = {"status": "pending", "findings": [_f("info", "no_data_yet", f"category {cat} not fetched yet")]}
+                continue
             findings.append(_f("fail", "no_price_file", f"no price file for category {cat} on {day}"))
             report["games"][gid] = {"status": "fail", "findings": findings}
             continue

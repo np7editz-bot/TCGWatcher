@@ -10,7 +10,8 @@
    "price": 154.64,
    "ratio_then": 1.034,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB09",
@@ -22,7 +23,8 @@
    "price": 186.64,
    "ratio_then": 0.928,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB07",
@@ -34,7 +36,8 @@
    "price": 399.95,
    "ratio_then": 0.426,
    "source": "collgamers",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB10",
@@ -46,7 +49,8 @@
    "price": 167.64,
    "ratio_then": 0.618,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB08",
@@ -58,7 +62,8 @@
    "price": 185.0,
    "ratio_then": 0.586,
    "source": "breakthecase",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "SB02",
@@ -70,7 +75,8 @@
    "price": 799.95,
    "ratio_then": 0.365,
    "source": "collgamers",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB03",
@@ -82,7 +88,8 @@
    "price": 85.0,
    "ratio_then": 0.633,
    "source": "cardcollector",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "SB01",
@@ -94,7 +101,8 @@
    "price": 1506.54,
    "ratio_then": 0.395,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB05",
@@ -106,7 +114,8 @@
    "price": 156.63,
    "ratio_then": 0.434,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB02",
@@ -118,7 +127,8 @@
    "price": 106.63,
    "ratio_then": 0.615,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB01",
@@ -130,7 +140,8 @@
    "price": 226.54,
    "ratio_then": 0.349,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB04",
@@ -142,7 +153,8 @@
    "price": 84.64,
    "ratio_then": 0.383,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "FB06",
@@ -154,7 +166,8 @@
    "price": 450.0,
    "ratio_then": 0.229,
    "source": "breakthecase",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "ST01",
@@ -166,7 +179,8 @@
    "price": 325.62,
    "ratio_then": 0.209,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "open",
+   "game": "dbfw"
   },
   {
    "code": "SB01",
@@ -179,7 +193,8 @@
    "psa10_then": 1540.0,
    "source": "TCGplayer market (raw)",
    "status": "open",
-   "tcg_then": 244.73
+   "tcg_then": 244.73,
+   "game": "dbfw"
   },
   {
    "code": "SB01",
@@ -192,7 +207,8 @@
    "psa10_then": 1129.26,
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
-   "tcg_then": 272.5
+   "tcg_then": 272.5,
+   "game": "dbfw"
   },
   {
    "code": "FB03",
@@ -205,7 +221,8 @@
    "psa10_then": 1211.54,
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
-   "tcg_then": 511.32
+   "tcg_then": 511.32,
+   "game": "dbfw"
   },
   {
    "code": "SB01",
@@ -218,7 +235,8 @@
    "psa10_then": 710.0,
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
-   "tcg_then": 227.72
+   "tcg_then": 227.72,
+   "game": "dbfw"
   },
   {
    "code": "SB01",
@@ -231,7 +249,8 @@
    "psa10_then": 377.31,
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
-   "tcg_then": 33.83
+   "tcg_then": 33.83,
+   "game": "dbfw"
   }
  ]
 }

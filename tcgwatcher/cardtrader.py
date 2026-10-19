@@ -18,7 +18,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardtrader")
 BASE = "https://api.cardtrader.com/api/v2"
 EU = {"AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","CH","NO","GB","LI"}
-SETCODE = re.compile(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", re.I)
+SETCODE = re.compile(r"\b(FB|SB|ST|FS|BT|BE|SD|EB)\s?-?(\d{2})\b", re.I)
 
 
 class CardTrader:
@@ -63,8 +63,8 @@ def fusion_world_expansions(ct):
     out = {}
     for e in exps:
         m = SETCODE.search(e.get("name") or "") or SETCODE.search(e.get("code") or "")
-        if m and ("fusion" in (e.get("name") or "").lower() or m.group(1).upper() in ("FB", "SB", "ST", "FS")):
-            out[f"{m.group(1).upper()}{m.group(2)}"] = e
+        if m and m.group(1).upper() in ("FB", "SB", "ST", "FS", "BT", "BE", "SD", "EB"):      # Fusion World + Masters (BT)
+            out.setdefault(f"{m.group(1).upper()}{m.group(2)}", e)
     return gid, out
 
 

@@ -45,7 +45,13 @@ TCGplayer `productId`. Andere bronnen (Cardmarket, eBay, retailers) koppelen lat
 ## Een game toevoegen
 
 Eén blok in `config/games.yaml`: TCGCSV-categorie, box-samenstelling, hit-klassen (regels + schatting per box),
-variant-suffixen, set-overrides. Geen code nodig.
+variant-suffixen, set-overrides, en de vlaggen `eu_sources` (CardTrader/eBay koppelen), `alerts` (Telegram aan/uit) en
+`ebay_sets` (hoeveel recente sets slab-zoekopdrachten krijgen). Geen code nodig.
+
+**Masters (`dbs`, TCGplayer-categorie 27, BT-sets)** is op 19-10-2026 toegevoegd in de **stille stand**: wel pagina, CardTrader/eBay
+en paper-portfolio (koopregel + controlegroep), géén Telegram-koopsignalen tot het eerste maandrapport laat zien dat de ratio's kloppen.
+Hit-klassen: God Rare (~1/case), Secret Rare (~1/2 boxen), Special Leader Rare (~1/12 packs), Special Rare (~1/6 packs), Concept Rare
+(aanname 1/box), Super Rare. Schattingen uit community-openingen, niet gekalibreerd.
 
 ## Lokaal draaien
 

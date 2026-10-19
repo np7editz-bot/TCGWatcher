@@ -34,8 +34,9 @@ def open_positions(day, latest, msgs, active_buy=()):
     doc = _load()
     have = {(p["kind"], p["key"], p["opened"]) for p in doc["positions"]}
     have_keys = {(p["kind"], p["key"]) for p in doc["positions"] if p["status"] == "open"}
-    g = latest["games"].get("dbfw", {})
-    sets = {s["code"]: s for s in g.get("sets", [])}
+    from .config import load_alerts
+    cfg = load_alerts()
+    thr, excl = cfg.get("buy", {}).get("threshold", 0.8), set(cfg.get("exclude_flags", []))
     added = []
 
     def add(pos):
@@ -44,30 +45,36 @@ def open_positions(day, latest, msgs, active_buy=()):
         pos.update({"opened": day, "status": "open"})
         doc["positions"].append(pos); added.append(pos)
 
-    buy_codes = {m["key"].split(":")[-1] for m in msgs if m["kind"] == "buy"} | set(active_buy)
-    for code in sorted(buy_codes):
+    for gid, g in latest["games"].items():
+      if not g.get("sets"):
+        continue
+      sets = {s["code"]: s for s in g.get("sets", [])}
+      # the KOOP rule itself (not the message): silent games build evidence too
+      buy_codes = {code for code, s in sets.items() if s.get("best_buy") and (s["best_buy"].get("ratio") or 0) >= thr
+                   and not (set(s["flags"]) & excl) and "presale" not in s["flags"]} | {c for c in active_buy if c in sets}
+      for code in sorted(buy_codes):
         s = sets.get(code)
         if s and s.get("best_buy"):
-            add({"kind": "box", "key": f"buy:dbfw:{code}", "code": code, "name": s["name"], "price": s["best_buy"]["price"],
+            add({"kind": "box", "game": gid, "key": f"buy:{gid}:{code}", "code": code, "name": s["name"], "price": s["best_buy"]["price"],
                  "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"]})
-    cards = {c["key"]: c for c in g.get("cards", [])}
-    for sg in g.get("grade_signals", [])[:5]:
+      cards = {c["key"]: c for c in g.get("cards", [])}
+      for sg in g.get("grade_signals", [])[:5]:
         c = cards.get(sg["key"]) or {}
         eu = c.get("eu") or {}
         price, src = (round(eu["low"] + 5, 2), "CardTrader EU laagste ask + €5 verzending") if eu.get("low") else (sg["raw_eur"], "TCGplayer market (raw)")
-        add({"kind": "raw", "key": sg["key"], "code": sg["set"], "name": f"{sg['name']} {sg['number']} {sg['class']}",
+        add({"kind": "raw", "game": gid, "key": sg["key"], "code": sg["set"], "name": f"{sg['name']} {sg['number']} {sg['class']}",
              "price": price, "source": src, "tcg_then": sg["raw_eur"], "psa10_then": sg["top_median"], "net_then": sg["net"]})
-    for x in g.get("slab_signals", [])[:5]:
-        add({"kind": "slab", "key": f"{x['key']}:{x['grade']}", "code": x["set"], "name": f"{x['name']} {x['number']} {x['grader']} {x['grade']:g}",
+      for x in g.get("slab_signals", [])[:5]:
+        add({"kind": "slab", "game": gid, "key": f"{x['key']}:{x['grade']}", "code": x["set"], "name": f"{x['name']} {x['number']} {x['grader']} {x['grade']:g}",
              "price": x["price"], "source": "eBay EU", "grade": x["grade"], "raw_then": x["raw_eur"], "card_key": x["key"]})
-    # control cohort: once per month, every scored set without a buy signal
-    month = day[:7]
-    if not any(p["kind"] == "control" and p["opened"][:7] == month for p in doc["positions"]):
-        buy_codes |= {p["code"] for p in doc["positions"] if p["kind"] == "box" and p["status"] == "open"}
+      # control cohort: once per month per game, every scored set without a buy signal
+      month = day[:7]
+      if not any(p["kind"] == "control" and p["opened"][:7] == month and p.get("game", "dbfw") == gid for p in doc["positions"]):
+        buy_codes |= {p["code"] for p in doc["positions"] if p["kind"] == "box" and p["status"] == "open" and p.get("game", "dbfw") == gid}
         for code, s in sets.items():
             if code in buy_codes or not s.get("best_buy") or "no_cards" in s["flags"] or "presale" in s["flags"]:
                 continue
-            add({"kind": "control", "key": f"control:{code}:{month}", "code": code, "name": s["name"], "price": s["best_buy"]["price"],
+            add({"kind": "control", "game": gid, "key": f"control:{gid}:{code}:{month}", "code": code, "name": s["name"], "price": s["best_buy"]["price"],
                  "source": s["best_buy"]["source"], "ev_then": s["ev_eu_excl_saa"], "ratio_then": s["best_buy"]["ratio"]})
     if added:
         _save(doc)
@@ -77,7 +84,7 @@ def open_positions(day, latest, msgs, active_buy=()):
 
 def value_now(pos, latest, ebay_doc):
     """Current value of a position in €, with the same yardstick as the purchase."""
-    g = latest["games"].get("dbfw", {})
+    g = latest["games"].get(pos.get("game", "dbfw"), {})
     if pos["kind"] in ("box", "control"):
         s = next((s for s in g.get("sets", []) if s["code"] == pos["code"]), None)
         bb = (s or {}).get("best_buy")

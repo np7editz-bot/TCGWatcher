@@ -59,7 +59,7 @@ def build(day, quality=None):
                                      "presale": p.presale, "product_id": p.product_id}
                                     for p in m["products"] if p.set_code == c and p.sealed_kind]}
                       for c, meta in m["sets"].items() if meta["kind"] in ("starter",) ]
-        eu = eu_prices_by_tcgplayer(ct_latest()) if gid == "dbfw" else {}
+        eu = eu_prices_by_tcgplayer(ct_latest()) if g.get("eu_sources") else {}
         for c in cards:
             o = eu.get(c["product_id"])
             c["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5, "zero_low": o.get("zero_low"),
@@ -82,13 +82,13 @@ def build(day, quality=None):
             s["ratio_eu"] = round(s["ev_eu_excl_saa"] / box_eu["landed"], 3) if box_eu else None
             if s.get("box") and s["box"].get("price") and box_eu:
                 s["spread_eu_us_pct"] = round((box_eu["low"] - s["box"]["price"] * rate) / (s["box"]["price"] * rate) * 100, 1)
-        eb = ebay_latest() if gid == "dbfw" else None
+        eb = ebay_latest() if g.get("eu_sources") else None
         if eb:
             for c in cards:
                 e = eb["cards"].get(c["key"])
                 c["slabs"] = {k: {"low": v["low"], "n": v["n"], "url": v["url"], "grader": v["grader"]} for k, v in e["best"].items()} if e else None
                 c["raw_ebay"] = (e or {}).get("raw_ebay")
-        retail = retail_by_set(gid)
+        retail = retail_by_set(gid, g)
         for s in sets_scored:
             s["retail"] = retail.get(s["code"], [])
             s["best_buy"] = best_buy(s)
@@ -99,12 +99,13 @@ def build(day, quality=None):
             "source": {"name": "TCGplayer market data via tcgcsv.com", "last_updated": m["source_last_updated"],
                        "fetched_at": m["fetched_at"], "currency": "USD", "days_of_history": len(store.list_price_days(cat)),
                        "eu": ({"name": "CardTrader marketplace (EN, EUR, cheapest 25 per card)", "day": ct_latest()["day"],
-                               "cards_matched": sum(1 for c in cards if c.get("eu"))} if gid == "dbfw" and ct_latest() else None)},
+                               "cards_matched": sum(1 for c in cards if c.get("eu"))} if g.get("eu_sources") and ct_latest() else None)},
             "estimates": {k: {"label": labels[k], "est": v} for k, v in est.items()},
             "box": g["box"],
             "sets": sets_scored, "cards": cards, "starters": other_sets,
-            "slab_signals": slab_signals(eb) if eb else [],
-            "grade_signals": grade_signals(eb) if eb else [],
+            "slab_signals": [x for x in (slab_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
+            "grade_signals": [x for x in (grade_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
+            "alerts": g.get("alerts", True),
             "slabs_day": eb["day"] if eb else None,
             "all_sets": [{"code": c, "name": v["name"], "kind": v["kind"], "published": v["published"]} for c, v in m["sets"].items()],
             "quality": quality.get("games", {}).get(gid, {}).get("status", "unknown"),
@@ -116,7 +117,7 @@ def build(day, quality=None):
     return out
 
 
-SETCODE = re.compile(r"\b(FB|SB|ST|FS)\s?-?(\d{2})\b", re.I)
+SETCODE = re.compile(r"\b(FB|SB|ST|FS|BT|BE|SD|EB)\s?-?(\d{2})\b", re.I)
 
 
 def eu_ev(s, cards, rate):
@@ -169,9 +170,9 @@ def best_buy(s):
     return best
 
 
-def retail_by_set(game_id):
+def retail_by_set(game_id, game=None):
     """Group retailer observations (data/state/retail.json) by set code found in the product title/url."""
-    if game_id != "dbfw":
+    if not (game or {}).get("eu_sources"):
         return {}
     st = store.read_json(store.state_path("retail"), {"products": {}})
     by = {}
