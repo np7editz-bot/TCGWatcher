@@ -88,3 +88,11 @@ def test_join_prefers_the_sets_own_expansion():
     c = cards["dbfw:FB03:FB03-139:AA"]
     assert c["idProduct"] == 783017 and c["low"] == 80.0 and c["version"] == 2
     assert c["url"].endswith("/Raging-Roar/Son-Gohan-Youth-FB03-139-Fusion-World-V2-Alternate-Art?language=1")
+
+
+def test_box_name_match_ignores_plurals():
+    from tcgwatcher.cardmarket import _name_match
+    assert _name_match("Beyond Generations", "Beyond Generation Booster Box")
+    assert _name_match("Legend of the Dragon Balls", "Legends of the Dragon Balls Booster Box")
+    assert _name_match("Perfect Combination", "Perfect Combination Booster Box")
+    assert not _name_match("Wild Resurgence", "Critical Blow Booster Box")

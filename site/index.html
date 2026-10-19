@@ -309,7 +309,7 @@ function boxCard(x, rank){
     <div class="big">${x.ratio!=null?x.ratio.toFixed(2):'—'}<small>ratio EU · hits ${e0(x.evEur)} / box €${x.boxEu?.toFixed(0)??'—'}</small></div>
     <div class="row">${compText(s)}</div>
     <div class="row">Top hit: <b>${x.top?esc(short(x.top.name)):'—'}</b> ${x.top?e0(x.top.v):''} · US-ratio ${x.ratioUs!=null?x.ratioUs.toFixed(2):'—'}</div>
-    <div class="btns">${opts.map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 €${o.price.toFixed(0)} · ${esc(o.source)} · ${o.indicative?'indicatie (alle talen)':(st[o.status]||o.status)}</a>`).join('')||'<span class="muted">geen EU-aanbod</span>'}</div></div></div>`;
+    <div class="btns">${opts.map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 €${o.price.toFixed(0)} · ${esc(o.source)} · ${o.indicative?'indicatie (alle talen)':(st[o.status]||o.status)}</a>`).join('')||(s.cm_box?`<a href="${esc(s.cm_box.url)}" target="_blank" rel="noopener" class="alt">🛒 €${s.cm_box.landed.toFixed(0)} · Cardmarket · indicatie (alle talen)</a>`:'<span class="muted">geen EU-aanbod</span>')}</div></div></div>`;
 }
 
 /* ---------- views ---------- */
@@ -351,7 +351,7 @@ function renderBoxes(){
       <td><div class="bar"><div class="track"><div class="fill${x.hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${x.hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
       <td class="r num">${eur(x.boxUs)}<small>${pct(s.box?.chg7)} / ${pct(s.box?.chg30)}${x.ratioUs!=null?` · ${x.ratioUs.toFixed(2)}`:''}</small></td>
       <td style="font-size:13px;max-width:220px">${x.top?`${esc(short(x.top.name))}<div class="name num">${e0(x.top.v)} · ${x.top.number}</div>`:'—'}</td>
-      <td style="font-size:13px">${(x.bb?.options||[]).slice(0,3).map(o=>`<div><a href="${esc(o.url)}" target="_blank" rel="noopener">€${o.price.toFixed(0)}</a> <span class="name">${esc(o.source)} · ${o.status==='preorder'?'pre-order':'voorraad'}</span></div>`).join('')||'<span class="name">—</span>'}</td>
+      <td style="font-size:13px">${(x.bb?.options||[]).slice(0,3).map(o=>`<div><a href="${esc(o.url)}" target="_blank" rel="noopener">€${o.price.toFixed(0)}</a> <span class="name">${esc(o.source)} · ${o.indicative?'indicatie':(o.status==='preorder'?'pre-order':'voorraad')}</span></div>`).join('')||(s.cm_box?`<div><a href="${esc(s.cm_box.url)}" target="_blank" rel="noopener">€${s.cm_box.landed.toFixed(0)}</a> <span class="name">Cardmarket · indicatie (alle talen)</span></div>`:'<span class="name">—</span>')}</td>
       <td class="r"><input type="number" id="r_${s.code}" min="0" step="1" placeholder="€" value="${retail[s.code]??''}" style="width:84px" aria-label="Eigen EU-prijs ${s.code}"></td>`;
     tr.addEventListener('click', ev=>{ if (ev.target.tagName==='INPUT'||ev.target.tagName==='A') return; openSet = openSet===s.code?null:s.code; renderBoxes(); });
     tr.addEventListener('keydown', ev=>{ if (ev.key==='Enter'||ev.key===' ') { ev.preventDefault(); tr.click(); } });
