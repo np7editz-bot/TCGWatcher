@@ -27,14 +27,32 @@ SOLD = re.compile(r"(uitverkocht|sold\s*out|ausverkauft|esaurito|agotado|épuis�
 PRE = re.compile(r"(pre-?\s?order|voorverkoop|vorbestell|pr[ée]-?commande|preordine|pre-?venta|coming\s*soon|binnenkort)", re.I)
 INSTOCK = re.compile(r"(op\s*voorraad|in\s*stock|auf\s*lager|disponibile|en\s*stock|add\s*to\s*cart|in\s*winkelwagen|in\s*den\s*warenkorb)", re.I)
 PRICE_META = re.compile(r'property="(?:product:price:amount|og:price:amount)"\s+content="([\d.,]+)"|content="([\d.,]+)"\s+property="(?:product:price:amount|og:price:amount)"', re.I)
-KIND_BOX = re.compile(r"(booster\s*box|display|boîte de 2\d|box of 2\d|\bbox\b|case)", re.I)
-KIND_DECK = re.compile(r"(starter|deck)", re.I)
-KIND_PACK = re.compile(r"(booster\s*pack|\bpack\b|\bbooster\b(?!\s*box)|sleeved|promotion pack)", re.I)
+KIND_BOX = re.compile(r"(booster\s*box|\bdisplay\b|bo[iî]te de 2\d|box of 2\d|\bbox\b|\bboxes\b|\bcaja\b)", re.I)
+KIND_CASE = re.compile(r"\bcase\b", re.I)
+KIND_DECK = re.compile(r"(starter|\bdeck\b)", re.I)
+KIND_PACK = re.compile(r"(booster\s*pack|\bpacks?\b|sleeved|blister|\bbooster\b)", re.I)
+KIND_OTHER = re.compile(r"(sleeves?\b|playmat|promo|binder|bundle|lot\b|collector'?s? display)", re.I)
+
+
+def kind_with_price(title, url, price):
+    """Shops call a box 'Booster' (NL) or a pack 'Box' (IT): let the price break the tie."""
+    k = kind_of(title, url)
+    if price:
+        if k == "pack" and price >= 60:
+            return "box"
+        if k == "box" and price < 25:
+            return "pack"
+    return k
 
 
 def kind_of(title, url=""):
-    t = f"{title} {url}"
-    if re.search(r"\bcase\b", t, re.I):
+    """Classify a listing from its title (URL only as fallback). Order matters: accessories → case → deck → pack → box."""
+    t = title or ""
+    if not t.strip():
+        t = url.rsplit("/", 1)[-1].replace("-", " ")
+    if KIND_OTHER.search(t):
+        return "other"
+    if KIND_CASE.search(t):
         return "case"
     if KIND_DECK.search(t):
         return "deck"
@@ -190,6 +208,7 @@ def generic_product(http, row, retailer=None):
     if t and (not row.get("title") or row["title"] == row["url"]):
         row["title"] = html.unescape(" ".join(t.group(1).split()))[:160]
     mult = (retailer or {}).get("price_multiplier")
+    price = None if (price is not None and price <= 0) else price
     row["price"] = round(price * mult, 2) if (price is not None and mult) else price
     av = re.search(r'(?:product:availability|og:availability)"\s+content="([^"]+)"|"availability"\s*:\s*"(?:https?://schema\.org/)?(\w+)"', text, re.I)
     val = ((av.group(1) or av.group(2)) if av else "").lower()
@@ -205,7 +224,7 @@ def generic_product(http, row, retailer=None):
     if ot:
         row["title"] = html.unescape(ot.group(1))[:160]
     row["source"] = "generic-product"
-    row["kind"] = kind_of(row.get("title") or "", row["url"])
+    row["kind"] = kind_with_price(row.get("title") or "", row["url"], row.get("price"))
     return row
 
 
@@ -215,7 +234,7 @@ def _row(retailer, url, title, price, status, source):
         price = round(price * mult, 2)
     return {"retailer": retailer["id"], "country": retailer.get("country"), "url": url, "title": title,
             "price": price, "currency": retailer.get("currency", "EUR"), "status": status, "source": source,
-            "kind": kind_of(title or "", url)}
+            "kind": kind_with_price(title or "", url, price)}
 
 
 # --- orchestration -------------------------------------------------------------------------------
@@ -254,13 +273,16 @@ def run(day=None, http=None, retailer_ids=None):
     # append-only within a day: keep earlier fetches of the same day, newest observation per url wins in state
     doc["results"] = prev.get("results", []) + rows
     store.write_json(path, doc)
-    transitions = update_state(rows, now)
+    transitions = update_state(rows, now, succeeded={r["retailer"] for r in rows})
     return {"day": day, "rows": len(rows), "errors": errors, "transitions": transitions}
 
 
-def update_state(rows, now):
+def update_state(rows, now, succeeded=()):
     state = store.read_json(store.state_path("retail"), {"products": {}})
     prods = state["products"]
+    seen_urls = {r["url"] for r in rows}
+    for url in [u for u, p in prods.items() if p["retailer"] in succeeded and u not in seen_urls]:
+        prods.pop(url)          # listing disappeared from a shop that answered → drop (no alert; sold_out is the signal)
     transitions = []
     for r in rows:
         key = r["url"]
