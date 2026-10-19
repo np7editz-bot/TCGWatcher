@@ -187,3 +187,16 @@ def test_masters_promo_groups_and_variants():
     assert m["sets"]["BT26"]["kind"] == "booster" and m["sets"]["BT26_PR"]["kind"] == "promo"
     rep = validate("2026-10-18")
     assert rep["games"]["dbs"]["status"] == "ok", rep["games"]["dbs"]["findings"]
+
+
+def test_best_buy_supply_threshold():
+    from tcgwatcher.build import best_buy
+    s = {"flags": [], "ev_eu_excl_saa": 160.0, "retail": [], "ebay_box": None,
+         "box": {"eu": {"landed": 150.0, "landed_via": "zero", "url": "u", "n": 1, "landed_note": "x"}}}
+    b = best_buy(s, min_offers=3)
+    assert b["thin"] and b["offers"] == 1 and "thin" in s["flags"]            # one seller, one box: indication only
+    s2 = {"flags": [], "ev_eu_excl_saa": 160.0, "ebay_box": {"low": 140.0, "url": "e", "n": 4, "median": 155.0},
+          "retail": [{"price": 149.0, "status": "in_stock", "kind": "box", "retailer": "collgamers", "url": "c"}],
+          "box": {"eu": {"landed": 150.0, "landed_via": "zero", "url": "u", "n": 2, "landed_note": "x"}}}
+    b2 = best_buy(s2, min_offers=3)
+    assert not b2["thin"] and b2["offers"] == 7 and b2["source"].startswith("eBay") and b2["price"] == 140.0

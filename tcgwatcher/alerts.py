@@ -200,7 +200,7 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
     txt = (f"{head}\n"
            f"Hits per box <b>€{s['ev_eu_excl_saa']:.0f}</b> / box vanaf <b>€{bb['price']:.0f}</b> → ratio <b>{bb['ratio']:.2f}</b> (drempel {buy['threshold']})\n"
            f"#{pos} van {n}{us}\n\n"
-           f"🛒 <b>Waar kopen</b>\n{where}\n\n"
+           f"🛒 <b>Waar kopen</b> ({bb.get('offers', '?')} EU-listings)\n{where}\n\n"
            f"Samenstelling: {compo}\n"
            f"Top hit: {_card(s['top_hit']['name'], s['top_hit']['number'])} {s['top_hit']['class'].replace('_AA',' AA')} {_usd(s['top_hit']['price'])}\n"
            f"<i>Waardering TCGplayer-verkopen in € · {s['hits_market_priced']}/{s['hits_total']} hits met marktprijs</i>")

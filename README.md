@@ -69,7 +69,7 @@ Berichten (v3, `config/alerts.yaml`):
 
 | Bericht | Wanneer | Regel |
 |---|---|---|
-| 🎯 **KOOP** | set wordt koopwaardig | `EV€ hits (excl. ★★) ÷ goedkoopste EU-aanbod ≥ buy.threshold` (0,80). Eén kaart per episode; opnieuw alleen als de beste prijs ≥10% daalt. Goedkoopste aanbod = **wat je werkelijk betaalt**: CardTrader Zero-prijs + vaste Zero-kosten (`eu_landed.zero_fee_eur`), anders goedkoopste EU-verkoper + geschatte verzending (`eu_landed.seller_shipping_eur`), of een webshop met voorraad/pre-order. Knop linkt direct naar het product. |
+| 🎯 **KOOP** | set wordt koopwaardig | `EV€ hits (excl. ★★) ÷ goedkoopste EU-aanbod ≥ buy.threshold` (0,80); alleen bij **≥ 3 EU-listings** over CardTrader + eBay EU + retailers samen (`eu_landed.min_offers`), anders vlag `thin` en geen signaal. Eén kaart per episode; opnieuw alleen als de beste prijs ≥10% daalt. Goedkoopste aanbod = **wat je werkelijk betaalt**: CardTrader Zero-prijs + vaste Zero-kosten (`eu_landed.zero_fee_eur`), anders goedkoopste EU-verkoper + geschatte verzending (`eu_landed.seller_shipping_eur`), of een webshop met voorraad/pre-order. Knop linkt direct naar het product. |
 | 🟡 PRE-ORDER OPEN / ✅ OP VOORRAAD / 📉 GOEDKOPER | box/case wordt koopbaar bij een betrouwbare webshop | alleen als ratio tegen díe prijs ≥ `buy.near` (0,70), of de set nog niet gewaardeerd is (nieuwe set) |
 | 🍥 NARUTO · … | **elk** Naruto-product (deck, pack, box, case) dat koopbaar wordt bij een betrouwbare webshop | geen ratio-drempel: launch-lineup, als eerste bij zijn |
 | 🆕 productlijn | nieuwe set in de TCGplayer-catalogus | eerste pre-ordersignaal |

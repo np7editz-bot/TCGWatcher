@@ -7,6 +7,7 @@ buy:
 eu_landed:                 # what a CardTrader box really costs you (listing price excludes shipping/fees)
   zero_fee_eur: 6          # CardTrader Zero: one fixed fee per order (hub shipping + service)
   seller_shipping_eur: 15  # non-Zero seller ships himself: typical sealed-box shipping within the EU (seen €10–36)
+  min_offers: 3            # box price counts for a buy signal only with ≥ this many EU listings across CardTrader/eBay/retail
 slabs:                     # eBay graded copies (EBAY_DE/EBAY_NL, incl. shipping to NL) vs raw TCGplayer market in €
   max_vs_raw: 1.15         # 🏆 SLAB-KOOP when the cheapest PSA/BGS/CGC 10 (else 9.5, 9) costs ≤ 1.15 × raw
   min_raw_eur: 50
@@ -33,4 +34,4 @@ card_price:
 new_group: true            # new set/product line appears in TCGCSV (presale = earliest pre-order signal)
 new_sealed_product: true   # new booster box / case / pack product appears in an existing group
 quality_issues: fail_only   # true = also warn-changes; fail_only = only when the page was not updated
-exclude_flags: [manga, story, low_coverage, no_cards]   # sets with these flags never trigger ratio alerts
+exclude_flags: [manga, story, low_coverage, no_cards, thin]   # sets with these flags never trigger ratio alerts
