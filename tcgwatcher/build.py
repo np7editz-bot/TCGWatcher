@@ -60,15 +60,18 @@ def build(day, quality=None):
                                      "presale": p.presale, "product_id": p.product_id}
                                     for p in m["products"] if p.set_code == c and p.sealed_kind]}
                       for c, meta in m["sets"].items() if meta["kind"] in ("starter",) ]
-        eu = eu_prices_by_tcgplayer(ct_latest()) if g.get("eu_sources") else {}
+        ct_doc = ct_latest() if g.get("eu_sources") else None
+        eu = eu_prices_by_tcgplayer(ct_doc) if ct_doc else {}
+        ct_image = {int(b["tcg_player_id"]): b["image"] for b in ((ct_doc or {}).get("blueprints") or {}).values()
+                    if b.get("tcg_player_id") and b.get("image")}
         for c in cards:
             o = eu.get(c["product_id"])
             c["eu"] = {"low": o["low"], "median": o["median"], "n": o["n"], "thin": o["n"] < 5, "zero_low": o.get("zero_low"),
                        "url": f"https://www.cardtrader.com/cards/{o['blueprint_id']}"} if o else None
             # TCGplayer's product photos of the Manga Booster Gold leaders show the non-gold printing (Vegeta, Cell, 2026-10-19);
             # CardTrader scans the actual printing → use that image for Gold variants
-            if c["variant"] == "GOLD" and o and o.get("image"):
-                c["image"] = o["image"]
+            if c["variant"] == "GOLD" and ct_image.get(c["product_id"]):
+                c["image"] = ct_image[c["product_id"]]
         for s in sets_scored:
             for kind in ("box", "pack", "case"):
                 sp = s.get(kind)
