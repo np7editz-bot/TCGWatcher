@@ -56,10 +56,13 @@ def fusion_world_expansions(ct):
     if not isinstance(games, list):
         raise RuntimeError(f"unexpected /games response: {type(games).__name__} {str(games)[:200]}")
     log.info("CardTrader games: %s", [g.get("display_name") or g.get("name") for g in games][:40])
-    gid = next((g["id"] for g in games if "dragon ball" in (g.get("display_name") or g.get("name") or "").lower()), None)
-    if gid is None:
+    # CardTrader runs Fusion World and the original Dragon Ball Super (Masters, BT sets) as separate games: take both
+    gids = [g["id"] for g in games if "dragon ball" in (g.get("display_name") or g.get("name") or "").lower()]
+    if not gids:
         raise RuntimeError("Dragon Ball game not found in CardTrader /games")
-    exps = [e for e in ct.get("/expansions") if e["game_id"] == gid]
+    log.info("CardTrader Dragon Ball game ids: %s", gids)
+    gid = gids[0]
+    exps = [e for e in ct.get("/expansions") if e["game_id"] in gids]
     out = {}
     for e in exps:
         m = SETCODE.search(e.get("name") or "") or SETCODE.search(e.get("code") or "")
