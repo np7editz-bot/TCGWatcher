@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 8            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 9            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -51,11 +51,10 @@ def box_url(name):
 # Verified in the browser (2026-10-19): ...-V1-Secret-Rare, ...-V2-Alternate-Art, ...-V3-God-Rare, ...-V2-Special-Rare.
 VERSION_LABEL = {"AA": "Alternate Art", "SAA": "God Rare", "BPAA": "Alternate Art", "GOLD": "Alternate Art", "GDR": "God Rare",
                  "SPR": "Special Rare", "SLR": "Special Leader Rare", "SCR": "Secret Rare"}
-# Cardmarket's English Fusion World expansions: the early sets carry no "[Fusion World]" suffix (verified: FB03 'Raging Roar',
-# FB06 'Rivals Clash'), later ones do (verified: FB07, FB08, FB10, SB01). Each set also has a '… Non-English' expansion, which the
-# join avoids by taking the expansion the English booster box sits in.
-EXPANSION_OVERRIDE = {"FB01": "Awakened Pulse", "FB02": "Blazing Aura", "FB03": "Raging Roar", "FB04": "Ultra Limit",
-                      "FB05": "New Adventure", "FB06": "Rivals Clash"}
+# Cardmarket's English Fusion World expansion names are '<Set> [Fusion World]' (verified: FB02, FB05, FB07, FB08, FB10, SB01)
+# except a few without the suffix (verified: FB03 'Raging Roar', FB06 'Rivals Clash') — no pattern, so a per-set list, extended
+# from clicks. Each set also has a '… Non-English' expansion, which the join avoids by taking the expansion the English box sits in.
+EXPANSION_OVERRIDE = {"FB03": "Raging Roar", "FB06": "Rivals Clash"}
 
 
 def expansion_name(gid, code, set_name, box_name=None):
