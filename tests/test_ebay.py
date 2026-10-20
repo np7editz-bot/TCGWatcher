@@ -179,3 +179,14 @@ def test_masters_parallels_need_their_name_in_the_title():
     assert not variant_matches("Spirit BT30-015 PSA 10", "SPR", "BT30-015")           # base listing is not the SPR
     assert not variant_matches("Spirit BT30-015 Special Rare PSA 10", "", "BT30-015")  # SPR listing is not the base
     assert variant_matches("Spirit BT30-015 PSA 10", "", "BT30-015")
+
+
+def test_box_listing_rejects_non_english_and_bulk():
+    from tcgwatcher.ebay import parse_box_listing
+    def item(title, price="100", country="IT"):
+        return {"title": title, "price": {"value": price, "currency": "EUR"}, "itemLocation": {"country": country}, "itemWebUrl": "u", "itemId": title}
+    assert parse_box_listing(item("Dragon Ball Fusion World Cross Force FB10 Booster Box Bulk - 200+ cards"), "Cross Force", "FB10", 1.0) is None
+    assert parse_box_listing(item("Dragon Ball Super Fusion World CROSS FORCE Booster Box Japanisch FB10 SEALED"), "Cross Force", "FB10", 1.0) is None
+    assert parse_box_listing(item("LIVE RIP&SHIP DRAGON BALL FUSION WORLD FB09 DUAL EVOLUTION BOOSTER BOX JAPANISCH"), "Dual Evolution", "FB09", 1.0) is None
+    assert parse_box_listing(item("Dragon Ball Card Game Fusion World - Dual Evolution - FB09 Booster Box - JAP"), "Dual Evolution", "FB09", 1.0) is None
+    assert parse_box_listing(item("Dragon Ball Super Fusion World FB09 Dual Evolution Booster Box ENG - SEALED"), "Dual Evolution", "FB09", 1.0) is not None

@@ -113,3 +113,7 @@ Zie `docs/review-2026-10-19.md` voor de onafhankelijke doorloop van alle regels 
 
 ### Als app op je telefoon (PWA)
 Open https://np7editz-bot.github.io/TCGWatcher/ in Safari (iPhone) of Chrome (Android) → Deel / menu → **Zet op beginscherm**. De radar opent dan als app (eigen icoon, volledig scherm); de laatst geladen data blijft offline zichtbaar, en bij elke opening wordt `latest.json` opnieuw gehaald. Bestanden: `site/manifest.webmanifest`, `site/sw.js`, `site/icons/`.
+
+
+### Bronnen per product (sinds 2026-10-20)
+Boxen: CardTrader (Zero), Cardmarket (prijsgids; bij Masters alleen indicatie) en de vertrouwde webshops. eBay telt niet mee voor boxen (bulk-, rip&ship- en Japanse 'boxen' bleken niet betrouwbaar te filteren) — eBay is de bron voor slabs en raw kaarten. Schakelaar: `eu_landed.ebay_boxes` in `config/alerts.yaml`.

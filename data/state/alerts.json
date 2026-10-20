@@ -1,15 +1,5 @@
 {
  "active": {
-  "buy:dbfw:FB09": {
-   "price": 123.5,
-   "ratio": 1.264,
-   "since": "2026-10-18"
-  },
-  "buy:dbfw:FB10": {
-   "price": 75.0,
-   "ratio": 1.724,
-   "since": "2026-10-19"
-  },
   "buy:dbfw:FB11": {
    "price": 160.64,
    "ratio": 0.995,

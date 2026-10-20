@@ -236,7 +236,10 @@ def parse_raw_listing(item, number, fx_usd_eur, variant=""):
 
 
 BOX_T = re.compile(r"(booster\s*box|\bdisplay\b|\bbox\b)", re.I)
-NOT_BOX = re.compile(r"(\bcase\b|\bpacks?\b(?!\s*box)|single|\bx\s?[2-9]\b|\blot\b|empty|opened|japanese|\bjp\b|\bjpn\b|korean|chinese|sleeve|playmat|deck\b)", re.I)
+NOT_BOX = re.compile(r"(\bcase\b|\bpacks?\b(?!\s*box)|single|\bx\s?[2-9]\b|\blot\b|empty|opened|sleeve|playmat|deck\b"
+                     r"|japanese|japanisch|giapponese|japonais|japon[eé]s|\bjap\b|\bjp\b|\bjpn\b|korean|koreanisch|chinese|chinesisch|asia"
+                     r"|\bbulk\b|\bcards\b|\bkarten\b|\bcarte\b|bundle|\brip\s*&?\s*ship|\blive\b|\bbreak\b|\bloose\b|\bbrick\b|b[üu]ste)", re.I)
+# (second line: non-English printings in the seller's own language; third: bulk lots, live rips and part-boxes sold as 'box')
 
 
 def parse_box_listing(item, set_name, code, fx_usd_eur):
@@ -372,12 +375,16 @@ def fetch_day(client=None, latest=None, marketplaces=("EBAY_DE", "EBAY_NL"), day
         cards[t["key"]] = {**t, "best": best, "by_grader": by_grader, "listings": uniq[:25],
                            "raw_ebay": {"low": raws[0]["price"], "url": raws[0]["url"], "n": len(raws)} if raws else None}
     boxes = {}
-    for bt in box_targets(latest):
+    from .config import load_alerts
+    for bt in (box_targets(latest) if load_alerts().get("eu_landed", {}).get("ebay_boxes", True) else []):   # boxes off → no API calls
         try:
             found = [parse_box_listing(it, bt["name"], bt["code"], fx) for it in client.search(bt["query"], marketplaces[0])]
             found = sorted((b for b in found if b), key=lambda b: b["price"])
             if bt["ref_eur"]:
                 found = [b for b in found if b["price"] >= 0.3 * bt["ref_eur"]]         # €30 'box' for a €200 set is not a box
+            if len(found) >= 3:                                                           # JP/bulk slipping through the words:
+                med = found[len(found) // 2]["price"]                                     # an EN sealed box is not < 50% of the set's median
+                found = [b for b in found if b["price"] >= 0.5 * med]
             if found:
                 boxes[bt["code"]] = {"low": found[0]["price"], "url": found[0]["url"], "n": len(found),
                                      "median": found[len(found) // 2]["price"], "listings": found[:10]}
