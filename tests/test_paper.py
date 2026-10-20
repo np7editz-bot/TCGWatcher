@@ -73,3 +73,17 @@ def test_voided_position_does_not_block_reopen(tmp_path, monkeypatch):
     paper._save(doc)
     added = paper.open_positions("2026-10-19", L, [])
     assert [p["code"] for p in added if p["kind"] == "box"] == ["FB09"]
+
+
+def test_monthly_report_trigger_rule(tmp_path, monkeypatch):
+    """October: positions only from October → no report. November: positions from October, no file yet → report; second run → not again."""
+    import datetime as dt
+    monkeypatch.setattr(store, "DATA", tmp_path); monkeypatch.setattr(paper, "PATH", tmp_path / "paper" / "positions.json")
+    paper.open_positions("2026-10-19", latest(), [])
+    def should(today, docs):
+        month = today[:7]
+        older = any(p["status"] == "open" and p["opened"][:7] < month for p in paper._load()["positions"])
+        return older and f"paper-{month}.md" not in docs
+    assert not should("2026-10-25", [])
+    assert should("2026-11-01", []) and should("2026-11-02", [])        # a failed 1st is caught on the 2nd
+    assert not should("2026-11-02", ["paper-2026-11.md"])

@@ -76,7 +76,8 @@
    "price": 799.95,
    "ratio_then": 0.365,
    "source": "collgamers",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-20: manga/story sets are excluded from the KOOP rule, so they cannot be in its control group"
   },
   {
    "code": "FB03",
@@ -102,7 +103,8 @@
    "price": 1506.54,
    "ratio_then": 0.395,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-20: manga/story sets are excluded from the KOOP rule, so they cannot be in its control group"
   },
   {
    "code": "FB05",
@@ -180,7 +182,8 @@
    "price": 325.62,
    "ratio_then": 0.209,
    "source": "CardTrader Zero",
-   "status": "open"
+   "status": "void",
+   "void_reason": "2026-10-20: manga/story sets are excluded from the KOOP rule, so they cannot be in its control group"
   },
   {
    "code": "SB01",
