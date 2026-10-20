@@ -1,5 +1,19 @@
 {
  "day": "2026-10-20",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 100.0,
+   "price": 100.0,
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-10-20T13:33:43Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game - Fusion World - Ultra Limit - FB04 - Booster Display - Englisch",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/dragon-ball-super-card-game-fusion-world-ultra-limit-fb04-booster-display-englisch"
+  }
+ ]
 }
