@@ -68,6 +68,7 @@ def test_expansion_names():
     assert expansion_name("dbfw", "FB08", "Saiyan's Pride", "Saiyan's Pride Booster Box [Fusion World]") == "Saiyan's Pride [Fusion World]"
     assert expansion_name("dbfw", "FB06", "Rivals Clash", "Rivals Clash Booster Box [Fusion World]") == "Rivals Clash"
     assert expansion_name("dbfw", "FB03", "Raging Roar", "Raging Roar Booster Box [Fusion World]") == "Raging Roar"
+    assert card_url(expansion_name("dbfw", "FB04", "Ultra Limit", "Ultra Limit Booster Box [Fusion World]"), "Son Goku (FB04-129) [Fusion World]", 3, "SAA", "Secret Rare", 3).endswith("/Ultra-Limit/Son-Goku-FB04-129-Fusion-World-V3-God-Rare?language=1")
     assert card_url("Zenkai Series Set 04", "Son Goku, Overwhelming Power", 2, "SPR", "Super Rare", 2).endswith("/Zenkai-Series-Set-04/Son-Goku-Overwhelming-Power-V2-Special-Rare?language=1")
     assert card_url("Manga Booster 01 [Fusion World]", "Vegeta // Vegeta (FB04-051) [Fusion World]", 2, "GOLD", "Leader", 2).endswith("/Manga-Booster-01-Fusion-World/Vegeta-Vegeta-FB04-051-Fusion-World-V2-Alternate-Art?language=1")
 
