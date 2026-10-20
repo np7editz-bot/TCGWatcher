@@ -97,3 +97,19 @@ def test_box_name_match_ignores_plurals():
     assert _name_match("Legend of the Dragon Balls", "Legends of the Dragon Balls Booster Box")
     assert _name_match("Perfect Combination", "Perfect Combination Booster Box")
     assert not _name_match("Wild Resurgence", "Critical Blow Booster Box")
+
+
+def test_fusion_world_expansion_names_all_verified():
+    """Every FW set's English expansion name as clicked in the browser (2026-10-19/20)."""
+    from tcgwatcher.cardmarket import expansion_name
+    box = lambda n: f"{n} Booster Box [Fusion World]"  # noqa: E731
+    assert expansion_name("dbfw", "FB01", "Awakened Pulse", box("Awakened Pulse")) == "Awakened Pulse [Fusion World]"
+    assert expansion_name("dbfw", "FB02", "Blazing Aura", box("Blazing Aura")) == "Blazing Aura [Fusion World]"
+    assert expansion_name("dbfw", "FB03", "Raging Roar", box("Raging Roar")) == "Raging Roar"
+    assert expansion_name("dbfw", "FB04", "Ultra Limit", box("Ultra Limit")) == "Ultra Limit"
+    assert expansion_name("dbfw", "FB05", "New Adventure", box("New Adventure")) == "New Adventure [Fusion World]"
+    assert expansion_name("dbfw", "FB06", "Rivals Clash", box("Rivals Clash")) == "Rivals Clash"
+    assert expansion_name("dbfw", "FB07", "Wish for Shenron", box("Wish for Shenron")) == "Wish for Shenron [Fusion World]"
+    assert expansion_name("dbfw", "FB08", "Saiyan's Pride", box("Saiyan's Pride")) == "Saiyan's Pride [Fusion World]"
+    assert expansion_name("dbfw", "FB10", "Cross Force", box("Cross Force")) == "Cross Force [Fusion World]"
+    assert expansion_name("dbfw", "SB01", "Manga Booster 01", box("Manga Booster 01")) == "Manga Booster 01 [Fusion World]"
