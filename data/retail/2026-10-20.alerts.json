@@ -1,19 +1,5 @@
 {
  "day": "2026-10-20",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-19T08:00:42Z",
-   "kind": "sold_out->in_stock",
-   "old_price": 199.99,
-   "price": 199.99,
-   "product_kind": "box",
-   "retailer": "fantasiacards",
-   "seen": "2026-10-20T00:37:03Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB08 - Saiyan's Pride - Display [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb08-saiyans-pride-display-eng"
-  }
- ]
+ "transitions": []
 }
