@@ -431,8 +431,9 @@
    "price": 75.0,
    "ratio_then": 1.724,
    "source": "eBay (8 EU)",
-   "status": "open",
-   "valuation": "cardmarket"
+   "status": "void",
+   "valuation": "cardmarket",
+   "void_reason": "2026-10-20: opened on an eBay 'box' listing (bulk/JP); eBay is no longer a box source"
   },
   {
    "code": "FB04",

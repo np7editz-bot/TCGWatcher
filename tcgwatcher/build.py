@@ -101,7 +101,7 @@ def build(day, quality=None):
             for c in cards:
                 c["cm"] = cm["cards"].get(c["key"])
         retail = retail_by_set(gid, g)
-        ebay_boxes = (eb or {}).get("boxes") or {}
+        ebay_boxes = ((eb or {}).get("boxes") or {}) if landed_cfg.get("ebay_boxes", True) else {}   # off: eBay = slabs/raw only
         for s in sets_scored:
             s["retail"] = retail.get(s["code"], [])
             s["ebay_box"] = ebay_boxes.get(s["code"])
