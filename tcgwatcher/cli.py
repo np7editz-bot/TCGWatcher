@@ -86,8 +86,15 @@ def main(argv=None):
                 from .build import paper_summary       # new positions → refresh the page's portfolio block right away
                 latest["paper"] = paper_summary(latest)
                 store.write_json(LATEST, latest)
-            if a.step == "all" and dt.date.today().day == 1:
-                paper_report(day, latest, send=not a.no_send)
+            # monthly review: the first successful `all` run of a month without a report yet (a failed run on the 1st must not
+            # cost a month), and only once there are positions from an earlier month to review (first report: 1 November)
+            if a.step == "all":
+                from . import ROOT
+                from .paper import _load
+                month = dt.date.today().strftime("%Y-%m")
+                older = any(p["status"] == "open" and p["opened"][:7] < month for p in _load()["positions"])
+                if older and not (ROOT / "docs" / f"paper-{month}.md").exists():
+                    paper_report(day, latest, send=not a.no_send)
     if a.step == "paper":
         from .paper import report as paper_report
         from .build import LATEST
