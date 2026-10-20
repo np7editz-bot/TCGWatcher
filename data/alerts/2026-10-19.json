@@ -1,32 +1,12 @@
 {
  "alerts": [
   {
-   "at": "2026-10-20T00:36:53Z",
+   "at": "2026-10-20T06:29:43Z",
    "buttons": [
     [
      [
-      "🛒 Koop €75 · eBay (8 EU) · voorraad",
-      "https://www.ebay.de/itm/298482232383?_skw=Fusion+World+Cross+Force+booster+box&hash=item457eed6c3f:g:uHkAAeSwGTBqSqA-"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "delivered": true,
-   "key": "buy:dbfw:FB10",
-   "kind": "buy",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/675645_in_1000x1000.jpg",
-   "text": "🎯 <b>KOOP · FB10 Cross Force</b>\nHits per box <b>€129</b> / box vanaf <b>€75</b> → ratio <b>1.72</b> (drempel 0.8)\n#1 van 15 · US-ratio 0.48\n\n🛒 <b>Waar kopen</b> (17 EU-listings)\n• €75,00 eBay (8 EU) (op voorraad)\n• €167,64 CardTrader Zero (op voorraad) <i>Zero €161.64 + €6 kosten</i>\n• €199,95 collgamers (op voorraad)\n\nSamenstelling: 15 SR-AA · 3 SCR · 3 ★ · 3 ★★\nTop hit: Vegito FB10-121 SAA €2.051\n<i>Waardering Cardmarket-verkopen 30d · 54/54 hits · US-referentie €104</i>"
-  },
-  {
-   "at": "2026-10-20T00:36:53Z",
-   "buttons": [
-    [
-     [
-      "🛒 Koop €124 · eBay (20 EU) · voorraad",
-      "https://www.ebay.de/itm/198231318473?_skw=Fusion+World+Dual+Evolution+booster+box&hash=item2e2781dfc9:g:WFMAAeSwJWtpxr2a"
+      "🛒 Koop €177 · Cardmarket · voorraad",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/Dual-Evolution-Booster-Box-Fusion-World?language=1"
      ],
      [
       "📊 Radar",
@@ -38,87 +18,7 @@
    "key": "buy:dbfw:FB09",
    "kind": "buy",
    "photo": "https://tcgplayer-cdn.tcgplayer.com/product/670183_in_1000x1000.jpg",
-   "text": "🎯 <b>KOOP · goedkoper geworden · FB09 Dual Evolution</b>\nHits per box <b>€156</b> / box vanaf <b>€124</b> → ratio <b>1.26</b> (drempel 0.8)\n#2 van 15 · US-ratio 0.45\n\n🛒 <b>Waar kopen</b> (36 EU-listings)\n• €123,50 eBay (20 EU) (op voorraad)\n• €177,00 Cardmarket (op voorraad) <i>laagste aanbod €159.00 + ±€18 verzending</i>\n• €186,64 CardTrader Zero (op voorraad) <i>Zero €180.64 + €6 kosten</i>\n\nSamenstelling: 15 SR-AA · 3 SCR · 3 ★ · 5 ★★\nTop hit: Gogeta : GT FB09-123 SAA €1.782\n<i>Waardering Cardmarket-verkopen 30d · 54/54 hits · US-referentie €171</i>"
-  },
-  {
-   "at": "2026-10-20T00:36:53Z",
-   "buttons": [
-    [
-     [
-      "🛒 Koop raw €605 · Cardmarket",
-      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Ultra-Limit-Fusion-World/Son-Goku-FB04-129-Fusion-World-V3-God-Rare?language=1"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "delivered": true,
-   "key": "slab:dbfw:dbfw:FB04:FB04-129:SAA",
-   "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/593495_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #1 · Son Goku FB04-129 SAA</b> · FB04\nRaw kopen vanaf <b>€605</b> → PSA 10 waarde <b>€1606</b> (4 listings)\nNetto na grading en fees: <b>€715</b> per kaart (118% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €605 Cardmarket\n• €765 eBay (3 EU)\n• €805 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €481</i>"
-  },
-  {
-   "at": "2026-10-20T00:36:53Z",
-   "buttons": [
-    [
-     [
-      "🛒 Koop raw €140 · Cardmarket",
-      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Manga-Booster-01-Fusion-World/Vegeta-SB01-025-Fusion-World-V2-Alternate-Art?language=1"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "delivered": true,
-   "key": "slab:dbfw:dbfw:SB01:SB01-025:AA",
-   "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638984_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #2 · Vegeta SB01-025 SR AA</b> · SB01\nRaw kopen vanaf <b>€140</b> → PSA 10 waarde <b>€663</b> (6 listings)\nNetto na grading en fees: <b>€274</b> per kaart (195% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €140 Cardmarket\n• €206 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €156</i>"
-  },
-  {
-   "at": "2026-10-20T00:36:53Z",
-   "buttons": [
-    [
-     [
-      "🛒 Koop raw €88 · Cardmarket",
-      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Dual-Evolution-Fusion-World/Gogeta-GT-FB09-123-Fusion-World-V2-Alternate-Art?language=1"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "delivered": true,
-   "key": "slab:dbfw:dbfw:FB09:FB09-123:AA",
-   "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/682128_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #3 · Gogeta : GT FB09-123 SCR AA</b> · FB09\nRaw kopen vanaf <b>€88</b> → PSA 10 waarde <b>€268</b> (3 listings)\nNetto na grading en fees: <b>€64</b> per kaart (73% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €88 Cardmarket\n• €106 CardTrader\n• €130 eBay (1 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €93</i>"
-  },
-  {
-   "at": "2026-10-20T00:36:53Z",
-   "buttons": [
-    [
-     [
-      "🛒 Koop raw €195 · Cardmarket",
-      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Manga-Booster-01-Fusion-World/Son-Goku-Childhood-SB01-018-Fusion-World-V2-Alternate-Art?language=1"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "delivered": true,
-   "key": "slab:dbfw:dbfw:SB01:SB01-018:AA",
-   "kind": "slab",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638981_in_1000x1000.jpg",
-   "text": "🏆 <b>SLAB #4 · Son Goku : Childhood SB01-018 SR AA</b> · SB01\nRaw kopen vanaf <b>€195</b> → PSA 10 waarde <b>€420</b> (7 listings)\nNetto na grading en fees: <b>€58</b> per kaart (30% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €195 Cardmarket\n• €456 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €108</i>"
+   "text": "🎯 <b>KOOP · FB09 Dual Evolution</b>\nHits per box <b>€156</b> / box vanaf <b>€177</b> → ratio <b>0.88</b> (drempel 0.8)\n#2 van 15 · US-ratio 0.45\n\n🛒 <b>Waar kopen</b> (16 EU-listings)\n• €177,00 Cardmarket (op voorraad) <i>laagste aanbod €159.00 + ±€18 verzending</i>\n• €186,64 CardTrader Zero (op voorraad) <i>Zero €180.64 + €6 kosten</i>\n• €399,95 collgamers (op voorraad)\n\nSamenstelling: 15 SR-AA · 3 SCR · 3 ★ · 5 ★★\nTop hit: Gogeta : GT FB09-123 SAA €1.782\n<i>Waardering Cardmarket-verkopen 30d · 54/54 hits · US-referentie €171</i>"
   }
  ],
  "day": "2026-10-19"
