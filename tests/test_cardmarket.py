@@ -21,7 +21,7 @@ def test_join_cards_via_cardtrader_ids_and_boxes_by_name():
                                  "sets": [{"code": "FB09", "name": "Dual Evolution"}]}}}
     ct = {"blueprints": {"1": {"tcg_player_id": 500, "card_market_ids": [901]}, "2": {"tcg_player_id": 501, "card_market_ids": [902, 999]},
                          "3": {"tcg_player_id": 502, "card_market_ids": []}}}
-    cards, boxes = cardmarket.join(files(), latest, ct)
+    cards, boxes, _ = cardmarket.join(files(), latest, ct)
     assert cards["dbfw:FB09:FB09-123:SAA"]["avg30"] == 2142.86 and cards["dbfw:FB09:FB09-001:AA"]["low"] == 150.0
     assert "dbfw:FB09:FB09-050:" not in cards
     assert boxes["FB09"]["low"] == 159.0 and boxes["FB09"]["avg30"] == 259.85 and "Asia" not in boxes["FB09"]["name"] and "Case" not in boxes["FB09"]["name"]
@@ -85,7 +85,7 @@ def test_join_prefers_the_sets_own_expansion():
     f["prices"]["priceGuides"].append({"idProduct": 7101, "low": 85.0})
     latest = {"games": {"dbfw": {"cards": [{"key": "dbfw:FB03:FB03-139:AA", "product_id": 600}], "sets": [{"code": "FB03", "name": "Raging Roar"}]}}}
     ct = {"blueprints": {"1": {"tcg_player_id": 600, "card_market_ids": [783017, 790367]}}}
-    cards, boxes = cardmarket.join(f, latest, ct)
+    cards, boxes, _ = cardmarket.join(f, latest, ct)
     c = cards["dbfw:FB03:FB03-139:AA"]
     assert c["idProduct"] == 783017 and c["low"] == 80.0 and c["version"] == 2
     assert c["url"].endswith("/Raging-Roar/Son-Gohan-Youth-FB03-139-Fusion-World-V2-Alternate-Art?language=1")

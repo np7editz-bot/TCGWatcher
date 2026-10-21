@@ -180,6 +180,10 @@ footer{color:var(--fg3);font-size:12.5px}
       <th>Ratio EU</th><th class="r" title="TCGplayer market (US): prijs · 7d/30d · US-ratio">US ref.</th><th>Top hit</th><th>Waar kopen</th><th class="r">Eigen prijs</th>
     </tr></thead><tbody id="tb"></tbody></table></div>
     <div style="height:18px"></div>
+    <div id="bundlesSec" hidden><h3>Vaste inhoud · anniversary sets en promo packs</h3>
+    <p class="muted">Geen loterij: de waarde is de som van de kaarten erin (TCGplayer market × koers, CardTrader-ask × 0,83 als terugval). Alleen ter info — geen meldingen, geen paper-posities.</p>
+    <div class="sig" id="bundles"></div></div>
+    <div style="height:18px"></div>
     <div id="startersSec" hidden><h3>Starter decks en overige sealed producten</h3><div class="list" id="starters"></div></div>
   </section>
 
@@ -346,7 +350,21 @@ function renderToday(){
   document.getElementById('todayBoxes').innerHTML = hits.map((x,k)=>boxCard(x,k+1)).join('') || `<div class="panel muted">Geen box haalt vandaag de drempel. Dichtstbij: ${xs.slice(0,3).map(x=>`${x.s.code} ${x.ratio?.toFixed(2)??'—'}`).join(' · ')}.</div>`;
   document.getElementById('todaySlabs').innerHTML = items.slice(0,5).map((i,k)=>slabCard(i,k+1)).join('') || '<div class="panel muted">Geen slab-kandidaat vandaag (eBay-data ontbreekt of niets rendabel).</div>';
 }
+function bundleCard(b){
+  const buy=b.buy, ref=(b.options||[]).find(o=>o.ref);
+  const price = buy ? buy.price : (ref ? ref.price : null);
+  const ratio = price ? b.sum_eur/price : null;
+  const rows = b.contents.map(c=>`<div class="row" style="display:flex;justify-content:space-between;gap:8px"><span>${esc(short(c.name).replace(/\s*\(.*\)$/,''))} <small class="muted">${c.number}</small></span><b>${c.price_eur!=null?e0(c.price_eur):'—'}</b></div>`).join('');
+  return `<div class="sc wide"><div class="img">${b.image?`<img src="${big(b.image)}" alt="" loading="lazy">`:''}</div><div class="body">
+    <div class="t">${esc(b.name)}${b.presale?' <span class="tag">pre-order</span>':''}</div>
+    <div class="big">${price!=null?e0(price):'—'}<small>${buy?esc(buy.source):(ref?'TCGplayer (US, excl. verzending)':'geen prijs')}</small></div>
+    <div class="row">Inhoud <b>${e0(b.sum_eur)}</b> (${b.priced}/${b.n} kaarten geprijsd)${ratio?` · inhoud/prijs <b>${ratio.toFixed(2)}</b>`:''}</div>
+    <details><summary class="muted" style="cursor:pointer">kaarten</summary>${rows}</details>
+    <div class="btns">${(b.options||[]).map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 ${e0(o.price)} · ${esc(o.source.split(' (')[0])}</a>`).join('')}</div></div></div>`;
+}
 function renderBoxes(){
+  const bs=G.bundles||[]; document.getElementById('bundlesSec').hidden=!bs.length;
+  document.getElementById('bundles').innerHTML=bs.map(bundleCard).join('');
   const xs=scored(); const max=Math.max(...xs.map(x=>x.ratio||0), 0.01);
   const tb=document.getElementById('tb'); tb.innerHTML='';
   xs.forEach((x,i)=>{

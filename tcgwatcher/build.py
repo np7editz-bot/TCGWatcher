@@ -129,6 +129,7 @@ def build(day, quality=None):
             "estimates": {k: {"label": labels[k], "est": v} for k, v in est.items()},
             "box": g["box"],
             "sets": sets_scored, "cards": cards, "starters": other_sets,
+            "bundles": fixed_content_bundles(m["products"], eu, landed_cfg, rate, (cm or {}).get("bundles") or {}),
             "slab_signals": [x for x in (slab_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
             "grade_signals": [x for x in (grade_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
             "alerts": g.get("alerts", True),
@@ -177,6 +178,50 @@ def landed(o, cfg):
 
 
 ASK_TO_SALE = 0.83     # CardTrader ask → expected sale price (1 / 1.2, docs/calibration-2026-10-18.md)
+
+
+BUNDLE_T = re.compile(r"^(?P<label>.+?)( Bundle)?$")
+
+
+def fixed_content_bundles(products, eu, landed_cfg, fx, cm_bundles=None):
+    """Sealed products with FIXED contents (anniversary sets, promo packs): no lottery, so value = sum of the cards inside.
+    Detected by name: a product without a card number whose name ends in 'Set Bundle' or '… Pack', with cards whose name
+    carries '(<that label>)' — e.g. '2nd Anniversary Set Bundle' ↔ 'Kefla - FB08-034 (2nd Anniversary Set)'.
+    Page-only (no alerts, no paper positions): shows the bundle price next to the sum of its contents."""
+    out = []
+    for p in products:
+        if p.number or not re.search(r"(Set Bundle|Anniversary Pack|Premium Pack)$", p.name):
+            continue
+        label = re.sub(r" Bundle$", "", p.name).strip()
+        contents = [q for q in products if q.number and f"({label})" in q.name]
+        if len(contents) < 2:
+            continue
+        items, total, priced = [], 0.0, 0
+        for q in contents:
+            o = eu.get(q.product_id) or {}
+            v = (q.price * fx) if q.price else ((o.get("low") or 0) * ASK_TO_SALE or None)
+            if v:
+                total += v; priced += 1
+            items.append({"key": q.key, "name": q.name, "number": q.number, "rarity": q.rarity, "price_eur": round(v, 2) if v else None,
+                          "image": q.image, "url": q.url, "eu_low": o.get("low")})
+        o = eu.get(p.product_id)
+        opts = []
+        if p.price:
+            opts.append({"price": round(p.price * fx, 2), "source": "TCGplayer (US, excl. verzending)", "url": p.url, "ref": True})
+        if o and o.get("low"):
+            l = landed(o, landed_cfg)
+            opts.append({"price": l["landed"], "source": "CardTrader" + (" Zero" if l.get("landed_via") == "zero" else ""),
+                         "url": f"https://www.cardtrader.com/cards/{o['blueprint_id']}", "n": o.get("n")})
+        cmb = (cm_bundles or {}).get(str(p.product_id))
+        if cmb and cmb.get("low"):
+            opts.append({"price": round(cmb["low"] + 8, 2), "source": "Cardmarket", "url": cmb["url"], "note": f"laagste aanbod €{cmb['low']:.2f} + ±€8 verzending"})
+        opts.sort(key=lambda x: (x.get("ref", False), x["price"]))
+        buy = next((x for x in opts if not x.get("ref")), None)
+        out.append({"name": p.name, "product_id": p.product_id, "image": p.image, "url": p.url, "presale": p.presale,
+                    "price_usd": p.price, "options": opts, "buy": buy, "sum_eur": round(total, 2), "priced": priced, "n": len(items),
+                    "ratio": round(total / buy["price"], 3) if buy and buy["price"] else None,
+                    "contents": sorted(items, key=lambda x: -(x["price_eur"] or 0))})
+    return out
 
 
 def ev_cm(s, cards, rate):
