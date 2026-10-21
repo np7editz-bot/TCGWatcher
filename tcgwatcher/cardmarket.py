@@ -17,8 +17,9 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 11            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 12            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
+NOT_BUNDLE = re.compile(r"(energy marker|sleeve|playmat|deck box|storage|binder|case|display|booster box|championship)", re.I)   # accessories named like a set
 
 
 def fetch_files(game_id=13, session=None):
@@ -177,7 +178,7 @@ def join(files, latest, ct_doc):
     for gid, g in latest["games"].items():
         for b in g.get("bundles", []):
             label = re.sub(r" Bundle$", "", b["name"])
-            hits = [p for p in nons if _name_match(label, p["name"]) and not NOT_EN.search(p["name"])]
+            hits = [p for p in nons if _name_match(label, p["name"]) and not NOT_EN.search(p["name"]) and not NOT_BUNDLE.search(p["name"])]
             rows = [(p, prices.get(p["idProduct"])) for p in hits]
             rows = [(p, r) for p, r in rows if r and _f(r, "low")]
             if rows:

@@ -113,3 +113,11 @@ def test_fusion_world_expansion_names_all_verified():
     assert expansion_name("dbfw", "FB08", "Saiyan's Pride", box("Saiyan's Pride")) == "Saiyan's Pride [Fusion World]"
     assert expansion_name("dbfw", "FB10", "Cross Force", box("Cross Force")) == "Cross Force [Fusion World]"
     assert expansion_name("dbfw", "SB01", "Manga Booster 01", box("Manga Booster 01")) == "Manga Booster 01 [Fusion World]"
+
+
+def test_bundle_match_skips_accessories():
+    from tcgwatcher.cardmarket import _name_match, NOT_BUNDLE
+    ok = lambda label, name: _name_match(label, name) and not NOT_BUNDLE.search(name)  # noqa: E731
+    assert ok("2nd Anniversary Set", "Fusion World 2nd Anniversary Set")
+    assert not ok("2nd Anniversary Pack", "Energy Marker Pack -2nd Anniversary Edition-")
+    assert not ok("1st Anniversary Set", "Dragon Ball Fusion World 1st Anniversary Set Playmat")
