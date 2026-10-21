@@ -352,12 +352,12 @@ function renderToday(){
 function bundleCard(b){
   const buy=b.buy, ref=(b.options||[]).find(o=>o.ref);
   const price = buy ? buy.price : (ref ? ref.price : null);
-  const ratio = price ? b.sum_eur/price : null;
+  const ratio = (price && b.fixed) ? b.sum_eur/price : null;
   const rows = b.contents.map(c=>`<div class="row" style="display:flex;justify-content:space-between;gap:8px"><span>${esc(short(c.name).replace(/\s*\(.*\)$/,''))} <small class="muted">${c.number}</small></span><b>${c.price_eur!=null?e0(c.price_eur):'—'}</b></div>`).join('');
   return `<div class="sc wide"><div class="img">${b.image?`<img src="${big(b.image)}" alt="" loading="lazy">`:''}</div><div class="body">
     <div class="t">${esc(b.name)}${b.presale?' <span class="tag">pre-order</span>':''}</div>
     <div class="big">${price!=null?e0(price):'—'}<small>${buy?esc(buy.source):(ref?'TCGplayer (US, excl. verzending)':'geen prijs')}</small></div>
-    <div class="row">Inhoud <b>${e0(b.sum_eur)}</b> (${b.priced}/${b.n} kaarten geprijsd)${ratio?` · inhoud/prijs <b>${ratio.toFixed(2)}</b>`:''}</div>
+    <div class="row">${b.fixed?'Inhoud':'Kaarten in de pool'} <b>${e0(b.sum_eur)}</b> (${b.priced}/${b.n} geprijsd)${ratio?` · inhoud/prijs <b>${ratio.toFixed(2)}</b>`:(b.fixed?'':' · <span class="muted">pack bevat een deel hiervan, willekeurig</span>')}</div>
     <details><summary class="muted" style="cursor:pointer">kaarten</summary>${rows}</details>
     <div class="btns">${(b.options||[]).map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 ${e0(o.price)} · ${esc(o.source.split(' (')[0])}</a>`).join('')}</div></div></div>`;
 }
