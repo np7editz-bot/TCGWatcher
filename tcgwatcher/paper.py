@@ -117,7 +117,8 @@ def value_now(pos, latest, ebay_doc):
         if not s:
             return None, None
         val = pos.get("valuation") or "tcgplayer"
-        ev_now = s.get("ev_eu_excl_saa") if (val == "cardmarket" and s.get("valuation") == "cardmarket") else (
+        eu_vals = ("cardmarket", "eu-mixed")
+        ev_now = s.get("ev_eu_excl_saa") if (val in eu_vals and s.get("valuation") in eu_vals) else (
             s.get("ev_us_excl_saa") if val == "tcgplayer" else None)
         return box_price_by_source(s, pos.get("source")), ev_now
     if pos["kind"] == "raw":

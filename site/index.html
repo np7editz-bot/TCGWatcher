@@ -181,7 +181,7 @@ footer{color:var(--fg3);font-size:12.5px}
     </tr></thead><tbody id="tb"></tbody></table></div>
     <div style="height:18px"></div>
     <div id="bundlesSec" hidden><h3>Vaste inhoud · anniversary sets en promo packs</h3>
-    <p class="muted">Geen loterij: de waarde is de som van de kaarten erin (TCGplayer market × koers, CardTrader-ask × 0,83 als terugval). Alleen ter info — geen meldingen, geen paper-posities.</p>
+    <p class="muted">Geen loterij: de waarde is de som van de kaarten erin (Cardmarket-verkopen → CardTrader-ask × 0,83 → TCGplayer × koers). Alleen ter info — geen meldingen, geen paper-posities.</p>
     <div class="sig" id="bundles"></div></div>
     <div style="height:18px"></div>
     <div id="startersSec" hidden><h3>Starter decks en overige sealed producten</h3><div class="list" id="starters"></div></div>
@@ -241,7 +241,7 @@ footer{color:var(--fg3);font-size:12.5px}
     <div style="height:18px"></div>
     <div class="panel" style="font-size:13.5px;color:var(--fg2)">
       <h3>Hoe het werkt</h3>
-      <p><b>Waardering</b> van de hits: gemiddelde EU-<b>verkoopprijs</b> over 30 dagen uit de officiële Cardmarket-prijsgids; per kaart terugval op avg7 → trend → TCGplayer-verkopen × ECB-koers → CardTrader-vraagprijs × 0,83 (vraagprijzen liggen gemiddeld 20% boven verkopen), en per set terugval op TCGplayer als minder dan de helft van de hits recente EU-verkopen heeft. TCGplayer blijft als US-referentie zichtbaar. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
+      <p><b>Waardering</b> van de hits: gemiddelde EU-<b>verkoopprijs</b> over 30 dagen uit de officiële Cardmarket-prijsgids; per kaart terugval op avg7 → trend → CardTrader-vraagprijs × 0,83 (vraagprijzen liggen gemiddeld 20% boven verkopen) → TCGplayer × ECB-koers alleen als geen EU-bron de kaart prijst als minder dan de helft van de hits recente EU-verkopen heeft. TCGplayer blijft als US-referentie zichtbaar. <b>Wat je betaalt</b> in Europa: CardTrader Zero + €6 vaste kosten, anders goedkoopste EU-verkoper + €15 verzending, of een betrouwbare webshop. Cardmarket-steekproef 19-10: EU-verkopen van alt-arts ≈ 1,2× TCGplayer (waardering is dus conservatief), Cardmarket-boxen ≈ 0,88× CardTrader Zero vóór verzending.</p>
       <p><b>Slabs</b>: eBay Browse API (DE/NL, EU-locatie) + CardTrader graded; zelfde nummer ≠ zelfde kaart (basis / alt-art / super alt-art / gold worden uit de titel gelezen; listings > 4× de laagste van dezelfde grade gelden als verkeerd gelabeld). Grading-uitkomstmix per service: PSA 40% 10 / 60% 9 (€25), BGS 10% 10 / 45% 9.5 / 45% 9 (€30), CGC (€22); eBay-fees 13%.</p>
       <p><b>Berichten</b>: 🎯 KOOP (box), 🏆 SLAB #1–#5, 🟡/✅ retail (ratio ≥ 0,70 of set nog niet uit), 🍥 Naruto (elk product), 📰 aankondiging, 📒 maandrapport. Alles met knoppen naar de shop. <code>/mute FB10</code>, <code>/unmute FB10</code>, <code>/status</code> naar de bot.</p>
     </div>
@@ -267,12 +267,11 @@ const cls = c => c==='GOLD' ? 'Gold' : c.replace('_AA',' AA');
 const esc = s => String(s??'').replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
 function est(){ const o={}; for (const k of Object.keys(G.estimates)) o[k]=parseFloat(document.getElementById('e_'+k).value)||0; return o; }
-const cardEur = (c, useCm=true) => { const cm=useCm ? (c.cm||{}) : {}; const v=cm.avg30||cm.avg7||cm.trend; if (v) return v; if (c.price!=null) return c.price*fx(); return c.eu?.low ? c.eu.low*0.83 : null; };
+const cardEur = c => { const cm=c.cm||{}; const v=cm.avg30||cm.avg7||cm.trend; if (v) return v; if (c.eu?.low) return c.eu.low*0.83; return c.price!=null ? c.price*fx() : null; };
 function score(set){
   const e = est(), incl = document.getElementById('inclSaa').checked, scale = set.packs / G.box.packs;
   const bucket = {}; let top=null;
-  const useCm = set.valuation === 'cardmarket';                       // same set-level switch as the build (coverage ≥ 50%)
-  for (const c of G.cards) { if (c.set!==set.code) continue; const v=cardEur(c, useCm); if (v==null) continue; (bucket[c.class] ||= []).push(v); if (!top||v>top.v) top={...c, v}; }
+  for (const c of G.cards) { if (c.set!==set.code) continue; const v=cardEur(c); if (v==null) continue; (bucket[c.class] ||= []).push(v); if (!top||v>top.v) top={...c, v}; }
   let ev=0; const rows={};
   for (const k of CLS_ORDER) { const v=bucket[k]; if (!v) continue; const avg=v.reduce((a,b)=>a+b,0)/v.length; const part=e[k]*scale*avg; rows[k]={n:set.composition[k]?.n||v.length, avg, ev:part, est:e[k]*scale}; if (!LOTTERY.has(k)||incl) ev+=part; }
   const boxUs = set.box?.price ?? null, bb = set.best_buy || null, override = retail[set.code];
@@ -374,7 +373,7 @@ function renderBoxes(){
       <td>${x.hit?'<span class="chip hit">🎯 koop</span>':''}${s.flags.map(f=>FLAG[f]?`<span class="chip ${FLAG[f][0]}">${FLAG[f][1]}</span>`:'').join('')||'<span class="chip good">uitgebracht</span>'}</td>
       <td class="comp">${compText(s)}</td>
       <td class="r num">${x.boxEu!=null?`€${x.boxEu.toFixed(0)}`:'—'}<small>${esc(x.src||'geen EU-aanbod')}${s.spread_eu_us_pct!=null?` · ${s.spread_eu_us_pct>0?'+':''}${s.spread_eu_us_pct}% vs US`:''}</small></td>
-      <td class="r num">${x.ev?e0(x.evEur):'—'}<small>${s.valuation==='cardmarket'?`Cardmarket-verkopen ${s.cm_coverage} · US ${e0(s.ev_us_excl_saa)}`:`TCGplayer · dekking ${s.hits_market_priced}/${s.hits_total}`}</small></td>
+      <td class="r num">${x.ev?e0(x.evEur):'—'}<small>${s.valuation==='tcgplayer'?`TCGplayer · dekking ${s.hits_market_priced}/${s.hits_total}`:`${s.valuation==='cardmarket'?'Cardmarket-verkopen':'EU (Cardmarket/CardTrader)'} ${s.cm_coverage} · US ${e0(s.ev_us_excl_saa)}`}</small></td>
       <td><div class="bar"><div class="track"><div class="fill${x.hit?' hit':''}" style="width:${x.ratio?Math.min(100,x.ratio/max*100):0}%"></div></div><span class="v${x.hit?' hit':''}">${x.ratio!=null?x.ratio.toFixed(2):'—'}</span></div></td>
       <td class="r num">${eur(x.boxUs)}<small>${pct(s.box?.chg7)} / ${pct(s.box?.chg30)}${x.ratioUs!=null?` · ${x.ratioUs.toFixed(2)}`:''}</small></td>
       <td style="font-size:13px;max-width:220px">${x.top?`${esc(short(x.top.name))}<div class="name num">${e0(x.top.v)} · ${x.top.number}</div>`:'—'}</td>
