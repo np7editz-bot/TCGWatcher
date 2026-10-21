@@ -222,9 +222,10 @@ def fixed_content_bundles(products, eu, landed_cfg, fx, cm_bundles=None, cm_card
             opts.append({"price": round(cmb["low"] + 8, 2), "source": "Cardmarket", "url": cmb["url"], "note": f"laagste aanbod €{cmb['low']:.2f} + ±€8 verzending"})
         opts.sort(key=lambda x: (x.get("ref", False), x["price"]))
         buy = next((x for x in opts if not x.get("ref")), None)
-        out.append({"name": p.name, "product_id": p.product_id, "image": p.image, "url": p.url, "presale": p.presale,
+        fixed = p.name.endswith("Set Bundle")       # a 'Pack' holds one or a few of its cards at random: sum ≠ value, no ratio
+        out.append({"name": p.name, "product_id": p.product_id, "image": p.image, "url": p.url, "presale": p.presale, "fixed": fixed,
                     "price_usd": p.price, "options": opts, "buy": buy, "sum_eur": round(total, 2), "priced": priced, "n": len(items),
-                    "ratio": round(total / buy["price"], 3) if buy and buy["price"] else None,
+                    "ratio": round(total / buy["price"], 3) if fixed and buy and buy["price"] else None,
                     "contents": sorted(items, key=lambda x: -(x["price_eur"] or 0))})
     return out
 
