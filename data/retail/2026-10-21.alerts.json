@@ -1,5 +1,32 @@
 {
  "day": "2026-10-21",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T08:00:42Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 169.99,
+   "price": 169.99,
+   "product_kind": "box",
+   "retailer": "fantasiacards",
+   "seen": "2026-10-21T21:42:23Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game - Masters - Critical Blow - Display [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-critical-blow-zenkai-series-5-display-eng"
+  },
+  {
+   "first_seen": "2026-10-19T08:00:42Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 7.99,
+   "price": 7.99,
+   "product_kind": "pack",
+   "retailer": "fantasiacards",
+   "seen": "2026-10-21T21:42:23Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game - Masters - Critical Blow - Booster [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-critical-blow-booster-eng-kopie"
+  }
+ ]
 }
