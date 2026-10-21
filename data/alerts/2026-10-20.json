@@ -1,4 +1,25 @@
 {
- "alerts": [],
+ "alerts": [
+  {
+   "at": "2026-10-21T06:56:46Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €141 · CardTrader Zero · voorraad",
+      "https://www.cardtrader.com/cards/403299"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:dbfw:FB11",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/695727_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · goedkoper geworden · FB11 Brightness of Hope</b>\nHits per box <b>€155</b> / box vanaf <b>€141</b> → ratio <b>1.10</b> (drempel 0.8)\n#1 van 15 · US-ratio 0.86\n\n🛒 <b>Waar kopen</b> (20 EU-listings)\n• €141,28 CardTrader Zero (op voorraad) <i>Zero €135.28 + €6 kosten</i>\n\nSamenstelling: 15 SR-AA · 3 SCR · 3 ★ · 3 ★★\nTop hit: Son Goku FB11-121 SAA €3.567\n<i>Waardering Cardmarket-verkopen 30d · 47/54 hits · US-referentie €149</i>"
+  }
+ ],
  "day": "2026-10-20"
 }
