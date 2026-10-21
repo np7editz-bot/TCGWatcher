@@ -117,3 +117,7 @@ Open https://np7editz-bot.github.io/TCGWatcher/ in Safari (iPhone) of Chrome (An
 
 ### Bronnen per product (sinds 2026-10-20)
 Boxen: CardTrader (Zero), Cardmarket (prijsgids; bij Masters alleen indicatie) en de vertrouwde webshops. eBay telt niet mee voor boxen (bulk-, rip&ship- en Japanse 'boxen' bleken niet betrouwbaar te filteren) — eBay is de bron voor slabs en raw kaarten. Schakelaar: `eu_landed.ebay_boxes` in `config/alerts.yaml`.
+
+
+### Vaste-inhoud producten (anniversary sets, promo packs)
+Sealed producten zonder loterij — '1st/2nd Anniversary Set Bundle', '2nd Anniversary Pack' — staan op de Boxen-pagina onder *Vaste inhoud*: prijs (TCGplayer, CardTrader, Cardmarket) naast de som van de kaarten erin (gevonden via de naam-suffix '(2nd Anniversary Set)'). Alleen ter info: geen Telegram-meldingen, geen paper-posities. Detectie: `build.fixed_content_bundles`.

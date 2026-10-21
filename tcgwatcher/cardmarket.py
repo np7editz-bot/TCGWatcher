@@ -17,7 +17,7 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 10            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+SCHEMA = 11            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 
 
@@ -171,7 +171,21 @@ def join(files, latest, ct_doc):
                                "foil": not r.get("avg30") and bool(r.get("avg30-foil")),
                                "url": card_url(exp_name.get(code, ""), names[pid], version.get(pid, 1), variant, c.get("rarity") or "",
                                                printings.get(pid, 1)) if names.get(pid) else None}
-    return cards, boxes
+    # fixed-content sealed products (anniversary sets, promo packs) by name → lowest ask, for the page's bundle tiles
+    bundles = {}
+    nons = files["nonsingles"].get("products", [])
+    for gid, g in latest["games"].items():
+        for b in g.get("bundles", []):
+            label = re.sub(r" Bundle$", "", b["name"])
+            hits = [p for p in nons if _name_match(label, p["name"]) and not NOT_EN.search(p["name"])]
+            rows = [(p, prices.get(p["idProduct"])) for p in hits]
+            rows = [(p, r) for p, r in rows if r and _f(r, "low")]
+            if rows:
+                p, r = min(rows, key=lambda x: _f(x[1], "low"))
+                bundles[str(b["product_id"])] = {"idProduct": p["idProduct"], "name": p["name"], "low": _f(r, "low"), "trend": _f(r, "trend"),
+                                                 "avg30": _f(r, "avg30"),
+                                                 "url": "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=" + requests.utils.quote(p["name"]) + "&language=1"}
+    return cards, boxes, bundles
 
 
 def fetch_day(latest=None, ct_doc=None, day=None, session=None):
@@ -188,9 +202,9 @@ def fetch_day(latest=None, ct_doc=None, day=None, session=None):
     latest = latest or store.read_json(LATEST)
     ct_doc = ct_doc if ct_doc is not None else ct_latest()
     files = fetch_files(13, session)
-    cards, boxes = join(files, latest, ct_doc)
+    cards, boxes, bundles = join(files, latest, ct_doc)
     doc = {"day": day, "schema": SCHEMA, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "game_id": 13,
-           "guide_created_at": files["prices"].get("createdAt"), "cards": cards, "boxes": boxes,
+           "guide_created_at": files["prices"].get("createdAt"), "cards": cards, "boxes": boxes, "bundles": bundles,
            "note": "low = cheapest offer; avg30 = average sale price last 30 days (EUR), ALL languages (the public guide has no language "
                    "split). Source: Cardmarket public price guide."}
     store.write_json(path, doc)
