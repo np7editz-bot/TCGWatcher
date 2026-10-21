@@ -535,6 +535,20 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 148.41
+  },
+  {
+   "code": "SB01",
+   "game": "dbfw",
+   "key": "dbfw:SB01:SB01-057:AA",
+   "kind": "raw",
+   "name": "Bulma/Son Goku : Childhood SB01-057 SR_AA",
+   "net_then": 166.53,
+   "opened": "2026-10-20",
+   "price": 355.64,
+   "psa10_then": 545.13,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 168.91
   }
  ]
 }
