@@ -121,3 +121,7 @@ Boxen: CardTrader (Zero), Cardmarket (prijsgids; bij Masters alleen indicatie) e
 
 ### Vaste-inhoud producten (anniversary sets, promo packs)
 Sealed producten zonder loterij — '1st/2nd Anniversary Set Bundle', '2nd Anniversary Pack' — staan op de Boxen-pagina onder *Vaste inhoud*: prijs (TCGplayer, CardTrader, Cardmarket) naast de som van de kaarten erin (gevonden via de naam-suffix '(2nd Anniversary Set)'). Alleen ter info: geen Telegram-meldingen, geen paper-posities. Detectie: `build.fixed_content_bundles`.
+
+
+### Waardering (sinds 2026-10-21): EU-bronnen eerst
+Elke kaart: Cardmarket-verkopen (avg30 → avg7 → trend) → CardTrader-laagste ask × 0,83 → TCGplayer × koers alleen als geen EU-bron de kaart prijst. Geen set-brede terugval meer; `valuation` = `cardmarket` (≥ 50% van de hits op Cardmarket-verkopen), `eu-mixed` (EU-keten, grotendeels CardTrader) of `tcgplayer` (geen EU-data). Geldt voor box-EV, slab-raw-waarde en vaste-inhoud producten; de US-EV blijft als referentie.

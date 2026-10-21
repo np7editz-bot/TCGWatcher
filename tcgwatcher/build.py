@@ -108,13 +108,15 @@ def build(day, quality=None):
             s["cm_box"] = (cm or {}).get("boxes", {}).get(s["code"])
             if s["cm_box"]:
                 s["cm_box"]["landed"] = round(s["cm_box"]["low"] + landed_cfg.get("cardmarket_shipping_eur", 18), 2)
-            # Valuation: Cardmarket SALES (avg30, EUR) are the primary yardstick for the EU market; TCGplayer × rate is the
-            # fallback per card and for sets where fewer than half of the hits have recent EU sales. The US figure stays as reference.
+            # Valuation (2026-10-21): the EU sources we buy from price every card — Cardmarket sales (avg30 → avg7 → trend),
+            # then CardTrader ask × 0.83; TCGplayer × rate only for a card neither has. No set-level switch anymore: the
+            # chain is per card. `valuation` tells how much of the set rests on Cardmarket sales; US EV stays as reference.
             s["ev_us_excl_saa"] = s["ev_eu_excl_saa"]
-            s["ev_cm_excl_saa"], s["cm_coverage"] = ev_cm(s, cards, rate) if cm else (None, "0/0")
+            s["ev_cm_excl_saa"], s["cm_coverage"] = ev_cm(s, cards, rate) if g.get("eu_sources") else (None, "0/0")
             cov_n, cov_t = (int(x) for x in s["cm_coverage"].split("/"))
-            if s["ev_cm_excl_saa"] and cov_t and cov_n / cov_t >= 0.5:
-                s["ev_eu_excl_saa"], s["valuation"] = s["ev_cm_excl_saa"], "cardmarket"
+            if s["ev_cm_excl_saa"] is not None and cov_t:
+                s["ev_eu_excl_saa"] = s["ev_cm_excl_saa"]
+                s["valuation"] = "cardmarket" if cov_n / cov_t >= 0.5 else "eu-mixed"
             else:
                 s["valuation"] = "tcgplayer"
             s["best_buy"] = best_buy(s, landed_cfg.get("min_offers", 3), cardmarket_buy=g.get("cardmarket_box_buy", True))
@@ -129,7 +131,7 @@ def build(day, quality=None):
             "estimates": {k: {"label": labels[k], "est": v} for k, v in est.items()},
             "box": g["box"],
             "sets": sets_scored, "cards": cards, "starters": other_sets,
-            "bundles": fixed_content_bundles(m["products"], eu, landed_cfg, rate, (cm or {}).get("bundles") or {}),
+            "bundles": fixed_content_bundles(m["products"], eu, landed_cfg, rate, (cm or {}).get("bundles") or {}, (cm or {}).get("cards") or {}),
             "slab_signals": [x for x in (slab_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
             "grade_signals": [x for x in (grade_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
             "alerts": g.get("alerts", True),
@@ -183,7 +185,7 @@ ASK_TO_SALE = 0.83     # CardTrader ask → expected sale price (1 / 1.2, docs/c
 BUNDLE_T = re.compile(r"^(?P<label>.+?)( Bundle)?$")
 
 
-def fixed_content_bundles(products, eu, landed_cfg, fx, cm_bundles=None):
+def fixed_content_bundles(products, eu, landed_cfg, fx, cm_bundles=None, cm_cards=None):
     """Sealed products with FIXED contents (anniversary sets, promo packs): no lottery, so value = sum of the cards inside.
     Detected by name: a product without a card number whose name ends in 'Set Bundle' or '… Pack', with cards whose name
     carries '(<that label>)' — e.g. '2nd Anniversary Set Bundle' ↔ 'Kefla - FB08-034 (2nd Anniversary Set)'.
@@ -199,7 +201,10 @@ def fixed_content_bundles(products, eu, landed_cfg, fx, cm_bundles=None):
         items, total, priced = [], 0.0, 0
         for q in contents:
             o = eu.get(q.product_id) or {}
-            v = (q.price * fx) if q.price else ((o.get("low") or 0) * ASK_TO_SALE or None)
+            cmr = (cm_cards or {}).get(q.key) or {}
+            v = (cmr.get("avg30") or cmr.get("avg7") or cmr.get("trend")
+                 or ((o.get("low") or 0) * ASK_TO_SALE or None)
+                 or ((q.price * fx) if q.price else None))
             if v:
                 total += v; priced += 1
             items.append({"key": q.key, "name": q.name, "number": q.number, "rarity": q.rarity, "price_eur": round(v, 2) if v else None,
@@ -225,8 +230,8 @@ def fixed_content_bundles(products, eu, landed_cfg, fx, cm_bundles=None):
 
 
 def ev_cm(s, cards, rate):
-    """EV of the hits on Cardmarket sales (avg30, EUR); per card falls back to avg7 → trend → TCGplayer × rate (sales-based)
-    → CardTrader lowest ask × ASK_TO_SALE (asks overstate: calibration 2026-10-18 median 1.12–1.39× sales).
+    """EV of the hits on Cardmarket sales (avg30, EUR); per card falls back to avg7 → trend → CardTrader lowest ask × ASK_TO_SALE
+    (asks overstate: calibration 2026-10-18 median 1.12–1.39× sales) → TCGplayer × rate only when no EU source prices the card.
     Returns (ev, coverage 'n/total') where n = hits priced on Cardmarket sales."""
     ev, covered, total = 0.0, 0, 0
     for cid, comp in s["composition"].items():
@@ -242,10 +247,10 @@ def ev_cm(s, cards, rate):
                 prices.append(v); covered += 1; total += 1
             elif cm.get("trend"):
                 prices.append(cm["trend"]); total += 1
-            elif c.get("price") is not None:
-                prices.append(c["price"] * rate); total += 1
             elif (c.get("eu") or {}).get("low"):
                 prices.append(c["eu"]["low"] * ASK_TO_SALE); total += 1
+            elif c.get("price") is not None:
+                prices.append(c["price"] * rate); total += 1
         if prices:
             ev += comp["est"] * (sum(prices) / len(prices))
     return round(ev, 2), f"{covered}/{total}"

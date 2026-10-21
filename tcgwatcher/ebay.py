@@ -296,7 +296,8 @@ def targets(latest, per_set=10, min_raw_eur=20):
             out.append({"key": c["key"], "number": c["number"], "name": name, "set": code, "class": c["class"], "variant": c.get("variant", ""),
                         "product_id": c.get("product_id"),
                         "sibling_images": [x["image"] for x in sibl if x.get("image")],
-                        "raw_eur": round(((c.get("cm") or {}).get("avg30") or c["price"] * fx), 2), "image": c.get("image")})
+                        "raw_eur": round(((c.get("cm") or {}).get("avg30") or (c.get("cm") or {}).get("avg7") or (c.get("cm") or {}).get("trend")
+                                          or (((c.get("eu") or {}).get("low") or 0) * 0.83) or c["price"] * fx), 2), "image": c.get("image")})
     return out
 
 
