@@ -1,19 +1,5 @@
 {
  "day": "2026-10-21",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-19T07:45:08Z",
-   "kind": "preorder->sold_out",
-   "old_price": 7.5,
-   "price": 7.5,
-   "product_kind": "pack",
-   "retailer": "breakthecase",
-   "seen": "2026-10-21T11:48:06Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Fusion World - FB11 - BRIGHTNESS OF HOPE - Booster – Englisch",
-   "trusted": true,
-   "url": "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb11-brightness-of-hope-booster-englisch"
-  }
- ]
+ "transitions": []
 }
