@@ -1,5 +1,19 @@
 {
  "day": "2026-10-22",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 9.99,
+   "price": 14.99,
+   "product_kind": "pack",
+   "retailer": "collgamers",
+   "seen": "2026-10-22T23:22:27Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World - Wish for Shenron Fb07 - Sleeved Booster/Blister",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-wish-for-shenron-fb07-sleeved-booster-blister"
+  }
+ ]
 }
