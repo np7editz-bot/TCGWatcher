@@ -1,0 +1,27 @@
+{
+ "day": "2026-10-21",
+ "games": {
+  "dbfw": {
+   "findings": [],
+   "market_priced": 4202,
+   "priced": 4429,
+   "products": 4556,
+   "status": "ok"
+  },
+  "dbs": {
+   "findings": [],
+   "market_priced": 10071,
+   "priced": 11486,
+   "products": 12019,
+   "status": "ok"
+  },
+  "naruto": {
+   "findings": [],
+   "market_priced": 2,
+   "priced": 3,
+   "products": 3,
+   "status": "ok"
+  }
+ },
+ "status": "ok"
+}
