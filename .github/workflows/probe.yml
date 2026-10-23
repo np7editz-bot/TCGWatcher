@@ -1,0 +1,28 @@
+name: probe
+
+on:
+  workflow_dispatch:
+    inputs:
+      category: { description: "TCGplayer category id", required: true, default: "89" }
+      slug: { description: "output name", required: true, default: "riftbound" }
+      cm_name: { description: "name in Cardmarket catalogues", required: false, default: "Riftbound" }
+      ct_name: { description: "name in CardTrader games", required: false, default: "Riftbound" }
+      news: { description: "news URLs (space separated)", required: false, default: "https://riftbound.com/en-us/news https://riftbound.leagueoflegends.com/en-us/news/" }
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -r requirements.txt
+      - env:
+          CARDTRADER_TOKEN: ${{ secrets.CARDTRADER_TOKEN }}
+        run: python -m tcgwatcher probe --category ${{ inputs.category }} --slug ${{ inputs.slug }} --cm-name "${{ inputs.cm_name }}" --ct-name "${{ inputs.ct_name }}" --news ${{ inputs.news }}
+      - run: |
+          git config user.name "tcgwatcher-bot"; git config user.email "tcgwatcher-bot@users.noreply.github.com"
+          git add data/probe && (git diff --cached --quiet || (git commit -m "probe: ${{ inputs.slug }}" && git pull --rebase origin main && git push))
