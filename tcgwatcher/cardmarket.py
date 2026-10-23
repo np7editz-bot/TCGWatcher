@@ -17,8 +17,11 @@ from . import store, USER_AGENT
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
 GAME_IDS = {"dbfw": 13, "dbs": 13, "riftbound": 22}      # fallback; config `cardmarket_game_id` wins
-VERIFIED_CARD_URLS = {"dbfw", "dbs"}                      # games whose single-page URL pattern was clicked through; others get a search link
-SCHEMA = 13            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+VERIFIED_CARD_URLS = {"dbfw", "dbs", "riftbound"}         # games whose single-page URL pattern was clicked through; others get a search link
+# Riftbound labels (clicked 2026-10-23): …/Singles/Spiritforged/Draven-Glorious-Executioner-V2-Showcase,
+# …/Radiance/Evelynn-Agonys-Embrace-V3-Signed-Showcase; expansion = plain set name, promos 'Origins Promos'
+GAME_VERSION_LABEL = {"riftbound": {"AA": "Showcase", "ON": "Showcase", "SPC": "Showcase", "ULT": "Showcase", "SIG": "Signed Showcase"}}
+SCHEMA = 14            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 NOT_BUNDLE = re.compile(r"(energy marker|sleeve|playmat|deck box|storage|binder|case|display|booster box|championship)", re.I)   # accessories named like a set
 
@@ -77,13 +80,13 @@ def expansion_name(gid, code, set_name, box_name=None):
     return (set_name or "") + (" [Fusion World]" if gid == "dbfw" else "")
 
 
-def card_url(expansion_name, product_name, version=1, variant="", rarity="", printings=1, game_slug="DragonBallSuper"):
+def card_url(expansion_name, product_name, version=1, variant="", rarity="", printings=1, game_slug="DragonBallSuper", gid="dbfw"):
     """Single page: /Products/Singles/<Expansion-Slug>/<Product-Slug>[-V<n>-<Label>].
     Cardmarket keeps one product per printing under the same catalogue name; the 2nd, 3rd … printing gets a
     "(V.n - Label)" suffix in its URL, e.g. Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare
     (verified in the browser 2026-10-19). n = rank of idProduct among the same name in the same expansion; label from our
     variant code (VERSION_LABEL)."""
-    label = VERSION_LABEL.get(variant) or rarity
+    label = (GAME_VERSION_LABEL.get(gid) or VERSION_LABEL).get(variant) or rarity
     tail = f" (V.{version} - {label})" if printings > 1 and label else ""
     return f"https://www.cardmarket.com/en/{game_slug}/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}?language=1"
 
@@ -191,7 +194,7 @@ def _join_game(files, gid, g, cm_ids_by_tcg, game_slug):
                                "avg1": _f(r, "avg1"), "avg7": _f(r, "avg7"), "avg30": _f(r, "avg30"),
                                "foil": not r.get("avg30") and bool(r.get("avg30-foil")),
                                "url": (card_url(exp_name.get(code, ""), names[pid], version.get(pid, 1), variant, c.get("rarity") or "",
-                                                printings.get(pid, 1), game_slug) if gid in VERIFIED_CARD_URLS else search_url(names[pid], game_slug))
+                                                printings.get(pid, 1), game_slug, gid) if gid in VERIFIED_CARD_URLS else search_url(names[pid], game_slug))
                                       if names.get(pid) else None}
     # fixed-content sealed products (anniversary sets, promo packs) by name → lowest ask, for the page's bundle tiles
     bundles = {}
