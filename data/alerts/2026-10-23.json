@@ -1,0 +1,25 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-23T23:54:54Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €130 · breakthecase · pre-order",
+      "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:riftbound:RAD",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/711365_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · RAD Radiance</b>\nHits per box <b>€144</b> / box vanaf <b>€130</b> → ratio <b>1.11</b> (drempel 0.8)\n#1 van 5 · US-ratio 1.09\n\n🛒 <b>Waar kopen</b> (3 EU-listings)\n• €130,00 breakthecase (pre-order)\n• €134,90 supercollectors (op voorraad)\n• €139,95 collgamers (op voorraad)\n<i>◦ Cardmarket €118 — indicatie (alle talen)</i>\n\nSamenstelling: 28 Epic · 18 Alt-Art · 11 Showcase · 16 Overnum. · 15 ★ Sig · 1 Ultimate\nTop hit: Seraphine, Starry-Eyed Songstress (Signature) 174*/167 SIG €3.328\n<i>Waardering Cardmarket-verkopen 30d · 113/118 hits · US-referentie €128</i>"
+  }
+ ],
+ "day": "2026-10-23"
+}
