@@ -21,7 +21,22 @@ from . import store, CONFIG, USER_AGENT
 
 log = logging.getLogger("tcgwatcher.retail")
 
-MATCH = re.compile(r"(fb\s?-?\d{2}|fs\s?-?\d{2}|sb\s?-?\d{2}|st\s?-?\d{2}|fusion[\s-]?world|dragon[\s-]?ball|naruto)", re.I)
+MATCH = re.compile(r"(fb\s?-?\d{2}|fs\s?-?\d{2}|sb\s?-?\d{2}|st\s?-?\d{2}|fusion[\s-]?world|dragon[\s-]?ball|naruto|riftbound|league of legends)", re.I)
+# Riftbound sets carry no code in shop titles: name → our set code (TCGplayer abbreviations)
+RIFT_SETS = {"origins": "OGN", "spiritforged": "SFD", "unleashed": "UNL", "vendetta": "VEN", "radiance": "RAD", "legacy": "LGC"}
+
+
+def set_code_of(title, url=""):
+    """Set code from a product title/url: Dragon Ball codes (FB10, BT26 …) or a Riftbound set name."""
+    hay = f"{title or ''} {url or ''}"
+    m = re.search(r"\b(FB|SB|ST|FS|BT|BE|SD|EB)\s?-?(\d{2})\b", hay, re.I)
+    if m:
+        return f"{m.group(1).upper()}{m.group(2)}"
+    if re.search(r"(riftbound|league of legends)", hay, re.I):
+        for name, code in RIFT_SETS.items():
+            if re.search(r"\b" + name + r"\b", hay, re.I):
+                return code
+    return None
 BOX = re.compile(r"(booster\s*box|display|booster\s*display|case|starter\s*deck|box)", re.I)
 SOLD = re.compile(r"(uitverkocht|sold\s*out|ausverkauft|esaurito|agotado|épuisé|niet\s*(meer\s*)?(op\s*voorraad|leverbaar)|nicht\s*(mehr\s*)?verfügbar|out\s*of\s*stock|non\s*disponibile)", re.I)
 PRE = re.compile(r"(pre-?\s?order|voorverkoop|vorbestell|pr[ée]-?commande|preordine|pre-?venta|coming\s*soon|binnenkort)", re.I)
@@ -133,6 +148,16 @@ def status_from_text(text):
 
 # --- platform extractors -------------------------------------------------------------------------
 def shopify_collection(http, retailer):
+    rows, err = [], None
+    for cat in [retailer["category"]] + list(retailer.get("categories") or []):
+        got, e = _shopify_one(http, dict(retailer, category=cat))
+        if got:
+            rows += got
+        err = err or e
+    return (rows, None) if rows else (None, err)
+
+
+def _shopify_one(http, retailer):
     base = retailer["category"].split("?")[0].rstrip("/")
     m = re.match(r"^(https?://[^/]+(?:/[a-z]{2}(?:-[a-z]{2})?)?/collections/[^/]+)", base, re.I)
     if m:
@@ -165,7 +190,7 @@ def woo_store(http, retailer):
     origin = "{0.scheme}://{0.netloc}".format(urlparse(retailer["category"]))
     rows = []
     seen = set()
-    for q in ("fusion world", "dragon ball", "naruto"):
+    for q in ("fusion world", "dragon ball", "naruto", "riftbound"):
         data, err = http.get(f"{origin}/wp-json/wc/store/v1/products?search={q.replace(' ', '%20')}&per_page=100", json_=True)
         if not isinstance(data, list):
             if err and q == "fusion world":
@@ -368,8 +393,7 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
         cheaper = t["kind"] == "price_drop"
         if not (becomes_buyable or cheaper):
             continue
-        m = _re.search(r"\b(FB|SB|ST|FS|BT|BE|SD|EB)\s?-?(\d{2})\b", (t.get("title") or "") + " " + t["url"], _re.I)
-        code = f"{m.group(1).upper()}{m.group(2)}" if m else None
+        code = set_code_of(t.get("title"), t["url"])
         if code and code in muted:
             continue
         st = None if naruto else sets.get(code)

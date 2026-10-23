@@ -120,3 +120,12 @@ def test_naruto_products_always_alert_any_kind():
     assert len(msgs) == 1 and msgs[0]["text"].startswith("🍥 NARUTO · 🟡 PRE-ORDER OPEN")
     t[0]["title"] = "Dragon Ball Fusion World FS13 Starter Deck"; t[0]["url"] = "https://collgamers.nl/products/fs13"
     assert retail.format_alerts(t, first_run=False, latest={"games": {}}) == []       # Fusion World decks: data only
+
+
+def test_riftbound_set_codes_from_shop_titles():
+    from tcgwatcher.retail import set_code_of, MATCH, KIND_BOX
+    t = "Riftbound: League of Legends TCG: Radiance – Booster Display"
+    assert set_code_of(t, "https://supercollectors.nl/product/x") == "RAD" and MATCH.search(t) and KIND_BOX.search(t)
+    assert set_code_of("Riftbound Origins Booster Box", "") == "OGN"
+    assert set_code_of("Dragon Ball Super Fusion World FB11 Booster Box", "") == "FB11"
+    assert set_code_of("Riftbound Vault Bundle", "") is None
