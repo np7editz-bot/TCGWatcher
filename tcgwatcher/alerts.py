@@ -83,7 +83,7 @@ def run(day, quality=None, send=True):
                     msgs.append(_m(f"new_expansion:{code}", "news",
                                    f"📰 <b>Nieuwe set bij CardTrader</b>\n<b>{e.get('name')}</b> ({code}) staat nu in de catalogus — "
                                    f"meestal maanden vóór release; pre-orders volgen.",
-                                   buttons=[[("CardTrader", f"https://www.cardtrader.com/en/expansions/{e.get('code') or ''}"), ("Radar", SITE_URL)]]))
+                                   buttons=[[("TCGplayer", "https://www.tcgplayer.com/search/all/product?q=" + str(e.get("name") or "").replace(" ", "%20")), ("Radar", SITE_URL)]]))
     except Exception as e:  # noqa: BLE001
         log.warning("expansion watch: %s", e)
 
@@ -129,6 +129,7 @@ def run(day, quality=None, send=True):
         # 4b. slabs: the 5 best cards to buy now for graded value — one card per message (photo, where-to-buy comparison,
         #     one button per shop). Each run: up to 5 cards not sent before; a sent card again only when net ≥ +25% or raw ≤ −10%.
         buy_min = cfg.get("grading", {}).get("min_profit_eur", 50)
+        all_items = []                                     # one top 5 across games (Fusion World, Riftbound, …), by net
         for gid, gdata in latest["games"].items():
             if not gdata.get("alerts", True):
                 continue
@@ -160,21 +161,23 @@ def run(day, quality=None, send=True):
                 net = round(g["net"] - (raw_price - g["raw_eur"]), 2)
                 if net < buy_min:
                     continue
-                items.append({"key": g["key"], "g": g, "c": c, "opts": opts, "raw": raw_price, "net": net, "slab": slabs.get(g["key"])})
-            items.sort(key=lambda i: -i["net"])
-            # Telegram gets up to 5 cards that were NOT sent before (state.sent_slabs, never cleared); a sent card returns
-            # only when it got clearly better (net ≥ +25% or raw ≥ 10% cheaper). The page keeps every candidate, marked.
-            sent = state.setdefault("sent_slabs", {})
-            for k, ep in list(state["active"].items()):               # migrate legacy slab episodes: those were sent already
-                if k.startswith(f"slab:{gid}:") and isinstance(ep, dict) and "net" in ep:
-                    sent.setdefault(k.split(":", 2)[2].join([f"{gid}:", ""]), {"day": ep.get("since", day), "net": ep["net"], "raw": ep["raw"], "rank": 0})
-            picked = pick_slabs(items, sent, gid)
+                items.append({"gid": gid, "short": gdata.get("short", gid), "key": g["key"], "g": g, "c": c, "opts": opts, "raw": raw_price, "net": net, "slab": slabs.get(g["key"])})
+            all_items += items
+            for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
+                state["active"].pop(key, None)             # legacy episodes: rotation is tracked in sent_slabs now
+        all_items.sort(key=lambda i: -i["net"])
+        # Telegram gets up to 5 cards that were NOT sent before (state.sent_slabs, never cleared); a sent card returns
+        # only when it got clearly better (net ≥ +25% or raw ≥ 10% cheaper). The page keeps every candidate, marked.
+        sent = state.setdefault("sent_slabs", {})
+        if True:
+            picked = pick_slabs(all_items, sent)
             for rank, i in enumerate(picked, 1):
+                gid = i["gid"]
                 key = f"slab:{gid}:{i['key']}"
                 g, c, sl = i["g"], i["c"], i["slab"]
                 where = "\n".join(f"• €{o['price']:.0f} {o['src']}" for o in i["opts"][:3])
                 cls = "Gold (Manga)" if i["key"].endswith(":GOLD") else g["class"].replace("_AA", " AA")
-                txt = (f"🏆 <b>SLAB #{rank} · {_card(g['name'], g['number'])} {cls}</b> · {g['set']}\n"
+                txt = (f"🏆 <b>SLAB #{rank} · {_card(g['name'], g['number'])} {cls}</b> · {i['short']} {g['set']}\n"
                        f"Raw kopen vanaf <b>€{i['raw']:.0f}</b> → {g['service']} {g['top_grade']} waarde <b>€{g['top_median']:.0f}</b> ({g['top_n']} listings)\n"
                        f"Netto na grading en fees: <b>€{i['net']:.0f}</b> per kaart ({i['net'] / i['raw']:.0%} op inleg)\n\n"
                        f"🛒 <b>Raw, all-in naar NL</b>\n{where}")
@@ -190,8 +193,6 @@ def run(day, quality=None, send=True):
                 m = _m(key, "slab", txt, photo=_big(c.get("image")), buttons=btn)
                 m["on_sent"] = {"sent_slabs": (f"{gid}:{i['key']}", {"day": day, "net": i["net"], "raw": i["raw"], "rank": rank})}
                 msgs.append(m)
-            for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
-                state["active"].pop(key, None)             # legacy episodes: rotation is tracked in sent_slabs now
 
         # 5. briefing: daily | weekly (Sunday) | off
         mode = cfg.get("briefing", "weekly")
@@ -246,11 +247,11 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
     return _m(f"buy:{gid}:{s['code']}", "buy", txt, photo=_big((s.get("box") or {}).get("image") or s["top_hit"].get("image")), buttons=btn)
 
 
-def pick_slabs(items, sent, gid, n=5):
-    """Up to n slab candidates (sorted by net) not sent before; a sent one again only when net ≥ +25% or raw ≤ −10%."""
+def pick_slabs(items, sent, gid=None, n=5):
+    """Up to n slab candidates (sorted by net, across games) not sent before; a sent one again only when net ≥ +25% or raw ≤ −10%."""
     picked = []
     for i in items:
-        prev = sent.get(f"{gid}:{i['key']}")
+        prev = sent.get(f"{i.get('gid', gid)}:{i['key']}")
         if prev and not (i["net"] >= prev["net"] * 1.25 or i["raw"] <= prev["raw"] * 0.9):
             continue
         picked.append(i)

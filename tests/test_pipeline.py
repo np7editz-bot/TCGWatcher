@@ -287,3 +287,21 @@ def test_riftbound_config_classifies_probe_samples():
     assert variant_of(g, "Kha'Zix, Voidreaver (Signature)") == "SIG" and variant_of(g, "Lux, Lady of Luminosity (Metal) (Prize Wall)") == "PW"
     assert sealed_kind_of(g, "Radiance - Booster Display", "") == "box" and sealed_kind_of(g, "Radiance - Booster Display Case", "") == "case"
     assert sealed_kind_of(g, "Radiance - Sleeved Booster Pack", "") is None and sealed_kind_of(g, "Radiance - Booster Pack", "") == "pack"
+
+
+def test_cardmarket_box_low_outlier_is_not_the_buy_price():
+    from tcgwatcher.build import best_buy
+    s = {"flags": [], "ev_eu_excl_saa": 150.0, "retail": [], "ebay_box": None,
+         "box": {"eu": {"landed": 184.64, "landed_via": "zero", "url": "u", "n": 39, "landed_note": "x"}},
+         "cm_box": {"low": 68.98, "landed": 86.98, "trend": 178.04, "url": "c"}}
+    b = best_buy(s, min_offers=3)
+    assert b["source"].startswith("CardTrader") and b["price"] == 184.64
+    assert any(o["source"] == "Cardmarket" and "uitschieter" in o.get("note", "") for o in b["options"])
+
+
+def test_slab_top5_across_games():
+    from tcgwatcher.alerts import pick_slabs
+    items = sorted([{"gid": "dbfw", "key": "a", "net": 300, "raw": 100}, {"gid": "riftbound", "key": "b", "net": 250, "raw": 50},
+                    {"gid": "dbfw", "key": "c", "net": 200, "raw": 100}, {"gid": "riftbound", "key": "d", "net": 100, "raw": 20}], key=lambda i: -i["net"])
+    sent = {"dbfw:a": {"net": 300, "raw": 100}}
+    assert [(i["gid"], i["key"]) for i in pick_slabs(items, sent)] == [("riftbound", "b"), ("dbfw", "c"), ("riftbound", "d")]

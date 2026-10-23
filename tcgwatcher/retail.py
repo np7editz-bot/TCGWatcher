@@ -46,7 +46,8 @@ KIND_BOX = re.compile(r"(booster\s*box|\bdisplay\b|bo[iî]te de 2\d|box of 2\d|\
 KIND_CASE = re.compile(r"\bcase\b", re.I)
 KIND_DECK = re.compile(r"(starter|\bdeck\b)", re.I)
 KIND_PACK = re.compile(r"(booster\s*pack|\bpacks?\b|sleeved|blister|\bbooster\b)", re.I)
-KIND_OTHER = re.compile(r"(sleeves?\b|playmat|promo|binder|bundle|lot\b|collector'?s? display)", re.I)
+KIND_OTHER = re.compile(r"(sleeves?\b|playmat|promo|binder|bundle|lot\b|collector'?s? display"
+                        r"|proving grounds|jumbo|\bkit\b|gift box|box set|vault|showdown|chin[oe]s?e?\b|\bchino\b|acrylic)", re.I)   # not a booster box
 # English market only: Japanese-language product is a different market (and much cheaper) → never a box/case for us
 LANG_JP = re.compile(r"(\[\s*j[ap]\s*\]|\bjp\b|japan(ese|isch|s)?\b|\bjap\b|日本|-jp(-|$)|\(jp\))", re.I)
 
