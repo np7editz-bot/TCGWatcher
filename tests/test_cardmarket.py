@@ -121,3 +121,14 @@ def test_bundle_match_skips_accessories():
     assert ok("2nd Anniversary Set", "Fusion World 2nd Anniversary Set")
     assert not ok("2nd Anniversary Pack", "Energy Marker Pack -2nd Anniversary Edition-")
     assert not ok("1st Anniversary Set", "Dragon Ball Fusion World 1st Anniversary Set Playmat")
+
+
+def test_riftbound_card_urls_match_browser():
+    from tcgwatcher.cardmarket import card_url, expansion_name, box_url
+    assert card_url("Spiritforged", "Draven, Glorious Executioner", 2, "AA", "Showcase", 2, "Riftbound", "riftbound").endswith(
+        "/Riftbound/Products/Singles/Spiritforged/Draven-Glorious-Executioner-V2-Showcase?language=1")
+    assert card_url("Radiance", "Evelynn, Agony's Embrace", 3, "SIG", "Showcase", 3, "Riftbound", "riftbound").endswith(
+        "/Radiance/Evelynn-Agonys-Embrace-V3-Signed-Showcase?language=1")
+    assert card_url("Origins Promos", "Jinx, Loose Cannon", 1, "", "Promo", 1, "Riftbound", "riftbound").endswith("/Origins-Promos/Jinx-Loose-Cannon?language=1")
+    assert expansion_name("riftbound", "RAD", "Radiance", "Radiance Booster Box") == "Radiance"
+    assert box_url("Radiance Booster Box", "Riftbound").endswith("/Riftbound/Products/Booster-Boxes/Radiance-Booster-Box?language=1")

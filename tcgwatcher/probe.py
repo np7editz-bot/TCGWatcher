@@ -12,9 +12,46 @@ log = logging.getLogger("tcgwatcher.probe")
 TCGCSV = "https://tcgcsv.com/tcgplayer"
 
 
+def shops(needle):
+    """Where do our retailers sell this game? Shopify: /collections.json handles; Woo: Store API search count."""
+    from .config import ROOT
+    import yaml
+    from urllib.parse import urlparse
+    s = requests.Session(); s.headers.update({"User-Agent": USER_AGENT})
+    cfg = yaml.safe_load(open(ROOT / "config" / "retailers.yaml"))["retailers"]
+    out = {}
+    for r in cfg:
+        if r.get("enabled") is False:
+            continue
+        origin = "{0.scheme}://{0.netloc}".format(urlparse(r["category"]))
+        try:
+            if r.get("platform") == "shopify":
+                cols = []
+                for page in (1, 2, 3):
+                    d = s.get(f"{origin}/collections.json?limit=250&page={page}", timeout=30).json().get("collections", [])
+                    cols += d
+                    if len(d) < 250:
+                        break
+                hits = [{"handle": c["handle"], "title": c.get("title"), "n": c.get("products_count")} for c in cols if needle in (c.get("handle", "") + " " + (c.get("title") or "")).lower()]
+                out[r["id"]] = {"platform": "shopify", "collections": hits, "total_collections": len(cols)}
+            elif r.get("platform") == "woo":
+                d = s.get(f"{origin}/wp-json/wc/store/v1/products?search={needle}&per_page=50", timeout=30).json()
+                out[r["id"]] = {"platform": "woo", "n": len(d) if isinstance(d, list) else None, "sample": [p.get("name") for p in d[:8]] if isinstance(d, list) else str(d)[:120]}
+            else:
+                d = s.get(f"{origin}", timeout=30)
+                out[r["id"]] = {"platform": r.get("platform"), "home_mentions": d.text.lower().count(needle)}
+        except Exception as e:  # noqa: BLE001
+            out[r["id"]] = {"error": str(e)[:120]}
+    return out
+
+
 def run(category, slug, cm_name=None, news_urls=(), ct_name=None):
     s = requests.Session(); s.headers.update({"User-Agent": USER_AGENT})
     out = {"category": category}
+    try:
+        out["shops"] = shops(slug.lower())
+    except Exception as e:  # noqa: BLE001
+        out["shops_error"] = str(e)[:120]
     groups = s.get(f"{TCGCSV}/{category}/groups", timeout=60).json().get("results", [])
     out["groups"] = [{"groupId": g["groupId"], "abbreviation": g.get("abbreviation"), "name": g.get("name"), "publishedOn": (g.get("publishedOn") or "")[:10]} for g in groups]
     rar, samples, sealed = collections.Counter(), collections.defaultdict(list), []
