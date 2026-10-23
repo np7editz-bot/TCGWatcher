@@ -11,7 +11,7 @@
    ],
    "market_priced": 2026,
    "priced": 2111,
-   "products": 4556,
+   "products": 4557,
    "status": "warn"
   },
   "dbs": {
@@ -30,6 +30,16 @@
    "priced": 0,
    "products": 3,
    "status": "ok"
+  },
+  "riftbound": {
+   "findings": [
+    {
+     "code": "no_data_yet",
+     "level": "info",
+     "message": "category 89 not fetched yet"
+    }
+   ],
+   "status": "pending"
   }
  },
  "status": "warn"

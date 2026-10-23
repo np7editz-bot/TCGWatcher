@@ -39,7 +39,289 @@
   "SB02": 0.518,
   "ST01": 0.439
  },
- "quality_fp": "",
+ "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
+ "seen_expansions": {
+  "BE21": {
+   "name": "Expansion Set: 5th Anniversary",
+   "seen": "2026-10-22"
+  },
+  "BE22": {
+   "name": "Premium Anniversary Box 2023",
+   "seen": "2026-10-22"
+  },
+  "BE24": {
+   "name": "Premium Anniversary Box 2024",
+   "seen": "2026-10-22"
+  },
+  "BE25": {
+   "name": "Premium Anniversary Box 2025",
+   "seen": "2026-10-22"
+  },
+  "BT10": {
+   "name": "Rise of the Unison Warrior",
+   "seen": "2026-10-22"
+  },
+  "BT11": {
+   "name": "Vermilion Bloodline",
+   "seen": "2026-10-22"
+  },
+  "BT12": {
+   "name": "Vicious Rejuvenation",
+   "seen": "2026-10-22"
+  },
+  "BT13": {
+   "name": "Supreme Rivalry",
+   "seen": "2026-10-22"
+  },
+  "BT14": {
+   "name": "Cross Spirits",
+   "seen": "2026-10-22"
+  },
+  "BT15": {
+   "name": "Saiyan Showdown",
+   "seen": "2026-10-22"
+  },
+  "BT16": {
+   "name": "Realm of the Gods",
+   "seen": "2026-10-22"
+  },
+  "BT17": {
+   "name": "Ultimate Squad",
+   "seen": "2026-10-22"
+  },
+  "BT18": {
+   "name": "Dawn of the Z-Legends",
+   "seen": "2026-10-22"
+  },
+  "BT19": {
+   "name": "Fighter's Ambition",
+   "seen": "2026-10-22"
+  },
+  "BT20": {
+   "name": "Power Absorbed",
+   "seen": "2026-10-22"
+  },
+  "BT21": {
+   "name": "Wild Resurgence",
+   "seen": "2026-10-22"
+  },
+  "BT22": {
+   "name": "Critical Blow",
+   "seen": "2026-10-22"
+  },
+  "BT23": {
+   "name": "Perfect Combination",
+   "seen": "2026-10-22"
+  },
+  "BT24": {
+   "name": "Beyond Generations",
+   "seen": "2026-10-22"
+  },
+  "BT25": {
+   "name": "Legend of the Dragon Balls",
+   "seen": "2026-10-22"
+  },
+  "BT26": {
+   "name": "Ultimate Advent",
+   "seen": "2026-10-22"
+  },
+  "BT27": {
+   "name": "History of Z",
+   "seen": "2026-10-22"
+  },
+  "BT28": {
+   "name": "Prismatic Clash",
+   "seen": "2026-10-22"
+  },
+  "BT29": {
+   "name": "Fearsome Rivals",
+   "seen": "2026-10-22"
+  },
+  "BT30": {
+   "name": "Three Glorious Fighters",
+   "seen": "2026-10-22"
+  },
+  "BT31": {
+   "name": "Impact Beyond Dimensions",
+   "seen": "2026-10-22"
+  },
+  "BT32": {
+   "name": "Chromatic Ascension",
+   "seen": "2026-10-22"
+  },
+  "FB01": {
+   "name": "Fusion World: Awakened Pulse",
+   "seen": "2026-10-22"
+  },
+  "FB02": {
+   "name": "Fusion World: Blazing Aura",
+   "seen": "2026-10-22"
+  },
+  "FB03": {
+   "name": "Fusion World: Raging Roar",
+   "seen": "2026-10-22"
+  },
+  "FB04": {
+   "name": "Fusion World: Ultra Limit",
+   "seen": "2026-10-22"
+  },
+  "FB05": {
+   "name": "Fusion World: New Adventure",
+   "seen": "2026-10-22"
+  },
+  "FB06": {
+   "name": "Fusion World: Rivals Clash",
+   "seen": "2026-10-22"
+  },
+  "FB07": {
+   "name": "Fusion World: Wish For Shenron",
+   "seen": "2026-10-22"
+  },
+  "FB08": {
+   "name": "Fusion World: Saiyan's Pride",
+   "seen": "2026-10-22"
+  },
+  "FB09": {
+   "name": "Fusion World: Dual Evolution",
+   "seen": "2026-10-22"
+  },
+  "FB10": {
+   "name": "Fusion World: Cross Force",
+   "seen": "2026-10-22"
+  },
+  "FB11": {
+   "name": "Fusion World: Brightness of Hope",
+   "seen": "2026-10-22"
+  },
+  "FB12": {
+   "name": "Fusion World: Reach The God",
+   "seen": "2026-10-22"
+  },
+  "FS01": {
+   "name": "Fusion World Starter Deck: Son Goku",
+   "seen": "2026-10-22"
+  },
+  "FS02": {
+   "name": "Fusion World Starter Deck: Vegeta",
+   "seen": "2026-10-22"
+  },
+  "FS03": {
+   "name": "Fusion World Starter Deck: Broly",
+   "seen": "2026-10-22"
+  },
+  "FS04": {
+   "name": "Fusion World Starter Deck: Frieza",
+   "seen": "2026-10-22"
+  },
+  "FS05": {
+   "name": "Fusion World Starter Deck: Bardoc",
+   "seen": "2026-10-22"
+  },
+  "FS06": {
+   "name": "Fusion World Starter Deck: Son Goku (Mini)",
+   "seen": "2026-10-22"
+  },
+  "FS07": {
+   "name": "Fusion World Starter Deck: Vegeta (Mini)",
+   "seen": "2026-10-22"
+  },
+  "FS08": {
+   "name": "Fusion World Starter Deck: Vegeta (Mini) Super Saiyan 3",
+   "seen": "2026-10-22"
+  },
+  "FS09": {
+   "name": "Fusion World Starter Deck: Ex Shallot",
+   "seen": "2026-10-22"
+  },
+  "FS10": {
+   "name": "Fusion World Starter Deck: Ex Giblet",
+   "seen": "2026-10-22"
+  },
+  "FS11": {
+   "name": "Starter Deck: EX The Phase Of Evolution",
+   "seen": "2026-10-22"
+  },
+  "FS12": {
+   "name": "Starter Deck: EX The Beat Of Ki",
+   "seen": "2026-10-22"
+  },
+  "FS13": {
+   "name": "Starter Deck: The Saiyan Raised On Earth",
+   "seen": "2026-10-22"
+  },
+  "FS14": {
+   "name": "Starter Deck: The Prince Of Saiyan",
+   "seen": "2026-10-22"
+  },
+  "SB01": {
+   "name": "Fusion World: Manga Booster 01",
+   "seen": "2026-10-22"
+  },
+  "SB02": {
+   "name": "Fusion World: Manga Booster 02",
+   "seen": "2026-10-22"
+  },
+  "SD10": {
+   "name": "Starter Deck: Parasitic Overlord",
+   "seen": "2026-10-22"
+  },
+  "SD11": {
+   "name": "Starter Deck: Instinct Surpassed",
+   "seen": "2026-10-22"
+  },
+  "SD12": {
+   "name": "Starter Deck: Spirit of Potara",
+   "seen": "2026-10-22"
+  },
+  "SD13": {
+   "name": "Starter Deck: Clan Collusion",
+   "seen": "2026-10-22"
+  },
+  "SD14": {
+   "name": "Starter Deck: Saiyan Wonder",
+   "seen": "2026-10-22"
+  },
+  "SD15": {
+   "name": "Pride of the Saiyans",
+   "seen": "2026-10-22"
+  },
+  "SD16": {
+   "name": "Starter Deck: Darkness Reborn",
+   "seen": "2026-10-22"
+  },
+  "SD17": {
+   "name": "Starter Deck: Red Rage",
+   "seen": "2026-10-22"
+  },
+  "SD18": {
+   "name": "Starter Deck: Blue Future",
+   "seen": "2026-10-22"
+  },
+  "SD19": {
+   "name": "Starter Deck: Green Fusion",
+   "seen": "2026-10-22"
+  },
+  "SD20": {
+   "name": "Starter Deck: Yellow Transformation",
+   "seen": "2026-10-22"
+  },
+  "SD21": {
+   "name": "Starter Deck: Ultimate Awakened Power",
+   "seen": "2026-10-22"
+  },
+  "SD22": {
+   "name": "Starter Deck: Proud Warrior",
+   "seen": "2026-10-22"
+  },
+  "SD23": {
+   "name": "Starter Deck: Final Radiance",
+   "seen": "2026-10-22"
+  },
+  "ST01": {
+   "name": "Fusion World: Story Booster 01",
+   "seen": "2026-10-22"
+  }
+ },
  "seen_groups": {
   "27": {
    "17672": {
@@ -1011,6 +1293,92 @@
     "seen": "2026-10-15"
    }
   },
+  "89": {
+   "24343": {
+    "abbr": "PR",
+    "name": "Riftbound Promotional Cards",
+    "published": "2025-10-31",
+    "seen": "2026-10-22"
+   },
+   "24344": {
+    "abbr": "OGN",
+    "name": "Origins",
+    "published": "2025-10-31",
+    "seen": "2026-10-22"
+   },
+   "24439": {
+    "abbr": "OGS",
+    "name": "Origins: Proving Grounds",
+    "published": "2025-10-31",
+    "seen": "2026-10-22"
+   },
+   "24502": {
+    "abbr": "RWB",
+    "name": "Riftbound Worlds Bundle 2025",
+    "published": "2025-10-28",
+    "seen": "2026-10-22"
+   },
+   "24519": {
+    "abbr": "SFD",
+    "name": "Spiritforged",
+    "published": "2026-02-13",
+    "seen": "2026-10-22"
+   },
+   "24528": {
+    "abbr": "OPP",
+    "name": "Riftbound Organized Play Promotional Cards",
+    "published": "2025-10-31",
+    "seen": "2026-10-22"
+   },
+   "24552": {
+    "abbr": "JDG",
+    "name": "Riftbound Judge Promotional Cards",
+    "published": "2025-12-01",
+    "seen": "2026-10-22"
+   },
+   "24560": {
+    "abbr": "UNL",
+    "name": "Unleashed",
+    "published": "2026-05-08",
+    "seen": "2026-10-22"
+   },
+   "24698": {
+    "abbr": "VEN",
+    "name": "Vendetta",
+    "published": "2026-07-31",
+    "seen": "2026-10-22"
+   },
+   "24797": {
+    "abbr": "SGN",
+    "name": "Secret Garden",
+    "published": "2025-07-30",
+    "seen": "2026-10-22"
+   },
+   "24819": {
+    "abbr": "RAD",
+    "name": "Radiance",
+    "published": "2026-10-23",
+    "seen": "2026-10-22"
+   },
+   "24832": {
+    "abbr": "LGC",
+    "name": "Legacy",
+    "published": "2027-01-29",
+    "seen": "2026-10-22"
+   },
+   "24861": {
+    "abbr": "T12025",
+    "name": "T1 2025 Worlds Champion Bundles",
+    "published": "2026-08-01",
+    "seen": "2026-10-22"
+   },
+   "24901": {
+    "abbr": "GRFT",
+    "name": "Gift of the Rift Bundle",
+    "published": "2026-12-04",
+    "seen": "2026-10-22"
+   }
+  },
   "93": {
    "24885": {
     "abbr": "",
@@ -1361,7 +1729,81 @@
     "seen": "2026-10-18"
    }
   },
-  "naruto": {}
+  "naruto": {},
+  "riftbound": {
+   "635366": {
+    "name": "Origins - Booster Pack",
+    "seen": "2026-10-22"
+   },
+   "635368": {
+    "name": "Origins - Booster Display",
+    "seen": "2026-10-22"
+   },
+   "635369": {
+    "name": "Origins - Booster Display Case",
+    "seen": "2026-10-22"
+   },
+   "661934": {
+    "name": "Spiritforged - Booster Display",
+    "seen": "2026-10-22"
+   },
+   "661937": {
+    "name": "Spiritforged - Booster Display Case",
+    "seen": "2026-10-22"
+   },
+   "661954": {
+    "name": "Spiritforged - Booster Pack",
+    "seen": "2026-10-22"
+   },
+   "678149": {
+    "name": "Unleashed - Booster Pack",
+    "seen": "2026-10-22"
+   },
+   "678150": {
+    "name": "Unleashed - Booster Display",
+    "seen": "2026-10-22"
+   },
+   "678152": {
+    "name": "Unleashed - Booster Display Case",
+    "seen": "2026-10-22"
+   },
+   "693377": {
+    "name": "Vendetta - Booster Pack",
+    "seen": "2026-10-22"
+   },
+   "693380": {
+    "name": "Vendetta - Booster Display",
+    "seen": "2026-10-22"
+   },
+   "693382": {
+    "name": "Vendetta - Booster Display Case",
+    "seen": "2026-10-22"
+   },
+   "711362": {
+    "name": "Radiance - Booster Pack",
+    "seen": "2026-10-22"
+   },
+   "711365": {
+    "name": "Radiance - Booster Display",
+    "seen": "2026-10-22"
+   },
+   "711366": {
+    "name": "Radiance - Booster Display Case",
+    "seen": "2026-10-22"
+   },
+   "712806": {
+    "name": "Legacy - Booster Display",
+    "seen": "2026-10-22"
+   },
+   "712807": {
+    "name": "Legacy - Booster Pack",
+    "seen": "2026-10-22"
+   },
+   "712808": {
+    "name": "Legacy - Booster Display Case",
+    "seen": "2026-10-22"
+   }
+  }
  },
  "sent_slabs": {
   "dbfw:dbfw:FB01:FB01-096:AA": {

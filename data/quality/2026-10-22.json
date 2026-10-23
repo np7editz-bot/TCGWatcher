@@ -21,7 +21,24 @@
    "priced": 3,
    "products": 3,
    "status": "ok"
+  },
+  "riftbound": {
+   "findings": [
+    {
+     "code": "duplicate_keys",
+     "ids": [
+      "riftbound:RAD:179*/167:SIG",
+      "riftbound:VEN:T05 // T06:"
+     ],
+     "level": "warn",
+     "message": "2 canonical keys occur more than once"
+    }
+   ],
+   "market_priced": 1713,
+   "priced": 1770,
+   "products": 1840,
+   "status": "warn"
   }
  },
- "status": "ok"
+ "status": "warn"
 }
