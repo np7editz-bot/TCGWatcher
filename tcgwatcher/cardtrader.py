@@ -51,24 +51,45 @@ class CardTrader:
         return self.get("/info")
 
 
-def fusion_world_expansions(ct):
+def watched_expansions(ct):
+    """Expansions to fetch, keyed by our set code, across every game with `eu_sources`.
+    Game match: `cardtrader_game` substring of the CardTrader game name (Dragon Ball runs Fusion World and the original
+    line as two games: both). Expansion match: `cardtrader_expansions` regex on the CardTrader expansion code (Riftbound:
+    ogn/sfd/…), else the Dragon Ball SETCODE regex on name/code (FB01, BT26 …)."""
+    from .config import load_games
     games = ct.get("/games")
     if not isinstance(games, list):
         raise RuntimeError(f"unexpected /games response: {type(games).__name__} {str(games)[:200]}")
     log.info("CardTrader games: %s", [g.get("display_name") or g.get("name") for g in games][:40])
-    # CardTrader runs Fusion World and the original Dragon Ball Super (Masters, BT sets) as separate games: take both
-    gids = [g["id"] for g in games if "dragon ball" in (g.get("display_name") or g.get("name") or "").lower()]
+    all_exps = ct.get("/expansions")
+    out, gids = {}, []
+    for gid_our, g in load_games().items():
+        if not g.get("eu_sources"):
+            continue
+        needle = (g.get("cardtrader_game") or "dragon ball").lower()
+        ids = [x["id"] for x in games if needle in (x.get("display_name") or x.get("name") or "").lower()]
+        if not ids:
+            log.warning("CardTrader: no game matching %r for %s", needle, gid_our)
+            continue
+        gids += [i for i in ids if i not in gids]
+        rx = re.compile(g["cardtrader_expansions"], re.I) if g.get("cardtrader_expansions") else None
+        for e in all_exps:
+            if e["game_id"] not in ids:
+                continue
+            if rx:
+                if rx.search(e.get("code") or ""):
+                    out.setdefault((e.get("code") or "").upper(), e)
+            else:
+                m = SETCODE.search(e.get("name") or "") or SETCODE.search(e.get("code") or "")
+                if m and m.group(1).upper() in ("FB", "SB", "ST", "FS", "BT", "BE", "SD", "EB"):
+                    out.setdefault(f"{m.group(1).upper()}{m.group(2)}", e)
     if not gids:
-        raise RuntimeError("Dragon Ball game not found in CardTrader /games")
-    log.info("CardTrader Dragon Ball game ids: %s", gids)
-    gid = gids[0]
-    exps = [e for e in ct.get("/expansions") if e["game_id"] in gids]
-    out = {}
-    for e in exps:
-        m = SETCODE.search(e.get("name") or "") or SETCODE.search(e.get("code") or "")
-        if m and m.group(1).upper() in ("FB", "SB", "ST", "FS", "BT", "BE", "SD", "EB"):      # Fusion World + Masters (BT)
-            out.setdefault(f"{m.group(1).upper()}{m.group(2)}", e)
-    return gid, out
+        raise RuntimeError("no CardTrader game matched any configured game")
+    log.info("CardTrader game ids: %s", gids)
+    return gids[0], out
+
+
+fusion_world_expansions = watched_expansions      # old name
 
 
 def fetch_day(ct=None, codes=None):
@@ -83,8 +104,8 @@ def fetch_day(ct=None, codes=None):
         return store.read_json(path)
     info = ct.info()
     log.info("CardTrader auth OK: %s", {k: info.get(k) for k in ("id", "username", "name") if isinstance(info, dict) and k in info})
-    gid, exps = fusion_world_expansions(ct)
-    log.info("CardTrader game %s: %d Fusion World expansions matched", gid, len(exps))
+    gid, exps = watched_expansions(ct)
+    log.info("CardTrader: %d expansions matched across games", len(exps))
     blueprints, offers, graded = {}, {}, {}
     for code, e in sorted(exps.items()):
         if codes and code not in codes:

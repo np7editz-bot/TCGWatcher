@@ -16,8 +16,9 @@ from . import store, USER_AGENT
 
 log = logging.getLogger("tcgwatcher.cardmarket")
 CDN = "https://downloads.s3.cardmarket.com/productCatalog"
-GAME_IDS = {"dbfw": 13, "dbs": 13}
-SCHEMA = 12            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
+GAME_IDS = {"dbfw": 13, "dbs": 13, "riftbound": 22}      # fallback; config `cardmarket_game_id` wins
+VERIFIED_CARD_URLS = {"dbfw", "dbs"}                      # games whose single-page URL pattern was clicked through; others get a search link
+SCHEMA = 13            # bump when join() adds fields: an older day file is then re-joined (the guide is daily anyway)
 NOT_EN = re.compile(r"(asia|non-english|japanese|\bjp\b|korean|chinese)", re.I)
 NOT_BUNDLE = re.compile(r"(energy marker|sleeve|playmat|deck box|storage|binder|case|display|booster box|championship)", re.I)   # accessories named like a set
 
@@ -41,10 +42,14 @@ def slug(name):
     return re.sub(r"[^A-Za-z0-9]+", "-", re.sub(r"['./]", "", name)).strip("-")
 
 
-def box_url(name):
+def box_url(name, game_slug="DragonBallSuper"):
     """Sealed product page: /Products/Booster-Boxes/<Name-Slug> (name 'Awakened Pulse Booster Box [Fusion World]' →
     Awakened-Pulse-Booster-Box-Fusion-World)."""
-    return "https://www.cardmarket.com/en/DragonBallSuper/Products/Booster-Boxes/" + slug(name) + "?language=1"   # English listings only
+    return f"https://www.cardmarket.com/en/{game_slug}/Products/Booster-Boxes/" + slug(name) + "?language=1"   # English listings only
+
+
+def search_url(name, game_slug="DragonBallSuper"):
+    return f"https://www.cardmarket.com/en/{game_slug}/Products/Search?searchString=" + requests.utils.quote(name) + "&language=1"
 
 
 # A catalogue name with several printings gets "(V.n - <label>)" on EVERY printing, V1 included; the label is Cardmarket's
@@ -72,7 +77,7 @@ def expansion_name(gid, code, set_name, box_name=None):
     return (set_name or "") + (" [Fusion World]" if gid == "dbfw" else "")
 
 
-def card_url(expansion_name, product_name, version=1, variant="", rarity="", printings=1):
+def card_url(expansion_name, product_name, version=1, variant="", rarity="", printings=1, game_slug="DragonBallSuper"):
     """Single page: /Products/Singles/<Expansion-Slug>/<Product-Slug>[-V<n>-<Label>].
     Cardmarket keeps one product per printing under the same catalogue name; the 2nd, 3rd … printing gets a
     "(V.n - Label)" suffix in its URL, e.g. Saiyans-Pride-Fusion-World/Son-Goten-FB08-121-Fusion-World-V3-God-Rare
@@ -80,7 +85,7 @@ def card_url(expansion_name, product_name, version=1, variant="", rarity="", pri
     variant code (VERSION_LABEL)."""
     label = VERSION_LABEL.get(variant) or rarity
     tail = f" (V.{version} - {label})" if printings > 1 and label else ""
-    return f"https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}?language=1"
+    return f"https://www.cardmarket.com/en/{game_slug}/Products/Singles/{slug(expansion_name)}/{slug(product_name + tail)}?language=1"
 
 
 def _tokens(text):
@@ -101,13 +106,28 @@ def _f(row, field):
     return v if v else row.get(f"{field}-foil")
 
 
-def join(files, latest, ct_doc):
-    """Keep only what we use: price-guide rows for our chase cards (via CardTrader card_market_ids) and sealed boxes."""
-    prices = {p["idProduct"]: p for p in files["prices"].get("priceGuides", [])}
+def join(files_by_game, latest, ct_doc):
+    """Keep only what we use: price-guide rows for our chase cards (via CardTrader card_market_ids) and sealed boxes.
+    `files_by_game`: {our game id: catalogue files of its Cardmarket game} (Dragon Ball games share 13, Riftbound is 22)."""
+    from .config import load_games
+    cfg = load_games()
     cm_ids_by_tcg = {}
     for b in ((ct_doc or {}).get("blueprints") or {}).values():
         if b.get("tcg_player_id") and b.get("card_market_ids"):
             cm_ids_by_tcg[int(b["tcg_player_id"])] = [int(x) for x in b["card_market_ids"] if x]
+    cards, boxes, bundles = {}, {}, {}
+    for gid, g in latest["games"].items():
+        files = files_by_game.get(gid)
+        if not files:
+            continue
+        game_slug = (cfg.get(gid) or {}).get("cardmarket_slug") or "DragonBallSuper"
+        c_, b_, u_ = _join_game(files, gid, g, cm_ids_by_tcg, game_slug)
+        cards.update(c_); boxes.update(b_); bundles.update(u_)
+    return cards, boxes, bundles
+
+
+def _join_game(files, gid, g, cm_ids_by_tcg, game_slug):
+    prices = {p["idProduct"]: p for p in files["prices"].get("priceGuides", [])}
     singles = files["singles"].get("products", [])
     names = {p["idProduct"]: p.get("name") or "" for p in singles}
     siblings = {}                                   # (idExpansion, name) → sorted idProducts: position = Cardmarket "V.n"
@@ -119,8 +139,8 @@ def join(files, latest, ct_doc):
             version[i] = n; printings[i] = len(ids)
     exp_of = {p["idProduct"]: p.get("idExpansion") for p in singles}
     cards, boxes = {}, {}
-    for gid, g in latest["games"].items():
-        sealed = [p for p in files["nonsingles"].get("products", []) if "Booster Box" in p.get("name", "")]
+    if True:
+        sealed = [p for p in files["nonsingles"].get("products", []) if re.search(r"Booster (Box|Display)", p.get("name", ""))]
         for s in g.get("sets", []):
             name = (s.get("name") or "").lower()
             if not name:
@@ -136,7 +156,7 @@ def join(files, latest, ct_doc):
                 p, r = min(rows, key=lambda x: x[1]["low"])
                 boxes[s["code"]] = {"idProduct": p["idProduct"], "idExpansion": p.get("idExpansion"), "name": p["name"], "low": r["low"], "trend": r.get("trend"),
                                     "avg7": r.get("avg7"), "avg30": r.get("avg30"),
-                                    "url": box_url(p["name"])}
+                                    "url": box_url(p["name"], game_slug)}
         # expansion name per set = box name without "Booster Box" ("Saiyan's Pride Booster Box [Fusion World]" → "Saiyan's Pride [Fusion World]"),
         # else the set name (+ " [Fusion World]" for Fusion World)
         exp_name = {s["code"]: expansion_name(gid, s["code"], s.get("name"), (boxes.get(s["code"]) or {}).get("name") if gid == "dbfw" else None)
@@ -170,12 +190,13 @@ def join(files, latest, ct_doc):
                                "low": _f(r, "low"), "trend": _f(r, "trend"),
                                "avg1": _f(r, "avg1"), "avg7": _f(r, "avg7"), "avg30": _f(r, "avg30"),
                                "foil": not r.get("avg30") and bool(r.get("avg30-foil")),
-                               "url": card_url(exp_name.get(code, ""), names[pid], version.get(pid, 1), variant, c.get("rarity") or "",
-                                               printings.get(pid, 1)) if names.get(pid) else None}
+                               "url": (card_url(exp_name.get(code, ""), names[pid], version.get(pid, 1), variant, c.get("rarity") or "",
+                                                printings.get(pid, 1), game_slug) if gid in VERIFIED_CARD_URLS else search_url(names[pid], game_slug))
+                                      if names.get(pid) else None}
     # fixed-content sealed products (anniversary sets, promo packs) by name → lowest ask, for the page's bundle tiles
     bundles = {}
     nons = files["nonsingles"].get("products", [])
-    for gid, g in latest["games"].items():
+    if True:
         for b in g.get("bundles", []):
             label = re.sub(r" Bundle$", "", b["name"])
             hits = [p for p in nons if _name_match(label, p["name"]) and not NOT_EN.search(p["name"]) and not NOT_BUNDLE.search(p["name"])]
@@ -185,7 +206,7 @@ def join(files, latest, ct_doc):
                 p, r = min(rows, key=lambda x: _f(x[1], "low"))
                 bundles[str(b["product_id"])] = {"idProduct": p["idProduct"], "name": p["name"], "low": _f(r, "low"), "trend": _f(r, "trend"),
                                                  "avg30": _f(r, "avg30"),
-                                                 "url": "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=" + requests.utils.quote(p["name"]) + "&language=1"}
+                                                 "url": search_url(p["name"], game_slug)}
     return cards, boxes, bundles
 
 
@@ -202,10 +223,22 @@ def fetch_day(latest=None, ct_doc=None, day=None, session=None):
     from .cardtrader import latest_day as ct_latest
     latest = latest or store.read_json(LATEST)
     ct_doc = ct_doc if ct_doc is not None else ct_latest()
-    files = fetch_files(13, session)
-    cards, boxes, bundles = join(files, latest, ct_doc)
-    doc = {"day": day, "schema": SCHEMA, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "game_id": 13,
-           "guide_created_at": files["prices"].get("createdAt"), "cards": cards, "boxes": boxes, "bundles": bundles,
+    from .config import load_games
+    cfg = load_games()
+    by_id, files_by_game = {}, {}
+    for gid, g in cfg.items():
+        if not g.get("eu_sources") or gid not in latest.get("games", {}):
+            continue
+        cm_id = g.get("cardmarket_game_id") or GAME_IDS.get(gid)
+        if not cm_id:
+            continue
+        if cm_id not in by_id:
+            by_id[cm_id] = fetch_files(cm_id, session)
+        files_by_game[gid] = by_id[cm_id]
+    cards, boxes, bundles = join(files_by_game, latest, ct_doc)
+    created = {str(k): v["prices"].get("createdAt") for k, v in by_id.items()}
+    doc = {"day": day, "schema": SCHEMA, "fetched_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "game_ids": sorted(by_id),
+           "guide_created_at": created, "cards": cards, "boxes": boxes, "bundles": bundles,
            "note": "low = cheapest offer; avg30 = average sale price last 30 days (EUR), ALL languages (the public guide has no language "
                    "split). Source: Cardmarket public price guide."}
     store.write_json(path, doc)

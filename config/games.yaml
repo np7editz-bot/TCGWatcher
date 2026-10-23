@@ -9,6 +9,9 @@ games:
     name: "Dragon Ball Super Card Game: Fusion World"
     short: "Fusion World"
     tcgcsv_category: 80
+    cardtrader_game: "dragon ball"    # substring of the CardTrader game name(s); expansions by SETCODE (FB/SB/ST/FS/…)
+    cardmarket_game_id: 13            # Cardmarket public price guide (game 13 = Dragon Ball Super incl. Fusion World)
+    cardmarket_slug: DragonBallSuper  # URL path segment on cardmarket.com
     enabled: true
     score: true                      # compute Chase Score for booster sets
     eu_sources: true                 # CardTrader (EU box/card asks, graded) + eBay (slabs, raw) are joined for this game
@@ -88,6 +91,9 @@ games:
     name: "Dragon Ball Super Card Game (Masters)"
     short: "Masters"
     tcgcsv_category: 27              # TCGplayer 'Dragon Ball Super CCG' — the original line, BT sets (Masters era from BT23)
+    cardtrader_game: "dragon ball"
+    cardmarket_game_id: 13
+    cardmarket_slug: DragonBallSuper
     enabled: true
     score: true
     eu_sources: true
@@ -167,6 +173,89 @@ games:
       - { suffix: "(Parallel", code: "P" }
     number_fixes:
       580827: "BT26-127"     # 'Trunks, Escape' carries BT26-126 in the source (2026-10), clashing with Golden Cooler
+
+  riftbound:
+    name: "Riftbound: League of Legends Trading Card Game"
+    short: "Riftbound"
+    tcgcsv_category: 89
+    enabled: true
+    score: true
+    eu_sources: true
+    alerts: true                     # KOOP / SLAB messages on (owner's call, 2026-10-23)
+    paper: false                     # not part of the paper-portfolio test
+    ebay_sets: 6
+    cardtrader_game: "riftbound"     # CardTrader game 22 'Riftbound | League of Legends'
+    cardtrader_expansions: '^(ogn|sfd|unl|ven|rad|lgc|rec|ogs|pg\d)$'    # by CardTrader expansion code (probe 2026-10-23)
+    cardmarket_game_id: 22
+    cardmarket_slug: Riftbound
+    group_kinds:
+      booster: '^(?!OGS$|PG\d$|JDG$|SGN$|OPP$|RWB$)[A-Z]{3}$'   # OGN SFD UNL VEN RAD LGC … (3 letters, not a starter/promo code)
+      starter: '^(OGS|PG\d)$'        # Proving Grounds
+      promo:   '^(OPP|JDG|SGN|PR|RWB|GRFT|T1)|Promo|Bundle|Worlds'
+    box:
+      packs: 24
+      cards_per_pack: 14
+      case_boxes: 4                  # 'Booster Display Case' — assumption, check against the case price
+    set_overrides: {}
+    sealed:                          # TCGplayer calls the box a 'Booster Display'
+      box:  { endswith: "Booster Display", not_contains: ["Case"] }
+      case: { endswith: "Booster Display Case" }
+      pack: { endswith: "Booster Pack", not_contains: ["Sleeved"] }
+    # Hit classes. TCGplayer rarity 'Showcase' is the whole chase layer; the name suffix tells which kind.
+    # est = expected per 24-pack box. Sources: riftbound.gg (Origins), tcgtalk.com Unleashed/Vendetta openings (2026) —
+    # Epic ~1 in 4 packs, Alternate Art ~2–3 per box, Overnumbered ~1 per 2–3 boxes, Signature ~1 in 10 Overnumbered,
+    # Ultimate (from Unleashed) rarer still. Low confidence until the first boxes are opened.
+    classes:
+      - id: SIG
+        label: "Signature (★)"
+        rule: { rarity: "Showcase", name_contains: "Signature" }
+        est: 0.08
+        lottery: true
+        note: "signed Overnumbered, ~1 per 12 boxes"
+      - id: ULT
+        label: "Ultimate"
+        rule: { rarity: "Showcase", name_contains: "(Ultimate)" }
+        est: 0.05
+        lottery: true
+        note: "set chase (Baron Nashor UNL); rate unknown"
+      - id: "ON"                     # quoted: bare ON is a YAML boolean
+        label: "Overnumbered"
+        rule: { rarity: "Showcase", name_contains: "Overnumbered" }
+        est: 0.4
+        note: "~1 per 2–3 boxes"
+      - id: AA
+        label: "Alternate Art"
+        rule: { rarity: "Showcase", name_contains: "(Alternate Art)" }
+        est: 2.5
+        note: "~2–3 per box"
+      - id: SPC
+        label: "Showcase (overig)"
+        rule: { rarity: "Showcase" }
+        est: 0.3
+        note: "special showcase cards (SP numbers, Crystal Rose); rate unknown"
+      - id: EPIC
+        label: "Epic"
+        rule: { rarity: "Epic" }
+        est: 6.5
+        note: "~1 in 4 packs"
+      - id: RARE
+        label: "Rare"
+        rule: { rarity: "Rare" }
+        est: 42
+        note: "2 rare-or-better slots per pack minus the Epics"
+    box_excluded_variants: [SN, PW, BO, CH, T8]      # serial-numbered and organized-play prizes never come out of a box
+    variants:
+      - { suffix: "(Heartsteel Signature)",   code: "SIG" }
+      - { suffix: "(Heartsteel Overnumbered)", code: "ON" }
+      - { suffix: "(Signature)",              code: "SIG" }
+      - { suffix: "(Overnumbered)",           code: "ON" }
+      - { suffix: "(Alternate Art)",          code: "AA" }
+      - { suffix: "(Ultimate)",               code: "ULT" }
+      - { suffix: "(Serial Numbered)",        code: "SN" }
+      - { suffix: "(Prize Wall)",             code: "PW" }
+      - { suffix: "(Best Of)",                code: "BO" }
+      - { suffix: "(Champion)",               code: "CH" }
+      - { suffix: "(Top 8)",                  code: "T8" }
 
   naruto:
     name: "NARUTO CARD GAME"

@@ -190,3 +190,13 @@ def test_box_listing_rejects_non_english_and_bulk():
     assert parse_box_listing(item("LIVE RIP&SHIP DRAGON BALL FUSION WORLD FB09 DUAL EVOLUTION BOOSTER BOX JAPANISCH"), "Dual Evolution", "FB09", 1.0) is None
     assert parse_box_listing(item("Dragon Ball Card Game Fusion World - Dual Evolution - FB09 Booster Box - JAP"), "Dual Evolution", "FB09", 1.0) is None
     assert parse_box_listing(item("Dragon Ball Super Fusion World FB09 Dual Evolution Booster Box ENG - SEALED"), "Dual Evolution", "FB09", 1.0) is not None
+
+
+def test_riftbound_variant_matching_by_title():
+    from tcgwatcher.ebay import variant_matches
+    assert variant_matches("Baron Nashor Alternate Art 147a/219 PSA 10 Riftbound", "AA", "147a/219")
+    assert not variant_matches("Baron Nashor 147/219 PSA 10 Riftbound", "AA", "147/219")
+    assert variant_matches("Kha'Zix Voidreaver Signature Overnumbered 236*/219 PSA 10", "SIG", "236*/219")
+    assert not variant_matches("Kha'Zix Voidreaver Signature Overnumbered 236*/219 PSA 10", "ON", "236*/219")
+    assert variant_matches("Ahri Inquisitive Overnumbered 227/221 PSA 10", "ON", "227/221")
+    assert variant_matches("Trinity Force 115/221 PSA 10", "", "115/221")

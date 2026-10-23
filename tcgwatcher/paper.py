@@ -47,8 +47,8 @@ def open_positions(day, latest, msgs, active_buy=()):
         doc["positions"].append(pos); added.append(pos)
 
     for gid, g in latest["games"].items():
-      if not g.get("sets"):
-        continue
+      if not g.get("sets") or not g.get("paper", True):
+        continue                                    # paper: false → watched and alerted, but not part of the test
       sets = {s["code"]: s for s in g.get("sets", [])}
       # the KOOP rule itself (not the message): silent games build evidence too
       buy_codes = {code for code, s in sets.items() if s.get("best_buy") and (s["best_buy"].get("ratio") or 0) >= thr

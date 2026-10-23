@@ -25,7 +25,8 @@ PROMO = re.compile(r"\b(winner|finalist|champion(ship)?|tournament|promo|event p
 SAA_T = re.compile(r"(\bSAA\b|super\s*alt|god\s*rare|★★|\bV\.?3\b|super\s*parallel|special\s*alt)", re.I)
 AA_T = re.compile(r"(alt(ernate)?[\s-]*art|\bparallel\b|\bAA\b|\bV\.?2\b|★)", re.I)
 CLIP = 4.0
-CHASE = ("SAA", "SCR_AA", "SCR", "SR_AA", "GDR", "SLR", "SPR")      # classes worth a slab/raw search
+CHASE = ("SAA", "SCR_AA", "SCR", "SR_AA", "GDR", "SLR", "SPR",      # Dragon Ball
+         "AA", "ON", "SIG", "ULT")                                   # Riftbound showcase layer (SPC left out: SP numbers are ambiguous on eBay)
 EU = {"AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
       "PL", "PT", "RO", "SK", "SI", "ES", "SE", "CH", "NO"}      # same set as cardtrader.EU: EU27 + CH/NO, GB excluded (import VAT)
 
@@ -89,7 +90,22 @@ def _price_eur(item, fx_usd_eur):
 
 def variant_matches(title, variant, number=""):
     """Same number ≠ same card: base SCR, Alternate Art (★) and Super Alternate Art (★★) share a number.
-    Masters (BT…) has a real 'God Rare' variant; in Fusion World sellers use 'God Rare' as a synonym for ★★."""
+    Masters (BT…) has a real 'God Rare' variant; in Fusion World sellers use 'God Rare' as a synonym for ★★.
+    Riftbound (numbers like 027a/298): Showcase kinds are named in titles — alt art / overnumbered / signature / ultimate."""
+    if "/" in number:
+        sig = bool(re.search(r"(signature|signed|\bsig\b)", title, re.I))
+        on = bool(re.search(r"(over-?numbered|\bON\b)", title, re.I))
+        aa = bool(re.search(r"(alt(ernate)?[\s-]*art|showcase|\bAA\b)", title, re.I))
+        ult = bool(re.search(r"\bultimate\b", title, re.I))
+        if variant == "SIG":
+            return sig
+        if variant == "ULT":
+            return ult
+        if variant == "ON":
+            return on and not sig
+        if variant == "AA":
+            return aa and not on and not sig and not ult
+        return not (sig or on or aa or ult)
     saa, aa = bool(SAA_T.search(title)), bool(AA_T.search(title))
     if number.upper().startswith("BT"):
         gdr = bool(re.search(r"(god\s*rare|\bGDR\b)", title, re.I))
