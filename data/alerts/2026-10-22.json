@@ -1,32 +1,12 @@
 {
  "alerts": [
   {
-   "at": "2026-10-23T08:23:09Z",
+   "at": "2026-10-23T08:37:01Z",
    "buttons": [
     [
      [
-      "🛒 Koop €69 · senpaimanga · voorraad",
-      "https://senpaimangashop.com/products/riftbound-league-of-legends-card-game-set-1-origins-proving-grounds-box-set-eng-preorder"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "delivered": true,
-   "key": "buy:riftbound:OGN",
-   "kind": "buy",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/635368_in_1000x1000.jpg",
-   "text": "🎯 <b>KOOP · OGN Origins</b>\nHits per box <b>€149</b> / box vanaf <b>€69</b> → ratio <b>2.16</b> (drempel 0.8)\n#1 van 6 · US-ratio 0.78\n\n🛒 <b>Waar kopen</b> (42 EU-listings)\n• €69,00 senpaimanga (op voorraad)\n• €86,98 Cardmarket (op voorraad) <i>laagste aanbod €68.98 + ±€18 verzending · uitschieter t.o.v. trend €178</i>\n• €184,64 CardTrader Zero (op voorraad) <i>Zero €178.64 + €6 kosten</i>\n\nSamenstelling: 42 Epic · 30 Alt-Art · 12 Overnum. · 12 ★ Sig\nTop hit: Ahri, Nine-Tailed Fox (Signature) 303*/298 SIG €3.312\n<i>Waardering Cardmarket-verkopen 30d · 168/168 hits · US-referentie €159</i>"
-  },
-  {
-   "at": "2026-10-23T08:23:09Z",
-   "buttons": [
-    [
-     [
-      "🛒 Koop €65 · supercollectors · voorraad",
-      "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-spiritforged-jumbo-booster-display-chino/"
+      "🛒 Koop €118 · Cardmarket · voorraad",
+      "https://www.cardmarket.com/en/Riftbound/Products/Booster-Boxes/Spiritforged-Booster-Box?language=1"
      ],
      [
       "📊 Radar",
@@ -38,15 +18,15 @@
    "key": "buy:riftbound:SFD",
    "kind": "buy",
    "photo": "https://tcgplayer-cdn.tcgplayer.com/product/661934_in_1000x1000.jpg",
-   "text": "🎯 <b>KOOP · SFD Spiritforged</b>\nHits per box <b>€102</b> / box vanaf <b>€65</b> → ratio <b>1.56</b> (drempel 0.8)\n#2 van 6 · US-ratio 0.59\n\n🛒 <b>Waar kopen</b> (39 EU-listings)\n• €64,90 supercollectors (op voorraad)\n• €118,00 Cardmarket (op voorraad) <i>laagste aanbod €100.00 + ±€18 verzending</i>\n• €136,59 CardTrader Zero (op voorraad) <i>Zero €130.59 + €6 kosten</i>\n\nSamenstelling: 38 Epic · 24 Alt-Art · 6 Showcase · 30 Overnum. · 12 ★ Sig\nTop hit: Ahri, Inquisitive (Signature) 227*/221 SIG €2.977\n<i>Waardering Cardmarket-verkopen 30d · 158/158 hits · US-referentie €86</i>"
+   "text": "🎯 <b>KOOP · SFD Spiritforged</b>\nHits per box <b>€102</b> / box vanaf <b>€118</b> → ratio <b>0.86</b> (drempel 0.8)\n#4 van 6 · US-ratio 0.59\n\n🛒 <b>Waar kopen</b> (38 EU-listings)\n• €118,00 Cardmarket (op voorraad) <i>laagste aanbod €100.00 + ±€18 verzending</i>\n• €136,59 CardTrader Zero (op voorraad) <i>Zero €130.59 + €6 kosten</i>\n• €164,90 supercollectors (op voorraad)\n\nSamenstelling: 38 Epic · 24 Alt-Art · 6 Showcase · 30 Overnum. · 12 ★ Sig\nTop hit: Ahri, Inquisitive (Signature) 227*/221 SIG €2.977\n<i>Waardering Cardmarket-verkopen 30d · 158/158 hits · US-referentie €86</i>"
   },
   {
-   "at": "2026-10-23T08:23:09Z",
+   "at": "2026-10-23T08:37:01Z",
    "buttons": [
     [
      [
-      "🛒 Koop €121 · Cardmarket · voorraad",
-      "https://www.cardmarket.com/en/Riftbound/Products/Booster-Boxes/Vendetta-Booster-Box-French?language=1"
+      "🛒 Koop €87 · Cardmarket · voorraad",
+      "https://www.cardmarket.com/en/Riftbound/Products/Booster-Boxes/Origins-Booster-Box?language=1"
      ],
      [
       "📊 Radar",
@@ -55,30 +35,10 @@
     ]
    ],
    "delivered": true,
-   "key": "buy:riftbound:VEN",
+   "key": "buy:riftbound:OGN",
    "kind": "buy",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/693380_in_1000x1000.jpg",
-   "text": "🎯 <b>KOOP · VEN Vendetta</b>\nHits per box <b>€113</b> / box vanaf <b>€121</b> → ratio <b>0.93</b> (drempel 0.8)\n#4 van 6 · US-ratio 0.62\n\n🛒 <b>Waar kopen</b> (18 EU-listings)\n• €120,99 Cardmarket (op voorraad) <i>laagste aanbod €102.99 + ±€18 verzending</i>\n• €126,64 CardTrader Zero (op voorraad) <i>Zero €120.64 + €6 kosten</i>\n• €190,00 breakthecase (op voorraad)\n\nSamenstelling: 28 Epic · 16 Alt-Art · 12 Showcase · 31 Overnum. · 9 ★ Sig\nTop hit: Akali, Rogue Assassin (Signature) 189*/166 SIG €2.882\n<i>Waardering Cardmarket-verkopen 30d · 133/133 hits · US-referentie €75</i>"
-  },
-  {
-   "at": "2026-10-23T08:23:09Z",
-   "buttons": [
-    [
-     [
-      "🛒 Koop €118 · Cardmarket · voorraad",
-      "https://www.cardmarket.com/en/Riftbound/Products/Booster-Boxes/Unleashed-Booster-Box?language=1"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "delivered": true,
-   "key": "buy:riftbound:UNL",
-   "kind": "buy",
-   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/678150_in_1000x1000.jpg",
-   "text": "🎯 <b>KOOP · UNL Unleashed</b>\nHits per box <b>€104</b> / box vanaf <b>€118</b> → ratio <b>0.89</b> (drempel 0.8)\n#5 van 6 · US-ratio 0.82\n\n🛒 <b>Waar kopen</b> (16 EU-listings)\n• €118,00 Cardmarket (op voorraad) <i>laagste aanbod €100.00 + ±€18 verzending</i>\n• €131,64 CardTrader Zero (op voorraad) <i>Zero €125.64 + €6 kosten</i>\n\nSamenstelling: 36 Epic · 30 Alt-Art · 6 Showcase · 18 Overnum. · 12 ★ Sig · 1 Ultimate\nTop hit: Baron Nashor (Ultimate) 238/219 ULT €1.632\n<i>Waardering Cardmarket-verkopen 30d · 150/150 hits · US-referentie €118</i>"
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/635368_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · OGN Origins</b>\nHits per box <b>€149</b> / box vanaf <b>€185</b> → ratio <b>0.81</b> (drempel 0.8)\n#5 van 6 · US-ratio 0.78\n\n🛒 <b>Waar kopen</b> (41 EU-listings)\n• €86,98 Cardmarket (op voorraad) <i>laagste aanbod €68.98 + ±€18 verzending · uitschieter t.o.v. trend €178</i>\n• €184,64 CardTrader Zero (op voorraad) <i>Zero €178.64 + €6 kosten</i>\n• €220,00 breakthecase (op voorraad)\n\nSamenstelling: 42 Epic · 30 Alt-Art · 12 Overnum. · 12 ★ Sig\nTop hit: Ahri, Nine-Tailed Fox (Signature) 303*/298 SIG €3.312\n<i>Waardering Cardmarket-verkopen 30d · 168/168 hits · US-referentie €159</i>"
   }
  ],
  "day": "2026-10-22"
