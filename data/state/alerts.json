@@ -10,26 +10,6 @@
    "ratio": 1.099,
    "since": "2026-10-18"
   },
-  "buy:riftbound:OGN": {
-   "price": 184.64,
-   "ratio": 0.808,
-   "since": "2026-10-22"
-  },
-  "buy:riftbound:SFD": {
-   "price": 118,
-   "ratio": 0.861,
-   "since": "2026-10-22"
-  },
-  "buy:riftbound:UNL": {
-   "price": 118,
-   "ratio": 0.886,
-   "since": "2026-10-22"
-  },
-  "buy:riftbound:VEN": {
-   "price": 120.99,
-   "ratio": 0.93,
-   "since": "2026-10-22"
-  },
   "slab_digest:dbfw": {
    "day": "2026-10-18",
    "ids": [

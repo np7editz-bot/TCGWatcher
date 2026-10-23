@@ -183,6 +183,7 @@ games:
     eu_sources: true
     alerts: true                     # KOOP / SLAB messages on (owner's call, 2026-10-23)
     paper: false                     # not part of the paper-portfolio test
+    cardmarket_box_buy: false        # Riftbound exists in Chinese too; the price guide mixes languages (lows 20–25% under EN) → indication only
     ebay_sets: 6
     cardtrader_game: "riftbound"     # CardTrader game 22 'Riftbound | League of Legends'
     cardtrader_expansions: '^(ogn|sfd|unl|ven|rad|lgc|rec|ogs|pg\d)$'    # by CardTrader expansion code (probe 2026-10-23)
