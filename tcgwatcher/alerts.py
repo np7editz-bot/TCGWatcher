@@ -241,7 +241,7 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
            f"#{pos} van {n}{us}\n\n"
            f"🛒 <b>Waar kopen</b> ({bb.get('offers', '?')} EU-listings)\n{where}\n\n"
            f"Samenstelling: {compo}\n"
-           f"Top hit: {_card(s['top_hit']['name'], s['top_hit']['number'])} {s['top_hit']['class'].replace('_AA',' AA')} {_usd(s['top_hit']['price'])}\n"
+           + (f"Top hit: {_card(s['top_hit']['name'], s['top_hit']['number'])} {s['top_hit']['class'].replace('_AA',' AA')} {_usd(s['top_hit']['price'])}\n" if s.get("top_hit") else "")
            + (f"<i>Waardering {'Cardmarket-verkopen 30d' if s.get('valuation') == 'cardmarket' else 'EU (Cardmarket/CardTrader)'} · {s.get('cm_coverage')} hits · US-referentie €{s.get('ev_us_excl_saa') or 0:.0f}</i>"
               if s.get("valuation") in ("cardmarket", "eu-mixed") else
               f"<i>Waardering TCGplayer-verkopen in € · {s['hits_market_priced']}/{s['hits_total']} hits met marktprijs</i>"))
