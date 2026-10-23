@@ -14,7 +14,7 @@ TCGCSV = "https://tcgcsv.com/tcgplayer"
 
 def shops(needle):
     """Where do our retailers sell this game? Shopify: /collections.json handles; Woo: Store API search count."""
-    from .config import ROOT
+    from . import ROOT
     import yaml
     from urllib.parse import urlparse
     s = requests.Session(); s.headers.update({"User-Agent": USER_AGENT})
