@@ -33,7 +33,7 @@
   "FB08": 0.555,
   "FB09": 0.884,
   "FB10": 0.767,
-  "FB11": 1.108,
+  "FB11": 1.116,
   "FB12": 0.0,
   "SB01": 0.378,
   "SB02": 0.518,
@@ -253,6 +253,30 @@
    "name": "Starter Deck: The Prince Of Saiyan",
    "seen": "2026-10-22"
   },
+  "LGC": {
+   "name": "Legacy",
+   "seen": "2026-10-22"
+  },
+  "OGN": {
+   "name": "Origins",
+   "seen": "2026-10-22"
+  },
+  "OGS": {
+   "name": "Origins Proving Grounds",
+   "seen": "2026-10-22"
+  },
+  "PG2": {
+   "name": "Legacy: Proving Grounds",
+   "seen": "2026-10-22"
+  },
+  "RAD": {
+   "name": "Radiance",
+   "seen": "2026-10-22"
+  },
+  "REC": {
+   "name": "The Reckoning",
+   "seen": "2026-10-22"
+  },
   "SB01": {
    "name": "Fusion World: Manga Booster 01",
    "seen": "2026-10-22"
@@ -317,8 +341,20 @@
    "name": "Starter Deck: Final Radiance",
    "seen": "2026-10-22"
   },
+  "SFD": {
+   "name": "Spiritforged",
+   "seen": "2026-10-22"
+  },
   "ST01": {
    "name": "Fusion World: Story Booster 01",
+   "seen": "2026-10-22"
+  },
+  "UNL": {
+   "name": "Unleashed",
+   "seen": "2026-10-22"
+  },
+  "VEN": {
+   "name": "Vendetta",
    "seen": "2026-10-22"
   }
  },
