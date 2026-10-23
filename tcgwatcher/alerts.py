@@ -227,9 +227,13 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
              "EPIC": "Epic", "AA": "Alt-Art", "SPC": "Showcase", "ON": "Overnum.", "SIG": "★ Sig", "ULT": "Ultimate"}
     compo = " · ".join(f"{comp[k]['n']} {short[k]}" for k in short if k in comp) or "—"
     st = {"in_stock": "op voorraad", "preorder": "pre-order"}
+    real = [o for o in bb.get("options", []) if not o.get("indicative")]
     where = "\n".join((f"• €{o['price']:,.2f} {o['source']} ({st.get(o['status'], o['status'])})".replace(",", "X").replace(".", ",").replace("X", ".")
                        + (f" <i>{o['note']}</i>" if o.get("note") else ""))
-                      for o in bb.get("options", [])[:3])
+                      for o in real[:3])
+    ind = [o for o in bb.get("options", []) if o.get("indicative")]
+    if ind:
+        where += "\n" + "\n".join(f"<i>◦ Cardmarket €{o['price']:.0f} — indicatie ({'uitschieter' if 'uitschieter' in o.get('note', '') else 'alle talen'})</i>" for o in ind[:1])
     us = f" · US-ratio {s['ratio_excl_saa']:.2f}" if s.get("ratio_excl_saa") is not None else ""
     head = "🎯 <b>KOOP" + (" · goedkoper geworden" if again else "") + f" · {s['code']} {s['name']}</b>"
     txt = (f"{head}\n"
@@ -242,7 +246,7 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
               if s.get("valuation") in ("cardmarket", "eu-mixed") else
               f"<i>Waardering TCGplayer-verkopen in € · {s['hits_market_priced']}/{s['hits_total']} hits met marktprijs</i>"))
     st_short = {"in_stock": "voorraad", "preorder": "pre-order"}
-    o = (bb.get("options") or [{"source": bb["source"], "price": bb["price"], "status": "in_stock", "url": bb.get("url") or SITE_URL}])[0]
+    o = (real or [{"source": bb["source"], "price": bb["price"], "status": "in_stock", "url": bb.get("url") or SITE_URL}])[0]   # button = the real cheapest
     btn = [[(f"🛒 Koop €{o['price']:.0f} · {o['source']} · {st_short.get(o['status'], o['status'])}", o["url"]), ("📊 Radar", SITE_URL)]]
     return _m(f"buy:{gid}:{s['code']}", "buy", txt, photo=_big((s.get("box") or {}).get("image") or s["top_hit"].get("image")), buttons=btn)
 
