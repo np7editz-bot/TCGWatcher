@@ -308,12 +308,12 @@ def retail_by_set(game_id, game=None):
         return {}
     st = store.read_json(store.state_path("retail"), {"products": {}})
     by = {}
-    from .retail import set_code_of, kind_of
+    from .retail import set_code_of, kind_with_price
     for url, p in st["products"].items():
         code = set_code_of(p.get("title"), url)
         if not code:
             continue
-        kind = kind_of(p.get("title") or "", url)          # recomputed from the title: the stored kind may predate a rule fix
+        kind = kind_with_price(p.get("title") or "", url, p.get("price"))   # recomputed: the stored kind may predate a rule fix
         if kind not in ("box", "case") or not p.get("trusted"):
             continue          # only shops whose availability comes from their own API (Shopify/Woo) reach the page and best_buy
         by.setdefault(code, []).append({"retailer": p["retailer"], "title": p["title"], "price": p.get("price"),
