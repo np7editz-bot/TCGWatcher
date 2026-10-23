@@ -8,7 +8,12 @@ from . import store
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="tcgwatcher")
-    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "news", "cardtrader", "cardmarket", "ebay", "calibrate", "paper", "all"])
+    ap.add_argument("step", choices=["fetch", "validate", "build", "alerts", "retail", "news", "cardtrader", "cardmarket", "ebay", "calibrate", "paper", "probe", "all"])
+    ap.add_argument("--category", type=int, help="probe: TCGplayer category id")
+    ap.add_argument("--slug", help="probe: output name")
+    ap.add_argument("--cm-name", help="probe: name to look for in Cardmarket's catalogues")
+    ap.add_argument("--ct-name", help="probe: name to look for in CardTrader's game list")
+    ap.add_argument("--news", nargs="*", default=[], help="probe: news page URLs to sample")
     ap.add_argument("--day", help="source day to process (default: last synced day)")
     ap.add_argument("--force", action="store_true", help="fetch even if the source did not change")
     ap.add_argument("--no-send", action="store_true", help="do not send Telegram messages")
@@ -18,6 +23,10 @@ def main(argv=None):
     log = logging.getLogger("tcgwatcher")
 
     day = a.day
+    if a.step == "probe":
+        from .probe import run as probe
+        probe(a.category, a.slug, a.cm_name, a.news, a.ct_name)
+        return 0
     if a.step in ("fetch", "all"):
         from .fetch import fetch_all
         r = fetch_all(force=a.force)
