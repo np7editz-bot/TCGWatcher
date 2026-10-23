@@ -305,11 +305,11 @@ def retail_by_set(game_id, game=None):
         return {}
     st = store.read_json(store.state_path("retail"), {"products": {}})
     by = {}
+    from .retail import set_code_of
     for url, p in st["products"].items():
-        m = SETCODE.search(p.get("title") or "") or SETCODE.search(url)
-        if not m:
+        code = set_code_of(p.get("title"), url)
+        if not code:
             continue
-        code = f"{m.group(1).upper()}{m.group(2)}"
         if p.get("product_kind", "box") not in ("box", "case") or not p.get("trusted"):
             continue          # only shops whose availability comes from their own API (Shopify/Woo) reach the page and best_buy
         by.setdefault(code, []).append({"retailer": p["retailer"], "title": p["title"], "price": p.get("price"),
