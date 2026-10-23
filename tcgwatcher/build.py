@@ -278,10 +278,13 @@ def best_buy(s, min_offers=3, cardmarket_buy=True):
     if cmb and cmb.get("landed"):
         cm_opt = {"price": cmb["landed"], "source": "Cardmarket", "url": cmb["url"], "status": "in_stock", "n": 0,     # guide row ≠ listing count
                   "note": f"laagste aanbod €{cmb['low']:.2f} + ±€18 verzending" + (f" · 30d-verkopen €{cmb['avg30']:.0f}" if cmb.get("avg30") else "")}
-        if cardmarket_buy:
-            opts.append(cm_opt)
-        else:                                   # price guide mixes languages (JP/FR boxes far cheaper): comparison only, never the buy price
+        outlier = bool(cmb.get("trend")) and cmb["low"] < 0.5 * cmb["trend"]     # one damaged/mislisted copy: Origins low €69 vs trend €178
+        if outlier:
+            cm_opt["note"] += f" · uitschieter t.o.v. trend €{cmb['trend']:.0f}"; cm_opt["indicative"] = True
+        elif not cardmarket_buy:                # price guide mixes languages (JP/FR boxes far cheaper): comparison only, never the buy price
             cm_opt["note"] += " · alle talen, indicatie"; cm_opt["indicative"] = True
+        if not cm_opt.get("indicative"):
+            opts.append(cm_opt)
     for r in s.get("retail", []):
         if r.get("price") and r["status"] in ("in_stock", "preorder") and r.get("kind", "box") == "box" and r["price"] >= 40:
             opts.append({"price": r["price"], "source": r["retailer"], "url": r["url"], "status": r["status"], "n": 1})

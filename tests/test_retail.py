@@ -129,3 +129,12 @@ def test_riftbound_set_codes_from_shop_titles():
     assert set_code_of("Riftbound Origins Booster Box", "") == "OGN"
     assert set_code_of("Dragon Ball Super Fusion World FB11 Booster Box", "") == "FB11"
     assert set_code_of("Riftbound Vault Bundle", "") is None
+
+
+def test_riftbound_non_box_products_are_not_boxes():
+    from tcgwatcher.retail import kind_of
+    assert kind_of("Riftbound: League of Legends Card Game - Set 1 - Origins Proving Grounds Box Set [ENG]", "u") == "other"
+    assert kind_of("Riftbound: League of Legends TCG: Spiritforged – Jumbo Booster Display (Chino)", "u") == "other"
+    assert kind_of("Riftbound League of Legends TCG set 3 Unleashed Pre-Rift Kit", "u") == "other"
+    assert kind_of("Riftbound: League of Legends TCG: Radiance – Booster Display", "u") == "box"
+    assert kind_of("League of Legends Riftbound TCG - Origins - Display (24x Booster)", "u") == "box"
