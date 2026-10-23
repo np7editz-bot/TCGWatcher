@@ -270,3 +270,20 @@ def test_cardmarket_guide_row_is_not_a_listing():
          "cm_box": {"low": 100.0, "landed": 118.0, "url": "c"}}
     b = best_buy(s, min_offers=3)
     assert b["source"] == "Cardmarket" and b["offers"] == 0 and b["thin"]
+
+
+def test_riftbound_config_classifies_probe_samples():
+    """Names/rarities from data/probe/riftbound.json (TCGplayer category 89, 2026-10-23)."""
+    from tcgwatcher.config import load_games, group_kind
+    from tcgwatcher.model import classify, variant_of, sealed_kind_of
+    g = load_games()["riftbound"]
+    assert group_kind(g, "RAD", "Radiance") == "booster" and group_kind(g, "OGS", "Origins: Proving Grounds") == "starter"
+    assert group_kind(g, "OPP", "Riftbound Organized Play Promotional Cards") == "promo" and group_kind(g, "GRFT", "Gift of the Rift Bundle") == "promo"
+    assert classify(g, "Kha'Zix, Voidreaver (Signature)", "Showcase") == "SIG"
+    assert classify(g, "K'Sante, Courageous (Heartsteel Overnumbered)", "Showcase") == "ON"
+    assert classify(g, "Baron Nashor (Alternate Art)", "Showcase") == "AA"
+    assert classify(g, "Ahri, Inquisitive", "Showcase") == "SPC"
+    assert classify(g, "Baron Nashor", "Epic") == "EPIC" and classify(g, "Trinity Force", "Rare") == "RARE" and classify(g, "Doran's Shield", "Common") is None
+    assert variant_of(g, "Kha'Zix, Voidreaver (Signature)") == "SIG" and variant_of(g, "Lux, Lady of Luminosity (Metal) (Prize Wall)") == "PW"
+    assert sealed_kind_of(g, "Radiance - Booster Display", "") == "box" and sealed_kind_of(g, "Radiance - Booster Display Case", "") == "case"
+    assert sealed_kind_of(g, "Radiance - Sleeved Booster Pack", "") is None and sealed_kind_of(g, "Radiance - Booster Pack", "") == "pack"

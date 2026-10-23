@@ -68,7 +68,24 @@ def run(day, quality=None, send=True):
                     msgs.append(_m(f"new_group:{cat}:{k}", "new_group",
                                    f"🆕 <b>{g['short']} · nieuwe productlijn</b>\n<b>{grp.get('name')}</b> ({grp.get('abbreviation') or '—'})\n"
                                    f"Release {(grp.get('publishedOn') or '')[:10]} · nu in de TCGplayer-catalogus — pre-orders bij EU-shops openen meestal rond dit moment.",
-                                   buttons=[[("TCGplayer", f"https://www.tcgplayer.com/search/{ {'dbfw': 'dragon-ball-super-fusion-world', 'dbs': 'dragon-ball-super-ccg'}.get(gid, 'naruto-card-game')}/product?q={grp.get('name','').replace(' ', '%20')}"), ("Radar", SITE_URL)]]))
+                                   buttons=[[("TCGplayer", f"https://www.tcgplayer.com/search/{ {'dbfw': 'dragon-ball-super-fusion-world', 'dbs': 'dragon-ball-super-ccg', 'riftbound': 'riftbound-league-of-legends-trading-card-game'}.get(gid, 'naruto-card-game')}/product?q={grp.get('name','').replace(' ', '%20')}"), ("Radar", SITE_URL)]]))
+
+    # 2b. new expansions on CardTrader (they list sets months ahead: Riftbound 'Legacy' for Jan 2027) — earliest 'what is coming'
+    try:
+        from .cardtrader import latest_day as ct_latest
+        ctd = ct_latest() or {}
+        seen_x = state.setdefault("seen_expansions", {})
+        first_x = not seen_x
+        for code, e in (ctd.get("expansions") or {}).items():
+            if code not in seen_x:
+                seen_x[code] = {"name": e.get("name"), "seen": day}
+                if not first_x:
+                    msgs.append(_m(f"new_expansion:{code}", "news",
+                                   f"📰 <b>Nieuwe set bij CardTrader</b>\n<b>{e.get('name')}</b> ({code}) staat nu in de catalogus — "
+                                   f"meestal maanden vóór release; pre-orders volgen.",
+                                   buttons=[[("CardTrader", f"https://www.cardtrader.com/en/expansions/{e.get('code') or ''}"), ("Radar", SITE_URL)]]))
+    except Exception as e:  # noqa: BLE001
+        log.warning("expansion watch: %s", e)
 
     if latest:
         for gid, gdata in latest["games"].items():
@@ -205,8 +222,9 @@ def run(day, quality=None, send=True):
 def buy_card(gid, gdata, s, pos, n, buy, again=False):
     bb = s["best_buy"]
     comp = s["composition"]
-    c = lambda k, l: f"{comp[k]['n']} {l}" if k in comp else None  # noqa: E731
-    compo = " · ".join(x for x in (c("SR_AA", "SR-AA"), c("SCR", "SCR"), c("SCR_AA", "★"), c("SAA", "★★")) if x)
+    short = {"SR_AA": "SR-AA", "SCR": "SCR", "SCR_AA": "★", "SAA": "★★", "OTHER_AA": "AA", "CR": "CR", "SPR": "SPR", "SLR": "SLR", "GDR": "GDR",
+             "EPIC": "Epic", "AA": "Alt-Art", "SPC": "Showcase", "ON": "Overnum.", "SIG": "★ Sig", "ULT": "Ultimate"}
+    compo = " · ".join(f"{comp[k]['n']} {short[k]}" for k in short if k in comp) or "—"
     st = {"in_stock": "op voorraad", "preorder": "pre-order"}
     where = "\n".join((f"• €{o['price']:,.2f} {o['source']} ({st.get(o['status'], o['status'])})".replace(",", "X").replace(".", ",").replace("X", ".")
                        + (f" <i>{o['note']}</i>" if o.get("note") else ""))

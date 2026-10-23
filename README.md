@@ -125,3 +125,13 @@ Sealed producten zonder loterij — '1st/2nd Anniversary Set Bundle', '2nd Anniv
 
 ### Waardering (sinds 2026-10-21): EU-bronnen eerst
 Elke kaart: Cardmarket-verkopen (avg30 → avg7 → trend) → CardTrader-laagste ask × 0,83 → TCGplayer × koers alleen als geen EU-bron de kaart prijst. Geen set-brede terugval meer; `valuation` = `cardmarket` (≥ 50% van de hits op Cardmarket-verkopen), `eu-mixed` (EU-keten, grotendeels CardTrader) of `tcgplayer` (geen EU-data). Geldt voor box-EV, slab-raw-waarde en vaste-inhoud producten; de US-EV blijft als referentie.
+
+
+## Riftbound (sinds 2026-10-23)
+Derde spel in de radar: `riftbound` in `config/games.yaml` (TCGplayer-categorie 89; CardTrader-spel 22; Cardmarket-spel 22).
+Boostersets OGN · SFD · UNL · VEN · RAD · LGC; sealed heet bij TCGplayer 'Booster Display'. Hit-klassen uit de rarity 'Showcase'
+(Alternate Art, Overnumbered, Signature ★, Ultimate) plus Epic en Rare; pull-rates uit community-openingen, lage zekerheid.
+Meldingen (KOOP, SLAB) staan aan; het spel zit **niet** in de paper-portfolio (`paper: false`).
+Nog open: Cardmarket-kaartlinks (zoeklink tot het URL-patroon per klik bevestigd is), retailers (Riftbound-categorie-URL's per shop),
+Riot-nieuwspagina (Next.js; voorlopig dekt de CardTrader-expansiewatch nieuwe sets maanden vooruit).
+Verkenning van een nieuw spel: `python -m tcgwatcher probe --category <id> --slug <naam>` (workflow `probe`).

@@ -36,6 +36,7 @@ def build(day, quality=None):
         m = load_game(g, day)
         series = load_series(cat)
         est, labels = class_estimates(g)
+        lottery_ids = {c["id"] for c in g.get("classes", []) if c.get("lottery")} | ({"SAA"} if gid == "dbfw" else set())
         sets_scored = score_sets(m) if g.get("score", True) else []
         for s in sets_scored:
             for kind in ("box", "pack", "case"):
@@ -128,13 +129,13 @@ def build(day, quality=None):
                        "fetched_at": m["fetched_at"], "currency": "USD", "days_of_history": len(store.list_price_days(cat)),
                        "eu": ({"name": "CardTrader marketplace (EN, EUR, cheapest 25 per card)", "day": ct_latest()["day"],
                                "cards_matched": sum(1 for c in cards if c.get("eu"))} if g.get("eu_sources") and ct_latest() else None)},
-            "estimates": {k: {"label": labels[k], "est": v} for k, v in est.items()},
+            "estimates": {k: {"label": labels[k], "est": v, "lottery": k in lottery_ids} for k, v in est.items()},
             "box": g["box"],
             "sets": sets_scored, "cards": cards, "starters": other_sets,
             "bundles": fixed_content_bundles(m["products"], eu, landed_cfg, rate, (cm or {}).get("bundles") or {}, (cm or {}).get("cards") or {}),
             "slab_signals": [x for x in (slab_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
             "grade_signals": [x for x in (grade_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
-            "alerts": g.get("alerts", True),
+            "alerts": g.get("alerts", True), "paper": g.get("paper", True),
             "slabs_day": eb["day"] if eb else None,
             "all_sets": [{"code": c, "name": v["name"], "kind": v["kind"], "published": v["published"]} for c, v in m["sets"].items()],
             "quality": quality.get("games", {}).get(gid, {}).get("status", "unknown"),
