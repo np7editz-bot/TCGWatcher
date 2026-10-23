@@ -205,6 +205,9 @@ def run(day, quality=None, send=True):
     log.info("%d message(s) for %s (muted: %s)", len(msgs), day, ",".join(sorted(muted)) or "-")
     if len(msgs) > MAX_PER_RUN:
         log.warning("%d messages, capping at %d (rest only in data/alerts)", len(msgs), MAX_PER_RUN)
+    # cap by importance, not by construction order: a flood of news must never push a KOOP/SLAB past the cap
+    prio = {"buy": 0, "slab": 1, "retail": 2, "quality": 3, "news": 4, "new_sealed": 5, "new_group": 6, "briefing": 7, "status": 8}
+    msgs.sort(key=lambda m: prio.get(m["kind"], 9))
     for m in msgs:
         m["delivered"] = False
     if send:

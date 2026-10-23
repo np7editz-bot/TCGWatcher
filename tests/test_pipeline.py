@@ -287,3 +287,11 @@ def test_riftbound_config_classifies_probe_samples():
     assert variant_of(g, "Kha'Zix, Voidreaver (Signature)") == "SIG" and variant_of(g, "Lux, Lady of Luminosity (Metal) (Prize Wall)") == "PW"
     assert sealed_kind_of(g, "Radiance - Booster Display", "") == "box" and sealed_kind_of(g, "Radiance - Booster Display Case", "") == "case"
     assert sealed_kind_of(g, "Radiance - Sleeved Booster Pack", "") is None and sealed_kind_of(g, "Radiance - Booster Pack", "") == "pack"
+
+
+def test_alert_cap_keeps_buy_and_slab_first():
+    from tcgwatcher.alerts import _m, MAX_PER_RUN
+    prio = {"buy": 0, "slab": 1, "retail": 2, "quality": 3, "news": 4, "new_sealed": 5, "new_group": 6}
+    msgs = [_m(f"news:{i}", "news", "x") for i in range(9)] + [_m("buy:1", "buy", "b"), _m("slab:1", "slab", "s")]
+    msgs.sort(key=lambda m: prio.get(m["kind"], 9))
+    assert [m["kind"] for m in msgs[:MAX_PER_RUN]][:2] == ["buy", "slab"]
