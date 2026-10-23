@@ -3,42 +3,17 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-23T11:37:46Z",
-   "kind": "new_listing",
-   "price": 190.0,
-   "product_kind": "box",
-   "retailer": "breakthecase",
-   "seen": "2026-10-23T11:37:46Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Fusion World - FB11 - BRIGHTNESS OF HOPE - Booster Box Display – Englisch",
-   "trusted": true,
-   "url": "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb11-brightness-of-hope-booster-box-display-englisch"
-  },
-  {
    "first_seen": "2026-10-19T07:45:08Z",
-   "kind": "sold_out->preorder",
+   "kind": "preorder->sold_out",
    "old_price": 7.5,
-   "price": 7.5,
+   "price": 6.0,
    "product_kind": "pack",
    "retailer": "breakthecase",
-   "seen": "2026-10-23T11:37:46Z",
-   "status": "preorder",
+   "seen": "2026-10-23T17:06:14Z",
+   "status": "sold_out",
    "title": "Dragon Ball Fusion World - FB11 - BRIGHTNESS OF HOPE - Booster – Englisch",
    "trusted": true,
    "url": "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb11-brightness-of-hope-booster-englisch"
-  },
-  {
-   "first_seen": "2026-10-23T07:48:55Z",
-   "kind": "price_drop",
-   "old_price": 40.0,
-   "price": 35.0,
-   "product_kind": "other",
-   "retailer": "breakthecase",
-   "seen": "2026-10-23T11:37:46Z",
-   "status": "preorder",
-   "title": "Riftbound: League of Legends TCG - Radiance Evelynn & Seraphine Showdown Deck - EN",
-   "trusted": true,
-   "url": "https://www.breakthecase.de/products/riftbound-radiance-showdown-deck-display-evelynn-seraphine-englisch"
   }
  ]
 }
