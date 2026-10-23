@@ -305,3 +305,11 @@ def test_slab_top5_across_games():
                     {"gid": "dbfw", "key": "c", "net": 200, "raw": 100}, {"gid": "riftbound", "key": "d", "net": 100, "raw": 20}], key=lambda i: -i["net"])
     sent = {"dbfw:a": {"net": 300, "raw": 100}}
     assert [(i["gid"], i["key"]) for i in pick_slabs(items, sent)] == [("riftbound", "b"), ("dbfw", "c"), ("riftbound", "d")]
+
+
+def test_alert_cap_keeps_buy_and_slab_first():
+    from tcgwatcher.alerts import _m, MAX_PER_RUN
+    prio = {"buy": 0, "slab": 1, "retail": 2, "quality": 3, "news": 4, "new_sealed": 5, "new_group": 6}
+    msgs = [_m(f"news:{i}", "news", "x") for i in range(9)] + [_m("buy:1", "buy", "b"), _m("slab:1", "slab", "s")]
+    msgs.sort(key=lambda m: prio.get(m["kind"], 9))
+    assert [m["kind"] for m in msgs[:MAX_PER_RUN]][:2] == ["buy", "slab"]
