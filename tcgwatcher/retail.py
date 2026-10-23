@@ -386,7 +386,8 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
         if not t.get("trusted"):
             continue          # HTML-heuristic shops: data only, never a message (Comic Planet 'pre-order' on a dead page)
         naruto = bool(re.search(r"naruto", (t.get("title") or "") + " " + t["url"], re.I))
-        if not naruto and t.get("product_kind") not in (None, "box", "case"):
+        k = kind_with_price(t.get("title") or "", t["url"], t.get("price")) if t.get("product_kind") is not None else None   # recomputed: stored kind may predate a rule fix
+        if not naruto and k not in (None, "box", "case"):
             continue                                   # Naruto: every product counts (decks, packs, boxes) — launch lineup
         if not t.get("price"):
             continue
