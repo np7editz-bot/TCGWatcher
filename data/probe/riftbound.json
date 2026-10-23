@@ -1724,5 +1724,186 @@
    "productId": 710238
   }
  ],
- "shops_error": "cannot import name 'ROOT' from 'tcgwatcher.config' (/home/runner/work/TCGWatcher/TCGWatcher/tcgwatcher/config.py)"
+ "shops": {
+  "breakthecase": {
+   "collections": [
+    {
+     "handle": "league-of-legends-riftbound-trading-card-game",
+     "n": 38,
+     "title": "League of Legends Riftbound Trading Card Game"
+    },
+    {
+     "handle": "riftbound-events",
+     "n": 6,
+     "title": "Riftbound - Events"
+    },
+    {
+     "handle": "riftbound-booster",
+     "n": 5,
+     "title": "Riftbound Booster"
+    },
+    {
+     "handle": "riftbound-decks",
+     "n": 8,
+     "title": "Riftbound Decks"
+    },
+    {
+     "handle": "riftbound-displays",
+     "n": 6,
+     "title": "Riftbound Displays"
+    },
+    {
+     "handle": "riftbound-vaults-bundles",
+     "n": 4,
+     "title": "Riftbound Vaults & Bundles"
+    },
+    {
+     "handle": "league-of-legends-riftbound-trading-card-game-zubehor",
+     "n": 16,
+     "title": "Riftbound Zubehör"
+    }
+   ],
+   "platform": "shopify",
+   "total_collections": 245
+  },
+  "cardcollector": {
+   "collections": [
+    {
+     "handle": "riftbound-side-events",
+     "n": 3,
+     "title": "Riftbound Side Event"
+    }
+   ],
+   "platform": "shopify",
+   "total_collections": 98
+  },
+  "cardforge": {
+   "home_mentions": 26,
+   "platform": "generic"
+  },
+  "cardgameshop": {
+   "home_mentions": 2,
+   "platform": "generic"
+  },
+  "chaoscards": {
+   "home_mentions": 10,
+   "platform": "generic"
+  },
+  "collgamers": {
+   "collections": [
+    {
+     "handle": "riftbound-events-locals",
+     "n": 2,
+     "title": "Riftbound Events/Locals"
+    },
+    {
+     "handle": "riftbound-league-of-legends-tcg",
+     "n": 12,
+     "title": "Riftbound: League of Legends TCG"
+    }
+   ],
+   "platform": "shopify",
+   "total_collections": 50
+  },
+  "dracoon": {
+   "n": 1,
+   "platform": "woo",
+   "sample": [
+    "The Acrylic Box &#8211; League of Legends Riftbound Boosterbox Display Case"
+   ]
+  },
+  "fantasiacards": {
+   "collections": [
+    {
+     "handle": "riftbound",
+     "n": 21,
+     "title": "Riftbound"
+    }
+   ],
+   "platform": "shopify",
+   "total_collections": 119
+  },
+  "masterset": {
+   "collections": [
+    {
+     "handle": "riftbound-deck-copie",
+     "n": 3,
+     "title": "Riftbound Booster"
+    },
+    {
+     "handle": "riftbound-display-copie",
+     "n": 5,
+     "title": "Riftbound Deck"
+    },
+    {
+     "handle": "riftbound-lol-tcg-copie",
+     "n": 12,
+     "title": "Riftbound Display"
+    },
+    {
+     "handle": "riftbound-lol-tcg",
+     "n": 19,
+     "title": "Riftbound: LoL TCG"
+    }
+   ],
+   "platform": "shopify",
+   "total_collections": 137
+  },
+  "onytcg": {
+   "error": "Expecting value: line 1 column 1 (char 0)"
+  },
+  "oppacards": {
+   "n": 0,
+   "platform": "woo",
+   "sample": []
+  },
+  "pocketgames": {
+   "error": "Expecting value: line 1 column 1 (char 0)"
+  },
+  "senpaimanga": {
+   "collections": [
+    {
+     "handle": "league-of-legends-riftbound",
+     "n": 18,
+     "title": "League of Legends: Riftbound"
+    },
+    {
+     "handle": "riftbound-league-of-legends-trading-card-game-spiritforged",
+     "n": 5,
+     "title": "Riftbound: League of Legends Trading Card Game - Spiritforged"
+    },
+    {
+     "handle": "riftbound-league-of-legends-trading-card-game-unleashed",
+     "n": 5,
+     "title": "Riftbound: League of Legends Trading Card Game - Unleashed"
+    },
+    {
+     "handle": "riftbound-league-of-legends-trading-card-game-vendetta",
+     "n": 3,
+     "title": "Riftbound: League of Legends Trading Card Game - Vendetta"
+    }
+   ],
+   "platform": "shopify",
+   "total_collections": 93
+  },
+  "supercollectors": {
+   "n": 18,
+   "platform": "woo",
+   "sample": [
+    "Riftbound: League of Legends TCG: Radiance &#8211; Champion Deck Showdown: Evelynn vs Seraphine",
+    "Riftbound: League of Legends TCG: Radiance &#8211; Vault",
+    "Riftbound: League of Legends TCG: Radiance &#8211; Booster Display",
+    "Riftbound: League of Legends TCG: Vendetta &#8211; Vault",
+    "Riftbound: League of Legends TCG: Vendetta &#8211; Champion Deck Showdown: Zed vs Shen",
+    "Riftbound: League of Legends TCG: Vendetta &#8211; Booster Display",
+    "Riftbound: League of Legends TCG: Chinese New Year Gift Box (Chino)",
+    "Riftbound: League of Legends TCG: Spiritforged &#8211; Jumbo Booster Display (Chino)"
+   ]
+  },
+  "totalcards": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 750
+  }
+ }
 }
