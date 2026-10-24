@@ -57,7 +57,8 @@ def test_run_and_transitions(tmp_path, monkeypatch):
     r = retail.run(day="2026-10-17", http=fake_http(), retailer_ids=["fantasiacards", "dracoon", "tbhstore"])
     assert r["rows"] == 5 and all(t["kind"] == "new_listing" for t in r["transitions"])
     assert retail.format_alerts(r["transitions"], first_run=True)[0]["text"].startswith("🏪")
-    # second observation: FB10 at fantasia back in stock, dracoon FB11 price drop
+    retail.run(day="2026-10-17", http=fake_http(), retailer_ids=["fantasiacards", "dracoon", "tbhstore"])   # same prices again (a drop needs a settled old price)
+    # third observation: FB10 at fantasia back in stock, dracoon FB11 price drop
     SHOPIFY["products"][1]["variants"][0]["available"] = True
     WOO[0]["prices"]["price"] = "11999"
     r2 = retail.run(day="2026-10-17", http=fake_http(), retailer_ids=["fantasiacards", "dracoon", "tbhstore"])
@@ -72,7 +73,7 @@ def test_run_and_transitions(tmp_path, monkeypatch):
     msgs = retail.format_alerts(r2["transitions"], first_run=False, latest=latest, buy={"threshold": 0.8, "near": 0.7})
     assert [m["text"].split(" ·")[0] for m in msgs] == ["📉 GOEDKOPER"] and "koopwaardig" in msgs[0]["text"]
     day = json.load(open(tmp_path / "retail" / "2026-10-17.json"))
-    assert len(day["results"]) == 10   # append-only within the day
+    assert len(day["results"]) == 15   # append-only within the day
 
 
 def test_buy_button_overrides_structured_availability():
@@ -138,3 +139,17 @@ def test_riftbound_non_box_products_are_not_boxes():
     assert kind_of("Riftbound League of Legends TCG set 3 Unleashed Pre-Rift Kit", "u") == "other"
     assert kind_of("Riftbound: League of Legends TCG: Radiance – Booster Display", "u") == "box"
     assert kind_of("League of Legends Riftbound TCG - Origins - Display (24x Booster)", "u") == "box"
+
+
+def test_naruto_merch_and_silent_games_are_not_messages():
+    from tcgwatcher import retail
+    latest = {"games": {"dbs": {"alerts": False, "sets": [{"code": "BT31", "ev_eu_excl_saa": 218.0, "flags": []}]},
+                        "dbfw": {"alerts": True, "sets": [{"code": "FB11", "ev_eu_excl_saa": 156.0, "flags": []}]}}}
+    ts = [{"kind": "new_listing", "retailer": "oppacards", "title": "Funko Pop Naruto – 71", "price": 11.95, "status": "in_stock", "url": "https://x/funko-pop-naruto-71/", "trusted": True, "product_kind": "other"},
+          {"kind": "new_listing", "retailer": "oppacards", "title": "Naruto Card Game Booster Box NR01", "price": 99.0, "status": "preorder", "url": "https://x/naruto-card-game-booster-box/", "trusted": True, "product_kind": "box"},
+          {"kind": "price_drop", "retailer": "oppacards", "title": "Dragon Ball Super – Impact Beyond Dimensions Booster Box BT31", "price": 139.95, "old_price": 250.0, "status": "in_stock", "url": "https://x/bt31/", "trusted": True, "product_kind": "box"},
+          {"kind": "price_drop", "retailer": "oppacards", "title": "Dragon Ball Super Fusion World – Brightness of Hope Booster Box FB11", "price": 179.95, "old_price": 250.0, "status": "in_stock", "url": "https://x/fb11/", "trusted": True, "product_kind": "box"}]
+    msgs = retail.format_alerts(ts, first_run=False, latest=latest, buy={"threshold": 0.8, "near": 0.7})
+    heads = [m["text"].split("\n")[0] for m in msgs]
+    assert any("NARUTO" in h and "NR01" in m["text"] for h, m in zip(heads, msgs)) and not any("Funko" in m["text"] for m in msgs)
+    assert not any("BT31" in m["text"] for m in msgs) and any("FB11" in m["text"] for m in msgs)
