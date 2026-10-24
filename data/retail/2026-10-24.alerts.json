@@ -1,18 +1,5 @@
 {
  "day": "2026-10-24",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-24T20:48:23Z",
-   "kind": "new_listing",
-   "price": 11.99,
-   "product_kind": "pack",
-   "retailer": "fantasiacards",
-   "seen": "2026-10-24T20:48:23Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB10 - Cross Force - Booster [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb10-cross-force-booster-eng-1"
-  }
- ]
+ "transitions": []
 }
