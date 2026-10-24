@@ -336,13 +336,14 @@ def update_state(rows, now, succeeded=()):
         old = prods.get(key)
         new = {"retailer": r["retailer"], "title": r["title"], "price": r["price"], "status": r["status"], "seen": now, "product_kind": r.get("kind"),
                "trusted": r.get("trusted", False),
-               "first_seen": old["first_seen"] if old else now}
+               "first_seen": old["first_seen"] if old else now,
+               "price_obs": ((old.get("price_obs") or 1) + 1) if old and old.get("price") == r["price"] else 1}   # how often this price was seen
         if old is None:
             transitions.append({"kind": "new_listing", **new, "url": key})
         else:
             if old["status"] != new["status"] and new["status"] != "unknown":
                 transitions.append({"kind": f"{old['status']}->{new['status']}", "old_price": old.get("price"), **new, "url": key})
-            elif old.get("price") and new["price"] and new["price"] < old["price"] * 0.9:
+            elif old.get("price") and new["price"] and new["price"] < old["price"] * 0.9 and (old.get("price_obs") or 1) >= 2:
                 transitions.append({"kind": "price_drop", "old_price": old["price"], **new, "url": key})
             elif old.get("price") and new["price"] and new["price"] > old["price"] * 1.1:
                 transitions.append({"kind": "price_rise", "old_price": old["price"], **new, "url": key})
@@ -376,16 +377,22 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
                          f"{len({t['retailer'] for t in transitions})} shops. Vanaf nu meld ik alleen koopwaardige voorraad en pre-orders.", "buttons": None}]
     import re as _re
     buy = buy or {"threshold": 0.8, "near": 0.7}
-    sets = {}
+    sets, silent = {}, set()
     if latest:
         for g in latest.get("games", {}).values():
             for st in g.get("sets", []):
                 sets[st["code"]] = st
+                if not g.get("alerts", True):
+                    silent.add(st["code"])                 # silent game (Masters): no retail messages either
     out = []
     for t in transitions:
         if not t.get("trusted"):
             continue          # HTML-heuristic shops: data only, never a message (Comic Planet 'pre-order' on a dead page)
-        naruto = bool(re.search(r"naruto", (t.get("title") or "") + " " + t["url"], re.I))
+        hay = (t.get("title") or "") + " " + t["url"]
+        naruto = bool(re.search(r"naruto", hay, re.I)) and bool(re.search(r"(card ?game|\btcg\b|booster|\bdeck\b|starter|display|\bpack)", hay, re.I)) \
+            and not re.search(r"(funko|\bpop!?\b|figur|plush|knuffel|manga\b|poster|keychain|shirt|\bmug\b|statue|nendoroid|blu-?ray|dvd)", hay, re.I)   # a card-game product, not merchandise
+        if re.search(r"naruto", hay, re.I) and not naruto:
+            continue
         k = kind_with_price(t.get("title") or "", t["url"], t.get("price")) if t.get("product_kind") is not None else None   # recomputed: stored kind may predate a rule fix
         if not naruto and k not in (None, "box", "case"):
             continue                                   # Naruto: every product counts (decks, packs, boxes) — launch lineup
@@ -396,7 +403,7 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
         if not (becomes_buyable or cheaper):
             continue
         code = set_code_of(t.get("title"), t["url"])
-        if code and code in muted:
+        if code and (code in muted or code in silent):
             continue
         st = None if naruto else sets.get(code)
         ratio = None
