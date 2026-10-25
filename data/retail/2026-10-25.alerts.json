@@ -3,56 +3,44 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-25T00:20:22Z",
+   "first_seen": "2026-10-25T07:35:10Z",
    "kind": "new_listing",
-   "price": 11.95,
+   "price": 6.49,
    "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "oppacards",
-   "seen": "2026-10-25T00:20:22Z",
+   "product_kind": "pack",
+   "retailer": "fantasiacards",
+   "seen": "2026-10-25T07:35:10Z",
    "status": "in_stock",
-   "title": "Funko Pop Naruto – 71",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB08 - Saiyan's Pride - Booster [ENG]",
    "trusted": true,
-   "url": "https://oppacards.com/product/funko-pop-naruto-71/"
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb08-saiyans-pride-booster-eng"
   },
   {
-   "first_seen": "2026-10-25T00:20:22Z",
-   "kind": "new_listing",
-   "price": 14.95,
+   "first_seen": "2026-10-19T08:00:42Z",
+   "kind": "price_drop",
+   "old_price": 1199.99,
+   "price": 999.99,
    "price_obs": 1,
    "product_kind": "other",
-   "retailer": "oppacards",
-   "seen": "2026-10-25T00:20:22Z",
+   "retailer": "fantasiacards",
+   "seen": "2026-10-25T07:35:10Z",
    "status": "in_stock",
-   "title": "Funko Pop! Naruto Sasuke Uchiha – 1436",
+   "title": "Dragon Ball Super Card Game - Fusion World Awakened Pulse FB01 - [JP] - LIVE BOXBREAK",
    "trusted": true,
-   "url": "https://oppacards.com/product/funko-pop-naruto-sasuke-uchiha-1436/"
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-divers-genkida-matsuri-2025-visitors-commemorative-gift-40th-year-anniversary-energy-marker-son-goku-jp"
   },
   {
-   "first_seen": "2026-10-25T00:20:22Z",
+   "first_seen": "2026-10-25T07:35:10Z",
    "kind": "new_listing",
-   "price": 14.95,
+   "price": 11.99,
    "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "oppacards",
-   "seen": "2026-10-25T00:20:22Z",
+   "product_kind": "pack",
+   "retailer": "fantasiacards",
+   "seen": "2026-10-25T07:35:10Z",
    "status": "in_stock",
-   "title": "Funko Pop Naruto – Deidara – 1434",
+   "title": "Dragon Ball Super Card Game - Masters - Beyond Generations - Booster [ENG]",
    "trusted": true,
-   "url": "https://oppacards.com/product/funko-pop-naruto-deidara-1434/"
-  },
-  {
-   "first_seen": "2026-10-25T00:20:22Z",
-   "kind": "new_listing",
-   "price": 14.95,
-   "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "oppacards",
-   "seen": "2026-10-25T00:20:22Z",
-   "status": "in_stock",
-   "title": "Funko Pop Naruto – Orochimaru Akatsuki – 1435",
-   "trusted": true,
-   "url": "https://oppacards.com/product/funko-pop-naruto-orochimaru-akatsuki-1435/"
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-beyond-generations-booster-eng-kopie"
   }
  ]
 }
