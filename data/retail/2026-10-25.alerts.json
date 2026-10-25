@@ -1,46 +1,36 @@
 {
  "day": "2026-10-25",
- "messages": [],
+ "messages": [
+  {
+   "buttons": [
+    [
+     [
+      "🛒 breakthecase",
+      "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🟡 PRE-ORDER OPEN · <b>RAD</b>\nLeague of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch\n<b>€130,00</b> bij breakthecase\nRatio <b>0.98</b> → koopwaardig (hits €128 per box)"
+  }
+ ],
  "transitions": [
   {
-   "first_seen": "2026-10-25T07:35:10Z",
-   "kind": "new_listing",
-   "price": 6.49,
-   "price_obs": 1,
-   "product_kind": "pack",
-   "retailer": "fantasiacards",
-   "seen": "2026-10-25T07:35:10Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB08 - Saiyan's Pride - Booster [ENG]",
+   "first_seen": "2026-10-23T07:48:55Z",
+   "kind": "sold_out->preorder",
+   "old_price": 130.0,
+   "price": 130.0,
+   "price_obs": 5,
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-10-25T13:11:17Z",
+   "status": "preorder",
+   "title": "League of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch",
    "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb08-saiyans-pride-booster-eng"
-  },
-  {
-   "first_seen": "2026-10-19T08:00:42Z",
-   "kind": "price_drop",
-   "old_price": 1199.99,
-   "price": 999.99,
-   "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "fantasiacards",
-   "seen": "2026-10-25T07:35:10Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Fusion World Awakened Pulse FB01 - [JP] - LIVE BOXBREAK",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-divers-genkida-matsuri-2025-visitors-commemorative-gift-40th-year-anniversary-energy-marker-son-goku-jp"
-  },
-  {
-   "first_seen": "2026-10-25T07:35:10Z",
-   "kind": "new_listing",
-   "price": 11.99,
-   "price_obs": 1,
-   "product_kind": "pack",
-   "retailer": "fantasiacards",
-   "seen": "2026-10-25T07:35:10Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Masters - Beyond Generations - Booster [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-beyond-generations-booster-eng-kopie"
+   "url": "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
   }
  ]
 }
