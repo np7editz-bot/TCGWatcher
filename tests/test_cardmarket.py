@@ -132,3 +132,19 @@ def test_riftbound_card_urls_match_browser():
     assert card_url("Origins Promos", "Jinx, Loose Cannon", 1, "", "Promo", 1, "Riftbound", "riftbound").endswith("/Origins-Promos/Jinx-Loose-Cannon?language=1")
     assert expansion_name("riftbound", "RAD", "Radiance", "Radiance Booster Box") == "Radiance"
     assert box_url("Radiance Booster Box", "Riftbound").endswith("/Riftbound/Products/Booster-Boxes/Radiance-Booster-Box?language=1")
+
+
+def test_masters_parallels_get_a_search_link():
+    """Cardmarket's label for Masters parallels is its own per-card rarity (Uncommon / Feature Rare / Alternate Art…): unpredictable."""
+    f = files()
+    f["prices"]["priceGuides"] += [{"idProduct": 880115, "low": 40.0, "avg30": 45.0}, {"idProduct": 880114, "low": 0.5, "avg30": 0.4}]
+    f["singles"]["products"] = [{"idProduct": 880114, "name": "Spirit", "idExpansion": 70}, {"idProduct": 880115, "name": "Spirit", "idExpansion": 70}]
+    f["nonsingles"]["products"].append({"idProduct": 7300, "name": "Three Glorious Fighters Booster Box", "idExpansion": 70})
+    f["prices"]["priceGuides"].append({"idProduct": 7300, "low": 120.0})
+    latest = {"games": {"dbs": {"cards": [{"key": "dbs:BT30:BT30-015:SPR", "product_id": 700, "rarity": "Special Rare"},
+                                          {"key": "dbs:BT30:BT30-015:", "product_id": 701, "rarity": "Common"}],
+                                "sets": [{"code": "BT30", "name": "Three Glorious Fighters"}]}}}
+    ct = {"blueprints": {"1": {"tcg_player_id": 700, "card_market_ids": [880115]}, "2": {"tcg_player_id": 701, "card_market_ids": [880114]}}}
+    cards, _, _ = cardmarket.join({"dbs": f}, latest, ct)
+    assert "Products/Search?searchString=Spirit" in cards["dbs:BT30:BT30-015:SPR"]["url"]
+    assert cards["dbs:BT30:BT30-015:"]["url"].endswith("/Three-Glorious-Fighters/Spirit-V1-Common?language=1")
