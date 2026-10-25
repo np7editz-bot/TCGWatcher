@@ -3,45 +3,17 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-19T08:00:42Z",
-   "kind": "price_drop",
-   "old_price": 149.99,
-   "price": 129.99,
-   "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "fantasiacards",
-   "seen": "2026-10-25T17:39:02Z",
-   "status": "preorder",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB13 - Display [JP] (Vorbestellung - Release: 12.03.27)",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb13-display-jp-vorbestellung-release-12-03-27"
-  },
-  {
-   "first_seen": "2026-10-19T07:45:08Z",
-   "kind": "sold_out->preorder",
-   "old_price": 20.0,
-   "price": 20.0,
-   "price_obs": 6,
-   "product_kind": "pack",
-   "retailer": "breakthecase",
-   "seen": "2026-10-25T17:39:02Z",
-   "status": "preorder",
-   "title": "Dragon Ball Super Card Game Fusion World - [FB06] - Rivals Clash - Booster - Englisch",
-   "trusted": true,
-   "url": "https://www.breakthecase.de/products/dragon-ball-super-card-game-fusion-world-fb06-rivals-clash-booster-englisch"
-  },
-  {
-   "first_seen": "2026-10-25T17:39:02Z",
+   "first_seen": "2026-10-25T20:50:18Z",
    "kind": "new_listing",
-   "price": 149.9,
+   "price": 18.9,
    "price_obs": 1,
-   "product_kind": "box",
+   "product_kind": "deck",
    "retailer": "onytcg",
-   "seen": "2026-10-25T17:39:02Z",
+   "seen": "2026-10-25T20:50:18Z",
    "status": "sold_out",
-   "title": "Dragon Ball Super Fusion World Story Booster ST03 Box EN 20 Packs",
+   "title": "Dragon Ball Super Card Game Fusion World Starter Deck EX FS-13 Eng",
    "trusted": false,
-   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-story-booster-st03-box-eng-20-buste"
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-card-game-fusion-world-starter-deck-ex-fs-13-eng"
   }
  ]
 }
