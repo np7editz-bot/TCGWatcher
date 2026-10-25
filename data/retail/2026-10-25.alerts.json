@@ -1,0 +1,58 @@
+{
+ "day": "2026-10-25",
+ "messages": [],
+ "transitions": [
+  {
+   "first_seen": "2026-10-25T00:20:22Z",
+   "kind": "new_listing",
+   "price": 11.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "oppacards",
+   "seen": "2026-10-25T00:20:22Z",
+   "status": "in_stock",
+   "title": "Funko Pop Naruto – 71",
+   "trusted": true,
+   "url": "https://oppacards.com/product/funko-pop-naruto-71/"
+  },
+  {
+   "first_seen": "2026-10-25T00:20:22Z",
+   "kind": "new_listing",
+   "price": 14.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "oppacards",
+   "seen": "2026-10-25T00:20:22Z",
+   "status": "in_stock",
+   "title": "Funko Pop! Naruto Sasuke Uchiha – 1436",
+   "trusted": true,
+   "url": "https://oppacards.com/product/funko-pop-naruto-sasuke-uchiha-1436/"
+  },
+  {
+   "first_seen": "2026-10-25T00:20:22Z",
+   "kind": "new_listing",
+   "price": 14.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "oppacards",
+   "seen": "2026-10-25T00:20:22Z",
+   "status": "in_stock",
+   "title": "Funko Pop Naruto – Deidara – 1434",
+   "trusted": true,
+   "url": "https://oppacards.com/product/funko-pop-naruto-deidara-1434/"
+  },
+  {
+   "first_seen": "2026-10-25T00:20:22Z",
+   "kind": "new_listing",
+   "price": 14.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "oppacards",
+   "seen": "2026-10-25T00:20:22Z",
+   "status": "in_stock",
+   "title": "Funko Pop Naruto – Orochimaru Akatsuki – 1435",
+   "trusted": true,
+   "url": "https://oppacards.com/product/funko-pop-naruto-orochimaru-akatsuki-1435/"
+  }
+ ]
+}
