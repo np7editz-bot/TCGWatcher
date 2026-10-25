@@ -1,0 +1,65 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-25T23:36:39Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €130 · breakthecase · pre-order",
+      "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:riftbound:RAD",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/711365_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · RAD Radiance</b>\nHits per box <b>€105</b> / box vanaf <b>€130</b> → ratio <b>0.81</b> (drempel 0.8)\n#2 van 5 · US-ratio 0.76\n\n🛒 <b>Waar kopen</b> (3 EU-listings)\n• €130,00 breakthecase (pre-order)\n• €134,90 supercollectors (op voorraad)\n• €139,95 collgamers (op voorraad)\n<i>◦ Cardmarket €116 — indicatie (alle talen)</i>\n\nSamenstelling: 28 Epic · 18 Alt-Art · 11 Showcase · 16 Overnum. · 15 ★ Sig · 1 Ultimate\nTop hit: Seraphine, Starry-Eyed Songstress (Signature) 174*/167 SIG €2.144\n<i>Waardering Cardmarket-verkopen 30d · 114/118 hits · US-referentie €90</i>"
+  },
+  {
+   "at": "2026-10-25T23:36:39Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €605 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/New-Adventure-Fusion-World/Frieza-FB05-120-Fusion-World-V3-God-Rare?language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:FB05:FB05-120:SAA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/611093_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Frieza FB05-120 SAA</b> · Fusion World FB05\nRaw kopen vanaf <b>€605</b> → PSA 10 waarde <b>€1420</b> (3 listings)\nNetto na grading en fees: <b>€309</b> per kaart (51% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €605 Cardmarket\n• €706 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €422</i>"
+  },
+  {
+   "at": "2026-10-25T23:36:39Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €80 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Wish-for-Shenron-Fusion-World/Son-Gohan-SH-FB07-121-Fusion-World-V2-Alternate-Art?language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:FB07:FB07-121:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/651125_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #2 · Son Gohan : SH FB07-121 SCR AA</b> · Fusion World FB07\nRaw kopen vanaf <b>€80</b> → PSA 10 waarde <b>€481</b> (4 listings)\nNetto na grading en fees: <b>€213</b> per kaart (267% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €80 Cardmarket\n• €95 eBay (3 EU)\n• €231 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €89</i>"
+  }
+ ],
+ "day": "2026-10-25"
+}

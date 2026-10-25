@@ -549,6 +549,34 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 168.91
+  },
+  {
+   "code": "FB05",
+   "game": "dbfw",
+   "key": "dbfw:FB05:FB05-120:SAA",
+   "kind": "raw",
+   "name": "Frieza FB05-120 SAA",
+   "net_then": 491.39,
+   "opened": "2026-10-25",
+   "price": 705.64,
+   "psa10_then": 1419.9,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 422.45
+  },
+  {
+   "code": "FB07",
+   "game": "dbfw",
+   "key": "dbfw:FB07:FB07-121:AA",
+   "kind": "raw",
+   "name": "Son Gohan : SH FB07-121 SCR_AA",
+   "net_then": 203.81,
+   "opened": "2026-10-25",
+   "price": 230.62,
+   "psa10_then": 481.32,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 89.44
   }
  ]
 }
