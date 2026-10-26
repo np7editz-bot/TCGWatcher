@@ -1,5 +1,19 @@
 {
  "day": "2026-10-26",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-26T07:47:31Z",
+   "kind": "new_listing",
+   "price": 149.9,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "onytcg",
+   "seen": "2026-10-26T07:47:31Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game Fusion World Story Booster 02 [ST02] Box ENG",
+   "trusted": false,
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-card-game-fusion-world-story-booster-02-sb02-box-eng"
+  }
+ ]
 }
