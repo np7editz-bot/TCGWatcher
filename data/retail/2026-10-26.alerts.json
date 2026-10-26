@@ -3,17 +3,30 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-26T07:47:31Z",
+   "first_seen": "2026-10-26T15:11:42Z",
    "kind": "new_listing",
-   "price": 149.9,
+   "price": 164.95,
    "price_obs": 1,
    "product_kind": "box",
-   "retailer": "onytcg",
-   "seen": "2026-10-26T07:47:31Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Super Card Game Fusion World Story Booster 02 [ST02] Box ENG",
+   "retailer": "cardgameshop",
+   "seen": "2026-10-26T15:11:42Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Boosterbox -  FB11 Brightness Of Hope | Cardgameshop",
    "trusted": false,
-   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-card-game-fusion-world-story-booster-02-sb02-box-eng"
+   "url": "https://www.cardgameshop.be/nl/producten/dragon-ball-super-boosterbox-fb11-brightness-of-hope"
+  },
+  {
+   "first_seen": "2026-10-26T15:11:42Z",
+   "kind": "new_listing",
+   "price": 29.9,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "onytcg",
+   "seen": "2026-10-26T15:11:42Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Fusion World Starter Deck EX FS15 ENG",
+   "trusted": false,
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-starter-deck-ex-fs15-eng"
   }
  ]
 }
