@@ -308,8 +308,11 @@ def retail_by_set(game_id, game=None):
         return {}
     st = store.read_json(store.state_path("retail"), {"products": {}})
     by = {}
-    from .retail import set_code_of, kind_with_price
+    from .retail import set_code_of, kind_with_price, load_retailers
+    enabled = {r["id"] for r in load_retailers()["retailers"] if r.get("enabled", True)}
     for url, p in st["products"].items():
+        if p.get("retailer") not in enabled:
+            continue          # shop since disabled/untrusted: its old observations must not feed the page or best_buy
         code = set_code_of(p.get("title"), url)
         if not code:
             continue

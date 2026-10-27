@@ -385,8 +385,9 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
                 if not g.get("alerts", True):
                     silent.add(st["code"])                 # silent game (Masters): no retail messages either
     out = []
+    enabled = {r["id"] for r in load_retailers()["retailers"] if r.get("enabled", True)}
     for t in transitions:
-        if not t.get("trusted"):
+        if not t.get("trusted") or t.get("retailer") not in enabled:
             continue          # HTML-heuristic shops: data only, never a message (Comic Planet 'pre-order' on a dead page)
         hay = (t.get("title") or "") + " " + t["url"]
         naruto = bool(re.search(r"naruto", hay, re.I)) and bool(re.search(r"(card ?game|\btcg\b|booster|\bdeck\b|starter|display|\bpack)", hay, re.I)) \
