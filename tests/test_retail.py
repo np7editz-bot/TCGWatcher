@@ -108,7 +108,7 @@ def test_only_api_trusted_shops_alert(tmp_path, monkeypatch):
     by = {t["retailer"]: t for t in r["transitions"]}
     assert by["fantasiacards"]["trusted"] and by["dracoon"]["trusted"]
     assert by["tbhstore"]["trusted"] is False   # generic HTML shop: data only
-    t = [dict(x, kind="sold_out->preorder", status="preorder", trusted=False, product_kind="box", price=99.0) for x in r["transitions"]][:1]
+    t = [dict(x, kind="sold_out->preorder", status="preorder", trusted=False, product_kind="box", price=99.0) for x in r["transitions"] if x["retailer"] == "fantasiacards"][:1]
     assert retail.format_alerts(t, first_run=False) == []
     t[0]["trusted"] = True
     assert len(retail.format_alerts(t, first_run=False)) == 1
