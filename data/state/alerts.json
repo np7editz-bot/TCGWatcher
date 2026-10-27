@@ -15,11 +15,6 @@
    "ratio": 0.808,
    "since": "2026-10-22"
   },
-  "buy:riftbound:RAD": {
-   "price": 130.0,
-   "ratio": 0.81,
-   "since": "2026-10-25"
-  },
   "buy:riftbound:VEN": {
    "price": 126.64,
    "ratio": 0.889,
@@ -39,20 +34,20 @@
  "muted": [],
  "prev_ranking": {
   "FB01": 0.371,
-  "FB02": 0.432,
-  "FB03": 0.576,
-  "FB04": 0.35,
+  "FB02": 0.436,
+  "FB03": 0.575,
+  "FB04": 0.349,
   "FB05": 0.507,
   "FB06": 0.218,
   "FB07": 0.442,
   "FB08": 0.558,
-  "FB09": 0.885,
-  "FB10": 0.764,
-  "FB11": 1.018,
+  "FB09": 0.884,
+  "FB10": 0.761,
+  "FB11": 0.994,
   "FB12": 0.0,
   "SB01": 0.378,
-  "SB02": 0.433,
-  "ST01": 0.464
+  "SB02": 1.83,
+  "ST01": 0.462
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
  "seen_expansions": {

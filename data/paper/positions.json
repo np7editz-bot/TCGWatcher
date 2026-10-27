@@ -577,6 +577,34 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 89.44
+  },
+  {
+   "card_key": "dbfw:SB02:FB01-140:",
+   "code": "SB02",
+   "game": "dbfw",
+   "grade": 10,
+   "key": "dbfw:SB02:FB01-140::10",
+   "kind": "slab",
+   "name": "Son Gohan : Childhood FB01-140 PSA 10",
+   "opened": "2026-10-26",
+   "price": 208.0,
+   "raw_then": 1787.62,
+   "source": "eBay EU",
+   "status": "open"
+  },
+  {
+   "code": "BT29",
+   "game": "dbs",
+   "key": "dbs:BT29:BT29-002:SLR",
+   "kind": "raw",
+   "name": "Broly BT29-002 SLR",
+   "net_then": 141.58,
+   "opened": "2026-10-26",
+   "price": 74.59,
+   "psa10_then": 362.99,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 51.62
   }
  ]
 }
