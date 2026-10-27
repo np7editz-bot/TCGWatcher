@@ -1,49 +1,60 @@
 {
  "day": "2026-10-27",
- "messages": [
-  {
-   "buttons": [
-    [
-     [
-      "🛒 breakthecase",
-      "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
-     ],
-     [
-      "📊 Radar",
-      "https://np7editz-bot.github.io/TCGWatcher/"
-     ]
-    ]
-   ],
-   "text": "🟡 PRE-ORDER OPEN · <b>RAD</b>\nLeague of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch\n<b>€130,00</b> bij breakthecase\nRatio <b>0.73</b> → bijna koopwaardig (hits €95 per box)"
-  }
- ],
+ "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-23T07:48:55Z",
-   "kind": "sold_out->preorder",
-   "old_price": 130.0,
-   "price": 130.0,
-   "price_obs": 16,
-   "product_kind": "box",
-   "retailer": "breakthecase",
-   "seen": "2026-10-27T14:31:01Z",
-   "status": "preorder",
-   "title": "League of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch",
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 25.95,
+   "price": 25.95,
+   "price_obs": 17,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-10-27T20:41:42Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game Fusion World [FS12] - The Beat of Ki - Starter Deck EX",
    "trusted": true,
-   "url": "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs12-the-beat-of-ki-starter-deck-ex"
   },
   {
-   "first_seen": "2026-10-27T14:31:01Z",
+   "first_seen": "2026-10-27T20:41:42Z",
    "kind": "new_listing",
-   "price": 1499.99,
+   "price": 29.95,
    "price_obs": 1,
-   "product_kind": "case",
-   "retailer": "onytcg",
-   "seen": "2026-10-27T14:31:01Z",
+   "product_kind": "other",
+   "retailer": "collgamers",
+   "seen": "2026-10-27T20:41:42Z",
+   "status": "in_stock",
+   "title": "Riftbound League of Legends TCG set 5 Radiance Showdown Decks - Evelynn vs Seraphine",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-5-radiance-showdown-decks-evelynn-vs-seraphine"
+  },
+  {
+   "first_seen": "2026-10-27T20:41:42Z",
+   "kind": "new_listing",
+   "price": 34.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "collgamers",
+   "seen": "2026-10-27T20:41:42Z",
+   "status": "in_stock",
+   "title": "Riftbound League of Legends TCG set 5 Radiance Vault",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-5-radiance-booster-box-copy"
+  },
+  {
+   "first_seen": "2026-10-25T07:35:10Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 11.99,
+   "price": 11.99,
+   "price_obs": 14,
+   "product_kind": "pack",
+   "retailer": "fantasiacards",
+   "seen": "2026-10-27T20:41:42Z",
    "status": "sold_out",
-   "title": "Dragon Ball Super Fusion World FB-13 Case 12 Box ENG",
-   "trusted": false,
-   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-fb-13-case-12-box-eng"
+   "title": "Dragon Ball Super Card Game - Masters - Beyond Generations - Booster [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-beyond-generations-booster-eng-kopie"
   }
  ]
 }
