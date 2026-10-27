@@ -1,33 +1,49 @@
 {
  "day": "2026-10-27",
- "messages": [],
+ "messages": [
+  {
+   "buttons": [
+    [
+     [
+      "🛒 breakthecase",
+      "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🟡 PRE-ORDER OPEN · <b>RAD</b>\nLeague of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch\n<b>€130,00</b> bij breakthecase\nRatio <b>0.73</b> → bijna koopwaardig (hits €95 per box)"
+  }
+ ],
  "transitions": [
   {
    "first_seen": "2026-10-23T07:48:55Z",
-   "kind": "preorder->sold_out",
+   "kind": "sold_out->preorder",
    "old_price": 130.0,
    "price": 130.0,
-   "price_obs": 15,
+   "price_obs": 16,
    "product_kind": "box",
    "retailer": "breakthecase",
-   "seen": "2026-10-27T07:51:28Z",
-   "status": "sold_out",
+   "seen": "2026-10-27T14:31:01Z",
+   "status": "preorder",
    "title": "League of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch",
    "trusted": true,
    "url": "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
   },
   {
-   "first_seen": "2026-10-27T07:51:28Z",
+   "first_seen": "2026-10-27T14:31:01Z",
    "kind": "new_listing",
-   "price": 29.9,
+   "price": 1499.99,
    "price_obs": 1,
-   "product_kind": "deck",
+   "product_kind": "case",
    "retailer": "onytcg",
-   "seen": "2026-10-27T07:51:28Z",
+   "seen": "2026-10-27T14:31:01Z",
    "status": "sold_out",
-   "title": "Dragon Ball Super Fusion World Starter Deck EX FS15 ENG",
+   "title": "Dragon Ball Super Fusion World FB-13 Case 12 Box ENG",
    "trusted": false,
-   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-starter-deck-ex-fs15-eng"
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-fb-13-case-12-box-eng"
   }
  ]
 }
