@@ -1,0 +1,19 @@
+{
+ "day": "2026-10-28",
+ "messages": [],
+ "transitions": [
+  {
+   "first_seen": "2026-10-28T00:50:47Z",
+   "kind": "new_listing",
+   "price": 149.9,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "onytcg",
+   "seen": "2026-10-28T00:50:47Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Fusion World Story Booster ST03 Box EN 20 Packs",
+   "trusted": false,
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-story-booster-st03-box-eng-20-buste"
+  }
+ ]
+}

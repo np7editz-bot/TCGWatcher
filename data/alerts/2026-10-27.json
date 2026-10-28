@@ -1,0 +1,45 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-28T00:50:39Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €605 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Wish-for-Shenron-Fusion-World/Son-Goku-GT-FB07-122-Fusion-World-V2-Alternate-Art?language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:FB07:FB07-122:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/651126_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Son Goku : GT FB07-122 SCR AA</b> · Fusion World FB07\nRaw kopen vanaf <b>€605</b> → PSA 10 waarde <b>€2050</b> (4 listings)\nNetto na grading en fees: <b>€726</b> per kaart (120% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €605 Cardmarket\n• €1106 CardTrader\n• €1225 eBay (1 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €777</i>"
+  },
+  {
+   "at": "2026-10-28T00:50:39Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €126 · CardTrader",
+      "https://www.cardtrader.com/cards/338564"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:SB01:SB01-025:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638984_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #2 · Vegeta SB01-025 SR AA</b> · Fusion World SB01\nRaw kopen vanaf <b>€126</b> → PSA 10 waarde <b>€534</b> (4 listings)\nNetto na grading en fees: <b>€203</b> per kaart (161% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €126 CardTrader\n• €135 Cardmarket\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €156</i>"
+  }
+ ],
+ "day": "2026-10-27"
+}

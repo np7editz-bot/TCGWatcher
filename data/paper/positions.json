@@ -605,6 +605,20 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 51.62
+  },
+  {
+   "code": "FB07",
+   "game": "dbfw",
+   "key": "dbfw:FB07:FB07-122:AA",
+   "kind": "raw",
+   "name": "Son Goku : GT FB07-122 SCR_AA",
+   "net_then": 553.22,
+   "opened": "2026-10-27",
+   "price": 1105.64,
+   "psa10_then": 2050.0,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 777.24
   }
  ]
 }

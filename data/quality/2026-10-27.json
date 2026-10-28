@@ -1,0 +1,44 @@
+{
+ "day": "2026-10-27",
+ "games": {
+  "dbfw": {
+   "findings": [],
+   "market_priced": 4212,
+   "priced": 4465,
+   "products": 4557,
+   "status": "ok"
+  },
+  "dbs": {
+   "findings": [],
+   "market_priced": 9995,
+   "priced": 11470,
+   "products": 12019,
+   "status": "ok"
+  },
+  "naruto": {
+   "findings": [],
+   "market_priced": 2,
+   "priced": 3,
+   "products": 3,
+   "status": "ok"
+  },
+  "riftbound": {
+   "findings": [
+    {
+     "code": "duplicate_keys",
+     "ids": [
+      "riftbound:RAD:179*/167:SIG",
+      "riftbound:VEN:T05 // T06:"
+     ],
+     "level": "warn",
+     "message": "2 canonical keys occur more than once"
+    }
+   ],
+   "market_priced": 1753,
+   "priced": 1774,
+   "products": 1864,
+   "status": "warn"
+  }
+ },
+ "status": "warn"
+}
