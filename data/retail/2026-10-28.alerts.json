@@ -3,31 +3,31 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-19T07:45:08Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 4.0,
-   "price": 4.0,
-   "price_obs": 21,
-   "product_kind": "pack",
-   "retailer": "cardcollector",
-   "seen": "2026-10-28T16:37:50Z",
+   "first_seen": "2026-10-23T07:48:55Z",
+   "kind": "preorder->sold_out",
+   "old_price": 130.0,
+   "price": 130.0,
+   "price_obs": 22,
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-10-28T22:34:48Z",
    "status": "sold_out",
-   "title": "Dragon Ball Super Card Game - Fusion World - Raging Roar FB03 Booster Englisch",
+   "title": "League of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch",
    "trusted": true,
-   "url": "https://card-collector.net/products/dragon-ball-super-card-game-fusion-world-raging-roar-fb03-booster-englisch-ab-16-08-2024"
+   "url": "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
   },
   {
-   "first_seen": "2026-10-28T16:37:50Z",
+   "first_seen": "2026-10-28T22:34:48Z",
    "kind": "new_listing",
-   "price": 6.21,
+   "price": 29.9,
    "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "totalcards",
-   "seen": "2026-10-28T16:37:50Z",
-   "status": "preorder",
-   "title": "Dragon Ball Super - Official Card Sleeves - Manga Collection - The Monkey King",
-   "trusted": true,
-   "url": "https://totalcards.net/products/dragon-ball-super-official-card-sleeves-manga-collection-the-monkey-king"
+   "product_kind": "deck",
+   "retailer": "onytcg",
+   "seen": "2026-10-28T22:34:48Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Fusion World Starter Deck EX FS15 ENG",
+   "trusted": false,
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-starter-deck-ex-fs15-eng"
   }
  ]
 }
