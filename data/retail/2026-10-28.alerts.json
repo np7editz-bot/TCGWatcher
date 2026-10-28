@@ -3,17 +3,17 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-28T00:50:47Z",
+   "first_seen": "2026-10-28T01:20:48Z",
    "kind": "new_listing",
-   "price": 149.9,
+   "price": 1499.99,
    "price_obs": 1,
-   "product_kind": "box",
+   "product_kind": "case",
    "retailer": "onytcg",
-   "seen": "2026-10-28T00:50:47Z",
+   "seen": "2026-10-28T01:20:48Z",
    "status": "sold_out",
-   "title": "Dragon Ball Super Fusion World Story Booster ST03 Box EN 20 Packs",
+   "title": "Dragon Ball Super Fusion World FB-13 Case 12 Box ENG",
    "trusted": false,
-   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-story-booster-st03-box-eng-20-buste"
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-fb-13-case-12-box-eng"
   }
  ]
 }
