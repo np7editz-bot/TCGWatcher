@@ -58,3 +58,16 @@ def test_first_run_silent_then_only_product_news(tmp_path, monkeypatch):
     assert news.run(http=FakeHttp(pages()), day="2026-10-21", send=False)["messages"] == []
     day = json.load(open(tmp_path / "news" / "2026-10-20.json"))
     assert len(day["results"]) == 7
+
+
+def test_nextjs_parser_finds_articles_in_inline_json():
+    import json
+    from tcgwatcher.news import parse
+    page = '<html><script id="__NEXT_DATA__" type="application/json">' + json.dumps(
+        {"props": {"pageProps": {"articles": [{"title": "Radiance is here", "slug": "radiance-is-here", "publishedAt": "2026-10-23T10:00:00Z"},
+                                              {"title": "Patch notes", "url": "/en-us/news/game-updates/patch-1", "date": "2026-10-20"},
+                                              {"title": "nav", "url": "/en-us/cards"}]}}}) + '</script></html>'
+    src = {"id": "riftbound_news", "game": "riftbound", "base": "https://riftbound.leagueoflegends.com", "parser": "nextjs", "path_prefix": "/en-us/news/"}
+    items = parse(src, page)
+    assert [i["url"] for i in items] == ["https://riftbound.leagueoflegends.com/en-us/news/radiance-is-here", "https://riftbound.leagueoflegends.com/en-us/news/game-updates/patch-1"]
+    assert items[0]["date"] == "2026-10-23"

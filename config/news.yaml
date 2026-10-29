@@ -13,7 +13,7 @@ sources:
     name: "Fusion World official product list"
     url: https://www.dbs-cardgame.com/fw/en/products/
     base: https://www.dbs-cardgame.com
-    item: '<a href="(https://www\.dbs-cardgame\.com/fw/en/products/\d+_\d+\.html)"[^>]*>(?:(?!</a>).)*?(?P<title>(?:BOOSTER|STARTER|MANGA|STORY|PREMIUM|OFFICIAL|ULTIMATE|SPECIAL|COLLECTION|SET|BOX)[^<]{3,120})'
+    item: '<a href="(https://www\.dbs-cardgame\.com/fw/en/products/\d+_\d+\.html)"[^>]*>(?:(?!</a>).)*?(?P<title>(?:BOOSTER|STARTER|MANGA|STORY|PREMIUM|OFFICIAL|ULTIMATE|SPECIAL|COLLECTION|SET|BOX)[^<"]{3,120})'
     order: [url, title]
     kind: product                       # every new entry on the product list is an announcement
   - id: naruto_news
@@ -23,6 +23,15 @@ sources:
     base: https://www.naruto-cardgame.com
     item: '<li class="newsListItem card">.*?<a class="cardBox" href="([^"]+)">.*?<dt class="cardTitle">(.*?)</dt>.*?<time class="date" datetime="([^"]+)">'
     order: [url, title, date]
+    kind: all                           # pre-launch: every official Naruto item is news (events, reveals, lineup)
+  - id: riftbound_news
+    game: riftbound
+    name: "Riftbound official news"
+    url: https://riftbound.leagueoflegends.com/en-us/news/
+    base: https://riftbound.leagueoflegends.com
+    parser: nextjs                      # article list lives in the page's inline JSON
+    path_prefix: /en-us/news/
+    kind: all
 
 # Titles that mean "a product you can (pre-)order": these become messages. Case-insensitive.
 product: '(booster|starter|deck|pre-?order|release|launch|product|collection|set\b|box|pack|edition|lineup|available|on sale|retailer)'
