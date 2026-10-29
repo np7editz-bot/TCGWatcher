@@ -1,0 +1,25 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-29T01:20:36Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €20 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Rivals-Clash/Broly-BR-FB06-120-Fusion-World-V1-Secret-Rare?language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:FB06:FB06-120:",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/628355_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Broly : BR FB06-120 SCR</b> · Fusion World FB06\nRaw kopen vanaf <b>€20</b> → PSA 10 waarde <b>€178</b> (5 listings)\nNetto na grading en fees: <b>€73</b> per kaart (363% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €20 Cardmarket\n• €34 CardTrader\n• €45 eBay (2 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €23</i>"
+  }
+ ],
+ "day": "2026-10-28"
+}

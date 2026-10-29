@@ -1,0 +1,19 @@
+{
+ "day": "2026-10-29",
+ "messages": [],
+ "transitions": [
+  {
+   "first_seen": "2026-10-29T01:20:44Z",
+   "kind": "new_listing",
+   "price": 18.9,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "onytcg",
+   "seen": "2026-10-29T01:20:44Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game Fusion World Starter Deck EX FS-13 Eng",
+   "trusted": false,
+   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-card-game-fusion-world-starter-deck-ex-fs-13-eng"
+  }
+ ]
+}
