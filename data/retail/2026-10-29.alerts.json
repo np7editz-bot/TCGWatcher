@@ -3,17 +3,17 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-29T05:47:14Z",
+   "first_seen": "2026-10-29T12:59:44Z",
    "kind": "new_listing",
-   "price": 129.9,
+   "price": 79.95,
    "price_obs": 1,
    "product_kind": "box",
-   "retailer": "onytcg",
-   "seen": "2026-10-29T05:47:14Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Fusion World FB-12 Box ENG",
+   "retailer": "cardgameshop",
+   "seen": "2026-10-29T12:59:44Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Japanse Boosterbox - FB01 Fusion World  | Cardgameshop",
    "trusted": false,
-   "url": "https://onytcg.com/en/prodotto/dragon-ball-fusion-world-fb-12-box-eng"
+   "url": "https://www.cardgameshop.be/nl/producten/dragon-ball-super-japanse-boosterbox-fb01-fusion-world"
   }
  ]
 }
