@@ -1,10 +1,5 @@
 {
  "active": {
-  "buy:dbfw:FB09": {
-   "price": 177,
-   "ratio": 0.882,
-   "since": "2026-10-19"
-  },
   "buy:dbfw:FB11": {
    "price": 141.28,
    "ratio": 1.099,
@@ -14,6 +9,11 @@
    "price": 184.64,
    "ratio": 0.808,
    "since": "2026-10-22"
+  },
+  "buy:riftbound:UNL": {
+   "price": 130.64,
+   "ratio": 0.8,
+   "since": "2026-10-29"
   },
   "buy:riftbound:VEN": {
    "price": 126.64,
@@ -41,13 +41,13 @@
   "FB06": 0.219,
   "FB07": 0.454,
   "FB08": 0.559,
-  "FB09": 0.882,
+  "FB09": 0.664,
   "FB10": 0.759,
   "FB11": 0.938,
   "FB12": 0.0,
-  "SB01": 0.378,
-  "SB02": 2.037,
-  "ST01": 0.474
+  "SB01": 6.639,
+  "SB02": 23.549,
+  "ST01": 2.515
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
  "seen_expansions": {
@@ -1973,10 +1973,10 @@
    "raw": 79.9
   },
   "dbfw:dbfw:FB07:FB07-122:": {
-   "day": "2026-10-18",
-   "net": 80.14,
+   "day": "2026-10-29",
+   "net": 72.83,
    "rank": 1,
-   "raw": 30
+   "raw": 27
   },
   "dbfw:dbfw:FB07:FB07-122:AA": {
    "day": "2026-10-27",
@@ -2025,6 +2025,12 @@
    "net": 67.49,
    "rank": 1,
    "raw": 35
+  },
+  "dbfw:dbfw:FB09:FB09-100:AA": {
+   "day": "2026-10-29",
+   "net": 56.42,
+   "rank": 2,
+   "raw": 52.99
   },
   "dbfw:dbfw:FB09:FB09-123:AA": {
    "day": "2026-10-19",

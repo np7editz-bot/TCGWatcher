@@ -1,0 +1,65 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-30T01:24:28Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €131 · CardTrader Zero · voorraad",
+      "https://www.cardtrader.com/cards/363127"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:riftbound:UNL",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/678150_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · UNL Unleashed</b>\nHits per box <b>€104</b> / box vanaf <b>€131</b> → ratio <b>0.80</b> (drempel 0.8)\n#3 van 5 · US-ratio 0.79\n\n🛒 <b>Waar kopen</b> (19 EU-listings)\n• €130,64 CardTrader Zero (op voorraad) <i>Zero €124.64 + €6 kosten</i>\n<i>◦ Cardmarket €113 — indicatie (alle talen)</i>\n\nSamenstelling: 36 Epic · 30 Alt-Art · 6 Showcase · 18 Overnum. · 12 ★ Sig · 1 Ultimate\nTop hit: Baron Nashor (Ultimate) 238/219 ULT €1.701\n<i>Waardering Cardmarket-verkopen 30d · 150/150 hits · US-referentie €121</i>"
+  },
+  {
+   "at": "2026-10-30T01:24:28Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €27 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Wish-for-Shenron-Fusion-World/Son-Goku-GT-FB07-122-Fusion-World-V1-Secret-Rare?language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:FB07:FB07-122:",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/651062_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Son Goku : GT FB07-122 SCR</b> · Fusion World FB07\nRaw kopen vanaf <b>€27</b> → PSA 10 waarde <b>€189</b> (11 listings)\nNetto na grading en fees: <b>€73</b> per kaart (270% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €27 Cardmarket\n• €35 eBay (5 EU)\n• €35 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €26</i>"
+  },
+  {
+   "at": "2026-10-30T01:24:28Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €53 · eBay",
+      "https://www.ebay.de/itm/860050748473?_skw=Son+Goku+%3A+GT+FB09-100&hash=itemc83f04f439:g:L90AAeSwCbtqzMO~"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:FB09:FB09-100:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/677548_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #2 · Son Goku : GT FB09-100 SR AA</b> · Fusion World FB09\nRaw kopen vanaf <b>€53</b> → PSA 10 waarde <b>€203</b> (8 listings)\nNetto na grading en fees: <b>€56</b> per kaart (106% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €53 eBay (2 EU)\n• €60 Cardmarket\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €54</i>"
+  }
+ ],
+ "day": "2026-10-29"
+}
