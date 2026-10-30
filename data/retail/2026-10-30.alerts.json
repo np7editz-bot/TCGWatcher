@@ -1,19 +1,5 @@
 {
  "day": "2026-10-30",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-30T01:24:35Z",
-   "kind": "new_listing",
-   "price": 1499.99,
-   "price_obs": 1,
-   "product_kind": "case",
-   "retailer": "onytcg",
-   "seen": "2026-10-30T01:24:35Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Super Fusion World FB-13 Case 12 Box ENG",
-   "trusted": false,
-   "url": "https://onytcg.com/en/prodotto/dragon-ball-super-fusion-world-fb-13-case-12-box-eng"
-  }
- ]
+ "transitions": []
 }
