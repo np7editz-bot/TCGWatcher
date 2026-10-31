@@ -1,0 +1,25 @@
+{
+ "alerts": [
+  {
+   "at": "2026-10-31T01:09:19Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €180 · eBay",
+      "https://www.ebay.de/itm/389747653552?_skw=Son+Goku+%3A+Childhood+FB06-119&hash=item5abec53bb0:g:ZroAAeSw4v9ptaJW"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:SB02:FB06-119:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/660118_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Son Goku : Childhood FB06-119 SCR AA</b> · Fusion World SB02\nRaw kopen vanaf <b>€180</b> → PSA 10 waarde <b>€350</b> (12 listings)\nNetto na grading en fees: <b>€78</b> per kaart (43% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €180 eBay (2 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €120</i>"
+  }
+ ],
+ "day": "2026-10-30"
+}

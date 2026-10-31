@@ -33,7 +33,7 @@
  },
  "muted": [],
  "prev_ranking": {
-  "FB01": 0.371,
+  "FB01": 0.353,
   "FB02": 0.432,
   "FB03": 0.574,
   "FB04": 0.349,
@@ -46,7 +46,7 @@
   "FB11": 0.938,
   "FB12": 0.0,
   "SB01": 6.639,
-  "SB02": 23.549,
+  "SB02": 5.581,
   "ST01": 2.515
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
@@ -2091,6 +2091,12 @@
    "net": 185.78,
    "rank": 0,
    "raw": 165
+  },
+  "dbfw:dbfw:SB02:FB06-119:AA": {
+   "day": "2026-10-30",
+   "net": 77.71,
+   "rank": 1,
+   "raw": 180.0
   },
   "dbfw:dbfw:SB02:SB02-017:GOLD": {
    "day": "2026-10-18",

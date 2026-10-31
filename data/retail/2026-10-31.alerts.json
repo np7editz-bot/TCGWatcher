@@ -1,0 +1,72 @@
+{
+ "day": "2026-10-31",
+ "messages": [],
+ "transitions": [
+  {
+   "first_seen": "2026-10-31T01:09:25Z",
+   "kind": "new_listing",
+   "price": 11.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "oppacards",
+   "seen": "2026-10-31T01:09:25Z",
+   "status": "in_stock",
+   "title": "Funko Pop Naruto – 71",
+   "trusted": true,
+   "url": "https://oppacards.com/product/funko-pop-naruto-71/"
+  },
+  {
+   "first_seen": "2026-10-31T01:09:25Z",
+   "kind": "new_listing",
+   "price": 14.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "oppacards",
+   "seen": "2026-10-31T01:09:25Z",
+   "status": "in_stock",
+   "title": "Funko Pop! Naruto Sasuke Uchiha – 1436",
+   "trusted": true,
+   "url": "https://oppacards.com/product/funko-pop-naruto-sasuke-uchiha-1436/"
+  },
+  {
+   "first_seen": "2026-10-31T01:09:25Z",
+   "kind": "new_listing",
+   "price": 14.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "oppacards",
+   "seen": "2026-10-31T01:09:25Z",
+   "status": "in_stock",
+   "title": "Funko Pop Naruto – Deidara – 1434",
+   "trusted": true,
+   "url": "https://oppacards.com/product/funko-pop-naruto-deidara-1434/"
+  },
+  {
+   "first_seen": "2026-10-31T01:09:25Z",
+   "kind": "new_listing",
+   "price": 14.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "oppacards",
+   "seen": "2026-10-31T01:09:25Z",
+   "status": "in_stock",
+   "title": "Funko Pop Naruto – Orochimaru Akatsuki – 1435",
+   "trusted": true,
+   "url": "https://oppacards.com/product/funko-pop-naruto-orochimaru-akatsuki-1435/"
+  },
+  {
+   "first_seen": "2026-10-23T07:48:55Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 220.0,
+   "price": 220.0,
+   "price_obs": 33,
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-10-31T01:09:25Z",
+   "status": "sold_out",
+   "title": "League of Legends Riftbound TCG - Origins - Display (24x Booster) - Englisch",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/league-of-legends-riftbound-tcg-origins-display-24x-booster-englisch"
+  }
+ ]
+}
