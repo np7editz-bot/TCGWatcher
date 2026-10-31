@@ -3,18 +3,46 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-23T07:48:55Z",
-   "kind": "sold_out->preorder",
-   "old_price": 130.0,
-   "price": 130.0,
-   "price_obs": 35,
-   "product_kind": "box",
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "preorder->sold_out",
+   "old_price": 35.0,
+   "price": 35.0,
+   "price_obs": 36,
+   "product_kind": "pack",
    "retailer": "breakthecase",
-   "seen": "2026-10-31T12:26:48Z",
-   "status": "preorder",
-   "title": "League of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch",
+   "seen": "2026-10-31T18:33:48Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Fusion World - SB02 - Manga Booster – Englisch",
    "trusted": true,
-   "url": "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
+   "url": "https://www.breakthecase.de/products/dragon-ball-fusion-world-sb02-manga-booster-englisch"
+  },
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 18.0,
+   "price": 18.0,
+   "price_obs": 11,
+   "product_kind": "other",
+   "retailer": "breakthecase",
+   "seen": "2026-10-31T18:33:48Z",
+   "status": "sold_out",
+   "title": "Son Goku FB11-090 SR★ - DBS CG FW - Brightness of Hope - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/son-goku-fb11-090-sr-dbs-cg-fw-brightness-of-hope-en"
+  },
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 12.0,
+   "price": 12.0,
+   "price_obs": 11,
+   "product_kind": "other",
+   "retailer": "breakthecase",
+   "seen": "2026-10-31T18:33:48Z",
+   "status": "sold_out",
+   "title": "Shallot FB11-088 SR★ - DBS CG FW - Brightness of Hope - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/shallot-fb11-088-sr-dbs-cg-fw-brightness-of-hope-en"
   }
  ]
 }
