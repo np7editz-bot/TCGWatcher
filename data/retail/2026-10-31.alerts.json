@@ -1,5 +1,20 @@
 {
  "day": "2026-10-31",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-23T07:48:55Z",
+   "kind": "sold_out->preorder",
+   "old_price": 130.0,
+   "price": 130.0,
+   "price_obs": 35,
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-10-31T12:26:48Z",
+   "status": "preorder",
+   "title": "League of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
+  }
+ ]
 }
