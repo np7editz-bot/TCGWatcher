@@ -1,34 +1,5 @@
 {
  "day": "2026-11-01",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-29T19:38:00Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 10.0,
-   "price": 10.0,
-   "price_obs": 15,
-   "product_kind": "other",
-   "retailer": "breakthecase",
-   "seen": "2026-11-01T13:22:21Z",
-   "status": "sold_out",
-   "title": "Shallot FB11-122 SCR - DBS CG FW - Brightness of Hope - EN",
-   "trusted": true,
-   "url": "https://www.breakthecase.de/products/shallot-fb11-122-scr-dbs-cg-fw-brightness-of-hope-en"
-  },
-  {
-   "first_seen": "2026-10-29T19:38:00Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 10.0,
-   "price": 10.0,
-   "price_obs": 15,
-   "product_kind": "other",
-   "retailer": "breakthecase",
-   "seen": "2026-11-01T13:22:21Z",
-   "status": "sold_out",
-   "title": "Cell FB10-123 SCR - DBS CG FW - Cross Force - EN",
-   "trusted": true,
-   "url": "https://www.breakthecase.de/products/cell-fb10-123-scr-dbs-cg-fw-cross-force-en"
-  }
- ]
+ "transitions": []
 }
