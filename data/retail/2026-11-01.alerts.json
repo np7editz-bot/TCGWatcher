@@ -1,5 +1,62 @@
 {
  "day": "2026-11-01",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 15.0,
+   "price": 15.0,
+   "price_obs": 14,
+   "product_kind": "pack",
+   "retailer": "breakthecase",
+   "seen": "2026-11-01T06:02:10Z",
+   "status": "sold_out",
+   "title": "Vegeta ST01-064 R★ - DBS CG FW - Story Booster 01 - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/vegeta-st01-064-r-dbs-cg-fw-story-booster-01-en"
+  },
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 18.0,
+   "price": 18.0,
+   "price_obs": 14,
+   "product_kind": "other",
+   "retailer": "breakthecase",
+   "seen": "2026-11-01T06:02:10Z",
+   "status": "sold_out",
+   "title": "Son Goten/Son Gohan : Adolescence ST01-008 R★ - DBS CG FW - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/son-goten-son-gohan-adolescence-st01-008-r-dbs-cg-fw-en"
+  },
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 70.0,
+   "price": 70.0,
+   "price_obs": 14,
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-11-01T06:02:10Z",
+   "status": "sold_out",
+   "title": "Son Goku ST01-044 SR★ - DBS CG FW - Story Booster 01 - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/son-goku-st01-044-sr-dbs-cg-fw-story-booster-01-en"
+  },
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 35.0,
+   "price": 35.0,
+   "price_obs": 14,
+   "product_kind": "pack",
+   "retailer": "breakthecase",
+   "seen": "2026-11-01T06:02:10Z",
+   "status": "sold_out",
+   "title": "Son Gohan : Adolescence ST01-046 R★ - DBS CG FW - Story Booster 01 - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/son-gohan-adolescence-st01-046-r-dbs-cg-fw-story-booster-01-en"
+  }
+ ]
 }
