@@ -1,3 +1,4 @@
+import datetime as dt
 """Chase Score: expected value of the hit cards in one sealed box.
 
 EV_hits(set) = Σ_class  est[class] × mean(price of cards in class)
@@ -62,6 +63,13 @@ def score_sets(model):
         flags = list(ov.get("flags", []))
         if presale:
             flags.append("presale")
+        pub = meta.get("published") or ""
+        try:
+            young = bool(pub) and (dt.date.fromisoformat(model["day"]) - dt.date.fromisoformat(pub)).days < game.get("min_set_age_days", 28)
+        except ValueError:
+            young = False
+        if young:
+            flags.append("young")                   # released < 4 weeks ago: chase prices still settling, no buy signal yet
         if box and box.price_src != "market":
             flags.append("box_listing_price")
         if box and box.prices:

@@ -97,7 +97,7 @@ games:
     enabled: true
     score: true
     eu_sources: true
-    alerts: false                    # silent first month: page + paper portfolio build evidence; flip after the first monthly review
+    alerts: true                     # on since the 2026-11-01 review, with the wider buy threshold (alerts.yaml threshold_by_game)
     # Variants that do not come out of a regular booster box (Collector Booster parallels, serial-numbered): tracked as cards,
     # never a hit in the box EV. BT24 showed EV €545 because one serial-numbered 'SR' (Cardmarket sales ~€1,550) counted as a box pull.
     box_excluded_variants: [CB, CBG, CBS, SN, GOLDSTAMP, SILVER]   # + Collector's Selection gold-stamped / silver parallels
@@ -182,7 +182,7 @@ games:
     score: true
     eu_sources: true
     alerts: true                     # KOOP / SLAB messages on (owner's call, 2026-10-23)
-    paper: false                     # not part of the paper-portfolio test
+    paper: true                      # in the paper test from November (2026-11-01 review)
     cardmarket_box_buy: false        # Riftbound exists in Chinese too; the price guide mixes languages (lows 20–25% under EN) → indication only
     ebay_sets: 6
     cardtrader_game: "riftbound"     # CardTrader game 22 'Riftbound | League of Legends'

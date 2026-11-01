@@ -328,10 +328,10 @@ def retail_by_set(game_id, game=None):
 
 def paper_summary(latest):
     """Open paper positions valued with today's data (same yardstick as the purchase) + totals per kind."""
-    from .paper import _load, value_now
+    from .paper import _load, value_now, real_positions
     from .ebay import latest_day as ebay_latest
     eb = ebay_latest()
-    pos = [p for p in _load()["positions"] if p["status"] == "open"]
+    pos = [p for p in _load()["positions"] if p["status"] == "open"] + real_positions()
     rows, totals = [], {}
     for p in pos:
         v, ev_now = value_now(p, latest, eb)

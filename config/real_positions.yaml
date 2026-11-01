@@ -1,0 +1,11 @@
+# Echte aankopen (handmatig bijhouden). Elke regel wordt op de radar en in het maandrapport gewaardeerd met dezelfde
+# maatstaf als de paper-posities: boxen bij DEZELFDE bron als de aankoop (CardTrader / Cardmarket / shop-id), raw kaarten
+# bij CardTrader ask+5. Voeg een regel toe via GitHub (edit → commit op main); de volgende run neemt hem mee.
+#
+# Velden: game (dbfw | dbs | riftbound | naruto), kind (box | raw | slab), code (setcode, bij raw/slab de kaart-key
+# zoals op de radar: dbfw:FB09:FB09-123:SAA), price (all-in in €), source (CardTrader Zero | Cardmarket | shop-id zoals
+# collgamers), date (YYYY-MM-DD), note (vrij).
+#
+# Voorbeeld:
+# - { game: dbfw, kind: box, code: FB09, price: 187.00, source: "CardTrader Zero", date: 2026-11-03, note: "1 box, testaankoop" }
+positions: []

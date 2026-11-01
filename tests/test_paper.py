@@ -87,3 +87,17 @@ def test_monthly_report_trigger_rule(tmp_path, monkeypatch):
     assert not should("2026-10-25", [])
     assert should("2026-11-01", []) and should("2026-11-02", [])        # a failed 1st is caught on the 2nd
     assert not should("2026-11-02", ["paper-2026-11.md"])
+
+
+def test_real_positions_valued_like_paper(tmp_path, monkeypatch):
+    import yaml
+    monkeypatch.setattr(store, "DATA", tmp_path); monkeypatch.setattr(paper, "PATH", tmp_path / "paper" / "positions.json")
+    monkeypatch.setattr(paper, "ROOT", tmp_path); (tmp_path / "config").mkdir(); (tmp_path / "docs").mkdir()
+    yaml.safe_dump({"positions": [{"game": "dbfw", "kind": "box", "code": "FB09", "price": 187.0, "source": "CardTrader Zero", "date": "2026-11-03", "note": "test"}]},
+                   open(tmp_path / "config" / "real_positions.yaml", "w"))
+    L = latest(); L["games"]["dbfw"]["sets"][0]["box"]["eu"]["landed"] = 210.0
+    r = paper.real_positions(); assert r and r[0]["kind"] == "real"
+    v, _ = paper.value_now(r[0], L, None); assert v == 210.0
+    import tcgwatcher.ebay as ebay; monkeypatch.setattr(ebay, "latest_day", lambda: None)
+    md = paper.report("2026-12-01", L, send=False)
+    assert "💰 echt ingekocht | 1/1 | €187 | €210 | +23" in md

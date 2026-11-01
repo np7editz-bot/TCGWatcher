@@ -108,7 +108,8 @@ def run(day, quality=None, send=True):
                 continue                                   # silent game: page + paper portfolio only
             ranked = [s for s in gdata["sets"] if s.get("ratio_eu") is not None or s.get("best_buy")]
             ranked.sort(key=lambda s: -((s.get("best_buy") or {}).get("ratio") or 0))
-            buy = cfg.get("buy", {"threshold": 0.8, "rearm_improvement": 0.1})
+            buy = dict(cfg.get("buy", {"threshold": 0.8, "rearm_improvement": 0.1}))
+            buy["threshold"] = (buy.get("threshold_by_game") or {}).get(gid, buy["threshold"])   # uncalibrated games: wider margin
             for pos, s in enumerate(ranked, 1):
                 key = f"buy:{gid}:{s['code']}"
                 bb = s.get("best_buy")

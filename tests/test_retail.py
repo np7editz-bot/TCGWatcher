@@ -153,3 +153,10 @@ def test_naruto_merch_and_silent_games_are_not_messages():
     heads = [m["text"].split("\n")[0] for m in msgs]
     assert any("NARUTO" in h and "NR01" in m["text"] for h, m in zip(heads, msgs)) and not any("Funko" in m["text"] for m in msgs)
     assert not any("BT31" in m["text"] for m in msgs) and any("FB11" in m["text"] for m in msgs)
+
+
+def test_single_cards_are_never_boxes():
+    from tcgwatcher.retail import kind_with_price
+    assert kind_with_price("Ginyu SB02-049 C DBS CG FW Manga Booster 02 EN", "https://x/ginyu-sb02-049-c", 60.0) == "other"
+    assert kind_with_price("Baron Nashor (Alternate Art) 147a/219 Riftbound Unleashed", "u", 80.0) == "other"
+    assert kind_with_price("Dragon Ball Super Fusion World – Brightness of Hope Booster Box FB11", "u", 179.95) == "box"

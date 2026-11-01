@@ -24,6 +24,22 @@ def _load():
     return store.read_json(PATH, {"positions": []})
 
 
+def real_positions():
+    """Owner's real purchases (config/real_positions.yaml) as positions of kind 'real', valued like paper boxes/raws."""
+    import yaml
+    try:
+        doc = yaml.safe_load(open(ROOT / "config" / "real_positions.yaml", encoding="utf-8")) or {}
+    except FileNotFoundError:
+        return []
+    out = []
+    for i, r in enumerate(doc.get("positions") or []):
+        kind = r.get("kind", "box")
+        out.append({"kind": "real", "real_kind": kind, "game": r.get("game", "dbfw"), "key": f"real:{i}:{r.get('code')}",
+                    "code": r.get("code"), "name": r.get("note") or r.get("code"), "price": float(r.get("price") or 0),
+                    "source": r.get("source") or "", "opened": str(r.get("date") or ""), "status": "open", "valuation": "cardmarket"})
+    return out
+
+
 def _save(doc):
     store.write_json(PATH, doc, compact=False)
 
@@ -37,7 +53,8 @@ def open_positions(day, latest, msgs, active_buy=()):
     have_keys = {(p["kind"], p["key"]) for p in live if p["status"] == "open"}
     from .config import load_alerts
     cfg = load_alerts()
-    thr, excl = cfg.get("buy", {}).get("threshold", 0.8), set(cfg.get("exclude_flags", []))
+    thr0, excl = cfg.get("buy", {}).get("threshold", 0.8), set(cfg.get("exclude_flags", []))
+    thr_by = cfg.get("buy", {}).get("threshold_by_game") or {}
     added = []
 
     def add(pos):
@@ -50,6 +67,7 @@ def open_positions(day, latest, msgs, active_buy=()):
       if not g.get("sets") or not g.get("paper", True):
         continue                                    # paper: false → watched and alerted, but not part of the test
       sets = {s["code"]: s for s in g.get("sets", [])}
+      thr = thr_by.get(gid, thr0)
       # the KOOP rule itself (not the message): silent games build evidence too
       buy_codes = {code for code, s in sets.items() if s.get("best_buy") and (s["best_buy"].get("ratio") or 0) >= thr
                    and not (set(s["flags"]) & excl) and "presale" not in s["flags"]} | {c for c in active_buy if c in sets}
@@ -112,6 +130,10 @@ def box_price_by_source(s, source):
 def value_now(pos, latest, ebay_doc):
     """Current value of a position in €, with the same yardstick as the purchase (same source, same valuation)."""
     g = latest["games"].get(pos.get("game", "dbfw"), {})
+    if pos["kind"] == "real":
+        pos = dict(pos, kind={"box": "box", "raw": "raw", "slab": "slab"}.get(pos.get("real_kind"), "box"))
+        if pos["kind"] == "raw":
+            pos["key"] = pos["code"]                   # a raw purchase names the card key
     if pos["kind"] in ("box", "control"):
         s = next((s for s in g.get("sets", []) if s["code"] == pos["code"]), None)
         if not s:
@@ -143,7 +165,7 @@ def report(day, latest=None, send=True):
     latest = latest or store.read_json(LATEST)
     eb = ebay_latest()
     doc = _load()
-    pos = [p for p in doc["positions"] if p["status"] == "open"]
+    pos = [p for p in doc["positions"] if p["status"] == "open"] + real_positions()
     if not pos:
         log.info("paper: no open positions")
         return None
@@ -165,8 +187,8 @@ def report(day, latest=None, send=True):
              "Posities zonder prijs bij hun bron vandaag tellen niet mee in kosten én waarde.", "",
              "| soort | posities | kostprijs | waarde nu | P&L | winnaars |", "|---|---|---|---|---|---|"]
     tg = [f"📒 <b>Paper-portfolio · {day}</b>"]
-    label = {"box": "🎯 boxen (koop)", "control": "⚪ controlegroep", "raw": "📈 raw kaarten", "slab": "🏆 slabs"}
-    for k in ("box", "control", "raw", "slab"):
+    label = {"box": "🎯 boxen (koop)", "control": "⚪ controlegroep", "raw": "📈 raw kaarten", "slab": "🏆 slabs", "real": "💰 echt ingekocht"}
+    for k in ("real", "box", "control", "raw", "slab"):
         t = tot.get(k)
         if not t:
             continue
