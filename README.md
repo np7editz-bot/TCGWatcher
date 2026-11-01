@@ -135,3 +135,7 @@ Meldingen (KOOP, SLAB) staan aan; het spel zit **niet** in de paper-portfolio (`
 Nog open: Cardmarket-kaartlinks (zoeklink tot het URL-patroon per klik bevestigd is), retailers (Riftbound-categorie-URL's per shop),
 Riot-nieuwspagina (Next.js; voorlopig dekt de CardTrader-expansiewatch nieuwe sets maanden vooruit).
 Verkenning van een nieuw spel: `python -m tcgwatcher probe --category <id> --slug <naam>` (workflow `probe`).
+
+
+### Nieuwsberichten (sinds 2026-10-29)
+Elk nieuw item op een officiële pagina wordt één 📰-bericht, net als KOOP/SLAB: Fusion World (nieuws + productlijst, alleen producttitels), Naruto (alles — pre-launch), Riftbound (Riot-nieuws, uit de inline JSON van de pagina). Daarnaast: nieuwe TCGplayer-productlijnen (🆕) en nieuwe CardTrader-expansies (📰, maanden vooruit). Eerste run per bron is stil.
