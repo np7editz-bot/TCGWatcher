@@ -2,6 +2,9 @@
 # "episode" (e.g. a ratio alert is sent when a set crosses the threshold and again only after it dropped below).
 buy:
   threshold: 0.80          # buy signal when EV€ of hits (excl. ★★) ÷ best EU buy price ≥ this
+  threshold_by_game:       # games whose pull rates are still assumptions get a wider margin (review 2026-11-01)
+    dbs: 0.90
+    riftbound: 0.90
   rearm_improvement: 0.10  # alert again within an episode when the best price drops ≥10%
   near: 0.70               # retail restock/pre-order messages only for sets with ratio ≥ this (or unreleased sets)
 eu_landed:                 # what a CardTrader box really costs you (listing price excludes shipping/fees)
@@ -36,4 +39,4 @@ card_price:
 new_group: true            # new set/product line appears in TCGCSV (presale = earliest pre-order signal)
 new_sealed_product: true   # new booster box / case / pack product appears in an existing group
 quality_issues: fail_only   # true = also warn-changes; fail_only = only when the page was not updated
-exclude_flags: [manga, story, low_coverage, no_cards, thin]   # sets with these flags never trigger ratio alerts
+exclude_flags: [manga, story, low_coverage, no_cards, thin, young]   # sets with these flags never trigger ratio alerts

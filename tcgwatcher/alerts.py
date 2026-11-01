@@ -108,7 +108,8 @@ def run(day, quality=None, send=True):
                 continue                                   # silent game: page + paper portfolio only
             ranked = [s for s in gdata["sets"] if s.get("ratio_eu") is not None or s.get("best_buy")]
             ranked.sort(key=lambda s: -((s.get("best_buy") or {}).get("ratio") or 0))
-            buy = cfg.get("buy", {"threshold": 0.8, "rearm_improvement": 0.1})
+            buy = dict(cfg.get("buy", {"threshold": 0.8, "rearm_improvement": 0.1}))
+            buy["threshold"] = (buy.get("threshold_by_game") or {}).get(gid, buy["threshold"])   # uncalibrated games: wider margin
             for pos, s in enumerate(ranked, 1):
                 key = f"buy:{gid}:{s['code']}"
                 bb = s.get("best_buy")
@@ -206,6 +207,9 @@ def run(day, quality=None, send=True):
     log.info("%d message(s) for %s (muted: %s)", len(msgs), day, ",".join(sorted(muted)) or "-")
     if len(msgs) > MAX_PER_RUN:
         log.warning("%d messages, capping at %d (rest only in data/alerts)", len(msgs), MAX_PER_RUN)
+    # cap by importance, not by construction order: a flood of news must never push a KOOP/SLAB past the cap
+    prio = {"buy": 0, "slab": 1, "retail": 2, "quality": 3, "news": 4, "new_sealed": 5, "new_group": 6, "briefing": 7, "status": 8}
+    msgs.sort(key=lambda m: prio.get(m["kind"], 9))
     for m in msgs:
         m["delivered"] = False
     if send:

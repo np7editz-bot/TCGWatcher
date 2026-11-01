@@ -44,6 +44,7 @@ INSTOCK = re.compile(r"(op\s*voorraad|in\s*stock|auf\s*lager|disponibile|en\s*st
 PRICE_META = re.compile(r'property="(?:product:price:amount|og:price:amount)"\s+content="([\d.,]+)"|content="([\d.,]+)"\s+property="(?:product:price:amount|og:price:amount)"', re.I)
 KIND_BOX = re.compile(r"(booster\s*box|\bdisplay\b|bo[iî]te de 2\d|box of 2\d|\bbox\b|\bboxes\b|\bcaja\b)", re.I)
 KIND_CASE = re.compile(r"\bcase\b", re.I)
+KIND_SINGLE = re.compile(r"(\b(FB|SB|ST|FS|BT|BE|SD|EB)\d{2}-\d{3}[a-z]?\b|\b\d{3}[a-z*]?/\d{3}\b)", re.I)   # a card number: a single card, never sealed
 KIND_DECK = re.compile(r"(starter|\bdeck\b)", re.I)
 KIND_PACK = re.compile(r"(booster\s*pack|\bpacks?\b|sleeved|blister|\bbooster\b)", re.I)
 KIND_OTHER = re.compile(r"(sleeves?\b|playmat|promo|binder|bundle|lot\b|collector'?s? display"
@@ -70,6 +71,8 @@ def kind_of(title, url=""):
         t = url.rsplit("/", 1)[-1].replace("-", " ")
     if KIND_OTHER.search(t) or LANG_JP.search(t) or LANG_JP.search(url.rstrip("/").rsplit("/", 1)[-1]):
         return "other"
+    if KIND_SINGLE.search(t) and not re.search(r"(booster\s*box|display|\bcase\b|\bbox\b)\s*$", t, re.I):
+        return "other"                       # 'Ginyu SB02-049 C … Manga Booster 02 EN' is a single card (Break the Case lists them per set)
     if KIND_CASE.search(t):
         return "case"
     if KIND_DECK.search(t):

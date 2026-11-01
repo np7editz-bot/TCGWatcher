@@ -423,8 +423,8 @@ function renderSlabs(){
 }
 function renderPortfolio(){
   const pf=pfForGame(); const t=pf.totals||{};
-  const label={box:'🎯 boxen (koop)',control:'⚪ controlegroep',raw:'📈 raw kaarten',slab:'🏷 slabs'};
-  document.getElementById('pfKpis').innerHTML = ['box','raw','slab','control'].filter(k=>t[k]).map(k=>{const v=t[k]; const p=v.cost?((v.value-v.cost)/v.cost*100):0; return `<div class="kpi"><div class="l">${label[k]}</div><div class="v">${e0(v.value)} <span class="${p>0?'up':p<0?'down':''}" style="font-size:15px">${p>0?'+':''}${p.toFixed(1)}%</span></div><div class="s">${v.n} posities · ingekocht ${e0(v.cost)} · ${v.wins}/${v.valued} winnaars</div></div>`;}).join('') || '<div class="kpi"><div class="l">Portfolio</div><div class="v">—</div><div class="s">nog geen posities; de eerste melding opent er een</div></div>';
+  const label={real:'💰 echt ingekocht',box:'🎯 boxen (koop)',control:'⚪ controlegroep',raw:'📈 raw kaarten',slab:'🏷 slabs'};
+  document.getElementById('pfKpis').innerHTML = ['real','box','raw','slab','control'].filter(k=>t[k]).map(k=>{const v=t[k]; const p=v.cost?((v.value-v.cost)/v.cost*100):0; return `<div class="kpi"><div class="l">${label[k]}</div><div class="v">${e0(v.value)} <span class="${p>0?'up':p<0?'down':''}" style="font-size:15px">${p>0?'+':''}${p.toFixed(1)}%</span></div><div class="s">${v.n} posities · ingekocht ${e0(v.cost)} · ${v.wins}/${v.valued} winnaars</div></div>`;}).join('') || '<div class="kpi"><div class="l">Portfolio</div><div class="v">—</div><div class="s">nog geen posities; de eerste melding opent er een</div></div>';
   const order={box:0,raw:1,slab:2,control:3};
   const rows=[...(pf.positions||[])].sort((a,b)=>(order[a.kind]-order[b.kind])||(a.opened>b.opened?1:-1));
   const cards=Object.fromEntries((G.cards||[]).map(c=>[c.key,c])), sets=Object.fromEntries((G.sets||[]).map(s=>[s.code,s]));
