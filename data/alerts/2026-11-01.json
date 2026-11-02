@@ -1,0 +1,125 @@
+{
+ "alerts": [
+  {
+   "at": "2026-11-02T01:10:00Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €127 · CardTrader Zero · voorraad",
+      "https://www.cardtrader.com/cards/365511"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:dbs:BT29",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/669275_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · BT29 Fearsome Rivals</b>\nHits per box <b>€118</b> / box vanaf <b>€127</b> → ratio <b>0.93</b> (drempel 0.9)\n#2 van 7 · US-ratio 0.95\n\n🛒 <b>Waar kopen</b> (6 EU-listings)\n• €126,64 CardTrader Zero (op voorraad) <i>Zero €120.64 + €6 kosten</i>\n<i>◦ Cardmarket €123 — indicatie (alle talen)</i>\n\nSamenstelling: 3 SCR · 6 CR · 15 SPR · 10 SLR · 2 GDR\nTop hit: Power of Potara BT7-131 GDR €1.790\n<i>Waardering Cardmarket-verkopen 30d · 52/52 hits · US-referentie €176</i>"
+  },
+  {
+   "at": "2026-11-02T01:10:00Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €126 · CardTrader",
+      "https://www.cardtrader.com/cards/338564"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:SB01:SB01-025:AA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/638984_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Vegeta SB01-025 SR AA</b> · Fusion World SB01\nRaw kopen vanaf <b>€126</b> → PSA 10 waarde <b>€627</b> (9 listings)\nNetto na grading en fees: <b>€264</b> per kaart (210% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €126 CardTrader\n• €134 Cardmarket\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €156</i>"
+  },
+  {
+   "at": "2026-11-02T01:10:00Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €220 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=Vegeta%20//%20SSB%20Vegeta%2C%20Saiyan%20Pride&language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbs:dbs:BT27:BT27-001:SLR",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/619231_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #2 · Vegeta BT27-001 SLR</b> · Masters BT27\nRaw kopen vanaf <b>€220</b> → PSA 10 waarde <b>€691</b> (4 listings)\nNetto na grading en fees: <b>€212</b> per kaart (96% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €220 Cardmarket\n• €396 CardTrader\n• €907 eBay (1 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €153</i>"
+  },
+  {
+   "at": "2026-11-02T01:10:00Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €245 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=SS4%20Son%20Goku%2C%20Blasting%20Through%20the%20Demon%20Realm&language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbs:dbs:BT30:BT30-151:SCR",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/684066_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #3 · SS4 Son Goku BT30-151 SCR</b> · Masters BT30\nRaw kopen vanaf <b>€245</b> → PSA 10 waarde <b>€675</b> (9 listings)\nNetto na grading en fees: <b>€176</b> per kaart (72% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €245 Cardmarket\n• €356 CardTrader\n• €415 eBay (8 EU)\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €273</i>"
+  },
+  {
+   "at": "2026-11-02T01:10:00Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €40 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=Broly%20//%20SS%20Broly%2C%20Increasing%20Power&language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbs:dbs:BT29:BT29-002:SLR",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/670613_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #4 · Broly BT29-002 SLR</b> · Masters BT29\nRaw kopen vanaf <b>€40</b> → PSA 10 waarde <b>€364</b> (3 listings)\nNetto na grading en fees: <b>€154</b> per kaart (385% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €40 Cardmarket\n• €75 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €52</i>"
+  },
+  {
+   "at": "2026-11-02T01:10:00Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €144 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=Spirit&language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbs:dbs:BT30:BT30-015:SPR",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/683773_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #5 · Spirit BT30-015 SPR</b> · Masters BT30\nRaw kopen vanaf <b>€144</b> → PSA 10 waarde <b>€482</b> (8 listings)\nNetto na grading en fees: <b>€150</b> per kaart (104% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €144 Cardmarket\n• €220 eBay (2 EU)\n• €226 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €166</i>"
+  }
+ ],
+ "day": "2026-11-01"
+}

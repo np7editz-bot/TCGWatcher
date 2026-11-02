@@ -1,24 +1,9 @@
 {
  "active": {
-  "buy:dbfw:FB11": {
-   "price": 141.28,
-   "ratio": 1.099,
-   "since": "2026-10-18"
-  },
-  "buy:riftbound:OGN": {
-   "price": 184.64,
-   "ratio": 0.808,
-   "since": "2026-10-22"
-  },
-  "buy:riftbound:UNL": {
-   "price": 130.64,
-   "ratio": 0.8,
-   "since": "2026-10-29"
-  },
-  "buy:riftbound:VEN": {
+  "buy:dbs:BT29": {
    "price": 126.64,
-   "ratio": 0.889,
-   "since": "2026-10-22"
+   "ratio": 0.93,
+   "since": "2026-11-01"
   },
   "slab_digest:dbfw": {
    "day": "2026-10-18",
@@ -34,20 +19,20 @@
  "muted": [],
  "prev_ranking": {
   "FB01": 0.353,
-  "FB02": 0.432,
-  "FB03": 0.574,
-  "FB04": 0.349,
-  "FB05": 0.507,
+  "FB02": 0.43,
+  "FB03": 0.569,
+  "FB04": 0.346,
+  "FB05": 0.506,
   "FB06": 0.219,
-  "FB07": 0.454,
-  "FB08": 0.559,
-  "FB09": 0.664,
-  "FB10": 0.759,
-  "FB11": 0.938,
+  "FB07": 0.455,
+  "FB08": 0.563,
+  "FB09": 0.661,
+  "FB10": 0.726,
+  "FB11": 0.878,
   "FB12": 0.0,
-  "SB01": 6.639,
-  "SB02": 5.603,
-  "ST01": 2.515
+  "SB01": 0.383,
+  "SB02": 0.469,
+  "ST01": 0.417
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
  "seen_expansions": {
@@ -2069,9 +2054,9 @@
    "raw": 195
   },
   "dbfw:dbfw:SB01:SB01-025:AA": {
-   "day": "2026-10-27",
-   "net": 202.51,
-   "rank": 2,
+   "day": "2026-11-01",
+   "net": 264.02,
+   "rank": 1,
    "raw": 125.64
   },
   "dbfw:dbfw:SB01:SB01-026:AA": {
@@ -2109,6 +2094,30 @@
    "net": 78.03,
    "rank": 3,
    "raw": 156.64
+  },
+  "dbs:dbs:BT27:BT27-001:SLR": {
+   "day": "2026-11-01",
+   "net": 211.86,
+   "rank": 2,
+   "raw": 220
+  },
+  "dbs:dbs:BT29:BT29-002:SLR": {
+   "day": "2026-11-01",
+   "net": 154.02,
+   "rank": 4,
+   "raw": 40
+  },
+  "dbs:dbs:BT30:BT30-015:SPR": {
+   "day": "2026-11-01",
+   "net": 149.55,
+   "rank": 5,
+   "raw": 144
+  },
+  "dbs:dbs:BT30:BT30-151:SCR": {
+   "day": "2026-11-01",
+   "net": 176.09,
+   "rank": 3,
+   "raw": 245
   }
  }
 }
