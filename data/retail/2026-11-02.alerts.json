@@ -1,5 +1,20 @@
 {
  "day": "2026-11-02",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "price_rise",
+   "old_price": 5.0,
+   "price": 7.0,
+   "price_obs": 1,
+   "product_kind": "pack",
+   "retailer": "breakthecase",
+   "seen": "2026-11-02T15:49:46Z",
+   "status": "in_stock",
+   "title": "DBSCG - Fusion World - Blazing Aura - FB02 - Booster - Englisch",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/dbscg-fusion-world-blazing-aura-fb02-booster-englisch"
+  }
+ ]
 }
