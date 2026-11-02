@@ -4,17 +4,59 @@
  "transitions": [
   {
    "first_seen": "2026-10-19T07:45:08Z",
-   "kind": "price_rise",
-   "old_price": 5.0,
-   "price": 7.0,
+   "kind": "sold_out->in_stock",
+   "old_price": 169.94,
+   "price": 169.94,
+   "price_obs": 46,
+   "product_kind": "box",
+   "retailer": "cardforge",
+   "seen": "2026-11-02T23:29:39Z",
+   "status": "in_stock",
+   "title": "Dragon Ball SCG - Fusion World 11 Booster box (FB11) - Brightness of Hope - Card forge",
+   "trusted": false,
+   "url": "https://cardforge.nl/pokemon-kaarten/dragon-ball/dragon-ball-scg-fusion-world-11-booster-box/"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 159.95,
+   "price": 179.95,
    "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "cardforge",
+   "seen": "2026-11-02T23:29:39Z",
+   "status": "in_stock",
+   "title": "Dragon Ball SCG B31: Battles Beyond Dimensions Boosterbox - Card forge",
+   "trusted": false,
+   "url": "https://cardforge.nl/pokemon-kaarten/dragon-ball/dragon-ball-scg-b31-battles-beyond-dimensions-boosterbox/"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 89.95,
+   "price": 89.95,
+   "price_obs": 46,
+   "product_kind": "box",
+   "retailer": "cardforge",
+   "seen": "2026-11-02T23:29:39Z",
+   "status": "in_stock",
+   "title": "Dragon Ball SCG Fusion World 04 Ultra Limit Booster box (24 packs) - Card forge",
+   "trusted": false,
+   "url": "https://cardforge.nl/pokemon-kaarten/dragon-ball/dragonball-fw04-bb/"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "sold_out->preorder",
+   "old_price": 17.0,
+   "price": 17.0,
+   "price_obs": 46,
    "product_kind": "pack",
    "retailer": "breakthecase",
-   "seen": "2026-11-02T15:49:46Z",
-   "status": "in_stock",
-   "title": "DBSCG - Fusion World - Blazing Aura - FB02 - Booster - Englisch",
+   "seen": "2026-11-02T23:29:39Z",
+   "status": "preorder",
+   "title": "Dragon Ball Fusion World FB07 - Wish for Shenron – SLEEVED Blister Booster - Englisch",
    "trusted": true,
-   "url": "https://www.breakthecase.de/products/dbscg-fusion-world-blazing-aura-fb02-booster-englisch"
+   "url": "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb07-wish-for-shenron-sleeved-booster-englisch"
   }
  ]
 }
