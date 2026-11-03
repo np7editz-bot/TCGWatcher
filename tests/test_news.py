@@ -50,12 +50,13 @@ def test_first_run_silent_then_only_product_news(tmp_path, monkeypatch):
     monkeypatch.setattr(store, "DATA", tmp_path)
     first = news.run(http=FakeHttp(pages(DBFW_NEWS.split('<li class="newsItem"><a href="https://www.dbs-cardgame.com/fw/en/news/02_350')[0] + "</ul>")),
                      day="2026-10-19", send=False)
-    assert first["items"] == 5 and first["messages"] == []          # first run: learn, don't spam
+    news_only = lambda r: [m for m in r["messages"] if m["kind"] != "status"]   # the fake http 404s the other sources → ⚠️ watchdog
+    assert first["items"] == 5 and news_only(first) == []          # first run: learn, don't spam
     second = news.run(http=FakeHttp(pages()), day="2026-10-20", send=False)
-    texts = [m["text"] for m in second["messages"]]
+    texts = [m["text"] for m in news_only(second)]
     assert len(texts) == 1 and "REACH THE GOD" in texts[0] and "Fusion World" in texts[0]
     # digital-app notice and events are stored, not sent; nothing repeats
-    assert news.run(http=FakeHttp(pages()), day="2026-10-21", send=False)["messages"] == []
+    assert news_only(news.run(http=FakeHttp(pages()), day="2026-10-21", send=False)) == []
     day = json.load(open(tmp_path / "news" / "2026-10-20.json"))
     assert len(day["results"]) == 7
 
@@ -98,3 +99,42 @@ def test_old_items_are_marked_seen_but_not_alerted(tmp_path, monkeypatch):
     store.write_json(store.state_path("news"), {"seen": {"x|https://a.b/news/seed": {}}})   # not the first run
     r = news.run(day="2026-11-03", http=H(), send=False)
     assert [m["key"] for m in r["messages"]] == ["x|https://a.b/news/new"]
+
+
+def test_anchors_accepts_bandai_date_before_link():
+    from tcgwatcher.news import parse
+    src = {"id": "dbs_updates", "game": "dbs", "base": "https://www.dbs-cardgame.com", "parser": "anchors", "path_prefix": "/us-en/"}
+    page = '<li><span class="date">2026/10/16</span><a href="/us-en/product/dbs-b32.php">PRODUCTS (-CHROMATIC ASCENSION- [DBS-B32]) info has been updated.</a></li>'
+    it = parse(src, page)
+    assert it and it[0]["date"] == "2026-10-16" and it[0]["url"].endswith("/us-en/product/dbs-b32.php") and "CHROMATIC" in it[0]["title"]
+
+
+def test_youtube_feed_parser():
+    from tcgwatcher.news import parse
+    src = {"id": "yt", "game": "riftbound", "base": "https://www.youtube.com", "parser": "youtube"}
+    page = '<html>… "channelId":"UCabcdefghijklmnopqrstuv" …</html>'
+    feed = ('<feed><entry><title>Gift of the Rift reveal</title><link rel="alternate" href="https://www.youtube.com/watch?v=x1"/>'
+            '<published>2026-10-22T16:00:00+00:00</published></entry></feed>')
+    class H:
+        def get(self, u):
+            assert u.endswith("channel_id=UCabcdefghijklmnopqrstuv"); return feed, None
+    it = parse(src, page, H())
+    assert it == [{"source": "yt", "game": "riftbound", "url": "https://www.youtube.com/watch?v=x1", "title": "Gift of the Rift reveal", "date": "2026-10-22"}]
+
+
+def test_watchdog_warns_weekly_on_broken_or_stale_source(tmp_path, monkeypatch):
+    import tcgwatcher.news as news, tcgwatcher.store as store
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    srcs = [{"id": "dead", "game": "dbs", "name": "Dead", "base": "https://a.b", "parser": "anchors", "url": "https://a.b/dead", "kind": "all"},
+            {"id": "stale", "game": "dbs", "name": "Stale", "base": "https://a.b", "parser": "anchors", "url": "https://a.b/stale", "kind": "all"}]
+    monkeypatch.setattr(news, "load_config", lambda: {"sources": srcs, "product": "x", "ignore": "zzz", "max_age_days": 14, "stale_days": 45})
+    class H:
+        def get(self, u):
+            if u.endswith("dead"): return '<a href="/dead">News</a>', None            # only the index itself → nothing parsed
+            return '<a href="/stale/old"><time>2026-06-01T00:00:00Z</time><h3>Months ago</h3></a>', None
+    r = news.run(day="2026-11-03", http=H(), send=False)
+    assert sorted(m["key"] for m in r["messages"]) == ["health|dead|2026-11-03", "health|stale|2026-11-03"]
+    r = news.run(day="2026-11-05", http=H(), send=False)
+    assert r["messages"] == []                                                        # warned this week already
+    r = news.run(day="2026-11-11", http=H(), send=False)
+    assert len(r["messages"]) == 2

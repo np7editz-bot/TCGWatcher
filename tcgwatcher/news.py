@@ -74,7 +74,7 @@ def parse_anchors(source, text):
     items, seen = [], set()
     for m in re.finditer(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', text, re.S | re.I):
         href, body = html.unescape(m.group(1)), m.group(2)
-        d = re.search(r"(\d{4}-\d{2}-\d{2})T\d{2}:\d{2}", body)
+        d = DATE_RX.search(body) or DATE_RX.search(text[max(0, m.start() - 250):m.start()])   # Bandai puts the date before the link
         if not d:
             continue
         url = urljoin(source["base"], href)
@@ -85,16 +85,49 @@ def parse_anchors(source, text):
         if not frags:
             continue
         seen.add(url)
-        items.append({"source": source["id"], "game": source["game"], "url": url, "title": max(frags, key=len)[:200], "date": d.group(1)})
+        items.append({"source": source["id"], "game": source["game"], "url": url, "title": max(frags, key=len)[:200], "date": _iso(d.group(1))})
     return items
 
 
-def parse(source, text):
+DATE_RX = re.compile(r"(\d{4}[-/.]\d{2}[-/.]\d{2})")
+
+
+def _iso(d):
+    return d.replace("/", "-").replace(".", "-")[:10]
+
+
+def parse_youtube(source, text, http=None):
+    """A channel's upload feed (Atom): `url` is the channel page (handle), from which the channel id is read, unless
+    `channel_id` is configured. Social watch without an API: YouTube is where Bandai and Riot post reveals first."""
+    cid = source.get("channel_id")
+    if not cid:
+        m = re.search(r'"channelId":"(UC[\w-]{20,})"', text) or re.search(r'channel_id=(UC[\w-]{20,})', text)
+        if not m:
+            return []
+        cid = m.group(1)
+    feed = text if "<feed" in text[:500] else None
+    if feed is None:
+        if http is None:
+            return []
+        feed, _ = http.get(f"https://www.youtube.com/feeds/videos.xml?channel_id={cid}")
+        if not feed:
+            return []
+    items = []
+    for e in re.findall(r"<entry>(.*?)</entry>", feed, re.S):
+        t = re.search(r"<title>(.*?)</title>", e, re.S); l = re.search(r'<link[^>]*href="([^"]+)"', e); d = re.search(r"<published>(\d{4}-\d{2}-\d{2})", e)
+        if t and l:
+            items.append({"source": source["id"], "game": source["game"], "url": l.group(1), "title": html.unescape(t.group(1)).strip()[:200], "date": d.group(1) if d else ""})
+    return items
+
+
+def parse(source, text, http=None):
     """Apply the source's item regex; groups are (url, date, title) unless `order` says otherwise; named `title` wins."""
     if source.get("parser") == "nextjs":
         return parse_nextjs(source, text) or parse_anchors(source, text)
     if source.get("parser") == "anchors":
         return parse_anchors(source, text)
+    if source.get("parser") == "youtube":
+        return parse_youtube(source, text, http)
     order = source.get("order", ["url", "date", "title"])
     items, seen = [], set()
     for m in re.finditer(source["item"], text, re.I | re.S):
@@ -104,6 +137,8 @@ def parse(source, text):
         url = urljoin(source["base"], html.unescape(g.get("url", "")))
         if not url or url in seen:
             continue
+        if not g.get("title"):
+            g["title"] = url.rstrip("/").rsplit("/", 1)[-1].replace("-", " ").replace("_", " ")
         seen.add(url)
         title = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", g.get("title") or "")).split())[:200]
         items.append({"source": source["id"], "game": source["game"], "url": url, "title": title, "date": (g.get("date") or "")[:10]})
@@ -118,13 +153,16 @@ def run(http=None, day=None, send=True):
     state = store.read_json(store.state_path("news"), {"seen": {}})
     product, ignore = re.compile(cfg["product"], re.I), re.compile(cfg["ignore"], re.I)
     found, msgs, errors = [], [], {}
+    health = state.setdefault("health", {})
     for src in cfg["sources"]:
+        if src.get("enabled") is False:
+            continue
         text, err = http.get(src["url"])
         if text is None:
             errors[src["id"]] = err
             log.warning("%s: %s", src["id"], err)
             continue
-        items = parse(src, text)
+        items = [i for i in parse(src, text, http) if i["url"].rstrip("/") != src["url"].rstrip("/") and len(i["title"]) > 3]   # the index itself is not an article
         if not items:
             errors[src["id"]] = "no items parsed (page layout changed?)"
             log.warning("%s: no items parsed", src["id"])
@@ -148,6 +186,23 @@ def run(http=None, day=None, send=True):
                                  f"<i>Dit is meestal hét moment waarop EU-shops pre-orders openen.</i>",
                          "buttons": [[("Bekijk", it["url"]), ("📊 Radar", SITE_URL)]]})
         log.info("%s: %d items", src["id"], len(items))
+        newest = max((i.get("date") or "" for i in items), default="")
+        if newest and (dt.date.fromisoformat(day) - dt.date.fromisoformat(newest[:10])).days > cfg.get("stale_days", 45):
+            errors[src["id"]] = f"stale: newest item {newest} (layout changed or site moved?)"
+    # watchdog: a source that errors, parses nothing or went stale is reported — once a week per source — so a silent
+    # failure (Riot's site move, Oct 2026) cannot go unnoticed for weeks again
+    for sid, err in errors.items():
+        last = health.get(sid, {}).get("warned", "")
+        if last and (dt.date.fromisoformat(day) - dt.date.fromisoformat(last)).days < 7:
+            continue
+        health[sid] = {"warned": day, "error": err}
+        src = next((x for x in cfg["sources"] if x["id"] == sid), {})
+        msgs.append({"key": f"health|{sid}|{day}", "kind": "status",
+                     "text": f"⚠️ <b>Nieuwsbron stuk · {src.get('name', sid)}</b>\n{err}\n<i>Tot dit gefixt is, komen er geen 📰-berichten van deze bron.</i>",
+                     "buttons": [[("Bron", src.get("url", SITE_URL))]]})
+    for sid in list(health):
+        if sid not in errors:
+            health.pop(sid, None)                           # recovered: next failure warns again at once
     path = store.DATA / "news" / f"{day}.json"
     prev = store.read_json(path, {"results": []})
     store.write_json(path, {"day": day, "fetched_at": now, "errors": errors, "results": prev.get("results", []) + found})
