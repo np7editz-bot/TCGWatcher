@@ -787,6 +787,20 @@
    "source": "CardTrader Zero",
    "status": "open",
    "valuation": "cardmarket"
+  },
+  {
+   "code": "BT30",
+   "game": "dbs",
+   "key": "dbs:BT30:BT30-016:SLR",
+   "kind": "raw",
+   "name": "Bulma BT30-016 SLR",
+   "net_then": 108.73,
+   "opened": "2026-11-02",
+   "price": 74.34,
+   "psa10_then": 297.83,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 75.31
   }
  ]
 }
