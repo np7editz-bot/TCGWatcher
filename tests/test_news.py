@@ -138,3 +138,19 @@ def test_watchdog_warns_weekly_on_broken_or_stale_source(tmp_path, monkeypatch):
     assert r["messages"] == []                                                        # warned this week already
     r = news.run(day="2026-11-11", http=H(), send=False)
     assert len(r["messages"]) == 2
+
+
+def test_masters_product_list_relative_links():
+    from tcgwatcher.news import parse
+    cfg = news.load_config(); src = next(s for s in cfg["sources"] if s["id"] == "dbs_products")
+    page = '<a href="index.php">top</a><li><a href="dbs-b32.php"><img alt=""><p>-CHROMATIC ASCENSION- [DBS-B32]</p></a></li><a href="./dbs-b31.php">x</a>'
+    it = parse(src, page)
+    assert [i["url"] for i in it] == ["https://www.dbs-cardgame.com/us-en/product/dbs-b32.php", "https://www.dbs-cardgame.com/us-en/product/dbs-b31.php"]
+    assert it[0]["title"] == "dbs b32"
+
+
+def test_anchors_prefers_headline_over_teaser():
+    from tcgwatcher.news import parse
+    src = {"id": "r", "game": "riftbound", "base": "https://playriftbound.com", "parser": "anchors", "path_prefix": "/en-us/news/"}
+    page = '<a href="/en-us/news/announcements/x"><time>2026-10-22T16:00:00Z</time><h3>Riftbound\'s 2026 Drawings</h3><p>Everything about the K/DA Collection, T1 Player Bundle and much more text here</p></a>'
+    assert parse(src, page)[0]["title"] == "Riftbound's 2026 Drawings"

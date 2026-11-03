@@ -35,8 +35,8 @@ sources:
     game: dbs
     name: "Masters official product list"
     url: https://www.dbs-cardgame.com/us-en/product/
-    base: https://www.dbs-cardgame.com
-    item: '<a href="((?:https://www\.dbs-cardgame\.com)?/us-en/product/[a-z0-9_-]+\.php)"'
+    base: https://www.dbs-cardgame.com/us-en/product/      # links are relative (dbs-b32.php) — base is the folder
+    item: '<a href="((?:https://www\.dbs-cardgame\.com/us-en/product/|\./|/us-en/product/)?dbs-[a-z0-9_-]+\.php)"'
     order: [url]                        # title = slug (dbs-b32) when the page gives none
     kind: product
   - id: riftbound_news
