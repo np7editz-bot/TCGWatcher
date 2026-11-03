@@ -1,4 +1,10 @@
 {
+ "health": {
+  "dbs_products": {
+   "error": "no items parsed (page layout changed?)",
+   "warned": "2026-11-03"
+  }
+ },
  "seen": {
   "dbfw_news|https://www.dbs-cardgame.com/fw/en/events/01_486.html": {
    "date": "2026-10-16",
@@ -165,6 +171,31 @@
    "seen": "2026-10-19",
    "title": "OFFICIAL CARD SLEEVE Limited Edition 06 -Vegeta-\" loading=\"lazy\">"
   },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/cardlist/index.php?search=true&free=BT24-134_PR%20BT24-134_PR02%20BT26-034_PR%20BT26-064_PR%20BT27-006_PR02%20BT27-069_PR02%20BT27-093_PR02%20BT28-024_PR%20BT28-054_PR%20BT28-054_PR02%20BT28-138_PR%20BT28-138_PR02%20BT28-143_PR%20BT28-144_PR%20BT28-145_PR%20BT28-146_PR%20BT28-147_PR%20DB2-093_PR%20P-658_PR02%20P-658_PR03": {
+   "date": "2026-10-16",
+   "seen": "2026-11-03",
+   "title": "CARD LIST (Promotion Cards) has been updated."
+  },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/event/tournament/ultra-bout-series05_release/": {
+   "date": "2026-10-30",
+   "seen": "2026-11-03",
+   "title": "EVENT (ULTRA-BOUT Series 05 [B32] -CHROMATIC ASCENSION- Release Tournament) info has been updated."
+  },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/event/tournament/zenkai-series-tournament/": {
+   "date": "2026-09-25",
+   "seen": "2026-11-03",
+   "title": "EVENT (Store Tournament) info has been updated."
+  },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/product/dbs-b32.php": {
+   "date": "2026-10-16",
+   "seen": "2026-11-03",
+   "title": "PRODUCTS (-CHROMATIC ASCENSION- [DBS-B32])info has been updated."
+  },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/strategy/announcement/bandai-tcg-plus-important-notice.php": {
+   "date": "2026-09-24",
+   "seen": "2026-11-03",
+   "title": "Announcement（[BANDAI TCG+] Updating Residential Address）info has been updated."
+  },
   "naruto_news|https://www.naruto-cardgame.com/en/#comment": {
    "date": "2026-06-18",
    "seen": "2026-10-19",
@@ -249,6 +280,66 @@
    "date": "",
    "seen": "2026-11-01",
    "title": "News"
+  },
+  "riftbound_news|https://playriftbound.com/en-us/news/announcements/core-rules-radiance-patch-notes-effective-october-16-2026": {
+   "date": "2026-10-09",
+   "seen": "2026-11-03",
+   "title": "Read about the latest changes to core rules, along with some fun new interactions."
+  },
+  "riftbound_news|https://playriftbound.com/en-us/news/announcements/october-2026-tournament-rules-changelog": {
+   "date": "2026-10-09",
+   "seen": "2026-11-03",
+   "title": "October 2026 Tournament Rules Changelog"
+  },
+  "riftbound_news|https://playriftbound.com/en-us/news/announcements/preparing-for-the-radiance-pre-rift": {
+   "date": "2026-10-12",
+   "seen": "2026-11-03",
+   "title": "Get ready to play Riftbound’s newest set at your local Pre-Rift."
+  },
+  "riftbound_news|https://playriftbound.com/en-us/news/announcements/product-drawing-faq/": {
+   "date": "2026-10-21",
+   "seen": "2026-11-03",
+   "title": "Everything you need to know about the Riftbound x K/DA: Couture Collection drawings."
+  },
+  "riftbound_news|https://playriftbound.com/en-us/news/announcements/radiance-errata-updates": {
+   "date": "2026-10-09",
+   "seen": "2026-11-03",
+   "title": "Updates to the text of cards introduced with the release of Radiance."
+  },
+  "riftbound_news|https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings": {
+   "date": "2026-10-22",
+   "seen": "2026-11-03",
+   "title": "Everything about the K/DA Collection, T1 Player Bundle, 2026 Worlds Bundle, and Gift of the Rift."
+  },
+  "riftbound_news|https://playriftbound.com/en-us/news/announcements/the-radiance-overview": {
+   "date": "2026-09-25",
+   "seen": "2026-11-03",
+   "title": "Everything you want to know about Radiance."
+  },
+  "riftbound_news|https://www.youtube.com/watch?v=n-53EjaNrdU": {
+   "date": "2026-10-21",
+   "seen": "2026-11-03",
+   "title": "Bring the heat. Enter drawing for the Riftbound x K/DA Couture Collection starting October 27."
+  },
+  "riftbound_news|https://www.youtube.com/watch?v=rGkvxY7RvgI": {
+   "date": "2026-09-25",
+   "seen": "2026-11-03",
+   "title": "Get ready to make show-stopping plays! Riftbound’s fifth set, Radiance, launches worldwide on October 23, 2026. Learn all about the new Legends, mechanics, and cards in this Dev Drop."
+  },
+  "riftbound_news|https://www.youtube.com/watch?v=tZ9JALmlzJY": {
+   "date": "2026-09-28",
+   "seen": "2026-11-03",
+   "title": "Heartsteel OVN and OVN signature cards drop October 23rd in Riftound’s 5th Set: Radiance"
+  },
+  "riftbound_news|https://youtu.be/c3CqvmA2uuA": {
+   "date": "2026-10-09",
+   "seen": "2026-11-03",
+   "title": "Take a look at some of the cards that are lighting up Radiance, dropping October 23."
+  },
+  "riftbound_news|https://youtu.be/egXq3n8UHfE": {
+   "date": "2026-10-27",
+   "seen": "2026-11-03",
+   "title": "Here’s how Fortiche designed Evelynn for the Riftbound x K/DA Couture Collection. Drawing live now!"
   }
  }
 }
