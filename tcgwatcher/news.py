@@ -80,7 +80,8 @@ def parse_anchors(source, text):
         url = urljoin(source["base"], href)
         if url in seen or not (prefix in url or "youtu" in url):
             continue
-        frags = [html.unescape(re.sub(r"\s+", " ", f)).strip() for f in re.split(r"<[^>]+>", body)]
+        h = re.search(r"<h\d[^>]*>(.*?)</h\d>", body, re.S)              # a headline beats the teaser text
+        frags = [html.unescape(re.sub(r"\s+", " ", f)).strip() for f in re.split(r"<[^>]+>", (h.group(1) if h else body))]
         frags = [f for f in frags if f and not re.match(r"^\d{4}-\d{2}-\d{2}", f) and not re.match(r"^[A-Za-z]{3,20}$", f)]   # drop the date and one-word category labels
         if not frags:
             continue
@@ -138,7 +139,7 @@ def parse(source, text, http=None):
         if not url or url in seen:
             continue
         if not g.get("title"):
-            g["title"] = url.rstrip("/").rsplit("/", 1)[-1].replace("-", " ").replace("_", " ")
+            g["title"] = re.sub(r"\.\w+$", "", url.rstrip("/").rsplit("/", 1)[-1]).replace("-", " ").replace("_", " ")
         seen.add(url)
         title = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", g.get("title") or "")).split())[:200]
         items.append({"source": source["id"], "game": source["game"], "url": url, "title": title, "date": (g.get("date") or "")[:10]})
