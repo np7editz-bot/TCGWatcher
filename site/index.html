@@ -180,7 +180,7 @@ footer{color:var(--fg3);font-size:12.5px}
       <th>Ratio EU</th><th class="r" title="TCGplayer market (US): prijs · 7d/30d · US-ratio">US ref.</th><th>Top hit</th><th>Waar kopen</th><th class="r">Eigen prijs</th>
     </tr></thead><tbody id="tb"></tbody></table></div>
     <div style="height:18px"></div>
-    <div id="bundlesSec" hidden><h3>Vaste inhoud · anniversary sets en promo packs</h3>
+    <div id="bundlesSec" hidden><h3>Vaste inhoud · anniversary sets, gift bundles en promo packs</h3>
     <p class="muted">Geen loterij: de waarde is de som van de kaarten erin (Cardmarket-verkopen → CardTrader-ask × 0,83 → TCGplayer × koers). Alleen ter info — geen meldingen, geen paper-posities.</p>
     <div class="sig" id="bundles"></div></div>
     <div style="height:18px"></div>
@@ -358,7 +358,8 @@ function bundleCard(b){
     <div class="t">${esc(b.name)}${b.presale?' <span class="tag">pre-order</span>':''}</div>
     <div class="big">${price!=null?e0(price):'—'}<small>${buy?esc(buy.source):(ref?'TCGplayer (US, excl. verzending)':'geen prijs')}</small></div>
     <div class="row">${b.fixed?'Inhoud':'Kaarten in de pool'} <b>${e0(b.sum_eur)}</b> (${b.priced}/${b.n} geprijsd)${ratio?` · inhoud/prijs <b>${ratio.toFixed(2)}</b>`:(b.fixed?'':' · <span class="muted">pack bevat een deel hiervan, willekeurig</span>')}</div>
-    <details><summary class="muted" style="cursor:pointer">kaarten</summary>${rows}</details>
+    ${b.note?`<div class="row muted" style="font-size:12px">${esc(b.note)}</div>`:''}
+    <details><summary class="muted" style="cursor:pointer">${b.kind==='packs'?'inhoud':'kaarten'}</summary>${rows}</details>
     <div class="btns">${(b.options||[]).map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 ${e0(o.price)} · ${esc(o.source.split(' (')[0])}</a>`).join('')}</div></div></div>`;
 }
 function renderBoxes(){

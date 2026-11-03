@@ -71,3 +71,30 @@ def test_nextjs_parser_finds_articles_in_inline_json():
     items = parse(src, page)
     assert [i["url"] for i in items] == ["https://riftbound.leagueoflegends.com/en-us/news/radiance-is-here", "https://riftbound.leagueoflegends.com/en-us/news/game-updates/patch-1"]
     assert items[0]["date"] == "2026-10-23"
+
+
+def test_anchors_parser_reads_riot_cards():
+    from tcgwatcher.news import parse
+    src = {"id": "riftbound_news", "game": "riftbound", "base": "https://playriftbound.com", "parser": "anchors", "path_prefix": "/en-us/news/"}
+    html = '''<nav><a href="/en-us/news/">News</a></nav>
+    <a class="card" href="/en-us/news/announcements/riftbounds-2026-drawings"><span>Announcements</span>
+      <time datetime="2026-10-22T16:00:00.000Z">2026-10-22T16:00:00.000Z</time><h3>Riftbound&#x27;s 2026 Drawings</h3><p>K/DA Couture …</p></a>
+    <a href="https://youtu.be/egXq3n8UHfE"><span>Announcements</span><time>2026-10-27T16:15:00Z</time><h3>Riftbound x K/DA: Behind the Scenes</h3></a>
+    <a href="/en-us/game/"><h3>How to play</h3></a>'''
+    items = parse(src, html)
+    assert [i["title"] for i in items] == ["Riftbound's 2026 Drawings", "Riftbound x K/DA: Behind the Scenes"]
+    assert items[0]["url"] == "https://playriftbound.com/en-us/news/announcements/riftbounds-2026-drawings" and items[0]["date"] == "2026-10-22"
+
+
+def test_old_items_are_marked_seen_but_not_alerted(tmp_path, monkeypatch):
+    import tcgwatcher.news as news, tcgwatcher.store as store
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    src = {"id": "x", "game": "riftbound", "name": "X", "base": "https://a.b", "parser": "anchors", "path_prefix": "/news/", "kind": "all", "url": "https://a.b/news"}
+    monkeypatch.setattr(news, "load_config", lambda: {"sources": [src], "product": "x", "ignore": "zzz", "max_age_days": 14})
+    page = ('<a href="/news/old"><time>2026-09-01T00:00:00Z</time><h3>Old thing</h3></a>'
+            '<a href="/news/new"><time>2026-11-01T00:00:00Z</time><h3>New thing</h3></a>')
+    class H:
+        def get(self, u): return page, None
+    store.write_json(store.state_path("news"), {"seen": {"x|https://a.b/news/seed": {}}})   # not the first run
+    r = news.run(day="2026-11-03", http=H(), send=False)
+    assert [m["key"] for m in r["messages"]] == ["x|https://a.b/news/new"]

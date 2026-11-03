@@ -184,6 +184,12 @@ games:
     alerts: true                     # KOOP / SLAB messages on (owner's call, 2026-10-23)
     paper: true                      # in the paper test from November (2026-11-01 review)
     cardmarket_box_buy: false        # Riftbound exists in Chinese too; the price guide mixes languages (lows 20–25% under EN) → indication only
+    pack_bundles:                       # booster packs of several sets + fixed extras; EV = Σ packs × (set-EV ÷ packs per box) + promo
+      - code: GRFT                      # Gift of the Rift Bundle (anniversary, release 2026-12-04, US $109): 16 packs, Akali alt-art promo,
+        name: "Gift of the Rift Bundle" # 36 foil runes, 100 sleeves, storage box. Chinese version carries a Kennen promo instead.
+        packs: {OGN: 3, SFD: 3, UNL: 3, VEN: 3, RAD: 4}
+        extras: ["Akali"]
+        retail: []                      # EU pre-order prices by hand until shops list it: - {shop: collgamers, price: 105.00, url: "https://…"}
     ebay_sets: 6
     cardtrader_game: "riftbound"     # CardTrader game 22 'Riftbound | League of Legends'
     cardtrader_expansions: '^(ogn|sfd|unl|ven|rad|lgc|rec|ogs|pg\d)$'    # by CardTrader expansion code (probe 2026-10-23)

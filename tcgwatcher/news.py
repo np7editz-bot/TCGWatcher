@@ -65,10 +65,36 @@ def parse_nextjs(source, text):
     return items
 
 
+def parse_anchors(source, text):
+    """Layout-agnostic: every <a href> block that carries an ISO date is an article card (Riot's playriftbound.com lists
+    '<a href=…><span>Announcements</span><time>2026-10-22T16:00:00Z</time><h3>Title</h3></a>'). Title = the longest text
+    fragment inside the anchor that is not the date or a category label; links are kept when they sit under
+    `path_prefix` or point at YouTube (Riot posts trailers as news)."""
+    prefix = source.get("path_prefix", "/news/")
+    items, seen = [], set()
+    for m in re.finditer(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', text, re.S | re.I):
+        href, body = html.unescape(m.group(1)), m.group(2)
+        d = re.search(r"(\d{4}-\d{2}-\d{2})T\d{2}:\d{2}", body)
+        if not d:
+            continue
+        url = urljoin(source["base"], href)
+        if url in seen or not (prefix in url or "youtu" in url):
+            continue
+        frags = [html.unescape(re.sub(r"\s+", " ", f)).strip() for f in re.split(r"<[^>]+>", body)]
+        frags = [f for f in frags if f and not re.match(r"^\d{4}-\d{2}-\d{2}", f) and not re.match(r"^[A-Za-z]{3,20}$", f)]   # drop the date and one-word category labels
+        if not frags:
+            continue
+        seen.add(url)
+        items.append({"source": source["id"], "game": source["game"], "url": url, "title": max(frags, key=len)[:200], "date": d.group(1)})
+    return items
+
+
 def parse(source, text):
     """Apply the source's item regex; groups are (url, date, title) unless `order` says otherwise; named `title` wins."""
     if source.get("parser") == "nextjs":
-        return parse_nextjs(source, text)
+        return parse_nextjs(source, text) or parse_anchors(source, text)
+    if source.get("parser") == "anchors":
+        return parse_anchors(source, text)
     order = source.get("order", ["url", "date", "title"])
     items, seen = [], set()
     for m in re.finditer(source["item"], text, re.I | re.S):
@@ -114,6 +140,8 @@ def run(http=None, day=None, send=True):
             is_product = src.get("kind") in ("product", "all") or bool(product.search(it["title"]))
             if first_run or not is_product or ignore.search(it["title"]):
                 continue
+            if it.get("date") and (dt.date.fromisoformat(day) - dt.date.fromisoformat(it["date"][:10])).days > cfg.get("max_age_days", 14):
+                continue                         # a repaired/new source must not replay weeks of old articles
             game = {"naruto": "Naruto", "riftbound": "Riftbound", "dbs": "Masters"}.get(it["game"], "Fusion World")
             msgs.append({"key": key, "kind": "news",
                          "text": f"📰 <b>{game} · officiële aankondiging</b>\n<b>{it['title']}</b>\n{src['name']} · {it['date'] or day}\n"

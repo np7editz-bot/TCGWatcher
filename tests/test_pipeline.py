@@ -313,3 +313,18 @@ def test_alert_cap_keeps_buy_and_slab_first():
     msgs = [_m(f"news:{i}", "news", "x") for i in range(9)] + [_m("buy:1", "buy", "b"), _m("slab:1", "slab", "s")]
     msgs.sort(key=lambda m: prio.get(m["kind"], 9))
     assert [m["kind"] for m in msgs[:MAX_PER_RUN]][:2] == ["buy", "slab"]
+
+
+def test_pack_bundle_ev_from_set_evs():
+    from tcgwatcher.build import pack_bundles
+    from tcgwatcher.model import Product
+    P = lambda pid, name, number, price: Product(game="riftbound", set_code="GRFT", group_id=1, product_id=pid, name=name, rarity="Promo" if number else "",
+                                                 number=number, variant="", hit_class=None, sealed_kind=None, presale=True, price=price, url="u")
+    g = {"box": {"packs": 24}, "pack_bundles": [{"code": "GRFT", "name": "Gift of the Rift Bundle", "packs": {"OGN": 3, "RAD": 4}, "extras": ["Akali"],
+                                                 "retail": [{"shop": "collgamers", "price": 100.0, "url": "https://c/g"}]}]}
+    sets = [{"code": "OGN", "name": "Origins", "ev_eu_excl_saa": 144.0}, {"code": "RAD", "name": "Radiance", "ev_eu_excl_saa": 96.0}]
+    bundle, akali = P(1, "Gift of the Rift Bundle", "", 109.0), P(2, "Akali, Rogue Assassin (Gift of the Rift)", "GRFT-001", 20.0)
+    out = pack_bundles(g, sets, [bundle, akali], {}, {}, 0.9, {}, {akali.key: {"avg30": 15.0}})
+    b = out[0]
+    assert b["sum_eur"] == 3 * 6 + 4 * 4 + 15 and b["buy"]["source"] == "collgamers" and b["ratio"] == round(49 / 100, 3)
+    assert b["priced"] == 3 and b["n"] == 3 and b["kind"] == "packs"

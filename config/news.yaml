@@ -27,13 +27,14 @@ sources:
   - id: riftbound_news
     game: riftbound
     name: "Riftbound official news"
-    url: https://riftbound.leagueoflegends.com/en-us/news/
-    base: https://riftbound.leagueoflegends.com
-    parser: nextjs                      # article list lives in the page's inline JSON
+    url: https://playriftbound.com/en-us/news/announcements    # moved from riftbound.leagueoflegends.com (Oct 2026)
+    base: https://playriftbound.com
+    parser: anchors                     # server-rendered cards: <a href><time>ISO</time><h3>title</h3></a>
     path_prefix: /en-us/news/
     kind: all
 
 # Titles that mean "a product you can (pre-)order": these become messages. Case-insensitive.
 product: '(booster|starter|deck|pre-?order|release|launch|product|collection|set\b|box|pack|edition|lineup|available|on sale|retailer)'
 # Noise never sent (stored only): the digital app's own notices.
+max_age_days: 14                  # alert only on items younger than this (a repaired source must not replay old news)
 ignore: '(\[DIGITAL ver\.\]|serial code|app update|maintenance)'

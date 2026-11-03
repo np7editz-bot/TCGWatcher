@@ -132,7 +132,8 @@ def build(day, quality=None):
             "estimates": {k: {"label": labels[k], "est": v, "lottery": k in lottery_ids} for k, v in est.items()},
             "box": g["box"],
             "sets": sets_scored, "cards": cards, "starters": other_sets,
-            "bundles": fixed_content_bundles(m["products"], eu, landed_cfg, rate, (cm or {}).get("bundles") or {}, (cm or {}).get("cards") or {}),
+            "bundles": fixed_content_bundles(m["products"], eu, landed_cfg, rate, (cm or {}).get("bundles") or {}, (cm or {}).get("cards") or {})
+                       + pack_bundles(g, sets_scored, m["products"], eu, landed_cfg, rate, (cm or {}).get("bundles") or {}, (cm or {}).get("cards") or {}),
             "slab_signals": [x for x in (slab_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
             "grade_signals": [x for x in (grade_signals(eb) if eb else []) if x["key"].startswith(gid + ":")],
             "alerts": g.get("alerts", True), "paper": g.get("paper", True),
@@ -227,6 +228,62 @@ def fixed_content_bundles(products, eu, landed_cfg, fx, cm_bundles=None, cm_card
         out.append({"name": p.name, "product_id": p.product_id, "image": p.image, "url": p.url, "presale": p.presale, "fixed": fixed,
                     "price_usd": p.price, "options": opts, "buy": buy, "sum_eur": round(total, 2), "priced": priced, "n": len(items),
                     "ratio": round(total / buy["price"], 3) if fixed and buy and buy["price"] else None,
+                    "contents": sorted(items, key=lambda x: -(x["price_eur"] or 0))})
+    return out
+
+
+def pack_bundles(g, sets, products, eu, landed_cfg, fx, cm_bundles=None, cm_cards=None):
+    """Bundles of booster packs from several sets plus fixed extras (Riftbound 'Gift of the Rift': 3×OGN 3×SFD 3×UNL 3×VEN
+    4×RAD + Akali promo). Configured per game under `pack_bundles`. Value = Σ packs × (set EV excl. lottery ÷ packs per
+    box) + priced extras; the bundle's own price comes from TCGplayer (reference), CardTrader and Cardmarket. Same shape as
+    fixed_content_bundles so the page and the KOOP alert treat it like a box with a known EV."""
+    out = []
+    by_code = {s["code"]: s for s in sets}
+    ppb = (g.get("box") or {}).get("packs") or 24
+    for b in g.get("pack_bundles") or []:
+        p = next((q for q in products if not q.number and q.name == b["name"]), None)
+        items, total, priced, n = [], 0.0, 0, 0
+        for code, k in (b.get("packs") or {}).items():
+            s = by_code.get(code); n += 1
+            v = (s.get("ev_eu_excl_saa") or 0) / ppb * k if s else 0
+            if v:
+                total += v; priced += 1
+            items.append({"key": f"{code}:pack", "name": f"{k}× {s['name'] if s else code} booster", "number": code, "rarity": "pack",
+                          "price_eur": round(v, 2) if v else None, "image": None, "url": None, "eu_low": None})
+        for x in b.get("extras") or []:                 # promos inside the bundle: cards in the bundle's own catalogue group
+            q = next((q for q in products if q.number and q.set_code == b.get("code") and x.lower() in q.name.lower()), None)
+            n += 1
+            v = None
+            if q:
+                o = eu.get(q.product_id) or {}
+                cmr = (cm_cards or {}).get(q.key) or {}
+                v = (cmr.get("avg30") or cmr.get("avg7") or cmr.get("trend") or ((o.get("low") or 0) * ASK_TO_SALE or None)
+                     or ((q.price * fx) if q.price else None))
+            if v:
+                total += v; priced += 1
+            items.append({"key": q.key if q else f"{b.get('code')}:{x}", "name": q.name if q else f"{x} promo (nog niet geprijsd)",
+                          "number": q.number if q else "", "rarity": q.rarity if q else "promo", "price_eur": round(v, 2) if v else None,
+                          "image": q.image if q else None, "url": q.url if q else None, "eu_low": None})
+        opts = []
+        if p and p.price:
+            opts.append({"price": round(p.price * fx, 2), "source": "TCGplayer (US, excl. verzending)", "url": p.url, "ref": True})
+        o = eu.get(p.product_id) if p else None
+        if o and o.get("low"):
+            l = landed(o, landed_cfg)
+            opts.append({"price": l["landed"], "source": "CardTrader" + (" Zero" if l.get("landed_via") == "zero" else ""),
+                         "url": f"https://www.cardtrader.com/cards/{o['blueprint_id']}", "n": o.get("n")})
+        cmb = (cm_bundles or {}).get(str(p.product_id)) if p else None
+        if cmb and cmb.get("low"):
+            opts.append({"price": round(cmb["low"] + 8, 2), "source": "Cardmarket", "url": cmb["url"], "note": f"laagste aanbod €{cmb['low']:.2f} + ±€8 verzending"})
+        for r in b.get("retail") or []:                 # manual pre-order prices (EU shops list these before any marketplace does)
+            opts.append({"price": float(r["price"]), "source": r["shop"], "url": r["url"], "n": 1, "status": "preorder"})
+        opts.sort(key=lambda x: (x.get("ref", False), x["price"]))
+        buy = next((x for x in opts if not x.get("ref")), None)
+        out.append({"name": b["name"], "code": b.get("code"), "kind": "packs", "product_id": p.product_id if p else None, "image": p.image if p else None,
+                    "url": p.url if p else None, "presale": bool(p and p.presale), "fixed": True, "price_usd": p.price if p else None,
+                    "options": opts, "buy": buy, "sum_eur": round(total, 2), "priced": priced, "n": n,
+                    "ratio": round(total / buy["price"], 3) if buy and buy["price"] else None,
+                    "note": f"EV = packs × (set-EV excl. loterij ÷ {ppb}) + geprijsde promo's; sleeves/runes/doos niet meegeteld",
                     "contents": sorted(items, key=lambda x: -(x["price_eur"] or 0))})
     return out
 

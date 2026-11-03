@@ -127,6 +127,25 @@ def run(day, quality=None, send=True):
                 m["on_sent"] = {"active": (key, {"since": (ep or {}).get("since", day) if isinstance(ep, dict) else day, "price": bb["price"], "ratio": ratio})}
                 msgs.append(m)
 
+            # 4a. pack bundles with a computed EV (Gift of the Rift): same threshold, one episode per bundle
+            for b in gdata.get("bundles", []):
+                if b.get("kind") != "packs" or not b.get("buy") or not b.get("ratio"):
+                    continue
+                key = f"buy_bundle:{gid}:{b.get('code') or b['name']}"
+                if b["ratio"] < buy["threshold"] or b["priced"] < b["n"] - 1:      # at most one unpriced part (the promo)
+                    state["active"].pop(key, None)
+                    continue
+                ep = state["active"].get(key)
+                if ep and not b["buy"]["price"] <= ep["price"] * (1 - buy.get("rearm_improvement", 0.1)):
+                    continue
+                parts = ", ".join(f"{c['name']} {_eur(c['price_eur'])}" for c in b["contents"] if c.get("price_eur"))
+                msgs.append(dict(_m(key, "buy",
+                                    f"🎯 <b>KOOP · {gdata['short']} · {b['name']}</b>\n"
+                                    f"Inhoud-EV <b>{_eur(b['sum_eur'])}</b> vs prijs <b>{_eur(b['buy']['price'])}</b> ({b['buy']['source']}) → ratio <b>{b['ratio']:.2f}</b>"
+                                    f"{' · pre-order' if b.get('presale') else ''}\n<i>{parts}</i>\n{b.get('note', '')}",
+                                    photo=b.get("image"), buttons=[[("🛒 " + b["buy"]["source"].split(" (")[0], b["buy"]["url"]), ("📊 Radar", SITE_URL)]]),
+                                on_sent={"active": (key, {"since": (ep or {}).get("since", day), "price": b["buy"]["price"], "ratio": b["ratio"]})}))
+
         # 4b. slabs: the 5 best cards to buy now for graded value — one card per message (photo, where-to-buy comparison,
         #     one button per shop). Each run: up to 5 cards not sent before; a sent card again only when net ≥ +25% or raw ≤ −10%.
         buy_min = cfg.get("grading", {}).get("min_profit_eur", 50)
@@ -313,6 +332,10 @@ def _m(key, kind, text, photo=None, buttons=None):
 
 
 FX = {"rate": 0.9}
+
+
+def _eur(v):
+    return f"€{v:,.0f}".replace(",", ".")
 
 
 def _usd(v):
