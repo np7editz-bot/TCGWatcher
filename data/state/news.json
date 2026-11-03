@@ -1,10 +1,5 @@
 {
- "health": {
-  "dbs_products": {
-   "error": "no items parsed (page layout changed?)",
-   "warned": "2026-11-03"
-  }
- },
+ "health": {},
  "seen": {
   "dbfw_news|https://www.dbs-cardgame.com/fw/en/events/01_486.html": {
    "date": "2026-10-16",
@@ -170,6 +165,641 @@
    "date": "",
    "seen": "2026-10-19",
    "title": "OFFICIAL CARD SLEEVE Limited Edition 06 -Vegeta-\" loading=\"lazy\">"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b04.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b04"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b05.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b05"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b06.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b06"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b07.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b07"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b08.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b08"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b09.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b09"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b10.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b10"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b11.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b11"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b12.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b12"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b13.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b13"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b14.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b14"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b15.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b15"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b16.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b16"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b17.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b17"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b18.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b18"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b19.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b19"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b20-c.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b20 c"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b20.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b20"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b21.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b21"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b22.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b22"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b23.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b23"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b24-c.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b24 c"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b24.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b24"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b25.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b25"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b26.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b26"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b27.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b27"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b28.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b28"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b29.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b29"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b30.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b30"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b31.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b31"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-b32.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs b32"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-box01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs box01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-box02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs box02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-box03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs box03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-box04.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs box04"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-box05.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs box05"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-box06.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs box06"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-eb01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs eb01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es04.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es04"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es05.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es05"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es06.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es06"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es07.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es07"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es08.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es08"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es09.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es09"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es10.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es10"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es11.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es11"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es12.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es12"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es13.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es13"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es14.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es14"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es15.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es15"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es16.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es16"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es17.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es17"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es18.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es18"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es19.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es19"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es20.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es20"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es21.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es21"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es22.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es22"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es23.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es23"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es24.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es24"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-es25.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs es25"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-gc01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs gc01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-gc02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs gc02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-ge01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs ge01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-ge02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs ge02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-ge03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs ge03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-mb01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs mb01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp04.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp04"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp05.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp05"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp06.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp06"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp07.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp07"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp08-m.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp08 m"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp08.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp08"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp09.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp09"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp10.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp10"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp11.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp11"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp12.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp12"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp13.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp13"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-pp14.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs pp14"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-prs01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs prs01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-prs02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs prs02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-prs03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs prs03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd04.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd04"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd05.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd05"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd06.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd06"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd07.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd07"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd08.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd08"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd09.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd09"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd10.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd10"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd11.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd11"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd12.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd12"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd13.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd13"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd14.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd14"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd15.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd15"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd16.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd16"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd17.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd17"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd18.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd18"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd19.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd19"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd20.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd20"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd21.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd21"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd22.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd22"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sd23.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sd23"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sp01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sp01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sp02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sp02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sp03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sp03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sp04.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sp04"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sp05.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sp05"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-sp06.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs sp06"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-tb01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs tb01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-tb02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs tb02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-tb03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs tb03"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-ts01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs ts01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-ts02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs ts02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-xd01.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs xd01"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-xd02.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs xd02"
+  },
+  "dbs_products|https://www.dbs-cardgame.com/us-en/product/dbs-xd03.php": {
+   "date": "",
+   "seen": "2026-11-03",
+   "title": "dbs xd03"
   },
   "dbs_updates|https://www.dbs-cardgame.com/us-en/cardlist/index.php?search=true&free=BT24-134_PR%20BT24-134_PR02%20BT26-034_PR%20BT26-064_PR%20BT27-006_PR02%20BT27-069_PR02%20BT27-093_PR02%20BT28-024_PR%20BT28-054_PR%20BT28-054_PR02%20BT28-138_PR%20BT28-138_PR02%20BT28-143_PR%20BT28-144_PR%20BT28-145_PR%20BT28-146_PR%20BT28-147_PR%20DB2-093_PR%20P-658_PR02%20P-658_PR03": {
    "date": "2026-10-16",
