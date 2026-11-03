@@ -24,16 +24,50 @@ sources:
     item: '<li class="newsListItem card">.*?<a class="cardBox" href="([^"]+)">.*?<dt class="cardTitle">(.*?)</dt>.*?<time class="date" datetime="([^"]+)">'
     order: [url, title, date]
     kind: all                           # pre-launch: every official Naruto item is news (events, reveals, lineup)
+  - id: dbs_updates
+    game: dbs
+    name: "Masters official site updates"
+    url: https://www.dbs-cardgame.com/us-en/
+    base: https://www.dbs-cardgame.com
+    parser: anchors                     # 'Website Updates' list: date (2026/10/30) + link; product/set titles filtered by `product`
+    path_prefix: /us-en/
+  - id: dbs_products
+    game: dbs
+    name: "Masters official product list"
+    url: https://www.dbs-cardgame.com/us-en/product/
+    base: https://www.dbs-cardgame.com
+    item: '<a href="((?:https://www\.dbs-cardgame\.com)?/us-en/product/[a-z0-9_-]+\.php)"'
+    order: [url]                        # title = slug (dbs-b32) when the page gives none
+    kind: product
   - id: riftbound_news
     game: riftbound
     name: "Riftbound official news"
-    url: https://riftbound.leagueoflegends.com/en-us/news/
-    base: https://riftbound.leagueoflegends.com
-    parser: nextjs                      # article list lives in the page's inline JSON
+    url: https://playriftbound.com/en-us/news/announcements    # moved from riftbound.leagueoflegends.com (Oct 2026)
+    base: https://playriftbound.com
+    parser: anchors                     # server-rendered cards: <a href><time>ISO</time><h3>title</h3></a>
     path_prefix: /en-us/news/
     kind: all
 
 # Titles that mean "a product you can (pre-)order": these become messages. Case-insensitive.
+# Socials: YouTube is the one channel with a stable feed (no API key). `url` is the channel page; the channel id is read
+# from it. X/Instagram/TikTok have no open feed — not watched. Fill in the handles and set enabled: true.
+  - id: yt_riftbound
+    game: riftbound
+    name: "Riftbound YouTube"
+    url: https://www.youtube.com/@Riftbound
+    base: https://www.youtube.com
+    parser: youtube
+    kind: all
+    enabled: false                      # handle unverified — set true once checked
+  - id: yt_dbs
+    game: dbfw
+    name: "Dragon Ball Super Card Game YouTube"
+    url: https://www.youtube.com/@dragonballsupercardgame
+    base: https://www.youtube.com
+    parser: youtube
+    enabled: false                      # handle unverified — set true once checked
 product: '(booster|starter|deck|pre-?order|release|launch|product|collection|set\b|box|pack|edition|lineup|available|on sale|retailer)'
 # Noise never sent (stored only): the digital app's own notices.
+stale_days: 45                    # a source whose newest item is older than this is reported as broken (weekly ⚠️)
+max_age_days: 14                  # alert only on items younger than this (a repaired source must not replay old news)
 ignore: '(\[DIGITAL ver\.\]|serial code|app update|maintenance)'
