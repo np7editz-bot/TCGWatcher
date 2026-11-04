@@ -1,0 +1,65 @@
+{
+ "alerts": [
+  {
+   "at": "2026-11-04T01:44:08Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €605 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/New-Adventure-Fusion-World/Frieza-FB05-120-Fusion-World-V3-God-Rare?language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:FB05:FB05-120:SAA",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/611093_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Frieza FB05-120 SAA</b> · Fusion World FB05\nRaw kopen vanaf <b>€605</b> → PSA 10 waarde <b>€2525</b> (4 listings)\nNetto na grading en fees: <b>€1040</b> per kaart (172% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €605 Cardmarket\n• €706 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €422</i>"
+  },
+  {
+   "at": "2026-11-04T01:44:08Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €255 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=SSB%20Kaio-ken%20Vegito%2C%20True%20God%20Power&language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbs:dbs:BT31:BT31-150:SCR",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/702600_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #2 · SSB Kaio-ken Vegito BT31-150 SCR</b> · Masters BT31\nRaw kopen vanaf <b>€255</b> → PSA 10 waarde <b>€754</b> (3 listings)\nNetto na grading en fees: <b>€218</b> per kaart (86% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €255 Cardmarket\n• €376 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €264</i>"
+  },
+  {
+   "at": "2026-11-04T01:44:08Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €50 · eBay",
+      "https://www.ebay.de/itm/227161344084?_skw=SS+Broly+BT26-049&hash=item34e3df0854:g:xDwAAeSwAbRpW7Hq"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbs:dbs:BT26:BT26-049:SPR",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/580843_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #3 · SS Broly BT26-049 SPR</b> · Masters BT26\nRaw kopen vanaf <b>€50</b> → PSA 10 waarde <b>€212</b> (5 listings)\nNetto na grading en fees: <b>€65</b> per kaart (130% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €50 eBay (1 EU)\n• €56 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €42</i>"
+  }
+ ],
+ "day": "2026-11-03"
+}

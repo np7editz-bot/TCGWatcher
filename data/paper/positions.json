@@ -801,6 +801,20 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 75.31
+  },
+  {
+   "code": "BT31",
+   "game": "dbs",
+   "key": "dbs:BT31:BT31-150:SCR",
+   "kind": "raw",
+   "name": "SSB Kaio-ken Vegito BT31-150 SCR",
+   "net_then": 209.66,
+   "opened": "2026-11-03",
+   "price": 375.64,
+   "psa10_then": 753.82,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 263.77
   }
  ]
 }
