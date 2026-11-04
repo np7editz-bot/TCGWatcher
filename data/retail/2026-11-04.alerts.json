@@ -1,5 +1,20 @@
 {
  "day": "2026-11-04",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T18:47:03Z",
+   "kind": "preorder->in_stock",
+   "old_price": 149.99,
+   "price": 149.99,
+   "price_obs": 55,
+   "product_kind": "box",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-04T12:07:33Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB02 - Blazing Aura - Display [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-fusion-world-fb02-display-englisch"
+  }
+ ]
 }
