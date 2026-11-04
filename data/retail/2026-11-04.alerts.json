@@ -1,20 +1,5 @@
 {
  "day": "2026-11-04",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-29T19:38:00Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 49.99,
-   "price": 49.99,
-   "price_obs": 28,
-   "product_kind": "pack",
-   "retailer": "fantasiacards",
-   "seen": "2026-11-04T01:44:20Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Super Card Game - Fusion World - SB02 - Manga Booster Pack 02 - Booster [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-sb02-manga-booster-pack-02-booster-eng"
-  }
- ]
+ "transitions": []
 }
