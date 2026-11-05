@@ -166,4 +166,4 @@ def test_masters_short_codes_map_to_bt():
     from tcgwatcher.retail import set_code_of
     assert set_code_of("Dragon Ball Super Box Zenkai New Series ULTRA BOUT #5 [B32] ENG (20 packs)") == "BT32"
     assert set_code_of("Dragon Ball SCG B31: Battles Beyond Dimensions Boosterbox") == "BT31"
-    assert set_code_of("Riftbound Origins B12 Booster Display") is None
+    assert set_code_of("Pokemon B12 Booster Display") is None
