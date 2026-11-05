@@ -1,5 +1,47 @@
 {
  "day": "2026-11-05",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 169.94,
+   "price": 169.94,
+   "price_obs": 61,
+   "product_kind": "box",
+   "retailer": "cardforge",
+   "seen": "2026-11-05T23:38:20Z",
+   "status": "sold_out",
+   "title": "Dragon Ball SCG - Fusion World 11 Booster box (FB11) - Brightness of Hope - Card forge",
+   "trusted": false,
+   "url": "https://cardforge.nl/pokemon-kaarten/dragon-ball/dragon-ball-scg-fusion-world-11-booster-box/"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 179.95,
+   "price": 179.95,
+   "price_obs": 16,
+   "product_kind": "box",
+   "retailer": "cardforge",
+   "seen": "2026-11-05T23:38:20Z",
+   "status": "sold_out",
+   "title": "Dragon Ball SCG B31: Battles Beyond Dimensions Boosterbox - Card forge",
+   "trusted": false,
+   "url": "https://cardforge.nl/pokemon-kaarten/dragon-ball/dragon-ball-scg-b31-battles-beyond-dimensions-boosterbox/"
+  },
+  {
+   "first_seen": "2026-11-05T23:38:20Z",
+   "kind": "new_listing",
+   "price": 9.99,
+   "price_obs": 1,
+   "product_kind": "pack",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-05T23:38:20Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB11 - Brightness of Hope - Booster - [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb11-brightness-of-hope-booster-eng"
+  }
+ ]
 }
