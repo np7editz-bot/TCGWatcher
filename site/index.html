@@ -191,6 +191,7 @@ footer{color:var(--fg3);font-size:12.5px}
   <section data-view="slabs" hidden>
     <h2>Slabs · raw kopen voor graded waarde</h2>
     <p class="muted" id="slabsNote"></p>
+    <p><label><input type="checkbox" id="slabsAllGames" checked> alle games in één lijst (Fusion World, Masters, Riftbound …)</label></p>
     <div class="sig" id="slabsAll"></div>
     <div style="height:18px"></div>
     <h3>🏷 Graded exemplaren te koop in de EU (eBay DE/NL + CardTrader graded)</h3>
@@ -285,10 +286,11 @@ function compText(set){ const c=set.composition||{}; const SHORT={SR:'SR',SR_AA:
 function scored(){ const thr=parseFloat(document.getElementById('thr').value)||0; const xs=G.sets.map(s=>({s,...score(s)})); xs.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1)); xs.forEach(x=>{ x.hit = x.ratio!=null && x.ratio>=thr && !x.indicative && !x.s.flags.some(f=>EXCL.includes(f)); }); return xs; }
 
 /* ---------- slab items: merge grade signals with raw options and graded deals ---------- */
-function slabItems(){
-  const cards = Object.fromEntries((G.cards||[]).map(c=>[c.key,c]));
-  const deals = Object.fromEntries((G.slab_signals||[]).map(x=>[x.key,x]));
-  const items = (G.grade_signals||[]).map(g=>{
+function slabItems(gid, GG){
+  gid = gid || gameId; GG = GG || G;
+  const cards = Object.fromEntries((GG.cards||[]).map(c=>[c.key,c]));
+  const deals = Object.fromEntries((GG.slab_signals||[]).map(x=>[x.key,x]));
+  const items = (GG.grade_signals||[]).map(g=>{
     const c = cards[g.key]||{}; const opts=[]; const eu=c.eu||{};
     if (eu.low) { const z = eu.zero_low && eu.zero_low+6 <= eu.low+5; opts.push({src:'CardTrader'+(z?' Zero':''), price: z? eu.zero_low+6 : eu.low+5, url:eu.url}); }
     if (c.raw_ebay?.low) opts.push({src:`eBay (${c.raw_ebay.n} EU)`, price:c.raw_ebay.low, url:c.raw_ebay.url});
@@ -296,8 +298,8 @@ function slabItems(){
     opts.sort((a,b)=>a.price-b.price);
     const cm = {src:'Cardmarket (zoeken)', price:null, url:`https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=${encodeURIComponent(g.number)}`};
     const raw = opts.length? opts[0].price : g.raw_eur, net = g.net - (raw - g.raw_eur);
-    const sent = (DATA.sent_slabs||{})[`${gameId}:${g.key}`];
-    return {g, c, opts, cm, raw, net, noEu: !opts.length, deal: deals[g.key], under: raw < 0.5*g.raw_eur, sent};
+    const sent = (DATA.sent_slabs||{})[`${gid}:${g.key}`];
+    return {g, c, opts, cm, raw, net, noEu: !opts.length, deal: deals[g.key], under: raw < 0.5*g.raw_eur, sent, gid, gshort: GG.short};
   }).filter(i=>i.net>=50).sort((a,b)=>b.net-a.net);
   return items;
 }
@@ -306,7 +308,7 @@ function slabCard(i, rank){
   const btn = (i.noEu ? `<a href="${esc(i.cm.url)}" target="_blank" rel="noopener" class="alt">🔎 zoek raw op Cardmarket</a>` : i.opts.slice(0,2).map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 raw €${o.price.toFixed(0)} · ${esc(o.src.split(' (')[0])}</a>`).join(''))
     + (i.deal?`<a href="${esc(i.deal.url)}" target="_blank" rel="noopener" class="alt">🏷 graded €${i.deal.price.toFixed(0)}</a>`:'');
   return `<div class="sc wide${rank===1?' top':''}"><div class="img">${c.image?`<img src="${big(c.image)}" alt="" loading="lazy">`:''}</div><div class="body">
-    <div class="t">${rank?`#${rank} · `:''}${esc(short(g.name))} <small>${g.number} · ${cls(g.class)} · ${g.set}</small>${i.sent?` <span class="tag">📨 gemeld ${i.sent.day.slice(5).split('-').reverse().join('-')}</span>`:''}</div>
+    <div class="t">${rank?`#${rank} · `:''}${esc(short(g.name))} <small>${g.number} · ${cls(g.class)} · ${g.set}${i.gshort&&i.gid!==gameId?` · ${esc(i.gshort)}`:''}</small>${i.sent?` <span class="tag">📨 gemeld ${i.sent.day.slice(5).split('-').reverse().join('-')}</span>`:''}</div>
     <div class="big">€${i.raw.toFixed(0)}<small>${i.noEu?'marktwaarde raw · geen EU-aanbod gevonden':'raw, all-in naar NL'}</small></div>
     <div class="row">${esc(g.service)} ${g.top_grade} waarde <b>€${g.top_median.toFixed(0)}</b> (${g.top_n} listings) · netto <b>€${i.net.toFixed(0)}</b> (${Math.round(i.net/i.raw*100)}% op inleg)${(g.options||[]).slice(1,3).map(o=>` · ${o.service} €${o.net.toFixed(0)}`).join('')}</div>
     ${i.under?`<div class="warnline">⚠️ ${Math.round((1-i.raw/g.raw_eur)*100)}% onder marktwaarde — check verkoper, foto's en retourbeleid</div>`:''}
@@ -416,10 +418,12 @@ function detail(s,x){
   return tr;
 }
 function renderSlabs(){
-  const items=slabItems();
-  document.getElementById('slabsNote').textContent = G.slabs_day ? `eBay DE/NL + CardTrader graded, dag ${G.slabs_day} · ${items.length} rendabele kandidaten (netto ≥ €50, ≥ 3 listings van de topgrade)` : 'Nog geen eBay-data.';
+  const all = document.getElementById('slabsAllGames').checked;
+  const items = all ? Object.entries(DATA.games).flatMap(([id,GG])=>slabItems(id,GG)).sort((a,b)=>b.net-a.net) : slabItems();
+  const day = all ? Object.values(DATA.games).map(x=>x.slabs_day).filter(Boolean).sort().pop() : G.slabs_day;
+  document.getElementById('slabsNote').textContent = day ? `eBay DE/NL + CardTrader graded, dag ${day} · ${items.length} rendabele kandidaten${all?' over alle games':''} (netto ≥ €50, ≥ 3 listings van de topgrade)` : 'Nog geen eBay-data.';
   document.getElementById('slabsAll').innerHTML = items.map((i,k)=>slabCard(i,k+1)).join('') || '<div class="panel muted">Geen kandidaten.</div>';
-  const withSlabs=(G.cards||[]).filter(c=>c.slabs&&Object.keys(c.slabs).length).sort((a,b)=>(b.price||0)-(a.price||0)).slice(0,60);
+  const withSlabs=(all ? Object.values(DATA.games).flatMap(x=>x.cards||[]) : (G.cards||[])).filter(c=>c.slabs&&Object.keys(c.slabs).length).sort((a,b)=>(b.price||0)-(a.price||0)).slice(0,60);
   document.getElementById('slabsListings').innerHTML = withSlabs.map(c=>{const g=Object.entries(c.slabs).sort((a,b)=>b[0]-a[0]).map(([k,v])=>`<a href="${esc(v.url)}" target="_blank" rel="noopener">${v.grader} ${parseFloat(k)} €${v.low.toFixed(0)}</a>`).join(' · '); return `<div class="card"><span class="n">${c.set}</span><span class="t">${esc(short(c.name))} ${c.number}</span><span class="p">${g} <small style="color:var(--fg3)">raw ${eur(c.price)}</small></span></div>`;}).join('') || '<div class="muted">—</div>';
 }
 function renderPortfolio(){
@@ -445,6 +449,8 @@ function renderNews(){
   rl.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1));
   document.getElementById('retailList').innerHTML = rl.map(o=>`<div><span><span class="code">${o.set}</span> <a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.retailer)}</a> <span class="name">${o.status==='preorder'?'pre-order':'voorraad'}${o.kind==='case'?' · case':''}</span></span><span class="p">€${o.price.toFixed(0)}${o.ratio!=null?` <span style="color:var(--fg3)">· ${o.ratio.toFixed(2)}</span>`:''}</span></div>`).join('') || '<div class="muted">Niets koopbaar bij de betrouwbare shops.</div>';
 }
+document.getElementById('slabsAllGames').addEventListener('change', ()=>{ try{localStorage.setItem('tcgw.slabsAll', document.getElementById('slabsAllGames').checked?'1':'0')}catch(e){} renderSlabs(); });
+try { if (localStorage.getItem('tcgw.slabsAll')==='0') document.getElementById('slabsAllGames').checked=false; } catch(e) {}
 function renderAll(){ renderToday(); renderBoxes(); renderSlabs(); renderPortfolio(); renderNews(); }
 function showView(v){ view=v; document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-selected', b.dataset.v===v)); document.querySelectorAll('[data-view]').forEach(s=>s.hidden = s.dataset.view!==v); try{localStorage.setItem('tcgw.view',v);}catch(e){} }
 function selectGame(id){
