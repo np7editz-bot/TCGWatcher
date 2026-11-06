@@ -3,32 +3,31 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-19T09:07:50Z",
+   "first_seen": "2026-10-19T08:00:42Z",
    "kind": "sold_out->in_stock",
-   "old_price": 434.95,
-   "price": 434.95,
-   "price_obs": 64,
-   "product_kind": "box",
-   "retailer": "collgamers",
-   "seen": "2026-11-06T15:55:20Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game Fusion World [ST01] - Story Booster 01 - Booster Box",
-   "trusted": true,
-   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-st01-story-booster-01-booster-box"
-  },
-  {
-   "first_seen": "2026-11-05T23:38:20Z",
-   "kind": "price_drop",
-   "old_price": 9.99,
-   "price": 8.99,
-   "price_obs": 1,
+   "old_price": 19.99,
+   "price": 19.99,
+   "price_obs": 65,
    "product_kind": "pack",
    "retailer": "fantasiacards",
-   "seen": "2026-11-06T15:55:20Z",
+   "seen": "2026-11-06T21:29:29Z",
    "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB11 - Brightness of Hope - Booster - [ENG]",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB09 - Dual Evolution - Booster [ENG]",
    "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb11-brightness-of-hope-booster-eng"
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb09-booster-eng"
+  },
+  {
+   "first_seen": "2026-11-06T21:29:29Z",
+   "kind": "new_listing",
+   "price": 199.99,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-06T21:29:29Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB11 - Brightness of Hope - Display [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb11-display-eng-vorbestellung-release-september-2026"
   }
  ]
 }
