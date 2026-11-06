@@ -480,7 +480,11 @@ async function init(){
 }
 init().catch(e=>{ document.getElementById('meta').textContent='Kon data/latest.json niet laden: '+e; });
 
-if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{})); }
+if ('serviceWorker' in navigator) { window.addEventListener('load', async () => {
+  try { const reg = await navigator.serviceWorker.register('sw.js'); reg.update();
+        // a new worker took over (new page code deployed): reload once so the open app runs it
+        navigator.serviceWorker.addEventListener('controllerchange', () => { if (!sessionStorage.getItem('tcgw.reloaded')) { sessionStorage.setItem('tcgw.reloaded', '1'); location.reload(); } });
+  } catch (e) {} }); }
 window.addEventListener('offline', () => { const el=document.getElementById('meta'); if (el && !el.dataset.off) { el.dataset.off='1'; el.insertAdjacentHTML('beforeend',' <span class="tag">offline · laatst geladen data</span>'); } });
 </script>
 </body>
