@@ -160,3 +160,10 @@ def test_single_cards_are_never_boxes():
     assert kind_with_price("Ginyu SB02-049 C DBS CG FW Manga Booster 02 EN", "https://x/ginyu-sb02-049-c", 60.0) == "other"
     assert kind_with_price("Baron Nashor (Alternate Art) 147a/219 Riftbound Unleashed", "u", 80.0) == "other"
     assert kind_with_price("Dragon Ball Super Fusion World – Brightness of Hope Booster Box FB11", "u", 179.95) == "box"
+
+
+def test_masters_short_codes_map_to_bt():
+    from tcgwatcher.retail import set_code_of
+    assert set_code_of("Dragon Ball Super Box Zenkai New Series ULTRA BOUT #5 [B32] ENG (20 packs)") == "BT32"
+    assert set_code_of("Dragon Ball SCG B31: Battles Beyond Dimensions Boosterbox") == "BT31"
+    assert set_code_of("Pokemon B12 Booster Display") is None

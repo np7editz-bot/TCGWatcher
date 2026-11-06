@@ -32,6 +32,9 @@ def set_code_of(title, url=""):
     m = re.search(r"\b(FB|SB|ST|FS|BT|BE|SD|EB)\s?-?(\d{2})\b", hay, re.I)
     if m:
         return f"{m.group(1).upper()}{m.group(2)}"
+    m = re.search(r"\bB\s?-?(\d{2})\b", hay, re.I)             # Masters shops write 'B32' / '[B31]' for BT32 / BT31
+    if m and re.search(r"(dragon\s*ball|masters|zenkai|ultra.?bout)", hay, re.I):
+        return f"BT{m.group(1)}"
     if re.search(r"(riftbound|league of legends)", hay, re.I):
         for name, code in RIFT_SETS.items():
             if re.search(r"\b" + name + r"\b", hay, re.I):
