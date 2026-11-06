@@ -1,6 +1,7 @@
-// TCGWatcher service worker: the shell is cached (instant open, works offline); data is network-first with the last
-// good copy as fallback, so the app always shows something and the page's own "Prijzen van …" line says how old it is.
-const VERSION = "v1";
+// TCGWatcher service worker: everything is network-first with the last good copy as fallback (works offline, never
+// stale). v1 served the shell cache-first and never refreshed it, so an installed app kept running the index.html from
+// the day it was installed while the data moved on — the slabs tab "lost" cards that newer page code would show.
+const VERSION = "v2";   // bump → old shell caches are dropped on activate
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png"];
 
 self.addEventListener("install", e => {
@@ -17,6 +18,7 @@ self.addEventListener("fetch", e => {
       .catch(() => caches.match(e.request)));
     return;
   }
-  e.respondWith(caches.match(e.request).then(hit => hit || fetch(e.request).then(r => {   // shell: cache, refresh in background
-    const copy = r.clone(); caches.open("shell-" + VERSION).then(c => c.put(e.request, copy)); return r; })));
+  e.respondWith(fetch(e.request).then(r => {                                        // shell: network-first, cache as fallback
+    const copy = r.clone(); caches.open("shell-" + VERSION).then(c => c.put(e.request, copy)); return r; })
+    .catch(() => caches.match(e.request)));
 });
