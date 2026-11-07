@@ -1,0 +1,25 @@
+{
+ "alerts": [
+  {
+   "at": "2026-11-07T01:13:58Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop raw €24 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Wish-for-Shenron-Fusion-World/Son-Goku-GT-FB07-122-Fusion-World-V1-Secret-Rare?language=1"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab:dbfw:dbfw:FB07:FB07-122:",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/651062_in_1000x1000.jpg",
+   "text": "🏆 <b>SLAB #1 · Son Goku : GT FB07-122 SCR</b> · Fusion World FB07\nRaw kopen vanaf <b>€24</b> → PSA 10 waarde <b>€205</b> (10 listings)\nNetto na grading en fees: <b>€86</b> per kaart (360% op inleg)\n\n🛒 <b>Raw, all-in naar NL</b>\n• €24 Cardmarket\n• €25 eBay (6 EU)\n• €35 CardTrader\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €27</i>"
+  }
+ ],
+ "day": "2026-11-06"
+}

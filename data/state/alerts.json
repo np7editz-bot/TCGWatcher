@@ -30,8 +30,8 @@
   "FB10": 0.726,
   "FB11": 0.873,
   "FB12": 0.0,
-  "SB01": 0.385,
-  "SB02": 0.47,
+  "SB01": 0.388,
+  "SB02": 0.472,
   "ST01": 0.416
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
@@ -1958,10 +1958,10 @@
    "raw": 79.9
   },
   "dbfw:dbfw:FB07:FB07-122:": {
-   "day": "2026-10-29",
-   "net": 72.83,
+   "day": "2026-11-06",
+   "net": 86.44,
    "rank": 1,
-   "raw": 27
+   "raw": 24
   },
   "dbfw:dbfw:FB07:FB07-122:AA": {
    "day": "2026-10-27",
