@@ -1,20 +1,5 @@
 {
  "day": "2026-11-07",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-19T08:00:42Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 33.99,
-   "price": 33.99,
-   "price_obs": 66,
-   "product_kind": "other",
-   "retailer": "fantasiacards",
-   "seen": "2026-11-07T01:14:10Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Super Card Game - Fusion World - Mega Booster Bundle [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-doner-teller-scharf-bundle-fb01-fb02-fb03-fb04-fb05-eng-live-boxbreak"
-  }
- ]
+ "transitions": []
 }
