@@ -3,18 +3,18 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-23T07:48:55Z",
-   "kind": "preorder->sold_out",
-   "old_price": 130.0,
-   "price": 130.0,
-   "price_obs": 69,
+   "first_seen": "2026-10-19T08:00:42Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 399.99,
+   "price": 399.99,
+   "price_obs": 70,
    "product_kind": "box",
-   "retailer": "breakthecase",
-   "seen": "2026-11-07T16:25:34Z",
-   "status": "sold_out",
-   "title": "League of Legends Riftbound TCG - Radiance - Display (24x Booster) - Englisch",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-07T21:49:49Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB09 - Dual Evolution - Display [ENG]",
    "trusted": true,
-   "url": "https://www.breakthecase.de/products/riftbound-radiance-booster-display-englisch"
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb09-dual-evolution-display-eng"
   }
  ]
 }
