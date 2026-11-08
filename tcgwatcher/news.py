@@ -90,6 +90,7 @@ def parse_anchors(source, text):
     return items
 
 
+DRAWING = re.compile(r"(drawing|raffle|lottery|registration|register|loting|\bdraw\b)", re.I)
 DATE_RX = re.compile(r"(\d{4}[-/.]\d{2}[-/.]\d{2})")
 
 
@@ -173,8 +174,12 @@ def run(http=None, day=None, send=True):
             it["fetched_at"] = now
             found.append(it)
             key = f"{src['id']}|{it['url']}"
-            if key in state["seen"]:
-                continue
+            prev = state["seen"].get(key)
+            updated = bool(prev) and (it.get("date") or "") > (prev.get("date") or "") and it["title"] != prev.get("title")
+            if prev and not updated:
+                continue                         # same article, nothing new
+            # Riot rewrites an article on the SAME url for the next product (product-drawing-faq: K/DA → T1 bundle,
+            # 2026-11-06): a newer date with a new title is news again
             state["seen"][key] = {"title": it["title"], "date": it["date"], "seen": day}
             is_product = src.get("kind") in ("product", "all") or bool(product.search(it["title"]))
             if first_run or not is_product or ignore.search(it["title"]):
@@ -182,9 +187,13 @@ def run(http=None, day=None, send=True):
             if it.get("date") and (dt.date.fromisoformat(day) - dt.date.fromisoformat(it["date"][:10])).days > cfg.get("max_age_days", 14):
                 continue                         # a repaired/new source must not replay weeks of old articles
             game = {"naruto": "Naruto", "riftbound": "Riftbound", "dbs": "Masters"}.get(it["game"], "Fusion World")
-            msgs.append({"key": key, "kind": "news",
-                         "text": f"📰 <b>{game} · officiële aankondiging</b>\n<b>{it['title']}</b>\n{src['name']} · {it['date'] or day}\n"
-                                 f"<i>Dit is meestal hét moment waarop EU-shops pre-orders openen.</i>",
+            drawing = bool(DRAWING.search(it["title"] + " " + it["url"]))
+            head = ("🎟️ <b>{g} · loting / registratie</b>" if drawing else "📰 <b>{g} · officiële aankondiging</b>").format(g=game)
+            tail = ("Beperkte oplage via loting: registratie heeft een vast venster — check de data in het artikel."
+                    if drawing else "Dit is meestal hét moment waarop EU-shops pre-orders openen.")
+            msgs.append({"key": key + ("|" + it["date"] if updated else ""), "kind": "news",
+                         "text": f"{head}{' · 🔄 bijgewerkt' if updated else ''}\n<b>{it['title']}</b>\n{src['name']} · {it['date'] or day}\n"
+                                 f"<i>{tail}</i>",
                          "buttons": [[("Bekijk", it["url"]), ("📊 Radar", SITE_URL)]]})
         log.info("%s: %d items", src["id"], len(items))
         newest = max((i.get("date") or "" for i in items), default="")

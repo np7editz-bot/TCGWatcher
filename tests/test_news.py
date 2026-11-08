@@ -154,3 +154,21 @@ def test_anchors_prefers_headline_over_teaser():
     src = {"id": "r", "game": "riftbound", "base": "https://playriftbound.com", "parser": "anchors", "path_prefix": "/en-us/news/"}
     page = '<a href="/en-us/news/announcements/x"><time>2026-10-22T16:00:00Z</time><h3>Riftbound\'s 2026 Drawings</h3><p>Everything about the K/DA Collection, T1 Player Bundle and much more text here</p></a>'
     assert parse(src, page)[0]["title"] == "Riftbound's 2026 Drawings"
+
+
+def test_rewritten_article_on_same_url_is_news_again(tmp_path, monkeypatch):
+    import tcgwatcher.news as news, tcgwatcher.store as store
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    src = {"id": "rb", "game": "riftbound", "name": "Riftbound official news", "base": "https://playriftbound.com", "parser": "anchors",
+           "path_prefix": "/en-us/news/", "kind": "all", "url": "https://playriftbound.com/en-us/news/announcements"}
+    monkeypatch.setattr(news, "load_config", lambda: {"sources": [src], "product": "x", "ignore": "zzz", "max_age_days": 14, "stale_days": 45})
+    page = {"v": '<a href="/en-us/news/announcements/product-drawing-faq/"><time>2026-10-21T16:00:00Z</time><h3>K/DA Couture Collection drawings FAQ</h3></a>'}
+    class H:
+        def get(self, u): return page["v"], None
+    store.write_json(store.state_path("news"), {"seen": {"rb|https://playriftbound.com/en-us/news/seed": {}}})
+    assert len(news.run(day="2026-10-22", http=H(), send=False)["messages"]) == 1
+    assert news.run(day="2026-10-23", http=H(), send=False)["messages"] == []            # unchanged → silent
+    page["v"] = '<a href="/en-us/news/announcements/product-drawing-faq/"><time>2026-11-06T16:00:00Z</time><h3>T1 2025 Worlds Champion Player Bundle drawing</h3></a>'
+    m = news.run(day="2026-11-07", http=H(), send=False)["messages"]
+    assert len(m) == 1 and "🔄 bijgewerkt" in m[0]["text"] and "🎟️" in m[0]["text"] and "T1 2025" in m[0]["text"]
+    assert news.run(day="2026-11-08", http=H(), send=False)["messages"] == []
