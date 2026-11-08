@@ -3,32 +3,30 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-10-19T09:07:50Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 89.95,
-   "price": 89.95,
-   "price_obs": 75,
-   "product_kind": "box",
+   "first_seen": "2026-11-08T22:03:52Z",
+   "kind": "new_listing",
+   "price": 34.95,
+   "price_obs": 1,
+   "product_kind": "other",
    "retailer": "collgamers",
-   "seen": "2026-11-08T16:40:10Z",
+   "seen": "2026-11-08T22:03:52Z",
    "status": "sold_out",
-   "title": "Dragon Ball Super Card Game Fusion World FB04 Ultra Limit Booster Box",
+   "title": "Riftbound League of Legends TCG set 5 Radiance Pre-Rift Kit",
    "trusted": true,
-   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fb04-ultra-limit-booster-box"
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-5-radiance-pre-rift-kit"
   },
   {
-   "first_seen": "2026-10-19T09:07:50Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 10.95,
-   "price": 10.95,
-   "price_obs": 75,
-   "product_kind": "deck",
+   "first_seen": "2026-11-08T22:03:52Z",
+   "kind": "new_listing",
+   "price": 34.95,
+   "price_obs": 1,
+   "product_kind": "other",
    "retailer": "collgamers",
-   "seen": "2026-11-08T16:40:10Z",
+   "seen": "2026-11-08T22:03:52Z",
    "status": "sold_out",
-   "title": "Dragon Ball Super Card Game Fusion World [FS03] - Broly - Starter Deck",
+   "title": "Riftbound League of Legends TCG set 4 Vendetta Pre-Rift Kit",
    "trusted": true,
-   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs03-broly-starter-deck"
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-4-vendetta-pre-rift-kit"
   }
  ]
 }
