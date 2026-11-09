@@ -63,6 +63,32 @@ def send(text, photo=None, buttons=None, chat_id=None):
     return False
 
 
+def send_album(items, chat_id=None):
+    """Photo album (sendMediaGroup, 2–10 photos): items = [(photo_url, html_caption), ...]. Albums cannot carry buttons,
+    so the caller sends the buttons in a text message right after. Best effort: False on any failure."""
+    import time
+    token, chat_id = _token(), chat_id or os.environ.get("TELEGRAM_CHAT_ID")
+    items = [(u, c) for u, c in items if u][:10]
+    if not token or not chat_id or len(items) < 2:
+        return False
+    media = [{"type": "photo", "media": u, "caption": c[:1024], "parse_mode": "HTML"} for u, c in items]
+    for attempt in range(3):
+        try:
+            r = requests.post(API.format(token=token, method="sendMediaGroup"), timeout=60, json={"chat_id": chat_id, "media": media})
+        except requests.RequestException as e:
+            log.warning("telegram album attempt %d failed: %s", attempt + 1, e)
+            time.sleep(5 * (attempt + 1))
+            continue
+        if r.status_code == 429:
+            time.sleep(int((r.json().get("parameters") or {}).get("retry_after", 5)))
+            continue
+        if r.status_code != 200:
+            log.error("telegram sendMediaGroup failed: %s %s", r.status_code, r.text[:200])
+            return False
+        return True
+    return False
+
+
 CMD = re.compile(r"^/(mute|unmute|status)(?:@\w+)?\s*([A-Za-z]{2}\d{2}|all)?", re.I)
 
 
