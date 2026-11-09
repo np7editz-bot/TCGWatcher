@@ -300,11 +300,13 @@ def test_cardmarket_box_low_outlier_is_not_the_buy_price():
 
 
 def test_slab_top5_across_games():
-    from tcgwatcher.alerts import pick_slabs
-    items = sorted([{"gid": "dbfw", "key": "a", "net": 300, "raw": 100}, {"gid": "riftbound", "key": "b", "net": 250, "raw": 50},
-                    {"gid": "dbfw", "key": "c", "net": 200, "raw": 100}, {"gid": "riftbound", "key": "d", "net": 100, "raw": 20}], key=lambda i: -i["net"])
-    sent = {"dbfw:a": {"net": 300, "raw": 100}}
-    assert [(i["gid"], i["key"]) for i in pick_slabs(items, sent)] == [("riftbound", "b"), ("dbfw", "c"), ("riftbound", "d")]
+    from tcgwatcher.alerts import pick_top5
+    it = lambda gid, key, net: {"gid": gid, "key": key, "net": net, "raw": 10}
+    items = [it("riftbound", "r1", 2000), it("riftbound", "r2", 900), it("riftbound", "r3", 800), it("dbfw", "a", 600),
+             it("dbfw", "b", 450), it("dbfw", "c", 300), it("dbs", "m", 200)]
+    top = pick_top5(items)
+    assert [(i["gid"], i["key"]) for i in top] == [("riftbound", "r1"), ("riftbound", "r2"), ("dbfw", "a"), ("dbfw", "b"), ("dbs", "m")]
+    assert {i["gid"] for i in pick_top5([it("dbfw", "a", 600), it("dbs", "m", 60)])} == {"dbfw", "dbs"}
 
 
 def test_alert_cap_keeps_buy_and_slab_first():
