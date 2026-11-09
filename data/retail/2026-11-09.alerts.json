@@ -1,5 +1,61 @@
 {
  "day": "2026-11-09",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-11-09T20:43:21Z",
+   "kind": "new_listing",
+   "price": 29.95,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "collgamers",
+   "seen": "2026-11-09T20:43:21Z",
+   "status": "in_stock",
+   "title": "Riftbound League of Legends TCG set 4 Vendetta Showdown Decks - Zed vs Shen",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-4-vendetta-showdown-decks-zed-vs-shen"
+  },
+  {
+   "first_seen": "2026-11-08T22:03:52Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 34.95,
+   "price": 34.95,
+   "price_obs": 5,
+   "product_kind": "other",
+   "retailer": "collgamers",
+   "seen": "2026-11-09T20:43:21Z",
+   "status": "in_stock",
+   "title": "Riftbound League of Legends TCG set 5 Radiance Pre-Rift Kit",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-5-radiance-pre-rift-kit"
+  },
+  {
+   "first_seen": "2026-11-08T22:03:52Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 34.95,
+   "price": 34.95,
+   "price_obs": 5,
+   "product_kind": "other",
+   "retailer": "collgamers",
+   "seen": "2026-11-09T20:43:21Z",
+   "status": "in_stock",
+   "title": "Riftbound League of Legends TCG set 4 Vendetta Pre-Rift Kit",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-4-vendetta-pre-rift-kit"
+  },
+  {
+   "first_seen": "2026-10-19T08:00:42Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 33.99,
+   "price": 33.99,
+   "price_obs": 80,
+   "product_kind": "other",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-09T20:43:21Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game - Fusion World - Mega Booster Bundle [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-doner-teller-scharf-bundle-fb01-fb02-fb03-fb04-fb05-eng-live-boxbreak"
+  }
+ ]
 }
