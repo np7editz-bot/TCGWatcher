@@ -209,7 +209,11 @@ def run(day, quality=None, send=True):
             games = " · ".join(dict.fromkeys(i["short"] for i in top))
             txt = (f"🏆 <b>Top 5 slabs · {games}</b>\n\n" + "\n\n".join(lines)
                    + "\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Alle kandidaten op de radar.</i>")
-            m = _m(f"slab_top5:{day}", "slab", txt, photo=_big(top[0]["c"].get("image")), buttons=btns + [[("📊 Alle slabs", SITE_URL)]])
+            m = _m(f"slab_top5:{day}", "slab", txt, buttons=btns + [[("📊 Alle slabs", SITE_URL)]])
+            # every card as its own picture: an album first (captions = rank, card, price, net), then this text with the buttons
+            m["album"] = [(_big(i["c"].get("image")),
+                           f"<b>#{r} · {_card(i['g']['name'], i['g']['number'])} {i['g']['class'].replace('_AA', ' AA')}</b> · {i['short']} {i['g']['set']}\n"
+                           f"raw €{i['raw']:.0f} → netto €{i['net']:.0f}") for r, i in enumerate(top, 1)]
             m["on_sent"] = {"slab_top5": [("keys", keys), ("day", day)],
                             "sent_slabs": [(k, {"day": day, "net": i["net"], "raw": i["raw"], "rank": r}) for r, (k, i) in enumerate(zip(keys, top), 1)]}
             msgs.append(m)
@@ -233,6 +237,8 @@ def run(day, quality=None, send=True):
         m["delivered"] = False
     if send:
         for m in msgs[:MAX_PER_RUN]:
+            if m.get("album"):
+                telegram.send_album(m["album"])          # best effort; the text + buttons below go out regardless
             ok = telegram.send(m["text"], photo=m.get("photo"), buttons=m.get("buttons"))
             m["delivered"] = bool(ok)
             if ok and m.get("on_sent"):

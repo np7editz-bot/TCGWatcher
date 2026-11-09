@@ -330,3 +330,18 @@ def test_pack_bundle_ev_from_set_evs():
     b = out[0]
     assert b["sum_eur"] == 3 * 6 + 4 * 4 + 15 and b["buy"]["source"] == "collgamers" and b["ratio"] == round(49 / 100, 3)
     assert b["priced"] == 3 and b["n"] == 3 and b["kind"] == "packs"
+
+
+def test_send_album_payload(monkeypatch):
+    import tcgwatcher.telegram as tg
+    monkeypatch.setattr(tg, "_token", lambda: "t")
+    seen = {}
+    class R:
+        status_code = 200
+        def json(self): return {"ok": True}
+    def post(url, timeout, json):
+        seen["url"], seen["json"] = url, json; return R()
+    monkeypatch.setattr(tg.requests, "post", post)
+    assert tg.send_album([("https://a/1.jpg", "<b>#1</b>"), (None, "skip"), ("https://a/2.jpg", "#2")], chat_id="1")
+    assert seen["url"].endswith("/sendMediaGroup") and [m["media"] for m in seen["json"]["media"]] == ["https://a/1.jpg", "https://a/2.jpg"]
+    assert not tg.send_album([("https://a/1.jpg", "only one")], chat_id="1")
