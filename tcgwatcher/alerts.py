@@ -186,33 +186,33 @@ def run(day, quality=None, send=True):
             for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
                 state["active"].pop(key, None)             # legacy episodes: rotation is tracked in sent_slabs now
         all_items.sort(key=lambda i: -i["net"])
-        # Telegram gets up to 5 cards that were NOT sent before (state.sent_slabs, never cleared); a sent card returns
-        # only when it got clearly better (net ≥ +25% or raw ≥ 10% cheaper). The page keeps every candidate, marked.
+        # ONE message: the real top 5 across games (owner 2026-11-09: "Masters, Riftbound en Fusion World moeten het zijn").
+        # Every game with a candidate gets a slot first, then the rest by net with at most 2 per game, so Riftbound's
+        # €1000+ signatures cannot crowd the list. Sent only when the line-up differs from the last delivered top 5;
+        # cards new to it are marked 🆕. The page keeps every candidate.
         sent = state.setdefault("sent_slabs", {})
-        if True:
-            picked = pick_slabs(all_items, sent)
-            for rank, i in enumerate(picked, 1):
-                gid = i["gid"]
-                key = f"slab:{gid}:{i['key']}"
-                g, c, sl = i["g"], i["c"], i["slab"]
-                where = "\n".join(f"• €{o['price']:.0f} {o['src']}" for o in i["opts"][:3])
+        top = pick_top5(all_items)
+        keys = [f"{i['gid']}:{i['key']}" for i in top]
+        last = state.get("slab_top5", {}).get("keys", [])
+        if top and sorted(keys) != sorted(last):
+            lines, btns = [], []
+            for rank, i in enumerate(top, 1):
+                g, o = i["g"], i["opts"][0]
                 cls = "Gold (Manga)" if i["key"].endswith(":GOLD") else g["class"].replace("_AA", " AA")
-                txt = (f"🏆 <b>SLAB #{rank} · {_card(g['name'], g['number'])} {cls}</b> · {i['short']} {g['set']}\n"
-                       f"Raw kopen vanaf <b>€{i['raw']:.0f}</b> → {g['service']} {g['top_grade']} waarde <b>€{g['top_median']:.0f}</b> ({g['top_n']} listings)\n"
-                       f"Netto na grading en fees: <b>€{i['net']:.0f}</b> per kaart ({i['net'] / i['raw']:.0%} op inleg)\n\n"
-                       f"🛒 <b>Raw, all-in naar NL</b>\n{where}")
-                if i["raw"] < 0.5 * g["raw_eur"]:
-                    txt += (f"\n⚠️ <b>{1 - i['raw'] / g['raw_eur']:.0%} onder marktwaarde</b> — te mooi? Check feedback, retourbeleid en foto's; "
-                            f"betaal alleen met koperbescherming.")
-                if sl:
-                    txt += f"\n\n🏷 <b>Graded al te koop in EU:</b> {sl['grader']} {sl['grade']:g} €{sl['price']:.0f} ({sl['ratio']:.2f}× raw) — goedkoper dan zelf graden"
-                alt = " · ".join(f"{o['service']} €{o['net']:.0f}" for o in g.get("options", [])[1:3])
-                txt += (f"\n<i>Andere services: {alt}</i>" if alt else "") + "\n<i>Aanname 40% PSA 10; vraagprijzen als proxy · marktwaarde raw €" + f"{g['raw_eur']:.0f}</i>"
-                o = i["opts"][0]                                     # one button: the cheapest; the comparison is in the text
-                btn = [[(f"🛒 Koop raw €{o['price']:.0f} · {o['src'].split(' (')[0]}", o["url"]), ("📊 Radar", SITE_URL)]]
-                m = _m(key, "slab", txt, photo=_big(c.get("image")), buttons=btn)
-                m["on_sent"] = {"sent_slabs": (f"{gid}:{i['key']}", {"day": day, "net": i["net"], "raw": i["raw"], "rank": rank})}
-                msgs.append(m)
+                new_ = f"{i['gid']}:{i['key']}" not in last
+                thin = " · ⚠️ dunne markt" if g["top_n"] < cfg.get("grading", {}).get("min_top_n", 3) else ""
+                lines.append(f"<b>#{rank}{' 🆕' if new_ else ''} · {_card(g['name'], g['number'])} {cls}</b> · {i['short']} {g['set']}\n"
+                             f"raw <b>€{i['raw']:.0f}</b> ({o['src'].split(' (')[0]}) → {g['service']} {g['top_grade']} €{g['top_median']:.0f} "
+                             f"({g['top_n']} listings{thin}) · netto <b>€{i['net']:.0f}</b>"
+                             + (f"\n⚠️ {1 - i['raw'] / g['raw_eur']:.0%} onder marktwaarde — check verkoper" if i["raw"] < 0.5 * g["raw_eur"] else ""))
+                btns.append([(f"🛒 #{rank} €{i['raw']:.0f} · {o['src'].split(' (')[0]}", o["url"])])
+            games = " · ".join(dict.fromkeys(i["short"] for i in top))
+            txt = (f"🏆 <b>Top 5 slabs · {games}</b>\n\n" + "\n\n".join(lines)
+                   + "\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Alle kandidaten op de radar.</i>")
+            m = _m(f"slab_top5:{day}", "slab", txt, photo=_big(top[0]["c"].get("image")), buttons=btns + [[("📊 Alle slabs", SITE_URL)]])
+            m["on_sent"] = {"slab_top5": [("keys", keys), ("day", day)],
+                            "sent_slabs": [(k, {"day": day, "net": i["net"], "raw": i["raw"], "rank": r}) for r, (k, i) in enumerate(zip(keys, top), 1)]}
+            msgs.append(m)
 
         # 5. briefing: daily | weekly (Sunday) | off
         mode = cfg.get("briefing", "weekly")
@@ -236,8 +236,9 @@ def run(day, quality=None, send=True):
             ok = telegram.send(m["text"], photo=m.get("photo"), buttons=m.get("buttons"))
             m["delivered"] = bool(ok)
             if ok and m.get("on_sent"):
-                for bucket, (k, v) in m["on_sent"].items():
-                    state.setdefault(bucket, {})[k] = v
+                for bucket, kv in m["on_sent"].items():
+                    for k, v in (kv if isinstance(kv, list) else [kv]):
+                        state.setdefault(bucket, {})[k] = v
     store.write_json(store.alerts_path(day), {"day": day, "alerts": [{k: v for k, v in m.items() if k not in ("buttons", "on_sent")} | {"buttons": m.get("buttons")} for m in msgs]}, compact=False)
     store.write_json(store.state_path("alerts"), state, compact=False)
     return msgs
@@ -272,6 +273,22 @@ def buy_card(gid, gdata, s, pos, n, buy, again=False):
     o = (real or [{"source": bb["source"], "price": bb["price"], "status": "in_stock", "url": bb.get("url") or SITE_URL}])[0]   # button = the real cheapest
     btn = [[(f"🛒 Koop €{o['price']:.0f} · {o['source']} · {st_short.get(o['status'], o['status'])}", o["url"]), ("📊 Radar", SITE_URL)]]
     return _m(f"buy:{gid}:{s['code']}", "buy", txt, photo=_big((s.get("box") or {}).get("image") or s["top_hit"].get("image")), buttons=btn)
+
+
+def pick_top5(items, n=5, per_game=2):
+    """Top n by net across games: the best card of every game first, then the rest by net, at most per_game per game."""
+    items = sorted(items, key=lambda i: -i["net"])
+    picked, seen_games = [], set()
+    for i in items:                                         # one slot per game that has a candidate
+        if i["gid"] not in seen_games:
+            picked.append(i); seen_games.add(i["gid"])
+    picked = picked[:n]
+    for i in items:
+        if len(picked) >= n:
+            break
+        if i not in picked and sum(1 for p in picked if p["gid"] == i["gid"]) < per_game:
+            picked.append(i)
+    return sorted(picked, key=lambda i: -i["net"])
 
 
 def pick_slabs(items, sent, gid=None, n=5):

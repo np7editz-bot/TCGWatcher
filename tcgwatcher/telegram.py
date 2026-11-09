@@ -44,11 +44,23 @@ def send(text, photo=None, buttons=None, chat_id=None):
         payload["link_preview_options"] = {"is_disabled": True}
     if buttons:
         payload["reply_markup"] = {"inline_keyboard": [[{"text": l, "url": u} for l, u in row] for row in buttons]}
-    r = requests.post(API.format(token=token, method="sendMessage"), timeout=30, json=payload)
-    if r.status_code != 200:
-        log.error("telegram sendMessage failed: %s %s", r.status_code, r.text[:200])
-        return False
-    return True
+    import time
+    for attempt in range(3):                 # a Telegram timeout must never kill the nightly run (2026-11-09: run failed, no data)
+        try:
+            r = requests.post(API.format(token=token, method="sendMessage"), timeout=30, json=payload)
+        except requests.RequestException as e:
+            log.warning("telegram send attempt %d failed: %s", attempt + 1, e)
+            time.sleep(5 * (attempt + 1))
+            continue
+        if r.status_code == 429:
+            time.sleep(int((r.json().get("parameters") or {}).get("retry_after", 5)))
+            continue
+        if r.status_code != 200:
+            log.error("telegram sendMessage failed: %s %s", r.status_code, r.text[:200])
+            return False
+        return True
+    log.error("telegram: giving up after 3 attempts")
+    return False
 
 
 CMD = re.compile(r"^/(mute|unmute|status)(?:@\w+)?\s*([A-Za-z]{2}\d{2}|all)?", re.I)

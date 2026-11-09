@@ -459,7 +459,8 @@ def grade_signals(doc, cfg=None):
             grades = (c.get("by_grader") or {}).get(svc) or {}
             mix = {str(float(k)): v for k, v in sc["mix"].items()}       # config "10" / "9.5" ↔ stored "10.0" / "9.5"
             top = max(mix, key=float)
-            if not grades.get(top) or grades[top]["n"] < cfg.get("min_top_n", 3):
+            min_n = (cfg.get("min_top_n_by_game") or {}).get(key.split(":")[0], cfg.get("min_top_n", 3))
+            if not grades.get(top) or grades[top]["n"] < min_n:
                 continue
             expected, detail = 0.0, {}
             for grade, share in mix.items():

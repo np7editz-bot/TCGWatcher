@@ -20,6 +20,7 @@ slabs:                     # eBay graded copies (EBAY_DE/EBAY_NL, incl. shipping
 grading:                   # 📈 GRADE-KANS: buy raw, grade, sell graded (asks as proxy for sales); best service wins
   fee_pct: 13              # eBay final value fee + payment
   min_top_n: 3             # liquidity: at least 3 listings of the service's top grade
+  min_top_n_by_game: { riftbound: 2 }   # young graded market (Riftbound slabs are rare): 2 listings, flagged ⚠️ dunne markt
   min_profit_eur: 50       # expected net per card
   min_roi: 0.5             # net ÷ raw price
   services:                # outcome mix = share of raw copies that come back at each grade (conservative for modern foils)
