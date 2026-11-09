@@ -815,6 +815,62 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 263.77
+  },
+  {
+   "code": "FB06",
+   "game": "dbfw",
+   "key": "dbfw:FB06:FB06-103:AA",
+   "kind": "raw",
+   "name": "Chi-Chi : Childhood FB06-103 SR_AA",
+   "net_then": 206.37,
+   "opened": "2026-11-08",
+   "price": 28.0,
+   "psa10_then": 390.36,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 26.74
+  },
+  {
+   "code": "OGN",
+   "game": "riftbound",
+   "key": "riftbound:OGN:303*/298:SIG",
+   "kind": "raw",
+   "name": "Ahri 303*/298 SIG",
+   "net_then": 2016.87,
+   "opened": "2026-11-08",
+   "price": 6505.64,
+   "psa10_then": 6942.74,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 2548.67
+  },
+  {
+   "code": "SFD",
+   "game": "riftbound",
+   "key": "riftbound:SFD:224*/221:SIG",
+   "kind": "raw",
+   "name": "Aphelios 224*/221 SIG",
+   "net_then": 852.05,
+   "opened": "2026-11-08",
+   "price": 703.64,
+   "psa10_then": 1806.64,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 317.5
+  },
+  {
+   "code": "SFD",
+   "game": "riftbound",
+   "key": "riftbound:SFD:227/221:ON",
+   "kind": "raw",
+   "name": "Ahri 227/221 ON",
+   "net_then": 763.24,
+   "opened": "2026-11-08",
+   "price": 485.63,
+   "psa10_then": 1919.98,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 481.25
   }
  ]
 }
