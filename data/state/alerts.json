@@ -1904,7 +1904,7 @@
    "raw": 27
   },
   "dbfw:dbfw:FB05:FB05-120:SAA": {
-   "day": "2026-11-08",
+   "day": "2026-11-09",
    "net": 1039.53,
    "rank": 2,
    "raw": 605
@@ -1970,7 +1970,7 @@
    "raw": 24
   },
   "dbfw:dbfw:FB07:FB07-122:AA": {
-   "day": "2026-11-08",
+   "day": "2026-11-09",
    "net": 735.46,
    "rank": 4,
    "raw": 595
@@ -2162,16 +2162,22 @@
    "raw": 245
   },
   "dbs:dbs:BT31:BT31-150:SCR": {
-   "day": "2026-11-08",
+   "day": "2026-11-09",
    "net": 220.49,
    "rank": 5,
    "raw": 255
   },
   "riftbound:riftbound:OGN:303*/298:SIG": {
-   "day": "2026-11-08",
+   "day": "2026-11-09",
    "net": 3370.54,
    "rank": 1,
    "raw": 1195
+  },
+  "riftbound:riftbound:SFD:224*/221:SIG": {
+   "day": "2026-11-09",
+   "net": 846.55,
+   "rank": 3,
+   "raw": 323
   },
   "riftbound:riftbound:SFD:227/221:ON": {
    "day": "2026-11-08",
@@ -2181,11 +2187,11 @@
   }
  },
  "slab_top5": {
-  "day": "2026-11-08",
+  "day": "2026-11-09",
   "keys": [
    "riftbound:riftbound:OGN:303*/298:SIG",
    "dbfw:dbfw:FB05:FB05-120:SAA",
-   "riftbound:riftbound:SFD:227/221:ON",
+   "riftbound:riftbound:SFD:224*/221:SIG",
    "dbfw:dbfw:FB07:FB07-122:AA",
    "dbs:dbs:BT31:BT31-150:SCR"
   ]

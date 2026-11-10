@@ -1,0 +1,73 @@
+{
+ "alerts": [
+  {
+   "album": [
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/653102_in_1000x1000.jpg",
+     "<b>#1 · Ahri 303*/298 SIG</b> · Riftbound OGN\nraw €1195 → netto €3371"
+    ],
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/611093_in_1000x1000.jpg",
+     "<b>#2 · Frieza FB05-120 SAA</b> · Fusion World FB05\nraw €605 → netto €1040"
+    ],
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/666787_in_1000x1000.jpg",
+     "<b>#3 · Aphelios 224*/221 SIG</b> · Riftbound SFD\nraw €323 → netto €847"
+    ],
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/651126_in_1000x1000.jpg",
+     "<b>#4 · Son Goku : GT FB07-122 SCR AA</b> · Fusion World FB07\nraw €595 → netto €735"
+    ],
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/702600_in_1000x1000.jpg",
+     "<b>#5 · SSB Kaio-ken Vegito BT31-150 SCR</b> · Masters BT31\nraw €255 → netto €220"
+    ]
+   ],
+   "at": "2026-11-10T03:54:17Z",
+   "buttons": [
+    [
+     [
+      "🛒 #1 €1195 · Cardmarket",
+      "https://www.cardmarket.com/en/Riftbound/Products/Singles/Origins/Ahri-Nine-Tailed-Fox-V3-Signed-Showcase?language=1"
+     ]
+    ],
+    [
+     [
+      "🛒 #2 €605 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/New-Adventure-Fusion-World/Frieza-FB05-120-Fusion-World-V3-God-Rare?language=1"
+     ]
+    ],
+    [
+     [
+      "🛒 #3 €323 · Cardmarket",
+      "https://www.cardmarket.com/en/Riftbound/Products/Singles/Spiritforged/Aphelios-Exalted-V3-Signed-Showcase?language=1"
+     ]
+    ],
+    [
+     [
+      "🛒 #4 €595 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Wish-for-Shenron-Fusion-World/Son-Goku-GT-FB07-122-Fusion-World-V2-Alternate-Art?language=1"
+     ]
+    ],
+    [
+     [
+      "🛒 #5 €255 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=SSB%20Kaio-ken%20Vegito%2C%20True%20God%20Power&language=1"
+     ]
+    ],
+    [
+     [
+      "📊 Alle slabs",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab_top5:2026-11-09",
+   "kind": "slab",
+   "photo": null,
+   "text": "🏆 <b>Top 5 slabs · Riftbound · Fusion World · Masters</b>\n\n<b>#1 · Ahri 303*/298 SIG</b> · Riftbound OGN\nraw <b>€1195</b> (Cardmarket) → PSA 10 €6943 (2 listings · ⚠️ dunne markt) · netto <b>€3371</b>\n⚠️ 53% onder marktwaarde — check verkoper\n\n<b>#2 · Frieza FB05-120 SAA</b> · Fusion World FB05\nraw <b>€605</b> (Cardmarket) → PSA 10 €2525 (4 listings) · netto <b>€1040</b>\n\n<b>#3 🆕 · Aphelios 224*/221 SIG</b> · Riftbound SFD\nraw <b>€323</b> (Cardmarket) → PSA 10 €1807 (2 listings · ⚠️ dunne markt) · netto <b>€847</b>\n\n<b>#4 · Son Goku : GT FB07-122 SCR AA</b> · Fusion World FB07\nraw <b>€595</b> (Cardmarket) → PSA 10 €2050 (4 listings) · netto <b>€735</b>\n\n<b>#5 · SSB Kaio-ken Vegito BT31-150 SCR</b> · Masters BT31\nraw <b>€255</b> (Cardmarket) → PSA 10 €757 (3 listings) · netto <b>€220</b>\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Alle kandidaten op de radar.</i>"
+  }
+ ],
+ "day": "2026-11-09"
+}
