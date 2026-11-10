@@ -1,20 +1,5 @@
 {
  "day": "2026-11-10",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-11-06T21:29:29Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 199.99,
-   "price": 199.99,
-   "price_obs": 17,
-   "product_kind": "box",
-   "retailer": "fantasiacards",
-   "seen": "2026-11-10T03:54:28Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB11 - Brightness of Hope - Display [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb11-display-eng-vorbestellung-release-september-2026"
-  }
- ]
+ "transitions": []
 }
