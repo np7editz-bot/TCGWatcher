@@ -18,21 +18,21 @@
  },
  "muted": [],
  "prev_ranking": {
-  "FB01": 0.351,
-  "FB02": 0.421,
-  "FB03": 0.564,
-  "FB04": 0.344,
-  "FB05": 0.506,
-  "FB06": 0.221,
-  "FB07": 0.509,
-  "FB08": 0.565,
-  "FB09": 0.61,
-  "FB10": 0.709,
-  "FB11": 0.845,
+  "FB01": 0.358,
+  "FB02": 0.413,
+  "FB03": 0.66,
+  "FB04": 0.318,
+  "FB05": 0.478,
+  "FB06": 0.227,
+  "FB07": 0.513,
+  "FB08": 0.516,
+  "FB09": 0.549,
+  "FB10": 0.711,
+  "FB11": 0.819,
   "FB12": 0.0,
-  "SB01": 0.394,
-  "SB02": 0.472,
-  "ST01": 0.462
+  "SB01": 0.401,
+  "SB02": 0.459,
+  "ST01": 0.516
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
  "seen_expansions": {
@@ -1904,9 +1904,9 @@
    "raw": 27
   },
   "dbfw:dbfw:FB05:FB05-120:SAA": {
-   "day": "2026-11-09",
-   "net": 1039.53,
-   "rank": 2,
+   "day": "2026-11-10",
+   "net": 307.08,
+   "rank": 4,
    "raw": 605
   },
   "dbfw:dbfw:FB06:FB06-103:AA": {
@@ -2072,10 +2072,10 @@
    "raw": 29.95
   },
   "dbfw:dbfw:SB01:SB01-045:GOLD": {
-   "day": "2026-10-18",
-   "net": 120.45,
-   "rank": 5,
-   "raw": 324
+   "day": "2026-11-10",
+   "net": 350.45,
+   "rank": 3,
+   "raw": 285
   },
   "dbfw:dbfw:SB01:SB01-057:AA": {
    "day": "2026-10-18",
@@ -2162,21 +2162,21 @@
    "raw": 245
   },
   "dbs:dbs:BT31:BT31-150:SCR": {
-   "day": "2026-11-09",
-   "net": 220.49,
+   "day": "2026-11-10",
+   "net": 216.92,
    "rank": 5,
    "raw": 255
   },
   "riftbound:riftbound:OGN:303*/298:SIG": {
-   "day": "2026-11-09",
-   "net": 3370.54,
+   "day": "2026-11-10",
+   "net": 3341.04,
    "rank": 1,
    "raw": 1195
   },
   "riftbound:riftbound:SFD:224*/221:SIG": {
-   "day": "2026-11-09",
+   "day": "2026-11-10",
    "net": 846.55,
-   "rank": 3,
+   "rank": 2,
    "raw": 323
   },
   "riftbound:riftbound:SFD:227/221:ON": {
@@ -2187,12 +2187,12 @@
   }
  },
  "slab_top5": {
-  "day": "2026-11-09",
+  "day": "2026-11-10",
   "keys": [
    "riftbound:riftbound:OGN:303*/298:SIG",
-   "dbfw:dbfw:FB05:FB05-120:SAA",
    "riftbound:riftbound:SFD:224*/221:SIG",
-   "dbfw:dbfw:FB07:FB07-122:AA",
+   "dbfw:dbfw:SB01:SB01-045:GOLD",
+   "dbfw:dbfw:FB05:FB05-120:SAA",
    "dbs:dbs:BT31:BT31-150:SCR"
   ]
  }
