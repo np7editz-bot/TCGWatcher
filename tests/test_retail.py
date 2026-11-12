@@ -167,3 +167,13 @@ def test_masters_short_codes_map_to_bt():
     assert set_code_of("Dragon Ball Super Box Zenkai New Series ULTRA BOUT #5 [B32] ENG (20 packs)") == "BT32"
     assert set_code_of("Dragon Ball SCG B31: Battles Beyond Dimensions Boosterbox") == "BT31"
     assert set_code_of("Pokemon B12 Booster Display") is None
+
+
+def test_preorder_on_unscored_set_shows_ev_indication():
+    from tcgwatcher.retail import format_alerts
+    latest = {"games": {"dbs": {"alerts": True, "sets": [{"code": "BT32", "flags": ["no_cards", "presale", "young"], "ev_eu_excl_saa": 0,
+              "ev_proxy": {"ev": 139.5, "from": ["BT28", "BT29", "BT30", "BT31"], "low": 97.8, "high": 213.6}}]}}}
+    t = {"trusted": True, "retailer": "fantasiacards", "title": "Dragon Ball Super Card Game - Masters - B32 - Chromatic Ascension - Display [ENG]",
+         "url": "https://fantasiacards.de/products/b32", "price": 129.99, "status": "preorder", "kind": "new_listing", "product_kind": "box"}
+    out = format_alerts([t], first_run=False, latest=latest)
+    assert len(out) == 1 and "PRE-ORDER" in out[0]["text"] and "BT32" in out[0]["text"] and "~<b>1.07</b>" in out[0]["text"]

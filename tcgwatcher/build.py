@@ -121,6 +121,16 @@ def build(day, quality=None):
             else:
                 s["valuation"] = "tcgplayer"
             s["best_buy"] = best_buy(s, landed_cfg.get("min_offers", 3), cardmarket_buy=g.get("cardmarket_box_buy", True))
+        # A set without a card list (pre-release, BT32/FB12) has no EV yet. For pre-order decisions it gets an indication:
+        # the median EV of the last 4 settled booster sets of the same game (Cardmarket-valued, past the young window).
+        settled = sorted([x for x in sets_scored if x.get("valuation") == "cardmarket" and x.get("ev_eu_excl_saa")
+                          and not set(x["flags"]) & {"young", "no_cards", "manga", "story"}], key=lambda x: x.get("published") or "")[-4:]
+        if settled:
+            evs = sorted(x["ev_eu_excl_saa"] for x in settled)
+            mid = (evs[(len(evs) - 1) // 2] + evs[len(evs) // 2]) / 2
+            for s in sets_scored:
+                if "no_cards" in s["flags"]:
+                    s["ev_proxy"] = {"ev": round(mid, 2), "from": [x["code"] for x in settled], "low": round(evs[0], 2), "high": round(evs[-1], 2)}
         for s in other_sets:
             s["retail"] = retail.get(s["code"], [])
         out["games"][gid] = {
