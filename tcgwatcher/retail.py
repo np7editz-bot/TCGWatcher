@@ -50,7 +50,7 @@ KIND_CASE = re.compile(r"\bcase\b", re.I)
 KIND_SINGLE = re.compile(r"(\b(FB|SB|ST|FS|BT|BE|SD|EB)\d{2}-\d{3}[a-z]?\b|\b\d{3}[a-z*]?/\d{3}\b)", re.I)   # a card number: a single card, never sealed
 KIND_DECK = re.compile(r"(starter|\bdeck\b)", re.I)
 KIND_PACK = re.compile(r"(booster\s*pack|\bpacks?\b|sleeved|blister|\bbooster\b)", re.I)
-KIND_OTHER = re.compile(r"(sleeves?\b|playmat|promo|binder|bundle|lot\b|collector'?s? display"
+KIND_OTHER = re.compile(r"(sleeves?\b|playmat|promo|binder|bundle|lot\b|collector'?s?\b|\b[A-Z]{1,2}\d{2}-C\b|mystery|pre-?release"
                         r"|proving grounds|jumbo|\bkit\b|gift box|box set|vault|showdown|chin[oe]s?e?\b|\bchino\b|acrylic)", re.I)   # not a booster box
 # English market only: Japanese-language product is a different market (and much cheaper) → never a box/case for us
 LANG_JP = re.compile(r"(\[\s*j[ap]\s*\]|\bjp\b|japan(ese|isch|s)?\b|\bjap\b|日本|-jp(-|$)|\(jp\))", re.I)

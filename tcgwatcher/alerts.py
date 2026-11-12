@@ -186,36 +186,34 @@ def run(day, quality=None, send=True):
             for key in [k for k in state["active"] if k.startswith(f"slab:{gid}:")]:
                 state["active"].pop(key, None)             # legacy episodes: rotation is tracked in sent_slabs now
         all_items.sort(key=lambda i: -i["net"])
-        # ONE message: the real top 5 across games (owner 2026-11-09: "Masters, Riftbound en Fusion World moeten het zijn").
-        # Every game with a candidate gets a slot first, then the rest by net with at most 2 per game, so Riftbound's
-        # €1000+ signatures cannot crowd the list. Sent only when the line-up differs from the last delivered top 5;
-        # cards new to it are marked 🆕. The page keeps every candidate.
+        # ONE message a day with 5 slab chances that were NOT sent before (owner 2026-11-12: sent ones live on the radar,
+        # next day brings new ones). Every game with an unsent candidate gets a slot, then by net with at most 2 per game.
+        # A sent card never comes back; the page keeps all of them, marked 📨.
         sent = state.setdefault("sent_slabs", {})
-        top = pick_top5(all_items)
-        keys = [f"{i['gid']}:{i['key']}" for i in top]
-        last = state.get("slab_top5", {}).get("keys", [])
-        if top and sorted(keys) != sorted(last):
+        fresh = [i for i in all_items if f"{i['gid']}:{i['key']}" not in sent]
+        top = pick_top5(fresh)
+        if top:
+            keys = [f"{i['gid']}:{i['key']}" for i in top]
             lines, btns = [], []
             for rank, i in enumerate(top, 1):
                 g, o = i["g"], i["opts"][0]
                 cls = "Gold (Manga)" if i["key"].endswith(":GOLD") else g["class"].replace("_AA", " AA")
-                new_ = f"{i['gid']}:{i['key']}" not in last
                 thin = " · ⚠️ dunne markt" if g["top_n"] < cfg.get("grading", {}).get("min_top_n", 3) else ""
-                lines.append(f"<b>#{rank}{' 🆕' if new_ else ''} · {_card(g['name'], g['number'])} {cls}</b> · {i['short']} {g['set']}\n"
+                lines.append(f"<b>#{rank} · {_card(g['name'], g['number'])} {cls}</b> · {i['short']} {g['set']}\n"
                              f"raw <b>€{i['raw']:.0f}</b> ({o['src'].split(' (')[0]}) → {g['service']} {g['top_grade']} €{g['top_median']:.0f} "
                              f"({g['top_n']} listings{thin}) · netto <b>€{i['net']:.0f}</b>"
                              + (f"\n⚠️ {1 - i['raw'] / g['raw_eur']:.0%} onder marktwaarde — check verkoper" if i["raw"] < 0.5 * g["raw_eur"] else ""))
                 btns.append([(f"🛒 #{rank} €{i['raw']:.0f} · {o['src'].split(' (')[0]}", o["url"])])
             games = " · ".join(dict.fromkeys(i["short"] for i in top))
-            txt = (f"🏆 <b>Top 5 slabs · {games}</b>\n\n" + "\n\n".join(lines)
-                   + "\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Alle kandidaten op de radar.</i>")
-            m = _m(f"slab_top5:{day}", "slab", txt, buttons=btns + [[("📊 Alle slabs", SITE_URL)]])
-            # every card as its own picture: an album first (captions = rank, card, price, net), then this text with the buttons
+            left = len(fresh) - len(top)
+            txt = (f"🏆 <b>{len(top)} nieuwe slab-kansen · {games}</b>\n\n" + "\n\n".join(lines)
+                   + f"\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. "
+                     f"Eerder gemelde ({len(sent)}) staan op de radar met 📨{f'; nog {left} nieuwe voor de komende dagen' if left > 0 else ''}.</i>")
+            m = _m(f"slab_new:{day}", "slab", txt, buttons=btns + [[("📊 Alle slabs", SITE_URL)]])
             m["album"] = [(_big(i["c"].get("image")),
                            f"<b>#{r} · {_card(i['g']['name'], i['g']['number'])} {i['g']['class'].replace('_AA', ' AA')}</b> · {i['short']} {i['g']['set']}\n"
                            f"raw €{i['raw']:.0f} → netto €{i['net']:.0f}") for r, i in enumerate(top, 1)]
-            m["on_sent"] = {"slab_top5": [("keys", keys), ("day", day)],
-                            "sent_slabs": [(k, {"day": day, "net": i["net"], "raw": i["raw"], "rank": r}) for r, (k, i) in enumerate(zip(keys, top), 1)]}
+            m["on_sent"] = {"sent_slabs": [(k, {"day": day, "net": i["net"], "raw": i["raw"], "rank": r}) for r, (k, i) in enumerate(zip(keys, top), 1)]}
             msgs.append(m)
 
         # 5. briefing: daily | weekly (Sunday) | off
