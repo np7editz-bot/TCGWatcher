@@ -191,7 +191,8 @@ footer{color:var(--fg3);font-size:12.5px}
   <section data-view="slabs" hidden>
     <h2>Slabs · raw kopen voor graded waarde</h2>
     <p class="muted" id="slabsNote"></p>
-    <p><label><input type="checkbox" id="slabsAllGames" checked> alle games in één lijst (Fusion World, Masters, Riftbound …)</label></p>
+    <p><label><input type="checkbox" id="slabsAllGames" checked> alle games in één lijst (Fusion World, Masters, Riftbound …)</label>
+       &nbsp; <label><input type="checkbox" id="slabsNewFirst" checked> nog niet gemelde eerst</label></p>
     <div class="sig" id="slabsAll"></div>
     <div style="height:18px"></div>
     <h3>🏷 Graded exemplaren te koop in de EU (eBay DE/NL + CardTrader graded)</h3>
@@ -420,7 +421,8 @@ function detail(s,x){
 }
 function renderSlabs(){
   const all = document.getElementById('slabsAllGames').checked;
-  const items = all ? Object.entries(DATA.games).flatMap(([id,GG])=>slabItems(id,GG)).sort((a,b)=>b.net-a.net) : slabItems();
+  let items = all ? Object.entries(DATA.games).flatMap(([id,GG])=>slabItems(id,GG)).sort((a,b)=>b.net-a.net) : slabItems();
+  if (document.getElementById('slabsNewFirst').checked) items = [...items.filter(i=>!i.sent), ...items.filter(i=>i.sent)];
   const day = all ? Object.values(DATA.games).map(x=>x.slabs_day).filter(Boolean).sort().pop() : G.slabs_day;
   document.getElementById('slabsNote').textContent = day ? `eBay DE/NL + CardTrader graded, dag ${day} · ${items.length} rendabele kandidaten${all?' over alle games':''} (netto ≥ €50, ≥ 3 listings van de topgrade)` : 'Nog geen eBay-data.';
   document.getElementById('slabsAll').innerHTML = items.map((i,k)=>slabCard(i,k+1)).join('') || '<div class="panel muted">Geen kandidaten.</div>';
@@ -450,6 +452,7 @@ function renderNews(){
   rl.sort((a,b)=>(b.ratio??-1)-(a.ratio??-1));
   document.getElementById('retailList').innerHTML = rl.map(o=>`<div><span><span class="code">${o.set}</span> <a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.retailer)}</a> <span class="name">${o.status==='preorder'?'pre-order':'voorraad'}${o.kind==='case'?' · case':''}</span></span><span class="p">€${o.price.toFixed(0)}${o.ratio!=null?` <span style="color:var(--fg3)">· ${o.ratio.toFixed(2)}</span>`:''}</span></div>`).join('') || '<div class="muted">Niets koopbaar bij de betrouwbare shops.</div>';
 }
+document.getElementById('slabsNewFirst').addEventListener('change', renderSlabs);
 document.getElementById('slabsAllGames').addEventListener('change', ()=>{ try{localStorage.setItem('tcgw.slabsAll', document.getElementById('slabsAllGames').checked?'1':'0')}catch(e){} renderSlabs(); });
 try { if (localStorage.getItem('tcgw.slabsAll')==='0') document.getElementById('slabsAllGames').checked=false; } catch(e) {}
 function renderAll(){ renderToday(); renderBoxes(); renderSlabs(); renderPortfolio(); renderNews(); }

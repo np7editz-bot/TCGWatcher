@@ -177,3 +177,11 @@ def test_preorder_on_unscored_set_shows_ev_indication():
          "url": "https://fantasiacards.de/products/b32", "price": 129.99, "status": "preorder", "kind": "new_listing", "product_kind": "box"}
     out = format_alerts([t], first_run=False, latest=latest)
     assert len(out) == 1 and "PRE-ORDER" in out[0]["text"] and "BT32" in out[0]["text"] and "~<b>1.07</b>" in out[0]["text"]
+
+
+def test_collector_and_mystery_boxes_are_not_booster_boxes():
+    from tcgwatcher.retail import kind_with_price
+    assert kind_with_price("Dragon Ball Super CG Masters - Beyond Generation - B24-C - Zenkai Series EX Set 07 - COLLECTORS Booster - Englisch", "", 80.0) == "other"
+    assert kind_with_price("Dragon Ball Super Card Game - MASTERS - Mystery Box - Englisch", "", 49.99) == "other"
+    assert kind_with_price("Dragon Ball Super Card Game - Masters Zenkai Series - B24 - Beyond Generations - Booster Box (24 Packs)", "", 74.96) == "box"
+    assert kind_with_price("Dragon Ball Super CG Masters - Beyond Generation - B24 - Zenkai Series EX Set 07 - Display - Englisch", "", 220.0) == "box"
