@@ -38,6 +38,12 @@ class Product:
         return f"{self.game}:{self.set_code}:{self.number or 'p' + str(self.product_id)}:{self.variant}"
 
 
+# TCGplayer started writing Fusion World rarities abbreviated for part of the catalogue (Nov 2026: 85× "SR", 15× "SCR",
+# "R", "UC", "C", "L", "PR"). Unmapped, those cards silently fell out of their class — FB07 lost 3 SR AA, FB11 18 SR and
+# 4 SCR — and set EVs dropped. Normalised here, before any rule sees the rarity.
+RARITY_ALIAS = {"SR": "Super Rare", "SCR": "Secret Rare", "R": "Rare", "UC": "Uncommon", "C": "Common", "L": "Leader", "PR": "Promo"}
+
+
 def _ext(product):
     return {e["name"]: e.get("value") for e in product.get("extendedData") or []}
 
@@ -130,7 +136,7 @@ def load_game(game, day):
         for p in doc["results"]:
             ext = _ext(p)
             name = p["name"]
-            rarity = ext.get("Rarity") or ""
+            rarity = RARITY_ALIAS.get(ext.get("Rarity") or "", ext.get("Rarity") or "")
             number = fixes.get(p["productId"]) or ext.get("Number") or ""
             sealed = sealed_kind_of(game, name, number)
             pr = prices.get(p["productId"], {})

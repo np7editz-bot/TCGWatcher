@@ -423,13 +423,21 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
                 continue
         elif cheaper:
             continue              # price drop on an unscored set: not actionable
+        proxy = (st or {}).get("ev_proxy") if ratio is None else None
         label = {"preorder": "🟡 PRE-ORDER OPEN", "in_stock": "✅ OP VOORRAAD"}[t["status"]] if becomes_buyable else "📉 GOEDKOPER"
         if naruto:
             label = "🍥 NARUTO · " + label
         price = f"€{t['price']:.2f}".replace(".", ",")
         old = f" (was €{t['old_price']:.2f})".replace(".", ",") if cheaper and t.get("old_price") else ""
-        verdict = (f"Ratio <b>{ratio:.2f}</b> → {'koopwaardig' if ratio >= buy['threshold'] else 'bijna koopwaardig'} (hits €{st['ev_eu_excl_saa']:.0f} per box)"
-                   if ratio is not None else "Nog geen waardering (set niet uit) — pre-order = eerste kans")
+        per_box = t["price"] / 12 if t.get("product_kind") == "case" else t["price"]
+        if ratio is not None:
+            verdict = f"Ratio <b>{ratio:.2f}</b> → {'koopwaardig' if ratio >= buy['threshold'] else 'bijna koopwaardig'} (hits €{st['ev_eu_excl_saa']:.0f} per box)"
+        elif proxy:
+            verdict = (f"Nog geen kaartenlijst. <b>Indicatie</b> op basis van {', '.join(proxy['from'])}: EV ~€{proxy['ev']:.0f} per box "
+                       f"(spreiding €{proxy['low']:.0f}–€{proxy['high']:.0f}) → ratio ~<b>{proxy['ev'] / per_box:.2f}</b>.\n"
+                       f"<i>Nieuwe sets zakken de eerste weken (FB11: EV −24% in een maand); echte ratio volgt zodra de kaarten geprijsd zijn.</i>")
+        else:
+            verdict = "Nog geen waardering (set niet uit) — pre-order = eerste kans"
         out.append({"text": f"{label} · <b>{code or 'sealed'}</b>\n{t['title'][:90]}\n<b>{price}</b> bij {t['retailer']}{old}\n{verdict}",
                     "buttons": [[(f"🛒 {t['retailer']}", t["url"]), ("📊 Radar", "https://np7editz-bot.github.io/TCGWatcher/")]]})
     return out

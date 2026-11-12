@@ -345,3 +345,8 @@ def test_send_album_payload(monkeypatch):
     assert tg.send_album([("https://a/1.jpg", "<b>#1</b>"), (None, "skip"), ("https://a/2.jpg", "#2")], chat_id="1")
     assert seen["url"].endswith("/sendMediaGroup") and [m["media"] for m in seen["json"]["media"]] == ["https://a/1.jpg", "https://a/2.jpg"]
     assert not tg.send_album([("https://a/1.jpg", "only one")], chat_id="1")
+
+
+def test_abbreviated_rarities_are_normalised():
+    from tcgwatcher.model import RARITY_ALIAS
+    assert RARITY_ALIAS["SR"] == "Super Rare" and RARITY_ALIAS["SCR"] == "Secret Rare" and RARITY_ALIAS.get("Showcase") is None

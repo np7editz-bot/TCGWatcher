@@ -321,6 +321,7 @@ function boxCard(x, rank){
   return `<div class="sc${rank===1?' top':''}"><div class="img">${s.box?.image?`<img src="${big(s.box.image)}" alt="" loading="lazy">`:''}</div><div class="body">
     <div class="t">${s.code} <small>${esc(s.name)}</small></div>
     <div class="big">${x.ratio!=null?x.ratio.toFixed(2):'—'}<small>ratio EU · hits ${e0(x.evEur)} / box €${x.boxEu?.toFixed(0)??'—'}</small></div>
+    ${s.ev_proxy?`<div class="row">🔮 nog geen kaartenlijst · indicatie EV ~${e0(s.ev_proxy.ev)} (mediaan ${s.ev_proxy.from.join(', ')})${x.boxEu?` → ratio ~<b>${(s.ev_proxy.ev/x.boxEu).toFixed(2)}</b>`:''}</div>`:''}
     <div class="row">${compText(s)}</div>
     <div class="row">Top hit: <b>${x.top?esc(short(x.top.name)):'—'}</b> ${x.top?e0(x.top.v):''} · US-ratio ${x.ratioUs!=null?x.ratioUs.toFixed(2):'—'}</div>
     <div class="btns">${opts.map((o,k)=>`<a href="${esc(o.url)}" target="_blank" rel="noopener" class="${k?'alt':''}">🛒 €${o.price.toFixed(0)} · ${esc(o.source)} · ${o.indicative?'indicatie (alle talen)':(st[o.status]||o.status)}</a>`).join('')||(s.cm_box?`<a href="${esc(s.cm_box.url)}" target="_blank" rel="noopener" class="alt">🛒 €${s.cm_box.landed.toFixed(0)} · Cardmarket · indicatie (alle talen)</a>`:'<span class="muted">geen EU-aanbod</span>')}</div></div></div>`;
