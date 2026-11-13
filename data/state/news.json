@@ -31,6 +31,11 @@
    "seen": "2026-10-30",
    "title": "tabletop.me 2026"
   },
+  "dbfw_news|https://www.dbs-cardgame.com/fw/en/events/02_344.html": {
+   "date": "2026-11-13",
+   "seen": "2026-11-13",
+   "title": "FB12 Release Event​"
+  },
   "dbfw_news|https://www.dbs-cardgame.com/fw/en/news/01_524.html": {
    "date": "2026-10-07",
    "seen": "2026-10-19",
@@ -811,6 +816,11 @@
    "seen": "2026-11-03",
    "title": "dbs xd03"
   },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/cardlist/?search=true&category=428032": {
+   "date": "2026-11-13",
+   "seen": "2026-11-13",
+   "title": "CARD LIST (-CHROMATIC ASCENSION​- [DBS-B32]) has been updated."
+  },
   "dbs_updates|https://www.dbs-cardgame.com/us-en/cardlist/index.php?search=true&free=BT1-053_PR06%20BT13-135_PR02%20BT19-150_PR02%20BT20-099_PR02%20BT24-118_PR03%20BT25-137_PR02%20BT26-019_PR%20BT26-031_PR02%20BT26-128_PR02%20BT27-039_PR02%20BT27-088_PR%20BT27-138_PR02%20BT28-081_PR%20BT29-149_PR%20BT31-001_PR02%20EX23-09_PR02%20EX21-04_PR02%20EX19-12_PR02%20P-219_PR04%20P-575_PR03%20P-690_PR02%20P-763%20P-763_PR%20P-764%20P-764_PR": {
    "date": "2026-11-06",
    "seen": "2026-11-06",
@@ -835,6 +845,21 @@
    "date": "2026-10-16",
    "seen": "2026-11-03",
    "title": "PRODUCTS (-CHROMATIC ASCENSION- [DBS-B32])info has been updated."
+  },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/rule/banned-limited-cards.php": {
+   "date": "2026-11-13",
+   "seen": "2026-11-13",
+   "title": "RULE (Banned/Limited Cards) has been updated."
+  },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/rule/card_faq.php": {
+   "date": "2026-11-13",
+   "seen": "2026-11-13",
+   "title": "RULE (CARD Q&A) info has been updated."
+  },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/rule/game_faq.php": {
+   "date": "2026-11-13",
+   "seen": "2026-11-13",
+   "title": "RULE (GAME Q&A) info has been updated."
   },
   "dbs_updates|https://www.dbs-cardgame.com/us-en/strategy/announcement/bandai-tcg-plus-important-notice.php": {
    "date": "2026-09-24",
