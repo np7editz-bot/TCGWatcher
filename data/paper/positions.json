@@ -871,6 +871,20 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 481.25
+  },
+  {
+   "code": "VEN",
+   "ev_then": 112.15,
+   "game": "riftbound",
+   "key": "buy:riftbound:VEN",
+   "kind": "box",
+   "name": "Vendetta",
+   "opened": "2026-11-12",
+   "price": 119.63,
+   "ratio_then": 0.937,
+   "source": "CardTrader Zero",
+   "status": "open",
+   "valuation": "cardmarket"
   }
  ]
 }

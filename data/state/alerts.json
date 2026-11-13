@@ -5,6 +5,11 @@
    "ratio": 0.93,
    "since": "2026-11-01"
   },
+  "buy:riftbound:VEN": {
+   "price": 119.63,
+   "ratio": 0.937,
+   "since": "2026-11-12"
+  },
   "slab_digest:dbfw": {
    "day": "2026-10-18",
    "ids": [
@@ -20,19 +25,19 @@
  "prev_ranking": {
   "FB01": 0.351,
   "FB02": 0.421,
-  "FB03": 0.533,
+  "FB03": 0.493,
   "FB04": 0.343,
   "FB05": 0.506,
   "FB06": 0.221,
   "FB07": 0.442,
   "FB08": 0.638,
-  "FB09": 0.609,
-  "FB10": 0.706,
-  "FB11": 0.831,
+  "FB09": 0.607,
+  "FB10": 0.704,
+  "FB11": 0.818,
   "FB12": 0.0,
   "SB01": 0.425,
   "SB02": 0.472,
-  "ST01": 0.414
+  "ST01": 0.448
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
  "seen_expansions": {
@@ -2119,6 +2124,12 @@
    "rank": 2,
    "raw": 220
   },
+  "dbs:dbs:BT27:BT27-022:SPR": {
+   "day": "2026-11-12",
+   "net": 63.6,
+   "rank": 2,
+   "raw": 32
+  },
   "dbs:dbs:BT28:BT28-074:SPR": {
    "day": "2026-11-02",
    "net": 136.0,
@@ -2142,6 +2153,12 @@
    "net": 154.02,
    "rank": 4,
    "raw": 40
+  },
+  "dbs:dbs:BT29:BT29-088:SPR": {
+   "day": "2026-11-12",
+   "net": 116.0,
+   "rank": 1,
+   "raw": 24.49
   },
   "dbs:dbs:BT30:BT30-015:SPR": {
    "day": "2026-11-01",

@@ -1,0 +1,63 @@
+{
+ "alerts": [
+  {
+   "at": "2026-11-13T02:12:42Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €120 · CardTrader Zero · voorraad",
+      "https://www.cardtrader.com/cards/374963"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:riftbound:VEN",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/693380_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · VEN Vendetta</b>\nHits per box <b>€112</b> / box vanaf <b>€120</b> → ratio <b>0.94</b> (drempel 0.9)\n#1 van 5 · US-ratio 0.59\n\n🛒 <b>Waar kopen</b> (27 EU-listings)\n• €119,63 CardTrader Zero (op voorraad) <i>Zero €113.63 + €6 kosten</i>\n<i>◦ Cardmarket €107 — indicatie (alle talen)</i>\n\nSamenstelling: 28 Epic · 16 Alt-Art · 12 Showcase · 31 Overnum. · 9 ★ Sig\nTop hit: Akali, Rogue Assassin (Signature) 189*/166 SIG €2.915\n<i>Waardering Cardmarket-verkopen 30d · 133/133 hits · US-referentie €64</i>"
+  },
+  {
+   "album": [
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/670781_in_1000x1000.jpg",
+     "<b>#1 · SS Rose Goku Black BT29-088 SPR</b> · Masters BT29\nraw €24 → netto €116"
+    ],
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/619227_in_1000x1000.jpg",
+     "<b>#2 · Son Gohan BT27-022 SPR</b> · Masters BT27\nraw €32 → netto €64"
+    ]
+   ],
+   "at": "2026-11-13T02:12:42Z",
+   "buttons": [
+    [
+     [
+      "🛒 #1 €24 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=SS%20Ros%C3%A9%20Goku%20Black%2C%20Fearsome%20God&language=1"
+     ]
+    ],
+    [
+     [
+      "🛒 #2 €32 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=Son%20Gohan%2C%20Unlimited%20Potential&language=1"
+     ]
+    ],
+    [
+     [
+      "📊 Alle slabs",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab_new:2026-11-12",
+   "kind": "slab",
+   "photo": null,
+   "text": "🏆 <b>2 nieuwe slab-kansen · Masters</b>\n\n<b>#1 · SS Rose Goku Black BT29-088 SPR</b> · Masters BT29\nraw <b>€24</b> (Cardmarket) → PSA 10 €250 (3 listings) · netto <b>€116</b>\n\n<b>#2 · Son Gohan BT27-022 SPR</b> · Masters BT27\nraw <b>€32</b> (Cardmarket) → PSA 10 €182 (3 listings) · netto <b>€64</b>\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Eerder gemelde (58) staan op de radar met 📨.</i>"
+  }
+ ],
+ "day": "2026-11-12"
+}
