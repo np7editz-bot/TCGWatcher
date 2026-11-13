@@ -1,5 +1,61 @@
 {
  "day": "2026-11-13",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-11-13T17:44:01Z",
+   "kind": "new_listing",
+   "price": 49.99,
+   "price_obs": 1,
+   "product_kind": "pack",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-13T17:44:01Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game - Fusion World - SB02 - Manga Booster Pack 02 - Booster [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-sb02-manga-booster-pack-02-booster-eng-1"
+  },
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 35.0,
+   "price": 35.0,
+   "price_obs": 71,
+   "product_kind": "other",
+   "retailer": "breakthecase",
+   "seen": "2026-11-13T17:44:01Z",
+   "status": "sold_out",
+   "title": "Vegeta ST01-065 R★ - DBS CG FW - Story Booster 01 - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/vegeta-st01-065-r-dbs-cg-fw-story-booster-01-en"
+  },
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 25.0,
+   "price": 25.0,
+   "price_obs": 71,
+   "product_kind": "other",
+   "retailer": "breakthecase",
+   "seen": "2026-11-13T17:44:01Z",
+   "status": "sold_out",
+   "title": "Son Goku : GT FB03-140 SCR★ - DBS CG FW - Raging Roar - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/son-goku-gt-fb03-140-scr-dbs-cg-fw-raging-roar-en"
+  },
+  {
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 28.0,
+   "price": 28.0,
+   "price_obs": 71,
+   "product_kind": "other",
+   "retailer": "breakthecase",
+   "seen": "2026-11-13T17:44:01Z",
+   "status": "sold_out",
+   "title": "Broly FB08-087 SR★ - DBS CG FW - Saiyan's Pride - EN",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/broly-fb08-087-sr-dbs-cg-fw-saiyans-pride-en"
+  }
+ ]
 }
