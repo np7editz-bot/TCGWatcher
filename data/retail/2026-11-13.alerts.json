@@ -1,0 +1,20 @@
+{
+ "day": "2026-11-13",
+ "messages": [],
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "price_drop",
+   "old_price": 199.95,
+   "price": 179.95,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "collgamers",
+   "seen": "2026-11-13T01:04:28Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [FB10] - Cross Force - Booster Box",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fb10-cross-force-booster-box"
+  }
+ ]
+}
