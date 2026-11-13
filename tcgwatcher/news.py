@@ -90,6 +90,8 @@ def parse_anchors(source, text):
     return items
 
 
+EVENT = re.compile(r"(release\s*(event|tournament)|pre-?release|pre-?rift|ultra-?bout.*release|launch\s*event)", re.I)
+CARDLIST = re.compile(r"card\s*list.*\[(DBS-)?(B|BT|FB|SB)\d{2}\]", re.I)
 DRAWING = re.compile(r"(drawing|raffle|lottery|registration|register|loting|\bdraw\b)", re.I)
 DATE_RX = re.compile(r"(\d{4}[-/.]\d{2}[-/.]\d{2})")
 
@@ -187,10 +189,22 @@ def run(http=None, day=None, send=True):
             if it.get("date") and (dt.date.fromisoformat(day) - dt.date.fromisoformat(it["date"][:10])).days > cfg.get("max_age_days", 14):
                 continue                         # a repaired/new source must not replay weeks of old articles
             game = {"naruto": "Naruto", "riftbound": "Riftbound", "dbs": "Masters"}.get(it["game"], "Fusion World")
-            drawing = bool(DRAWING.search(it["title"] + " " + it["url"]))
-            head = ("🎟️ <b>{g} · loting / registratie</b>" if drawing else "📰 <b>{g} · officiële aankondiging</b>").format(g=game)
-            tail = ("Beperkte oplage via loting: registratie heeft een vast venster — check de data in het artikel."
-                    if drawing else "Dit is meestal hét moment waarop EU-shops pre-orders openen.")
+            hay = it["title"] + " " + it["url"]
+            drawing, event, cards = bool(DRAWING.search(hay)), bool(EVENT.search(hay)), bool(CARDLIST.search(hay))
+            if event:
+                head = "🏁 <b>{g} · RELEASE-EVENT</b>"
+                tail = ("Release-events: sealed spelen met packs van de nieuwe set + deelnamepromo's, vaak vóór de officiële release. "
+                        "Inschrijven via Bandai TCG+ (Bandai Namco ID) of bij je lokale winkel — check de aanmelddatum in het artikel.")
+            elif drawing:
+                head = "🎟️ <b>{g} · loting / registratie</b>"
+                tail = "Beperkte oplage via loting: registratie heeft een vast venster — check de data in het artikel."
+            elif cards:
+                head = "🃏 <b>{g} · kaartenlijst nieuwe set</b>"
+                tail = "Zodra de kaarten geprijsd zijn rekent de radar de echte EV; tot die tijd staat er een indicatie op basis van eerdere sets."
+            else:
+                head = "📰 <b>{g} · officiële aankondiging</b>"
+                tail = "Dit is meestal hét moment waarop EU-shops pre-orders openen."
+            head = head.format(g=game)
             msgs.append({"key": key + ("|" + it["date"] if updated else ""), "kind": "news",
                          "text": f"{head}{' · 🔄 bijgewerkt' if updated else ''}\n<b>{it['title']}</b>\n{src['name']} · {it['date'] or day}\n"
                                  f"<i>{tail}</i>",
