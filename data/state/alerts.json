@@ -1,5 +1,10 @@
 {
  "active": {
+  "buy:dbfw:FB11": {
+   "price": 144.64,
+   "ratio": 0.818,
+   "since": "2026-11-13"
+  },
   "buy:dbs:BT29": {
    "price": 126.64,
    "ratio": 0.93,
@@ -36,7 +41,7 @@
   "FB11": 0.818,
   "FB12": 0.0,
   "SB01": 0.425,
-  "SB02": 0.472,
+  "SB02": 0.473,
   "ST01": 0.448
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
@@ -2153,6 +2158,12 @@
    "net": 154.02,
    "rank": 4,
    "raw": 40
+  },
+  "dbs:dbs:BT29:BT29-086:SLR": {
+   "day": "2026-11-13",
+   "net": 98.01,
+   "rank": 1,
+   "raw": 105
   },
   "dbs:dbs:BT29:BT29-088:SPR": {
    "day": "2026-11-12",

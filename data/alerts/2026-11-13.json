@@ -1,0 +1,53 @@
+{
+ "alerts": [
+  {
+   "at": "2026-11-14T01:45:53Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €145 · CardTrader Zero · voorraad",
+      "https://www.cardtrader.com/cards/403299"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:dbfw:FB11",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/695727_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · FB11 Brightness of Hope</b>\nHits per box <b>€118</b> / box vanaf <b>€145</b> → ratio <b>0.82</b> (drempel 0.8)\n#1 van 15 · US-ratio 0.68\n\n🛒 <b>Waar kopen</b> (22 EU-listings)\n• €144,64 CardTrader Zero (op voorraad) <i>Zero €138.64 + €6 kosten</i>\n• €199,99 fantasiacards (op voorraad)\n\nSamenstelling: 15 SR-AA · 3 SCR · 3 ★ · 3 ★★ · 18 AA\nTop hit: Son Goku FB11-121 SAA €1.560\n<i>Waardering Cardmarket-verkopen 30d · 54/54 hits · US-referentie €114</i>"
+  },
+  {
+   "album": [
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/670777_in_1000x1000.jpg",
+     "<b>#1 · Goku Black BT29-086 SLR</b> · Masters BT29\nraw €105 → netto €98"
+    ]
+   ],
+   "at": "2026-11-14T01:45:53Z",
+   "buttons": [
+    [
+     [
+      "🛒 #1 €105 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=Goku%20Black%20//%20SS%20Ros%C3%A9%20Goku%20Black%2C%20Future%20of%20Despair&language=1"
+     ]
+    ],
+    [
+     [
+      "📊 Alle slabs",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab_new:2026-11-13",
+   "kind": "slab",
+   "photo": null,
+   "text": "🏆 <b>1 nieuwe slab-kansen · Masters</b>\n\n<b>#1 · Goku Black BT29-086 SLR</b> · Masters BT29\nraw <b>€105</b> (Cardmarket) → PSA 10 €345 (3 listings) · netto <b>€98</b>\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Eerder gemelde (60) staan op de radar met 📨.</i>"
+  }
+ ],
+ "day": "2026-11-13"
+}
