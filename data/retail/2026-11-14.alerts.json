@@ -1,5 +1,34 @@
 {
  "day": "2026-11-14",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-11-06T21:29:29Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 199.99,
+   "price": 199.99,
+   "price_obs": 36,
+   "product_kind": "box",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-14T15:04:00Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB11 - Brightness of Hope - Display [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb11-display-eng-vorbestellung-release-september-2026"
+  },
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "price_rise",
+   "old_price": 5.5,
+   "price": 8.0,
+   "price_obs": 1,
+   "product_kind": "pack",
+   "retailer": "breakthecase",
+   "seen": "2026-11-14T15:04:00Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Fusion World - FB08 - SAIYAN’S PRIDE - Booster – Englisch",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb08-saiyan-s-pride-booster-englisch"
+  }
+ ]
 }
