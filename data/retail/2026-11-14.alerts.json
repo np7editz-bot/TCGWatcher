@@ -3,32 +3,32 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-11-06T21:29:29Z",
+   "first_seen": "2026-10-29T19:38:00Z",
    "kind": "in_stock->sold_out",
-   "old_price": 199.99,
-   "price": 199.99,
-   "price_obs": 36,
-   "product_kind": "box",
-   "retailer": "fantasiacards",
-   "seen": "2026-11-14T15:04:00Z",
+   "old_price": 10.0,
+   "price": 10.0,
+   "price_obs": 76,
+   "product_kind": "other",
+   "retailer": "breakthecase",
+   "seen": "2026-11-14T20:43:12Z",
    "status": "sold_out",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB11 - Brightness of Hope - Display [ENG]",
+   "title": "Majin Buu : Evil ST01-035 R★ - DBS CG FW - Story Booster 01 - EN",
    "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb11-display-eng-vorbestellung-release-september-2026"
+   "url": "https://www.breakthecase.de/products/majin-buu-evil-st01-035-r-dbs-cg-fw-story-booster-01-en"
   },
   {
-   "first_seen": "2026-10-19T07:45:08Z",
-   "kind": "price_rise",
-   "old_price": 5.5,
-   "price": 8.0,
-   "price_obs": 1,
-   "product_kind": "pack",
+   "first_seen": "2026-10-29T19:38:00Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 38.0,
+   "price": 38.0,
+   "price_obs": 76,
+   "product_kind": "other",
    "retailer": "breakthecase",
-   "seen": "2026-11-14T15:04:00Z",
+   "seen": "2026-11-14T20:43:12Z",
    "status": "sold_out",
-   "title": "Dragon Ball Fusion World - FB08 - SAIYAN’S PRIDE - Booster – Englisch",
+   "title": "Ginyu FB01-108 R★ - DBS CG FW - Awakened Pulse - EN",
    "trusted": true,
-   "url": "https://www.breakthecase.de/products/dragon-ball-fusion-world-fb08-saiyan-s-pride-booster-englisch"
+   "url": "https://www.breakthecase.de/products/ginyu-fb01-108-r-dbs-cg-fw-awakened-pulse-en"
   }
  ]
 }
