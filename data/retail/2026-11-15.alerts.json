@@ -1,5 +1,20 @@
 {
  "day": "2026-11-15",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-23T07:48:55Z",
+   "kind": "price_drop",
+   "old_price": 179.95,
+   "price": 149.95,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "collgamers",
+   "seen": "2026-11-15T22:48:00Z",
+   "status": "in_stock",
+   "title": "RiftBound League of Legends TCG set 2 Spiritforged Booster Box",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-2-spiritforged-booster-box"
+  }
+ ]
 }
