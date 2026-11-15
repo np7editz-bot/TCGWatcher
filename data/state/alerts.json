@@ -5,11 +5,6 @@
    "ratio": 0.818,
    "since": "2026-11-13"
   },
-  "buy:dbs:BT29": {
-   "price": 126.64,
-   "ratio": 0.93,
-   "since": "2026-11-01"
-  },
   "buy:riftbound:VEN": {
    "price": 119.63,
    "ratio": 0.937,
@@ -41,7 +36,7 @@
   "FB11": 0.818,
   "FB12": 0.0,
   "SB01": 0.425,
-  "SB02": 0.473,
+  "SB02": 0.472,
   "ST01": 0.448
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
