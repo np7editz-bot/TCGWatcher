@@ -1,20 +1,5 @@
 {
  "day": "2026-11-15",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-19T08:00:42Z",
-   "kind": "price_rise",
-   "old_price": 9.99,
-   "price": 11.99,
-   "price_obs": 1,
-   "product_kind": "pack",
-   "retailer": "fantasiacards",
-   "seen": "2026-11-15T01:54:51Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB01 - Awakened Pulse - Booster [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb01-awakened-pulse-booster-eng"
-  }
- ]
+ "transitions": []
 }
