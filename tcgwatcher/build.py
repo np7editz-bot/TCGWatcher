@@ -129,7 +129,7 @@ def build(day, quality=None):
             evs = sorted(x["ev_eu_excl_saa"] for x in settled)
             mid = (evs[(len(evs) - 1) // 2] + evs[len(evs) // 2]) / 2
             for s in sets_scored:
-                if "no_cards" in s["flags"]:
+                if "no_cards" in s["flags"] or ("presale" in s["flags"] and not s.get("ev_eu_excl_saa")):   # list out, prices not yet
                     s["ev_proxy"] = {"ev": round(mid, 2), "from": [x["code"] for x in settled], "low": round(evs[0], 2), "high": round(evs[-1], 2)}
         for s in other_sets:
             s["retail"] = retail.get(s["code"], [])

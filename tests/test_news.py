@@ -172,3 +172,19 @@ def test_rewritten_article_on_same_url_is_news_again(tmp_path, monkeypatch):
     m = news.run(day="2026-11-07", http=H(), send=False)["messages"]
     assert len(m) == 1 and "🔄 bijgewerkt" in m[0]["text"] and "🎟️" in m[0]["text"] and "T1 2025" in m[0]["text"]
     assert news.run(day="2026-11-08", http=H(), send=False)["messages"] == []
+
+
+def test_release_event_and_card_list_headers(tmp_path, monkeypatch):
+    import tcgwatcher.news as news, tcgwatcher.store as store
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    src = {"id": "s", "game": "dbs", "name": "Masters official site updates", "base": "https://www.dbs-cardgame.com", "parser": "anchors", "path_prefix": "/", "url": "https://www.dbs-cardgame.com/x"}
+    cfg = news.load_config(); cfg = dict(cfg, sources=[src])
+    monkeypatch.setattr(news, "load_config", lambda: cfg)
+    page = ('<li>2026/11/13<a href="/fw/en/events/02_344.html">FB12 Release Event</a></li>'
+            '<li>2026/11/13<a href="/us-en/cardlist/?category=428032">CARD LIST (-CHROMATIC ASCENSION- [DBS-B32]) has been updated.</a></li>'
+            '<li>2026/11/13<a href="/us-en/rule/game_faq.php">RULE (GAME Q&amp;A) info has been updated.</a></li>')
+    class H:
+        def get(self, u): return page, None
+    store.write_json(store.state_path("news"), {"seen": {"s|https://www.dbs-cardgame.com/seed": {}}})
+    texts = [m["text"] for m in news.run(day="2026-11-13", http=H(), send=False)["messages"]]
+    assert len(texts) == 2 and "🏁" in texts[0] and "RELEASE-EVENT" in texts[0] and "🃏" in texts[1]

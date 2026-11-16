@@ -66,7 +66,7 @@ sources:
     base: https://www.youtube.com
     parser: youtube
     enabled: false                      # handle unverified — set true once checked
-product: '(booster|starter|deck|pre-?order|release|launch|product|collection|set\b|box|pack|edition|lineup|available|on sale|retailer)'
+product: '(booster|starter|deck|pre-?order|release|launch|product|collection|set\b|box|pack|edition|lineup|available|on sale|retailer|card\s*list.*\[(DBS-)?(B|BT|FB|SB)\d{2}\])'
 # Noise never sent (stored only): the digital app's own notices.
 stale_days: 45                    # a source whose newest item is older than this is reported as broken (weekly ⚠️)
 max_age_days: 14                  # alert only on items younger than this (a repaired source must not replay old news)
