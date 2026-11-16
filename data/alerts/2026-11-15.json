@@ -1,0 +1,33 @@
+{
+ "alerts": [
+  {
+   "album": [
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/684064_in_1000x1000.jpg",
+     "<b>#1 · Family Kamehameha BT30-150 SCR</b> · Masters BT30\nraw €123 → netto €110"
+    ]
+   ],
+   "at": "2026-11-16T01:27:31Z",
+   "buttons": [
+    [
+     [
+      "🛒 #1 €123 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Search?searchString=Family%20Kamehameha%2C%20Miracle%20Blast&language=1"
+     ]
+    ],
+    [
+     [
+      "📊 Alle slabs",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab_new:2026-11-15",
+   "kind": "slab",
+   "photo": null,
+   "text": "🏆 <b>1 nieuwe slab-kansen · Masters</b>\n\n<b>#1 · Family Kamehameha BT30-150 SCR</b> · Masters BT30\nraw <b>€123</b> (Cardmarket) → PSA 10 €390 (6 listings) · netto <b>€110</b>\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Eerder gemelde (61) staan op de radar met 📨.</i>"
+  }
+ ],
+ "day": "2026-11-15"
+}
