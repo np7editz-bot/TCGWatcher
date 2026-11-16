@@ -37,29 +37,43 @@ def send(text, photo=None, buttons=None, chat_id=None):
         except Exception as e:  # noqa: BLE001
             log.warning("getUpdates failed: %s", e)
         return False
+    markup = {"inline_keyboard": [[{"text": l, "url": u} for l, u in row] for row in buttons]} if buttons else None
+    # A real photo (sendPhoto) always shows; a link preview of an image URL is up to Telegram and sometimes stays empty.
+    # Captions max 1024 chars: longer texts fall back to the preview.
+    if photo and len(text) <= 1024:
+        payload = {"chat_id": chat_id, "photo": photo, "caption": text, "parse_mode": "HTML"}
+        if markup:
+            payload["reply_markup"] = markup
+        if _post(token, "sendPhoto", payload):
+            return True
+        log.warning("sendPhoto failed, falling back to a link preview")
     payload = {"chat_id": chat_id, "text": text[:4096], "parse_mode": "HTML"}
     if photo:
         payload["link_preview_options"] = {"url": photo, "prefer_large_media": True, "show_above_text": True}
     else:
         payload["link_preview_options"] = {"is_disabled": True}
-    if buttons:
-        payload["reply_markup"] = {"inline_keyboard": [[{"text": l, "url": u} for l, u in row] for row in buttons]}
+    if markup:
+        payload["reply_markup"] = markup
+    return _post(token, "sendMessage", payload)
+
+
+def _post(token, method, payload):
     import time
     for attempt in range(3):                 # a Telegram timeout must never kill the nightly run (2026-11-09: run failed, no data)
         try:
-            r = requests.post(API.format(token=token, method="sendMessage"), timeout=30, json=payload)
+            r = requests.post(API.format(token=token, method=method), timeout=30, json=payload)
         except requests.RequestException as e:
-            log.warning("telegram send attempt %d failed: %s", attempt + 1, e)
+            log.warning("telegram %s attempt %d failed: %s", method, attempt + 1, e)
             time.sleep(5 * (attempt + 1))
             continue
         if r.status_code == 429:
             time.sleep(int((r.json().get("parameters") or {}).get("retry_after", 5)))
             continue
         if r.status_code != 200:
-            log.error("telegram sendMessage failed: %s %s", r.status_code, r.text[:200])
+            log.error("telegram %s failed: %s %s", method, r.status_code, r.text[:200])
             return False
         return True
-    log.error("telegram: giving up after 3 attempts")
+    log.error("telegram %s: giving up after 3 attempts", method)
     return False
 
 

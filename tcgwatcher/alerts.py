@@ -209,7 +209,9 @@ def run(day, quality=None, send=True):
             txt = (f"🏆 <b>{len(top)} nieuwe slab-kansen · {games}</b>\n\n" + "\n\n".join(lines)
                    + f"\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. "
                      f"Eerder gemelde ({len(sent)}) staan op de radar met 📨{f'; nog {left} nieuwe voor de komende dagen' if left > 0 else ''}.</i>")
-            m = _m(f"slab_new:{day}", "slab", txt, buttons=btns + [[("📊 Alle slabs", SITE_URL)]])
+            # one card: its picture on the message itself (an album needs ≥ 2 photos); more: album first, then this text
+            m = _m(f"slab_new:{day}", "slab", txt, photo=_big(top[0]["c"].get("image")) if len(top) == 1 else None,
+                   buttons=btns + [[("📊 Alle slabs", SITE_URL)]])
             m["album"] = [(_big(i["c"].get("image")),
                            f"<b>#{r} · {_card(i['g']['name'], i['g']['number'])} {i['g']['class'].replace('_AA', ' AA')}</b> · {i['short']} {i['g']['set']}\n"
                            f"raw €{i['raw']:.0f} → netto €{i['net']:.0f}") for r, i in enumerate(top, 1)]
@@ -235,9 +237,10 @@ def run(day, quality=None, send=True):
         m["delivered"] = False
     if send:
         for m in msgs[:MAX_PER_RUN]:
-            if m.get("album"):
-                telegram.send_album(m["album"])          # best effort; the text + buttons below go out regardless
-            ok = telegram.send(m["text"], photo=m.get("photo"), buttons=m.get("buttons"))
+            photo = m.get("photo")
+            if m.get("album") and len(m["album"]) > 1 and not telegram.send_album(m["album"]):
+                photo = photo or m["album"][0][0]           # album failed: at least the #1 picture on the text
+            ok = telegram.send(m["text"], photo=photo, buttons=m.get("buttons"))
             m["delivered"] = bool(ok)
             if ok and m.get("on_sent"):
                 for bucket, kv in m["on_sent"].items():
