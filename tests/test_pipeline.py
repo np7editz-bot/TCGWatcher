@@ -350,3 +350,16 @@ def test_send_album_payload(monkeypatch):
 def test_abbreviated_rarities_are_normalised():
     from tcgwatcher.model import RARITY_ALIAS
     assert RARITY_ALIAS["SR"] == "Super Rare" and RARITY_ALIAS["SCR"] == "Secret Rare" and RARITY_ALIAS.get("Showcase") is None
+
+
+def test_send_uses_real_photo_for_short_texts(monkeypatch):
+    import tcgwatcher.telegram as tg
+    monkeypatch.setattr(tg, "_token", lambda: "t")
+    calls = []
+    class R:
+        status_code = 200
+        def json(self): return {}
+    monkeypatch.setattr(tg.requests, "post", lambda url, timeout, json: calls.append((url.rsplit("/", 1)[-1], json)) or R())
+    assert tg.send("kort", photo="https://a/1.jpg", buttons=[[("x", "https://b")]], chat_id="1")
+    assert calls[-1][0] == "sendPhoto" and calls[-1][1]["photo"] == "https://a/1.jpg" and "reply_markup" in calls[-1][1]
+    assert tg.send("x" * 1500, photo="https://a/1.jpg", chat_id="1") and calls[-1][0] == "sendMessage"
