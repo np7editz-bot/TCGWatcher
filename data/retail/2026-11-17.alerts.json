@@ -1,5 +1,100 @@
 {
  "day": "2026-11-17",
- "messages": [],
- "transitions": []
+ "messages": [
+  {
+   "buttons": [
+    [
+     [
+      "🛒 supercollectors",
+      "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-legacy-booster-display/"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "✅ OP VOORRAAD · <b>LGC</b>\nRiftbound: League of Legends TCG: Legacy – Booster Display\n<b>€139,90</b> bij supercollectors\nNog geen kaartenlijst. <b>Indicatie</b> op basis van OGN, SFD, UNL, VEN: EV ~€108 per box (spreiding €101–€152) → ratio ~<b>0.77</b>.\n<i>Nieuwe sets zakken de eerste weken (FB11: EV −24% in een maand); echte ratio volgt zodra de kaarten geprijsd zijn.</i>"
+  }
+ ],
+ "transitions": [
+  {
+   "first_seen": "2026-11-17T13:24:43Z",
+   "kind": "new_listing",
+   "price": 18.9,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "supercollectors",
+   "seen": "2026-11-17T13:24:43Z",
+   "status": "in_stock",
+   "title": "Riftbound: League of Legends TCG: Legacy – Champion Deck Lux",
+   "trusted": true,
+   "url": "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-legacy-champion-deck-lux/"
+  },
+  {
+   "first_seen": "2026-11-17T13:24:43Z",
+   "kind": "new_listing",
+   "price": 18.9,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "supercollectors",
+   "seen": "2026-11-17T13:24:43Z",
+   "status": "in_stock",
+   "title": "Riftbound: League of Legends TCG: Legacy – Champion Deck Garen",
+   "trusted": true,
+   "url": "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-legacy-champion-deck-garen/"
+  },
+  {
+   "first_seen": "2026-11-17T13:24:43Z",
+   "kind": "new_listing",
+   "price": 18.9,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "supercollectors",
+   "seen": "2026-11-17T13:24:43Z",
+   "status": "in_stock",
+   "title": "Riftbound: League of Legends TCG: Legacy – Champion Deck Tryndamere",
+   "trusted": true,
+   "url": "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-legacy-champion-deck-tryndamere/"
+  },
+  {
+   "first_seen": "2026-11-17T13:24:43Z",
+   "kind": "new_listing",
+   "price": 18.9,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "supercollectors",
+   "seen": "2026-11-17T13:24:43Z",
+   "status": "in_stock",
+   "title": "Riftbound: League of Legends TCG: Legacy – Champion Deck Ashe",
+   "trusted": true,
+   "url": "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-legacy-champion-deck-ashe/"
+  },
+  {
+   "first_seen": "2026-11-17T13:24:43Z",
+   "kind": "new_listing",
+   "price": 33.9,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "supercollectors",
+   "seen": "2026-11-17T13:24:43Z",
+   "status": "in_stock",
+   "title": "Riftbound: League of Legends TCG: Legacy – Vault",
+   "trusted": true,
+   "url": "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-legacy-vault/"
+  },
+  {
+   "first_seen": "2026-11-17T13:24:43Z",
+   "kind": "new_listing",
+   "price": 139.9,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "supercollectors",
+   "seen": "2026-11-17T13:24:43Z",
+   "status": "in_stock",
+   "title": "Riftbound: League of Legends TCG: Legacy – Booster Display",
+   "trusted": true,
+   "url": "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-legacy-booster-display/"
+  }
+ ]
 }
