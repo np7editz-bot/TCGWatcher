@@ -885,6 +885,20 @@
    "source": "CardTrader Zero",
    "status": "open",
    "valuation": "cardmarket"
+  },
+  {
+   "code": "BT29",
+   "game": "dbs",
+   "key": "dbs:BT29:BT29-086:SLR",
+   "kind": "raw",
+   "name": "Goku Black BT29-086 SLR",
+   "net_then": 155.02,
+   "opened": "2026-11-16",
+   "price": 154.64,
+   "psa10_then": 399.33,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 84.02
   }
  ]
 }

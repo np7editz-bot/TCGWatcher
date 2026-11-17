@@ -1,0 +1,33 @@
+{
+ "alerts": [
+  {
+   "album": [
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/682032_in_1000x1000.jpg",
+     "<b>#1 · Son Goku FB09-037 SR AA</b> · Fusion World FB09\nraw €40 → netto €101"
+    ]
+   ],
+   "at": "2026-11-17T04:15:04Z",
+   "buttons": [
+    [
+     [
+      "🛒 #1 €40 · Cardmarket",
+      "https://www.cardmarket.com/en/DragonBallSuper/Products/Singles/Dual-Evolution-Fusion-World/Son-Goku-FB09-037-Fusion-World-V2-Alternate-Art?language=1"
+     ]
+    ],
+    [
+     [
+      "📊 Alle slabs",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab_new:2026-11-16",
+   "kind": "slab",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/682032_in_1000x1000.jpg",
+   "text": "🏆 <b>1 nieuwe slab-kansen · Fusion World</b>\n\n<b>#1 · Son Goku FB09-037 SR AA</b> · Fusion World FB09\nraw <b>€40</b> (Cardmarket) → PSA 10 €251 (3 listings) · netto <b>€101</b>\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Eerder gemelde (62) staan op de radar met 📨.</i>"
+  }
+ ],
+ "day": "2026-11-16"
+}
