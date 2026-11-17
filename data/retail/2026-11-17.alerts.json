@@ -1,0 +1,20 @@
+{
+ "day": "2026-11-17",
+ "messages": [],
+ "transitions": [
+  {
+   "first_seen": "2026-11-05T23:38:20Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 8.99,
+   "price": 8.99,
+   "price_obs": 47,
+   "product_kind": "pack",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-17T02:55:27Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB11 - Brightness of Hope - Booster - [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb11-brightness-of-hope-booster-eng"
+  }
+ ]
+}
