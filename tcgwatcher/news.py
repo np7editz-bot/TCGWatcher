@@ -100,6 +100,44 @@ def _iso(d):
     return d.replace("/", "-").replace(".", "-")[:10]
 
 
+def _visible_lines(html_text):
+    t = re.sub(r"(?is)<(script|style|noscript|svg)[^>]*>.*?</\1>", " ", html_text)
+    t = re.sub(r"(?i)<(br|/p|/div|/li|/h\d|/a|/span|/button|/td)[^>]*>", "\n", t)
+    t = html.unescape(re.sub(r"<[^>]+>", " ", t))
+    out = []
+    for line in t.split("\n"):
+        line = re.sub(r"\s+", " ", line).strip()
+        if 6 <= len(line) <= 220 and line not in out:
+            out.append(line)
+    return out
+
+
+def watch_page(source, text, state, day):
+    """Page watch: a registration/shop/landing page without an article list (Riot's drawing page said 'opens soon' for
+    days, then opened). Visible text lines — filtered by `keywords` when given — are compared with the previous run;
+    new lines become one message. The first run only learns."""
+    lines = _visible_lines(text)
+    kw = re.compile(source["keywords"], re.I) if source.get("keywords") else None
+    if kw:
+        lines = [l for l in lines if kw.search(l)]
+    store_ = state.setdefault("watch", {})
+    prev = store_.get(source["id"])
+    store_[source["id"]] = {"lines": lines[:300], "day": day}
+    if prev is None:
+        return None
+    new = [l for l in lines if l not in set(prev.get("lines", []))][:6]
+    if not new:
+        return None
+    game = {"naruto": "Naruto", "riftbound": "Riftbound", "dbs": "Masters"}.get(source["game"], "Fusion World")
+    hay = " ".join(new)
+    head = ("🎟️ <b>{g} · loting/registratie-pagina gewijzigd</b>" if DRAWING.search(hay + source["url"])
+            else "🏁 <b>{g} · eventpagina gewijzigd</b>" if EVENT.search(hay) else "👀 <b>{g} · pagina gewijzigd</b>").format(g=game)
+    body = "\n".join("• " + html.escape(l) for l in new)
+    return {"key": f"watch|{source['id']}|{day}", "kind": "news",
+            "text": f"{head}\n<b>{html.escape(source['name'])}</b>\nNieuw op de pagina:\n{body}\n<i>Snel kijken: registratievensters en drops zijn vaak kort.</i>",
+            "buttons": [[("Bekijk", source["url"]), ("📊 Radar", SITE_URL)]]}
+
+
 def parse_youtube(source, text, http=None):
     """A channel's upload feed (Atom): `url` is the channel page (handle), from which the channel id is read, unless
     `channel_id` is configured. Social watch without an API: YouTube is where Bandai and Riot post reveals first."""
@@ -166,6 +204,11 @@ def run(http=None, day=None, send=True):
             errors[src["id"]] = err
             log.warning("%s: %s", src["id"], err)
             continue
+        if src.get("parser") == "watch":
+            m = watch_page(src, text, state, day)
+            if m:
+                msgs.append(m)
+            continue
         items = [i for i in parse(src, text, http) if i["url"].rstrip("/") != src["url"].rstrip("/") and len(i["title"]) > 3]   # the index itself is not an article
         if not items:
             errors[src["id"]] = "no items parsed (page layout changed?)"
@@ -180,6 +223,9 @@ def run(http=None, day=None, send=True):
             updated = bool(prev) and (it.get("date") or "") > (prev.get("date") or "") and it["title"] != prev.get("title")
             if prev and not updated:
                 continue                         # same article, nothing new
+            if not prev and any(k.endswith("|" + it["url"]) for k in state["seen"]):
+                state["seen"][key] = {"title": it["title"], "date": it["date"], "seen": day}
+                continue                         # already known via another source (Riot: announcements ⊂ all news)
             # Riot rewrites an article on the SAME url for the next product (product-drawing-faq: K/DA → T1 bundle,
             # 2026-11-06): a newer date with a new title is news again
             state["seen"][key] = {"title": it["title"], "date": it["date"], "seen": day}

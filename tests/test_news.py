@@ -188,3 +188,33 @@ def test_release_event_and_card_list_headers(tmp_path, monkeypatch):
     store.write_json(store.state_path("news"), {"seen": {"s|https://www.dbs-cardgame.com/seed": {}}})
     texts = [m["text"] for m in news.run(day="2026-11-13", http=H(), send=False)["messages"]]
     assert len(texts) == 2 and "🏁" in texts[0] and "RELEASE-EVENT" in texts[0] and "🃏" in texts[1]
+
+
+def test_page_watch_learns_then_reports_new_lines(tmp_path, monkeypatch):
+    import tcgwatcher.news as news, tcgwatcher.store as store
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    src = {"id": "w", "game": "riftbound", "name": "Riftbound drawing registration", "base": "https://playriftbound.com", "parser": "watch",
+           "url": "https://playriftbound.com/en-us/preorder/registration/"}
+    monkeypatch.setattr(news, "load_config", lambda: {"sources": [src], "product": "x", "ignore": "zzz", "max_age_days": 14, "stale_days": 45})
+    page = {"v": "<html><script>var x=1</script><h1>T1 Player Bundle</h1><p>Registration opens soon.</p></html>"}
+    class H:
+        def get(self, u): return page["v"], None
+    assert news.run(day="2026-11-12", http=H(), send=False)["messages"] == []           # learn
+    assert news.run(day="2026-11-12", http=H(), send=False)["messages"] == []           # unchanged
+    page["v"] = "<html><h1>T1 Player Bundle</h1><p>Registration is now open until November 16.</p><button>Register now</button></html>"
+    m = news.run(day="2026-11-13", http=H(), send=False)["messages"]
+    assert len(m) == 1 and "🎟️" in m[0]["text"] and "Registration is now open" in m[0]["text"] and "Register now" in m[0]["text"]
+
+
+def test_same_article_in_two_sources_is_sent_once(tmp_path, monkeypatch):
+    import tcgwatcher.news as news, tcgwatcher.store as store
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    mk = lambda i, u: {"id": i, "game": "riftbound", "name": i, "base": "https://playriftbound.com", "parser": "anchors", "path_prefix": "/en-us/news/", "kind": "all", "url": u}
+    srcs = [mk("a", "https://playriftbound.com/en-us/news/announcements"), mk("b", "https://playriftbound.com/en-us/news/")]
+    monkeypatch.setattr(news, "load_config", lambda: {"sources": srcs, "product": "x", "ignore": "zzz", "max_age_days": 14, "stale_days": 45})
+    page = {"v": '<a href="/en-us/news/announcements/old"><time>2026-11-01T00:00:00Z</time><h3>Older article</h3></a>'}
+    class H:
+        def get(self, u): return page["v"], None
+    news.run(day="2026-11-02", http=H(), send=False)
+    page["v"] += '<a href="/en-us/news/announcements/new"><time>2026-11-17T00:00:00Z</time><h3>Gift of the Rift pre-orders</h3></a>'
+    assert len(news.run(day="2026-11-17", http=H(), send=False)["messages"]) == 1
