@@ -1,0 +1,1887 @@
+{
+ "cardmarket_candidates": {
+  "22": {
+   "category_sample": "Riftbound Display",
+   "matches": [
+    "Riftbound x T1 2025 Worlds Champion Signature Edition",
+    "Riftbound x T1 Worlds 2025 Champion Player Bundle"
+   ],
+   "n_products": 123
+  }
+ },
+ "cardtrader_expansions": [
+  {
+   "code": "ogn",
+   "id": 4166,
+   "name": "Origins"
+  },
+  {
+   "code": "promo-rift",
+   "id": 4167,
+   "name": "Promos"
+  },
+  {
+   "code": "ogs",
+   "id": 4275,
+   "name": "Origins Proving Grounds"
+  },
+  {
+   "code": "op",
+   "id": 4287,
+   "name": "Organized Play"
+  },
+  {
+   "code": "jdg",
+   "id": 4288,
+   "name": "Judge Promos"
+  },
+  {
+   "code": "arc",
+   "id": 4289,
+   "name": "Arcane"
+  },
+  {
+   "code": "sfd",
+   "id": 4299,
+   "name": "Spiritforged"
+  },
+  {
+   "code": "rift-champ",
+   "id": 4347,
+   "name": "Championship Promo"
+  },
+  {
+   "code": "nnp",
+   "id": 4348,
+   "name": "Nexus Night Promos"
+  },
+  {
+   "code": "rep-riftbound",
+   "id": 4349,
+   "name": "Release Event Promos"
+  },
+  {
+   "code": "unl",
+   "id": 4425,
+   "name": "Unleashed"
+  },
+  {
+   "code": "ven",
+   "id": 4521,
+   "name": "Vendetta"
+  },
+  {
+   "code": "rad",
+   "id": 4522,
+   "name": "Radiance"
+  },
+  {
+   "code": "t1s",
+   "id": 4771,
+   "name": "Riftbound x T1 2025 Worlds Champion Collection"
+  },
+  {
+   "code": "lgc",
+   "id": 4803,
+   "name": "Legacy"
+  },
+  {
+   "code": "pg2",
+   "id": 4804,
+   "name": "Legacy: Proving Grounds"
+  },
+  {
+   "code": "rec",
+   "id": 4806,
+   "name": "The Reckoning"
+  }
+ ],
+ "cardtrader_games": [
+  {
+   "id": 22,
+   "name": "Riftbound | League of Legends"
+  }
+ ],
+ "category": 89,
+ "groups": [
+  {
+   "abbreviation": "LGC",
+   "groupId": 24832,
+   "name": "Legacy",
+   "publishedOn": "2027-01-29"
+  },
+  {
+   "abbreviation": "GRFT",
+   "groupId": 24901,
+   "name": "Gift of the Rift Bundle",
+   "publishedOn": "2026-12-04"
+  },
+  {
+   "abbreviation": "RXK/DA",
+   "groupId": 24943,
+   "name": "Riftbound x K/DA: Couture Collection",
+   "publishedOn": "2026-11-11"
+  },
+  {
+   "abbreviation": "RAD",
+   "groupId": 24819,
+   "name": "Radiance",
+   "publishedOn": "2026-10-23"
+  },
+  {
+   "abbreviation": "T12025",
+   "groupId": 24861,
+   "name": "T1 2025 Worlds Champion Bundles",
+   "publishedOn": "2026-08-01"
+  },
+  {
+   "abbreviation": "VEN",
+   "groupId": 24698,
+   "name": "Vendetta",
+   "publishedOn": "2026-07-31"
+  },
+  {
+   "abbreviation": "UNL",
+   "groupId": 24560,
+   "name": "Unleashed",
+   "publishedOn": "2026-05-08"
+  },
+  {
+   "abbreviation": "SFD",
+   "groupId": 24519,
+   "name": "Spiritforged",
+   "publishedOn": "2026-02-13"
+  },
+  {
+   "abbreviation": "JDG",
+   "groupId": 24552,
+   "name": "Riftbound Judge Promotional Cards",
+   "publishedOn": "2025-12-01"
+  },
+  {
+   "abbreviation": "OGN",
+   "groupId": 24344,
+   "name": "Origins",
+   "publishedOn": "2025-10-31"
+  },
+  {
+   "abbreviation": "OGS",
+   "groupId": 24439,
+   "name": "Origins: Proving Grounds",
+   "publishedOn": "2025-10-31"
+  },
+  {
+   "abbreviation": "OPP",
+   "groupId": 24528,
+   "name": "Riftbound Organized Play Promotional Cards",
+   "publishedOn": "2025-10-31"
+  },
+  {
+   "abbreviation": "PR",
+   "groupId": 24343,
+   "name": "Riftbound Promotional Cards",
+   "publishedOn": "2025-10-31"
+  },
+  {
+   "abbreviation": "RWB",
+   "groupId": 24502,
+   "name": "Riftbound Worlds Bundle 2025",
+   "publishedOn": "2025-10-28"
+  },
+  {
+   "abbreviation": "SGN",
+   "groupId": 24797,
+   "name": "Secret Garden",
+   "publishedOn": "2025-07-30"
+  }
+ ],
+ "name_suffixes": [
+  [
+   "Alternate Art",
+   115
+  ],
+  [
+   "Overnumbered",
+   101
+  ],
+  [
+   "Signature",
+   54
+  ],
+  [
+   "Prize Wall",
+   49
+  ],
+  [
+   "Best Of",
+   37
+  ],
+  [
+   "Oversized",
+   7
+  ],
+  [
+   "Heartsteel Overnumbered",
+   6
+  ],
+  [
+   "Heartsteel Signature",
+   6
+  ],
+  [
+   "A",
+   6
+  ],
+  [
+   "B",
+   6
+  ],
+  [
+   "Champion",
+   6
+  ],
+  [
+   "K/DA Special Art Card",
+   5
+  ],
+  [
+   "T1 Worlds Champion Player Bundle",
+   5
+  ],
+  [
+   "T1 Worlds Champion Signature Edition Bundle",
+   5
+  ],
+  [
+   "Serial Numbered",
+   5
+  ],
+  [
+   "Top 8",
+   5
+  ],
+  [
+   "R02a",
+   4
+  ],
+  [
+   "R03a",
+   4
+  ],
+  [
+   "R04a",
+   4
+  ],
+  [
+   "R05a",
+   4
+  ],
+  [
+   "R01a",
+   4
+  ],
+  [
+   "R06a",
+   4
+  ],
+  [
+   "R04b",
+   4
+  ],
+  [
+   "R05b",
+   4
+  ],
+  [
+   "R06b",
+   4
+  ],
+  [
+   "R03b",
+   4
+  ],
+  [
+   "R02b",
+   4
+  ],
+  [
+   "R01b",
+   4
+  ],
+  [
+   "Starter",
+   4
+  ],
+  [
+   "Ultimate",
+   2
+  ],
+  [
+   "Full Art",
+   1
+  ],
+  [
+   "R06c",
+   1
+  ],
+  [
+   "R05c",
+   1
+  ],
+  [
+   "R04c",
+   1
+  ],
+  [
+   "R03c",
+   1
+  ],
+  [
+   "R02c",
+   1
+  ],
+  [
+   "R01c",
+   1
+  ],
+  [
+   "GG EZ",
+   1
+  ],
+  [
+   "Launch Exclusive",
+   1
+  ]
+ ],
+ "news": {
+  "https://merch.riotgames.com/en-us/": {
+   "head": "<!DOCTYPE html><!--o__l2QOMLEbTjQuxtHDEI--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" href=\"/_next/static/media/b36dad42e7125727-s.p.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/b8efde86b4a8528f-s.p.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/b9e6f548b6c264b8-s.p.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/d1979d368f9053fb-s.p.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/e4af272ccee01ff0-s.p.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" as=\"image\" imageSrcSet=\"/_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products%2Fd9528f9cc6c88034bb963709002e0dfde2520fb7-1680x589.webp%3FaccountingTag%3Dconsumer_products&amp;w=1920&amp;q=75 1x, /_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products%2Fd9528f9cc6c88034bb963709002e0dfde2520fb7-1680x589.webp%3FaccountingTag%3Dconsumer_products&amp;w=3840&amp;q=75 2x\"/><link rel=\"preload\" as=\"image\" imageSrcSet=\"/_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products_live%2F3afef82db2629406618cb910534595e1640b6d94-3296x1030.png%3FaccountingTag%3Dconsumer_products&amp;w=640&amp;q=75 640w, /_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products_live%2F3afef82db2629406618cb910534595e1640b6d94-3296x1030.png%3FaccountingTag%3Dconsumer_products&amp;w=750&amp;q=75 750w, /_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products_live%2F3afef82db2629406618cb910534595e1640b6d94-3296x1030.png%3FaccountingTag%3Dconsumer_products&amp;w=828&amp;q=75 828w, /_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products_live%2F3afef82db2629406618cb910534595e1640b6d94-3296x1030.png%3FaccountingTag%3Dconsumer_products&amp;w=1080&amp;q=75 1080w, /_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products_live%2F3afef82db2629406618cb910534595e1640b6d94-3296x1030.png%3FaccountingTag%3Dconsumer_products&amp;w=1200&amp;q=75 1200w, /_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products_live%2F3afef82db2629406618cb910534595e1640b6d94-3296x1030.png%3FaccountingTag%3Dconsumer_products&amp;w=1920&amp;q=75 1920w, /_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products_live%2F3afef82db2629406618cb910534595e1640b6d94-3296x1030.png%3FaccountingTag%3Dconsumer_products&amp;w=2048&amp;q=75 2048w, /_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products_live%2F3afef82db2629406618cb910534595e1640b6d94-3296x1030.png%3FaccountingTag%3Dconsumer_products&amp;w=3840&amp;q=75 3840w\" imageSizes=\"99vw\"/><link rel=\"stylesheet\" href=\"/_next/static/css/11946cd0d3a647cc.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/0cc3a337d0fa4fda.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/1c42c6667e8df959.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/9fa82bb56bbdbca5.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/aeca4159dd6c9427.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-a73b31b0f0593dc6.js\"/><script src=\"/_next/static/chunks/87c73c54-7ae8281e0b384267.js\" async=\"\"></script><script src=\"/_next/static/chunks/18-2d01c3ba2e3b41ad.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5ac481c20a4b1e0b.js\" async=\"\"></script><script src=\"/_next/static/chunks/7c09d4dc-f7bb886bb4180215.js\" async=\"\"></script><script src=\"/_next/static/chunks/990a3170-bc23a6eddbe56c9c.js\" async=\"\"></script><script src=\"/_next/static/chunks/8579-614e324ebe2e580f.js\" async=\"\"></script><script src=\"/_next/static/chunks/4448-8746df7f0bf03e92.js\" async=\"\"></script><script src=\"/_next/static/chunks/7803-8238bd4f80aa04a6.js\" async=\"\"></script><script src=\"/_next/static/chunks/6433-af75551beaf00552.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/(root)/error-894f1e3e385cc61b.js\" async=\"\"></script><script src=\"/_next/static/chunks/8816-68c307bf795f7145.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/(root)/%5Blocale%5D/page-c075c257d54e5af1.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/(root)/%5Blocale%5D/not-found-d8fac9470c7dde6b.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/(root)/%5Blocale%5D/layout-e228d0391a0b27e2.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/(root)/%5Blocale%5D/error-4ed68dbae59c9412.js\" async=\"\"></script><link rel=\"preload\" href=\"https://www.googletagmanager.com/gtm.js?id=GTM-W3BHTCC\" as=\"script\"/><link rel=\"preload\" href=\"https://cmp.osano.com/16BZ95S4qp9Kl2gUA/8727e082-1f72-4cb5-aa32-ae0e7cdb1c61/osano.js\" as=\"script\"/><meta name=\"next-size-adjust\" content=\"\"/><title>Homepage | Riot Games Store</title><meta name=\"description\" content=\"Riot Games Merchandise\"/><meta name=\"robots\" content=\"index, follow\"/><meta property=\"og:title\" content=\"Homepage | Riot Games Store\"/><meta property=\"og:description\" content=\"Riot Games Merchandise\"/><meta name=\"twitter:card\" content=\"summary\"/><meta name=\"twitter:title\" content=\"Homepage | Riot Games Store\"/><meta name=\"twitter:description\" content=\"Riot Games Merchandise\"/><link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\" sizes=\"16x16\"/><meta name=\"facebook-domain-verification\" content=\"d3it5dckxr4glzqlke4yequvoyw7zm\"/><meta name=\"format-detection\" content=\"telephone=no, date=no, email=no, address=no\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__variable_d24dcb __variable_d8ebd1\"><div hidden=\"\"><!--$--><!--/$--></div><div class=\"default-layout_layout__OL6bR\"><",
+   "status": 200
+  },
+  "https://playriftbound.com/en-us/news/": {
+   "head": "<!DOCTYPE html><html lang=\"en-us\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><title data-next-head=\"\">News</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" data-next-head=\"\"/><meta name=\"description\" content=\"Riftbound is a new collectable trading card game featuring a vast array of characters and locales from League of Legends. Learn more here!\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/en-us/news/\" hrefLang=\"en-us\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/es-es/news/\" hrefLang=\"es-es\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/de-de/news/\" hrefLang=\"de-de\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/fr-fr/news/\" hrefLang=\"fr-fr\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/it-it/news/\" hrefLang=\"it-it\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/ja-jp/news/\" hrefLang=\"ja-jp\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/ko-kr/news/\" hrefLang=\"ko-kr\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/zh-cn/news/\" hrefLang=\"zh-cn\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/zh-tw/news/\" hrefLang=\"zh-tw\" data-next-head=\"\"/><link rel=\"canonical\" href=\"https://playriftbound.com/en-us/news/\" data-next-head=\"\"/><meta property=\"og:url\" content=\"https://playriftbound.com/en-us/news/\" data-next-head=\"\"/><meta property=\"og:title\" content=\"News\" data-next-head=\"\"/><meta property=\"og:description\" content=\"Riftbound is a new collectable trading card game featuring a vast array of characters and locales from League of Legends. Learn more here!\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/6cf5ae382207a6569b542e215d49d0e4266fc617-1200x630.png?accountingTag=RB?w=1200&amp;h=630&amp;fm=webp&amp;fit=crop&amp;crop=center\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-us\" data-next-head=\"\"/><script type=\"application/ld+json\" data-markupbot=\"page\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https://www.riotgames.com/#organization\",\"name\":\"Riot Games\",\"url\":\"https://www.riotgames.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization/45270aab26c0d3f2f7377cba4147dd2ac01b473a-24x24.svg?accountingTag=RB\"}},{\"@type\":\"WebSite\",\"@id\":\"https://playriftbound.com/#website\",\"name\":\"Riftbound\",\"url\":\"https://playriftbound.com\",\"publisher\":{\"@id\":\"https://www.riotgames.com/#organization\"}},{\"@type\":\"WebPage\",\"@id\":\"https://playriftbound.com/en-us/news/#webpage\",\"name\":\"News\",\"url\":\"https://playriftbound.com/en-us/news/\",\"inLanguage\":\"en-us\",\"isPartOf\":{\"@id\":\"https://playriftbound.com/#website\"},\"publisher\":{\"@id\":\"https://www.riotgames.com/#organization\"},\"description\":\"Riftbound is a new collectable trading card game featuring a vast array of characters and locales from League of Legends. Learn more here!\",\"image\":\"https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/6cf5ae382207a6569b542e215d49d0e4266fc617-1200x630.png?accountingTag=RB\\u0026w=1200\\u0026h=630\\u0026fm=webp\\u0026fit=crop\\u0026crop=center\",\"datePublished\":\"2026-01-12T19:06:49Z\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Riftbound\",\"item\":\"https://playriftbound.com\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"News\",\"item\":\"https://playriftbound.com/en-us/news/\"}]}]}</script><link rel=\"icon\" href=\"https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization/45270aab26c0d3f2f7377cba4147dd2ac01b473a-24x24.svg?accountingTag=RB\" sizes=\"any\" data-next-head=\"\"/><script id=\"google-consent-script\" data-next-head=\"\">try {\n              window.dataLayer = window.dataLayer ||[];\n              function gtag(){dataLayer.push(arguments);}\n              gtag('consent','default',{\n                'ad_storage':'denied',\n                'analytics_storage':'denied',\n                'ad_user_data':'denied',\n                'ad_personalization':'denied',\n                'wait_for_update': 500\n              });\n              gtag(\"set\", \"ads_data_redaction\", true);\n            } catch(e) {}</script><script id=\"osano-script\" src=\"https://cmp.osano.com/16BZ95S4qp9Kl2gUA/c84de61e-21d7-4a4a-9591-3d3a28fb5b1d/osano.js\" data-next-head=\"\"></script><script id=\"google-tag-manager\" data-next-head=\"\">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-P3P34PVQ');</script><link rel=\"preload\" href=\"/_next/static/css/112495035b880485.css\" as=\"style\"/><link rel=\"stylesheet\" href=\"/_next/static/css/112495035b880485.css\" data-n-g=\"\"/><link rel=\"preload\" href=\"/_next/static/css/d22fe4243c447d5f.css\" as=\"style\"/><link rel=\"stylesheet\" href=\"/_next/static/css/d22fe4243c447d5f.css\" data-n-p=\"\"/><noscript data-n-css=\"\"></noscript><script defer=\"\" nomodule=\"\" src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\"></script><script src=\"/_next/static/chunks/webpack-8ab12d32ea1b60b5.js\" defer=\"\"></script><script src=\"/_next/static/chunks/framework-d5fbdf5171596063.js\" defer=\"\"></script><script src=\"/_next/static/chunks/main-76a240742e38efa1.js\" defer=\"\"></script><script src=\"/_next/static/chunks/pages/_app-8e1ba8c934f22784.js\" defer=\"\"></script><script src=\"/_next/static/chunks/5-38fbb712cd08c7ea.js\" defer=\"\"></script><script src=\"/_next/static/chunks/116-7e72687ec2fb2196.js\" defer=\"\"></script><script src=\"/_next/static/chunks/32-9e9221f73d4c21c2.js\" defer=\"\"></script><script src=\"/_next/static/chunks/819-11f887c0085b3a9a.js\" defer=\"\"></script><script src=\"/_next/static/chunks/pages/%5B%5B..",
+   "status": 200
+  },
+  "https://playriftbound.com/en-us/preorder/registration/": {
+   "head": "<!DOCTYPE html><html lang=\"en-us\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><title data-next-head=\"\">Riftbound | League of Legends Trading Card Game</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" data-next-head=\"\"/><meta name=\"description\" content=\"Riftbound is a new collectable trading card game featuring a vast array of characters and locales from League of Legends. Learn more here!\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/en-us/preorder/registration/\" hrefLang=\"en-us\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/es-es/preorder/registration/\" hrefLang=\"es-es\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/de-de/preorder/registration/\" hrefLang=\"de-de\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/fr-fr/preorder/registration/\" hrefLang=\"fr-fr\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/it-it/preorder/registration/\" hrefLang=\"it-it\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/ja-jp/preorder/registration/\" hrefLang=\"ja-jp\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/ko-kr/preorder/registration/\" hrefLang=\"ko-kr\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/zh-cn/preorder/registration/\" hrefLang=\"zh-cn\" data-next-head=\"\"/><link rel=\"alternate\" href=\"https://playriftbound.com/zh-tw/preorder/registration/\" hrefLang=\"zh-tw\" data-next-head=\"\"/><link rel=\"canonical\" href=\"https://playriftbound.com/en-us/preorder/registration/\" data-next-head=\"\"/><meta property=\"og:url\" content=\"https://playriftbound.com/en-us/preorder/registration/\" data-next-head=\"\"/><meta property=\"og:title\" content=\"Riftbound | League of Legends Trading Card Game\" data-next-head=\"\"/><meta property=\"og:description\" content=\"Riftbound is a new collectable trading card game featuring a vast array of characters and locales from League of Legends. Learn more here!\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/6cf5ae382207a6569b542e215d49d0e4266fc617-1200x630.png?accountingTag=RB?w=1200&amp;h=630&amp;fm=webp&amp;fit=crop&amp;crop=center\" data-next-head=\"\"/><meta property=\"og:locale\" content=\"en-us\" data-next-head=\"\"/><script type=\"application/ld+json\" data-markupbot=\"page\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https://www.riotgames.com/#organization\",\"name\":\"Riot Games\",\"url\":\"https://www.riotgames.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization/45270aab26c0d3f2f7377cba4147dd2ac01b473a-24x24.svg?accountingTag=RB\"}},{\"@type\":\"WebSite\",\"@id\":\"https://playriftbound.com/#website\",\"name\":\"Riftbound\",\"url\":\"https://playriftbound.com\",\"publisher\":{\"@id\":\"https://www.riotgames.com/#organization\"}},{\"@type\":\"WebPage\",\"@id\":\"https://playriftbound.com/en-us/preorder/registration/#webpage\",\"name\":\"Riftbound | League of Legends Trading Card Game\",\"url\":\"https://playriftbound.com/en-us/preorder/registration/\",\"inLanguage\":\"en-us\",\"isPartOf\":{\"@id\":\"https://playriftbound.com/#website\"},\"publisher\":{\"@id\":\"https://www.riotgames.com/#organization\"},\"description\":\"Riftbound is a new collectable trading card game featuring a vast array of characters and locales from League of Legends. Learn more here!\",\"image\":\"https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/6cf5ae382207a6569b542e215d49d0e4266fc617-1200x630.png?accountingTag=RB\\u0026w=1200\\u0026h=630\\u0026fm=webp\\u0026fit=crop\\u0026crop=center\",\"datePublished\":\"2026-03-23T23:15:10Z\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Riftbound\",\"item\":\"https://playriftbound.com\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Riftbound | League of Legends Trading Card Game\",\"item\":\"https://playriftbound.com/en-us/preorder/registration/\"}]}]}</script><link rel=\"icon\" href=\"https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization/45270aab26c0d3f2f7377cba4147dd2ac01b473a-24x24.svg?accountingTag=RB\" sizes=\"any\" data-next-head=\"\"/><script id=\"google-consent-script\" data-next-head=\"\">try {\n              window.dataLayer = window.dataLayer ||[];\n              function gtag(){dataLayer.push(arguments);}\n              gtag('consent','default',{\n                'ad_storage':'denied',\n                'analytics_storage':'denied',\n                'ad_user_data':'denied',\n                'ad_personalization':'denied',\n                'wait_for_update': 500\n              });\n              gtag(\"set\", \"ads_data_redaction\", true);\n            } catch(e) {}</script><script id=\"osano-script\" src=\"https://cmp.osano.com/16BZ95S4qp9Kl2gUA/c84de61e-21d7-4a4a-9591-3d3a28fb5b1d/osano.js\" data-next-head=\"\"></script><script id=\"google-tag-manager\" data-next-head=\"\">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-P3P34PVQ');</script><link rel=\"preload\" href=\"/_next/static/css/112495035b880485.css\" as=\"style\"/><link rel=\"stylesheet\" href=\"/_next/static/css/112495035b880485.css\" data-n-g=\"\"/><link rel=\"preload\" href=\"/_next/static/css/d22fe4243c447d5f.css\" as=\"style\"/><link rel=\"stylesheet\" href=\"/_next/static/css/d22fe4243c447d5f.css\" data-n-p=\"\"/><noscript data-n-css=\"\"></noscript><script defer=\"\" nomodule=\"\" src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\"></script><script src=\"/_next/static/chunks/webpack-8ab12d32ea1b60b5.js\" defer=\"\"></script><script src=\"/_next/static/chunks/framework-d5fbdf5171596063.js\" defer=\"\"></script><script src=\"/_next/static/chunks/main-76a240742e38efa1.js\" defer=\"\"></script><script src=\"/_next/static/",
+   "status": 200
+  },
+  "https://www.dbs-cardgame.com/fw/en/events/": {
+   "head": "<!DOCTYPE html>\r\n<html lang=\"en-US\" prefix=\"og: http://ogp.me/ns#\">\r\n\r\n<head>\r\n  \r\n\r\n<meta charset=\"utf-8\">\r\n<script type=\"text/javascript\" src=\"https://cdn-apac.onetrust.com/consent/98850080-4e90-4245-8ba2-f112a1af5940/OtAutoBlock.js\" ></script>\r\n<script src=\"https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"98850080-4e90-4245-8ba2-f112a1af5940\" ></script>\r\n<script type=\"text/javascript\">\r\nfunction OptanonWrapper() { }\r\n</script>\r\n<!-- Google Tag Manager -->\r\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\r\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\r\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\r\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\r\n})(window,document,'script','dataLayer','GTM-5MC69RF');</script>\r\n<!-- End Google Tag Manager -->\r\n<title>EVENTS | Dragon Ball Super Card Game Fusion World - Official Web Site</title>\r\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n<meta name=\"format-detection\" content=\"telephone=no\">\r\n<meta name=\"description\" content=\"Welcome to DRAGON BALL SUPER CARD GAME FUSION WORLD,where you can battle using the warriors from DRAGON BALL!\">\r\n<meta name=\"keywords\" content=\"Dragon Ball Super,Fusion World,DBS FW,Trading Card Game,TCG,BANDAI\">\r\n<meta name=\"token\" content=\"762139d499f92965068cd8725ef584a8030c0473e18517c086b7ffff0b8f7455\">\r\n<meta name=\"twitter:card\" content=\"summary_large_image\">\r\n<meta name=\"twitter:site\" content=\"@dbfw_cardgameEN\">\r\n<meta property=\"og:title\" content=\"EVENTS | Dragon Ball Super Card Game Fusion World - Official Web Site\">\r\n<meta property=\"og:description\" content=\"Welcome to DRAGON BALL SUPER CARD GAME FUSION WORLD,where you can battle using the warriors from DRAGON BALL!\">\r\n<meta property=\"og:type\" content=\"article\">\r\n<meta property=\"og:url\" content=\"https://www.dbs-cardgame.com/fw/en/events/\">\r\n<meta property=\"og:site_name\" content=\"Dragon Ball Super Card Game Fusion World - Official Web Site\">\r\n<meta property=\"og:country-name\" content=\"en\">\r\n<meta property=\"og:locale:alternate\" content=\"ja_JP\">\r\n<meta property=\"og:image\" content=\"https://www.dbs-cardgame.com/fw/renewal01/images/ogp.png\">\r\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\">\r\n<meta http-equiv=\"content-security-policy\" content=\"script-src 'self' 'unsafe-inline' https://cdn-apac.onetrust.com/ https://platform.twitter.com/ https://www.googletagmanager.com/ https://www.google-analytics.com/ https://googleads.g.doubleclick.net/ https://js-tag.zemanta.com/ https://connect.facebook.net/ https://static.ads-twitter.com/ https://www.googleadservices.com/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/\">\r\n<link rel=\"shortcut icon\" href=\"https://www.dbs-cardgame.com/fw/favicon.ico\">\r\n<link rel=\"apple-touch-icon\" href=\"https://www.dbs-cardgame.com/fw/webclip.png\">\r\n<link rel=\"alternate\" hreflang=\"ja\" href=\"https://www.dbs-cardgame.com/fw/jp/\">\r\n<link rel=\"alternate\" hreflang=\"en-US\" href=\"https://www.dbs-cardgame.com/fw/en/\">\r\n<link rel=\"alternate\" hreflang=\"en\" href=\"https://www.dbs-cardgame.com/fw/asia-en/\">\r\n<link rel=\"alternate\" hreflang=\"zh-Hant\" href=\"https://www.dbs-cardgame.com/fw/asia-tc/\">\r\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800;900&text=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&family=Anton\" rel=\"stylesheet\">\r\n<link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap\" rel=\"stylesheet\">\r\n<link rel=\"stylesheet\" href=\"/fw/renewal01/css/plugins/jquery.fancybox.min.css\">\r\n<link rel=\"stylesheet\" href=\"/fw/renewal01/css/plugins/swiper.css\">\r\n<script src=\"/fw/renewal01/js/lib/jquery-3.7.1.min.js\"></script>\r\n<script src=\"/fw/renewal01/js/lib/jquery.fancybox.min.js\"></script>\r\n<script src=\"/fw/renewal01/js/lib/swiper.min.js\"></script>\r\n<script src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>\r\n<script src=\"/fw/renewal01/js/scripts.js\"></script>\r\n<link rel=\"stylesheet\" href=\"/fw/renewal01/css/style.css?v=17950308601\">\r\n  <script src=\"/fw/renewal01/js/lib/lazyload.min.js\"></script>\r\n  <script src=\"/fw/renewal01/js/lazyload.js\"></script>\r\n\r\n\r\n  <link rel=\"stylesheet\" href=\"/fw/renewal01/css/pages/events.css?v=17950308601\">\r\n</head>\r\n\r\n<body class=\"lang-en\">\r\n  <div class=\"wrapper  is-page\">\r\n    <header class=\"header js-header\">\r\n\r\n    <div class=\"headerBackground\">\r\n      <div class=\"headerSearchBtnSP\">\r\n        <div class=\"btnBGCol\">\r\n          <div class=\"btnBG\"><span></span><span></span></div></div>\r\n          <a href=\"#headerSearchModal\"><img src=\"/fw/renewal01/images/common/icon_serch.png\" alt=\"\"><span>Card Search</span></a>\r\n      </div>\r\n      <div class=\"headerLogoSP\">\r\n        <a href=\"/fw/en/\">\r\n          <img src=\"/fw/renewal01/images/common/logo_fw_w.png\" alt=\"DRAGONBALL SUPER CARD GAME FUSION WORLD\">\r\n        </a>\r\n      </div>\r\n      <div class=\"headerMenuSp js-headerMenuSp\">\r\n        <div class=\"headerMenuBtnSP\">\r\n          <div class=\"btnBGCol\"><div class=\"btnBG\"><span></span><span></span></div></div>\r\n          <img src=\"/fw/renewal01/images/common/icon_menu.png\" alt=\"\"><span>MENU</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"headerCloseSp\">\r\n        <a href=\"javascript:void(0);\" class=\"headerCloseSpBtn js-headerClose\">CLOSE</a>\r\n    </div>\r\n\r\n    <div class=\"headerWrapper\">\r\n      <div class=\"headerLeftCol\">\r\n        <h1 class=\"logo\">\r\n          <a href=\"/fw/en/\">\r\n            <picture>\r\n                <source srcset=\"/fw/renewal01/images/common/logo_fw_b.png\" media=\"(min-width: 1100px)\">\r\n                <img src=\"/fw/renewal01/images/common/logo_fw_w.png\" alt=\"DRAGONBALL SUPER CARD GAME FUSION WORLD\">\r\n            </p",
+   "status": 200
+  },
+  "https://www.dbs-cardgame.com/us-en/event/": {
+   "head": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <!-- www.dbs-cardgame.com に対する OneTrust Cookie 同意通知の始点 -->\r\n<script type=\"text/javascript\" src=\"https://cdn-apac.onetrust.com/consent/98850080-4e90-4245-8ba2-f112a1af5940/OtAutoBlock.js\" ></script>\r\n<script src=\"https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"98850080-4e90-4245-8ba2-f112a1af5940\" ></script>\r\n<script type=\"text/javascript\">\r\nfunction OptanonWrapper() { }\r\n</script>\r\n<!-- www.dbs-cardgame.com に対する OneTrust Cookie 同意通知の終点 -->\r\n<!-- Google Tag Manager -->\r\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\r\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\r\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\r\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\r\n})(window,document,'script','dataLayer','GTM-5MC69RF');</script>\r\n<!-- End Google Tag Manager -->\r\n\r\n\r\n<meta charset=\"utf-8\">\r\n  <title>EVENT | DRAGON BALL SUPER CARD GAME</title>\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n  <script>\r\n    if (screen.width <= 640) {\r\n    document.write('<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0\">');\r\n    } else {\r\n    document.write('<meta name=\"viewport\" content=\"width=device-width\">');\r\n    }\r\n  </script>\r\n  <meta name=\"format-detection\" content=\"telephone=no\">\r\n  <meta name=\"Keywords\" content=\"dragon ball,super,dbs,card,Cardgame,tcg,ccg,Collectible,bandai\">\r\n  <meta name=\"Description\" content=\"DRAGON BALL SUPER CARD GAME - Official Web Site\">\r\n  <meta property=\"og:type\" content=\"article\">\r\n  <meta property=\"og:image\" content=\"https://www.dbs-cardgame.com/ogp.png\">\r\n  <meta property=\"og:url\" content=\"http://www.dbs-cardgame.com/us-en/event/\">\r\n  <meta property=\"og:site_name\" content=\"DRAGON BALL SUPER CARD GAME\">\r\n  <meta property=\"og:description\" content=\"DRAGON BALL SUPER CARD GAME - Official Web Site\">\r\n  <meta name=\"theme-color\" content=\"#ff8414\">\r\n  <meta http-equiv=\"content-security-policy\" content=\"script-src 'self' 'unsafe-inline' https://www.googletagmanager.com/ https://www.google-analytics.com/ https://cdn-apac.onetrust.com/ https://platform.twitter.com/ https://www.youtube-nocookie.com/ https://connect.facebook.net/ https://static.ads-twitter.com/ https://js-tag.zemanta.com/ https://googleads.g.doubleclick.net/ https://www.googleadservices.com/ ; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/\">\r\n  <link rel=\"apple-touch-icon\" href=\"https://www.dbs-cardgame.com/webclip.png\">\r\n  <link href=\"https://www.dbs-cardgame.com/favicon.ico\" rel=\"shortcut icon\">\r\n  <link href=\"https://www.dbs-cardgame.com/favicon.ico\" rel=\"icon\">\r\n  <link rel=\"stylesheet\" href=\"../../css/reset.css\">\r\n  <link rel=\"stylesheet\" href=\"../../css/jquery.sidr.dark.css\">\r\n  <link rel=\"stylesheet\" href=\"../../css/layout.css?261016\">\r\n  <link rel=\"stylesheet\" href=\"../../css/event.css?261016\">\r\n  <link rel=\"stylesheet\" href=\"../css/us-en.css\">\r\n  <link href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700\" rel=\"stylesheet\">\r\n  <script src=\"../../js/jquery.js?261016\"></script>\r\n  <script src=\"../../js/jquery.easing.min.js\"></script>\r\n  <script src=\"../../js/jQueryAutoHeight.js\"></script>\r\n  <script src=\"../../js/jquery.sidr.min.js\"></script>\r\n  <script src=\"../../js/common.js?261016\"></script>\r\n  <script src=\"../../js/analytics.js\"></script>\r\n  <script src=\"../../js/event/index.js?261016\"></script>\r\n</head>\r\n\r\n<body id=\"event\" class=\"article\">\r\n  <div id=\"wrapper\">\r\n    <header id=\"mainVisCol\">\r\n      <h1>DRAGON BALL SUPER CARD GAME</h1>\r\n    </header>\r\n    <div id=\"container\">\r\n       <nav>\r\n  <ul id=\"gnaviCol\">\r\n    <li class=\"gnTop\"><a href=\"/us-en/\" class=\"\"><img src=\"/images/common/gnavi/nav_top.png\" width=\"64\" height=\"65\" alt=\"TOP\"></a>\r\n    </li>\r\n    \r\n    <li class=\"gnAbout\">      <a href=\"/us-en/about/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_about.png?Update=04\" width=\"93\" height=\"59\" alt=\"ABOUT\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnProd\"><span class=\"newIcon\">NEW!!</span>      <a href=\"/us-en/product/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_product.png?Update=04\" width=\"102\" height=\"59\" alt=\"PRODUCT\">\r\n      </a>\r\n    </li>\r\n    <li class=\"gnRule\"><span class=\"newIcon\">NEW!!</span>      <a href=\"/us-en/rule/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_rule.png?Update=04\" width=\"69\" height=\"59\" alt=\"RULE\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnEvent\"><span class=\"newIcon\">NEW!!</span>      <a href=\"/us-en/event/\" class=\"current\">\r\n        <img src=\"/images/common/gnavi/nav_event.png?Update=04\" width=\"77\" height=\"59\" alt=\"EVENT\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnCardlist\"><span class=\"newIcon\">NEW!!</span>      <a href=\"/us-en/cardlist/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_cardlist.png?Update=06\" width=\"69\" height=\"59\" alt=\"CARD LIST\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnStore\">      <a href=\"/us-en/shoplist/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_storelist.png?Update=04\" width=\"69\" height=\"59\" alt=\"STORE LIST\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnOrganizedPlay\">      <a href=\"/us-en/organized-play/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_organized-play.png?ver2\" width=\"114\" height=\"59\" alt=\"ORGANIZED PLAY\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnStrategy\">      <a href=\"/us-en/strategy/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_strategy.png?ver3\" width=\"101\" height=\"59\" alt=\"STRATEGY\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnApplication\">      <a href=\"/us-en/application/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_app.png?ver3\" width=\"77\" height=\"59\" alt=\"DIGITAL VERSION\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnMovie\">      <a href=\"/us-en/movie/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_movie",
+   "status": 200
+  },
+  "https://www.naruto-cardgame.com/en/": {
+   "head": "\r\n<!DOCTYPE html>\r\n<html lang=\"en\" dir=\"ltr\">\r\n\r\n<head prefix=\"og: http://ogp.me/ns#\">\r\n     <!-- naruto-cardgame.com に対する OneTrust Cookie 同意通知の始点 -->\r\n<script type=\"text/javascript\" src=\"https://cdn-apac.onetrust.com/consent/019dcd34-7890-7528-9069-cff4dfa3ac79/OtAutoBlock.js\" ></script>\r\n<script src=\"https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"019dcd34-7890-7528-9069-cff4dfa3ac79\" ></script>\r\n<script type=\"text/javascript\">\r\nfunction OptanonWrapper() { }\r\n</script>\r\n<!-- naruto-cardgame.com に対する OneTrust Cookie 同意通知の終点 -->\r\n      <!-- Google Tag Manager -->\r\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\r\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\r\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\r\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\r\n})(window,document,'script','dataLayer','GTM-TBD2VSB3');</script>\r\n<!-- End Google Tag Manager -->\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\">\r\n  <meta http-equiv=\"content-security-policy\" content=\"script-src 'self' 'unsafe-inline' https://cdn-apac.onetrust.com/ https://www.googletagmanager.com/;\r\n  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/;\r\n  img-src 'self' 'unsafe-inline' https://cdn-apac.onetrust.com/ https://storage.googleapis.com/ https://www.googletagmanager.com/ data:;\">\r\n  \r\n  <title>NARUTO CARD GAME OFFICIAL WEBSITE</title>\r\n  <meta name=\"description\" content=\"The Official Website for the NARUTO CARD GAME. Fight alongside the Shinobi and master Ninjutsu in this strategic card game set in the world of NARUTO!\">\r\n  <meta name=\"theme-color\" content=\"#FFFFFF\">\r\n  <meta name=\"format-detection\" content=\"telephone=no\">\r\n\r\n    <meta name=\"twitter:site\" content=\"@narutotcg_en\">\r\n  <meta name=\"twitter:card\" content=\"summary_large_image\">\r\n  \r\n  <meta property=\"og:url\" content=\"https://www.naruto-cardgame.com/en/\">\r\n  <meta property=\"og:type\" content=\"article\">\r\n  <meta property=\"og:title\" content=\"NARUTO CARD GAME OFFICIAL WEBSITE\">\r\n  <meta property=\"og:site_name\" content=\"NARUTO CARD GAME OFFICIAL WEBSITE\">\r\n  <meta property=\"og:description\" content=\"The Official Website for the NARUTO CARD GAME. Fight alongside the Shinobi and master Ninjutsu in this strategic card game set in the world of NARUTO!\">\r\n  <meta property=\"og:image\" content=\"https://www.naruto-cardgame.com/ogp.jpg\">\r\n  <meta property=\"og:locale\" content=\"en_US\">\r\n\r\n  <link rel=\"alternate\" hreflang=\"ja\" href=\"https://www.naruto-cardgame.com/jp/\">\r\n  <link rel=\"alternate\" hreflang=\"en-SG\" href=\"https://www.naruto-cardgame.com/asia-en/\">\r\n  <link rel=\"alternate\" hreflang=\"en-MY\" href=\"https://www.naruto-cardgame.com/asia-en/\">\r\n  <link rel=\"alternate\" hreflang=\"en-ID\" href=\"https://www.naruto-cardgame.com/asia-en/\">\r\n  <link rel=\"alternate\" hreflang=\"en-TH\" href=\"https://www.naruto-cardgame.com/asia-en/\">\r\n  <link rel=\"alternate\" hreflang=\"en-PH\" href=\"https://www.naruto-cardgame.com/asia-en/\">\r\n  <link rel=\"alternate\" hreflang=\"en\" href=\"https://www.naruto-cardgame.com/en/\">\r\n  <link rel=\"alternate\" hreflang=\"zh-Hant\" href=\"https://www.naruto-cardgame.com/asia-tc/\">\r\n  <link rel=\"alternate\" hreflang=\"x-default\" href=\"https://www.naruto-cardgame.com/\">\r\n\r\n  <link rel=\"canonical\" href=\"https://www.naruto-cardgame.com/en/\" >\r\n\r\n  <link rel=\"icon\" href=\"/favicon.svg\" type=\"image/svg+xml\" sizes=\"any\">\r\n  <link rel=\"icon\" href=\"/favicon.png\" type=\"image/png\">\r\n  \r\n  <link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\">  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n  \r\n  <link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Noto+Sans+TC:wght@400&family=Poppins:wght@300;500;700;900&display=swap\" rel=\"stylesheet\">\r\n  \r\n  <link rel=\"stylesheet\" href=\"/css/library.css?17950308601\">\r\n  <link rel=\"stylesheet\" href=\"/css/common.css?17950308601\">\r\n\r\n  <script src=\"/js/library.js?17950308601\"></script>\r\n  <script src=\"/js/functions.js?17950308601\"></script>\r\n  <script src=\"/js/common.js?17950308601\"></script>  <script src=\"/js/top.js\"></script>\r\n  <link rel=\"stylesheet\" href=\"/css/top.css?17950308601\">\r\n</head>\r\n\r\n<body class=\"lang-en\">\r\n  <!-- Google Tag Manager (noscript) -->\r\n<noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-TBD2VSB3\" \r\nheight=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\r\n<!-- End Google Tag Manager (noscript) -->\r\n  <div class=\"wrapper\">\r\n    <header class=\"header\">\r\n  <div class=\"headerOuter js-headerscroll\">\r\n    <div class=\"headerBg\" aria-hidden=\"true\"></div>\r\n    <div class=\"headerInner\">\r\n      <div class=\"headerLeft\">\r\n        <div class=\"headerLogo\"><a href=\"/en/\"><img src=\"/images/common/logo.webp\" alt=\"NARUTO CARD GAME\"></a></div>\r\n        <nav class=\"headerMenu\">\r\n          <ul class=\"headerMenuList\">\r\n            <li class=\"headerMenuItem\"><a href=\"/en/welcome/\">ABOUT</a></li>\r\n            <li class=\"headerMenuItem\"><a href=\"/en/news/article-list.php\">NEWS</a></li>\r\n            <li class=\"headerMenuItem\"><a href=\"/en/retailers/\">FOR RETAILERS</a></li>\r\n          </ul>\r\n        </nav>\r\n      </div>\r\n      \r\n\r\n      <div class=\"headerRight\">\r\n        <div class=\"headerRightWrap\">\r\n          <ul class=\"snslist\">\r\n    <li><a href=\"https://x.com/narutotcg_eng\" target=\"_blank\"><img src=\"/images/common/sns_x.webp\" alt=\"X\"></a></li>\r\n    <li><a href=\"https://www.youtube.com/@NARUTO_TCG_EN\" target=\"_blank\"><img src=\"/images/common/sns_youtube.webp\" alt=\"YouTube\"></a></li>\r\n    <li><a href=\"https://www.facebook.com/narutotcgeng/\" target=\"_blank\"><img src=\"/images/common/sns_facebook.webp\" alt=\"Facebook\"></a></li>\r\n    <li><a href=\"https://www.instagram.com/narutotcg_en/\" target=\"_blank\"><img src=\"/images/common/sns_instagram.webp\" alt=\"Instagram\"></a></l",
+   "status": 200
+  },
+  "https://www.naruto-cardgame.com/en/products/": {
+   "head": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n</body></html>\n",
+   "status": 404
+  }
+ },
+ "rarities": [
+  {
+   "group": "JDG",
+   "n": 4,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Heimerdinger, Inventor",
+     "number": "111/298"
+    },
+    {
+     "name": "Svellsongur",
+     "number": "059/221"
+    },
+    {
+     "name": "Blue Sentinel",
+     "number": "087/219"
+    },
+    {
+     "name": "Gangplank, Naval",
+     "number": "086/166"
+    }
+   ]
+  },
+  {
+   "group": "OGN",
+   "n": 88,
+   "rarity": "Common",
+   "samples": [
+    {
+     "name": "Blazing Scorcher",
+     "number": "001/298"
+    },
+    {
+     "name": "Brazen Buccaneer",
+     "number": "002/298"
+    },
+    {
+     "name": "Chemtech Enforcer",
+     "number": "003/298"
+    },
+    {
+     "name": "Cleave",
+     "number": "004/298"
+    }
+   ]
+  },
+  {
+   "group": "OGN",
+   "n": 42,
+   "rarity": "Epic",
+   "samples": [
+    {
+     "name": "Immortal Phoenix",
+     "number": "037/298"
+    },
+    {
+     "name": "Kadregrin the Infernal",
+     "number": "038/298"
+    },
+    {
+     "name": "Kai'Sa, Survivor",
+     "number": "039/298"
+    },
+    {
+     "name": "Seal of Rage",
+     "number": "040/298"
+    }
+   ]
+  },
+  {
+   "group": "OGN",
+   "n": 6,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Mind Rune (B)",
+     "number": "089b/298"
+    },
+    {
+     "name": "Fury Rune (B)",
+     "number": "007b/298"
+    },
+    {
+     "name": "Order Rune (B)",
+     "number": "214b/298"
+    },
+    {
+     "name": "Calm Rune (B)",
+     "number": "042b/298"
+    }
+   ]
+  },
+  {
+   "group": "OGN",
+   "n": 84,
+   "rarity": "Rare",
+   "samples": [
+    {
+     "name": "Blind Fury",
+     "number": "025/298"
+    },
+    {
+     "name": "Brynhir Thundersong",
+     "number": "026/298"
+    },
+    {
+     "name": "Darius, Trifarian",
+     "number": "027/298"
+    },
+    {
+     "name": "Draven, Showboat",
+     "number": "028/298"
+    }
+   ]
+  },
+  {
+   "group": "OGN",
+   "n": 54,
+   "rarity": "Showcase",
+   "samples": [
+    {
+     "name": "Fury Rune (A)",
+     "number": "007a/298"
+    },
+    {
+     "name": "Darius, Trifarian (Alternate Art)",
+     "number": "027a/298"
+    },
+    {
+     "name": "Jinx, Demolitionist (Alternate Art)",
+     "number": "030a/298"
+    },
+    {
+     "name": "Kai'Sa, Survivor (Alternate Art)",
+     "number": "039a/298"
+    }
+   ]
+  },
+  {
+   "group": "OGN",
+   "n": 84,
+   "rarity": "Uncommon",
+   "samples": [
+    {
+     "name": "Captain Farron",
+     "number": "015/298"
+    },
+    {
+     "name": "Dangerous Duo",
+     "number": "016/298"
+    },
+    {
+     "name": "Iron Ballista",
+     "number": "017/298"
+    },
+    {
+     "name": "Noxus Saboteur",
+     "number": "018/298"
+    }
+   ]
+  },
+  {
+   "group": "OGS",
+   "n": 5,
+   "rarity": "Common",
+   "samples": [
+    {
+     "name": "Incinerate",
+     "number": "003/024"
+    },
+    {
+     "name": "Gentlemen's Duel",
+     "number": "008/024"
+    },
+    {
+     "name": "Flash",
+     "number": "011/024"
+    },
+    {
+     "name": "Blast of Power",
+     "number": "012/024"
+    }
+   ]
+  },
+  {
+   "group": "OGS",
+   "n": 8,
+   "rarity": "Epic",
+   "samples": [
+    {
+     "name": "Annie, Fiery",
+     "number": "001/024"
+    },
+    {
+     "name": "Master Yi, Honed",
+     "number": "009/024"
+    },
+    {
+     "name": "Garen, Commander",
+     "number": "013/024"
+    },
+    {
+     "name": "Lux, Crownguard",
+     "number": "014/024"
+    }
+   ]
+  },
+  {
+   "group": "OGS",
+   "n": 8,
+   "rarity": "Rare",
+   "samples": [
+    {
+     "name": "Master Yi, Meditative",
+     "number": "004/024"
+    },
+    {
+     "name": "Lux, Illuminated",
+     "number": "006/024"
+    },
+    {
+     "name": "Garen, Rugged",
+     "number": "007/024"
+    },
+    {
+     "name": "Annie, Stubborn",
+     "number": "010/024"
+    }
+   ]
+  },
+  {
+   "group": "OGS",
+   "n": 7,
+   "rarity": "Uncommon",
+   "samples": [
+    {
+     "name": "Firestorm",
+     "number": "002/024"
+    },
+    {
+     "name": "Zephyr Sage",
+     "number": "005/024"
+    },
+    {
+     "name": "Recruit the Vanguard",
+     "number": "015/024"
+    },
+    {
+     "name": "Fortified Position (Oversized)",
+     "number": "279/298"
+    }
+   ]
+  },
+  {
+   "group": "OPP",
+   "n": 13,
+   "rarity": "Common",
+   "samples": [
+    {
+     "name": "Mystic Poro",
+     "number": "171/298"
+    },
+    {
+     "name": "Blade Twirler",
+     "number": "002/166"
+    },
+    {
+     "name": "Dune Surfer",
+     "number": "004/166"
+    },
+    {
+     "name": "Field Musicians",
+     "number": "026/166"
+    }
+   ]
+  },
+  {
+   "group": "OPP",
+   "n": 1,
+   "rarity": "Epic",
+   "samples": [
+    {
+     "name": "Mel, Newly Awakened",
+     "number": "069b/166"
+    }
+   ]
+  },
+  {
+   "group": "OPP",
+   "n": 1,
+   "rarity": "None",
+   "samples": [
+    {
+     "name": "Bird // Buff",
+     "number": "T02 // T03"
+    }
+   ]
+  },
+  {
+   "group": "OPP",
+   "n": 205,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Viktor, Leader",
+     "number": "246/298"
+    },
+    {
+     "name": "Jinx, Rebel",
+     "number": "202/298"
+    },
+    {
+     "name": "Lee Sin, Ascetic",
+     "number": "078/298"
+    },
+    {
+     "name": "Sett, The Boss",
+     "number": "269/298"
+    }
+   ]
+  },
+  {
+   "group": "OPP",
+   "n": 21,
+   "rarity": "Rare",
+   "samples": [
+    {
+     "name": "Lux, Lady of Luminosity (Metal) (Best Of)",
+     "number": "021/024"
+    },
+    {
+     "name": "Lux, Lady of Luminosity (Metal) (Prize Wall)",
+     "number": "021/024"
+    },
+    {
+     "name": "Lee Sin, Centered",
+     "number": "151b/298"
+    },
+    {
+     "name": "Akali, Rogue Assassin (Metal) (Best Of)",
+     "number": "139/166"
+    }
+   ]
+  },
+  {
+   "group": "OPP",
+   "n": 6,
+   "rarity": "Uncommon",
+   "samples": [
+    {
+     "name": "Shadow Assassin",
+     "number": "013/166"
+    },
+    {
+     "name": "Tomb-Raider Barbara",
+     "number": "037/166"
+    },
+    {
+     "name": "Patched Porobot",
+     "number": "058/166"
+    },
+    {
+     "name": "Profiteer",
+     "number": "082/166"
+    }
+   ]
+  },
+  {
+   "group": "PR",
+   "n": 1,
+   "rarity": "None",
+   "samples": [
+    {
+     "name": "Bird // Brush",
+     "number": "T02 // T03"
+    }
+   ]
+  },
+  {
+   "group": "PR",
+   "n": 11,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Ahri, Alluring (Launch Exclusive)",
+     "number": "066/298"
+    },
+    {
+     "name": "Teemo, Scout",
+     "number": "197/298"
+    },
+    {
+     "name": "Warwick, Hunter",
+     "number": "159a/298"
+    },
+    {
+     "name": "Caitlyn, Patrolling",
+     "number": "068a/298"
+    }
+   ]
+  },
+  {
+   "group": "RAD",
+   "n": 60,
+   "rarity": "Common",
+   "samples": [
+    {
+     "name": "Amateur Demolitionist",
+     "number": "001/167"
+    },
+    {
+     "name": "Banner of Conquest",
+     "number": "002/167"
+    },
+    {
+     "name": "Bilgewater Tracker",
+     "number": "003/167"
+    },
+    {
+     "name": "Blossoming Dreamroot",
+     "number": "024/167"
+    }
+   ]
+  },
+  {
+   "group": "RAD",
+   "n": 28,
+   "rarity": "Epic",
+   "samples": [
+    {
+     "name": "Dockside Lock-Up",
+     "number": "136/167"
+    },
+    {
+     "name": "Blade of the Exile",
+     "number": "150/167"
+    },
+    {
+     "name": "Chronobreak",
+     "number": "140/167"
+    },
+    {
+     "name": "Clocktower Guardian",
+     "number": "067/167"
+    }
+   ]
+  },
+  {
+   "group": "RAD",
+   "n": 45,
+   "rarity": "Rare",
+   "samples": [
+    {
+     "name": "Kai'Sa, Rebel",
+     "number": "063/167"
+    },
+    {
+     "name": "Orianna, Lady of Clockwork",
+     "number": "145/167"
+    },
+    {
+     "name": "Seraphine, Starry-Eyed Songstress",
+     "number": "151/167"
+    },
+    {
+     "name": "Ahri, Confident",
+     "number": "038/167"
+    }
+   ]
+  },
+  {
+   "group": "RAD",
+   "n": 67,
+   "rarity": "Showcase",
+   "samples": [
+    {
+     "name": "K'Sante, Courageous (Heartsteel Overnumbered)",
+     "number": "178/167"
+    },
+    {
+     "name": "Aphelios, Exalted (Heartsteel Overnumbered)",
+     "number": "179/167"
+    },
+    {
+     "name": "Ezreal, Dashing (Heartsteel Overnumbered)",
+     "number": "180/167"
+    },
+    {
+     "name": "Yone, Blademaster (Heartsteel Overnumbered)",
+     "number": "181/167"
+    }
+   ]
+  },
+  {
+   "group": "RAD",
+   "n": 46,
+   "rarity": "Uncommon",
+   "samples": [
+    {
+     "name": "Rousing Display",
+     "number": "127/167"
+    },
+    {
+     "name": "Clanging Sentry",
+     "number": "055/167"
+    },
+    {
+     "name": "Command: Attack",
+     "number": "033/167"
+    },
+    {
+     "name": "Cosmic Vista",
+     "number": "160/167"
+    }
+   ]
+  },
+  {
+   "group": "RWB",
+   "n": 7,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Teemo, Swift Scout",
+     "number": "263a/298"
+    },
+    {
+     "name": "Bandle Tree",
+     "number": "278a/298"
+    },
+    {
+     "name": "The Grand Plaza",
+     "number": "293a/298"
+    },
+    {
+     "name": "Aspirant's Climb",
+     "number": "276a/298"
+    }
+   ]
+  },
+  {
+   "group": "RXK/DA",
+   "n": 5,
+   "rarity": "Showcase",
+   "samples": [
+    {
+     "name": "Ahri, Nine-Tailed Fox",
+     "number": "001*/005"
+    },
+    {
+     "name": "Kai'Sa, Daughter of the Void",
+     "number": "003*/005"
+    },
+    {
+     "name": "Evelynn, Agony's Embrace",
+     "number": "002*/005"
+    },
+    {
+     "name": "Akali, Rogue Assassin",
+     "number": "004*/005"
+    }
+   ]
+  },
+  {
+   "group": "SFD",
+   "n": 70,
+   "rarity": "Common",
+   "samples": [
+    {
+     "name": "Doran's Shield",
+     "number": "033/221"
+    },
+    {
+     "name": "Overzealous Fan",
+     "number": "128/221"
+    },
+    {
+     "name": "Feral Strength",
+     "number": "034/221"
+    },
+    {
+     "name": "Doran's Blade",
+     "number": "095/221"
+    }
+   ]
+  },
+  {
+   "group": "SFD",
+   "n": 38,
+   "rarity": "Epic",
+   "samples": [
+    {
+     "name": "Spinning Axe",
+     "number": "186/221"
+    },
+    {
+     "name": "Blade of the Ruined King",
+     "number": "178/221"
+    },
+    {
+     "name": "Svellsongur",
+     "number": "059/221"
+    },
+    {
+     "name": "Irelia, Fervent",
+     "number": "057/221"
+    }
+   ]
+  },
+  {
+   "group": "SFD",
+   "n": 6,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Fury Rune (R01b)",
+     "number": "R01b"
+    },
+    {
+     "name": "Calm Rune (R02b)",
+     "number": "R02b"
+    },
+    {
+     "name": "Mind Rune (R03b)",
+     "number": "R03b"
+    },
+    {
+     "name": "Body Rune (R04b)",
+     "number": "R04b"
+    }
+   ]
+  },
+  {
+   "group": "SFD",
+   "n": 60,
+   "rarity": "Rare",
+   "samples": [
+    {
+     "name": "Trinity Force",
+     "number": "115/221"
+    },
+    {
+     "name": "Sterak's Gage",
+     "number": "056/221"
+    },
+    {
+     "name": "Guardian Angel",
+     "number": "051/221"
+    },
+    {
+     "name": "Long Sword",
+     "number": "022/221"
+    }
+   ]
+  },
+  {
+   "group": "SFD",
+   "n": 72,
+   "rarity": "Showcase",
+   "samples": [
+    {
+     "name": "Ahri, Inquisitive (Overnumbered)",
+     "number": "227/221"
+    },
+    {
+     "name": "Irelia, Blade Dancer (Overnumbered)",
+     "number": "246/221"
+    },
+    {
+     "name": "Renata Glasc, Chem-Baroness (Overnumbered)",
+     "number": "249/221"
+    },
+    {
+     "name": "Draven, Vanquisher (Alternate Art)",
+     "number": "020a/221"
+    }
+   ]
+  },
+  {
+   "group": "SFD",
+   "n": 63,
+   "rarity": "Uncommon",
+   "samples": [
+    {
+     "name": "Unsung Hero",
+     "number": "167/221"
+    },
+    {
+     "name": "Jaull-Fish",
+     "number": "103/221"
+    },
+    {
+     "name": "Warmog's Armor",
+     "number": "108/221"
+    },
+    {
+     "name": "B.F. Sword",
+     "number": "161/221"
+    }
+   ]
+  },
+  {
+   "group": "SGN",
+   "n": 3,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Ultrasoft Poro",
+     "number": "003/003"
+    },
+    {
+     "name": "Lillia, Bashful Bloom",
+     "number": "001/003"
+    },
+    {
+     "name": "Ivern, Green Father",
+     "number": "002/003"
+    }
+   ]
+  },
+  {
+   "group": "T12025",
+   "n": 15,
+   "rarity": "Showcase",
+   "samples": [
+    {
+     "name": "Ambessa, The Wolf (T1 Worlds Champion Player Bundle)",
+     "number": "T1A 001/005"
+    },
+    {
+     "name": "Ambessa, The Wolf (T1 Worlds Champion Signature Edition Bundle)",
+     "number": "T1S 001/005"
+    },
+    {
+     "name": "Ambessa, The Wolf (T1 Worlds Champion Signature Edition Bundle) (Serial Numbered)",
+     "number": "T1S 001/005"
+    },
+    {
+     "name": "Xin Zhao, Vigilant (T1 Worlds Champion Player Bundle)",
+     "number": "T1A 002/005"
+    }
+   ]
+  },
+  {
+   "group": "UNL",
+   "n": 66,
+   "rarity": "Common",
+   "samples": [
+    {
+     "name": "Mutated Mouser",
+     "number": "036/219"
+    },
+    {
+     "name": "Downstage Dramatics",
+     "number": "061/219"
+    },
+    {
+     "name": "Gemhand Hunter",
+     "number": "094/219"
+    },
+    {
+     "name": "Inferna",
+     "number": "002/219"
+    }
+   ]
+  },
+  {
+   "group": "UNL",
+   "n": 36,
+   "rarity": "Epic",
+   "samples": [
+    {
+     "name": "Baron Nashor",
+     "number": "147/219"
+    },
+    {
+     "name": "Vilemaw",
+     "number": "060/219"
+    },
+    {
+     "name": "Lilting Lullaby",
+     "number": "190/219"
+    },
+    {
+     "name": "Ivern, Friend to All",
+     "number": "177/219"
+    }
+   ]
+  },
+  {
+   "group": "UNL",
+   "n": 10,
+   "rarity": "None",
+   "samples": [
+    {
+     "name": "Reflection // Buff",
+     "number": "T06 // T04"
+    },
+    {
+     "name": "Bird // Buff",
+     "number": "T02 // T04"
+    },
+    {
+     "name": "Bird // Gold",
+     "number": "T02 // T05"
+    },
+    {
+     "name": "Sprite // Gold",
+     "number": "T07 // T05"
+    }
+   ]
+  },
+  {
+   "group": "UNL",
+   "n": 12,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Body Rune (R04b)",
+     "number": "R04b"
+    },
+    {
+     "name": "Calm Rune (R02b)",
+     "number": "R02b"
+    },
+    {
+     "name": "Chaos Rune (R05b)",
+     "number": "R05b"
+    },
+    {
+     "name": "Fury Rune (R01b)",
+     "number": "R01b"
+    }
+   ]
+  },
+  {
+   "group": "UNL",
+   "n": 60,
+   "rarity": "Rare",
+   "samples": [
+    {
+     "name": "Lillia, Bashful Bloom",
+     "number": "189/219"
+    },
+    {
+     "name": "Diana, Scorn of the Moon",
+     "number": "197/219"
+    },
+    {
+     "name": "Kha'Zix, Voidreaver",
+     "number": "201/219"
+    },
+    {
+     "name": "Ivern, Green Father",
+     "number": "195/219"
+    }
+   ]
+  },
+  {
+   "group": "UNL",
+   "n": 67,
+   "rarity": "Showcase",
+   "samples": [
+    {
+     "name": "Kha'Zix, Voidreaver (Signature)",
+     "number": "236*/219"
+    },
+    {
+     "name": "Baron Nashor (Alternate Art)",
+     "number": "147a/219"
+    },
+    {
+     "name": "Rengar, Trophy Hunter (Alternate Art)",
+     "number": "120a/219"
+    },
+    {
+     "name": "Jhin, Meticulous Killer (Alternate Art)",
+     "number": "089a/219"
+    }
+   ]
+  },
+  {
+   "group": "UNL",
+   "n": 63,
+   "rarity": "Uncommon",
+   "samples": [
+    {
+     "name": "Crowd Favorite",
+     "number": "102/219"
+    },
+    {
+     "name": "Frigid Jewel",
+     "number": "074/219"
+    },
+    {
+     "name": "Abandon",
+     "number": "131/219"
+    },
+    {
+     "name": "Mosstomper",
+     "number": "047/219"
+    }
+   ]
+  },
+  {
+   "group": "VEN",
+   "n": 65,
+   "rarity": "Common",
+   "samples": [
+    {
+     "name": "Apprentice Mage",
+     "number": "047/166"
+    },
+    {
+     "name": "Blade Twirler",
+     "number": "002/166"
+    },
+    {
+     "name": "Body Rune",
+     "number": "R04"
+    },
+    {
+     "name": "Calm Rune",
+     "number": "R02"
+    }
+   ]
+  },
+  {
+   "group": "VEN",
+   "n": 28,
+   "rarity": "Epic",
+   "samples": [
+    {
+     "name": "Akali, Deadly Weapon",
+     "number": "021/166"
+    },
+    {
+     "name": "Ambessa, Respected and Feared",
+     "number": "136/166"
+    },
+    {
+     "name": "Bottled Constellation",
+     "number": "067/166"
+    },
+    {
+     "name": "Corrupted Dragon",
+     "number": "091/166"
+    }
+   ]
+  },
+  {
+   "group": "VEN",
+   "n": 1,
+   "rarity": "Promo",
+   "samples": [
+    {
+     "name": "Calm Rune (R02b)",
+     "number": "R02b"
+    }
+   ]
+  },
+  {
+   "group": "VEN",
+   "n": 46,
+   "rarity": "Rare",
+   "samples": [
+    {
+     "name": "Akali, Silent",
+     "number": "038/166"
+    },
+    {
+     "name": "Renekton, Butcher of the Sands",
+     "number": "141/166"
+    },
+    {
+     "name": "Nasus, Curator of the Sands",
+     "number": "145/166"
+    },
+    {
+     "name": "Decree of Discord",
+     "number": "107/166"
+    }
+   ]
+  },
+  {
+   "group": "VEN",
+   "n": 68,
+   "rarity": "Showcase",
+   "samples": [
+    {
+     "name": "Ahri, Inquisitive",
+     "number": "SP3/006"
+    },
+    {
+     "name": "Akali, Deadly Weapon (Alternate Art)",
+     "number": "021a/166"
+    },
+    {
+     "name": "Akali, Silent (Alternate Art)",
+     "number": "038a/166"
+    },
+    {
+     "name": "Ambessa, Respected and Feared (Alternate Art)",
+     "number": "136a/166"
+    }
+   ]
+  },
+  {
+   "group": "VEN",
+   "n": 46,
+   "rarity": "Uncommon",
+   "samples": [
+    {
+     "name": "Baccai Reaper",
+     "number": "009/166"
+    },
+    {
+     "name": "Dame the Despoiler",
+     "number": "079/166"
+    },
+    {
+     "name": "Gust Monk",
+     "number": "101/166"
+    },
+    {
+     "name": "Heisho, Shell of the World",
+     "number": "158/166"
+    }
+   ]
+  }
+ ],
+ "sealed": [
+  {
+   "group": "LGC",
+   "name": "Legacy - Booster Display",
+   "productId": 712806
+  },
+  {
+   "group": "LGC",
+   "name": "Legacy - Booster Pack",
+   "productId": 712807
+  },
+  {
+   "group": "LGC",
+   "name": "Legacy - Booster Display Case",
+   "productId": 712808
+  },
+  {
+   "group": "LGC",
+   "name": "Legacy - Pre-Rift Event Kit",
+   "productId": 712809
+  },
+  {
+   "group": "LGC",
+   "name": "Legacy - Pre-Rift Kit",
+   "productId": 712810
+  },
+  {
+   "group": "LGC",
+   "name": "Legacy - Vault Bundle Case",
+   "productId": 712812
+  },
+  {
+   "group": "LGC",
+   "name": "Legacy - Vault Bundle",
+   "productId": 712813
+  },
+  {
+   "group": "GRFT",
+   "name": "Gift of the Rift Bundle",
+   "productId": 714486
+  },
+  {
+   "group": "RXK/DA",
+   "name": "Riftbound x K/DA: Couture Collection (Sealed Promotional Bundle)",
+   "productId": 732649
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Booster Pack",
+   "productId": 711362
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Sleeved Booster Pack",
+   "productId": 711363
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Sleeved Booster Pack Art Bundle (Set of 3)",
+   "productId": 711364
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Booster Display",
+   "productId": 711365
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Booster Display Case",
+   "productId": 711366
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Showdown Decks: Evelynn vs Seraphine",
+   "productId": 711368
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Showdown Decks: Evelynn vs Seraphine Display",
+   "productId": 711369
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Pre-Rift Kit",
+   "productId": 711370
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Pre-Rift Event Kit",
+   "productId": 711371
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Vault Bundle",
+   "productId": 711372
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Vault Bundle Case",
+   "productId": 711446
+  },
+  {
+   "group": "RAD",
+   "name": "Radiance - Nexus Night Promo Pack",
+   "productId": 732873
+  },
+  {
+   "group": "T12025",
+   "name": "T1 Worlds Champion Player Bundle",
+   "productId": 716007
+  },
+  {
+   "group": "T12025",
+   "name": "T1 Worlds Champion Signature Edition Bundle",
+   "productId": 716008
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Booster Pack",
+   "productId": 693377
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Booster Display",
+   "productId": 693380
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Booster Display Case",
+   "productId": 693382
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Pre-Rift Kit",
+   "productId": 697969
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Vault Bundle",
+   "productId": 697970
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Showdown Decks: Zed vs Shen",
+   "productId": 697971
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Showdown Decks: Zed vs Shen Display",
+   "productId": 706237
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Pre-Rift Event Kit",
+   "productId": 707963
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Sleeved Booster Pack",
+   "productId": 710855
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Sleeved Booster Pack Art Bundle [Set of 3]",
+   "productId": 710856
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Nexus Night Promo Pack",
+   "productId": 711001
+  },
+  {
+   "group": "VEN",
+   "name": "Vendetta - Vault Bundle Case",
+   "productId": 711444
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Booster Pack",
+   "productId": 678149
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Booster Display",
+   "productId": 678150
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Booster Display Case",
+   "productId": 678152
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Champion Deck (Vex) Display",
+   "productId": 678153
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Champion Deck (Vi) Display",
+   "productId": 678154
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Champion Deck (Vex)",
+   "productId": 678155
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Champion Deck (Vi)",
+   "productId": 678157
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Pre-Rift Event Kit",
+   "productId": 678159
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Vault Bundle",
+   "productId": 678162
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Pre-Rift Kit",
+   "productId": 678898
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Sleeved Booster Pack Art Bundle [Set of 3]",
+   "productId": 690175
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Nexus Night Promo Pack",
+   "productId": 695122
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Sleeved Booster Pack",
+   "productId": 696523
+  },
+  {
+   "group": "UNL",
+   "name": "Unleashed - Vault Bundle Case",
+   "productId": 711445
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Booster Display",
+   "productId": 661934
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Booster Display Case",
+   "productId": 661937
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Champion Deck (Rumble)",
+   "productId": 661939
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Champion Deck (Fiora)",
+   "productId": 661942
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Champion Deck (Rumble) Display",
+   "productId": 661948
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Champion Deck (Fiora) Display",
+   "productId": 661949
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Booster Pack",
+   "productId": 661954
+  },
+  {
+   "group": "SFD",
+   "name": "Riftbound: Bulk Runes",
+   "productId": 678130
+  },
+  {
+   "group": "SFD",
+   "name": "Riftbound: Bulk Runes Case",
+   "productId": 678131
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Pre-Rift Event Kit",
+   "productId": 678690
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Sleeved Booster Pack",
+   "productId": 678766
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Pre-Rift Kit",
+   "productId": 679041
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Nexus Night Promo Pack",
+   "productId": 680454
+  },
+  {
+   "group": "SFD",
+   "name": "Spiritforged - Sleeved Booster Pack Art Bundle [Set of 3]",
+   "productId": 690174
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Booster Pack",
+   "productId": 635366
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Booster Display",
+   "productId": 635368
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Booster Display Case",
+   "productId": 635369
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Champion Deck (Jinx)",
+   "productId": 635371
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Champion Deck (Jinx) Display",
+   "productId": 635372
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Champion Deck (Viktor) Display",
+   "productId": 635373
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Champion Deck (Viktor)",
+   "productId": 635374
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Champion Deck (Lee Sin)",
+   "productId": 635375
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Champion Deck (Lee Sin) Display",
+   "productId": 635458
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Sleeved Booster Pack",
+   "productId": 635459
+  },
+  {
+   "group": "OGN",
+   "name": "Buff",
+   "productId": 653117
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Nexus Night Promo Pack",
+   "productId": 675404
+  },
+  {
+   "group": "OGN",
+   "name": "Origins - Sleeved Booster Pack Art Bundle [Set of 3]",
+   "productId": 690173
+  },
+  {
+   "group": "OGS",
+   "name": "Origins - Proving Grounds Box Set",
+   "productId": 635460
+  },
+  {
+   "group": "OGS",
+   "name": "Origins - Proving Grounds Box Set Case",
+   "productId": 663920
+  },
+  {
+   "group": "PR",
+   "name": "Riftbound: League of Legends Arcane Box Set",
+   "productId": 655495
+  },
+  {
+   "group": "PR",
+   "name": "Buff // Buff (Fist Bump Promo)",
+   "productId": 663004
+  },
+  {
+   "group": "RWB",
+   "name": "Riftbound: Worlds Bundle 2025",
+   "productId": 658333
+  },
+  {
+   "group": "SGN",
+   "name": "Secret Garden Box",
+   "productId": 710238
+  }
+ ],
+ "shops": {
+  "breakthecase": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 515
+  },
+  "cardcollector": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 98
+  },
+  "cardforge": {
+   "home_mentions": 0,
+   "platform": "generic"
+  },
+  "cardgameshop": {
+   "home_mentions": 0,
+   "platform": "generic"
+  },
+  "chaoscards": {
+   "home_mentions": 0,
+   "platform": "generic"
+  },
+  "collgamers": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 51
+  },
+  "dracoon": {
+   "error": "Expecting value: line 1 column 1 (char 0)"
+  },
+  "fantasiacards": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 120
+  },
+  "onytcg": {
+   "error": "Expecting value: line 1 column 1 (char 0)"
+  },
+  "oppacards": {
+   "n": 0,
+   "platform": "woo",
+   "sample": []
+  },
+  "pocketgames": {
+   "error": "Expecting value: line 1 column 1 (char 0)"
+  },
+  "supercollectors": {
+   "n": 0,
+   "platform": "woo",
+   "sample": []
+  },
+  "totalcards": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 750
+  }
+ }
+}
