@@ -1,0 +1,19 @@
+{
+ "day": "2026-11-19",
+ "messages": [],
+ "transitions": [
+  {
+   "first_seen": "2026-11-19T00:22:07Z",
+   "kind": "new_listing",
+   "price": 62.9,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "supercollectors",
+   "seen": "2026-11-19T00:22:07Z",
+   "status": "in_stock",
+   "title": "Riftbound: League of Legends TCG: Radiance – Jumbo Booster Display (Chino)",
+   "trusted": true,
+   "url": "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-radiance-jumbo-booster-display-chino/"
+  }
+ ]
+}
