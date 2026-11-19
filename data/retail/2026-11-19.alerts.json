@@ -1,5 +1,19 @@
 {
  "day": "2026-11-19",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-11-19T20:35:57Z",
+   "kind": "new_listing",
+   "price": 95.79,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "totalcards",
+   "seen": "2026-11-19T20:35:57Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game - Ultra-Bout Series - B32 - Chromatic Ascension - Booster Box (20 Packs)",
+   "trusted": true,
+   "url": "https://totalcards.net/products/dragon-ball-super-card-game-ultra-bout-series-b32-chromatic-ascension-booster-box-20-packs"
+  }
+ ]
 }
