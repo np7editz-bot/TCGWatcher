@@ -49,6 +49,50 @@ sources:
     kind: all
 
 # Titles that mean "a product you can (pre-)order": these become messages. Case-insensitive.
+  - id: riftbound_all
+    game: riftbound
+    name: "Riftbound news (all categories: organized play, Pre-Rift, game updates)"
+    url: https://playriftbound.com/en-us/news/
+    base: https://playriftbound.com
+    parser: anchors
+    path_prefix: /en-us/news/
+    kind: all                           # announcements are de-duplicated against riftbound_news by url
+# Page watches: pages without an article list whose CONTENT changes when something opens (drawing registration,
+# merch drops, landing banners). New visible lines (matching `keywords`) since the last run become one message.
+  - id: watch_rb_registration
+    game: riftbound
+    name: "Riftbound drawing registration (Riot)"
+    url: https://playriftbound.com/en-us/preorder/registration/
+    base: https://playriftbound.com
+    parser: watch
+  - id: watch_riot_merch
+    game: riftbound
+    name: "Riot Games Merch store (Riftbound drops)"
+    url: https://merch.riotgames.com/en-us/
+    base: https://merch.riotgames.com
+    parser: watch
+    keywords: '(riftbound|drawing|bundle|pre-?order|register|restock|sold out|available)'
+  - id: watch_naruto_home
+    game: naruto
+    name: "NARUTO CARD GAME official site (home)"
+    url: https://www.naruto-cardgame.com/en/
+    base: https://www.naruto-cardgame.com
+    parser: watch
+    keywords: '(pre-?order|release|booster|starter|deck|event|demo|tournament|product|lineup|202\d)'
+  - id: watch_fw_events
+    game: dbfw
+    name: "Fusion World events (Bandai)"
+    url: https://www.dbs-cardgame.com/fw/en/events/
+    base: https://www.dbs-cardgame.com
+    parser: watch
+    keywords: '(release|event|tournament|championship|FB\d{2}|apply|application|202\d)'
+  - id: watch_dbs_events
+    game: dbs
+    name: "Masters events (Bandai)"
+    url: https://www.dbs-cardgame.com/us-en/event/
+    base: https://www.dbs-cardgame.com
+    parser: watch
+    keywords: '(release|event|tournament|championship|B\d{2}|apply|application|202\d)'
 # Socials: YouTube is the one channel with a stable feed (no API key). `url` is the channel page; the channel id is read
 # from it. X/Instagram/TikTok have no open feed — not watched. Fill in the handles and set enabled: true.
   - id: yt_riftbound
