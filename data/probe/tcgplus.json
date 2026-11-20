@@ -1,0 +1,6268 @@
+{
+ "cardmarket_candidates": {
+  "13": {
+   "category_sample": "Dragon Ball Super Boosters",
+   "matches": [],
+   "n_products": 725
+  }
+ },
+ "cardtrader_expansions": [
+  {
+   "code": "bt14",
+   "id": 2629,
+   "name": "Cross Spirits"
+  },
+  {
+   "code": "bt11",
+   "id": 2630,
+   "name": "Vermilion Bloodline"
+  },
+  {
+   "code": "eb1",
+   "id": 2631,
+   "name": "Battle Evolution Booster"
+  },
+  {
+   "code": "bt4",
+   "id": 2632,
+   "name": "Colossal Warfare"
+  },
+  {
+   "code": "ex04",
+   "id": 2633,
+   "name": "Expansion Set: Unity of Saiyans"
+  },
+  {
+   "code": "bt7",
+   "id": 2634,
+   "name": "Assault of the Saiyans"
+  },
+  {
+   "code": "ex09",
+   "id": 2635,
+   "name": "Expansion Set: Saiyan Surge"
+  },
+  {
+   "code": "bt9p",
+   "id": 2636,
+   "name": "Universal Onslaught: Pre-Release Promos"
+  },
+  {
+   "code": "ex01",
+   "id": 2637,
+   "name": "Expansion Set: Mighty Heroes"
+  },
+  {
+   "code": "ex07",
+   "id": 2638,
+   "name": "Magnificent Collection Fusion Hero"
+  },
+  {
+   "code": "bt5",
+   "id": 2639,
+   "name": "Miraculous Revival"
+  },
+  {
+   "code": "tb3",
+   "id": 2640,
+   "name": "Clash of Fates"
+  },
+  {
+   "code": "bt12",
+   "id": 2641,
+   "name": "Vicious Rejuvenation"
+  },
+  {
+   "code": "bt8",
+   "id": 2642,
+   "name": "Malicious Machinations"
+  },
+  {
+   "code": "tb01",
+   "id": 2643,
+   "name": "The Tournament of Power"
+  },
+  {
+   "code": "bt15",
+   "id": 2644,
+   "name": "Saiyan Showdown"
+  },
+  {
+   "code": "bt9",
+   "id": 2645,
+   "name": "Universal Onslaught"
+  },
+  {
+   "code": "bt10",
+   "id": 2646,
+   "name": "Rise of the Unison Warrior"
+  },
+  {
+   "code": "bt1",
+   "id": 2647,
+   "name": "Galactic Battle"
+  },
+  {
+   "code": "tb2",
+   "id": 2648,
+   "name": "World Martial Arts Tournament"
+  },
+  {
+   "code": "bt2",
+   "id": 2649,
+   "name": "Union Force"
+  },
+  {
+   "code": "bt3",
+   "id": 2650,
+   "name": "Cross Worlds"
+  },
+  {
+   "code": "bt13",
+   "id": 2651,
+   "name": "Supreme Rivalry"
+  },
+  {
+   "code": "sd3",
+   "id": 2652,
+   "name": "Starter Deck: The Dark Invasion"
+  },
+  {
+   "code": "sd1",
+   "id": 2653,
+   "name": "Starter Deck: The Awakening"
+  },
+  {
+   "code": "sd8",
+   "id": 2654,
+   "name": "Starter Deck: Rising Broly"
+  },
+  {
+   "code": "sd5",
+   "id": 2655,
+   "name": "Starter Deck: The Crimson Saiyan"
+  },
+  {
+   "code": "sd10",
+   "id": 2656,
+   "name": "Starter Deck: Parasitic Overlord"
+  },
+  {
+   "code": "sd11",
+   "id": 2657,
+   "name": "Starter Deck: Instinct Surpassed"
+  },
+  {
+   "code": "xd2",
+   "id": 2658,
+   "name": "Expert Deck: Android Duality"
+  },
+  {
+   "code": "sd2",
+   "id": 2659,
+   "name": "The Extreme Evolution"
+  },
+  {
+   "code": "sd7",
+   "id": 2660,
+   "name": "Shenron's Advent"
+  },
+  {
+   "code": "sd15",
+   "id": 2661,
+   "name": "Pride of the Saiyans"
+  },
+  {
+   "code": "sd6",
+   "id": 2670,
+   "name": "Starter Deck: Resurrected Fusion"
+  },
+  {
+   "code": "xd3",
+   "id": 2671,
+   "name": "Expert Deck: The Ultimate Life Form"
+  },
+  {
+   "code": "sd14",
+   "id": 2672,
+   "name": "Starter Deck: Saiyan Wonder"
+  },
+  {
+   "code": "sd4",
+   "id": 2673,
+   "name": "Starter Deck: The Guardian of Namekians"
+  },
+  {
+   "code": "xd1",
+   "id": 2674,
+   "name": "Expert Deck: Universe 6 Assailants"
+  },
+  {
+   "code": "sd9",
+   "id": 2675,
+   "name": "Starter Deck: Saiyan Legacy"
+  },
+  {
+   "code": "sd12",
+   "id": 2676,
+   "name": "Starter Deck: Spirit of Potara"
+  },
+  {
+   "code": "sd13",
+   "id": 2677,
+   "name": "Starter Deck: Clan Collusion"
+  },
+  {
+   "code": "sd16",
+   "id": 2678,
+   "name": "Starter Deck: Darkness Reborn"
+  },
+  {
+   "code": "prod",
+   "id": 2679,
+   "name": "Dragon Ball Super Products"
+  },
+  {
+   "code": "mpromo",
+   "id": 2680,
+   "name": "Masters Promo"
+  },
+  {
+   "code": "ex13",
+   "id": 2681,
+   "name": "Expansion Set: Special Anniversary Box 2020"
+  },
+  {
+   "code": "jdg",
+   "id": 2682,
+   "name": "Judge Promos"
+  },
+  {
+   "code": "ex10",
+   "id": 2683,
+   "name": "Expansion Set: Namekian Surge"
+  },
+  {
+   "code": "ex06",
+   "id": 2684,
+   "name": "Expansion Set: Special Anniversary Box"
+  },
+  {
+   "code": "ex08",
+   "id": 2685,
+   "name": "Magnificent Collection Forsaken Warrior"
+  },
+  {
+   "code": "ex05",
+   "id": 2686,
+   "name": "Expansion Set: Unity of Destruction"
+  },
+  {
+   "code": "ex02",
+   "id": 2687,
+   "name": "Expansion Set: Dark Demon's Villains"
+  },
+  {
+   "code": "ex16",
+   "id": 2688,
+   "name": "Expansion Set: Ultimate Deck"
+  },
+  {
+   "code": "ex18",
+   "id": 2689,
+   "name": "Expansion Set: Namekian Boost"
+  },
+  {
+   "code": "ex15",
+   "id": 2690,
+   "name": "Expansion Set: Battle Enhanced"
+  },
+  {
+   "code": "ex14",
+   "id": 2691,
+   "name": "Expansion Set: Battle Advanced"
+  },
+  {
+   "code": "ex19",
+   "id": 2692,
+   "name": "Expansion Set: Special Anniversary Box 2021"
+  },
+  {
+   "code": "ex12",
+   "id": 2693,
+   "name": "Expansion Set: Universe 11 Unison"
+  },
+  {
+   "code": "ex11",
+   "id": 2694,
+   "name": "Expansion Set: Universe 7 Unison"
+  },
+  {
+   "code": "ex17",
+   "id": 2695,
+   "name": "Expansion Set: Saiyan Boost"
+  },
+  {
+   "code": "ex03",
+   "id": 2696,
+   "name": "Expansion Set: Ultimate Box"
+  },
+  {
+   "code": "vpp3",
+   "id": 2697,
+   "name": "Vault Power Up Pack 2021"
+  },
+  {
+   "code": "vpp2",
+   "id": 2698,
+   "name": "Vault Power Up Pack 2020"
+  },
+  {
+   "code": "db3",
+   "id": 2699,
+   "name": "Giant Force"
+  },
+  {
+   "code": "vpp",
+   "id": 2700,
+   "name": "Vault Power Up Pack"
+  },
+  {
+   "code": "bt6",
+   "id": 2701,
+   "name": "Destroyer Kings"
+  },
+  {
+   "code": "ex01d",
+   "id": 2702,
+   "name": "Expansion Booster 01"
+  },
+  {
+   "code": "r",
+   "id": 2703,
+   "name": "Reprints"
+  },
+  {
+   "code": "db2",
+   "id": 2704,
+   "name": "Divine Multiverse"
+  },
+  {
+   "code": "db1",
+   "id": 2705,
+   "name": "Dragon Brawl"
+  },
+  {
+   "code": "bt8p",
+   "id": 2706,
+   "name": "Malicious Machinations: Pre-Release Promos"
+  },
+  {
+   "code": "bt7p",
+   "id": 2707,
+   "name": "Series 7 Pre-Release Promos"
+  },
+  {
+   "code": "rp",
+   "id": 2708,
+   "name": "Release Promos"
+  },
+  {
+   "code": "bt6p",
+   "id": 2738,
+   "name": "Series 6 Pre-Release Promos"
+  },
+  {
+   "code": "upromo",
+   "id": 2739,
+   "name": "Unnumbered Promos"
+  },
+  {
+   "code": "db1p",
+   "id": 2741,
+   "name": "Dragon Brawl Release Promos"
+  },
+  {
+   "code": "wp",
+   "id": 2742,
+   "name": "Winner Promos"
+  },
+  {
+   "code": "op",
+   "id": 2743,
+   "name": "Oversized Promos"
+  },
+  {
+   "code": "db2p",
+   "id": 2745,
+   "name": "Divine Multiverse Release Promos"
+  },
+  {
+   "code": "bt10p",
+   "id": 2784,
+   "name": "Rise of the Unison Warrior: Pre-Release Promos"
+  },
+  {
+   "code": "mb01",
+   "id": 2891,
+   "name": "Mythic Booster"
+  },
+  {
+   "code": "bt16",
+   "id": 2983,
+   "name": "Realm of the Gods"
+  },
+  {
+   "code": "csv1",
+   "id": 3035,
+   "name": "Collector's Selection Vol.1"
+  },
+  {
+   "code": "ex20",
+   "id": 3048,
+   "name": "Ultimate deck 2022"
+  },
+  {
+   "code": "bt17",
+   "id": 3049,
+   "name": "Ultimate Squad"
+  },
+  {
+   "code": "ts01",
+   "id": 3087,
+   "name": "History of Son Goku - Theme Selection [TS01]"
+  },
+  {
+   "code": "ts02",
+   "id": 3088,
+   "name": "History of Vegeta - Theme Selection [TS02]"
+  },
+  {
+   "code": "bt18",
+   "id": 3120,
+   "name": "Dawn of the Z-Legends"
+  },
+  {
+   "code": "sd17",
+   "id": 3132,
+   "name": "Starter Deck: Red Rage"
+  },
+  {
+   "code": "sd18",
+   "id": 3133,
+   "name": "Starter Deck: Blue Future"
+  },
+  {
+   "code": "sd19",
+   "id": 3134,
+   "name": "Starter Deck: Green Fusion"
+  },
+  {
+   "code": "sd20",
+   "id": 3135,
+   "name": "Starter Deck: Yellow Transformation"
+  },
+  {
+   "code": "be21",
+   "id": 3176,
+   "name": "Expansion Set: 5th Anniversary"
+  },
+  {
+   "code": "bt19",
+   "id": 3177,
+   "name": "Fighter's Ambition"
+  },
+  {
+   "code": "event",
+   "id": 3231,
+   "name": "Event Pack"
+  },
+  {
+   "code": "sd22",
+   "id": 3263,
+   "name": "Starter Deck: Proud Warrior"
+  },
+  {
+   "code": "sd21",
+   "id": 3264,
+   "name": "Starter Deck: Ultimate Awakened Power"
+  },
+  {
+   "code": "bt20",
+   "id": 3265,
+   "name": "Power Absorbed"
+  },
+  {
+   "code": "ex22",
+   "id": 3317,
+   "name": "Expansion Set: Ultimate Deck 2023"
+  },
+  {
+   "code": "csvol2",
+   "id": 3360,
+   "name": "Collector's Selection Vol.2"
+  },
+  {
+   "code": "bt22",
+   "id": 3377,
+   "name": "Critical Blow"
+  },
+  {
+   "code": "be22",
+   "id": 3378,
+   "name": "Premium Anniversary Box 2023"
+  },
+  {
+   "code": "bt21",
+   "id": 3386,
+   "name": "Wild Resurgence"
+  },
+  {
+   "code": "sd23",
+   "id": 3480,
+   "name": "Starter Deck: Final Radiance"
+  },
+  {
+   "code": "bt22promo",
+   "id": 3486,
+   "name": "Critical Blow Pre-Release Promos"
+  },
+  {
+   "code": "bt23",
+   "id": 3580,
+   "name": "Perfect Combination"
+  },
+  {
+   "code": "fs01",
+   "id": 3598,
+   "name": "Fusion World Starter Deck: Son Goku"
+  },
+  {
+   "code": "fs02",
+   "id": 3599,
+   "name": "Fusion World Starter Deck: Vegeta"
+  },
+  {
+   "code": "fs03",
+   "id": 3600,
+   "name": "Fusion World Starter Deck: Broly"
+  },
+  {
+   "code": "fs04",
+   "id": 3601,
+   "name": "Fusion World Starter Deck: Frieza"
+  },
+  {
+   "code": "fb01",
+   "id": 3602,
+   "name": "Fusion World: Awakened Pulse"
+  },
+  {
+   "code": "bt24",
+   "id": 3613,
+   "name": "Beyond Generations"
+  },
+  {
+   "code": "f01-p",
+   "id": 3620,
+   "name": "Fusion World: Awakened Pulse Pre-Release Promos"
+  },
+  {
+   "code": "fuspromo",
+   "id": 3678,
+   "name": "Fusion World Promos"
+  },
+  {
+   "code": "bgpromos",
+   "id": 3736,
+   "name": "Beyond Generations Pre-Release Promos"
+  },
+  {
+   "code": "fb02",
+   "id": 3749,
+   "name": "Fusion World: Blazing Aura"
+  },
+  {
+   "code": "bt25",
+   "id": 3797,
+   "name": "Legend of the Dragon Balls"
+  },
+  {
+   "code": "fb03",
+   "id": 3823,
+   "name": "Fusion World: Raging Roar"
+  },
+  {
+   "code": "fs05",
+   "id": 3836,
+   "name": "Fusion World Starter Deck: Bardoc"
+  },
+  {
+   "code": "fb03p",
+   "id": 3856,
+   "name": "Fusion World: Raging Roar Pre-Release"
+  },
+  {
+   "code": "jdg-fw",
+   "id": 3879,
+   "name": "Judge Promos [Fusion World]"
+  },
+  {
+   "code": "bt26",
+   "id": 3893,
+   "name": "Ultimate Advent"
+  },
+  {
+   "code": "be24",
+   "id": 3899,
+   "name": "Premium Anniversary Box 2024"
+  },
+  {
+   "code": "fb04",
+   "id": 3900,
+   "name": "Fusion World: Ultra Limit"
+  },
+  {
+   "code": "fs07",
+   "id": 3923,
+   "name": "Fusion World Starter Deck: Vegeta (Mini)"
+  },
+  {
+   "code": "fs06",
+   "id": 3924,
+   "name": "Fusion World Starter Deck: Son Goku (Mini)"
+  },
+  {
+   "code": "fb02p",
+   "id": 3943,
+   "name": "Fusion World: Blazing Aura Pre-Release"
+  },
+  {
+   "code": "fb04p",
+   "id": 3944,
+   "name": "Fusion World: Ultra Limit Pre-Release"
+  },
+  {
+   "code": "bt16p",
+   "id": 4040,
+   "name": "Realm of the Gods Pre-Release"
+  },
+  {
+   "code": "fb05",
+   "id": 4062,
+   "name": "Fusion World: New Adventure"
+  },
+  {
+   "code": "fb05p",
+   "id": 4081,
+   "name": "Fusion World: New Adventure Pre-Release"
+  },
+  {
+   "code": "bt-27",
+   "id": 4124,
+   "name": "History of Z"
+  },
+  {
+   "code": "fs08",
+   "id": 4164,
+   "name": "Fusion World Starter Deck: Vegeta (Mini) Super Saiyan 3"
+  },
+  {
+   "code": "fb06",
+   "id": 4172,
+   "name": "Fusion World: Rivals Clash"
+  },
+  {
+   "code": "fb06p",
+   "id": 4173,
+   "name": "Fusion World: Rivals Clash Pre-Release"
+  },
+  {
+   "code": "be25",
+   "id": 4181,
+   "name": "Premium Anniversary Box 2025"
+  },
+  {
+   "code": "fb07",
+   "id": 4182,
+   "name": "Fusion World: Wish For Shenron"
+  },
+  {
+   "code": "sb01",
+   "id": 4183,
+   "name": "Fusion World: Manga Booster 01"
+  },
+  {
+   "code": "fs09",
+   "id": 4184,
+   "name": "Fusion World Starter Deck: Ex Shallot"
+  },
+  {
+   "code": "fs10",
+   "id": 4185,
+   "name": "Fusion World Starter Deck: Ex Giblet"
+  },
+  {
+   "code": "1st-fs",
+   "id": 4186,
+   "name": "Fusion World 1st Anniversary Set"
+  },
+  {
+   "code": "sb01p",
+   "id": 4239,
+   "name": "Fusion World: Manga Booster 01 Pre-Release"
+  },
+  {
+   "code": "champ",
+   "id": 4300,
+   "name": "Tournament & Championship Promos"
+  },
+  {
+   "code": "bt28",
+   "id": 4306,
+   "name": "Prismatic Clash"
+  },
+  {
+   "code": "fwwfspr",
+   "id": 4321,
+   "name": "Fusion World: Wish For Shenron Pre-Release"
+  },
+  {
+   "code": "sb02",
+   "id": 4365,
+   "name": "Fusion World: Manga Booster 02"
+  },
+  {
+   "code": "sb02p",
+   "id": 4411,
+   "name": "Fusion World: Manga Booster 02 Pre-Release"
+  },
+  {
+   "code": "fb08",
+   "id": 4418,
+   "name": "Fusion World: Saiyan's Pride"
+  },
+  {
+   "code": "bt25-pre",
+   "id": 4428,
+   "name": "Legend of the Dragon Balls Pre-Release"
+  },
+  {
+   "code": "bt28-pre",
+   "id": 4429,
+   "name": "Prismatic Clash Pre-Release"
+  },
+  {
+   "code": "fb08p",
+   "id": 4430,
+   "name": "Fusion World: Saiyan's Pride Pre-Release"
+  },
+  {
+   "code": "bt29",
+   "id": 4442,
+   "name": "Fearsome Rivals"
+  },
+  {
+   "code": "fs11",
+   "id": 4537,
+   "name": "Starter Deck: EX The Phase Of Evolution"
+  },
+  {
+   "code": "fs12",
+   "id": 4538,
+   "name": "Starter Deck: EX The Beat Of Ki"
+  },
+  {
+   "code": "fb09",
+   "id": 4539,
+   "name": "Fusion World: Dual Evolution"
+  },
+  {
+   "code": "bt30",
+   "id": 4563,
+   "name": "Three Glorious Fighters"
+  },
+  {
+   "code": "bt30-pre",
+   "id": 4589,
+   "name": "Three Glorious Fighters Pre-Release"
+  },
+  {
+   "code": "fb09p",
+   "id": 4603,
+   "name": "Fusion World: Dual Evolution Pre-Release"
+  },
+  {
+   "code": "bt26-pre",
+   "id": 4606,
+   "name": "Ultimate Advent Pre-Release"
+  },
+  {
+   "code": "fb10",
+   "id": 4623,
+   "name": "Fusion World: Cross Force"
+  },
+  {
+   "code": "bt31",
+   "id": 4647,
+   "name": "Impact Beyond Dimensions"
+  },
+  {
+   "code": "st01",
+   "id": 4649,
+   "name": "Fusion World: Story Booster 01"
+  },
+  {
+   "code": "csv3",
+   "id": 4658,
+   "name": "Collector's Selection Vol.3"
+  },
+  {
+   "code": "bt12p",
+   "id": 4662,
+   "name": "Vicious Rejuvenation Pre-Release"
+  },
+  {
+   "code": "bt31-pre",
+   "id": 4764,
+   "name": "Impact Beyond Dimensions Pre-Release"
+  },
+  {
+   "code": "fb11",
+   "id": 4801,
+   "name": "Fusion World: Brightness of Hope"
+  },
+  {
+   "code": "fb10p",
+   "id": 4810,
+   "name": "Fusion World: Cross Force Pre-Release"
+  },
+  {
+   "code": "fb12",
+   "id": 4814,
+   "name": "Fusion World: Reach The God"
+  },
+  {
+   "code": "fs13",
+   "id": 4815,
+   "name": "Starter Deck: The Saiyan Raised On Earth"
+  },
+  {
+   "code": "fs14",
+   "id": 4816,
+   "name": "Starter Deck: The Prince Of Saiyan"
+  },
+  {
+   "code": "2nd-fs",
+   "id": 4858,
+   "name": "Fusion World: 2nd Anniversary Set"
+  },
+  {
+   "code": "bt32",
+   "id": 4863,
+   "name": "Chromatic Ascension"
+  },
+  {
+   "code": "bt27pre",
+   "id": 4879,
+   "name": "History of Z Pre-Release"
+  },
+  {
+   "code": "bt-29pre",
+   "id": 4880,
+   "name": "Fearsome Rivals Pre-Release"
+  },
+  {
+   "code": "bt18pre",
+   "id": 4895,
+   "name": "Dawn of the Z-Legends Pre-Release"
+  },
+  {
+   "code": "b13pre",
+   "id": 4910,
+   "name": "Supreme Rivalry Pre-Release"
+  },
+  {
+   "code": "fb11pre",
+   "id": 4911,
+   "name": "Fusion World: Brightness of Hope Pre-Release"
+  }
+ ],
+ "cardtrader_games": [
+  {
+   "id": 9,
+   "name": "Dragon Ball Super"
+  }
+ ],
+ "category": 80,
+ "groups": [
+  {
+   "abbreviation": "FS13",
+   "groupId": 24895,
+   "name": "Starter Deck 13: The Saiyan Raised on Earth",
+   "publishedOn": "2027-01-22"
+  },
+  {
+   "abbreviation": "FS14",
+   "groupId": 24896,
+   "name": "Starter Deck 14: The Prince of Saiyan",
+   "publishedOn": "2027-01-22"
+  },
+  {
+   "abbreviation": "FB12",
+   "groupId": 24783,
+   "name": "Reach the God",
+   "publishedOn": "2026-12-11"
+  },
+  {
+   "abbreviation": "FB11",
+   "groupId": 24716,
+   "name": "Brightness of Hope",
+   "publishedOn": "2026-10-16"
+  },
+  {
+   "abbreviation": "FB11_PR",
+   "groupId": 24874,
+   "name": "Brightness of Hope Release Event Cards",
+   "publishedOn": "2026-10-16"
+  },
+  {
+   "abbreviation": "ST01",
+   "groupId": 24680,
+   "name": "Story Booster 01",
+   "publishedOn": "2026-08-21"
+  },
+  {
+   "abbreviation": "FB10",
+   "groupId": 24604,
+   "name": "Cross Force",
+   "publishedOn": "2026-06-19"
+  },
+  {
+   "abbreviation": "FB10_PR",
+   "groupId": 24733,
+   "name": "Cross Force Release Event Cards",
+   "publishedOn": "2026-06-12"
+  },
+  {
+   "abbreviation": "FB09",
+   "groupId": 24569,
+   "name": "Dual Evolution",
+   "publishedOn": "2026-03-13"
+  },
+  {
+   "abbreviation": "FB09_PR",
+   "groupId": 24663,
+   "name": "Dual Evolution Release Event Cards",
+   "publishedOn": "2026-03-13"
+  },
+  {
+   "abbreviation": "FS12",
+   "groupId": 24571,
+   "name": "Starter Deck EX: The Beat of Ki",
+   "publishedOn": "2026-03-13"
+  },
+  {
+   "abbreviation": "FS11",
+   "groupId": 24570,
+   "name": "Starter Deck EX: The Phase of Evolution",
+   "publishedOn": "2026-03-13"
+  },
+  {
+   "abbreviation": "FB08_PR",
+   "groupId": 24518,
+   "name": "Saiyan's Pride Release Event Cards",
+   "publishedOn": "2025-12-19"
+  },
+  {
+   "abbreviation": "FB08",
+   "groupId": 24450,
+   "name": "Saiyan's Pride",
+   "publishedOn": "2025-12-12"
+  },
+  {
+   "abbreviation": "SB02",
+   "groupId": 24288,
+   "name": "Manga Booster 02",
+   "publishedOn": "2025-11-14"
+  },
+  {
+   "abbreviation": "SB02_RE",
+   "groupId": 24492,
+   "name": "Manga Booster 02 Release Event Cards",
+   "publishedOn": "2025-11-14"
+  },
+  {
+   "abbreviation": "FB07",
+   "groupId": 24397,
+   "name": "Wish For Shenron",
+   "publishedOn": "2025-09-19"
+  },
+  {
+   "abbreviation": "FB07_PR",
+   "groupId": 24419,
+   "name": "Wish For Shenron Release Event Cards",
+   "publishedOn": "2025-09-12"
+  },
+  {
+   "abbreviation": "SB01",
+   "groupId": 24335,
+   "name": "Manga Booster 01",
+   "publishedOn": "2025-06-27"
+  },
+  {
+   "abbreviation": "SB01_PR",
+   "groupId": 24368,
+   "name": "Manga Booster 01 Release Event Cards",
+   "publishedOn": "2025-06-27"
+  },
+  {
+   "abbreviation": "FS10",
+   "groupId": 24336,
+   "name": "Starter Deck 10: Giblet",
+   "publishedOn": "2025-06-13"
+  },
+  {
+   "abbreviation": "FS09",
+   "groupId": 24251,
+   "name": "Starter Deck 9: Shallot",
+   "publishedOn": "2025-06-13"
+  },
+  {
+   "abbreviation": "FB03_AR",
+   "groupId": 24311,
+   "name": "New Adventure Alternate Art Reprints",
+   "publishedOn": "2025-05-02"
+  },
+  {
+   "abbreviation": "FB06",
+   "groupId": 24247,
+   "name": "Rivals Clash",
+   "publishedOn": "2025-05-02"
+  },
+  {
+   "abbreviation": "FB06_PR",
+   "groupId": 24248,
+   "name": "Rivals Clash Release Event Cards",
+   "publishedOn": "2025-04-25"
+  },
+  {
+   "abbreviation": "FS08",
+   "groupId": 24239,
+   "name": "Starter Deck 8: Vegeta (Mini) Super Saiyan 3",
+   "publishedOn": "2025-04-25"
+  },
+  {
+   "abbreviation": "FB02_AR",
+   "groupId": 24183,
+   "name": "Blazing Aura Alternate Art Reprints",
+   "publishedOn": "2025-02-14"
+  },
+  {
+   "abbreviation": "FB05",
+   "groupId": 23928,
+   "name": "New Adventure",
+   "publishedOn": "2025-02-14"
+  },
+  {
+   "abbreviation": "FS05_AR",
+   "groupId": 24185,
+   "name": "Starter Deck 5: Bardock Alternate Art Reprints",
+   "publishedOn": "2025-02-14"
+  },
+  {
+   "abbreviation": "FB04_AR",
+   "groupId": 24184,
+   "name": "Ultra Limit Alternate Art Reprints",
+   "publishedOn": "2025-02-14"
+  },
+  {
+   "abbreviation": "FB05_PR",
+   "groupId": 24186,
+   "name": "New Adventure Release Event Cards",
+   "publishedOn": "2025-02-07"
+  },
+  {
+   "abbreviation": "FB03_AR",
+   "groupId": 23823,
+   "name": "Raging Roar Alternate Art Reprints",
+   "publishedOn": "2024-11-15"
+  },
+  {
+   "abbreviation": "FB04",
+   "groupId": 23658,
+   "name": "Ultra Limit",
+   "publishedOn": "2024-11-15"
+  },
+  {
+   "abbreviation": "FS06",
+   "groupId": 23654,
+   "name": "Starter Deck 6: Son Goku (Mini)",
+   "publishedOn": "2024-11-08"
+  },
+  {
+   "abbreviation": "FS07",
+   "groupId": 23655,
+   "name": "Starter Deck 7: Vegeta (Mini)",
+   "publishedOn": "2024-11-08"
+  },
+  {
+   "abbreviation": "FB04_PR",
+   "groupId": 23769,
+   "name": "Ultra Limit Release Event Cards",
+   "publishedOn": "2024-11-08"
+  },
+  {
+   "abbreviation": "FB03",
+   "groupId": 23517,
+   "name": "Raging Roar",
+   "publishedOn": "2024-08-16"
+  },
+  {
+   "abbreviation": "FS04_AR",
+   "groupId": 23581,
+   "name": "Starter Deck 4: Frieza Alternate Art Reprints",
+   "publishedOn": "2024-08-16"
+  },
+  {
+   "abbreviation": "FB03_PR",
+   "groupId": 23518,
+   "name": "Raging Roar Release Event Cards",
+   "publishedOn": "2024-08-09"
+  },
+  {
+   "abbreviation": "FS05",
+   "groupId": 23519,
+   "name": "Starter Deck 5: Bardock",
+   "publishedOn": "2024-08-09"
+  },
+  {
+   "abbreviation": "FB01_AR",
+   "groupId": 23505,
+   "name": "Awakened Pulse Alternate Art Reprints",
+   "publishedOn": "2024-05-10"
+  },
+  {
+   "abbreviation": "FB02",
+   "groupId": 23470,
+   "name": "Blazing Aura",
+   "publishedOn": "2024-05-10"
+  },
+  {
+   "abbreviation": "FS01_AR",
+   "groupId": 23582,
+   "name": "Starter Deck 1: Son Goku Alternate Art Reprints",
+   "publishedOn": "2024-05-10"
+  },
+  {
+   "abbreviation": "FS03_AR",
+   "groupId": 23583,
+   "name": "Starter Deck 3: Broly Alternate Art Reprints",
+   "publishedOn": "2024-05-10"
+  },
+  {
+   "abbreviation": "FB02_PR",
+   "groupId": 23471,
+   "name": "Blazing Aura Release Event Cards",
+   "publishedOn": "2024-05-03"
+  },
+  {
+   "abbreviation": "FB01",
+   "groupId": 23401,
+   "name": "Awakened Pulse",
+   "publishedOn": "2024-02-23"
+  },
+  {
+   "abbreviation": "FB01_PR",
+   "groupId": 23407,
+   "name": "Awakened Pulse Pre-Release Cards",
+   "publishedOn": "2024-02-16"
+  },
+  {
+   "abbreviation": "FS01",
+   "groupId": 23408,
+   "name": "Starter Deck 1: Son Goku",
+   "publishedOn": "2024-02-16"
+  },
+  {
+   "abbreviation": "FS02",
+   "groupId": 23409,
+   "name": "Starter Deck 2: Vegeta",
+   "publishedOn": "2024-02-16"
+  },
+  {
+   "abbreviation": "FS03",
+   "groupId": 23410,
+   "name": "Starter Deck 3: Broly",
+   "publishedOn": "2024-02-16"
+  },
+  {
+   "abbreviation": "FS04",
+   "groupId": 23411,
+   "name": "Starter Deck 4: Frieza",
+   "publishedOn": "2024-02-16"
+  },
+  {
+   "abbreviation": "DBSFW_EM",
+   "groupId": 23430,
+   "name": "Fusion World Energy Markers",
+   "publishedOn": "2024-02-14"
+  },
+  {
+   "abbreviation": "DBSFW_PR",
+   "groupId": 23428,
+   "name": "Fusion World Promotion Cards and Packs",
+   "publishedOn": "2024-02-14"
+  },
+  {
+   "abbreviation": "DBSFW_TPR",
+   "groupId": 23429,
+   "name": "Tournament and Championship Promos",
+   "publishedOn": "2024-02-14"
+  }
+ ],
+ "name_suffixes": [
+  [
+   "Alternate Art",
+   403
+  ],
+  [
+   "Gold",
+   207
+  ],
+  [
+   "Bonus Pack Alternate Art",
+   90
+  ],
+  [
+   "Dragon Ball Pattern",
+   35
+  ],
+  [
+   "Super Alternate Art",
+   26
+  ],
+  [
+   "Limited Pack 01",
+   20
+  ],
+  [
+   "Limited Pack 26-27 WAVE2",
+   20
+  ],
+  [
+   "Limited Pack 26-27 WAVE1",
+   19
+  ],
+  [
+   "1st Anniversary Set",
+   15
+  ],
+  [
+   "Great Ape",
+   11
+  ],
+  [
+   "Dragon Ball Z Dokkan Battle Alternate Art",
+   10
+  ],
+  [
+   "Judge",
+   10
+  ],
+  [
+   "2nd Anniversary Set",
+   10
+  ],
+  [
+   "Championship Pack 03",
+   10
+  ],
+  [
+   "Championship Pack 03 Finalist",
+   10
+  ],
+  [
+   "Limited Pack 02",
+   10
+  ],
+  [
+   "Limited Pack MANGA Version 01",
+   9
+  ],
+  [
+   "Limited Pack MANGA Version 02",
+   9
+  ],
+  [
+   "Release Event Winner",
+   8
+  ],
+  [
+   "Tournament Pack 01",
+   8
+  ],
+  [
+   "Tournament Pack 02",
+   8
+  ],
+  [
+   "Championship Pack 01",
+   8
+  ],
+  [
+   "Championship Pack 02",
+   8
+  ],
+  [
+   "Tournament Pack 03",
+   8
+  ],
+  [
+   "Tournament Pack 04",
+   8
+  ],
+  [
+   "Tournament Pack 05",
+   8
+  ],
+  [
+   "Tournament Pack 06",
+   8
+  ],
+  [
+   "Dragon Ball Games Battle Hour 2025 Promo Card Set",
+   7
+  ],
+  [
+   "2nd Anniversary Pack",
+   5
+  ],
+  [
+   "Selection Pack 01",
+   5
+  ],
+  [
+   "Selection Pack 01 Finalist",
+   5
+  ],
+  [
+   "Tournament Pack 07",
+   5
+  ],
+  [
+   "Tournament Pack -Winner- 07",
+   5
+  ],
+  [
+   "Tournament Pack 08",
+   5
+  ],
+  [
+   "Tournament Pack -Winner- 08",
+   5
+  ],
+  [
+   "Tournament Pack 09",
+   5
+  ],
+  [
+   "Tournament Pack -Winner- 09",
+   5
+  ],
+  [
+   "Tournament Pack MANGA ver. SPECIAL",
+   5
+  ],
+  [
+   "Tournament Pack 10",
+   5
+  ],
+  [
+   "Tournament Pack 11",
+   5
+  ]
+ ],
+ "news": {
+  "https://api.bandai-tcg-plus.com/api/user/event/list?limit=5": {
+   "head": "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403 Forbidden</h1></center>\r\n</body>\r\n</html>\r\n",
+   "status": 403
+  },
+  "https://api.bandai-tcg-plus.com/api/user/game_title/list": {
+   "head": "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403 Forbidden</h1></center>\r\n</body>\r\n</html>\r\n",
+   "status": 403
+  },
+  "https://www.bandai-tcg-plus.com/": {
+   "head": "<!DOCTYPE html>\n<html>\n<head>\n    <script>\n        dataLayer = [];\n        const membershipNumber = localStorage.getItem('membershipNumber')\n        dataLayer.push({\n            user_id: membershipNumber\n        });\n    </script>\n\n    <!-- Google Tag Manager -->\n    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n        })(window,document,'script','dataLayer','GTM-PMPDT2JC');</script>\n    <!-- End Google Tag Manager -->\n    <!-- www.bandai-tcg-plus.com に対する OneTrust Cookie 同意通知の始点 -->\n    <script type=\"text/javascript\" src=\"https://cdn-apac.onetrust.com/consent/74f78ab7-2be1-467e-8ef0-33809e81a18c/OtAutoBlock.js\" ></script>\n    <script src=\"https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"74f78ab7-2be1-467e-8ef0-33809e81a18c\" ></script>\n    <script type=\"text/javascript\">\n        function OptanonWrapper() { }\n    </script>\n    <!-- www.bandai-tcg-plus.com に対する OneTrust Cookie 同意通知の終点 -->\n\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no\">\n    <meta name=\"description\" content=\"\">\n    <meta name=\"keywords\" content=\"\">\n    <meta name=\"robots\" content=\"index\">\n    <!-- ▼ogp -->\n    <meta property=\"og:title\" content=\"\">\n    <meta property=\"og:type\" content=\"website\">\n    <meta property=\"og:url\" content=\"\">\n    <meta property=\"og:description\" content=\"\">\n    <meta property=\"og:image\" content=\"\">\n    <!-- * Twitter-card * -->\n    <meta name=\"twitter:card\" content=\"summary_large_image\">\n    <title>BANDAI TCG+</title>\n    <link rel=\"shortcut icon\" href=\"/favicon.ico\">\n</head>\n<body>\n    <!-- Google Tag Manager (noscript) -->\n    <noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-PMPDT2JC\"\n        height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>\n    <!-- End Google Tag Manager (noscript) -->\n    <div id=\"app\"></div>\n    <script src=\"/js/api_url.js\"></script>\n    <script src=\"/dist/js/bundle.js?20261119111137\"></script>\n</body>\n</html>\n",
+   "status": 200
+  },
+  "https://www.dbs-cardgame.com/europe-en/event/": {
+   "head": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <!-- www.dbs-cardgame.com に対する OneTrust Cookie 同意通知の始点 -->\r\n<script type=\"text/javascript\" src=\"https://cdn-apac.onetrust.com/consent/98850080-4e90-4245-8ba2-f112a1af5940/OtAutoBlock.js\" ></script>\r\n<script src=\"https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"98850080-4e90-4245-8ba2-f112a1af5940\" ></script>\r\n<script type=\"text/javascript\">\r\nfunction OptanonWrapper() { }\r\n</script>\r\n<!-- www.dbs-cardgame.com に対する OneTrust Cookie 同意通知の終点 -->\r\n<!-- Google Tag Manager -->\r\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\r\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\r\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\r\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\r\n})(window,document,'script','dataLayer','GTM-5MC69RF');</script>\r\n<!-- End Google Tag Manager -->\r\n\r\n<meta charset=\"utf-8\">\r\n  <title>EVENT | DRAGON BALL SUPER CARD GAME</title>\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n  <script>\r\n    if (screen.width <= 640) {\r\n    document.write('<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0\">');\r\n    } else {\r\n    document.write('<meta name=\"viewport\" content=\"width=device-width\">');\r\n    }\r\n  </script>\r\n  <meta name=\"format-detection\" content=\"telephone=no\">\r\n  <meta name=\"Keywords\" content=\"dragon ball,super,dbs,card,Cardgame,tcg,ccg,Collectible,bandai\">\r\n  <meta name=\"Description\" content=\"DRAGON BALL SUPER CARD GAME - Official Web Site\">\r\n  <meta property=\"og:type\" content=\"article\">\r\n  <meta property=\"og:image\" content=\"https://www.dbs-cardgame.com/ogp.png\">\r\n  <meta property=\"og:url\" content=\"http://www.dbs-cardgame.com/europe-en/event/\">\r\n  <meta property=\"og:site_name\" content=\"DRAGON BALL SUPER CARD GAME\">\r\n  <meta property=\"og:description\" content=\"DRAGON BALL SUPER CARD GAME - Official Web Site\">\r\n  <meta name=\"theme-color\" content=\"#ff8414\">\r\n  <meta http-equiv=\"content-security-policy\" content=\"script-src 'self' 'unsafe-inline' https://www.googletagmanager.com/ https://www.google-analytics.com/ https://cdn-apac.onetrust.com/ https://platform.twitter.com/ https://www.youtube-nocookie.com/ https://connect.facebook.net/ https://static.ads-twitter.com/ https://js-tag.zemanta.com/ https://googleads.g.doubleclick.net/ https://www.googleadservices.com/ ; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/\">\r\n  <link rel=\"apple-touch-icon\" href=\"https://www.dbs-cardgame.com/webclip.png\">\r\n  <link href=\"https://www.dbs-cardgame.com/favicon.ico\" rel=\"shortcut icon\">\r\n  <link href=\"https://www.dbs-cardgame.com/favicon.ico\" rel=\"icon\">\r\n  <link rel=\"stylesheet\" href=\"../../css/reset.css\">\r\n  <link rel=\"stylesheet\" href=\"../../css/jquery.sidr.dark.css\">\r\n  <link rel=\"stylesheet\" href=\"../../css/layout.css?261016\">\r\n  <link rel=\"stylesheet\" href=\"../../css/event.css?261016\">\r\n  <link rel=\"stylesheet\" href=\"../css/europe-en.css\">\r\n  <link rel=\"stylesheet\" href=\"../css/event.css?261016\">\r\n  <link href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700\" rel=\"stylesheet\">\r\n  <script src=\"../../js/jquery.js?261016\"></script>\r\n  <script src=\"../../js/jquery.easing.min.js\"></script>\r\n  <script src=\"../../js/jQueryAutoHeight.js\"></script>\r\n  <script src=\"../../js/jquery.sidr.min.js\"></script>\r\n  <script src=\"../../js/common.js?261016\"></script>\r\n  <script src=\"../../js/analytics.js\"></script>\r\n  <script src=\"../js/jquery.cookie.min.js\"></script>\r\n  <script src=\"../js/cookie.js\"></script>\r\n  <script src=\"../../js/event/index.js?261016\"></script>\r\n</head>\r\n\r\n<body id=\"event\" class=\"article\">\r\n  <div id=\"wrapper\">\r\n    <header id=\"mainVisCol\">\r\n      <h1>DRAGON BALL SUPER CARD GAME</h1>\r\n    </header>\r\n    <div id=\"container\">\r\n       <nav>\r\n  <ul id=\"gnaviCol\">\r\n    <li class=\"gnTop\"><a href=\"/europe-en/\" class=\"\"><img src=\"/europe-en/images/common/gnavi/nav_top.png\" width=\"64\" height=\"65\" alt=\"TOP\"></a>\r\n    </li>\r\n    \r\n    <li class=\"gnAbout\">      <a href=\"/europe-en/about/\" class=\"\">\r\n        <img src=\"/europe-en/images/common/gnavi/nav_about.png\" width=\"93\" height=\"59\" alt=\"ABOUT\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnProd\"><span class=\"newIcon\">NEW!!</span>      <a href=\"/europe-en/product/\" class=\"\">\r\n        <img src=\"/europe-en/images/common/gnavi/nav_product.png\" width=\"102\" height=\"59\" alt=\"PRODUCT\">\r\n      </a>\r\n    </li>\r\n    <li class=\"gnRule\"><span class=\"newIcon\">NEW!!</span>      <a href=\"/europe-en/rule/\" class=\"\">\r\n        <img src=\"/europe-en/images/common/gnavi/nav_rule.png\" width=\"69\" height=\"59\" alt=\"RULE\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnEvent\"><span class=\"newIcon\">NEW!!</span>      <a href=\"/europe-en/event/\" class=\"current\">\r\n        <img src=\"/europe-en/images/common/gnavi/nav_event.png\" width=\"77\" height=\"59\" alt=\"EVENT\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnCardlist\"><span class=\"newIcon\">NEW!!</span>      <a href=\"/europe-en/cardlist/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_cardlist.png?Update=06\" width=\"69\" height=\"59\" alt=\"CARD LIST\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnStore\">      <a href=\"/europe-en/shoplist/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_storelist.png?Update=04\" width=\"69\" height=\"59\" alt=\"STORE LIST\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnOrganizedPlay\">      <a href=\"/europe-en/organized-play/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_organized-play.png?ver2\" width=\"114\" height=\"59\" alt=\"ORGANIZED PLAY\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnStrategy\">      <a href=\"/europe-en/strategy/\" class=\"\">\r\n        <img src=\"/images/common/gnavi/nav_strategy.png?ver3\" width=\"101\" height=\"59\" alt=\"STRATEGY\">\r\n      </a>\r\n    </li>\r\n    \r\n    <li class=\"gnApplication\">      <a href=\"/europe-en/application/\" class=\"\">\r\n        <img src=\"/images/common/gn",
+   "status": 200
+  },
+  "https://www.dbs-cardgame.com/fw/en/events/02_281.html": {
+   "head": "<!DOCTYPE html>\r\n<html lang=\"en-US\" prefix=\"og: http://ogp.me/ns#\">\r\n\r\n<head>\r\n  \r\n\r\n<meta charset=\"utf-8\">\r\n<script type=\"text/javascript\" src=\"https://cdn-apac.onetrust.com/consent/98850080-4e90-4245-8ba2-f112a1af5940/OtAutoBlock.js\" ></script>\r\n<script src=\"https://cdn-apac.onetrust.com/scripttemplates/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"98850080-4e90-4245-8ba2-f112a1af5940\" ></script>\r\n<script type=\"text/javascript\">\r\nfunction OptanonWrapper() { }\r\n</script>\r\n<!-- Google Tag Manager -->\r\n<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\r\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\r\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\r\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\r\n})(window,document,'script','dataLayer','GTM-5MC69RF');</script>\r\n<!-- End Google Tag Manager -->\r\n<title>Championship 26-27 Regionals Wave 2 | Dragon Ball Super Card Game Fusion World - Official Web Site</title>\r\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n<meta name=\"format-detection\" content=\"telephone=no\">\r\n<meta name=\"description\" content=\"Compete against the best in your region and claim championship‑worthy prizes!\">\r\n<meta name=\"keywords\" content=\"Dragon Ball Super,Fusion World,DBS FW,Trading Card Game,TCG,BANDAI\">\r\n<meta name=\"token\" content=\"739e5f20476c0d2e5bb850694f27004d98aa64f0718e5fe36d4f384c0dbe135a\">\r\n<meta name=\"twitter:card\" content=\"summary_large_image\">\r\n<meta name=\"twitter:site\" content=\"@dbfw_cardgameEN\">\r\n<meta property=\"og:title\" content=\"Championship 26-27 Regionals Wave 2 | Dragon Ball Super Card Game Fusion World - Official Web Site\">\r\n<meta property=\"og:description\" content=\"Compete against the best in your region and claim championship‑worthy prizes!\">\r\n<meta property=\"og:type\" content=\"article\">\r\n<meta property=\"og:url\" content=\"https://www.dbs-cardgame.com/fw/en/events/02_281.html\">\r\n<meta property=\"og:site_name\" content=\"Dragon Ball Super Card Game Fusion World - Official Web Site\">\r\n<meta property=\"og:country-name\" content=\"en\">\r\n<meta property=\"og:locale:alternate\" content=\"ja_JP\">\r\n<meta property=\"og:image\" content=\"https://www.dbs-cardgame.com/fw/bccard/en/news/2026/05/13/NlhbTYfEeqJJYPlM/banner_CS26-27_wave2_en.jpg\">\r\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\">\r\n<meta http-equiv=\"content-security-policy\" content=\"script-src 'self' 'unsafe-inline' https://cdn-apac.onetrust.com/ https://platform.twitter.com/ https://www.googletagmanager.com/ https://www.google-analytics.com/ https://googleads.g.doubleclick.net/ https://js-tag.zemanta.com/ https://connect.facebook.net/ https://static.ads-twitter.com/ https://www.googleadservices.com/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/\">\r\n<link rel=\"shortcut icon\" href=\"https://www.dbs-cardgame.com/fw/favicon.ico\">\r\n<link rel=\"apple-touch-icon\" href=\"https://www.dbs-cardgame.com/fw/webclip.png\">\r\n<link rel=\"alternate\" hreflang=\"ja\" href=\"https://www.dbs-cardgame.com/fw/jp/\">\r\n<link rel=\"alternate\" hreflang=\"en-US\" href=\"https://www.dbs-cardgame.com/fw/en/\">\r\n<link rel=\"alternate\" hreflang=\"en\" href=\"https://www.dbs-cardgame.com/fw/asia-en/\">\r\n<link rel=\"alternate\" hreflang=\"zh-Hant\" href=\"https://www.dbs-cardgame.com/fw/asia-tc/\">\r\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;600;700;800;900&text=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&family=Anton\" rel=\"stylesheet\">\r\n<link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap\" rel=\"stylesheet\">\r\n<link rel=\"stylesheet\" href=\"/fw/renewal01/css/plugins/jquery.fancybox.min.css\">\r\n<link rel=\"stylesheet\" href=\"/fw/renewal01/css/plugins/swiper.css\">\r\n<script src=\"/fw/renewal01/js/lib/jquery-3.7.1.min.js\"></script>\r\n<script src=\"/fw/renewal01/js/lib/jquery.fancybox.min.js\"></script>\r\n<script src=\"/fw/renewal01/js/lib/swiper.min.js\"></script>\r\n<script src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>\r\n<script src=\"/fw/renewal01/js/scripts.js\"></script>\r\n<link rel=\"stylesheet\" href=\"/fw/renewal01/css/plugins/bootstrap.css\">\r\n<link rel=\"stylesheet\" href=\"/fw/renewal01/css/style.css?v=17951561401\">\r\n\r\n\r\n</head>\r\n\r\n<body class=\"lang-en\">\r\n  <div class=\"wrapper is-page\">\r\n    <header class=\"header js-header\">\r\n\r\n    <div class=\"headerBackground\">\r\n      <div class=\"headerSearchBtnSP\">\r\n        <div class=\"btnBGCol\">\r\n          <div class=\"btnBG\"><span></span><span></span></div></div>\r\n          <a href=\"#headerSearchModal\"><img src=\"/fw/renewal01/images/common/icon_serch.png\" alt=\"\"><span>Card Search</span></a>\r\n      </div>\r\n      <div class=\"headerLogoSP\">\r\n        <a href=\"/fw/en/\">\r\n          <img src=\"/fw/renewal01/images/common/logo_fw_w.png\" alt=\"DRAGONBALL SUPER CARD GAME FUSION WORLD\">\r\n        </a>\r\n      </div>\r\n      <div class=\"headerMenuSp js-headerMenuSp\">\r\n        <div class=\"headerMenuBtnSP\">\r\n          <div class=\"btnBGCol\"><div class=\"btnBG\"><span></span><span></span></div></div>\r\n          <img src=\"/fw/renewal01/images/common/icon_menu.png\" alt=\"\"><span>MENU</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    \r\n    <div class=\"headerCloseSp\">\r\n        <a href=\"javascript:void(0);\" class=\"headerCloseSpBtn js-headerClose\">CLOSE</a>\r\n    </div>\r\n\r\n    <div class=\"headerWrapper\">\r\n      <div class=\"headerLeftCol\">\r\n        <h1 class=\"logo\">\r\n          <a href=\"/fw/en/\">\r\n            <picture>\r\n                <source srcset=\"/fw/renewal01/images/common/logo_fw_b.png\" media=\"(min-width: 1100px)\">\r\n                <img src=\"/fw/renewal01/images/common/logo_fw_w.png\" alt=\"DRAGONBALL SUPER CARD GAME FUSION WORLD\">\r\n            </picture>\r\n          </a>\r\n        </h1>\r\n        <nav class=\"headerGnavCol\">\r\n    ",
+   "status": 200
+  }
+ },
+ "rarities": [
+  {
+   "group": "DBSFW_EM",
+   "n": 319,
+   "rarity": "None",
+   "samples": [
+    {
+     "name": "Energy Marker (E01-01)",
+     "number": "E01-01"
+    },
+    {
+     "name": "Energy Marker (E01-02)",
+     "number": "E01-02"
+    },
+    {
+     "name": "Energy Marker (E01-03)",
+     "number": "E01-03"
+    },
+    {
+     "name": "Energy Marker (E01-04)",
+     "number": "E01-04"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_PR",
+   "n": 8,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Son Goku - FS02-04 (Gen Con 2024 Promo)",
+     "number": "FS02-04"
+    },
+    {
+     "name": "Kamehameha (Dragon Ball Sparking! ZERO)",
+     "number": "FS01-15"
+    },
+    {
+     "name": "Final Flash (Dragon Ball Sparking! ZERO)",
+     "number": "FS02-16"
+    },
+    {
+     "name": "Glimpse of a Hidden Arrogance",
+     "number": "FB02-035"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_PR",
+   "n": 6,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Broly - FS03-01 (Gold)",
+     "number": "FS03-01"
+    },
+    {
+     "name": "Son Goku - FS01-01 (Gold)",
+     "number": "FS01-01"
+    },
+    {
+     "name": "Vegeta - FS02-01 (Gold)",
+     "number": "FS02-01"
+    },
+    {
+     "name": "Frieza - FS04-01 (Gold)",
+     "number": "FS04-01"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_PR",
+   "n": 3,
+   "rarity": "None",
+   "samples": [
+    {
+     "name": "Energy Marker - E-05 (Gold)",
+     "number": "E-05"
+    },
+    {
+     "name": "Energy Marker (Dragon Ball Sparking! ZERO)",
+     "number": "E-04"
+    },
+    {
+     "name": "Energy Marker (E-94) (Gold)",
+     "number": "E-94"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_PR",
+   "n": 68,
+   "rarity": "PR",
+   "samples": [
+    {
+     "name": "Son Goku - FP-006 (Gold)",
+     "number": "FP-006"
+    },
+    {
+     "name": "Vegeta - FP-007 (Gold)",
+     "number": "FP-007"
+    },
+    {
+     "name": "Son Goku - FP-006",
+     "number": "FP-006"
+    },
+    {
+     "name": "Vegeta - FP-007",
+     "number": "FP-007"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_PR",
+   "n": 11,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Final Hope Slash (Dragon Ball Sparking! ZERO)",
+     "number": "FB01-066"
+    },
+    {
+     "name": "Vegito - FB04-046 (Reprint)",
+     "number": "FB04-046"
+    },
+    {
+     "name": "Ultimate Sparking - FB05-115 (Reprint)",
+     "number": "FB05-115"
+    },
+    {
+     "name": "Planet Vampa",
+     "number": "FB06-067"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_PR",
+   "n": 1,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Vegito - FB04-130 (Alternate Art)",
+     "number": "FB04-130"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_PR",
+   "n": 15,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku (Mini) : DA (Serial Numbered)",
+     "number": "FB04-012"
+    },
+    {
+     "name": "Majin Buu : Kid (Alternate Art)",
+     "number": "FB04-094"
+    },
+    {
+     "name": "Son Gohan : Adolescence (1st Anniversary Set)",
+     "number": "FB02-018"
+    },
+    {
+     "name": "Gotenks (1st Anniversary Set)",
+     "number": "FB04-033"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_PR",
+   "n": 8,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Son Goku - FB03-011 (BANDAI Card Games Fest 24-25 World Tour)",
+     "number": "FB03-011"
+    },
+    {
+     "name": "Whis (1st Anniversary Set)",
+     "number": "FB01-004"
+    },
+    {
+     "name": "Cabba (1st Anniversary Set)",
+     "number": "FB01-007"
+    },
+    {
+     "name": "Bulma (1st Anniversary Set)",
+     "number": "FB04-068"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_TPR",
+   "n": 81,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Android 17 (Tournament Pack 01)",
+     "number": "FS01-06"
+    },
+    {
+     "name": "Bulma (Tournament Pack 01)",
+     "number": "FB01-057"
+    },
+    {
+     "name": "Son Gohan : Childhood - FB01-088 (Tournament Pack 01)",
+     "number": "FB01-088"
+    },
+    {
+     "name": "Android 17 (Tournament Pack -Winner- 01)",
+     "number": "FS01-06"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_TPR",
+   "n": 3,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku (Mini) : DA (Gold)",
+     "number": "FS06-01"
+    },
+    {
+     "name": "Vegeta (Mini) : DA (Gold)",
+     "number": "FS07-01"
+    },
+    {
+     "name": "The Strongest Fighters",
+     "number": "FP-030"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_TPR",
+   "n": 2,
+   "rarity": "None",
+   "samples": [
+    {
+     "name": "Energy Marker - E-07 (Championship 2024-2025 Finals)",
+     "number": "E-07"
+    },
+    {
+     "name": "Energy Marker - E-29 (Championship 2024-2025 Grand Finals)",
+     "number": "E-29"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_TPR",
+   "n": 97,
+   "rarity": "PR",
+   "samples": [
+    {
+     "name": "Cabba (Judge Pack (Store Judge) 01)",
+     "number": "FB01-007"
+    },
+    {
+     "name": "Krillin - FB01-008 (Judge Pack (Store Judge) 01)",
+     "number": "FB01-008"
+    },
+    {
+     "name": "Son Gohan : Adolescence (Judge Pack (Store Judge) 01)",
+     "number": "FB01-016"
+    },
+    {
+     "name": "Goku Black - FB01-037 (Judge Pack (Store Judge) 01)",
+     "number": "FB01-037"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_TPR",
+   "n": 134,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Trunks : Future - FB01-049 (Tournament Pack 01)",
+     "number": "FB01-049"
+    },
+    {
+     "name": "Son Goku - FB01-087 (Tournament Pack 01)",
+     "number": "FB01-087"
+    },
+    {
+     "name": "Trunks : Future - FB01-049 (Tournament Pack -Winner- 01)",
+     "number": "FB01-049"
+    },
+    {
+     "name": "Son Goku - FB01-087 (Tournament Pack -Winner- 01)",
+     "number": "FB01-087"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_TPR",
+   "n": 5,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Goku - FB04-129 (Championship 2025-2026 Finals)",
+     "number": "FB04-129"
+    },
+    {
+     "name": "Son Gohan : SH - FB07-121 (Championship 2025-2026 Finals Champion)",
+     "number": "FB07-121"
+    },
+    {
+     "name": "Son Gohan : SH - FB07-121 (Championship 2025-2026 Finals 2nd Place)",
+     "number": "FB07-121"
+    },
+    {
+     "name": "Son Gohan : SH - FB07-121 (Championship 2025-2026 Finals 3rd Place)",
+     "number": "FB07-121"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_TPR",
+   "n": 36,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku - FB01-015 (Championship 2024-2025 Regionals)",
+     "number": "FB01-015"
+    },
+    {
+     "name": "Vegeta - FB02-133 (Championship 2024-2025 Regionals)",
+     "number": "FB02-133"
+    },
+    {
+     "name": "Vegeta - FB01-096 (Ultimate Battle 2024 Vol.1)",
+     "number": "FB01-096"
+    },
+    {
+     "name": "Bardock - FS05-11 (Championship 2024-2025 Regionals)",
+     "number": "FS05-11"
+    }
+   ]
+  },
+  {
+   "group": "DBSFW_TPR",
+   "n": 90,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Master Roshi (Tournament Pack 01)",
+     "number": "FB01-005"
+    },
+    {
+     "name": "Neiz (Tournament Pack 01)",
+     "number": "FB01-124"
+    },
+    {
+     "name": "Frieza - FB01-128 (Tournament Pack 01)",
+     "number": "FB01-128"
+    },
+    {
+     "name": "Frieza - FB01-128 (Tournament Pack -Winner- 01)",
+     "number": "FB01-128"
+    }
+   ]
+  },
+  {
+   "group": "FB01",
+   "n": 52,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Vados",
+     "number": "FB01-003"
+    },
+    {
+     "name": "Saonel",
+     "number": "FB01-010"
+    },
+    {
+     "name": "Champa",
+     "number": "FB01-011"
+    },
+    {
+     "name": "Tien Shinhan - FB01-018",
+     "number": "FB01-018"
+    }
+   ]
+  },
+  {
+   "group": "FB01",
+   "n": 16,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku - FB01-001",
+     "number": "FB01-001"
+    },
+    {
+     "name": "Beerus - FB01-002",
+     "number": "FB01-002"
+    },
+    {
+     "name": "Goku Black - FB01-035",
+     "number": "FB01-035"
+    },
+    {
+     "name": "Trunks : Future - FB01-036",
+     "number": "FB01-036"
+    }
+   ]
+  },
+  {
+   "group": "FB01",
+   "n": 30,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Krillin - FB01-008",
+     "number": "FB01-008"
+    },
+    {
+     "name": "Son Gohan : Adolescence",
+     "number": "FB01-016"
+    },
+    {
+     "name": "Frost",
+     "number": "FB01-025"
+    },
+    {
+     "name": "Fuwa",
+     "number": "FB01-026"
+    }
+   ]
+  },
+  {
+   "group": "FB01",
+   "n": 5,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Goku - FB01-139",
+     "number": "FB01-139"
+    },
+    {
+     "name": "Son Gohan : Childhood - FB01-140",
+     "number": "FB01-140"
+    },
+    {
+     "name": "Son Goku - FB01-139 (Alternate Art)",
+     "number": "FB01-139"
+    },
+    {
+     "name": "Son Goku - FB01-139 (Super Alternate Art)",
+     "number": "FB01-139"
+    }
+   ]
+  },
+  {
+   "group": "FB01",
+   "n": 24,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Hit",
+     "number": "FB01-021"
+    },
+    {
+     "name": "Beerus - FB01-023",
+     "number": "FB01-023"
+    },
+    {
+     "name": "Goku Black - FB01-039",
+     "number": "FB01-039"
+    },
+    {
+     "name": "Trunks : Future - FB01-050",
+     "number": "FB01-050"
+    }
+   ]
+  },
+  {
+   "group": "FB01",
+   "n": 36,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Whis",
+     "number": "FB01-004"
+    },
+    {
+     "name": "Master Roshi",
+     "number": "FB01-005"
+    },
+    {
+     "name": "Caulifla",
+     "number": "FB01-006"
+    },
+    {
+     "name": "Cabba",
+     "number": "FB01-007"
+    }
+   ]
+  },
+  {
+   "group": "FB01_AR",
+   "n": 4,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Final Hope Slash (Alternate Art)",
+     "number": "FB01-066"
+    },
+    {
+     "name": "Son Gohan : Adolescence (Alternate Art)",
+     "number": "FB01-016"
+    },
+    {
+     "name": "Trunks : Future - FB01-049 (Alternate Art)",
+     "number": "FB01-049"
+    },
+    {
+     "name": "Trunks : Future - FB01-049 (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB01-049"
+    }
+   ]
+  },
+  {
+   "group": "FB01_AR",
+   "n": 2,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Android 18 - FB01-014 (Alternate Art)",
+     "number": "FB01-014"
+    },
+    {
+     "name": "Android 17 - FB01-077 (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB01-077"
+    }
+   ]
+  },
+  {
+   "group": "FB01_PR",
+   "n": 52,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Zarbon",
+     "number": "FB01-116"
+    },
+    {
+     "name": "Zamasu - FB01-044",
+     "number": "FB01-044"
+    },
+    {
+     "name": "Zamasu - FB01-043",
+     "number": "FB01-043"
+    },
+    {
+     "name": "We Are Cooler's Armored Squadron!",
+     "number": "FB01-134"
+    }
+   ]
+  },
+  {
+   "group": "FB01_PR",
+   "n": 36,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Android 16 - FB01-073",
+     "number": "FB01-073"
+    },
+    {
+     "name": "Android 16 - FB01-074",
+     "number": "FB01-074"
+    },
+    {
+     "name": "Android 17 - FB01-013",
+     "number": "FB01-013"
+    },
+    {
+     "name": "Android 17 - FB01-077",
+     "number": "FB01-077"
+    }
+   ]
+  },
+  {
+   "group": "FB02",
+   "n": 52,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Rozie",
+     "number": "FB02-032"
+    },
+    {
+     "name": "Shin",
+     "number": "FB02-047"
+    },
+    {
+     "name": "Son Gohan : Adolescence - FB02-121",
+     "number": "FB02-121"
+    },
+    {
+     "name": "Zuno",
+     "number": "FB02-048"
+    }
+   ]
+  },
+  {
+   "group": "FB02",
+   "n": 8,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku - FB02-001",
+     "number": "FB02-001"
+    },
+    {
+     "name": "Zamasu : Fused - FB02-036",
+     "number": "FB02-036"
+    },
+    {
+     "name": "Cell - FB02-070",
+     "number": "FB02-070"
+    },
+    {
+     "name": "Son Goku - FB02-001 (Alternate Art)",
+     "number": "FB02-001"
+    }
+   ]
+  },
+  {
+   "group": "FB02",
+   "n": 30,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Android 18 - FB02-016",
+     "number": "FB02-016"
+    },
+    {
+     "name": "Cell Jr.",
+     "number": "FB02-085"
+    },
+    {
+     "name": "Heles",
+     "number": "FB02-026"
+    },
+    {
+     "name": "Master Roshi - FB02-109",
+     "number": "FB02-109"
+    }
+   ]
+  },
+  {
+   "group": "FB02",
+   "n": 5,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Vegito - FB02-139",
+     "number": "FB02-139"
+    },
+    {
+     "name": "Golden Frieza",
+     "number": "FB02-140"
+    },
+    {
+     "name": "Vegito - FB02-139 (Alternate Art)",
+     "number": "FB02-139"
+    },
+    {
+     "name": "Golden Frieza (Alternate Art)",
+     "number": "FB02-140"
+    }
+   ]
+  },
+  {
+   "group": "FB02",
+   "n": 24,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Kefla - FB02-013",
+     "number": "FB02-013"
+    },
+    {
+     "name": "Zamasu - FB02-043",
+     "number": "FB02-043"
+    },
+    {
+     "name": "Trunks : Future - FB02-091",
+     "number": "FB02-091"
+    },
+    {
+     "name": "Bulma - FB02-130",
+     "number": "FB02-130"
+    }
+   ]
+  },
+  {
+   "group": "FB02",
+   "n": 40,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Tien Shinhan - FB02-019",
+     "number": "FB02-019"
+    },
+    {
+     "name": "Vegito - FB02-060",
+     "number": "FB02-060"
+    },
+    {
+     "name": "Son Goku - FB02-118",
+     "number": "FB02-118"
+    },
+    {
+     "name": "Piccolo - FB02-126",
+     "number": "FB02-126"
+    }
+   ]
+  },
+  {
+   "group": "FB02_AR",
+   "n": 1,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Glimpse of a Hidden Arrogance (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB02-035"
+    }
+   ]
+  },
+  {
+   "group": "FB02_AR",
+   "n": 2,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Zen-Oh (Alternate Art)",
+     "number": "FB02-049"
+    },
+    {
+     "name": "Earth-Destroying Blow (Alternate Art)",
+     "number": "FB02-104"
+    }
+   ]
+  },
+  {
+   "group": "FB02_AR",
+   "n": 2,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Zamasu : Fused - FB02-044 (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB02-044"
+    },
+    {
+     "name": "Son Gohan : Future (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB02-089"
+    }
+   ]
+  },
+  {
+   "group": "FB02_AR",
+   "n": 1,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Meta-Cooler (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB02-135"
+    }
+   ]
+  },
+  {
+   "group": "FB02_PR",
+   "n": 52,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Anilaza",
+     "number": "FB02-002"
+    },
+    {
+     "name": "Caulifla - FB02-006",
+     "number": "FB02-006"
+    },
+    {
+     "name": "Caway",
+     "number": "FB02-009"
+    },
+    {
+     "name": "Cabba",
+     "number": "FB02-010"
+    }
+   ]
+  },
+  {
+   "group": "FB02_PR",
+   "n": 40,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Kakunsa",
+     "number": "FB02-003"
+    },
+    {
+     "name": "Ganos",
+     "number": "FB02-005"
+    },
+    {
+     "name": "Kale",
+     "number": "FB02-011"
+    },
+    {
+     "name": "Kefla - FB02-012",
+     "number": "FB02-012"
+    }
+   ]
+  },
+  {
+   "group": "FB03",
+   "n": 52,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Giru",
+     "number": "FB03-108"
+    },
+    {
+     "name": "Great Ape Who Gained Intelligence",
+     "number": "FB03-138"
+    },
+    {
+     "name": "Erasa",
+     "number": "FB03-028"
+    },
+    {
+     "name": "King Yemma",
+     "number": "FB03-054"
+    }
+   ]
+  },
+  {
+   "group": "FB03",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku : GT - FB03-104",
+     "number": "FB03-104"
+    },
+    {
+     "name": "Son Goku - FB03-027",
+     "number": "FB03-027"
+    },
+    {
+     "name": "Piccolo - FB03-053",
+     "number": "FB03-053"
+    },
+    {
+     "name": "Babidi // Majin Buu - FB03-078",
+     "number": "FB03-078"
+    }
+   ]
+  },
+  {
+   "group": "FB03",
+   "n": 30,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Uub : GT",
+     "number": "FB03-105"
+    },
+    {
+     "name": "Dyspo - FB03-014",
+     "number": "FB03-014"
+    },
+    {
+     "name": "Orange Star High School",
+     "number": "FB03-050"
+    },
+    {
+     "name": "Special Beam Cannon",
+     "number": "FB03-077"
+    }
+   ]
+  },
+  {
+   "group": "FB03",
+   "n": 5,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Gohan : Youth - FB03-139",
+     "number": "FB03-139"
+    },
+    {
+     "name": "Son Goku : GT - FB03-140",
+     "number": "FB03-140"
+    },
+    {
+     "name": "Son Gohan : Youth - FB03-139 (Alternate Art)",
+     "number": "FB03-139"
+    },
+    {
+     "name": "Son Goku : GT - FB03-140 (Alternate Art)",
+     "number": "FB03-140"
+    }
+   ]
+  },
+  {
+   "group": "FB03",
+   "n": 24,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku : GT - FB03-111",
+     "number": "FB03-111"
+    },
+    {
+     "name": "Son Gohan : Adolescence - FB03-039",
+     "number": "FB03-039"
+    },
+    {
+     "name": "Son Goku - FB03-064",
+     "number": "FB03-064"
+    },
+    {
+     "name": "Majin Buu - FB03-093",
+     "number": "FB03-093"
+    }
+   ]
+  },
+  {
+   "group": "FB03",
+   "n": 39,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Para Para Brothers",
+     "number": "FB03-123"
+    },
+    {
+     "name": "Android 18",
+     "number": "FB03-035"
+    },
+    {
+     "name": "Gine : BR",
+     "number": "FB03-107"
+    },
+    {
+     "name": "Son Gohan : Youth - FB03-066",
+     "number": "FB03-066"
+    }
+   ]
+  },
+  {
+   "group": "FB03_AR",
+   "n": 4,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Ultimate Sparking (Alternate Art)",
+     "number": "FB05-115"
+    },
+    {
+     "name": "Special Beam Cannon (Alternate Art)",
+     "number": "FB03-077"
+    },
+    {
+     "name": "Final Explosion (Alternate Art)",
+     "number": "FB03-102"
+    },
+    {
+     "name": "10x Kamehameha (Alternate Art)",
+     "number": "FB03-137"
+    }
+   ]
+  },
+  {
+   "group": "FB03_AR",
+   "n": 4,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Vegeta - FB03-020 (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB03-020"
+    },
+    {
+     "name": "Videl - FB03-042 (Alternate Art)",
+     "number": "FB03-042"
+    },
+    {
+     "name": "Pan : GT - FB03-125 (Alternate Art)",
+     "number": "FB03-125"
+    },
+    {
+     "name": "Son Gohan : Adolescence (Alternate Art)",
+     "number": "FB03-039"
+    }
+   ]
+  },
+  {
+   "group": "FB03_AR",
+   "n": 1,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "New Legend (Alternate Art)",
+     "number": "FB03-135"
+    }
+   ]
+  },
+  {
+   "group": "FB03_PR",
+   "n": 52,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Khai",
+     "number": "FB03-003"
+    },
+    {
+     "name": "Kettol",
+     "number": "FB03-006"
+    },
+    {
+     "name": "Kefla",
+     "number": "FB03-007"
+    },
+    {
+     "name": "Tupper",
+     "number": "FB03-012"
+    }
+   ]
+  },
+  {
+   "group": "FB03_PR",
+   "n": 39,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Kunshi",
+     "number": "FB03-005"
+    },
+    {
+     "name": "Cocotte",
+     "number": "FB03-008"
+    },
+    {
+     "name": "Zoiray",
+     "number": "FB03-010"
+    },
+    {
+     "name": "Son Goku - FB03-011",
+     "number": "FB03-011"
+    }
+   ]
+  },
+  {
+   "group": "FB04",
+   "n": 45,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Son Goku - FB04-035",
+     "number": "FB04-035"
+    },
+    {
+     "name": "Chiaotzu",
+     "number": "FB04-062"
+    },
+    {
+     "name": "Hercule",
+     "number": "FB04-097"
+    },
+    {
+     "name": "Great Priest",
+     "number": "FB04-014"
+    }
+   ]
+  },
+  {
+   "group": "FB04",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku - FB04-001",
+     "number": "FB04-001"
+    },
+    {
+     "name": "Son Gohan : Adolescence - FB04-026",
+     "number": "FB04-026"
+    },
+    {
+     "name": "Vegeta - FB04-051",
+     "number": "FB04-051"
+    },
+    {
+     "name": "Majin Buu : Evil - FB04-077",
+     "number": "FB04-077"
+    }
+   ]
+  },
+  {
+   "group": "FB04",
+   "n": 35,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Son Goku : GT",
+     "number": "FB04-109"
+    },
+    {
+     "name": "Zen-Oh",
+     "number": "FB04-010"
+    },
+    {
+     "name": "Gotenks - FB04-032",
+     "number": "FB04-032"
+    },
+    {
+     "name": "Artificial Full Moon",
+     "number": "FB04-076"
+    }
+   ]
+  },
+  {
+   "group": "FB04",
+   "n": 5,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Goku - FB04-129",
+     "number": "FB04-129"
+    },
+    {
+     "name": "Vegito - FB04-130",
+     "number": "FB04-130"
+    },
+    {
+     "name": "Vegito - FB04-130 (Alternate Art)",
+     "number": "FB04-130"
+    },
+    {
+     "name": "Son Goku - FB04-129 (Alternate Art)",
+     "number": "FB04-129"
+    }
+   ]
+  },
+  {
+   "group": "FB04",
+   "n": 24,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku - FB04-059",
+     "number": "FB04-059"
+    },
+    {
+     "name": "Gotenks - FB04-033",
+     "number": "FB04-033"
+    },
+    {
+     "name": "Trunks : GT - FB04-114",
+     "number": "FB04-114"
+    },
+    {
+     "name": "Frieza",
+     "number": "FB04-018"
+    }
+   ]
+  },
+  {
+   "group": "FB04",
+   "n": 36,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Toppo",
+     "number": "FB04-016"
+    },
+    {
+     "name": "Pan : GT",
+     "number": "FB04-117"
+    },
+    {
+     "name": "Son Gohan : Youth",
+     "number": "FB04-060"
+    },
+    {
+     "name": "Blind Spot Absorption",
+     "number": "FB04-099"
+    }
+   ]
+  },
+  {
+   "group": "FB04_AR",
+   "n": 3,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Son Goku : GT (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB04-109"
+    },
+    {
+     "name": "Majin Buu : Kid - FB04-095 (Alternate Art)",
+     "number": "FB04-095"
+    },
+    {
+     "name": "Glorio : DA (Alternate Art)",
+     "number": "FB04-105"
+    }
+   ]
+  },
+  {
+   "group": "FB04_AR",
+   "n": 2,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Majin Buu : Evil - FB04-091 (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FB04-091"
+    },
+    {
+     "name": "Whis (Alternate Art)",
+     "number": "FB04-002"
+    }
+   ]
+  },
+  {
+   "group": "FB04_PR",
+   "n": 45,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Son Goku - FB04-035",
+     "number": "FB04-035"
+    },
+    {
+     "name": "Chiaotzu",
+     "number": "FB04-062"
+    },
+    {
+     "name": "Hercule",
+     "number": "FB04-097"
+    },
+    {
+     "name": "Great Priest",
+     "number": "FB04-014"
+    }
+   ]
+  },
+  {
+   "group": "FB04_PR",
+   "n": 36,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Toppo",
+     "number": "FB04-016"
+    },
+    {
+     "name": "Pan : GT",
+     "number": "FB04-117"
+    },
+    {
+     "name": "Son Gohan : Youth",
+     "number": "FB04-060"
+    },
+    {
+     "name": "Blind Spot Absorption",
+     "number": "FB04-099"
+    }
+   ]
+  },
+  {
+   "group": "FB05",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Dazzling Onslaught",
+     "number": "FB05-090"
+    },
+    {
+     "name": "Unrivaled Fusion Father",
+     "number": "FB05-047"
+    },
+    {
+     "name": "Fierce Hyper Beam",
+     "number": "FB05-094"
+    },
+    {
+     "name": "Training at 100Gs",
+     "number": "FB05-069"
+    }
+   ]
+  },
+  {
+   "group": "FB05",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku (Mini) : DA",
+     "number": "FB05-001"
+    },
+    {
+     "name": "Vegito - FB05-025",
+     "number": "FB05-025"
+    },
+    {
+     "name": "Vegito - FB05-025 (Alternate Art)",
+     "number": "FB05-025"
+    },
+    {
+     "name": "Son Goku - FB05-049",
+     "number": "FB05-049"
+    }
+   ]
+  },
+  {
+   "group": "FB05",
+   "n": 30,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Panzy : DA - FB05-013",
+     "number": "FB05-013"
+    },
+    {
+     "name": "Bio-Broly - FB05-083",
+     "number": "FB05-083"
+    },
+    {
+     "name": "Gotenks - FB05-028",
+     "number": "FB05-028"
+    },
+    {
+     "name": "Bardock",
+     "number": "FB05-106"
+    }
+   ]
+  },
+  {
+   "group": "FB05",
+   "n": 6,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Goku - FB05-119",
+     "number": "FB05-119"
+    },
+    {
+     "name": "Frieza - FB05-120",
+     "number": "FB05-120"
+    },
+    {
+     "name": "Son Goku - FB05-119 (Super Alternate Art)",
+     "number": "FB05-119"
+    },
+    {
+     "name": "Frieza - FB05-120 (Super Alternate Art)",
+     "number": "FB05-120"
+    }
+   ]
+  },
+  {
+   "group": "FB05",
+   "n": 24,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Glorio : DA - FB05-006",
+     "number": "FB05-006"
+    },
+    {
+     "name": "Vegeta - FB05-038",
+     "number": "FB05-038"
+    },
+    {
+     "name": "Paikuhan",
+     "number": "FB05-107"
+    },
+    {
+     "name": "Panzy : DA - FB05-015",
+     "number": "FB05-015"
+    }
+   ]
+  },
+  {
+   "group": "FB05",
+   "n": 31,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Bulma : GT",
+     "number": "FB05-110"
+    },
+    {
+     "name": "Dr. Brief's Spaceship",
+     "number": "FB05-070"
+    },
+    {
+     "name": "Vegeta - FB05-039",
+     "number": "FB05-039"
+    },
+    {
+     "name": "Chi-Chi",
+     "number": "FB05-055"
+    }
+   ]
+  },
+  {
+   "group": "FB05_PR",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Master Roshi (Mini) : DA",
+     "number": "FB05-003"
+    },
+    {
+     "name": "Glorio : DA - FB05-005",
+     "number": "FB05-005"
+    },
+    {
+     "name": "Neva : DA",
+     "number": "FB05-011"
+    },
+    {
+     "name": "Hybis : DA",
+     "number": "FB05-012"
+    }
+   ]
+  },
+  {
+   "group": "FB05_PR",
+   "n": 31,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Kadan : DA",
+     "number": "FB05-002"
+    },
+    {
+     "name": "Tien Shinhan - FB05-010",
+     "number": "FB05-010"
+    },
+    {
+     "name": "Bulma (Mini) : DA",
+     "number": "FB05-017"
+    },
+    {
+     "name": "Vegeta (Mini) : DA",
+     "number": "FB05-018"
+    }
+   ]
+  },
+  {
+   "group": "FB06",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Android 15",
+     "number": "FB06-008"
+    },
+    {
+     "name": "Demon's Egg",
+     "number": "FB06-115"
+    },
+    {
+     "name": "Dog of Mega : DA",
+     "number": "FB06-089"
+    },
+    {
+     "name": "Sleepy Boy Technique",
+     "number": "FB06-046"
+    }
+   ]
+  },
+  {
+   "group": "FB06",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Android 18",
+     "number": "FB06-001"
+    },
+    {
+     "name": "Android 18 (Alternate Art)",
+     "number": "FB06-001"
+    },
+    {
+     "name": "Son Goku : Childhood - FB06-025",
+     "number": "FB06-025"
+    },
+    {
+     "name": "Son Goku : Childhood - FB06-025 (Alternate Art)",
+     "number": "FB06-025"
+    }
+   ]
+  },
+  {
+   "group": "FB06",
+   "n": 30,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Planet Vampa",
+     "number": "FB06-067"
+    },
+    {
+     "name": "Bleak Future",
+     "number": "FB06-022"
+    },
+    {
+     "name": "Piccolo Day",
+     "number": "FB06-118"
+    },
+    {
+     "name": "Scissors Paper Rock",
+     "number": "FB06-041"
+    }
+   ]
+  },
+  {
+   "group": "FB06",
+   "n": 5,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Goku : Childhood - FB06-119",
+     "number": "FB06-119"
+    },
+    {
+     "name": "Broly : BR - FB06-120",
+     "number": "FB06-120"
+    },
+    {
+     "name": "Broly : BR - FB06-120 (Alternate Art)",
+     "number": "FB06-120"
+    },
+    {
+     "name": "Broly : BR - FB06-120 (Super Alternate Art)",
+     "number": "FB06-120"
+    }
+   ]
+  },
+  {
+   "group": "FB06",
+   "n": 24,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Chi-Chi : Childhood - FB06-103",
+     "number": "FB06-103"
+    },
+    {
+     "name": "King Gomah : DA - FB06-076",
+     "number": "FB06-076"
+    },
+    {
+     "name": "Android 16 - FB06-009",
+     "number": "FB06-009"
+    },
+    {
+     "name": "Tien Shinhan - FB06-032",
+     "number": "FB06-032"
+    }
+   ]
+  },
+  {
+   "group": "FB06",
+   "n": 31,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Chiaotzu",
+     "number": "FB06-031"
+    },
+    {
+     "name": "Kikono : BR",
+     "number": "FB06-050"
+    },
+    {
+     "name": "Broly : BR - FB06-061",
+     "number": "FB06-061"
+    },
+    {
+     "name": "Neva : DA",
+     "number": "FB06-075"
+    }
+   ]
+  },
+  {
+   "group": "FB06_PR",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Android 8",
+     "number": "FB06-005"
+    },
+    {
+     "name": "Android 15",
+     "number": "FB06-008"
+    },
+    {
+     "name": "Android 18 - FB06-013",
+     "number": "FB06-013"
+    },
+    {
+     "name": "Android 18 - FB06-014",
+     "number": "FB06-014"
+    }
+   ]
+  },
+  {
+   "group": "FB06_PR",
+   "n": 5,
+   "rarity": "PR",
+   "samples": [
+    {
+     "name": "Broly : BR - FP-038",
+     "number": "FP-038"
+    },
+    {
+     "name": "Dr. Arinsu : DA - FP-039",
+     "number": "FP-039"
+    },
+    {
+     "name": "King Piccolo - FP-040",
+     "number": "FP-040"
+    },
+    {
+     "name": "Vegeta (Mini) : DA - FP-041",
+     "number": "FP-041"
+    }
+   ]
+  },
+  {
+   "group": "FB06_PR",
+   "n": 31,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Krillin - FB06-003",
+     "number": "FB06-003"
+    },
+    {
+     "name": "Android 13",
+     "number": "FB06-006"
+    },
+    {
+     "name": "Android 14",
+     "number": "FB06-007"
+    },
+    {
+     "name": "Android 17 - FB06-011",
+     "number": "FB06-011"
+    }
+   ]
+  },
+  {
+   "group": "FB07",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Tell Me Your Wish, Now",
+     "number": "FB07-118"
+    },
+    {
+     "name": "Dr. Arinsu : DA",
+     "number": "FB07-002"
+    },
+    {
+     "name": "Golden Emperor",
+     "number": "FB07-094"
+    },
+    {
+     "name": "Dende",
+     "number": "FB07-107"
+    }
+   ]
+  },
+  {
+   "group": "FB07",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Glorio : DA",
+     "number": "FB07-001"
+    },
+    {
+     "name": "Syn Shenron - FB07-025",
+     "number": "FB07-025"
+    },
+    {
+     "name": "Piccolo : SH - FB07-049",
+     "number": "FB07-049"
+    },
+    {
+     "name": "Frieza - FB07-073",
+     "number": "FB07-073"
+    }
+   ]
+  },
+  {
+   "group": "FB07",
+   "n": 35,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Kami",
+     "number": "FB07-100"
+    },
+    {
+     "name": "Gamma 1 : SH/Gamma 2 : SH",
+     "number": "FB07-051"
+    },
+    {
+     "name": "Son Goku (Mini) : DA",
+     "number": "FB07-011"
+    },
+    {
+     "name": "Nuova Shenron - FB07-033",
+     "number": "FB07-033"
+    }
+   ]
+  },
+  {
+   "group": "FB07",
+   "n": 5,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Gohan : SH - FB07-121",
+     "number": "FB07-121"
+    },
+    {
+     "name": "Son Goku : GT - FB07-122",
+     "number": "FB07-122"
+    },
+    {
+     "name": "Son Gohan : SH - FB07-121 (Alternate Art)",
+     "number": "FB07-121"
+    },
+    {
+     "name": "Son Goku : GT - FB07-122 (Alternate Art)",
+     "number": "FB07-122"
+    }
+   ]
+  },
+  {
+   "group": "FB07",
+   "n": 30,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku : DA - FB07-010",
+     "number": "FB07-010"
+    },
+    {
+     "name": "Vegeta : DA - FB07-021",
+     "number": "FB07-021"
+    },
+    {
+     "name": "Nuova Shenron - FB07-034",
+     "number": "FB07-034"
+    },
+    {
+     "name": "Son Goku - FB07-104",
+     "number": "FB07-104"
+    }
+   ]
+  },
+  {
+   "group": "FB07",
+   "n": 35,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Oolong",
+     "number": "FB07-099"
+    },
+    {
+     "name": "Son Goku : DA - FB07-009",
+     "number": "FB07-009"
+    },
+    {
+     "name": "Syn Shenron - FB07-026",
+     "number": "FB07-026"
+    },
+    {
+     "name": "Son Gohan : SH - FB07-057",
+     "number": "FB07-057"
+    }
+   ]
+  },
+  {
+   "group": "FB07_PR",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Dr. Arinsu : DA",
+     "number": "FB07-002"
+    },
+    {
+     "name": "Android 16",
+     "number": "FB07-004"
+    },
+    {
+     "name": "Tamagami Number Three : DA",
+     "number": "FB07-012"
+    },
+    {
+     "name": "Neva : DA",
+     "number": "FB07-015"
+    }
+   ]
+  },
+  {
+   "group": "FB07_PR",
+   "n": 30,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Android 17 - FB07-005",
+     "number": "FB07-005"
+    },
+    {
+     "name": "Son Goku - FB07-008",
+     "number": "FB07-008"
+    },
+    {
+     "name": "Son Goku : DA - FB07-009",
+     "number": "FB07-009"
+    },
+    {
+     "name": "Tamagami Number Two : DA",
+     "number": "FB07-013"
+    }
+   ]
+  },
+  {
+   "group": "FB08",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Paragus - FB08-083",
+     "number": "FB08-083"
+    },
+    {
+     "name": "Pan : GT - FB08-114",
+     "number": "FB08-114"
+    },
+    {
+     "name": "Hercule",
+     "number": "FB08-023"
+    },
+    {
+     "name": "Son Gohan : Childhood - FB08-010",
+     "number": "FB08-010"
+    }
+   ]
+  },
+  {
+   "group": "FB08",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Gohan : Adolescence - FB08-001",
+     "number": "FB08-001"
+    },
+    {
+     "name": "Caulifla - FB08-025",
+     "number": "FB08-025"
+    },
+    {
+     "name": "Turles - FB08-049",
+     "number": "FB08-049"
+    },
+    {
+     "name": "Broly - FB08-073",
+     "number": "FB08-073"
+    }
+   ]
+  },
+  {
+   "group": "FB08",
+   "n": 35,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Son Goku - FB08-006",
+     "number": "FB08-006"
+    },
+    {
+     "name": "Kefla - FB08-033",
+     "number": "FB08-033"
+    },
+    {
+     "name": "King Vegeta",
+     "number": "FB08-091"
+    },
+    {
+     "name": "Son Goku : GT",
+     "number": "FB08-101"
+    }
+   ]
+  },
+  {
+   "group": "FB08",
+   "n": 5,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Goten - FB08-121",
+     "number": "FB08-121"
+    },
+    {
+     "name": "Broly - FB08-122",
+     "number": "FB08-122"
+    },
+    {
+     "name": "Son Goten - FB08-121 (Alternate Art)",
+     "number": "FB08-121"
+    },
+    {
+     "name": "Son Goten - FB08-121 (Super Alternate Art)",
+     "number": "FB08-121"
+    }
+   ]
+  },
+  {
+   "group": "FB08",
+   "n": 30,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku - FB08-007",
+     "number": "FB08-007"
+    },
+    {
+     "name": "Cabba - FB08-029",
+     "number": "FB08-029"
+    },
+    {
+     "name": "Turles - FB08-059",
+     "number": "FB08-059"
+    },
+    {
+     "name": "Paragus - FB08-084",
+     "number": "FB08-084"
+    }
+   ]
+  },
+  {
+   "group": "FB08",
+   "n": 35,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Trunks : Youth - FB08-016 (Alternate Art)",
+     "number": "FB08-016"
+    },
+    {
+     "name": "Vados (Alternate Art)",
+     "number": "FB08-026"
+    },
+    {
+     "name": "Piccolo - FB08-065 (Alternate Art)",
+     "number": "FB08-065"
+    },
+    {
+     "name": "Broly - FB08-088 (Alternate Art)",
+     "number": "FB08-088"
+    }
+   ]
+  },
+  {
+   "group": "FB08_PR",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Krillin - FB08-003",
+     "number": "FB08-003"
+    },
+    {
+     "name": "Coco",
+     "number": "FB08-004"
+    },
+    {
+     "name": "Android 18",
+     "number": "FB08-005"
+    },
+    {
+     "name": "Son Gohan : Childhood - FB08-010",
+     "number": "FB08-010"
+    }
+   ]
+  },
+  {
+   "group": "FB08_PR",
+   "n": 30,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Krillin - FB08-002",
+     "number": "FB08-002"
+    },
+    {
+     "name": "Son Goten - FB08-008",
+     "number": "FB08-008"
+    },
+    {
+     "name": "Trunks : Future",
+     "number": "FB08-014"
+    },
+    {
+     "name": "Trunks : Youth - FB08-015",
+     "number": "FB08-015"
+    }
+   ]
+  },
+  {
+   "group": "FB09",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Son Goku : GT - FB09-099",
+     "number": "FB09-099"
+    },
+    {
+     "name": "Son Goku : BR - FB09-008",
+     "number": "FB09-008"
+    },
+    {
+     "name": "Vegeta : BR - FB09-018",
+     "number": "FB09-018"
+    },
+    {
+     "name": "Android 17 - FB09-028",
+     "number": "FB09-028"
+    }
+   ]
+  },
+  {
+   "group": "FB09",
+   "n": 12,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Gogeta : BR - FB09-001",
+     "number": "FB09-001"
+    },
+    {
+     "name": "Son Goku - FB09-025",
+     "number": "FB09-025"
+    },
+    {
+     "name": "Son Gohan : SH - FB09-049",
+     "number": "FB09-049"
+    },
+    {
+     "name": "Son Goku/Vegeta // Gogeta",
+     "number": "FB09-073"
+    }
+   ]
+  },
+  {
+   "group": "FB09",
+   "n": 33,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Son Goku : BR - FB09-010",
+     "number": "FB09-010"
+    },
+    {
+     "name": "Vegeta : BR - FB09-020",
+     "number": "FB09-020"
+    },
+    {
+     "name": "Son Goku - FB09-035",
+     "number": "FB09-035"
+    },
+    {
+     "name": "Gamma 2 : SH",
+     "number": "FB09-052"
+    }
+   ]
+  },
+  {
+   "group": "FB09",
+   "n": 9,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Gogeta : BR - FB09-121",
+     "number": "FB09-121"
+    },
+    {
+     "name": "Gogeta : BR - FB09-121 (Alternate Art)",
+     "number": "FB09-121"
+    },
+    {
+     "name": "Gogeta : BR - FB09-121 (Super Alternate Art)",
+     "number": "FB09-121"
+    },
+    {
+     "name": "Gogeta",
+     "number": "FB09-122"
+    }
+   ]
+  },
+  {
+   "group": "FB09",
+   "n": 30,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku : GT - FB09-100",
+     "number": "FB09-100"
+    },
+    {
+     "name": "Son Goku : GT - FB09-100 (Alternate Art)",
+     "number": "FB09-100"
+    },
+    {
+     "name": "Gogeta : BR - FB09-007",
+     "number": "FB09-007"
+    },
+    {
+     "name": "Gogeta : BR - FB09-007 (Alternate Art)",
+     "number": "FB09-007"
+    }
+   ]
+  },
+  {
+   "group": "FB09",
+   "n": 40,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Gamma 1 : SH",
+     "number": "FB09-050"
+    },
+    {
+     "name": "Vegeta - FB09-092",
+     "number": "FB09-092"
+    },
+    {
+     "name": "Son Gohan : SH - FB09-058",
+     "number": "FB09-058"
+    },
+    {
+     "name": "Trunks : GT - FB09-109",
+     "number": "FB09-109"
+    }
+   ]
+  },
+  {
+   "group": "FB09_PR",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Son Goku : GT - FB09-099",
+     "number": "FB09-099"
+    },
+    {
+     "name": "Son Goku : BR - FB09-008",
+     "number": "FB09-008"
+    },
+    {
+     "name": "Vegeta : BR - FB09-018",
+     "number": "FB09-018"
+    },
+    {
+     "name": "Android 17 - FB09-028",
+     "number": "FB09-028"
+    }
+   ]
+  },
+  {
+   "group": "FB09_PR",
+   "n": 35,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Gamma 1 : SH",
+     "number": "FB09-050"
+    },
+    {
+     "name": "Vegeta - FB09-092",
+     "number": "FB09-092"
+    },
+    {
+     "name": "Son Gohan : SH - FB09-058",
+     "number": "FB09-058"
+    },
+    {
+     "name": "Trunks : GT - FB09-109",
+     "number": "FB09-109"
+    }
+   ]
+  },
+  {
+   "group": "FB10",
+   "n": 41,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Majin Buu : Good",
+     "number": "FB10-019"
+    },
+    {
+     "name": "Piccolo - FB10-065",
+     "number": "FB10-065"
+    },
+    {
+     "name": "Son Gohan : Youth - FB10-060",
+     "number": "FB10-060"
+    },
+    {
+     "name": "Bido - FB10-085",
+     "number": "FB10-085"
+    }
+   ]
+  },
+  {
+   "group": "FB10",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku - FB10-001",
+     "number": "FB10-001"
+    },
+    {
+     "name": "Son Goku/Vegeta // Vegito",
+     "number": "FB10-025"
+    },
+    {
+     "name": "Son Gohan : Youth/Piccolo // Son Gohan : Adolescence/Piccolo",
+     "number": "FB10-049"
+    },
+    {
+     "name": "Boujack - FB10-073",
+     "number": "FB10-073"
+    }
+   ]
+  },
+  {
+   "group": "FB10",
+   "n": 33,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Son Goku : BR",
+     "number": "FB10-012"
+    },
+    {
+     "name": "Vegeta : BR",
+     "number": "FB10-017"
+    },
+    {
+     "name": "Omega Shenron",
+     "number": "FB10-029"
+    },
+    {
+     "name": "Piccolo - FB10-067",
+     "number": "FB10-068"
+    }
+   ]
+  },
+  {
+   "group": "FB10",
+   "n": 9,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Vegito - FB10-121",
+     "number": "FB10-121"
+    },
+    {
+     "name": "Son Gohan : Childhood - FB10-122",
+     "number": "FB10-122"
+    },
+    {
+     "name": "Cell - FB10-123",
+     "number": "FB10-123"
+    },
+    {
+     "name": "Vegito - FB10-121 (Alternate Art)",
+     "number": "FB10-121"
+    }
+   ]
+  },
+  {
+   "group": "FB10",
+   "n": 30,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku - FB10-011",
+     "number": "FB10-011"
+    },
+    {
+     "name": "Vegito - FB10-040",
+     "number": "FB10-040"
+    },
+    {
+     "name": "Videl",
+     "number": "FB10-064"
+    },
+    {
+     "name": "Zangya - FB10-078",
+     "number": "FB10-078"
+    }
+   ]
+  },
+  {
+   "group": "FB10",
+   "n": 39,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Son Gohan : Youth - FB10-013",
+     "number": "FB10-013"
+    },
+    {
+     "name": "Son Gohan : Youth - FB10-013 (Alternate Art)",
+     "number": "FB10-013"
+    },
+    {
+     "name": "Vegito - FB10-041",
+     "number": "FB10-041"
+    },
+    {
+     "name": "Vegito - FB10-041 (Alternate Art)",
+     "number": "FB10-041"
+    }
+   ]
+  },
+  {
+   "group": "FB10_PR",
+   "n": 41,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Upa",
+     "number": "FB10-002"
+    },
+    {
+     "name": "King Yemma",
+     "number": "FB10-003"
+    },
+    {
+     "name": "North Kai",
+     "number": "FB10-004"
+    },
+    {
+     "name": "Android 8",
+     "number": "FB10-007"
+    }
+   ]
+  },
+  {
+   "group": "FB10_PR",
+   "n": 34,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Krillin - FB10-005",
+     "number": "FB10-005"
+    },
+    {
+     "name": "Android 17 - FB10-008",
+     "number": "FB10-008"
+    },
+    {
+     "name": "Son Goku - FB10-010",
+     "number": "FB10-010"
+    },
+    {
+     "name": "Son Gohan : Youth - FB10-013",
+     "number": "FB10-013"
+    }
+   ]
+  },
+  {
+   "group": "FB11",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Goku Black - FB11-077",
+     "number": "FB11-077"
+    },
+    {
+     "name": "Bulma : Future - FB11-041",
+     "number": "FB11-041"
+    },
+    {
+     "name": "Son Goku - FB11-010",
+     "number": "FB11-010"
+    },
+    {
+     "name": "Son Goku - FB11-008",
+     "number": "FB11-008"
+    }
+   ]
+  },
+  {
+   "group": "FB11",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Shallot/Giblet // Shallet",
+     "number": "FB11-073"
+    },
+    {
+     "name": "Shallot/Giblet // Shallet (Alternate Art)",
+     "number": "FB11-073"
+    },
+    {
+     "name": "Son Goku - FB11-001",
+     "number": "FB11-001"
+    },
+    {
+     "name": "Trunks : Future/Son Gohan : Future // Trunks : Future",
+     "number": "FB11-025"
+    }
+   ]
+  },
+  {
+   "group": "FB11",
+   "n": 33,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Trunks : Future - FB11-035",
+     "number": "FB11-035"
+    },
+    {
+     "name": "Shallot - FB11-086",
+     "number": "FB11-086"
+    },
+    {
+     "name": "Giblet - FB11-083",
+     "number": "FB11-083"
+    },
+    {
+     "name": "Great Saiyaman 2 - FB11-003",
+     "number": "FB11-003"
+    }
+   ]
+  },
+  {
+   "group": "FB11",
+   "n": 9,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Shallet",
+     "number": "FB11-122"
+    },
+    {
+     "name": "Shallet (Alternate Art)",
+     "number": "FB11-122"
+    },
+    {
+     "name": "Shallet (Super Alternate Art)",
+     "number": "FB11-122"
+    },
+    {
+     "name": "Bardock - FB11-123",
+     "number": "FB11-123"
+    }
+   ]
+  },
+  {
+   "group": "FB11",
+   "n": 30,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Giblet - FB11-084",
+     "number": "FB11-084"
+    },
+    {
+     "name": "Giblet - FB11-084 (Alternate Art)",
+     "number": "FB11-084"
+    },
+    {
+     "name": "Shallot - FB11-088",
+     "number": "FB11-088"
+    },
+    {
+     "name": "Shallot - FB11-088 (Alternate Art)",
+     "number": "FB11-088"
+    }
+   ]
+  },
+  {
+   "group": "FB11",
+   "n": 40,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Shallot - FB11-085",
+     "number": "FB11-085"
+    },
+    {
+     "name": "Son Gohan : Adolescence - FB11-091",
+     "number": "FB11-091"
+    },
+    {
+     "name": "Borgos",
+     "number": "FB11-108"
+    },
+    {
+     "name": "Trunks : Future - FB11-034",
+     "number": "FB11-034"
+    }
+   ]
+  },
+  {
+   "group": "FB11_PR",
+   "n": 40,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Gotenks",
+     "number": "FB11-006"
+    },
+    {
+     "name": "Son Goku - FB11-007",
+     "number": "FB11-007"
+    },
+    {
+     "name": "Son Goku - FB11-008",
+     "number": "FB11-008"
+    },
+    {
+     "name": "Son Goku - FB11-010",
+     "number": "FB11-010"
+    }
+   ]
+  },
+  {
+   "group": "FB11_PR",
+   "n": 35,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Great Saiyaman 2 - FB11-004",
+     "number": "FB11-004"
+    },
+    {
+     "name": "Gogeta : BR",
+     "number": "FB11-005"
+    },
+    {
+     "name": "Son Goku : BR",
+     "number": "FB11-012"
+    },
+    {
+     "name": "Son Goten - FB11-014",
+     "number": "FB11-014"
+    }
+   ]
+  },
+  {
+   "group": "FS01",
+   "n": 18,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Android 18",
+     "number": "FS01-07"
+    },
+    {
+     "name": "Whis",
+     "number": "FS01-02"
+    },
+    {
+     "name": "Master Roshi",
+     "number": "FS01-03"
+    },
+    {
+     "name": "Krillin",
+     "number": "FS01-04"
+    }
+   ]
+  },
+  {
+   "group": "FS01",
+   "n": 1,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku - FS01-01",
+     "number": "FS01-01"
+    }
+   ]
+  },
+  {
+   "group": "FS01",
+   "n": 4,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku - FS01-08",
+     "number": "FS01-08"
+    },
+    {
+     "name": "Son Gohan : Adolescence",
+     "number": "FS01-09"
+    },
+    {
+     "name": "Son Goku - FS01-08 (Bonus Pack Alternate Art)",
+     "number": "FS01-08"
+    },
+    {
+     "name": "Son Gohan : Adolescence (Bonus Pack Alternate Art)",
+     "number": "FS01-09"
+    }
+   ]
+  },
+  {
+   "group": "FS01_AR",
+   "n": 1,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Kamehameha (Alternate Art)",
+     "number": "FS01-15"
+    }
+   ]
+  },
+  {
+   "group": "FS02",
+   "n": 18,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Gotenks - FS02-02",
+     "number": "FS02-02"
+    },
+    {
+     "name": "Son Goten - FS02-05",
+     "number": "FS02-05"
+    },
+    {
+     "name": "Son Goten - FS02-06",
+     "number": "FS02-06"
+    },
+    {
+     "name": "Son Gohan : Adolescence",
+     "number": "FS02-07"
+    }
+   ]
+  },
+  {
+   "group": "FS02",
+   "n": 1,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Vegeta - FS02-01",
+     "number": "FS02-01"
+    }
+   ]
+  },
+  {
+   "group": "FS02",
+   "n": 4,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Gotenks - FS02-03",
+     "number": "FS02-03"
+    },
+    {
+     "name": "Vegeta - FS02-13",
+     "number": "FS02-13"
+    },
+    {
+     "name": "Vegeta - FS02-13 (Bonus Pack Alternate Art)",
+     "number": "FS02-13"
+    },
+    {
+     "name": "Gotenks - FS02-03 (Bonus Pack Alternate Art)",
+     "number": "FS02-03"
+    }
+   ]
+  },
+  {
+   "group": "FS03",
+   "n": 19,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Angol",
+     "number": "FS03-02"
+    },
+    {
+     "name": "Shamoian",
+     "number": "FS03-03"
+    },
+    {
+     "name": "Paragus - FS03-06",
+     "number": "FS03-06"
+    },
+    {
+     "name": "Paragus - FS03-07",
+     "number": "FS03-07"
+    }
+   ]
+  },
+  {
+   "group": "FS03",
+   "n": 1,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Broly - FS03-01",
+     "number": "FS03-01"
+    }
+   ]
+  },
+  {
+   "group": "FS03",
+   "n": 4,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Turles",
+     "number": "FS03-04"
+    },
+    {
+     "name": "Broly : BR",
+     "number": "FS03-10"
+    },
+    {
+     "name": "Turles (Bonus Pack Alternate Art)",
+     "number": "FS03-04"
+    },
+    {
+     "name": "Broly : BR (Bonus Pack Alternate Art)",
+     "number": "FS03-10"
+    }
+   ]
+  },
+  {
+   "group": "FS03_AR",
+   "n": 1,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Gigantic Meteor (Alternate Art)",
+     "number": "FS03-15"
+    }
+   ]
+  },
+  {
+   "group": "FS04",
+   "n": 18,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Cui",
+     "number": "FS04-02"
+    },
+    {
+     "name": "Zarbon",
+     "number": "FS04-05"
+    },
+    {
+     "name": "Shisami",
+     "number": "FS04-06"
+    },
+    {
+     "name": "Sorbet",
+     "number": "FS04-07"
+    }
+   ]
+  },
+  {
+   "group": "FS04",
+   "n": 1,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Frieza",
+     "number": "FS04-01"
+    }
+   ]
+  },
+  {
+   "group": "FS04",
+   "n": 4,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Golden Frieza",
+     "number": "FS04-03"
+    },
+    {
+     "name": "King Cold",
+     "number": "FS04-04"
+    },
+    {
+     "name": "King Cold (Bonus Pack Alternate Art)",
+     "number": "FS04-04"
+    },
+    {
+     "name": "Golden Frieza (Bonus Pack Alternate Art)",
+     "number": "FS04-03"
+    }
+   ]
+  },
+  {
+   "group": "FS04_AR",
+   "n": 2,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Death Ball (Alternate Art)",
+     "number": "FS04-16"
+    },
+    {
+     "name": "Cheelai : BR (Alternate Art)",
+     "number": "FS04-09"
+    }
+   ]
+  },
+  {
+   "group": "FS05",
+   "n": 18,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Great Ape Bardock",
+     "number": "FS05-02"
+    },
+    {
+     "name": "Son Gohan",
+     "number": "FS05-05"
+    },
+    {
+     "name": "Bardock - FS05-10",
+     "number": "FS05-10"
+    },
+    {
+     "name": "Frieza",
+     "number": "FS05-13"
+    }
+   ]
+  },
+  {
+   "group": "FS05",
+   "n": 1,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Bardock - FS05-01",
+     "number": "FS05-01"
+    }
+   ]
+  },
+  {
+   "group": "FS05",
+   "n": 4,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Bardock - FS05-11",
+     "number": "FS05-11"
+    },
+    {
+     "name": "Kakarot",
+     "number": "FS05-03"
+    },
+    {
+     "name": "Kakarot (Bonus Pack Alternate Art)",
+     "number": "FS05-03"
+    },
+    {
+     "name": "Bardock - FS05-11 (Bonus Pack Alternate Art)",
+     "number": "FS05-11"
+    }
+   ]
+  },
+  {
+   "group": "FS05_AR",
+   "n": 1,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "A Lonesome, Final Battle (Dragon Ball Z Dokkan Battle Alternate Art)",
+     "number": "FS05-16"
+    }
+   ]
+  },
+  {
+   "group": "FS05_AR",
+   "n": 1,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Kakarot (Alternate Art)",
+     "number": "FS05-03"
+    }
+   ]
+  },
+  {
+   "group": "FS06",
+   "n": 13,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Son Goten (Mini) : DA",
+     "number": "FS06-07"
+    },
+    {
+     "name": "Krillin (Mini) : DA",
+     "number": "FS06-02"
+    },
+    {
+     "name": "Android 18 (Mini) : DA",
+     "number": "FS06-05"
+    },
+    {
+     "name": "Krillin (Mini) : DA (Bonus Pack Alternate Art)",
+     "number": "FS06-02"
+    }
+   ]
+  },
+  {
+   "group": "FS06",
+   "n": 1,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku (Mini) : DA",
+     "number": "FS06-01"
+    }
+   ]
+  },
+  {
+   "group": "FS06",
+   "n": 4,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Shin (Mini) : DA",
+     "number": "FS06-03"
+    },
+    {
+     "name": "Son Goku : DA",
+     "number": "FS06-06"
+    },
+    {
+     "name": "Shin (Mini) : DA (Bonus Pack Alternate Art)",
+     "number": "FS06-03"
+    },
+    {
+     "name": "Son Goku : DA (Bonus Pack Alternate Art)",
+     "number": "FS06-06"
+    }
+   ]
+  },
+  {
+   "group": "FS07",
+   "n": 13,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Trunks (Mini) : DA",
+     "number": "FS07-04"
+    },
+    {
+     "name": "Trunks (Mini) : DA (Bonus Pack Alternate Art)",
+     "number": "FS07-04"
+    },
+    {
+     "name": "Bulma (Mini) : DA (Bonus Pack Alternate Art)",
+     "number": "FS07-06"
+    },
+    {
+     "name": "Bulma (Mini) : DA",
+     "number": "FS07-06"
+    }
+   ]
+  },
+  {
+   "group": "FS07",
+   "n": 1,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Vegeta (Mini) : DA",
+     "number": "FS07-01"
+    }
+   ]
+  },
+  {
+   "group": "FS07",
+   "n": 4,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Piccolo (Mini) : DA",
+     "number": "FS07-05"
+    },
+    {
+     "name": "Vegeta : DA",
+     "number": "FS07-07"
+    },
+    {
+     "name": "Piccolo (Mini) : DA (Bonus Pack Alternate Art)",
+     "number": "FS07-05"
+    },
+    {
+     "name": "Vegeta : DA (Bonus Pack Alternate Art)",
+     "number": "FS07-07"
+    }
+   ]
+  },
+  {
+   "group": "FS08",
+   "n": 19,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Bulma (Mini) : DA",
+     "number": "FS08-11"
+    },
+    {
+     "name": "Shin (Mini) : DA",
+     "number": "FS08-05"
+    },
+    {
+     "name": "Kadan : DA",
+     "number": "FS08-02"
+    },
+    {
+     "name": "Kibito (Mini) : DA",
+     "number": "FS08-03"
+    }
+   ]
+  },
+  {
+   "group": "FS08",
+   "n": 2,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Vegeta (Mini) : DA - FS08-01",
+     "number": "FS08-01"
+    },
+    {
+     "name": "Dende (Mini) : DA (Bonus Pack Alternate Art)",
+     "number": "FS08-07"
+    }
+   ]
+  },
+  {
+   "group": "FS08",
+   "n": 2,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Tamagami Number Two : DA",
+     "number": "FS08-06"
+    },
+    {
+     "name": "Vegeta (Mini) : DA - FS08-13",
+     "number": "FS08-13"
+    }
+   ]
+  },
+  {
+   "group": "FS09",
+   "n": 26,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Vegeta",
+     "number": "FS09-15"
+    },
+    {
+     "name": "Shallot - FS09-05",
+     "number": "FS09-05"
+    },
+    {
+     "name": "Jaco",
+     "number": "FS09-04"
+    },
+    {
+     "name": "Beerus",
+     "number": "FS09-13"
+    }
+   ]
+  },
+  {
+   "group": "FS09",
+   "n": 2,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Shallot - FS09-01",
+     "number": "FS09-01"
+    },
+    {
+     "name": "Shallot - FS09-01 (Bonus Pack Alternate Art)",
+     "number": "FS09-01"
+    }
+   ]
+  },
+  {
+   "group": "FS09",
+   "n": 8,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku",
+     "number": "FS09-07"
+    },
+    {
+     "name": "Son Goku/Bardock",
+     "number": "FS09-08"
+    },
+    {
+     "name": "Son Gohan : Childhood",
+     "number": "FS09-10"
+    },
+    {
+     "name": "Vegito",
+     "number": "FS09-16"
+    }
+   ]
+  },
+  {
+   "group": "FS10",
+   "n": 26,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Majin Buu : Kid",
+     "number": "FS10-15"
+    },
+    {
+     "name": "Janemba",
+     "number": "FS10-07"
+    },
+    {
+     "name": "Zamasu",
+     "number": "FS10-05"
+    },
+    {
+     "name": "Hit",
+     "number": "FS10-12"
+    }
+   ]
+  },
+  {
+   "group": "FS10",
+   "n": 2,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Giblet - FS10-01",
+     "number": "FS10-01"
+    },
+    {
+     "name": "Giblet - FS10-01 (Bonus Pack Alternate Art)",
+     "number": "FS10-01"
+    }
+   ]
+  },
+  {
+   "group": "FS10",
+   "n": 8,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Golden Frieza",
+     "number": "FS10-03"
+    },
+    {
+     "name": "Goku Black",
+     "number": "FS10-04"
+    },
+    {
+     "name": "Shallet",
+     "number": "FS10-08"
+    },
+    {
+     "name": "Broly : BR",
+     "number": "FS10-14"
+    }
+   ]
+  },
+  {
+   "group": "FS11",
+   "n": 26,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Son Goku - FS11-04",
+     "number": "FS11-04"
+    },
+    {
+     "name": "Son Goku - FS11-04 (Gold)",
+     "number": "FS11-04"
+    },
+    {
+     "name": "Gotenks - FS11-02",
+     "number": "FS11-02"
+    },
+    {
+     "name": "Gotenks - FS11-02 (Gold)",
+     "number": "FS11-02"
+    }
+   ]
+  },
+  {
+   "group": "FS11",
+   "n": 2,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku - FS11-01",
+     "number": "FS11-01"
+    },
+    {
+     "name": "Son Goku - FS11-01 (Gold)",
+     "number": "FS11-01"
+    }
+   ]
+  },
+  {
+   "group": "FS11",
+   "n": 8,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Gotenks - FS11-03",
+     "number": "FS11-03"
+    },
+    {
+     "name": "Son Goku - FS11-07",
+     "number": "FS11-07"
+    },
+    {
+     "name": "Son Gohan : Adolescence - FS11-09",
+     "number": "FS11-09"
+    },
+    {
+     "name": "Vegeta - FS11-14",
+     "number": "FS11-14"
+    }
+   ]
+  },
+  {
+   "group": "FS12",
+   "n": 26,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Krillin - FS12-02",
+     "number": "FS12-02"
+    },
+    {
+     "name": "Krillin - FS12-02 (Gold)",
+     "number": "FS12-02"
+    },
+    {
+     "name": "Guru",
+     "number": "FS12-04"
+    },
+    {
+     "name": "Guru (Gold)",
+     "number": "FS12-04"
+    }
+   ]
+  },
+  {
+   "group": "FS12",
+   "n": 2,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku - FS12-01",
+     "number": "FS12-01"
+    },
+    {
+     "name": "Son Goku - FS12-01 (Gold)",
+     "number": "FS12-01"
+    }
+   ]
+  },
+  {
+   "group": "FS12",
+   "n": 8,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Krillin - FS12-03",
+     "number": "FS12-03"
+    },
+    {
+     "name": "Son Goku - FS12-07",
+     "number": "FS12-07"
+    },
+    {
+     "name": "Son Gohan : Youth - FS12-09",
+     "number": "FS12-09"
+    },
+    {
+     "name": "Piccolo - FS12-13",
+     "number": "FS12-13"
+    }
+   ]
+  },
+  {
+   "group": "SB01",
+   "n": 38,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Turtle",
+     "number": "SB01-048"
+    },
+    {
+     "name": "The Farmer With Power Level 5",
+     "number": "FB03-062"
+    },
+    {
+     "name": "Spike",
+     "number": "SB01-046"
+    },
+    {
+     "name": "Majin Buu : Pure Evil - SB01-040",
+     "number": "SB01-040"
+    }
+   ]
+  },
+  {
+   "group": "SB01",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Bulma - SB01-045",
+     "number": "SB01-045"
+    },
+    {
+     "name": "Son Goku : Childhood - FB06-025",
+     "number": "FB06-025"
+    },
+    {
+     "name": "Vegeta - FB04-051",
+     "number": "FB04-051"
+    },
+    {
+     "name": "Cell - SB01-001",
+     "number": "SB01-001"
+    }
+   ]
+  },
+  {
+   "group": "SB01",
+   "n": 36,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Master Roshi",
+     "number": "SB01-050"
+    },
+    {
+     "name": "Scissors Paper Rock",
+     "number": "FB06-041"
+    },
+    {
+     "name": "Artificial Full Moon",
+     "number": "FB04-076"
+    },
+    {
+     "name": "Cell Jr. - FB02-085",
+     "number": "FB02-085"
+    }
+   ]
+  },
+  {
+   "group": "SB01",
+   "n": 2,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Goku - FB05-119",
+     "number": "FB05-119"
+    },
+    {
+     "name": "Son Goku - FB05-119 (Super Alternate Art)",
+     "number": "FB05-119"
+    }
+   ]
+  },
+  {
+   "group": "SB01",
+   "n": 14,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Goku : Childhood - SB01-018",
+     "number": "SB01-018"
+    },
+    {
+     "name": "Vegeta - SB01-025",
+     "number": "SB01-025"
+    },
+    {
+     "name": "Babidi - SB01-031",
+     "number": "SB01-031"
+    },
+    {
+     "name": "Great Ape Son Goku",
+     "number": "SB01-017"
+    }
+   ]
+  },
+  {
+   "group": "SB01",
+   "n": 35,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Krillin - SB01-051",
+     "number": "SB01-051"
+    },
+    {
+     "name": "Kamehameha! Full Power!",
+     "number": "SB01-020"
+    },
+    {
+     "name": "Nappa",
+     "number": "SB01-024"
+    },
+    {
+     "name": "Majin Buu : Evil - SB01-036",
+     "number": "SB01-036"
+    }
+   ]
+  },
+  {
+   "group": "SB01_PR",
+   "n": 37,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Turtle",
+     "number": "SB01-048"
+    },
+    {
+     "name": "The Farmer With Power Level 5",
+     "number": "FB03-062"
+    },
+    {
+     "name": "Spike",
+     "number": "SB01-046"
+    },
+    {
+     "name": "Majin Buu : Pure Evil - SB01-040",
+     "number": "SB01-040"
+    }
+   ]
+  },
+  {
+   "group": "SB01_PR",
+   "n": 32,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Krillin - SB01-051",
+     "number": "SB01-051"
+    },
+    {
+     "name": "Kamehameha! Full Power!",
+     "number": "SB01-020"
+    },
+    {
+     "name": "Majin Buu : Evil - SB01-036",
+     "number": "SB01-036"
+    },
+    {
+     "name": "Vegeta - FB04-088",
+     "number": "FB04-088"
+    }
+   ]
+  },
+  {
+   "group": "SB02",
+   "n": 37,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Android 18 - FB06-013",
+     "number": "FB06-013"
+    },
+    {
+     "name": "Pilaf",
+     "number": "FB06-110"
+    },
+    {
+     "name": "Hyperbolic Time Chamber",
+     "number": "SB02-016"
+    },
+    {
+     "name": "Gotenks - SB02-018",
+     "number": "SB02-018"
+    }
+   ]
+  },
+  {
+   "group": "SB02",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goku - SB02-033",
+     "number": "SB02-033"
+    },
+    {
+     "name": "Frieza - FS04-01",
+     "number": "FS04-01"
+    },
+    {
+     "name": "Trunks : Future - SB02-001",
+     "number": "SB02-001"
+    },
+    {
+     "name": "Gotenks - SB02-017",
+     "number": "SB02-017"
+    }
+   ]
+  },
+  {
+   "group": "SB02",
+   "n": 31,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Full Power!",
+     "number": "FB05-071"
+    },
+    {
+     "name": "Trunks : Future - SB02-010",
+     "number": "SB02-010"
+    },
+    {
+     "name": "Vegeta - SB02-045",
+     "number": "SB02-045"
+    },
+    {
+     "name": "Son Goku - SB02-004",
+     "number": "SB02-004"
+    }
+   ]
+  },
+  {
+   "group": "SB02",
+   "n": 2,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Son Gohan : Childhood - FB01-140",
+     "number": "FB01-140"
+    },
+    {
+     "name": "Son Goku : Childhood - FB06-119 (Alternate Art)",
+     "number": "FB06-119"
+    }
+   ]
+  },
+  {
+   "group": "SB02",
+   "n": 19,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Trunks : Future - SB02-012",
+     "number": "SB02-012"
+    },
+    {
+     "name": "Gotenks - SB02-022",
+     "number": "SB02-022"
+    },
+    {
+     "name": "Piccolo - SB02-043",
+     "number": "SB02-043"
+    },
+    {
+     "name": "Frieza - SB02-053",
+     "number": "SB02-053"
+    }
+   ]
+  },
+  {
+   "group": "SB02",
+   "n": 36,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Krillin - SB02-034",
+     "number": "SB02-034"
+    },
+    {
+     "name": "Zarbon - SB02-051",
+     "number": "SB02-051"
+    },
+    {
+     "name": "Ginyu - FB01-107",
+     "number": "FB01-107"
+    },
+    {
+     "name": "Vegeta - SB02-014",
+     "number": "SB02-014"
+    }
+   ]
+  },
+  {
+   "group": "SB02_RE",
+   "n": 37,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "North Kai",
+     "number": "SB02-002"
+    },
+    {
+     "name": "Tien Shinhan",
+     "number": "SB02-009"
+    },
+    {
+     "name": "Piccolo - SB02-013",
+     "number": "SB02-013"
+    },
+    {
+     "name": "Vegeta - SB02-015",
+     "number": "SB02-015"
+    }
+   ]
+  },
+  {
+   "group": "SB02_RE",
+   "n": 32,
+   "rarity": "UC",
+   "samples": [
+    {
+     "name": "Son Goku - SB02-003",
+     "number": "SB02-003"
+    },
+    {
+     "name": "Son Gohan : Childhood - SB02-005",
+     "number": "SB02-005"
+    },
+    {
+     "name": "Son Gohan : Childhood - SB02-007",
+     "number": "SB02-007"
+    },
+    {
+     "name": "Trunks : Future - SB02-011",
+     "number": "SB02-011"
+    }
+   ]
+  },
+  {
+   "group": "ST01",
+   "n": 72,
+   "rarity": "C",
+   "samples": [
+    {
+     "name": "Fate Transcending Generations",
+     "number": "ST01-017"
+    },
+    {
+     "name": "Demonic Maze",
+     "number": "ST01-042"
+    },
+    {
+     "name": "Wicked Soul Discovered",
+     "number": "ST01-069"
+    },
+    {
+     "name": "Trunks : Youth - ST01-012",
+     "number": "ST01-012"
+    }
+   ]
+  },
+  {
+   "group": "ST01",
+   "n": 10,
+   "rarity": "L",
+   "samples": [
+    {
+     "name": "Son Goten - ST01-001",
+     "number": "ST01-001"
+    },
+    {
+     "name": "Vegito - FB05-025",
+     "number": "FB05-025"
+    },
+    {
+     "name": "Majin Buu/Majin Buu : Pure Evil // Majin Buu : Evil",
+     "number": "ST01-027"
+    },
+    {
+     "name": "Broly - FB08-073",
+     "number": "FB08-073"
+    }
+   ]
+  },
+  {
+   "group": "ST01",
+   "n": 40,
+   "rarity": "R",
+   "samples": [
+    {
+     "name": "Son Goten - ST01-007",
+     "number": "ST01-007"
+    },
+    {
+     "name": "Majin Buu : Evil - ST01-032",
+     "number": "ST01-032"
+    },
+    {
+     "name": "Vegeta - ST01-066",
+     "number": "ST01-066"
+    },
+    {
+     "name": "Vegeta - ST01-066 (Alternate Art)",
+     "number": "ST01-066"
+    }
+   ]
+  },
+  {
+   "group": "ST01",
+   "n": 6,
+   "rarity": "SCR",
+   "samples": [
+    {
+     "name": "Vegito - ST01-070",
+     "number": "ST01-070"
+    },
+    {
+     "name": "Vegeta - ST01-071",
+     "number": "ST01-071"
+    },
+    {
+     "name": "Vegito - ST01-070 (Alternate Art)",
+     "number": "ST01-070"
+    },
+    {
+     "name": "Vegeta - ST01-071 (Alternate Art)",
+     "number": "ST01-071"
+    }
+   ]
+  },
+  {
+   "group": "ST01",
+   "n": 20,
+   "rarity": "SR",
+   "samples": [
+    {
+     "name": "Son Gohan : Adolescence - ST01-011",
+     "number": "ST01-011"
+    },
+    {
+     "name": "Son Gohan : Adolescence - ST01-011 (Alternate Art)",
+     "number": "ST01-011"
+    },
+    {
+     "name": "Son Goku/Vegeta",
+     "number": "ST01-024"
+    },
+    {
+     "name": "Son Goku/Vegeta (Alternate Art)",
+     "number": "ST01-024"
+    }
+   ]
+  }
+ ],
+ "sealed": [
+  {
+   "group": "FS13",
+   "name": "Starter Deck 13: The Saiyan Raised on Earth",
+   "productId": 721534
+  },
+  {
+   "group": "FS13",
+   "name": "Starter Deck 13: The Saiyan Raised on Earth Display",
+   "productId": 721535
+  },
+  {
+   "group": "FS14",
+   "name": "Starter Deck 14: The Prince of Saiyan",
+   "productId": 721537
+  },
+  {
+   "group": "FS14",
+   "name": "Starter Deck 14: The Prince of Saiyan Display",
+   "productId": 721538
+  },
+  {
+   "group": "FB12",
+   "name": "Reach the God Booster Box",
+   "productId": 707521
+  },
+  {
+   "group": "FB12",
+   "name": "Reach the God Booster Box Case",
+   "productId": 707522
+  },
+  {
+   "group": "FB12",
+   "name": "Reach the God Booster Pack",
+   "productId": 707523
+  },
+  {
+   "group": "FB11",
+   "name": "Brightness of Hope Booster Box",
+   "productId": 695727
+  },
+  {
+   "group": "FB11",
+   "name": "Brightness of Hope Booster Box Case",
+   "productId": 695728
+  },
+  {
+   "group": "FB11",
+   "name": "Brightness of Hope Booster Pack",
+   "productId": 695729
+  },
+  {
+   "group": "FB11",
+   "name": "Brightness of Hope Sleeved Booster Pack",
+   "productId": 723540
+  },
+  {
+   "group": "FB11_PR",
+   "name": "FB11 Brightness of Hope Release Event Pack",
+   "productId": 716319
+  },
+  {
+   "group": "ST01",
+   "name": "Story Booster 01 Booster Box",
+   "productId": 692391
+  },
+  {
+   "group": "ST01",
+   "name": "Story Booster 01 Booster Box Case",
+   "productId": 692395
+  },
+  {
+   "group": "ST01",
+   "name": "Story Booster 01 Booster Pack",
+   "productId": 692398
+  },
+  {
+   "group": "ST01",
+   "name": "Story Booster 01 Sleeved Booster Pack",
+   "productId": 711584
+  },
+  {
+   "group": "FB10",
+   "name": "Cross Force Booster Box",
+   "productId": 675645
+  },
+  {
+   "group": "FB10",
+   "name": "Cross Force Booster Box Case",
+   "productId": 675646
+  },
+  {
+   "group": "FB10",
+   "name": "Cross Force Booster Pack",
+   "productId": 675647
+  },
+  {
+   "group": "FB10",
+   "name": "Code Card - Cross Force Booster (FB10)",
+   "productId": 696125
+  },
+  {
+   "group": "FB10",
+   "name": "Cross Force Sleeved Booster Pack [Son Goku and Vegeta]",
+   "productId": 702811
+  },
+  {
+   "group": "FB10",
+   "name": "Cross Force Sleeved Booster Pack [Cell]",
+   "productId": 703184
+  },
+  {
+   "group": "FB10",
+   "name": "Cross Force Sleeved Booster Pack [Son Gohan and Piccolo]",
+   "productId": 703185
+  },
+  {
+   "group": "FB10",
+   "name": "Cross Force Sleeved Booster Pack [SS Son Goku]",
+   "productId": 703186
+  },
+  {
+   "group": "FB10_PR",
+   "name": "FB10 Cross Force Release Event Pack",
+   "productId": 700805
+  },
+  {
+   "group": "FB09",
+   "name": "Dual Evolution Booster Box",
+   "productId": 670183
+  },
+  {
+   "group": "FB09",
+   "name": "Dual Evolution Booster Box Case",
+   "productId": 670184
+  },
+  {
+   "group": "FB09",
+   "name": "Dual Evolution Booster Pack",
+   "productId": 670186
+  },
+  {
+   "group": "FB09",
+   "name": "Code Card - Dual Evolution Booster (FB09)",
+   "productId": 677539
+  },
+  {
+   "group": "FB09",
+   "name": "Dual Evolution Sleeved Booster Pack",
+   "productId": 690748
+  },
+  {
+   "group": "FB09_PR",
+   "name": "FB09 Dual Evolution Release Event Pack",
+   "productId": 688539
+  },
+  {
+   "group": "FS12",
+   "name": "Starter Deck EX: The Beat of Ki",
+   "productId": 670179
+  },
+  {
+   "group": "FS12",
+   "name": "Starter Deck EX: The Beat of Ki Display",
+   "productId": 670181
+  },
+  {
+   "group": "FS12",
+   "name": "Code Card - Starter Deck EX: The Beat of Ki (FS12)",
+   "productId": 681965
+  },
+  {
+   "group": "FS11",
+   "name": "Starter Deck EX: The Phase of Evolution",
+   "productId": 670177
+  },
+  {
+   "group": "FS11",
+   "name": "Starter Deck EX: The Phase of Evolution Display",
+   "productId": 670178
+  },
+  {
+   "group": "FS11",
+   "name": "Code Card - Starter Deck EX: The Phase of Evolution (FS11)",
+   "productId": 681964
+  },
+  {
+   "group": "FB08_PR",
+   "name": "FB08 Saiyan's Pride Release Event Pack",
+   "productId": 666884
+  },
+  {
+   "group": "FB08",
+   "name": "Saiyan's Pride Booster Box",
+   "productId": 654568
+  },
+  {
+   "group": "FB08",
+   "name": "Saiyan's Pride Booster Box Case",
+   "productId": 654569
+  },
+  {
+   "group": "FB08",
+   "name": "Saiyan's Pride Booster Pack",
+   "productId": 654570
+  },
+  {
+   "group": "FB08",
+   "name": "Code Card - Saiyan's Pride Booster (FB08)",
+   "productId": 668495
+  },
+  {
+   "group": "SB02",
+   "name": "Manga Booster 02 Booster Box",
+   "productId": 647779
+  },
+  {
+   "group": "SB02",
+   "name": "Manga Booster 02 Booster Box Case",
+   "productId": 647781
+  },
+  {
+   "group": "SB02",
+   "name": "Manga Booster 02 Booster Pack",
+   "productId": 647783
+  },
+  {
+   "group": "SB02",
+   "name": "Code Card - Manga Booster 02 (SB02)",
+   "productId": 654210
+  },
+  {
+   "group": "SB02_RE",
+   "name": "SB02 Mange Booster 02 Release Event Pack",
+   "productId": 657515
+  },
+  {
+   "group": "FB07",
+   "name": "Wish For Shenron Booster Box",
+   "productId": 647770
+  },
+  {
+   "group": "FB07",
+   "name": "Wish For Shenron Booster Box Case",
+   "productId": 647771
+  },
+  {
+   "group": "FB07",
+   "name": "Wish For Shenron Booster Pack",
+   "productId": 647773
+  },
+  {
+   "group": "FB07",
+   "name": "Code Card - Wish For Shenron Booster (FB07)",
+   "productId": 653830
+  },
+  {
+   "group": "FB07_PR",
+   "name": "FB07 Wish For Shenron Release Event Pack",
+   "productId": 648356
+  },
+  {
+   "group": "SB01",
+   "name": "Manga Booster 01 Booster Pack",
+   "productId": 637461
+  },
+  {
+   "group": "SB01",
+   "name": "Manga Booster 01 Booster Box",
+   "productId": 637462
+  },
+  {
+   "group": "SB01",
+   "name": "Manga Booster 01 Booster Box Case",
+   "productId": 637463
+  },
+  {
+   "group": "SB01",
+   "name": "Code Card - Manga Booster 01 (SB01)",
+   "productId": 639908
+  },
+  {
+   "group": "SB01",
+   "name": "Manga Booster 01 Sleeved Booster Pack",
+   "productId": 644846
+  },
+  {
+   "group": "SB01",
+   "name": "Manga Booster 01 Sleeved Booster Packs [Set of 4]",
+   "productId": 646732
+  },
+  {
+   "group": "SB01_PR",
+   "name": "SB01 Mange Booster 01 Release Event Pack",
+   "productId": 644883
+  },
+  {
+   "group": "FS10",
+   "name": "Starter Deck 10: Giblet",
+   "productId": 635743
+  },
+  {
+   "group": "FS10",
+   "name": "Starter Deck 10: Giblet Display",
+   "productId": 635744
+  },
+  {
+   "group": "FS10",
+   "name": "Code Card - Starter Deck 10: Giblet (FS10)",
+   "productId": 639465
+  },
+  {
+   "group": "FS09",
+   "name": "Starter Deck 9: Shallot",
+   "productId": 634266
+  },
+  {
+   "group": "FS09",
+   "name": "Starter Deck 9: Shallot Display",
+   "productId": 634267
+  },
+  {
+   "group": "FS09",
+   "name": "Code Card - Starter Deck 9: Shallot (FS09)",
+   "productId": 634268
+  },
+  {
+   "group": "FB06",
+   "name": "Rivals Clash Booster Pack",
+   "productId": 624222
+  },
+  {
+   "group": "FB06",
+   "name": "Rivals Clash Booster Box",
+   "productId": 624223
+  },
+  {
+   "group": "FB06",
+   "name": "Rivals Clash Booster Box Case",
+   "productId": 624224
+  },
+  {
+   "group": "FB06",
+   "name": "Code Card - Rivals Clash Booster (FB06)",
+   "productId": 629650
+  },
+  {
+   "group": "FB06",
+   "name": "Rivals Clash Revision Pack",
+   "productId": 644884
+  },
+  {
+   "group": "FB06_PR",
+   "name": "FB06 Rivals Clash Release Event Pack",
+   "productId": 631753
+  },
+  {
+   "group": "FS08",
+   "name": "Starter Deck 8: Vegeta (Mini) Super Saiyan 3",
+   "productId": 620102
+  },
+  {
+   "group": "FS08",
+   "name": "Starter Deck 8: Vegeta (Mini) Super Saiyan 3 Display",
+   "productId": 620105
+  },
+  {
+   "group": "FS08",
+   "name": "Code Card - Starter Deck 8: Vegeta (Mini) Super Saiyan 3 (FS08)",
+   "productId": 629649
+  },
+  {
+   "group": "FB05",
+   "name": "New Adventure Booster Box",
+   "productId": 604241
+  },
+  {
+   "group": "FB05",
+   "name": "New Adventure Booster Box Case",
+   "productId": 604242
+  },
+  {
+   "group": "FB05",
+   "name": "New Adventure Booster Pack",
+   "productId": 604243
+  },
+  {
+   "group": "FB05",
+   "name": "Code Card - New Adventure Booster (FB05)",
+   "productId": 615597
+  },
+  {
+   "group": "FB05_PR",
+   "name": "FB05 New Adventure Release Event Pack",
+   "productId": 617799
+  },
+  {
+   "group": "FB04",
+   "name": "Ultra Limit Booster Box",
+   "productId": 565626
+  },
+  {
+   "group": "FB04",
+   "name": "Ultra Limit Booster Box Case",
+   "productId": 565627
+  },
+  {
+   "group": "FB04",
+   "name": "Ultra Limit Booster Pack",
+   "productId": 565628
+  },
+  {
+   "group": "FB04",
+   "name": "Code Card - Ultra Limit Booster (FB04)",
+   "productId": 594066
+  },
+  {
+   "group": "FS06",
+   "name": "Starter Deck 6: Son Goku (Mini)",
+   "productId": 565614
+  },
+  {
+   "group": "FS06",
+   "name": "Starter Deck 6: Son Goku (Mini) Display",
+   "productId": 565615
+  },
+  {
+   "group": "FS06",
+   "name": "Code Card - Starter Deck 6: Son Goku (Mini) (FS06)",
+   "productId": 593211
+  },
+  {
+   "group": "FS07",
+   "name": "Starter Deck 7: Vegeta (Mini)",
+   "productId": 565616
+  },
+  {
+   "group": "FS07",
+   "name": "Starter Deck 7: Vegeta (Mini) Display",
+   "productId": 565617
+  },
+  {
+   "group": "FS07",
+   "name": "Code Card - Starter Deck 7: Vegeta (Mini) (FS07)",
+   "productId": 593212
+  },
+  {
+   "group": "FB04_PR",
+   "name": "FB04 Ultra Limit Release Event Pack",
+   "productId": 593778
+  },
+  {
+   "group": "FB03",
+   "name": "Raging Roar Booster Box",
+   "productId": 551680
+  },
+  {
+   "group": "FB03",
+   "name": "Raging Roar Booster Pack",
+   "productId": 551681
+  },
+  {
+   "group": "FB03",
+   "name": "Raging Roar Booster Box Case",
+   "productId": 551682
+  },
+  {
+   "group": "FB03",
+   "name": "Code Card - Raging Roar Booster (FB03)",
+   "productId": 563859
+  },
+  {
+   "group": "FB03_PR",
+   "name": "FB03 Raging Roar Release Event Pack",
+   "productId": 563059
+  },
+  {
+   "group": "FS05",
+   "name": "Starter Deck 5: Bardock",
+   "productId": 551677
+  },
+  {
+   "group": "FS05",
+   "name": "Starter Deck 5: Bardock Display",
+   "productId": 551678
+  },
+  {
+   "group": "FS05",
+   "name": "Code Card - Starter Deck 5: Bardock (FS05)",
+   "productId": 551679
+  },
+  {
+   "group": "FB02",
+   "name": "Blazing Aura Booster Pack",
+   "productId": 543426
+  },
+  {
+   "group": "FB02",
+   "name": "Blazing Aura Booster Box",
+   "productId": 543427
+  },
+  {
+   "group": "FB02",
+   "name": "Blazing Aura Booster Box Case",
+   "productId": 543428
+  },
+  {
+   "group": "FB02",
+   "name": "Code Card - Blazing Aura Booster (FB02)",
+   "productId": 552289
+  },
+  {
+   "group": "FB02",
+   "name": "Blazing Aura Sleeved Booster Pack [Son Goku (Awakened)]",
+   "productId": 554331
+  },
+  {
+   "group": "FB02",
+   "name": "Blazing Aura Sleeved Booster Pack [Son Gohan : Adolescence]",
+   "productId": 554332
+  },
+  {
+   "group": "FB02",
+   "name": "Blazing Aura Sleeved Booster Pack [Vegito]",
+   "productId": 554333
+  },
+  {
+   "group": "FB02",
+   "name": "Blazing Aura Sleeved Booster Pack [Vegeta (Awakened)]",
+   "productId": 554334
+  },
+  {
+   "group": "FB02_PR",
+   "name": "FB02 Blazing Aura Release Event Pack",
+   "productId": 552692
+  },
+  {
+   "group": "FB01",
+   "name": "Awakened Pulse Booster Box",
+   "productId": 535546
+  },
+  {
+   "group": "FB01",
+   "name": "Awakened Pulse Booster Box Case",
+   "productId": 535547
+  },
+  {
+   "group": "FB01",
+   "name": "Awakened Pulse Booster Pack",
+   "productId": 535549
+  },
+  {
+   "group": "FB01",
+   "name": "Code Card - Awakened Pulse Booster (FB01)",
+   "productId": 541181
+  },
+  {
+   "group": "FB01",
+   "name": "Awakened Pulse Sleeved Booster Pack [Son Goku]",
+   "productId": 543398
+  },
+  {
+   "group": "FB01",
+   "name": "Awakened Pulse Sleeved Booster Pack [Son Goku (Awakened)]",
+   "productId": 543399
+  },
+  {
+   "group": "FB01",
+   "name": "Awakened Pulse Sleeved Booster Pack [Son Gohan : Childhood]",
+   "productId": 543401
+  },
+  {
+   "group": "FB01",
+   "name": "Awakened Pulse Sleeved Booster Pack [Trunks : Future]",
+   "productId": 543402
+  },
+  {
+   "group": "FB01",
+   "name": "Awakened Pulse Sleeved Booster Packs [Set of 4]",
+   "productId": 543403
+  },
+  {
+   "group": "FB01_PR",
+   "name": "FB01 Awakened Pulse Pre-Release Pack",
+   "productId": 542642
+  },
+  {
+   "group": "FS01",
+   "name": "Starter Deck 1: Son Goku",
+   "productId": 535550
+  },
+  {
+   "group": "FS01",
+   "name": "Starter Deck 1: Son Goku Display",
+   "productId": 535551
+  },
+  {
+   "group": "FS01",
+   "name": "Code Card - Starter Deck 1: Son Goku (FS01)",
+   "productId": 537910
+  },
+  {
+   "group": "FS01",
+   "name": "Starter Deck 1-4: Son Goku, Vegeta, Broly and Frieza [Set of 4]",
+   "productId": 539208
+  },
+  {
+   "group": "FS02",
+   "name": "Starter Deck 2: Vegeta",
+   "productId": 535552
+  },
+  {
+   "group": "FS02",
+   "name": "Starter Deck 2: Vegeta Display",
+   "productId": 535554
+  },
+  {
+   "group": "FS02",
+   "name": "Code Card - Starter Deck 2: Vegeta (FS02)",
+   "productId": 541176
+  },
+  {
+   "group": "FS03",
+   "name": "Starter Deck 3: Broly",
+   "productId": 535557
+  },
+  {
+   "group": "FS03",
+   "name": "Starter Deck 3: Broly Display",
+   "productId": 535558
+  },
+  {
+   "group": "FS03",
+   "name": "Code Card - Starter Deck 3: Broly (FS03)",
+   "productId": 541177
+  },
+  {
+   "group": "FS04",
+   "name": "Starter Deck 4: Frieza",
+   "productId": 535565
+  },
+  {
+   "group": "FS04",
+   "name": "Starter Deck 4: Frieza Display",
+   "productId": 535566
+  },
+  {
+   "group": "FS04",
+   "name": "Code Card - Starter Deck 4: Frieza (FS04)",
+   "productId": 541178
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 01",
+   "productId": 538747
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker (Basic)",
+   "productId": 543934
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 02",
+   "productId": 549653
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 03",
+   "productId": 562727
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 04",
+   "productId": 586799
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 05",
+   "productId": 610135
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 06",
+   "productId": 641326
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack - 2nd Anniversary Edition",
+   "productId": 679729
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 09",
+   "productId": 682309
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 10",
+   "productId": 704881
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack - Judge Edition 01",
+   "productId": 707468
+  },
+  {
+   "group": "DBSFW_EM",
+   "name": "Energy Marker Pack 11",
+   "productId": 729925
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Promotion Pack Vol.1",
+   "productId": 538748
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Promotion Pack Vol.2",
+   "productId": 549628
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Promotion Pack Vol.3",
+   "productId": 562117
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Premium Card Collection 01 -Leaders-",
+   "productId": 564561
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Promotion Pack Vol.4",
+   "productId": 586756
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Promotion Pack Vol.5",
+   "productId": 610108
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Promotion Pack Vol.6",
+   "productId": 631754
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "1st Anniversary Set Bundle",
+   "productId": 642096
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Premium Card Collection 02",
+   "productId": 648346
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "2nd Anniversary Pack",
+   "productId": 682179
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Dragon Ball Games Battle Hour 2026 Premium Card Collection",
+   "productId": 684108
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "2nd Anniversary Set Bundle",
+   "productId": 696140
+  },
+  {
+   "group": "DBSFW_PR",
+   "name": "Premium Card Collection 03",
+   "productId": 712767
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 01",
+   "productId": 538809
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 01",
+   "productId": 538810
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Judge Pack (Store Judge) 01",
+   "productId": 538811
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 02",
+   "productId": 549637
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 02",
+   "productId": 549647
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Championship Pack 01",
+   "productId": 549664
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Championship Pack 02",
+   "productId": 562120
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 03",
+   "productId": 564471
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 03",
+   "productId": 564537
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Judge Pack (Store Judge) 02",
+   "productId": 564539
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 04",
+   "productId": 583856
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 04",
+   "productId": 583857
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Championship Pack 03",
+   "productId": 596283
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Championship Pack -Finalist- 03",
+   "productId": 596284
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Selection Pack -Finalist- 01",
+   "productId": 596287
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Selection Pack 01",
+   "productId": 596288
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Judge Pack (Store Judge) 03",
+   "productId": 607963
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 05",
+   "productId": 607972
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 05",
+   "productId": 607986
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Limited Pack 01",
+   "productId": 626553
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Judge Pack (Event Judge) 03",
+   "productId": 626604
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 06",
+   "productId": 628130
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 06",
+   "productId": 628133
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Limited Pack 02",
+   "productId": 641305
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Judge Pack (Event Judge) 04",
+   "productId": 641354
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 07",
+   "productId": 644867
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 07",
+   "productId": 644868
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Judge Pack (Store Judge) 04",
+   "productId": 644870
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Limited Pack MANGA Version 01",
+   "productId": 648116
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 08",
+   "productId": 648241
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 08",
+   "productId": 648242
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack MANGA ver.",
+   "productId": 657513
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Limited Pack MANGA Version 02",
+   "productId": 660045
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack -Winner- 09",
+   "productId": 671688
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 09",
+   "productId": 671690
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Judge Pack (Store Judge) 05",
+   "productId": 671692
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 10",
+   "productId": 682322
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Limited Pack 26-27 WAVE1",
+   "productId": 688660
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 11",
+   "productId": 696524
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Judge Pack (Event Judge) 05",
+   "productId": 698079
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Limited Pack 26-27 WAVE2",
+   "productId": 707446
+  },
+  {
+   "group": "DBSFW_TPR",
+   "name": "Tournament Pack 12",
+   "productId": 719782
+  }
+ ],
+ "shops": {
+  "breakthecase": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 516
+  },
+  "cardcollector": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 98
+  },
+  "cardforge": {
+   "home_mentions": 0,
+   "platform": "generic"
+  },
+  "cardgameshop": {
+   "home_mentions": 0,
+   "platform": "generic"
+  },
+  "chaoscards": {
+   "home_mentions": 0,
+   "platform": "generic"
+  },
+  "collgamers": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 51
+  },
+  "dracoon": {
+   "error": "Expecting value: line 1 column 1 (char 0)"
+  },
+  "fantasiacards": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 120
+  },
+  "onytcg": {
+   "error": "Expecting value: line 1 column 1 (char 0)"
+  },
+  "oppacards": {
+   "n": 0,
+   "platform": "woo",
+   "sample": []
+  },
+  "pocketgames": {
+   "error": "Expecting value: line 1 column 1 (char 0)"
+  },
+  "supercollectors": {
+   "n": 0,
+   "platform": "woo",
+   "sample": []
+  },
+  "totalcards": {
+   "collections": [],
+   "platform": "shopify",
+   "total_collections": 750
+  }
+ }
+}
