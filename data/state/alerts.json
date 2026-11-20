@@ -6,8 +6,8 @@
    "since": "2026-11-13"
   },
   "buy:riftbound:VEN": {
-   "price": 119.63,
-   "ratio": 0.937,
+   "price": 106.64,
+   "ratio": 1.05,
    "since": "2026-11-12"
   },
   "slab_digest:dbfw": {
@@ -24,20 +24,20 @@
  "muted": [],
  "prev_ranking": {
   "FB01": 0.355,
-  "FB02": 0.402,
-  "FB03": 0.488,
-  "FB04": 0.341,
-  "FB05": 0.507,
-  "FB06": 0.221,
-  "FB07": 0.434,
-  "FB08": 0.588,
-  "FB09": 0.607,
-  "FB10": 0.744,
-  "FB11": 0.812,
+  "FB02": 0.404,
+  "FB03": 0.485,
+  "FB04": 0.339,
+  "FB05": 0.506,
+  "FB06": 0.222,
+  "FB07": 0.455,
+  "FB08": 0.586,
+  "FB09": 0.602,
+  "FB10": 0.713,
+  "FB11": 0.802,
   "FB12": 0.0,
-  "SB01": 0.401,
-  "SB02": 0.457,
-  "ST01": 0.409
+  "SB01": 0.414,
+  "SB02": 0.491,
+  "ST01": 0.405
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
  "seen_expansions": {
@@ -689,6 +689,12 @@
     "name": "Chromatic Ascension",
     "published": "2026-11-27",
     "seen": "2026-10-18"
+   },
+   "24954": {
+    "abbr": "BT32_PR",
+    "name": "Chromatic Ascension Release Event",
+    "published": "2026-11-27",
+    "seen": "2026-11-19"
    },
    "2515": {
     "abbr": "DB1",

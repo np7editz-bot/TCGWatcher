@@ -1,0 +1,45 @@
+{
+ "alerts": [
+  {
+   "at": "2026-11-20T02:40:59Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €107 · CardTrader Zero · voorraad",
+      "https://www.cardtrader.com/cards/374963"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:riftbound:VEN",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/693380_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · goedkoper geworden · VEN Vendetta</b>\nHits per box <b>€112</b> / box vanaf <b>€107</b> → ratio <b>1.05</b> (drempel 0.9)\n#1 van 6 · US-ratio 0.60\n\n🛒 <b>Waar kopen</b> (31 EU-listings)\n• €106,64 CardTrader Zero (op voorraad) <i>Zero €100.64 + €6 kosten</i>\n<i>◦ Cardmarket €116 — indicatie (alle talen)</i>\n\nSamenstelling: 28 Epic · 16 Alt-Art · 12 Showcase · 31 Overnum. · 9 ★ Sig\nTop hit: Akali, Rogue Assassin (Signature) 189*/166 SIG €2.875\n<i>Waardering Cardmarket-verkopen 30d · 133/133 hits · US-referentie €63</i>"
+  },
+  {
+   "at": "2026-11-20T02:40:59Z",
+   "buttons": [
+    [
+     [
+      "TCGplayer",
+      "https://www.tcgplayer.com/search/dragon-ball-super-ccg/product?q=Chromatic%20Ascension%20Release%20Event"
+     ],
+     [
+      "Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "new_group:27:24954",
+   "kind": "new_group",
+   "photo": null,
+   "text": "🆕 <b>Masters · nieuwe productlijn</b>\n<b>Chromatic Ascension Release Event</b> (BT32_PR)\nRelease 2026-11-27 · nu in de TCGplayer-catalogus — pre-orders bij EU-shops openen meestal rond dit moment."
+  }
+ ],
+ "day": "2026-11-19"
+}
