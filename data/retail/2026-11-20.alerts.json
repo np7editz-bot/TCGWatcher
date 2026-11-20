@@ -1,240 +1,35 @@
 {
  "day": "2026-11-20",
- "messages": [],
+ "messages": [
+  {
+   "buttons": [
+    [
+     [
+      "🛒 breakthecase",
+      "https://www.breakthecase.de/products/dragon-ball-super-card-game-masters-b32-ultra-bout-05-booster-display-englisch"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🟡 PRE-ORDER OPEN · <b>BT32</b>\nDragon Ball Super Card Game Masters - B32 Ultra-Bout Series 05 Chromatic Ascension - Boost\n<b>€210,00</b> bij breakthecase\nNog geen kaartenlijst. <b>Indicatie</b> op basis van BT28, BT29, BT30, BT31: EV ~€139 per box (spreiding €96–€210) → ratio ~<b>0.66</b>.\n<i>Nieuwe sets zakken de eerste weken (FB11: EV −24% in een maand); echte ratio volgt zodra de kaarten geprijsd zijn.</i>"
+  }
+ ],
  "transitions": [
   {
-   "first_seen": "2026-11-20T12:52:59Z",
+   "first_seen": "2026-11-20T21:48:46Z",
    "kind": "new_listing",
-   "price": 12.99,
+   "price": 210.0,
    "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "in_stock",
-   "title": "Digimon TCG ST23 Digimon Beatbreak Starter Deck",
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-11-20T21:48:46Z",
+   "status": "preorder",
+   "title": "Dragon Ball Super Card Game Masters - B32 Ultra-Bout Series 05 Chromatic Ascension - Booster Display (20 Packs) - Englisch",
    "trusted": true,
-   "url": "https://pocketgames.nl/products/digimon-tcg-st23-digimon-beatbreak-starter-deck-dica2844270"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 12.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "in_stock",
-   "title": "Digimon TCG ST24 Digimon Data Squad Starter Deck",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/digimon-tcg-st24-digimon-data-squad-starter-deck-dica2844271"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 23.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "Dragon Ball SCG FW Starter Deck Beat Of Ki FS12",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/dragon-ball-scg-fw-starter-deck-beat-of-ki-fs12-dbscg2834221"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 23.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "Dragon Ball SCG FW Starter Deck Phase Of Evol FS11",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/dragon-ball-scg-fw-starter-deck-phase-of-evol-fs11-dbscg2834220"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 10.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "in_stock",
-   "title": "Gundam Card Game Starter ST10",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/gundam-card-game-starter-st10-gcg2856160"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 19.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "One Piece - Starter Deck - Egghead [ST-29]",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/one-piece-starter-deck-egghead-st-29"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 19.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "One Piece - Starter Deck [ST-30]",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/one-piece-starter-deck-st-30"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 14.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "One Piece - Starter Deck [ST-31]",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/one-piece-starter-deck-st-31"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 14.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "One Piece - Starter Deck [ST-32]",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/one-piece-starter-deck-st-32"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 14.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "One Piece - Starter Deck [ST-33]",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/one-piece-starter-deck-st-33"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 14.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "One Piece - Starter Deck [ST-34]",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/one-piece-starter-deck-st-34"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 14.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "One Piece - Starter Deck [ST-35]",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/one-piece-starter-deck-st-35"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 14.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "in_stock",
-   "title": "One Piece - Starter Deck [ST-36]",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/one-piece-starter-deck-st-36"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 169.99,
-   "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "Riftbound Spiritforged BO",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/riftbound-spiritforged-bo-rgrb02bd01"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 19.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "Riftbound Spiritforged Champion Deck Fiora",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/riftbound-spiritforged-champion-deck-fiora-rgrb02pd02"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 119.99,
-   "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "Riftbound Unleashed BO",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/riftbound-unleashed-bo-rgrb03bd01"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 16.99,
-   "price_obs": 1,
-   "product_kind": "deck",
-   "retailer": "pocketgames",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "in_stock",
-   "title": "Riftbound Unleashed Champion Deck Vi",
-   "trusted": true,
-   "url": "https://pocketgames.nl/products/riftbound-unleashed-champion-deck-vi-rgrb03pd01"
-  },
-  {
-   "first_seen": "2026-11-20T12:52:59Z",
-   "kind": "new_listing",
-   "price": 149.9,
-   "price_obs": 1,
-   "product_kind": "other",
-   "retailer": "supercollectors",
-   "seen": "2026-11-20T12:52:59Z",
-   "status": "sold_out",
-   "title": "Riftbound: League of Legends TCG: Gift of the Rift Bundle",
-   "trusted": true,
-   "url": "https://www.supercollectors.es/producto/riftbound-league-of-legends-tcg-gift-of-the-rift-bundle/"
+   "url": "https://www.breakthecase.de/products/dragon-ball-super-card-game-masters-b32-ultra-bout-05-booster-display-englisch"
   }
  ]
 }
