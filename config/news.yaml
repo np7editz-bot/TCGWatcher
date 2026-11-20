@@ -93,6 +93,15 @@ sources:
     base: https://www.dbs-cardgame.com
     parser: watch
     keywords: '(release|event|tournament|championship|B\d{2}|apply|application|202\d)'
+  - id: watch_dbs_events_eu
+    game: dbs
+    name: "Masters events Europe (Bandai)"
+    url: https://www.dbs-cardgame.com/europe-en/event/
+    base: https://www.dbs-cardgame.com
+    parser: watch
+    keywords: '(release|event|tournament|championship|regional|B\d{2}|apply|application|202\d|Netherlands|Belgium|Germany)'
+# Store-level tournaments (Store Championships, release events per shop) live only in the Bandai TCG+ app; its API needs a
+# login (403 from Actions, 2026-11-20). The tool reports when Bandai announces such a period; the shop list is in the app.
 # Socials: YouTube is the one channel with a stable feed (no API key). `url` is the channel page; the channel id is read
 # from it. X/Instagram/TikTok have no open feed — not watched. Fill in the handles and set enabled: true.
   - id: yt_riftbound
