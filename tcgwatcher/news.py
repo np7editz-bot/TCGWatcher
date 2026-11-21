@@ -90,6 +90,11 @@ def parse_anchors(source, text):
     return items
 
 
+TOURNEY = re.compile(r"(tournament|championship|regional|store\s*champ|\bcup\b|grand\s*battle|\bfinals?\b|side\s*event|/events?/)", re.I)
+NL_PLACES = re.compile(r"\b(Netherlands|Nederland|Holland|Amsterdam|Rotterdam|Utrecht|Den\s*Haag|The\s*Hague|Eindhoven|Tilburg|Breda|"
+                       r"'s-Hertogenbosch|Den\s*Bosch|Nijmegen|Arnhem|Groningen|Zwolle|Almere|Haarlem|Leiden|Maastricht|Venlo|"
+                       r"Veghel|Enschede|Apeldoorn|Ahoy|Jaarbeurs|Amersfoort|Helmond|Oss|Uden)\b", re.I)
+NEAR_PLACES = re.compile(r"\b(D[üu]sseldorf|K[öo]ln|Cologne|Essen|Oberhausen|Dortmund|Aachen|Antwerp(en)?|Brussel[s]?|Bruxelles|Gent|Ghent|Leuven|Hasselt|Belgium|Belgi[eë])\b", re.I)
 EVENT = re.compile(r"(release\s*(event|tournament)|pre-?release|pre-?rift|ultra-?bout.*release|launch\s*event)", re.I)
 CARDLIST = re.compile(r"card\s*list.*\[(DBS-)?(B|BT|FB|SB)\d{2}\]", re.I)
 DRAWING = re.compile(r"(drawing|raffle|lottery|registration|register|loting|\bdraw\b)", re.I)
@@ -102,14 +107,33 @@ def _iso(d):
 
 def _visible_lines(html_text):
     t = re.sub(r"(?is)<(script|style|noscript|svg)[^>]*>.*?</\1>", " ", html_text)
-    t = re.sub(r"(?i)<(br|/p|/div|/li|/h\d|/a|/span|/button|/td)[^>]*>", "\n", t)
+    t = re.sub(r"(?i)</t[dh]>", " · ", t)                                  # a table row stays one line: city · country · date · venue
+    t = re.sub(r"(?i)<(br|/p|/div|/li|/h\d|/a|/button|/tr|/dt|/dd)[^>]*>", "\n", t)
     t = html.unescape(re.sub(r"<[^>]+>", " ", t))
     out = []
     for line in t.split("\n"):
-        line = re.sub(r"\s+", " ", line).strip()
+        line = re.sub(r"\s+", " ", line).strip().strip("·").strip()
         if 6 <= len(line) <= 220 and line not in out:
             out.append(line)
     return out
+
+
+def _where(http, url):
+    """Read an event/tournament page and pull the lines that name a Dutch (or near-border) venue — the Regionals pages list
+    every European stop (Rotterdam Ahoy, Jaarbeurs Utrecht, Düsseldorf …). Returns (text block, 'nl' | 'near' | None)."""
+    try:
+        page, _ = http.get(url)
+    except Exception:  # noqa: BLE001
+        page = None
+    if not page:
+        return "", None
+    lines = _visible_lines(page)
+    nl = [l for l in lines if NL_PLACES.search(l)][:5]
+    near = [l for l in lines if NEAR_PLACES.search(l) and l not in nl][:3]
+    if not nl and not near:
+        return "", None
+    block = "\n".join(["📍 <b>In/bij Nederland:</b>"] + ["• " + html.escape(l) for l in nl + near])
+    return block, ("nl" if nl else "near")
 
 
 def watch_page(source, text, state, day):
@@ -132,6 +156,8 @@ def watch_page(source, text, state, day):
     hay = " ".join(new)
     head = ("🎟️ <b>{g} · loting/registratie-pagina gewijzigd</b>" if DRAWING.search(hay + source["url"])
             else "🏁 <b>{g} · eventpagina gewijzigd</b>" if EVENT.search(hay) else "👀 <b>{g} · pagina gewijzigd</b>").format(g=game)
+    if NL_PLACES.search(hay):
+        head = "🇳🇱 " + head
     body = "\n".join("• " + html.escape(l) for l in new)
     return {"key": f"watch|{source['id']}|{day}", "kind": "news",
             "text": f"{head}\n<b>{html.escape(source['name'])}</b>\nNieuw op de pagina:\n{body}\n<i>Snel kijken: registratievensters en drops zijn vaak kort.</i>",
@@ -229,7 +255,7 @@ def run(http=None, day=None, send=True):
             # Riot rewrites an article on the SAME url for the next product (product-drawing-faq: K/DA → T1 bundle,
             # 2026-11-06): a newer date with a new title is news again
             state["seen"][key] = {"title": it["title"], "date": it["date"], "seen": day}
-            is_product = src.get("kind") in ("product", "all") or bool(product.search(it["title"]))
+            is_product = src.get("kind") in ("product", "all") or bool(product.search(it["title"])) or bool(TOURNEY.search(it["title"] + " " + it["url"]))
             if first_run or not is_product or ignore.search(it["title"]):
                 continue
             if it.get("date") and (dt.date.fromisoformat(day) - dt.date.fromisoformat(it["date"][:10])).days > cfg.get("max_age_days", 14):
@@ -251,9 +277,16 @@ def run(http=None, day=None, send=True):
                 head = "📰 <b>{g} · officiële aankondiging</b>"
                 tail = "Dit is meestal hét moment waarop EU-shops pre-orders openen."
             head = head.format(g=game)
+            where = ""
+            if TOURNEY.search(hay) or event:
+                where, nl = _where(http, it["url"])        # read the event page: Dutch (or near-border) venues first
+                if nl == "nl":
+                    head = "🇳🇱 " + head.replace("officiële aankondiging", "toernooi in Nederland").replace("RELEASE-EVENT", "RELEASE-EVENT in Nederland")
+                elif nl == "near":
+                    head = "📍 " + head.replace("officiële aankondiging", "toernooi dicht bij Nederland")
             msgs.append({"key": key + ("|" + it["date"] if updated else ""), "kind": "news",
                          "text": f"{head}{' · 🔄 bijgewerkt' if updated else ''}\n<b>{it['title']}</b>\n{src['name']} · {it['date'] or day}\n"
-                                 f"<i>{tail}</i>",
+                                 + (f"{where}\n" if where else "") + f"<i>{tail}</i>",
                          "buttons": [[("Bekijk", it["url"]), ("📊 Radar", SITE_URL)]]})
         log.info("%s: %d items", src["id"], len(items))
         newest = max((i.get("date") or "" for i in items), default="")

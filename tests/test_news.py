@@ -218,3 +218,20 @@ def test_same_article_in_two_sources_is_sent_once(tmp_path, monkeypatch):
     news.run(day="2026-11-02", http=H(), send=False)
     page["v"] += '<a href="/en-us/news/announcements/new"><time>2026-11-17T00:00:00Z</time><h3>Gift of the Rift pre-orders</h3></a>'
     assert len(news.run(day="2026-11-17", http=H(), send=False)["messages"]) == 1
+
+
+def test_tournament_news_reads_page_and_flags_netherlands(tmp_path, monkeypatch):
+    import tcgwatcher.news as news, tcgwatcher.store as store
+    monkeypatch.setattr(store, "DATA", tmp_path)
+    src = {"id": "fw", "game": "dbfw", "name": "Fusion World official news", "base": "https://www.dbs-cardgame.com", "parser": "anchors",
+           "path_prefix": "/fw/en/", "url": "https://www.dbs-cardgame.com/fw/en/news.html"}
+    cfg = dict(news.load_config(), sources=[src]); monkeypatch.setattr(news, "load_config", lambda: cfg)
+    index = '<li>2026/11/19<a href="/fw/en/events/02_400.html">Regionals Wave 3 (Championship 27-28)</a></li>'
+    event = ('<table><tr><td>Madrid</td><td>Spain</td><td>Mar 6, 2027</td></tr>'
+             '<tr><td>Utrecht</td><td>Netherlands</td><td>Mar 20-21, 2027</td><td>Jaarbeurs Utrecht</td></tr></table><p>Champion: FB12 SCR alt-art</p>')
+    class H:
+        def get(self, u): return (event if u.endswith("02_400.html") else index), None
+    store.write_json(store.state_path("news"), {"seen": {"fw|https://www.dbs-cardgame.com/seed": {}}})
+    m = news.run(day="2026-11-19", http=H(), send=False)["messages"]
+    assert len(m) == 1 and m[0]["text"].startswith("🇳🇱") and "Madrid" not in m[0]["text"]
+    assert "• Utrecht · Netherlands · Mar 20-21, 2027 · Jaarbeurs Utrecht" in m[0]["text"]
