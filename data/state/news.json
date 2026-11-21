@@ -1,5 +1,10 @@
 {
- "health": {},
+ "health": {
+  "dbfw_products": {
+   "error": "error ConnectionError",
+   "warned": "2026-11-21"
+  }
+ },
  "seen": {
   "dbfw_news|https://www.dbs-cardgame.com/fw/en/events/01_486.html": {
    "date": "2026-10-16",
