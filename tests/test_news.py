@@ -132,7 +132,9 @@ def test_watchdog_warns_weekly_on_broken_or_stale_source(tmp_path, monkeypatch):
         def get(self, u):
             if u.endswith("dead"): return '<a href="/dead">News</a>', None            # only the index itself → nothing parsed
             return '<a href="/stale/old"><time>2026-06-01T00:00:00Z</time><h3>Months ago</h3></a>', None
-    r = news.run(day="2026-11-03", http=H(), send=False)
+    assert news.run(day="2026-11-03", http=H(), send=False)["messages"] == []            # one failed run: no alarm
+    assert news.run(day="2026-11-03", http=H(), send=False)["messages"] == []
+    r = news.run(day="2026-11-03", http=H(), send=False)                                 # third run in a row
     assert sorted(m["key"] for m in r["messages"]) == ["health|dead|2026-11-03", "health|stale|2026-11-03"]
     r = news.run(day="2026-11-05", http=H(), send=False)
     assert r["messages"] == []                                                        # warned this week already

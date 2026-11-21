@@ -293,19 +293,27 @@ def run(http=None, day=None, send=True):
         if newest and (dt.date.fromisoformat(day) - dt.date.fromisoformat(newest[:10])).days > cfg.get("stale_days", 45):
             errors[src["id"]] = f"stale: newest item {newest} (layout changed or site moved?)"
     # watchdog: a source that errors, parses nothing or went stale is reported — once a week per source — so a silent
-    # failure (Riot's site move, Oct 2026) cannot go unnoticed for weeks again
+    # failure (Riot's site move, Oct 2026) cannot go unnoticed for weeks again. A single failed fetch is normal (Bandai's
+    # product page timed out once on 2026-11-21): only after `watchdog_runs` consecutive failing runs (≈ 6 h at one run
+    # every 2 h) does it become a message.
+    need = cfg.get("watchdog_runs", 3)
     for sid, err in errors.items():
-        last = health.get(sid, {}).get("warned", "")
-        if last and (dt.date.fromisoformat(day) - dt.date.fromisoformat(last)).days < 7:
+        h = health.setdefault(sid, {})
+        h["fails"] = h.get("fails", 0) + 1
+        h["error"] = err
+        h.setdefault("since", now)
+        last = h.get("warned", "")
+        if h["fails"] < need or (last and (dt.date.fromisoformat(day) - dt.date.fromisoformat(last)).days < 7):
             continue
-        health[sid] = {"warned": day, "error": err}
+        h["warned"] = day
         src = next((x for x in cfg["sources"] if x["id"] == sid), {})
         msgs.append({"key": f"health|{sid}|{day}", "kind": "status",
-                     "text": f"⚠️ <b>Nieuwsbron stuk · {src.get('name', sid)}</b>\n{err}\n<i>Tot dit gefixt is, komen er geen 📰-berichten van deze bron.</i>",
+                     "text": f"⚠️ <b>Nieuwsbron stuk · {src.get('name', sid)}</b>\n{err} — {h['fails']} runs achter elkaar sinds {h['since'][:16].replace('T', ' ')} UTC\n"
+                             f"<i>Tot dit gefixt is, komen er geen 📰-berichten van deze bron.</i>",
                      "buttons": [[("Bron", src.get("url", SITE_URL))]]})
     for sid in list(health):
         if sid not in errors:
-            health.pop(sid, None)                           # recovered: next failure warns again at once
+            health.pop(sid, None)                           # recovered: the count starts over
     path = store.DATA / "news" / f"{day}.json"
     prev = store.read_json(path, {"results": []})
     store.write_json(path, {"day": day, "fetched_at": now, "errors": errors, "results": prev.get("results", []) + found})
