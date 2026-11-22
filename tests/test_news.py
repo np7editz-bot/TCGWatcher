@@ -229,11 +229,15 @@ def test_tournament_news_reads_page_and_flags_netherlands(tmp_path, monkeypatch)
            "path_prefix": "/fw/en/", "url": "https://www.dbs-cardgame.com/fw/en/news.html"}
     cfg = dict(news.load_config(), sources=[src]); monkeypatch.setattr(news, "load_config", lambda: cfg)
     index = '<li>2026/11/19<a href="/fw/en/events/02_400.html">Regionals Wave 3 (Championship 27-28)</a></li>'
-    event = ('<table><tr><td>Madrid</td><td>Spain</td><td>Mar 6, 2027</td></tr>'
-             '<tr><td>Utrecht</td><td>Netherlands</td><td>Mar 20-21, 2027</td><td>Jaarbeurs Utrecht</td></tr></table><p>Champion: FB12 SCR alt-art</p>')
+    event = ('<table><tr><td>Madrid</td><td>Spain</td><td>Mar 6, 2027</td><td><a href="https://my.weezevent.com/db-madrid">tickets</a></td></tr>'
+             '<tr><td>Utrecht</td><td>Netherlands</td><td>Mar 20-21, 2027</td><td>Jaarbeurs Utrecht</td>'
+             '<td><a href="https://cardcon.eu/tournaments/dbfw/">tickets</a></td></tr></table>'
+             '<p>Participation: 4x Limited Pack</p><p>Champion: FB12 SCR Vegito (Alt-Art), Serial Number Card</p>')
     class H:
         def get(self, u): return (event if u.endswith("02_400.html") else index), None
     store.write_json(store.state_path("news"), {"seen": {"fw|https://www.dbs-cardgame.com/seed": {}}})
     m = news.run(day="2026-11-19", http=H(), send=False)["messages"]
-    assert len(m) == 1 and m[0]["text"].startswith("🇳🇱") and "Madrid" not in m[0]["text"]
-    assert "• Utrecht · Netherlands · Mar 20-21, 2027 · Jaarbeurs Utrecht" in m[0]["text"]
+    assert len(m) == 1 and "Madrid" not in m[0]["text"]
+    assert "• Utrecht · Netherlands · Mar 20-21, 2027 · Jaarbeurs Utrecht · tickets" in m[0]["text"]
+    assert m[0]["text"].startswith("🏆 🇳🇱") and "Prijzen (waardevol)" in m[0]["text"] and "Serial Number Card" in m[0]["text"]
+    assert m[0]["buttons"][0] == [("📝 Inschrijven Utrecht", "https://cardcon.eu/tournaments/dbfw/")] and len(m[0]["buttons"]) == 2

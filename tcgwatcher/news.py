@@ -118,22 +118,41 @@ def _visible_lines(html_text):
     return out
 
 
+PRIZE = re.compile(r"\b(participation|participant|top\s*\d+|champion|winner|1st|2nd|serial|alt-?art|playmat|promo|prize)\b", re.I)
+VALUABLE = re.compile(r"(serial|alt-?art|\bSCR\b|playmat|god\s*rare|gold)", re.I)
+TICKETS = re.compile(r"(weezevent|weeztix|ticket|cardcon|eventbrite|bandai-tcg-plus|tcg-plus|rk9|limitless|register|inschrijv|anmeld)", re.I)
+
+
 def _where(http, url):
-    """Read an event/tournament page and pull the lines that name a Dutch (or near-border) venue — the Regionals pages list
-    every European stop (Rotterdam Ahoy, Jaarbeurs Utrecht, Düsseldorf …). Returns (text block, 'nl' | 'near' | None)."""
+    """Read an event/tournament page: the rows that name a Dutch (or near-border) venue — the Regionals pages list every
+    European stop (Rotterdam Ahoy, Jaarbeurs Utrecht, Düsseldorf …) — their registration links, and the prize lines.
+    Returns (text block, 'nl' | 'near' | None, [(label, url)], valuable: bool)."""
     try:
         page, _ = http.get(url)
     except Exception:  # noqa: BLE001
         page = None
     if not page:
-        return "", None
+        return "", None, [], False
     lines = _visible_lines(page)
     nl = [l for l in lines if NL_PLACES.search(l)][:5]
     near = [l for l in lines if NEAR_PLACES.search(l) and l not in nl][:3]
-    if not nl and not near:
-        return "", None
-    block = "\n".join(["📍 <b>In/bij Nederland:</b>"] + ["• " + html.escape(l) for l in nl + near])
-    return block, ("nl" if nl else "near")
+    links = []
+    for chunk in re.split(r"(?i)</tr>|</li>|</p>", page):            # a venue row carries its own ticket link
+        if not (NL_PLACES.search(chunk) or NEAR_PLACES.search(chunk)):
+            continue
+        for h in re.findall(r'href="([^"]+)"', chunk):
+            h = html.unescape(h)
+            if h.startswith("http") and TICKETS.search(h) and h not in [u for _, u in links]:
+                city = (NL_PLACES.search(chunk) or NEAR_PLACES.search(chunk)).group(1)
+                links.append((f"📝 Inschrijven {city}", h))
+    prizes = [l for l in lines if PRIZE.search(l) and len(l) < 160][:8]
+    valuable = any(VALUABLE.search(l) for l in prizes)
+    parts = []
+    if nl or near:
+        parts += ["📍 <b>In/bij Nederland:</b>"] + ["• " + html.escape(l) for l in nl + near]
+    if prizes and (nl or near):
+        parts += [f"🏆 <b>Prijzen{' (waardevol)' if valuable else ''}:</b>"] + ["• " + html.escape(l) for l in prizes]
+    return "\n".join(parts), ("nl" if nl else "near" if near else None), links[:3], valuable
 
 
 def watch_page(source, text, state, day):
@@ -267,7 +286,7 @@ def run(http=None, day=None, send=True):
                 head = "🏁 <b>{g} · RELEASE-EVENT</b>"
                 tail = ("Release-events: sealed spelen met packs van de nieuwe set + deelnamepromo's, vaak vóór de officiële release. "
                         "Inschrijven via Bandai TCG+ (Bandai Namco ID) of bij je lokale winkel — check de aanmelddatum in het artikel.")
-            elif drawing:
+            elif drawing and not TOURNEY.search(hay):
                 head = "🎟️ <b>{g} · loting / registratie</b>"
                 tail = "Beperkte oplage via loting: registratie heeft een vast venster — check de data in het artikel."
             elif cards:
@@ -277,17 +296,22 @@ def run(http=None, day=None, send=True):
                 head = "📰 <b>{g} · officiële aankondiging</b>"
                 tail = "Dit is meestal hét moment waarop EU-shops pre-orders openen."
             head = head.format(g=game)
-            where = ""
+            where, reg = "", []
             if TOURNEY.search(hay) or event:
-                where, nl = _where(http, it["url"])        # read the event page: Dutch (or near-border) venues first
+                where, nl, reg, valuable = _where(http, it["url"])   # read the event page: Dutch venues, prizes, sign-up
                 if nl == "nl":
                     head = "🇳🇱 " + head.replace("officiële aankondiging", "toernooi in Nederland").replace("RELEASE-EVENT", "RELEASE-EVENT in Nederland")
                 elif nl == "near":
                     head = "📍 " + head.replace("officiële aankondiging", "toernooi dicht bij Nederland")
+                if nl and valuable:
+                    head = "🏆 " + head
+                if not event:
+                    tail = ("Toernooi met eigen deck (constructed: 1 leader + 50 kaarten) — release-events zijn sealed, daar is geen deck nodig. "
+                            "Inschrijven via de knop hieronder of in Bandai TCG+.")
             msgs.append({"key": key + ("|" + it["date"] if updated else ""), "kind": "news",
                          "text": f"{head}{' · 🔄 bijgewerkt' if updated else ''}\n<b>{it['title']}</b>\n{src['name']} · {it['date'] or day}\n"
                                  + (f"{where}\n" if where else "") + f"<i>{tail}</i>",
-                         "buttons": [[("Bekijk", it["url"]), ("📊 Radar", SITE_URL)]]})
+                         "buttons": [[(l, u)] for l, u in reg] + [[("Bekijk", it["url"]), ("📊 Radar", SITE_URL)]]})
         log.info("%s: %d items", src["id"], len(items))
         newest = max((i.get("date") or "" for i in items), default="")
         if newest and (dt.date.fromisoformat(day) - dt.date.fromisoformat(newest[:10])).days > cfg.get("stale_days", 45):
