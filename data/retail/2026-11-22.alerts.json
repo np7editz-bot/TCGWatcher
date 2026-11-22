@@ -1,5 +1,75 @@
 {
  "day": "2026-11-22",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 10.95,
+   "price": 10.95,
+   "price_obs": 133,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-11-22T17:50:06Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [FS03] - Broly - Starter Deck",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs03-broly-starter-deck"
+  },
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "sold_out->in_stock",
+   "old_price": 10.95,
+   "price": 10.95,
+   "price_obs": 133,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-11-22T17:50:06Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [FS01] - Son Goku - Starter Deck",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs01-son-goku-starter-deck"
+  },
+  {
+   "first_seen": "2026-11-22T17:50:06Z",
+   "kind": "new_listing",
+   "price": 10.95,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-11-22T17:50:06Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [FS04] - Frieza - Starter Deck",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs04-frieza-starter-deck"
+  },
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 199.95,
+   "price": 189.95,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "collgamers",
+   "seen": "2026-11-22T17:50:06Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game Fusion World [FB08] - Saiyan´s Pride - Booster Box",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fb08-saiyan-s-pride-booster-box"
+  },
+  {
+   "first_seen": "2026-10-23T07:48:55Z",
+   "kind": "in_stock->sold_out",
+   "old_price": 24.99,
+   "price": 19.95,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-11-22T17:50:06Z",
+   "status": "sold_out",
+   "title": "Riftbound League of Legends TCG Origins Champion Deck - Lee Sin",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-origins-champion-deck-lee-sin"
+  }
+ ]
 }
