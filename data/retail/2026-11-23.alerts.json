@@ -1,5 +1,189 @@
 {
  "day": "2026-11-23",
- "messages": [],
- "transitions": []
+ "messages": [
+  {
+   "buttons": [
+    [
+     [
+      "🛒 oppacards",
+      "https://oppacards.com/product/naruto-mythos-first-set-2nd-edition-special-pack-itachi/"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🍥 NARUTO · ✅ OP VOORRAAD · <b>sealed</b>\nNaruto Mythos First Set 2nd Edition Special Pack – Itachi\n<b>€9,95</b> bij oppacards\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  },
+  {
+   "buttons": [
+    [
+     [
+      "🛒 oppacards",
+      "https://oppacards.com/product/naruto-mythos-tcg-shinobi-shiren-booster-box-1st-edition/"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🍥 NARUTO · ✅ OP VOORRAAD · <b>sealed</b>\nNaruto Mythos TCG Shinobi Shiren Booster Box – 1st Edition\n<b>€49,95</b> bij oppacards\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  },
+  {
+   "buttons": [
+    [
+     [
+      "🛒 oppacards",
+      "https://oppacards.com/product/naruto-mythos-tcg-first-set-2nd-edition-booster-box/"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🍥 NARUTO · ✅ OP VOORRAAD · <b>sealed</b>\nNaruto Mythos TCG First Set 2nd Edition Booster Box\n<b>€39,95</b> bij oppacards\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  },
+  {
+   "buttons": [
+    [
+     [
+      "🛒 oppacards",
+      "https://oppacards.com/product/naruto-mythos-konoha-shido-booster-box-1st-edition/"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "text": "🍥 NARUTO · ✅ OP VOORRAAD · <b>sealed</b>\nNaruto Mythos Konoha Shido Booster Box – 1st Edition\n<b>€79,95</b> bij oppacards\nNog geen waardering (set niet uit) — pre-order = eerste kans"
+  }
+ ],
+ "transitions": [
+  {
+   "first_seen": "2026-11-23T20:13:15Z",
+   "kind": "new_listing",
+   "price": 9.95,
+   "price_obs": 1,
+   "product_kind": "pack",
+   "retailer": "oppacards",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "in_stock",
+   "title": "Naruto Mythos First Set 2nd Edition Special Pack – Itachi",
+   "trusted": true,
+   "url": "https://oppacards.com/product/naruto-mythos-first-set-2nd-edition-special-pack-itachi/"
+  },
+  {
+   "first_seen": "2026-11-23T20:13:15Z",
+   "kind": "new_listing",
+   "price": 49.95,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "oppacards",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "in_stock",
+   "title": "Naruto Mythos TCG Shinobi Shiren Booster Box – 1st Edition",
+   "trusted": true,
+   "url": "https://oppacards.com/product/naruto-mythos-tcg-shinobi-shiren-booster-box-1st-edition/"
+  },
+  {
+   "first_seen": "2026-11-23T20:13:15Z",
+   "kind": "new_listing",
+   "price": 39.95,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "oppacards",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "in_stock",
+   "title": "Naruto Mythos TCG First Set 2nd Edition Booster Box",
+   "trusted": true,
+   "url": "https://oppacards.com/product/naruto-mythos-tcg-first-set-2nd-edition-booster-box/"
+  },
+  {
+   "first_seen": "2026-11-23T20:13:15Z",
+   "kind": "new_listing",
+   "price": 79.95,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "oppacards",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "in_stock",
+   "title": "Naruto Mythos Konoha Shido Booster Box – 1st Edition",
+   "trusted": true,
+   "url": "https://oppacards.com/product/naruto-mythos-konoha-shido-booster-box-1st-edition/"
+  },
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "price_drop",
+   "old_price": 10.95,
+   "price": 7.95,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [FS03] - Broly - Starter Deck",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs03-broly-starter-deck"
+  },
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "price_drop",
+   "old_price": 10.95,
+   "price": 7.95,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [FS01] - Son Goku - Starter Deck",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs01-son-goku-starter-deck"
+  },
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "price_drop",
+   "old_price": 10.95,
+   "price": 7.95,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [FS02] - Vegeta - Starter Deck",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs02-vegeta-starter-deck"
+  },
+  {
+   "first_seen": "2026-11-22T17:50:06Z",
+   "kind": "price_drop",
+   "old_price": 10.95,
+   "price": 7.95,
+   "price_obs": 1,
+   "product_kind": "deck",
+   "retailer": "collgamers",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [FS04] - Frieza - Starter Deck",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-fs04-frieza-starter-deck"
+  },
+  {
+   "first_seen": "2026-11-20T21:48:46Z",
+   "kind": "preorder->sold_out",
+   "old_price": 220.0,
+   "price": 220.0,
+   "price_obs": 15,
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-11-23T20:13:15Z",
+   "status": "sold_out",
+   "title": "Dragon Ball Super Card Game Masters - B32 Ultra-Bout Series 05 Chromatic Ascension - Booster Display (20 Packs) - Englisch",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/dragon-ball-super-card-game-masters-b32-ultra-bout-05-booster-display-englisch"
+  }
+ ]
 }
