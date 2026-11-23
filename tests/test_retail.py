@@ -185,3 +185,13 @@ def test_collector_and_mystery_boxes_are_not_booster_boxes():
     assert kind_with_price("Dragon Ball Super Card Game - MASTERS - Mystery Box - Englisch", "", 49.99) == "other"
     assert kind_with_price("Dragon Ball Super Card Game - Masters Zenkai Series - B24 - Beyond Generations - Booster Box (24 Packs)", "", 74.96) == "box"
     assert kind_with_price("Dragon Ball Super CG Masters - Beyond Generation - B24 - Zenkai Series EX Set 07 - Display - Englisch", "", 220.0) == "box"
+
+
+def test_only_bandai_naruto_card_game_messages():
+    from tcgwatcher.retail import format_alerts
+    mk = lambda title, price: {"trusted": True, "retailer": "oppacards", "title": title, "url": "https://oppacards.com/p/" + title.replace(" ", "-"),
+                               "price": price, "status": "in_stock", "kind": "new_listing", "product_kind": "box"}
+    ts = [mk("Naruto Mythos TCG Shinobi Shiren Booster Box – 1st Edition", 49.95), mk("Naruto Mythos First Set 2nd Edition Special Pack – Itachi", 9.95),
+          mk("Kayou Naruto Heaven Scroll Booster Box", 39.0), mk("NARUTO CARD GAME Booster Pack 01 Display (Bandai)", 99.0)]
+    out = format_alerts(ts, first_run=False, latest={"games": {}})
+    assert len(out) == 1 and "NARUTO CARD GAME Booster Pack 01" in out[0]["text"]

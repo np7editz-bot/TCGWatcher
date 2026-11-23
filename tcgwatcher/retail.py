@@ -21,6 +21,9 @@ from . import store, CONFIG, USER_AGENT
 
 log = logging.getLogger("tcgwatcher.retail")
 
+# Only Bandai's NARUTO CARD GAME (launch June 2027) is tracked. Naruto Mythos TCG (Cicaboom), Kayou's Heaven Scroll and
+# other licensed Naruto card lines are different games and never produce a message (owner, 2026-11-18 and 2026-11-23).
+NOT_BANDAI_NARUTO = re.compile(r"(mythos|cicaboom|kayou|heaven\s*scroll|konoha\s*shid[oō]|shinobi\s*shiren|ninja\s*card|boruto)", re.I)
 MATCH = re.compile(r"(fb\s?-?\d{2}|fs\s?-?\d{2}|sb\s?-?\d{2}|st\s?-?\d{2}|fusion[\s-]?world|dragon[\s-]?ball|naruto|riftbound|league of legends)", re.I)
 # Riftbound sets carry no code in shop titles: name → our set code (TCGplayer abbreviations)
 RIFT_SETS = {"origins": "OGN", "spiritforged": "SFD", "unleashed": "UNL", "vendetta": "VEN", "radiance": "RAD", "legacy": "LGC"}
@@ -397,7 +400,8 @@ def format_alerts(transitions, first_run, muted=(), latest=None, buy=None):
             continue          # HTML-heuristic shops: data only, never a message (Comic Planet 'pre-order' on a dead page)
         hay = (t.get("title") or "") + " " + t["url"]
         naruto = bool(re.search(r"naruto", hay, re.I)) and bool(re.search(r"(card ?game|\btcg\b|booster|\bdeck\b|starter|display|\bpack)", hay, re.I)) \
-            and not re.search(r"(funko|\bpop!?\b|figur|plush|knuffel|manga\b|poster|keychain|shirt|\bmug\b|statue|nendoroid|blu-?ray|dvd)", hay, re.I)   # a card-game product, not merchandise
+            and not re.search(r"(funko|\bpop!?\b|figur|plush|knuffel|manga\b|poster|keychain|shirt|\bmug\b|statue|nendoroid|blu-?ray|dvd)", hay, re.I) \
+            and not NOT_BANDAI_NARUTO.search(hay)   # a Bandai NARUTO CARD GAME product: no merchandise, no other publishers' Naruto TCGs
         if re.search(r"naruto", hay, re.I) and not naruto:
             continue
         k = kind_with_price(t.get("title") or "", t["url"], t.get("price")) if t.get("product_kind") is not None else None   # recomputed: stored kind may predate a rule fix
