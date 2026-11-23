@@ -899,6 +899,20 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 84.02
+  },
+  {
+   "code": "BT29",
+   "game": "dbs",
+   "key": "dbs:BT29:BT29-088:SPR",
+   "kind": "raw",
+   "name": "SS Rose Goku Black BT29-088 SPR",
+   "net_then": 121.71,
+   "opened": "2026-11-22",
+   "price": 30.39,
+   "psa10_then": 253.07,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 20.62
   }
  ]
 }

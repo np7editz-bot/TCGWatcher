@@ -1104,7 +1104,7 @@
  },
  "watch": {
   "watch_dbs_events": {
-   "day": "2026-11-22",
+   "day": "2026-11-23",
    "lines": [
     "EVENT | DRAGON BALL SUPER CARD GAME",
     "CHAMPIONSHIP",
@@ -1181,7 +1181,7 @@
    ]
   },
   "watch_dbs_events_eu": {
-   "day": "2026-11-22",
+   "day": "2026-11-23",
    "lines": [
     "EVENT | DRAGON BALL SUPER CARD GAME",
     "CHAMPIONSHIP",
@@ -1261,7 +1261,7 @@
    ]
   },
   "watch_fw_events": {
-   "day": "2026-11-22",
+   "day": "2026-11-23",
    "lines": [
     "EVENTS | Dragon Ball Super Card Game Fusion World - Official Web Site",
     "EVENTS",
@@ -1302,7 +1302,7 @@
    ]
   },
   "watch_naruto_home": {
-   "day": "2026-11-22",
+   "day": "2026-11-23",
    "lines": [
     "Arriving in June 2027",
     "GLOBAL RELEASE CONFIRMED",
@@ -1321,7 +1321,7 @@
    ]
   },
   "watch_rb_registration": {
-   "day": "2026-11-22",
+   "day": "2026-11-23",
    "lines": [
     "Riftbound | League of Legends Trading Card Game",
     "Registration Closed",
@@ -1341,7 +1341,7 @@
    ]
   },
   "watch_riot_merch": {
-   "day": "2026-11-22",
+   "day": "2026-11-23",
    "lines": []
   }
  }
