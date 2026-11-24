@@ -20,19 +20,19 @@
  "prev_ranking": {
   "FB01": 0.379,
   "FB02": 0.404,
-  "FB03": 0.485,
+  "FB03": 0.484,
   "FB04": 0.339,
   "FB05": 0.506,
   "FB06": 0.223,
-  "FB07": 0.454,
+  "FB07": 0.453,
   "FB08": 0.569,
   "FB09": 0.601,
   "FB10": 0.711,
-  "FB11": 0.797,
+  "FB11": 0.794,
   "FB12": 0.0,
-  "SB01": 0.401,
+  "SB01": 0.402,
   "SB02": 0.49,
-  "ST01": 0.4
+  "ST01": 0.399
  },
  "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
  "seen_expansions": {
