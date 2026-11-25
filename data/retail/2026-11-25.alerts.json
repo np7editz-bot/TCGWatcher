@@ -1,5 +1,20 @@
 {
  "day": "2026-11-25",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-10-19T07:45:08Z",
+   "kind": "price_drop",
+   "old_price": 89.9,
+   "price": 4.3,
+   "price_obs": 1,
+   "product_kind": "pack",
+   "retailer": "supercollectors",
+   "seen": "2026-11-25T14:20:58Z",
+   "status": "in_stock",
+   "title": "Naruto TCG: First Set 2nd Edition – Booster Box (Inglés)",
+   "trusted": true,
+   "url": "https://www.supercollectors.es/producto/naruto-tcg-first-set-2nd-edition-booster-box-ingles/"
+  }
+ ]
 }
