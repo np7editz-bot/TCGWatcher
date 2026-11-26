@@ -3,17 +3,45 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-11-26T10:52:58Z",
-   "kind": "new_listing",
-   "price": 169.94,
+   "first_seen": "2026-10-23T07:48:55Z",
+   "kind": "price_drop",
+   "old_price": 139.95,
+   "price": 119.95,
    "price_obs": 1,
    "product_kind": "box",
-   "retailer": "cardforge",
-   "seen": "2026-11-26T10:52:58Z",
+   "retailer": "collgamers",
+   "seen": "2026-11-26T21:30:16Z",
    "status": "in_stock",
-   "title": "Dragon Ball SCG – Fusion World 12 Booster box (FB12) – Reach the God - Card forge",
-   "trusted": false,
-   "url": "https://cardforge.nl/pokemon-kaarten/dragon-ball/dragon-ball-scg-fusion-world-12-booster-box-fb12-reach-the-god/"
+   "title": "Riftbound League of Legends TCG set 5 Radiance Booster Box",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/riftbound-league-of-legends-tcg-set-5-radiance-booster-box"
+  },
+  {
+   "first_seen": "2026-11-12T07:28:52Z",
+   "kind": "price_rise",
+   "old_price": 160.0,
+   "price": 220.0,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "breakthecase",
+   "seen": "2026-11-26T21:30:16Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game - Perfect Combination - B23 - Booster Box Display - Englisch",
+   "trusted": true,
+   "url": "https://www.breakthecase.de/products/dragon-ball-super-card-game-zenkai-series-06-b23-booster-box-display-englisch"
+  },
+  {
+   "first_seen": "2026-11-26T21:30:16Z",
+   "kind": "new_listing",
+   "price": 13.29,
+   "price_obs": 1,
+   "product_kind": "other",
+   "retailer": "totalcards",
+   "seen": "2026-11-26T21:30:16Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super - Impact Beyond Dimension - SS4 Gogeta, Ultimate Warrior - BT31-145",
+   "trusted": true,
+   "url": "https://totalcards.net/products/dragon-ball-super-impact-beyond-dimension-ss4-gogeta-ultimate-warrior-bt31-145"
   }
  ]
 }
