@@ -1,5 +1,19 @@
 {
  "day": "2026-11-26",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-11-26T10:52:58Z",
+   "kind": "new_listing",
+   "price": 169.94,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "cardforge",
+   "seen": "2026-11-26T10:52:58Z",
+   "status": "in_stock",
+   "title": "Dragon Ball SCG – Fusion World 12 Booster box (FB12) – Reach the God - Card forge",
+   "trusted": false,
+   "url": "https://cardforge.nl/pokemon-kaarten/dragon-ball/dragon-ball-scg-fusion-world-12-booster-box-fb12-reach-the-god/"
+  }
+ ]
 }
