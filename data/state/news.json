@@ -831,6 +831,11 @@
    "seen": "2026-11-03",
    "title": "CARD LIST (Promotion Cards) has been updated."
   },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/cardlist/index.php?search=true&free=P-765%20P-766%20P-767%20P-768%20P-768_PR%20P-769%20P-770%20P-771%20P-771_PR%20P-772%20P-772_PR%20P-773%20P-774%20P-774_PR%20P-775%20P-776%20P-777%20P-778%20P-779%20P-780": {
+   "date": "2026-11-27",
+   "seen": "2026-11-27",
+   "title": "CARD LIST (Promotion Cards) has been updated."
+  },
   "dbs_updates|https://www.dbs-cardgame.com/us-en/event/tournament/ultra-bout-series05_release/": {
    "date": "2026-10-30",
    "seen": "2026-11-03",
@@ -845,6 +850,11 @@
    "date": "2026-10-16",
    "seen": "2026-11-03",
    "title": "PRODUCTS (-CHROMATIC ASCENSION- [DBS-B32])info has been updated."
+  },
+  "dbs_updates|https://www.dbs-cardgame.com/us-en/rule/": {
+   "date": "2026-11-27",
+   "seen": "2026-11-27",
+   "title": "RULE (Official rule manual) has been updated."
   },
   "dbs_updates|https://www.dbs-cardgame.com/us-en/rule/banned-limited-cards.php": {
    "date": "2026-11-13",
@@ -1112,6 +1122,7 @@
    "day": "2026-11-27",
    "lines": [
     "EVENT | DRAGON BALL SUPER CARD GAME",
+    "NEW!! EVENT",
     "CHAMPIONSHIP",
     "Dragon Ball Super Card Game Masters CHAMPIONSHIP 26-27",
     "Dragon Ball Super Card Game Masters CHAMPIONSHIP 2025-2026",
@@ -1180,6 +1191,7 @@
     "ULTRA-BOUT Series 04 [B31] Release Tounament",
     "2026 Vol.4",
     "ULTRA-BOUT Series 05 [B32] Release Tournament",
+    "2027 Vol.1",
     "BATTLE HOUR 2026",
     "To search and apply for upcoming tournaments, click here",
     "Offering cash prizes for any events officially supported by"
@@ -1189,6 +1201,7 @@
    "day": "2026-11-27",
    "lines": [
     "EVENT | DRAGON BALL SUPER CARD GAME",
+    "NEW!! EVENT",
     "CHAMPIONSHIP",
     "Dragon Ball Super Card Game Masters CHAMPIONSHIP 26-27",
     "Dragon Ball Super Card Game Masters CHAMPIONSHIP 2025-2026",
@@ -1256,6 +1269,7 @@
     "ULTRA-BOUT Series 04 [B31] Release Tounament",
     "2026 Vol.4",
     "ULTRA-BOUT Series 05 [B32] Release Tournament",
+    "2027 Vol.1",
     "BATTLE HOUR 2026",
     "To search and apply for upcoming tournaments, click here",
     "Offering cash prizes for any events officially supported by",

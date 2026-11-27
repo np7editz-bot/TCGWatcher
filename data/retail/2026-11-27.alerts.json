@@ -1,5 +1,33 @@
 {
  "day": "2026-11-27",
  "messages": [],
- "transitions": []
+ "transitions": [
+  {
+   "first_seen": "2026-11-27T13:57:32Z",
+   "kind": "new_listing",
+   "price": 164.95,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "cardgameshop",
+   "seen": "2026-11-27T13:57:32Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Boosterbox - B32 Chromatic Ascension | Cardgameshop",
+   "trusted": false,
+   "url": "https://www.cardgameshop.be/nl/producten/dragon-ball-super-boosterbox-b32-chromatic-ascension"
+  },
+  {
+   "first_seen": "2026-10-19T09:07:50Z",
+   "kind": "price_drop",
+   "old_price": 434.95,
+   "price": 349.95,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "collgamers",
+   "seen": "2026-11-27T13:57:32Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game Fusion World [ST01] - Story Booster 01 - Booster Box",
+   "trusted": true,
+   "url": "https://collgamers.nl/products/dragon-ball-super-card-game-fusion-world-st01-story-booster-01-booster-box"
+  }
+ ]
 }
