@@ -913,6 +913,20 @@
    "source": "CardTrader EU laagste ask + €5 verzending",
    "status": "open",
    "tcg_then": 20.62
+  },
+  {
+   "code": "BT31",
+   "ev_then": 209.17,
+   "game": "dbs",
+   "key": "buy:dbs:BT31",
+   "kind": "box",
+   "name": "Impact Beyond Dimensions",
+   "opened": "2026-11-26",
+   "price": 151.64,
+   "ratio_then": 1.379,
+   "source": "CardTrader Zero",
+   "status": "open",
+   "valuation": "cardmarket"
   }
  ]
 }

@@ -1,0 +1,25 @@
+{
+ "alerts": [
+  {
+   "at": "2026-11-27T03:54:03Z",
+   "buttons": [
+    [
+     [
+      "🛒 Koop €152 · CardTrader Zero · voorraad",
+      "https://www.cardtrader.com/cards/391245"
+     ],
+     [
+      "📊 Radar",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "buy:dbs:BT31",
+   "kind": "buy",
+   "photo": "https://tcgplayer-cdn.tcgplayer.com/product/693636_in_1000x1000.jpg",
+   "text": "🎯 <b>KOOP · BT31 Impact Beyond Dimensions</b>\nHits per box <b>€209</b> / box vanaf <b>€152</b> → ratio <b>1.38</b> (drempel 0.9)\n#2 van 11 · US-ratio 1.38\n\n🛒 <b>Waar kopen</b> (3 EU-listings)\n• €151,64 CardTrader Zero (op voorraad) <i>Zero €145.64 + €6 kosten</i>\n• €219,99 fantasiacards (op voorraad)\n<i>◦ Cardmarket €158 — indicatie (alle talen)</i>\n\nSamenstelling: 2 SCR · 7 CR · 15 SPR · 10 SLR · 2 GDR\nTop hit: SS4 Vegito, A Light in the Dark (GDR) BT18-147 GDR €4.100\n<i>Waardering Cardmarket-verkopen 30d · 52/52 hits · US-referentie €280</i>"
+  }
+ ],
+ "day": "2026-11-26"
+}
