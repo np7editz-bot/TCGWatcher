@@ -1,20 +1,5 @@
 {
  "day": "2026-11-27",
  "messages": [],
- "transitions": [
-  {
-   "first_seen": "2026-10-19T08:00:42Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 89.99,
-   "price": 89.99,
-   "price_obs": 148,
-   "product_kind": "other",
-   "retailer": "fantasiacards",
-   "seen": "2026-11-27T03:54:28Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Super Card Game - Masters - Beyond Generations - Collector's Booster [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-beyond-generations-collectors-booster-eng"
-  }
- ]
+ "transitions": []
 }
