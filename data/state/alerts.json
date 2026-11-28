@@ -24,22 +24,22 @@
  "muted": [],
  "prev_ranking": {
   "FB01": 0.379,
-  "FB02": 0.404,
-  "FB03": 0.484,
-  "FB04": 0.348,
+  "FB02": 0.403,
+  "FB03": 0.483,
+  "FB04": 0.37,
   "FB05": 0.506,
-  "FB06": 0.223,
+  "FB06": 0.222,
   "FB07": 0.453,
   "FB08": 0.569,
-  "FB09": 0.601,
-  "FB10": 0.711,
-  "FB11": 0.796,
+  "FB09": 0.599,
+  "FB10": 0.708,
+  "FB11": 0.78,
   "FB12": 0.0,
   "SB01": 0.431,
   "SB02": 0.573,
-  "ST01": 0.434
+  "ST01": 0.402
  },
- "quality_fp": "riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
+ "quality_fp": "dbs:low_market_coverage:|riftbound:duplicate_keys:riftbound:RAD:179*/167:SIG,riftbound:VEN:T05 // T06:",
  "seen_expansions": {
   "BE21": {
    "name": "Expansion Set: 5th Anniversary",
@@ -2220,6 +2220,12 @@
    "rank": 1,
    "raw": 1195
   },
+  "riftbound:riftbound:OGN:307*/298:SIG": {
+   "day": "2026-11-27",
+   "net": 725.97,
+   "rank": 1,
+   "raw": 402
+  },
   "riftbound:riftbound:SFD:224*/221:SIG": {
    "day": "2026-11-11",
    "net": 864.55,
@@ -2231,6 +2237,12 @@
    "net": 974.49,
    "rank": 3,
    "raw": 270
+  },
+  "riftbound:riftbound:SFD:233*/221:SIG": {
+   "day": "2026-11-27",
+   "net": 442.0,
+   "rank": 2,
+   "raw": 255
   }
  },
  "slab_top5": {

@@ -1,0 +1,50 @@
+{
+ "day": "2026-11-27",
+ "games": {
+  "dbfw": {
+   "findings": [],
+   "market_priced": 4212,
+   "priced": 4494,
+   "products": 4571,
+   "status": "ok"
+  },
+  "dbs": {
+   "findings": [
+    {
+     "code": "low_market_coverage",
+     "level": "warn",
+     "message": "BT32: only 47% of 59 hit cards have a market price"
+    }
+   ],
+   "market_priced": 9935,
+   "priced": 11676,
+   "products": 12203,
+   "status": "warn"
+  },
+  "naruto": {
+   "findings": [],
+   "market_priced": 3,
+   "priced": 3,
+   "products": 3,
+   "status": "ok"
+  },
+  "riftbound": {
+   "findings": [
+    {
+     "code": "duplicate_keys",
+     "ids": [
+      "riftbound:RAD:179*/167:SIG",
+      "riftbound:VEN:T05 // T06:"
+     ],
+     "level": "warn",
+     "message": "2 canonical keys occur more than once"
+    }
+   ],
+   "market_priced": 1815,
+   "priced": 1836,
+   "products": 1886,
+   "status": "warn"
+  }
+ },
+ "status": "warn"
+}

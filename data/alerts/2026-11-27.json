@@ -1,0 +1,43 @@
+{
+ "alerts": [
+  {
+   "album": [
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/653110_in_1000x1000.jpg",
+     "<b>#1 · Teemo 307*/298 SIG</b> · Riftbound OGN\nraw €402 → netto €726"
+    ],
+    [
+     "https://tcgplayer-cdn.tcgplayer.com/product/666469_in_1000x1000.jpg",
+     "<b>#2 · Yone 233*/221 SIG</b> · Riftbound SFD\nraw €255 → netto €442"
+    ]
+   ],
+   "at": "2026-11-28T03:36:18Z",
+   "buttons": [
+    [
+     [
+      "🛒 #1 €402 · Cardmarket",
+      "https://www.cardmarket.com/en/Riftbound/Products/Singles/Origins/Teemo-Swift-Scout-V3-Signed-Showcase?language=1"
+     ]
+    ],
+    [
+     [
+      "🛒 #2 €255 · Cardmarket",
+      "https://www.cardmarket.com/en/Riftbound/Products/Singles/Spiritforged/Yone-Blademaster-V3-Signed-Showcase?language=1"
+     ]
+    ],
+    [
+     [
+      "📊 Alle slabs",
+      "https://np7editz-bot.github.io/TCGWatcher/"
+     ]
+    ]
+   ],
+   "delivered": true,
+   "key": "slab_new:2026-11-27",
+   "kind": "slab",
+   "photo": null,
+   "text": "🏆 <b>2 nieuwe slab-kansen · Riftbound</b>\n\n<b>#1 · Teemo 307*/298 SIG</b> · Riftbound OGN\nraw <b>€402</b> (Cardmarket) → PSA 10 €1744 (3 listings) · netto <b>€726</b>\n\n<b>#2 · Yone 233*/221 SIG</b> · Riftbound SFD\nraw <b>€255</b> (Cardmarket) → PSA 10 €1092 (2 listings · ⚠️ dunne markt) · netto <b>€442</b>\n\n<i>Raw all-in naar NL; netto na grading en fees, aanname 40% PSA 10, vraagprijzen als proxy. Eerder gemelde (63) staan op de radar met 📨; nog 1 nieuwe voor de komende dagen.</i>"
+  }
+ ],
+ "day": "2026-11-27"
+}

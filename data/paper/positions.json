@@ -927,6 +927,62 @@
    "source": "CardTrader Zero",
    "status": "open",
    "valuation": "cardmarket"
+  },
+  {
+   "code": "FB07",
+   "game": "dbfw",
+   "key": "dbfw:FB07:FB07-114:AA",
+   "kind": "raw",
+   "name": "Bulma FB07-114 SR_AA",
+   "net_then": 136.31,
+   "opened": "2026-11-27",
+   "price": 35.38,
+   "psa10_then": 295.31,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 33.95
+  },
+  {
+   "code": "OGN",
+   "game": "riftbound",
+   "key": "riftbound:OGN:307*/298:SIG",
+   "kind": "raw",
+   "name": "Teemo 307*/298 SIG",
+   "net_then": 722.97,
+   "opened": "2026-11-27",
+   "price": 1404.64,
+   "psa10_then": 1743.76,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 405
+  },
+  {
+   "code": "OGN",
+   "game": "riftbound",
+   "key": "riftbound:OGN:304*/298:SIG",
+   "kind": "raw",
+   "name": "Lee Sin 304*/298 SIG",
+   "net_then": 361.75,
+   "opened": "2026-11-27",
+   "price": 1605.64,
+   "psa10_then": 1327.9,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 436.67
+  },
+  {
+   "code": "SFD",
+   "game": "riftbound",
+   "key": "riftbound:SFD:233*/221:SIG",
+   "kind": "raw",
+   "name": "Yone 233*/221 SIG",
+   "net_then": 340.42,
+   "opened": "2026-11-27",
+   "price": 495.64,
+   "psa10_then": 1091.96,
+   "source": "CardTrader EU laagste ask + €5 verzending",
+   "status": "open",
+   "tcg_then": 356.58
   }
  ]
 }
