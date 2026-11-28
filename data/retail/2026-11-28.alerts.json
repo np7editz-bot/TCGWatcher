@@ -3,44 +3,30 @@
  "messages": [],
  "transitions": [
   {
-   "first_seen": "2026-11-27T22:42:44Z",
-   "kind": "in_stock->sold_out",
-   "old_price": 219.99,
-   "price": 219.99,
-   "price_obs": 2,
-   "product_kind": "box",
-   "retailer": "fantasiacards",
-   "seen": "2026-11-28T03:36:41Z",
-   "status": "sold_out",
-   "title": "Dragon Ball Super Card Game - Masters - B32 - Chromatic Ascension - Display [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-masters-b32-chromatic-ascension-display-eng-vorbestellung-release-27-11-26"
-  },
-  {
-   "first_seen": "2026-11-28T03:36:41Z",
-   "kind": "new_listing",
-   "price": 399.99,
-   "price_obs": 1,
-   "product_kind": "box",
-   "retailer": "fantasiacards",
-   "seen": "2026-11-28T03:36:41Z",
-   "status": "in_stock",
-   "title": "Dragon Ball Super Card Game - Fusion World - FB09 - Dual Evolution - Display [ENG]",
-   "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb09-dual-evolution-display-eng-1"
-  },
-  {
-   "first_seen": "2026-11-28T03:36:41Z",
+   "first_seen": "2026-11-28T07:46:43Z",
    "kind": "new_listing",
    "price": 699.99,
    "price_obs": 1,
    "product_kind": "box",
    "retailer": "fantasiacards",
-   "seen": "2026-11-28T03:36:41Z",
+   "seen": "2026-11-28T07:46:43Z",
    "status": "in_stock",
    "title": "Dragon Ball Super Card Game - Fusion World - ST01 - Story Booster Display 01 [ENG]",
    "trusted": true,
-   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-st01-story-booster-display-01-eng"
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-st01-story-booster-display-01-eng-1"
+  },
+  {
+   "first_seen": "2026-11-28T07:46:43Z",
+   "kind": "new_listing",
+   "price": 399.99,
+   "price_obs": 1,
+   "product_kind": "box",
+   "retailer": "fantasiacards",
+   "seen": "2026-11-28T07:46:43Z",
+   "status": "in_stock",
+   "title": "Dragon Ball Super Card Game - Fusion World - FB09 - Dual Evolution - Display [ENG]",
+   "trusted": true,
+   "url": "https://fantasiacards.de/products/dragon-ball-super-card-game-fusion-world-fb09-dual-evolution-display-eng"
   }
  ]
 }
